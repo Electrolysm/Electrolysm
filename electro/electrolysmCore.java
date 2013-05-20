@@ -387,6 +387,18 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 * ===========================================================================================================
 */	
  		       LanguageRegistry.addName(matterResearch, "Matter Research");
+ 		       LanguageRegistry.addName(toolsResearch, "Matter Tool Research");
+/*
+* ===========================================================================================================
+* 										Plant
+* ===========================================================================================================
+*/
+ 		       	
+ 		       GameRegistry.registerBlock(silkPlant);
+ 		       LanguageRegistry.addName(silkPlant, "Silky Plant");
+ 		       	
+ 		       	
+		
 		
 		}
 	}
