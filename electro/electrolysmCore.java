@@ -54,6 +54,9 @@ import mods.Electrolysm.electro.world.metalOreDrops.ironDust;
 import mods.Electrolysm.electro.world.metalOreDrops.leadDust;
 import mods.Electrolysm.electro.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
+import mods.Electrolysm.electro.world.plant.plantSeeds;
+import mods.Electrolysm.electro.world.plant.silkFibre;
+import mods.Electrolysm.electro.world.plant.silkPlant;
 import mods.Electrolysm.electro.machines.electroFurnace;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.learning.matterResearch;
@@ -94,15 +97,20 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 		public static silverDust silverDust = new silverDust(515);
 		public static ironDust ironDust = new ironDust(516);
 		
-		public static hiddenDust hiddenDust = new hiddenDust(517)
-;		//Ore Drop Ingots
-		/*public static Item electrumIngot;
-		public static Item copperIngot;
-		public static Item tinIngot;
-		public static Item ferrousIngot;
-		public static Item leadIngot;
-		public static Item silverIngot;
+		public static hiddenDust hiddenDust = new hiddenDust(517);
+
+/*
+* ===========================================================================================================
+* 										Plant
+* ===========================================================================================================
 */
+		public static silkFibre silkFibre = new silkFibre(520);
+		public static plantSeeds plantSeeds = new plantSeeds(521);
+		public static Block silkPlant = new silkPlant(522, null);
+		
+		
+		
+
 /*
 * ===========================================================================================================
 * 										Machines
