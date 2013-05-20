@@ -14,14 +14,14 @@ import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 
-public class silkPlant extends BlockTallGrass{
+public class silkPlant extends Block{
 
 	private static String nameID = "silkPlant";
 	
-	public silkPlant(int par1, Material par2Material) {
-		super(par1);
+	public silkPlant(int par1) {
+		super(par1, Material.vine);
 		// TODO Auto-generated constructor stub
-		
+
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName(nameID);
 	}

@@ -106,7 +106,7 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 */
 		public static silkFibre silkFibre = new silkFibre(520);
 		public static plantSeeds plantSeeds = new plantSeeds(521);
-		public static Block silkPlant = new silkPlant(522, null);
+		public static Block silkPlant = new silkPlant(522);
 		
 		
 		
