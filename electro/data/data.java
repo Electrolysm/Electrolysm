@@ -1,4 +1,4 @@
-package mods.electrolysm.electro.data;
+package mods.Electrolysm.electro.data;
 
 import java.util.Random;
 

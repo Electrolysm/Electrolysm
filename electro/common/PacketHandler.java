@@ -1,4 +1,4 @@
-package mods.electrolysm.electro.common;
+package mods.Electrolysm.electro.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

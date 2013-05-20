@@ -1,10 +1,10 @@
-package mods.electrolysm.electro.machines.gui;
+package mods.Electrolysm.electro.machines.gui;
 
 import org.lwjgl.opengl.GL11;
 
 
-import mods.electrolysm.electro.machines.container.ContainerMagmaticExtractor;
-import mods.electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
+import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

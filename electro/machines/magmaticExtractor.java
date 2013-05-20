@@ -1,4 +1,4 @@
-package mods.electrolysm.electro.machines;
+package mods.Electrolysm.electro.machines;
 
 import java.util.Random;
 
@@ -6,8 +6,8 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mods.electrolysm.electro.electrolysmCore;
-import mods.electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

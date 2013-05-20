@@ -1,4 +1,4 @@
-package mods.electrolysm.electro.data;
+package mods.Electrolysm.electro.data;
 
 import java.util.EnumSet;
 
@@ -6,7 +6,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import mods.electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class VersionCheck implements ITickHandler {

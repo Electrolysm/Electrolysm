@@ -1,10 +1,10 @@
-package mods.electrolysm.electro.metals.tier1;
+package mods.Electrolysm.electro.metals.tier1;
 
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

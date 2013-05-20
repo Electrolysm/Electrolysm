@@ -1,10 +1,10 @@
-package mods.electrolysm.electro.machines.gui;
+package mods.Electrolysm.electro.machines.gui;
 
 
-import mods.electrolysm.electro.machines.container.ContainerElectricFurnace;
-import mods.electrolysm.electro.machines.container.ContainerMagmaticExtractor;
-import mods.electrolysm.electro.machines.entities.tile.TileEntityElectricFurnace;
-import mods.electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
+import mods.Electrolysm.electro.machines.container.ContainerElectricFurnace;
+import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityElectricFurnace;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

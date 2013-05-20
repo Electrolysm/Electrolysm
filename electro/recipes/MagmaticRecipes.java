@@ -1,11 +1,11 @@
-package mods.electrolysm.electro.recipes;
+package mods.Electrolysm.electro.recipes;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mods.electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

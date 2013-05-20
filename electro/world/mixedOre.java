@@ -1,11 +1,11 @@
-package mods.electrolysm.electro.world;
+package mods.Electrolysm.electro.world;
 
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.electrolysm.electro.electrolysmCore;
-import mods.electrolysm.electro.data.data;
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.data.data;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;

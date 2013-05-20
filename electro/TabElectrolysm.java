@@ -1,4 +1,4 @@
-package mods.electrolysm.electro;
+package mods.Electrolysm.electro;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -1,7 +1,7 @@
-package mods.electrolysm.electro.machines.container;
+package mods.Electrolysm.electro.machines.container;
 
 
-import mods.electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

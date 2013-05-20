@@ -1,10 +1,10 @@
-package mods.electrolysm.electro.machines.entities.tile;
+package mods.Electrolysm.electro.machines.entities.tile;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import mods.electrolysm.electro.electrolysmCore;
-import mods.electrolysm.electro.data.data;
-import mods.electrolysm.electro.machines.electroFurnace;
-import mods.electrolysm.electro.recipes.MagmaticRecipes;
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.data.data;
+import mods.Electrolysm.electro.machines.electroFurnace;
+import mods.Electrolysm.electro.recipes.MagmaticRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

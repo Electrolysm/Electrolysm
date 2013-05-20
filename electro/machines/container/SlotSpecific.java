@@ -1,4 +1,4 @@
-package mods.electrolysm.electro.machines.container;
+package mods.Electrolysm.electro.machines.container;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

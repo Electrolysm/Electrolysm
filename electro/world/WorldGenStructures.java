@@ -1,10 +1,10 @@
-package mods.electrolysm.electro.world;
+package mods.Electrolysm.electro.world;
 /*
 import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CORRIDOR;
 
 import java.util.Random;
 
-import mods.electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

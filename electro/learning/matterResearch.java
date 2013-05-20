@@ -1,14 +1,14 @@
-package mods.electrolysm.electro.learning;
+package mods.Electrolysm.electro.learning;
 
 import java.util.List;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.electrolysm.electro.electrolysmCore;
-import mods.electrolysm.electro.data.VersionData;
-import mods.electrolysm.electro.data.data;
-import mods.electrolysm.electro.metals.hiddenIngot;
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.data.VersionData;
+import mods.Electrolysm.electro.data.data;
+import mods.Electrolysm.electro.metals.hiddenIngot;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -30,7 +30,7 @@ public class matterResearch extends Item {
 	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon("electrolysm:" + itemIDName);	
+		itemIcon = iconRegister.registerIcon("electrolysm:" + "research");	
 	}
 	
 	//Name Changer

@@ -1,11 +1,11 @@
-package mods.electrolysm.electro.metals.tier2;
+package mods.Electrolysm.electro.metals.tier2;
 
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.electrolysm.electro.electrolysmCore;
-import mods.electrolysm.electro.metals.hiddenIngot;
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.metals.hiddenIngot;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

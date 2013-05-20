@@ -1,10 +1,10 @@
-package mods.electrolysm.electro.machines.gui;
+package mods.Electrolysm.electro.machines.gui;
 
 import org.lwjgl.opengl.GL11;
 
 
-import mods.electrolysm.electro.machines.container.ContainerElectricFurnace;
-import mods.electrolysm.electro.machines.entities.tile.TileEntityElectricFurnace;
+import mods.Electrolysm.electro.machines.container.ContainerElectricFurnace;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityElectricFurnace;
 //import mods.communityMod.common.container.ContainerLavaFurnace;
 //import mods.communityMod.common.entities.tile.TileEntityLavaFurnace;
 //import mods.communityMod.textures.TextureHandler;

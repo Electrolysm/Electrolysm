@@ -1,11 +1,11 @@
-package mods.electrolysm.electro.world.metalOreDrops;
+package mods.Electrolysm.electro.world.metalOreDrops;
 
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.electrolysm.electro.electrolysmCore;
-import mods.electrolysm.electro.metals.hiddenIngot;
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.metals.hiddenIngot;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

@@ -1,4 +1,4 @@
-package mods.electrolysm.electro;
+package mods.Electrolysm.electro;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,40 +23,41 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 
 
-import mods.electrolysm.electro.common.PacketHandler;
-import mods.electrolysm.electro.data.VersionData;
-import mods.electrolysm.electro.data.VersionCheck;
-import mods.electrolysm.electro.data.VersionHelper;
-import mods.electrolysm.electro.data.data;
-import mods.electrolysm.electro.machines.gui.GuiHandler;
-import mods.electrolysm.electro.metals.hiddenDust;
-import mods.electrolysm.electro.metals.hiddenIngot;
-import mods.electrolysm.electro.metals.sydiumLava;
-import mods.electrolysm.electro.metals.tier1.babbitt;
-import mods.electrolysm.electro.metals.tier1.ionicElectrum;
-import mods.electrolysm.electro.metals.tier1.ironisedGold;
-import mods.electrolysm.electro.metals.tier1.pewter;
-import mods.electrolysm.electro.metals.tier1.sydium;
-import mods.electrolysm.electro.metals.tier1.tibetanSilver;
-import mods.electrolysm.electro.metals.tier1.tumbaga;
-import mods.electrolysm.electro.metals.tier2.alnikog;
-import mods.electrolysm.electro.metals.tier2.furrobabbitt;
-import mods.electrolysm.electro.metals.tier2.marrtanezer;
-import mods.electrolysm.electro.metals.tier2.ormogo;
-import mods.electrolysm.electro.metals.tier2.rhodite;
-import mods.electrolysm.electro.metals.tier2.syold;
-import mods.electrolysm.electro.world.WorldGenOres;
-import mods.electrolysm.electro.world.mixedOre;
-import mods.electrolysm.electro.world.metalOreDrops.copperDust;
-import mods.electrolysm.electro.world.metalOreDrops.electrumDust;
-import mods.electrolysm.electro.world.metalOreDrops.ferrousDust;
-import mods.electrolysm.electro.world.metalOreDrops.ironDust;
-import mods.electrolysm.electro.world.metalOreDrops.leadDust;
-import mods.electrolysm.electro.world.metalOreDrops.silverDust;
-import mods.electrolysm.electro.world.metalOreDrops.tinDust;
-import mods.electrolysm.electro.machines.electroFurnace;
-import mods.electrolysm.electro.machines.magmaticExtractor;
-import mods.electrolysm.electro.learning.matterResearch;
+import mods.Electrolysm.electro.common.PacketHandler;
+import mods.Electrolysm.electro.data.VersionData;
+import mods.Electrolysm.electro.data.VersionCheck;
+import mods.Electrolysm.electro.data.VersionHelper;
+import mods.Electrolysm.electro.data.data;
+import mods.Electrolysm.electro.machines.gui.GuiHandler;
+import mods.Electrolysm.electro.metals.hiddenDust;
+import mods.Electrolysm.electro.metals.hiddenIngot;
+import mods.Electrolysm.electro.metals.sydiumLava;
+import mods.Electrolysm.electro.metals.tier1.babbitt;
+import mods.Electrolysm.electro.metals.tier1.ionicElectrum;
+import mods.Electrolysm.electro.metals.tier1.ironisedGold;
+import mods.Electrolysm.electro.metals.tier1.pewter;
+import mods.Electrolysm.electro.metals.tier1.sydium;
+import mods.Electrolysm.electro.metals.tier1.tibetanSilver;
+import mods.Electrolysm.electro.metals.tier1.tumbaga;
+import mods.Electrolysm.electro.metals.tier2.alnikog;
+import mods.Electrolysm.electro.metals.tier2.furrobabbitt;
+import mods.Electrolysm.electro.metals.tier2.marrtanezer;
+import mods.Electrolysm.electro.metals.tier2.ormogo;
+import mods.Electrolysm.electro.metals.tier2.rhodite;
+import mods.Electrolysm.electro.metals.tier2.syold;
+import mods.Electrolysm.electro.world.WorldGenOres;
+import mods.Electrolysm.electro.world.mixedOre;
+import mods.Electrolysm.electro.world.metalOreDrops.copperDust;
+import mods.Electrolysm.electro.world.metalOreDrops.electrumDust;
+import mods.Electrolysm.electro.world.metalOreDrops.ferrousDust;
+import mods.Electrolysm.electro.world.metalOreDrops.ironDust;
+import mods.Electrolysm.electro.world.metalOreDrops.leadDust;
+import mods.Electrolysm.electro.world.metalOreDrops.silverDust;
+import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
+import mods.Electrolysm.electro.machines.electroFurnace;
+import mods.Electrolysm.electro.machines.magmaticExtractor;
+import mods.Electrolysm.electro.learning.matterResearch;
+import mods.Electrolysm.electro.learning.toolsResearch;
 
 
 	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.2.0")
@@ -192,8 +193,10 @@ import mods.electrolysm.electro.learning.matterResearch;
 * ===========================================================================================================
 */	
         public static matterResearch matterResearch = new matterResearch(550);
-
-/*
+        public static toolsResearch toolsResearch = new toolsResearch(551);
+ 
+ 
+/* 
  * ===============================================================================================================
  * ===============================================================================================================
  * 										Config (In game Stuff)

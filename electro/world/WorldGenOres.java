@@ -1,9 +1,9 @@
-package mods.electrolysm.electro.world;
+package mods.Electrolysm.electro.world;
 
 import java.util.Random;
 
 
-import mods.electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;

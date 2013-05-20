@@ -1,4 +1,4 @@
-package mods.electrolysm.electro.machines.container;
+package mods.Electrolysm.electro.machines.container;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
