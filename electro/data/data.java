@@ -26,5 +26,8 @@ public class data {
 	public static String hiddenMatterIngotName;
 	public static int hiddenMatterFound;
 	
+	//Plant Data
+	public static int plantStage = 0;
+	public static int plantGrowTick;
 	
 }

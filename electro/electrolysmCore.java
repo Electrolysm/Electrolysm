@@ -56,11 +56,11 @@ import mods.Electrolysm.electro.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
 import mods.Electrolysm.electro.world.plant.plantSeeds;
 import mods.Electrolysm.electro.world.plant.silkFibre;
-import mods.Electrolysm.electro.world.plant.silkPlant;
 import mods.Electrolysm.electro.machines.electroFurnace;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.learning.matterResearch;
 import mods.Electrolysm.electro.learning.toolsResearch;
+import mods.Electrolysm.electro.world.plant.silkPlant;
 
 
 	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.2.0")
