@@ -39,7 +39,7 @@ public class silkPlant extends Block{
 	
 	
 	
-	
+	//How Many it drops
 	public int quantityDroppedWithBonus(int par1, Random par2Random)
     {
 		if(data.plantStage >= 3){
