@@ -63,7 +63,7 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 import mods.Electrolysm.electro.world.plant.silkPlant;
 
 
-	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.2.0")
+	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.3.1")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 	
