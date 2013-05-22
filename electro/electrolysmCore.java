@@ -60,9 +60,7 @@ import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
 import mods.Electrolysm.electro.machines.electroFurnace;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
-import mods.Electrolysm.electro.learning.matterResearch;
 import mods.Electrolysm.electro.tools.hiddenSword;
-import mods.Electrolysm.electro.learning.toolsResearch;
 
 
 	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.3.1")
@@ -110,7 +108,7 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 		//public static Block electroFurnace = new electroFurnace(500, null);
 		public static Block magmaticExtractor = new magmaticExtractor(501, null);
 		public static Block matterSythisiser = new matterSythisiser(502, null);
-		public static Block solarCollector = new solarCollector(503, null);
+		public static Block solarCollector = new solarCollector(503);
 		
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(650);
@@ -121,8 +119,7 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 * ===========================================================================================================
 */	
 		public static hiddenSword hiddenSword = new hiddenSword(560);
-		
-		
+	
 		
 /*
  * ===============================================================================================================
@@ -197,14 +194,6 @@ import mods.Electrolysm.electro.learning.toolsResearch;
         @Instance
         public static electrolysmCore GUIinstance;
         
-/*
-* ===========================================================================================================
-* 										Research/Learning
-* ===========================================================================================================
-*/	
-        public static matterResearch matterResearch = new matterResearch(551);
-        public static toolsResearch toolsResearch = new toolsResearch(551);
- 
  
 /* 
  * ===============================================================================================================
@@ -247,6 +236,7 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 
 	 			LanguageRegistry.addName(hiddenDust, "Hidden Dust");
 	 			LanguageRegistry.addName(hiddenIngot, "Hidden Matter Ingot");
+	 			GameRegistry.addSmelting(hiddenDust.itemID, new ItemStack(hiddenIngot), 10F);
 	
 
 
@@ -370,9 +360,11 @@ import mods.Electrolysm.electro.learning.toolsResearch;
  		       //LanguageRegistry.addName(electroFurnace, "Electric Powered Smelter");//Combinder
   		       GameRegistry.registerBlock(matterSythisiser);
  		       GameRegistry.registerBlock(magmaticExtractor);
+ 		       GameRegistry.registerBlock(solarCollector);
  		      
  		       LanguageRegistry.addName(magmaticExtractor, "Magmatic Extractor");
  		       LanguageRegistry.addName(matterSythisiser, "Matter Synthisiser");
+ 		       LanguageRegistry.addName(solarCollector, "Solar Collector");
  		       
  		       
  		       
@@ -387,20 +379,18 @@ import mods.Electrolysm.electro.learning.toolsResearch;
  		    		   Character.valueOf('Z'), net.minecraft.item.Item.ingotGold,
  		    		   Character.valueOf('M'), net.minecraft.item.Item.bucketEmpty,
  		    		   Character.valueOf('N'), tumbaga);
+
 /*
 * ===========================================================================================================
-* 										Research/Learning
-* ===========================================================================================================
-*/	
- 		       LanguageRegistry.addName(matterResearch, "Matter Research");
- 		       LanguageRegistry.addName(toolsResearch, "Matter Tool Research");
-/*
-* ===========================================================================================================
-* 										Tool
+* 										Tools
 * ===========================================================================================================
 */
  		       	LanguageRegistry.addName(hiddenSword, "Hidden Sword");
  		       	
+ 		       	GameRegistry.addRecipe(new ItemStack(hiddenSword),
+ 		       			"  X", " X ", "Y  ",
+ 		       			Character.valueOf('X'), hiddenIngot,
+ 		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
  		       	
 		
 		
