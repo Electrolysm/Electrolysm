@@ -21,13 +21,10 @@ public class data {
 	public static int combCurrentEnergy = 50;
 
 
-	//Hidden Matter Name
-	public static String hiddenMatterDustName;
-	public static String hiddenMatterIngotName;
-	public static int hiddenMatterFound;
+	//Hidden Matter Sword
+	public static int randNo;
+	public static int invisNo;
+
 	
-	//Plant Data
-	public static int plantStage = 0;
-	public static int plantGrowTick;
 	
 }

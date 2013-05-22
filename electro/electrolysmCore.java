@@ -4,7 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -24,9 +26,7 @@ import cpw.mods.fml.relauncher.Side;
 
 
 import mods.Electrolysm.electro.common.PacketHandler;
-import mods.Electrolysm.electro.data.VersionData;
 import mods.Electrolysm.electro.data.VersionCheck;
-import mods.Electrolysm.electro.data.VersionHelper;
 import mods.Electrolysm.electro.data.data;
 import mods.Electrolysm.electro.machines.gui.GuiHandler;
 import mods.Electrolysm.electro.metals.hiddenDust;
@@ -45,6 +45,7 @@ import mods.Electrolysm.electro.metals.tier2.marrtanezer;
 import mods.Electrolysm.electro.metals.tier2.ormogo;
 import mods.Electrolysm.electro.metals.tier2.rhodite;
 import mods.Electrolysm.electro.metals.tier2.syold;
+import mods.Electrolysm.electro.tools.hiddenSword;
 import mods.Electrolysm.electro.world.WorldGenOres;
 import mods.Electrolysm.electro.world.mixedOre;
 import mods.Electrolysm.electro.world.metalOreDrops.copperDust;
@@ -54,13 +55,12 @@ import mods.Electrolysm.electro.world.metalOreDrops.ironDust;
 import mods.Electrolysm.electro.world.metalOreDrops.leadDust;
 import mods.Electrolysm.electro.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
-import mods.Electrolysm.electro.world.plant.plantSeeds;
-import mods.Electrolysm.electro.world.plant.silkFibre;
 import mods.Electrolysm.electro.machines.electroFurnace;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
+import mods.Electrolysm.electro.machines.matterSythisiser;
 import mods.Electrolysm.electro.learning.matterResearch;
+import mods.Electrolysm.electro.tools.hiddenSword;
 import mods.Electrolysm.electro.learning.toolsResearch;
-import mods.Electrolysm.electro.world.plant.silkPlant;
 
 
 	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.3.1")
@@ -99,17 +99,6 @@ import mods.Electrolysm.electro.world.plant.silkPlant;
 		
 		public static hiddenDust hiddenDust = new hiddenDust(517);
 
-/*
-* ===========================================================================================================
-* 										Plant
-* ===========================================================================================================
-*/
-		public static silkFibre silkFibre = new silkFibre(520);
-		public static plantSeeds plantSeeds = new plantSeeds(521);
-		public static Block silkPlant = new silkPlant(522);
-		
-		
-		
 
 /*
 * ===========================================================================================================
@@ -118,9 +107,19 @@ import mods.Electrolysm.electro.world.plant.silkPlant;
 */
 		//public static Block electroFurnace = new electroFurnace(500, null);
 		public static Block magmaticExtractor = new magmaticExtractor(501, null);
+		public static Block matterSythisiser = new matterSythisiser(502, null);
 		
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(650);
+
+/*
+* ===========================================================================================================
+* 										Tools
+* ===========================================================================================================
+*/	
+		public static hiddenSword hiddenSword = new hiddenSword(560);
+		
+		
 		
 /*
  * ===============================================================================================================
@@ -219,7 +218,6 @@ import mods.Electrolysm.electro.world.plant.silkPlant;
 			//Version Check	
 			// Initialize the Version Check Tick Handler (Client only)
 	        TickRegistry.registerTickHandler(new VersionCheck(), Side.CLIENT);
-	        TickRegistry.registerTickHandler(new VersionHelper(), Side.CLIENT);
 
 
 /*
@@ -370,6 +368,11 @@ import mods.Electrolysm.electro.world.plant.silkPlant;
  		       GameRegistry.registerBlock(magmaticExtractor);
  		       LanguageRegistry.addName(magmaticExtractor, "Magmatic Extractor");
  		       
+ 		       GameRegistry.registerBlock(matterSythisiser);
+ 		       LanguageRegistry.addName(matterSythisiser, "Matter Synthisiser");
+ 		       
+ 		       
+ 		       
  		       LanguageRegistry.addName(sydiumLava, "Lava Contained by Sydium");
  		       
  		       //Crafting
@@ -390,12 +393,10 @@ import mods.Electrolysm.electro.world.plant.silkPlant;
  		       LanguageRegistry.addName(toolsResearch, "Matter Tool Research");
 /*
 * ===========================================================================================================
-* 										Plant
+* 										Tool
 * ===========================================================================================================
 */
- 		       	
- 		       GameRegistry.registerBlock(silkPlant);
- 		       LanguageRegistry.addName(silkPlant, "Silky Plant");
+ 		       	LanguageRegistry.addName(hiddenSword, "Hidden Sword");
  		       	
  		       	
 		
