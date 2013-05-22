@@ -28,6 +28,8 @@ import cpw.mods.fml.relauncher.Side;
 import mods.Electrolysm.electro.common.PacketHandler;
 import mods.Electrolysm.electro.data.VersionCheck;
 import mods.Electrolysm.electro.data.data;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.gui.GuiHandler;
 import mods.Electrolysm.electro.metals.hiddenDust;
 import mods.Electrolysm.electro.metals.hiddenIngot;
@@ -108,6 +110,7 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 		//public static Block electroFurnace = new electroFurnace(500, null);
 		public static Block magmaticExtractor = new magmaticExtractor(501, null);
 		public static Block matterSythisiser = new matterSythisiser(502, null);
+		public static Block solarCollector = new solarCollector(503, null);
 		
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(650);
@@ -199,7 +202,7 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 * 										Research/Learning
 * ===========================================================================================================
 */	
-        public static matterResearch matterResearch = new matterResearch(550);
+        public static matterResearch matterResearch = new matterResearch(551);
         public static toolsResearch toolsResearch = new toolsResearch(551);
  
  
@@ -355,7 +358,8 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 * ===========================================================================================================
 */
  		        NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
-                //GameRegistry.registerTileEntity(TileEntityISPComp.class, "containerISPComp");
+                GameRegistry.registerTileEntity(TileEntityMagmaticExtractor.class, "containerMagmaticExtractor");
+                GameRegistry.registerTileEntity(TileEntityMatterMachine.class, "containerMatterMachine");
 
 /*
 * ===========================================================================================================
@@ -364,11 +368,10 @@ import mods.Electrolysm.electro.learning.toolsResearch;
 */
  		       //GameRegistry.registerBlock(electroFurnace); //Combinder
  		       //LanguageRegistry.addName(electroFurnace, "Electric Powered Smelter");//Combinder
- 		       
+  		       GameRegistry.registerBlock(matterSythisiser);
  		       GameRegistry.registerBlock(magmaticExtractor);
+ 		      
  		       LanguageRegistry.addName(magmaticExtractor, "Magmatic Extractor");
- 		       
- 		       GameRegistry.registerBlock(matterSythisiser);
  		       LanguageRegistry.addName(matterSythisiser, "Matter Synthisiser");
  		       
  		       

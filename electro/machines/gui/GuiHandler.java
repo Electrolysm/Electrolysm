@@ -1,9 +1,9 @@
 package mods.Electrolysm.electro.machines.gui;
 
 
-import mods.Electrolysm.electro.machines.container.ContainerElectricFurnace;
+import mods.Electrolysm.electro.machines.container.ContainerMatterMachine;
 import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
-import mods.Electrolysm.electro.machines.entities.tile.TileEntityElectricFurnace;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -18,10 +18,11 @@ public class GuiHandler implements IGuiHandler
 	{
 		TileEntity entity = world.getBlockTileEntity(x, y, z);
 		
-		if (entity instanceof TileEntityElectricFurnace)
+		if (entity instanceof TileEntityMatterMachine)
 		{
-			return new ContainerElectricFurnace((TileEntityElectricFurnace)entity, player.inventory);
+			return new ContainerMatterMachine((TileEntityMatterMachine)entity, player.inventory);
 		}
+		
 		if (entity instanceof TileEntityMagmaticExtractor)
 		{
 			return new ContainerMagmaticExtractor((TileEntityMagmaticExtractor)entity, player.inventory);
@@ -34,10 +35,11 @@ public class GuiHandler implements IGuiHandler
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
 	{
 		TileEntity entity = world.getBlockTileEntity(x, y, z);
-		if (entity instanceof TileEntityElectricFurnace)
+		if (entity instanceof TileEntityMatterMachine)
 		{
-			return new GuiElectricFurnace((TileEntityElectricFurnace)entity, player.inventory);
+			return new GuiMatterMachine((TileEntityMatterMachine)entity, player.inventory);
 		}
+		
 		if (entity instanceof TileEntityMagmaticExtractor)
 		{
 			return new GuiMagmaticExtractor((TileEntityMagmaticExtractor)entity, player.inventory);

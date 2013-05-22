@@ -25,11 +25,7 @@ public class VersionCheck implements ITickHandler {
 	@Override
 	public EnumSet<TickType> ticks() {
 		// TODO Auto-generated method stub
-		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("test " + data.randNo);                    
-		data.randNo = data.randNo + 1;
-		if(data.randNo > 102){
-			data.randNo = 0;
-		}
+
 		//if(data.invisNo != 0){
 			//data.invisNo = data.invisNo
 		//}

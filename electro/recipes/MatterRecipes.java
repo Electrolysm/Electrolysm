@@ -10,9 +10,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class MagmaticRecipes
+public class MatterRecipes
 {
-    private static final MagmaticRecipes smeltingBase = new MagmaticRecipes();
+    private static final MatterRecipes smeltingBase = new MatterRecipes();
 
     /** The list of smelting results. */
     private Map smeltingList = new HashMap();
@@ -23,22 +23,26 @@ public class MagmaticRecipes
     /**
      * Used to call methods addSmelting and getSmeltingResult.
      */
-    public static final MagmaticRecipes smelting()
+    public static final MatterRecipes smelting()
     {
         return smeltingBase;
     }
 
-    private MagmaticRecipes()
+    private MatterRecipes()
     {
-        this.addMagExtract(electrolysmCore.sydium.itemID, new ItemStack(electrolysmCore.sydiumLava), 0.7F);
-        this.addMagExtract(Item.bucketEmpty.itemID, new ItemStack(Item.bucketLava), 0.5F);
+/*
+* ===========================================================================================================
+* 										Recipes
+* ===========================================================================================================
+*/
+        this.addMatterCreation(Item.diamond.itemID, new ItemStack(electrolysmCore.hiddenDust), 10F);
         
     }
 
     /**
      * Adds a smelting recipe.
      */
-    public void addMagExtract(int par1, ItemStack par2ItemStack, float par3)
+    public void addMatterCreation(int par1, ItemStack par2ItemStack, float par3)
     {
         this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
         this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));

@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -41,6 +41,8 @@ public class matterSythisiser extends BlockContainer {
 		TextureName = textureName;
 		setTickRandomly(true);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setUnlocalizedName("matterSythisiser");
+
 
 	}
 
@@ -50,7 +52,7 @@ public class matterSythisiser extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityMagmaticExtractor();
+		return new TileEntityMatterMachine();
 	}
 
 	@Override
@@ -85,9 +87,9 @@ public class matterSythisiser extends BlockContainer {
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("electrolysm:magnaticExtractor");
-        this.furnaceIconFront = par1IconRegister.registerIcon("electrolysm:magnaticExtractor");
-        this.furnaceIconTop = par1IconRegister.registerIcon("electrolysm:magnaticExtractorTop");
+        this.blockIcon = par1IconRegister.registerIcon("electrolysm:matterMachine");
+        this.furnaceIconFront = par1IconRegister.registerIcon("electrolysm:matterMachineFront");
+        this.furnaceIconTop = par1IconRegister.registerIcon("electrolysm:matterMachineTop");
     }
 
 
@@ -178,7 +180,7 @@ public class matterSythisiser extends BlockContainer {
 	public static void updateState(boolean active, World world, int x, int y, int z)
 	{
 		 int metadata = world.getBlockMetadata(x, y, z);
-		 TileEntityMagmaticExtractor tile = (TileEntityMagmaticExtractor)world.getBlockTileEntity(x, y, z);
+		 TileEntityMatterMachine tile = (TileEntityMatterMachine)world.getBlockTileEntity(x, y, z);
 		 
 		 keepInventory = true;
 		 if(active)

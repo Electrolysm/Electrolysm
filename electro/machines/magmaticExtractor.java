@@ -41,6 +41,7 @@ public class magmaticExtractor extends BlockContainer {
 		TextureName = textureName;
 		setTickRandomly(true);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setUnlocalizedName("magmaticExtractor");
 
 	}
 

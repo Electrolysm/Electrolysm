@@ -62,7 +62,7 @@ public class electroFurnace extends BlockContainer {
 	  {
 	   return false;
 	  }
-	                player.openGui(electrolysmCore.GUIinstance, 0, world, x, y, z);
+	                //player.openGui(electrolysmCore.GUIinstance, 0, world, x, y, z);
 	  return true;
 	        }
 	
