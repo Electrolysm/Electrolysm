@@ -25,10 +25,9 @@ public class VersionCheck implements ITickHandler {
 	@Override
 	public EnumSet<TickType> ticks() {
 		// TODO Auto-generated method stub
-
-		//if(data.invisNo != 0){
-			//data.invisNo = data.invisNo
-		//}
+		if(data.invisNo != 0){
+			data.invisNo = data.invisNo + 1;
+		}
 		return null;
 	}
 

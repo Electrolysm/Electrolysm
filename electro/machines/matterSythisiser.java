@@ -42,6 +42,7 @@ public class matterSythisiser extends BlockContainer {
 		setTickRandomly(true);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("matterSythisiser");
+		this.setHardness(10);
 
 
 	}

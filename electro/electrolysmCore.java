@@ -25,6 +25,7 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 
 
+import mods.Electrolysm.electro.advAtomics.atomyBook;
 import mods.Electrolysm.electro.common.PacketHandler;
 import mods.Electrolysm.electro.data.VersionCheck;
 import mods.Electrolysm.electro.data.data;
@@ -49,7 +50,11 @@ import mods.Electrolysm.electro.metals.tier2.rhodite;
 import mods.Electrolysm.electro.metals.tier2.syold;
 import mods.Electrolysm.electro.tools.hiddenSword;
 import mods.Electrolysm.electro.world.WorldGenOres;
+import mods.Electrolysm.electro.world.copperOre;
+import mods.Electrolysm.electro.world.leadOre;
 import mods.Electrolysm.electro.world.mixedOre;
+import mods.Electrolysm.electro.world.silverOre;
+import mods.Electrolysm.electro.world.tinOre;
 import mods.Electrolysm.electro.world.metalOreDrops.copperDust;
 import mods.Electrolysm.electro.world.metalOreDrops.electrumDust;
 import mods.Electrolysm.electro.world.metalOreDrops.ferrousDust;
@@ -63,7 +68,7 @@ import mods.Electrolysm.electro.machines.matterSythisiser;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
 
-	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.3.1")
+	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.3.3")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 	
@@ -87,6 +92,10 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static int mixedOreID = 508;
 		
 		public static Block mixedOre = new mixedOre(mixedOreID);
+		public static Block copperOre = new copperOre(509);
+		public static Block tinOre = new tinOre(510);
+		public static Block leadOre = new leadOre(511);
+		public static Block silverOre = new silverOre(512);
 
 		//Ore Drops
 		public static electrumDust electrumDust = new electrumDust(510);
@@ -95,7 +104,6 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static ferrousDust ferrousDust = new ferrousDust(513);
 		public static leadDust leadDust = new leadDust(514);
 		public static silverDust silverDust = new silverDust(515);
-		public static ironDust ironDust = new ironDust(516);
 		
 		public static hiddenDust hiddenDust = new hiddenDust(517);
 
@@ -111,14 +119,14 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block solarCollector = new solarCollector(503);
 		
 		//Parts(Products)
-		public static sydiumLava sydiumLava = new sydiumLava(650);
+		public static sydiumLava sydiumLava = new sydiumLava(620);
 
 /*
 * ===========================================================================================================
 * 										Tools
 * ===========================================================================================================
 */	
-		public static hiddenSword hiddenSword = new hiddenSword(560);
+		public static hiddenSword hiddenSword = new hiddenSword(560, null);
 	
 		
 /*
@@ -194,7 +202,14 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         @Instance
         public static electrolysmCore GUIinstance;
         
- 
+/*
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* ===========================================================================================================
+* 										Advanced Atomics
+* ===========================================================================================================
+*/
+        public static atomyBook atomyBook = new atomyBook(650);
+        
 /* 
  * ===============================================================================================================
  * ===============================================================================================================
@@ -221,8 +236,18 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	 			GameRegistry.registerWorldGenerator(new WorldGenOres());
 	 			//GameRegistry.registerWorldGenerator(new WorldGenStructures());
 	 			GameRegistry.registerBlock(mixedOre);
+	 			GameRegistry.registerBlock(copperOre);
+	 			GameRegistry.registerBlock(tinOre);
+	 			GameRegistry.registerBlock(leadOre);
+	 			GameRegistry.registerBlock(silverOre);
+
 
 	 			LanguageRegistry.addName(mixedOre, "Einsteinium Ore");
+	 			LanguageRegistry.addName(copperOre, "Copper Ore");
+	 			LanguageRegistry.addName(tinOre, "Tin Ore");
+	 			LanguageRegistry.addName(leadOre, "Lead Ore");
+	 			LanguageRegistry.addName(silverOre, "silver Ore");
+
 	 				 				 			
                 //OreDictionary.registerOre("ingotEinsteinium", new ItemStack(einsteiniumIngot));
 	 			LanguageRegistry.addName(electrumDust, "Electrum Dust");
@@ -231,7 +256,6 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	 			LanguageRegistry.addName(ferrousDust, "Ferrous Dust");
 	 			LanguageRegistry.addName(leadDust, "Lead Dust");
 	 			LanguageRegistry.addName(silverDust, "Silver Dust");
-	 			LanguageRegistry.addName(ironDust, "Iron Dust");
 	 			
 
 	 			LanguageRegistry.addName(hiddenDust, "Hidden Dust");
@@ -241,41 +265,17 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 
 
 	 			//Crafting
-	 			GameRegistry.addRecipe(new ItemStack(electrumDust, 2),
+	 			GameRegistry.addRecipe(new ItemStack(electrumDust, 3),
 	 					"XY ",
 	 					Character.valueOf('X'), mixedOre,
 	 					Character.valueOf('Y'), Block.cobblestone);
 	 			
-	 			GameRegistry.addRecipe(new ItemStack(copperDust, 2),
+	 			GameRegistry.addRecipe(new ItemStack(ferrousDust, 5),
 	 					"XYY",
 	 					Character.valueOf('X'), mixedOre,
 	 					Character.valueOf('Y'), Block.cobblestone);
 	 			
-	 			GameRegistry.addRecipe(new ItemStack(tinDust, 3),
-	 					"XYY", "Y  ",
-	 					Character.valueOf('X'), mixedOre,
-	 					Character.valueOf('Y'), Block.cobblestone);
 	 			
-	 			GameRegistry.addRecipe(new ItemStack(ferrousDust, 5),
-	 					"XYY", "YY ",
-	 					Character.valueOf('X'), mixedOre,
-	 					Character.valueOf('Y'), Block.cobblestone);
-	 			
-	 			GameRegistry.addRecipe(new ItemStack(leadDust, 1),
-	 					"XYY", "YYY",
-	 					Character.valueOf('X'), mixedOre,
-	 					Character.valueOf('Y'), Block.cobblestone);
-	 			
-	 			GameRegistry.addRecipe(new ItemStack(silverDust, 2),
-	 					"XYY", "YYY", "Y  ",
-	 					Character.valueOf('X'), mixedOre,
-	 					Character.valueOf('Y'), Block.cobblestone);
-	 			
-	 			GameRegistry.addRecipe(new ItemStack(ironDust, 3),
-	 					"XYY", "YYY", "YY ",
-	 					Character.valueOf('X'), mixedOre,
-	 					Character.valueOf('Y'), Block.cobblestone);
-			}
  /*
   * ===============================================================================================================
  * 											All Ingots
@@ -304,12 +304,12 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  				GameRegistry.addRecipe(new ItemStack(ionicElectrum, 2),
  						"XYZ",
  						Character.valueOf('X'), electrumDust,
- 						Character.valueOf('Y'), ironDust,
+ 						Character.valueOf('Y'), net.minecraft.item.Item.ingotIron,
  						Character.valueOf('Z'), net.minecraft.item.Item.coal);
  				
  				GameRegistry.addRecipe(new ItemStack(ironisedGold, 2),
  						"XYZ",
- 						Character.valueOf('X'), ironDust,
+ 						Character.valueOf('X'), net.minecraft.item.Item.ingotIron,
  						Character.valueOf('Y'), net.minecraft.item.Item.ingotGold,
  						Character.valueOf('Z'), net.minecraft.item.Item.coal);
  				
@@ -379,8 +379,22 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  		    		   Character.valueOf('Z'), net.minecraft.item.Item.ingotGold,
  		    		   Character.valueOf('M'), net.minecraft.item.Item.bucketEmpty,
  		    		   Character.valueOf('N'), tumbaga);
+ 		       
+ 		       GameRegistry.addRecipe(new ItemStack(solarCollector),
+ 		    		   "XXX", "YZY", "AAA",
+ 		    		   Character.valueOf('X'), Block.glass,
+ 		    		   Character.valueOf('Y'), net.minecraft.item.Item.redstone,
+ 		    		   Character.valueOf('Z'), tibetanSilver,
+ 		    		   Character.valueOf('A'), net.minecraft.item.Item.ingotIron);
+ 		       
+ 		       GameRegistry.addRecipe(new ItemStack(matterSythisiser),
+ 		    		   "XZX", "XMX", "XYX",
+ 		    		   Character.valueOf('X'), ionicElectrum,
+ 		    		   Character.valueOf('Y'), ironisedGold,
+ 		    		   Character.valueOf('Z'), babbitt,
+ 		    		   Character.valueOf('M'), Block.furnaceIdle);
 
-/*
+/*        
 * ===========================================================================================================
 * 										Tools
 * ===========================================================================================================
@@ -394,6 +408,19 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  		       	
 		
 		
+/*
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* ===========================================================================================================
+* 										Advanced Atomics
+* ===========================================================================================================
+*/
+ 		       	
+ 		       	LanguageRegistry.addName(atomyBook, "Atomic's Book");
+ 		       	
+ 		       GameRegistry.addShapelessRecipe(new ItemStack(atomyBook), 
+ 		    		   net.minecraft.item.Item.book,
+ 		    		   electrolysmCore.pewter);
+			}
 		}
 	}
 

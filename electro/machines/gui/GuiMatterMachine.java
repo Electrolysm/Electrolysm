@@ -46,8 +46,8 @@ public class GuiMatterMachine extends GuiContainer
 				this.drawTexturedModalRect(x + 81, y + 46 + 12 - heat, 176, 4 - heat, 28, heat + 10);
 			}
 		}
-		
-		this.drawTexturedModalRect(x + 82, y + 23, 176, 14, progress - 1, 16);
+		//Arrow (Progress)
+		this.drawTexturedModalRect(x + 80, y + 21, 176, 14, progress - 1, 16);
 	}
 	
 	@Override

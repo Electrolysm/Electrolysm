@@ -42,6 +42,7 @@ public class magmaticExtractor extends BlockContainer {
 		setTickRandomly(true);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("magmaticExtractor");
+		this.setHardness(10);
 
 	}
 

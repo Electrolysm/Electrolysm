@@ -18,7 +18,8 @@ public class solarCollector extends Block {
 	
 	this.setUnlocalizedName("SolarCollector");
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
-	
+	this.setHardness(10);
+
 	}
 	private String TextureName;
 	private Icon top;

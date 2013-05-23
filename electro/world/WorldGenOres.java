@@ -28,6 +28,33 @@ public class WorldGenOres implements IWorldGenerator{
 
 			(new WorldGenMinable(electrolysmCore.mixedOre.blockID, 10)).generate(world, random, xCoord, yCoord, zCoord);
 		}
-		
+		for(int i = 0; i < 10; i++){
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(10);
+			int zCoord = chunkZ + random.nextInt(16);
+
+			(new WorldGenMinable(electrolysmCore.copperOre.blockID, 10)).generate(world, random, xCoord, yCoord, zCoord);
+		}
+		for(int i = 0; i < 10; i++){
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(10);
+			int zCoord = chunkZ + random.nextInt(16);
+
+			(new WorldGenMinable(electrolysmCore.tinOre.blockID, 10)).generate(world, random, xCoord, yCoord, zCoord);
+		}
+		for(int i = 0; i < 10; i++){
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(10);
+			int zCoord = chunkZ + random.nextInt(16);
+
+			(new WorldGenMinable(electrolysmCore.leadOre.blockID, 10)).generate(world, random, xCoord, yCoord, zCoord);
+		}
+		for(int i = 0; i < 10; i++){
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(10);
+			int zCoord = chunkZ + random.nextInt(16);
+
+			(new WorldGenMinable(electrolysmCore.silverOre.blockID, 10)).generate(world, random, xCoord, yCoord, zCoord);
+		}
 	}
 }
