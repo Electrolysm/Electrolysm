@@ -1,5 +1,7 @@
 package mods.Electrolysm.electro;
 
+import java.io.File;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,12 +9,17 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DungeonHooks;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.Item;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -26,8 +33,14 @@ import cpw.mods.fml.relauncher.Side;
 
 
 import mods.Electrolysm.electro.advAtomics.atomyBook;
+import mods.Electrolysm.electro.advAtomics.Nano.nanoBlock;
+import mods.Electrolysm.electro.advAtomics.Nano.nanoTech;
+import mods.Electrolysm.electro.advAtomics.machines.desk;
+import mods.Electrolysm.electro.advAtomics.machines.microScope;
+import mods.Electrolysm.electro.advAtomics.machines.subFreezer;
+import mods.Electrolysm.electro.advAtomics.parts.glassLens;
 import mods.Electrolysm.electro.common.PacketHandler;
-import mods.Electrolysm.electro.data.VersionCheck;
+import mods.Electrolysm.electro.data.TickRunning;
 import mods.Electrolysm.electro.data.data;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
@@ -50,6 +63,7 @@ import mods.Electrolysm.electro.metals.tier2.rhodite;
 import mods.Electrolysm.electro.metals.tier2.syold;
 import mods.Electrolysm.electro.tools.hiddenSword;
 import mods.Electrolysm.electro.world.WorldGenOres;
+import mods.Electrolysm.electro.world.WorldGenStructures;
 import mods.Electrolysm.electro.world.copperOre;
 import mods.Electrolysm.electro.world.leadOre;
 import mods.Electrolysm.electro.world.mixedOre;
@@ -65,6 +79,7 @@ import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
 import mods.Electrolysm.electro.machines.electroFurnace;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
+import mods.Electrolysm.electro.machines.solarCollector;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
 
@@ -79,9 +94,14 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		//Creative Tab
 		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm");
 		//End
-
 		
+		//ore Spawning
+		public static boolean spawnCopperOre;
+		public static boolean spawnTinOre;
+		public static boolean spawnLeadOre;
+		public static boolean spawnSilverOre;
 		
+	
 		
 /*
  * ===============================================================================================================
@@ -210,6 +230,17 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 */
         public static atomyBook atomyBook = new atomyBook(650);
         
+        //machine Parts
+        public static glassLens glassLens = new glassLens(651);
+        
+        //high end constructions
+        public static final nanoTech nanoTech = new nanoTech(655);
+        public static final Block nanoBlock	= new nanoBlock(656);
+        
+        //Machines
+        public static Block microScope = new microScope(660);
+        public static Block desk = new desk(661);
+        public static Block subFreezer = new subFreezer(662);
 /* 
  * ===============================================================================================================
  * ===============================================================================================================
@@ -217,14 +248,26 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  * ===============================================================================================================
  * ===============================================================================================================
  */
-		
-		
+        @PreInit
+        public void preInit(FMLPreInitializationEvent event) {
+                Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+                config.load();
+                
+                spawnCopperOre = config.get(Configuration.CATEGORY_GENERAL, "spawnCopperOre", true).getBoolean(true);
+                spawnTinOre = config.get(Configuration.CATEGORY_GENERAL, "spawnTinOre", true).getBoolean(true);
+                spawnLeadOre = config.get(Configuration.CATEGORY_GENERAL, "spawnLeadOre", true).getBoolean(true);
+                spawnSilverOre = config.get(Configuration.CATEGORY_GENERAL, "spawnSilverOre", true).getBoolean(true);
+
+                config.save();
+        }
+        
+        
 		@PreInit
 		public void loadConfiguration(FMLPreInitializationEvent evt) {
 			
 			//Version Check	
 			// Initialize the Version Check Tick Handler (Client only)
-	        TickRegistry.registerTickHandler(new VersionCheck(), Side.CLIENT);
+	        TickRegistry.registerTickHandler(new TickRunning(), Side.CLIENT);
 
 
 /*
@@ -234,7 +277,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  */{
 		
 	 			GameRegistry.registerWorldGenerator(new WorldGenOres());
-	 			//GameRegistry.registerWorldGenerator(new WorldGenStructures());
+	 			GameRegistry.registerWorldGenerator(new WorldGenStructures());
 	 			GameRegistry.registerBlock(mixedOre);
 	 			GameRegistry.registerBlock(copperOre);
 	 			GameRegistry.registerBlock(tinOre);
@@ -249,8 +292,16 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	 			LanguageRegistry.addName(silverOre, "silver Ore");
 
 	 				 				 			
-                //OreDictionary.registerOre("ingotEinsteinium", new ItemStack(einsteiniumIngot));
-	 			LanguageRegistry.addName(electrumDust, "Electrum Dust");
+                OreDictionary.registerOre("dustLead", new ItemStack(leadDust));
+                OreDictionary.registerOre("dustCopper", new ItemStack(copperDust));
+                OreDictionary.registerOre("dustSilver", new ItemStack(silverDust));
+                OreDictionary.registerOre("dustTin", new ItemStack(tinDust));
+                OreDictionary.registerOre("dustElectrum", new ItemStack(electrumDust));
+                OreDictionary.registerOre("dustFerrous", new ItemStack(ferrousDust));
+
+
+                
+                LanguageRegistry.addName(electrumDust, "Electrum Dust");
 	 			LanguageRegistry.addName(copperDust, "Copper Dust");
 	 			LanguageRegistry.addName(tinDust, "Tin Dust");
 	 			LanguageRegistry.addName(ferrousDust, "Ferrous Dust");
@@ -405,8 +456,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  		       			"  X", " X ", "Y  ",
  		       			Character.valueOf('X'), hiddenIngot,
  		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
- 		       	
-		
+ 		   
 		
 /*
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -420,9 +470,29 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  		       GameRegistry.addShapelessRecipe(new ItemStack(atomyBook), 
  		    		   net.minecraft.item.Item.book,
  		    		   electrolysmCore.pewter);
+ 		       
+ 		       //Machine Parts
+ 		       LanguageRegistry.addName(glassLens, "Glass Lens");
+ 		       
+ 		       
+ 		       //Machines
+ 		       GameRegistry.registerBlock(desk);
+ 		       GameRegistry.registerBlock(microScope);
+ 		       GameRegistry.registerBlock(subFreezer);
+ 		       GameRegistry.registerBlock(nanoBlock);
+ 		       
+ 		       LanguageRegistry.addName(subFreezer, "Sub-Atomic Freezer");
+ 		       LanguageRegistry.addName(desk, "Scientist's Desk");
+ 		       LanguageRegistry.addName(microScope, "Advanced Microscope");
+ 		       LanguageRegistry.addName(nanoBlock, "Nano Fibre Block");
+ 		       
+ 		       //Recipes
+ 		       GameRegistry.addRecipe(new ItemStack(glassLens),
+ 		    		   "XXX",
+ 		    		   Character.valueOf('X'), Block.glass);
+ 		        }
 			}
 		}
-	}
 
  				
 	

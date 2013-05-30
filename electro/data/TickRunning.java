@@ -9,7 +9,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public class VersionCheck implements ITickHandler {
+public class TickRunning implements ITickHandler {
 
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
@@ -25,8 +25,9 @@ public class VersionCheck implements ITickHandler {
 	@Override
 	public EnumSet<TickType> ticks() {
 		// TODO Auto-generated method stub
-		if(data.invisNo != 0){
-			data.invisNo = data.invisNo + 1;
+		data.tick = data.tick + 1;
+		if(data.tick > 20){
+			data.tick = 0;
 		}
 		return null;
 	}

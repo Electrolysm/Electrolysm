@@ -19,11 +19,12 @@ public class data {
 	public static int wastedRate = (AverWantEU / 100) * 2;
 	public static int combCap = 50;
 	public static int combCurrentEnergy = 50;
+	public static int tick;
+
 
 
 	//Hidden Matter Sword
 	public static int randNo;
-	public static int invisNo;
 
 	
 	

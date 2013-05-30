@@ -1,5 +1,5 @@
 package mods.Electrolysm.electro.world;
-/*
+
 import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CORRIDOR;
 
 import java.util.Random;
@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.ChestGenHooks;
-//import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -23,9 +23,11 @@ public class WorldGenStructures implements IWorldGenerator{
 		//Make sure it's not generating in the end or nether
 		if(world.provider.dimensionId != 1 && world.provider.dimensionId != -1){
 			generateSurface(world, random, x*16, z*16);
+			
 		}
 
-	}
+		}
+
     
 	private void generateSurface(World world, Random random, int x, int z){
 
@@ -37,7 +39,7 @@ public class WorldGenStructures implements IWorldGenerator{
 				int xCoord = x + random.nextInt(16);
 				int zCoord = z + random.nextInt(16);
 				int yCoord = getSurface(world, xCoord, zCoord);
-				int titanium = electrolysmCore.einsteinium.blockID;
+				int titanium = Block.cobblestoneMossy.blockID;
 				int torch = Block.torchWood.blockID;
 
 				for(int zA = 0; zA < 5; zA++)
@@ -76,7 +78,7 @@ public class WorldGenStructures implements IWorldGenerator{
 
 				createBlock(world, xCoord - 1, yCoord - 1, zCoord + 2, titanium, 0);
 
-				createBlock(world, xCoord + 7, yCoord, zCoord + 2, electrolysmCore.basicMachine.blockID, 0);
+				createBlock(world, xCoord + 7, yCoord, zCoord + 2, electrolysmCore.desk.blockID, 0);
 
 				createBlock(world, xCoord + 7, yCoord + 1, zCoord + 2, torch, 0);
 				createBlock(world, xCoord + 5, yCoord + 1, zCoord, torch, 0);
@@ -84,8 +86,8 @@ public class WorldGenStructures implements IWorldGenerator{
 				createBlock(world, xCoord + 2, yCoord + 1, zCoord, torch, 0);
 				createBlock(world, xCoord + 2, yCoord + 1, zCoord + 4, torch, 0);
 
-				createBlock(world, xCoord - 1, yCoord, zCoord + 2, Block.doorSteel.blockID, 0);
-				createBlock(world, xCoord - 1, yCoord + 1, zCoord + 2, Block.doorSteel.blockID, 8);
+				createBlock(world, xCoord - 1, yCoord, zCoord + 2, net.minecraft.block.BlockAnvil.doorIron.blockID, 0);
+				createBlock(world, xCoord - 1, yCoord + 1, zCoord + 2, net.minecraft.block.BlockAnvil.doorIron.blockID, 8);
 				//Above door
 				createBlock(world, xCoord - 1, yCoord + 3, zCoord - 1, titanium, 8);				
 				createBlock(world, xCoord - 1, yCoord + 3, zCoord + 0, titanium, 8);				
@@ -134,7 +136,9 @@ public class WorldGenStructures implements IWorldGenerator{
 
 				TileEntityChest tileEntityChest = new TileEntityChest();
 				world.setBlockTileEntity(xCoord + 3, yCoord, zCoord + 4, tileEntityChest);
-
+				}
+			}
+/*
 				for(int slot = 0; slot < tileEntityChest.getSizeInventory(); slot++)
 				{
 					int item = random.nextInt(250);
@@ -143,7 +147,7 @@ public class WorldGenStructures implements IWorldGenerator{
 					{
 						tileEntityChest.setInventorySlotContents(slot, new ItemStack(electrolysmCore.einsteiniumIngot, random.nextInt(2)+1));
 					}
-				/*if(item == 4 || item == 5 || item == 6)
+				if(item == 4 || item == 5 || item == 6)
 					{
 						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.arsmiumIngot, random.nextInt(3)+1));
 					}
@@ -203,11 +207,11 @@ public class WorldGenStructures implements IWorldGenerator{
 					{
 						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.urdiumIngot, random.nextInt(3)+1));
 					}
-
+*/
 				}
-			}
-		}
-	}
+			//}
+		//}
+	//}
 
 	private void createBlock(World world, int xCoord, int yCoord, int zCoord, int blockID, int metadata)
 	{
@@ -234,7 +238,6 @@ public class WorldGenStructures implements IWorldGenerator{
 		}
 
 		return height + 1;
-*/
-//	}
 
-//}
+				}
+	}

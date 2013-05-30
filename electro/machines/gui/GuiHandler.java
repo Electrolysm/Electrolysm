@@ -1,6 +1,7 @@
 package mods.Electrolysm.electro.machines.gui;
 
 
+
 import mods.Electrolysm.electro.machines.container.ContainerMatterMachine;
 import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
@@ -27,6 +28,10 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerMagmaticExtractor((TileEntityMagmaticExtractor)entity, player.inventory);
 		}
+		/*if (entity instanceof TileEntityMicroscope)
+		{
+			return new ContainerMircoscope((TileEntityMicroscope)entity, player.inventory);
+		}*/
 		
 		return null;
 	}
@@ -44,6 +49,11 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new GuiMagmaticExtractor((TileEntityMagmaticExtractor)entity, player.inventory);
 		}
+		
+		/*if (entity instanceof TileEntityMicroscope)
+		{
+			return new GuiMicroscope((TileEntityMicroscope)entity, player.inventory);
+		}*/
 		
 		
 		return null;

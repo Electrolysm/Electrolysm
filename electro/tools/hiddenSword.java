@@ -29,13 +29,13 @@ public class hiddenSword extends Item
         this.maxStackSize = 1;
         this.setMaxDamage(200);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.weaponDamage = 19;
+        this.weaponDamage = 23;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon("electrolysm:" + "hiddenSword");	
+		itemIcon = iconRegister.registerIcon("Electrolysm:" + "hiddenSword");	
 	}
     
     

@@ -26,6 +26,6 @@ public class silverDust extends Item {
 	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon("electrolysm:" + itemIDName);	
+		itemIcon = iconRegister.registerIcon("Electrolysm:" + itemIDName);	
 	}
 }

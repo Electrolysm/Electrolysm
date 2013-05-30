@@ -90,7 +90,7 @@ public class electroFurnace extends BlockContainer {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg) {
-		this.blockIcon = reg.registerIcon("electrolysm:" + "magnaticExtractor");
+		this.blockIcon = reg.registerIcon("Electrolysm:" + "magnaticExtractor");
 		this.top = reg.registerIcon("furnace_top");
 		this.sides = reg.registerIcon("furnace_side");
 	}

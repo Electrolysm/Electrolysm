@@ -40,7 +40,7 @@ public class mixedOre extends Block {
 	@Override
 	public void registerIcons(IconRegister reg)
 	{
-			this.blockIcon = reg.registerIcon("electrolysm:platinumOre");
+			this.blockIcon = reg.registerIcon("Electrolysm:platinumOre");
 	}
 
 

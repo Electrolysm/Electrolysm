@@ -47,7 +47,7 @@ public class tinOre extends Block {
     @Override
 	public void registerIcons(IconRegister reg)
 	{
-			this.blockIcon = reg.registerIcon("electrolysm:" + itemIDName);
+			this.blockIcon = reg.registerIcon("Electrolysm:" + itemIDName);
 	}
 
 

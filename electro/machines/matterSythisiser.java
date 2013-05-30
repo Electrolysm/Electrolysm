@@ -88,9 +88,9 @@ public class matterSythisiser extends BlockContainer {
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("electrolysm:matterMachine");
-        this.furnaceIconFront = par1IconRegister.registerIcon("electrolysm:matterMachineFront");
-        this.furnaceIconTop = par1IconRegister.registerIcon("electrolysm:matterMachineTop");
+        this.blockIcon = par1IconRegister.registerIcon("Electrolysm:matterMachine");
+        this.furnaceIconFront = par1IconRegister.registerIcon("Electrolysm:matterMachineFront");
+        this.furnaceIconTop = par1IconRegister.registerIcon("Electrolysm:matterMachineTop");
     }
 
 

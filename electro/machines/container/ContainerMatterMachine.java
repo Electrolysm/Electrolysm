@@ -1,6 +1,5 @@
 package mods.Electrolysm.electro.machines.container;
 
-
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,12 +14,12 @@ public class ContainerMatterMachine extends Container
 {
 	private TileEntityMatterMachine entity;
 	
-	public ContainerMatterMachine(TileEntityMatterMachine entity, InventoryPlayer inventory)
+	public ContainerMatterMachine(TileEntityMatterMachine entity2, InventoryPlayer inventory)
 	{
-		this.entity = entity;
+		this.entity = entity2;
 		
-		this.addSlotToContainer(new Slot(entity, 0, 58, 53));
-		this.addSlotToContainer(new SlotOutput(entity, 1, 116, 53));
+		this.addSlotToContainer(new Slot(entity2, 0, 58, 53));
+		this.addSlotToContainer(new SlotOutput(entity2, 1, 116, 53));
 		
 	    int var3;
 

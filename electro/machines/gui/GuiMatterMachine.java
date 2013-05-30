@@ -24,7 +24,7 @@ public class GuiMatterMachine extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) 
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture("/mods/electrolysm/textures/gui/MatterGUI.png");
+		this.mc.renderEngine.bindTexture("/mods/Electrolysm/textures/gui/MatterGUI.png");
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);

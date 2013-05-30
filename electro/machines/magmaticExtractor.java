@@ -87,9 +87,9 @@ public class magmaticExtractor extends BlockContainer {
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("electrolysm:magnaticExtractor");
-        this.furnaceIconFront = par1IconRegister.registerIcon("electrolysm:magnaticExtractor");
-        this.furnaceIconTop = par1IconRegister.registerIcon("electrolysm:magnaticExtractorTop");
+        this.blockIcon = par1IconRegister.registerIcon("Electrolysm:magnaticExtractor");
+        this.furnaceIconFront = par1IconRegister.registerIcon("Electrolysm:magnaticExtractor");
+        this.furnaceIconTop = par1IconRegister.registerIcon("Electrolysm:magnaticExtractorTop");
     }
 
 

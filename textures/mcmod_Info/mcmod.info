@@ -1,0 +1,19 @@
+[
+{
+  "modid": "Electrolysm",
+  "name": "Electrolysm",
+  "description": "Technoligical wazzardry to Minecraft",
+  "version": "0.3.3",
+  "credits": "Clarky158 and ellio98",
+  "logoFile": "/electroBanner.png",
+  "mcversion": "1.5.2",
+  "url": "",
+  "updateUrl": "",
+  "authors": [ "cLARKY158", "ellio98" ],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": [
+     "MinecraftForge"
+  ]
+}
+]

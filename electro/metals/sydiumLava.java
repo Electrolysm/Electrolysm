@@ -28,7 +28,7 @@ public class sydiumLava extends Item {
 	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon("electrolysm:" + itemIDName);	
+		itemIcon = iconRegister.registerIcon("Electrolysm:" + itemIDName);	
 	}
 	//Transmutation
     public boolean onItemUse(ItemStack is, EntityPlayer player, World w, int x, int y, int z, int l, float f, float f1, float f3){
