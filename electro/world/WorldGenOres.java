@@ -35,7 +35,7 @@ public class WorldGenOres implements IWorldGenerator{
 			int yCoord = random.nextInt(66);
 			int zCoord = chunkZ + random.nextInt(16);
 
-			(new WorldGenMinable(electrolysmCore.copperOre.blockID, 32)).generate(world, random, xCoord, yCoord, zCoord);
+			(new WorldGenMinable(electrolysmCore.copperOre.blockID, 20)).generate(world, random, xCoord, yCoord, zCoord);
 		}}
 	
 	if(electrolysmCore.spawnTinOre = true){
@@ -44,7 +44,7 @@ public class WorldGenOres implements IWorldGenerator{
 			int yCoord = random.nextInt(50);
 			int zCoord = chunkZ + random.nextInt(16);
 
-			(new WorldGenMinable(electrolysmCore.tinOre.blockID, 48)).generate(world, random, xCoord, yCoord, zCoord);
+			(new WorldGenMinable(electrolysmCore.tinOre.blockID, 15)).generate(world, random, xCoord, yCoord, zCoord);
 		}}
 	
 	if(electrolysmCore.spawnLeadOre = true){
@@ -53,7 +53,7 @@ public class WorldGenOres implements IWorldGenerator{
 			int yCoord = random.nextInt(26);
 			int zCoord = chunkZ + random.nextInt(16);
 
-			(new WorldGenMinable(electrolysmCore.leadOre.blockID, 20)).generate(world, random, xCoord, yCoord, zCoord);
+			(new WorldGenMinable(electrolysmCore.leadOre.blockID, 9)).generate(world, random, xCoord, yCoord, zCoord);
 		}}
 	if(electrolysmCore.spawnSilverOre = true){
 		for(int i = 0; i < 10; i++){
@@ -61,7 +61,15 @@ public class WorldGenOres implements IWorldGenerator{
 			int yCoord = random.nextInt(49);
 			int zCoord = chunkZ + random.nextInt(16);
 
-			(new WorldGenMinable(electrolysmCore.silverOre.blockID, 39)).generate(world, random, xCoord, yCoord, zCoord);
+			(new WorldGenMinable(electrolysmCore.silverOre.blockID, 16)).generate(world, random, xCoord, yCoord, zCoord);
 		}}
+	
+	for(int i = 0; i < 10; i++){
+		int xCoord = chunkX + random.nextInt(16);
+		int yCoord = random.nextInt(30);
+		int zCoord = chunkZ + random.nextInt(16);
+
+		(new WorldGenMinable(electrolysmCore.OrePlatinum.blockID, 6)).generate(world, random, xCoord, yCoord, zCoord);
+	}
 	}
 }

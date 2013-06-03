@@ -1,4 +1,4 @@
-package mods.Electrolysm.electro.metals.tier2;
+package mods.Electrolysm.electro.advAtomics.plants;
 
 import java.util.List;
 
@@ -11,15 +11,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ormogo extends hiddenIngot {
+public class stickyString extends Item {
 
-	private static final String itemIDName = "ormogo";
+	private static final String itemIDName = "stickyString";
 
-	public ormogo(int par1) {
+	public stickyString(int par1) {
 		super(par1);
 		// TODO Auto-generated constructor stub
 	
 	this.setUnlocalizedName(itemIDName);
+	this.setCreativeTab(electrolysmCore.TabElectrolysm);
+
 	}
 	
 	@Override
@@ -27,12 +29,5 @@ public class ormogo extends hiddenIngot {
     public void registerIcons(IconRegister iconRegister) {
 		itemIcon = iconRegister.registerIcon("Electrolysm:" + itemIDName);	
 	}
-	
-	@SideOnly(Side.CLIENT)
 
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
-    {
-		Object whatIngot = "A flexable heavy metal";
-		par3List.add(whatIngot );
-    }
 }

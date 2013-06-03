@@ -1,4 +1,4 @@
-package mods.Electrolysm.electro.metals.tier2;
+package mods.Electrolysm.electro.world;
 
 import java.util.List;
 
@@ -11,15 +11,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class rhodite extends hiddenIngot {
+public class ingotPlatinum extends Item {
 
-	private static final String itemIDName = "rhodite";
+	private static final String itemIDName = "ingotPlatinum";
 
-	public rhodite(int par1) {
+	public ingotPlatinum(int par1) {
 		super(par1);
 		// TODO Auto-generated constructor stub
 	
 	this.setUnlocalizedName(itemIDName);
+	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	}
 	
 	@Override
@@ -27,12 +28,4 @@ public class rhodite extends hiddenIngot {
     public void registerIcons(IconRegister iconRegister) {
 		itemIcon = iconRegister.registerIcon("Electrolysm:" + itemIDName);	
 	}
-	
-	@SideOnly(Side.CLIENT)
-
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
-    {
-		Object whatIngot = "A strong, shiny dark metal";
-		par3List.add(whatIngot );
-    }
 }

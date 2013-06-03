@@ -41,6 +41,11 @@ public class MatterRecipes
         this.addMatterCreation(Block.blockEmerald.blockID, new ItemStack(electrolysmCore.hiddenDust, 10), 20F);
         this.addMatterCreation(Item.emerald.itemID, new ItemStack(electrolysmCore.hiddenDust, 2), 10F);
         
+        this.addMatterCreation2(new ItemStack(electrolysmCore.tibetanSilver,  4), new ItemStack(electrolysmCore.hiddenDust), 1F);
+ 
+/*
+ * ====================================================================================================================
+ */
     }
 
     /**
@@ -51,6 +56,13 @@ public class MatterRecipes
         this.smeltingList.put(Integer.valueOf(Input), Output);
         this.experienceList.put(Integer.valueOf(Output.itemID), Float.valueOf(experience));
     }
+    
+    public void addMatterCreation2(ItemStack Input, ItemStack Output, float experience)
+    {
+        this.smeltingList.put(Integer.valueOf(Input.itemID), Output);
+        this.experienceList.put(Integer.valueOf(Output.itemID), Float.valueOf(experience));
+    }
+    
     public ItemStack getSmeltingResult(ItemStack item) 
     {
         if (item == null)

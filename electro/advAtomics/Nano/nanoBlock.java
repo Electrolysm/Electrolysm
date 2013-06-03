@@ -22,11 +22,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 public class nanoBlock extends Block {
 
 	private static final String itemIDName = "nanoBlock";
-	private static int state;
-	private static boolean isCreative;
 
-	public static EntityPlayer playerUse;
-	private static int ID;
 	
 	public nanoBlock(int par1) {
 		super(par1, Material.iron);
@@ -34,9 +30,9 @@ public class nanoBlock extends Block {
 	
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName(itemIDName);
-	this.setHardness(1);
-	this.setResistance(1);
-	this.setLightValue(0.1F);
+	this.setHardness(40);
+	this.setResistance(10);
+	this.setLightValue(0.2F);
 	this.isOpaqueCube();
 	this.setLightOpacity(1);
 	}
@@ -55,7 +51,7 @@ public class nanoBlock extends Block {
     
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return ID;
+        return electrolysmCore.nanoTech.itemID;
     }
     
     public int quantityDroppedWithBonus(int par1, Random par2Random)
@@ -63,35 +59,4 @@ public class nanoBlock extends Block {
         return 4;
     }
     
-    public void harvestBlock(World par1World, EntityPlayer player, int par3, int par4, int par5, int par6)
-    {
-	isCreative = (!player.capabilities.isCreativeMode);
-
-    }
-    
-    
-    /**
-     * Called right before the block is destroyed by a player.  Args: world, x, y, z, metaData
-     */
-    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
-    	if(isCreative = true){
-			world.setBlockToAir(x, y, z);
-    	}
-		state = state + 1;
-    	/*if(data.tick != 200){
-			//if(state != 3){
-				//world.setBlock(x, y, z, electrolysmCore.nanoBlock.blockID);
-				//ID = 0;
-			}
-		}
-		if(data.tick != 200){
-			if(state == 3){*/
-				world.setBlockToAir(x, y, z);
-				ID = electrolysmCore.nanoTech.itemID;
-			//}
-		//}
-    }
-
-
-
 }

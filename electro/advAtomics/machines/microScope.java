@@ -46,9 +46,7 @@ public class microScope extends BlockContainer {
 	  {
 				
 	   return false;
-	  }
-	  elements.guiItem = (player.getCurrentEquippedItem());
-	               
+	  }	               
 	  player.openGui(electrolysmCore.GUIinstance, 0, world, x, y, z);
 	  return true;
 	        }

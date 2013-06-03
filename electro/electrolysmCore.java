@@ -3,6 +3,7 @@ package mods.Electrolysm.electro;
 import java.io.File;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,7 +19,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.Item;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
@@ -33,12 +33,15 @@ import cpw.mods.fml.relauncher.Side;
 
 
 import mods.Electrolysm.electro.advAtomics.atomyBook;
+import mods.Electrolysm.electro.advAtomics.platium;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoBlock;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoTech;
 import mods.Electrolysm.electro.advAtomics.machines.desk;
 import mods.Electrolysm.electro.advAtomics.machines.microScope;
 import mods.Electrolysm.electro.advAtomics.machines.subFreezer;
 import mods.Electrolysm.electro.advAtomics.parts.glassLens;
+import mods.Electrolysm.electro.advAtomics.plants.fibrePlant;
+import mods.Electrolysm.electro.advAtomics.plants.stickyString;
 import mods.Electrolysm.electro.common.PacketHandler;
 import mods.Electrolysm.electro.data.TickRunning;
 import mods.Electrolysm.electro.data.data;
@@ -55,16 +58,13 @@ import mods.Electrolysm.electro.metals.tier1.pewter;
 import mods.Electrolysm.electro.metals.tier1.sydium;
 import mods.Electrolysm.electro.metals.tier1.tibetanSilver;
 import mods.Electrolysm.electro.metals.tier1.tumbaga;
-import mods.Electrolysm.electro.metals.tier2.alnikog;
-import mods.Electrolysm.electro.metals.tier2.furrobabbitt;
-import mods.Electrolysm.electro.metals.tier2.marrtanezer;
-import mods.Electrolysm.electro.metals.tier2.ormogo;
-import mods.Electrolysm.electro.metals.tier2.rhodite;
-import mods.Electrolysm.electro.metals.tier2.syold;
 import mods.Electrolysm.electro.tools.hiddenSword;
+import mods.Electrolysm.electro.world.OrePlatinum;
+import mods.Electrolysm.electro.world.OrePlatinum;
 import mods.Electrolysm.electro.world.WorldGenOres;
 import mods.Electrolysm.electro.world.WorldGenStructures;
 import mods.Electrolysm.electro.world.copperOre;
+import mods.Electrolysm.electro.world.ingotPlatinum;
 import mods.Electrolysm.electro.world.leadOre;
 import mods.Electrolysm.electro.world.mixedOre;
 import mods.Electrolysm.electro.world.silverOre;
@@ -76,14 +76,13 @@ import mods.Electrolysm.electro.world.metalOreDrops.ironDust;
 import mods.Electrolysm.electro.world.metalOreDrops.leadDust;
 import mods.Electrolysm.electro.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
-import mods.Electrolysm.electro.machines.electroFurnace;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
 import mods.Electrolysm.electro.machines.solarCollector;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
 
-	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.3.3")
+	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.4.9")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 	
@@ -116,24 +115,25 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block tinOre = new tinOre(510);
 		public static Block leadOre = new leadOre(511);
 		public static Block silverOre = new silverOre(512);
+		public static Block OrePlatinum = new OrePlatinum(513);
 
 		//Ore Drops
-		public static electrumDust electrumDust = new electrumDust(510);
-		public static copperDust copperDust = new copperDust(511);
-		public static tinDust tinDust = new tinDust(512);
-		public static ferrousDust ferrousDust = new ferrousDust(513);
-		public static leadDust leadDust = new leadDust(514);
-		public static silverDust silverDust = new silverDust(515);
+		public static electrumDust electrumDust = new electrumDust(514);
+		public static copperDust copperDust = new copperDust(515);
+		public static tinDust tinDust = new tinDust(516);
+		public static ferrousDust ferrousDust = new ferrousDust(517);
+		public static leadDust leadDust = new leadDust(518);
+		public static silverDust silverDust = new silverDust(519);
 		
-		public static hiddenDust hiddenDust = new hiddenDust(517);
+		public static hiddenDust hiddenDust = new hiddenDust(520);
 
+		public static ingotPlatinum ingotPlatinum = new ingotPlatinum(521);
 
 /*
 * ===========================================================================================================
 * 										Machines
 * ===========================================================================================================
 */
-		//public static Block electroFurnace = new electroFurnace(500, null);
 		public static Block magmaticExtractor = new magmaticExtractor(501, null);
 		public static Block matterSythisiser = new matterSythisiser(502, null);
 		public static Block solarCollector = new solarCollector(503);
@@ -184,34 +184,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		//Lead + Silver (Conductor of heat + electricity, Dark and shinny in colour) TextureDone
 		public static final tibetanSilver tibetanSilver = new tibetanSilver(607);
 		
-/*
-* ============================================================================
-* 									Tier 2
-* ============================================================================		
-*/	
-				//ionicElectrum + tibetanSilver (Strongish, Dark and shinny in colour)
-				public static final rhodite rhodite = new rhodite(610);
-				
-				//tibetanSilver + tumbaga (Strong, Conductor of heat + electricity)
-				public static final alnikog alnikog = new alnikog(611);
-				
-				//tumbaga + babbitt (Flexible, Conductor of heat + electricity, strong)
-				public static final furrobabbitt furrobabbitt = new furrobabbitt(612);
-				
-				//babbitt + pewter (Flexible, Light in Colour, Heavy)
-				public static final ormogo ormogo = new ormogo(613);
-				
-				//pewter + sydium (Unstable, Poisonous, Heavy)
-				public static final marrtanezer marrtanezer = new marrtanezer(614);
-				
-				//sydium + ironisedGold (Poisonous, Conductor of heat + electricity, unstable(Deteriates into Syanic Acid(Liquid, like lava)))
-				public static final syold syold = new syold(615);
-		
-		
-				
-				
-				
-		
+
 /*
 * ===========================================================================================================
 * 										GUIs
@@ -238,10 +211,18 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         public static final Block nanoBlock	= new nanoBlock(656);
         
         //Machines
-        public static Block microScope = new microScope(660);
+        //public static Block microScope = new microScope(660);
         public static Block desk = new desk(661);
-        public static Block subFreezer = new subFreezer(662);
-/* 
+        //public static Block subFreezer = new subFreezer(662, null);
+        
+        //Plants
+        public static Block fibrePlant = new fibrePlant(680);
+        public static stickyString stickyString = new stickyString(681);
+        
+        //Pressurised Furnace
+        public static Block platinum = new platium(682);
+        
+        /* 
  * ===============================================================================================================
  * ===============================================================================================================
  * 										Config (In game Stuff)
@@ -283,6 +264,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	 			GameRegistry.registerBlock(tinOre);
 	 			GameRegistry.registerBlock(leadOre);
 	 			GameRegistry.registerBlock(silverOre);
+	 			GameRegistry.registerBlock(OrePlatinum);
 
 
 	 			LanguageRegistry.addName(mixedOre, "Einsteinium Ore");
@@ -290,6 +272,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	 			LanguageRegistry.addName(tinOre, "Tin Ore");
 	 			LanguageRegistry.addName(leadOre, "Lead Ore");
 	 			LanguageRegistry.addName(silverOre, "silver Ore");
+	 			LanguageRegistry.addName(OrePlatinum, "Platinum Ore");
 
 	 				 				 			
                 OreDictionary.registerOre("dustLead", new ItemStack(leadDust));
@@ -298,6 +281,8 @@ import mods.Electrolysm.electro.tools.hiddenSword;
                 OreDictionary.registerOre("dustTin", new ItemStack(tinDust));
                 OreDictionary.registerOre("dustElectrum", new ItemStack(electrumDust));
                 OreDictionary.registerOre("dustFerrous", new ItemStack(ferrousDust));
+                OreDictionary.registerOre("orePlatinum", new ItemStack(OrePlatinum));
+                OreDictionary.registerOre("ingotPlatinum", new ItemStack(ingotPlatinum));
 
 
                 
@@ -307,12 +292,13 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	 			LanguageRegistry.addName(ferrousDust, "Ferrous Dust");
 	 			LanguageRegistry.addName(leadDust, "Lead Dust");
 	 			LanguageRegistry.addName(silverDust, "Silver Dust");
+	 			LanguageRegistry.addName(ingotPlatinum, "Platinum Ingot");
 	 			
 
 	 			LanguageRegistry.addName(hiddenDust, "Hidden Dust");
 	 			LanguageRegistry.addName(hiddenIngot, "Hidden Matter Ingot");
 	 			GameRegistry.addSmelting(hiddenDust.itemID, new ItemStack(hiddenIngot), 10F);
-	
+	 			GameRegistry.addSmelting(OrePlatinum.blockID, new ItemStack(OrePlatinum), 10F);
 
 
 	 			//Crafting
@@ -341,14 +327,6 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  				LanguageRegistry.addName(pewter, "Pewter Ingot");
  				LanguageRegistry.addName(sydium, "Sydium Ingot");
  				LanguageRegistry.addName(tibetanSilver, "Tibetan Silver Ingot");
-
- 				//Tier 2 Ingots
- 				LanguageRegistry.addName(rhodite, "Rhodite Ingot");
- 				LanguageRegistry.addName(alnikog, "Alnikog Ingot");
- 				LanguageRegistry.addName(furrobabbitt, "Furrobabbitt Ingot");
- 				LanguageRegistry.addName(ormogo, "Ormogo Ingot");
- 				LanguageRegistry.addName(marrtanezer, "Marrtanezer Ingot");
- 				LanguageRegistry.addName(syold, "Syold Ingot");
  				
  				//Crafting
  				//Tier 1
@@ -407,8 +385,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 * 										Machines
 * ===========================================================================================================
 */
- 		       //GameRegistry.registerBlock(electroFurnace); //Combinder
- 		       //LanguageRegistry.addName(electroFurnace, "Electric Powered Smelter");//Combinder
+
   		       GameRegistry.registerBlock(matterSythisiser);
  		       GameRegistry.registerBlock(magmaticExtractor);
  		       GameRegistry.registerBlock(solarCollector);
@@ -476,21 +453,40 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  		       
  		       
  		       //Machines
- 		       GameRegistry.registerBlock(desk);
- 		       GameRegistry.registerBlock(microScope);
- 		       GameRegistry.registerBlock(subFreezer);
- 		       GameRegistry.registerBlock(nanoBlock);
+ 		       //GameRegistry.registerBlock(microScope);
+ 		       //GameRegistry.registerBlock(subFreezer);
  		       
- 		       LanguageRegistry.addName(subFreezer, "Sub-Atomic Freezer");
- 		       LanguageRegistry.addName(desk, "Scientist's Desk");
- 		       LanguageRegistry.addName(microScope, "Advanced Microscope");
- 		       LanguageRegistry.addName(nanoBlock, "Nano Fibre Block");
+ 		       GameRegistry.registerBlock(desk);
+ 		       GameRegistry.registerBlock(nanoBlock);
+ 		       GameRegistry.registerBlock(platinum);
+ 		       
+ 		       //LanguageRegistry.addName(subFreezer, "Sub-Atomic Freezer");
+ 		       //LanguageRegistry.addName(microScope, "Advanced Microscope");
+ 		       
+ 		       LanguageRegistry.addName(desk, "Scientist's Desk");    
+ 		       LanguageRegistry.addName(nanoBlock, "Nano-Fibre Block");
+ 		       LanguageRegistry.addName(nanoTech, "Nano-Fibre Sheeting");
+ 		       LanguageRegistry.addName(platinum, "Platinum Block");
  		       
  		       //Recipes
  		       GameRegistry.addRecipe(new ItemStack(glassLens),
  		    		   "XXX",
  		    		   Character.valueOf('X'), Block.glass);
- 		        }
+ 		        
+ 
+ 		       //Plants
+ 		       GameRegistry.registerBlock(fibrePlant);
+ 		       LanguageRegistry.addName(stickyString, "Sticky String");
+ 		       LanguageRegistry.addName(fibrePlant, "Fibre Plant Seeds");
+ 		       
+ 		       GameRegistry.addRecipe(new ItemStack(nanoTech),
+ 		    		   "XX", "XX",
+ 		    		   Character.valueOf('X'), stickyString);
+ 		       
+ 		       GameRegistry.addRecipe(new ItemStack(net.minecraft.item.Item.silk),
+ 		    		   "X",
+ 		    		   Character.valueOf('X'), stickyString);
+ }
 			}
 		}
 

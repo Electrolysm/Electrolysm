@@ -3,7 +3,6 @@ package mods.Electrolysm.electro.machines.entities.tile;
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.Electrolysm.electro.electrolysmCore;
 import mods.Electrolysm.electro.data.data;
-import mods.Electrolysm.electro.machines.electroFurnace;
 import mods.Electrolysm.electro.recipes.MagmaticRecipes;
 import mods.Electrolysm.electro.recipes.MatterRecipes;
 import net.minecraft.block.Block;
