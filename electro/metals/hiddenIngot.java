@@ -20,6 +20,8 @@ public class hiddenIngot extends Item {
 	
 	this.setMaxStackSize(64);
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
+	this.setUnlocalizedName(itemIDName);
+	
 	}
 	
 	@Override

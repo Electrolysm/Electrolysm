@@ -296,7 +296,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	 			LanguageRegistry.addName(ingotPlatinum, "Platinum Ingot");
 	 			
 
-	 			LanguageRegistry.addName(hiddenDust, "Hidden Dust");
+	 			LanguageRegistry.addName(hiddenDust, "Hidden Matter Dust");
 	 			LanguageRegistry.addName(hiddenIngot, "Hidden Matter Ingot");
 	 			GameRegistry.addSmelting(hiddenDust.itemID, new ItemStack(hiddenIngot), 10F);
 	 			GameRegistry.addSmelting(OrePlatinum.blockID, new ItemStack(OrePlatinum), 10F);
