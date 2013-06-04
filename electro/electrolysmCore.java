@@ -76,6 +76,7 @@ import mods.Electrolysm.electro.world.metalOreDrops.ironDust;
 import mods.Electrolysm.electro.world.metalOreDrops.leadDust;
 import mods.Electrolysm.electro.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
+import mods.Electrolysm.electro.machines.Forge;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
 import mods.Electrolysm.electro.machines.solarCollector;
@@ -137,7 +138,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block magmaticExtractor = new magmaticExtractor(501, null);
 		public static Block matterSythisiser = new matterSythisiser(502, null);
 		public static Block solarCollector = new solarCollector(503);
-		
+		public static Block Forge = new Forge(504, null);
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(620);
 
@@ -389,11 +390,12 @@ import mods.Electrolysm.electro.tools.hiddenSword;
   		       GameRegistry.registerBlock(matterSythisiser);
  		       GameRegistry.registerBlock(magmaticExtractor);
  		       GameRegistry.registerBlock(solarCollector);
- 		      
+ 		       GameRegistry.registerBlock(Forge); 		    
+ 		       
  		       LanguageRegistry.addName(magmaticExtractor, "Magmatic Extractor");
  		       LanguageRegistry.addName(matterSythisiser, "Matter Synthisiser");
  		       LanguageRegistry.addName(solarCollector, "Solar Collector");
- 		       
+ 		       LanguageRegistry.addName(Forge, "Forge");
  		       
  		       
  		       LanguageRegistry.addName(sydiumLava, "Lava Contained by Sydium");
@@ -422,6 +424,9 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  		    		   Character.valueOf('Z'), babbitt,
  		    		   Character.valueOf('M'), Block.furnaceIdle);
 
+
+// 		       
+ 		       
 /*        
 * ===========================================================================================================
 * 										Tools
@@ -486,7 +491,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  		       GameRegistry.addRecipe(new ItemStack(net.minecraft.item.Item.silk),
  		    		   "X",
  		    		   Character.valueOf('X'), stickyString);
- }
+ 				}
 			}
 		}
 
