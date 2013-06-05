@@ -37,7 +37,7 @@ public class BIRegistry {
 			 			LanguageRegistry.addName(electrolysmCore.tinOre, "Tin Ore");
 			 			LanguageRegistry.addName(electrolysmCore.leadOre, "Lead Ore");
 			 			LanguageRegistry.addName(electrolysmCore.silverOre, "silver Ore");
-			 			LanguageRegistry.addName(electrolysmCore.OrePlatinum, "Platinum Ore");
+			 			LanguageRegistry.addName(electrolysmCore.OrePlatinum, "Redstone Infused Platinum Ore");
 
 			 				 				 			
 		                OreDictionary.registerOre("dustLead", new ItemStack(electrolysmCore.leadDust));
@@ -47,7 +47,7 @@ public class BIRegistry {
 		                OreDictionary.registerOre("dustElectrum", new ItemStack(electrolysmCore.electrumDust));
 		                OreDictionary.registerOre("dustFerrous", new ItemStack(electrolysmCore.ferrousDust));
 		                OreDictionary.registerOre("orePlatinum", new ItemStack(electrolysmCore.OrePlatinum));
-		                OreDictionary.registerOre("ingotPlatinum", new ItemStack(electrolysmCore.ingotPlatinum));
+		                OreDictionary.registerOre("ingotRedstoneInfusedPlatinum", new ItemStack(electrolysmCore.ingotPlatinum));
 
 
 		                
@@ -57,7 +57,7 @@ public class BIRegistry {
 			 			LanguageRegistry.addName(electrolysmCore.ferrousDust, "Ferrous Dust");
 			 			LanguageRegistry.addName(electrolysmCore.leadDust, "Lead Dust");
 			 			LanguageRegistry.addName(electrolysmCore.silverDust, "Silver Dust");
-			 			LanguageRegistry.addName(electrolysmCore.ingotPlatinum, "Platinum Ingot");
+			 			LanguageRegistry.addName(electrolysmCore.ingotPlatinum, "Redstone Infused Platinum Ingot");
 			 			
 
 			 			LanguageRegistry.addName(electrolysmCore.hiddenDust, "Hidden Matter Dust");
@@ -152,7 +152,7 @@ public class BIRegistry {
 		 		       LanguageRegistry.addName(electrolysmCore.desk, "Scientist's Desk");    
 		 		       LanguageRegistry.addName(electrolysmCore.nanoBlock, "Nano-Fibre Block");
 		 		       LanguageRegistry.addName(electrolysmCore.nanoTech, "Nano-Fibre Sheeting");
-		 		       LanguageRegistry.addName(electrolysmCore.platinum, "Platinum Block");
+		 		       LanguageRegistry.addName(electrolysmCore.platinum, "Redstone Infused Platinum Block");
 		 		       
 		 		       
 		 		        

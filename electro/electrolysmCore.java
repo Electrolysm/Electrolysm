@@ -87,7 +87,7 @@ import mods.Electrolysm.electro.machines.solarCollector;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
 
-	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.4.9")
+	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.1")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 	

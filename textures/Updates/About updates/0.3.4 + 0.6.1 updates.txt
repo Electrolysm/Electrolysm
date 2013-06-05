@@ -1,0 +1,82 @@
+====================
+0.3.4 Update
+====================
+
+new texture to einstienium
+
+new ore gen
+ores drop dust so no smelting required
+>lead
+>silver
+>tin
+>copper
+
+config file for world gen
+
+New machines
+>solar collector
+>matter synthesiser
+
+matter sythisiser
+makes matter from diamons
+requires sollar collector on side
+(for crafting see pictures)
+
+sollar collector
+powers matter synthisiser
+(for crafting see pictures)
+
+hidden matter dust is smelted into hidden matter ingots
+use 2 ingots and a diamond to create the hidden sword
+does 23 damage.
+
+magmatic extractor now fills buckets
+sydium lava explodes when you try and place it.
+
+====================
+0.6.1 Update
+====================
+
+new ore - redstone infused platinum Ore
+needs to be smelted to get ingots
+pulverized / macerated to get dust to melt into ingots
+
+redstone infused platinum ingot can be made into block
+the block is very explosive resistant and very hard/long to mine.
+
+new machine - forge
+used to mix metal dusts
+Thermal Expansion smelter can be used
+
+First start to the advanced atomics has been added
+-the atomics book
+-glass lens
+-scientists desk
+-Derelict science lab
+-pressurised steam furnace
+
+dont have uses yet
+
+atomics book can be crafted using a book and pewter ingot
+
+glass lens has no use but can be crafted using 3 glass block in a vertical line
+
+scientist desk currently has no use
+the only way to get one is to find it a derelic science lab
+
+derelic science lab is found on the serface of the overworld, they are quite common.
+
+new multiblock pressurised steam boiler
+built 3X3X3 and hollow in the middle
+is made from redstone infused platinum.
+
+new plant added - fibre plant
+
+when fully grown and brocken drops sticky string
+sticky string can be made into string or nano fibre sheeting
+
+nano fibre sheeting will be made into nano block in a pressurised steam furnace
+
+nano tech blocks are explosive resistant and have to be brocked 2/3 times be for
+they drop
+nano tech blocks drop 4 nano fibre sheets on breaking.
