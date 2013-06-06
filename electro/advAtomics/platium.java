@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class platium extends Block {
 
 	private static final String itemIDName = "platinum";
-	private static final int breaking = 150;
+	public static final int breaking = 150;
 
 	public platium(int par1) {
 		super(par1, Material.iron);

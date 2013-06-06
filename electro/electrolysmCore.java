@@ -68,6 +68,7 @@ import mods.Electrolysm.electro.world.OrePlatinum;
 import mods.Electrolysm.electro.world.WorldGenOres;
 import mods.Electrolysm.electro.world.WorldGenStructures;
 import mods.Electrolysm.electro.world.copperOre;
+import mods.Electrolysm.electro.world.dustPlatinum;
 import mods.Electrolysm.electro.world.ingotPlatinum;
 import mods.Electrolysm.electro.world.leadOre;
 import mods.Electrolysm.electro.world.mixedOre;
@@ -129,10 +130,11 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static ferrousDust ferrousDust = new ferrousDust(517);
 		public static leadDust leadDust = new leadDust(518);
 		public static silverDust silverDust = new silverDust(519);
+		public static dustPlatinum dustPlatinum = new dustPlatinum(520);
 		
-		public static hiddenDust hiddenDust = new hiddenDust(520);
+		public static hiddenDust hiddenDust = new hiddenDust(521);
 
-		public static ingotPlatinum ingotPlatinum = new ingotPlatinum(521);
+		public static ingotPlatinum ingotPlatinum = new ingotPlatinum(522);
 
 /*
 * ===========================================================================================================
@@ -256,6 +258,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        //Registries
 	        BICrafting.registerCraftingRecipes();
 	        BICrafting.registerSmeltingRecipes();
+	        BICrafting.registerMODCrafting();
 	        
 	        BIRegistry.Registry();
 

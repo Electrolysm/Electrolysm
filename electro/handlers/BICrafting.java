@@ -1,5 +1,8 @@
 package mods.Electrolysm.electro.handlers;
 
+import ic2.api.item.Items;
+import ic2.api.recipe.Recipes;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -7,6 +10,8 @@ import net.minecraft.item.crafting.CraftingManager;
 import mods.Electrolysm.electro.electrolysmCore;
 
 public class BICrafting {
+
+	private static String name;
 
 	//Creafting
 	public static void registerCraftingRecipes()
@@ -123,4 +128,32 @@ public class BICrafting {
 		GameRegistry.addSmelting(electrolysmCore.OrePlatinum.blockID, new ItemStack(electrolysmCore.OrePlatinum), 10F);
 		
 	}
+	
+	//Other mod api recipes
+	//eg - IC2
+	
+	public static void registerMODCrafting(){
+		
+		if(Loader.isModLoaded("IC2"))
+			{
+			Recipes.macerator.addRecipe(new ItemStack(electrolysmCore.OrePlatinum), new ItemStack(electrolysmCore.dustPlatinum, 2));
+			Recipes.extractor.addRecipe(new ItemStack(electrolysmCore.ingotPlatinum, 2), new ItemStack(net.minecraft.item.Item.redstone));
+			
+			 Class Ic2Items;
+			 ItemStack electronicCircuit = Items.getItem("electronicCircuit");
+
+			GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterSythisiser, 1),
+					"XZX", "XMX", "XYX",
+		    		   Character.valueOf('X'), electronicCircuit,
+		    		   Character.valueOf('Y'), electrolysmCore.ironisedGold,
+		    		   Character.valueOf('Z'), electrolysmCore.babbitt,
+		    		   Character.valueOf('M'), Block.furnaceIdle);
+			}
+		
+		if(Loader.isModLoaded("ThermalExpansion"))
+			{
+			//CraftingManagers.pulverizerManager.addRecipe(400, new ItemStack(NetherOresCore.getOreBlock(_blockIndex), 1, _metadata), pulvPriTo, pulvSecTo, 15, false);
+			}
+	}
+	
 }

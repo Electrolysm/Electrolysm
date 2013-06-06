@@ -48,6 +48,7 @@ public class BIRegistry {
 		                OreDictionary.registerOre("dustFerrous", new ItemStack(electrolysmCore.ferrousDust));
 		                OreDictionary.registerOre("orePlatinum", new ItemStack(electrolysmCore.OrePlatinum));
 		                OreDictionary.registerOre("ingotRedstoneInfusedPlatinum", new ItemStack(electrolysmCore.ingotPlatinum));
+		                OreDictionary.registerOre("dustRedstoneInfusedPlatinum", new ItemStack(electrolysmCore.dustPlatinum));
 
 
 		                
@@ -58,6 +59,7 @@ public class BIRegistry {
 			 			LanguageRegistry.addName(electrolysmCore.leadDust, "Lead Dust");
 			 			LanguageRegistry.addName(electrolysmCore.silverDust, "Silver Dust");
 			 			LanguageRegistry.addName(electrolysmCore.ingotPlatinum, "Redstone Infused Platinum Ingot");
+			 			LanguageRegistry.addName(electrolysmCore.dustPlatinum, "Redstone Infused Platium Dust");
 			 			
 
 			 			LanguageRegistry.addName(electrolysmCore.hiddenDust, "Hidden Matter Dust");

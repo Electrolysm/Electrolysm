@@ -22,7 +22,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 public class nanoBlock extends Block {
 
 	private static final String itemIDName = "nanoBlock";
-
+	public static int state;
 	
 	public nanoBlock(int par1) {
 		super(par1, Material.iron);
@@ -57,6 +57,16 @@ public class nanoBlock extends Block {
     public int quantityDroppedWithBonus(int par1, Random par2Random)
     {
         return 4;
+    }
+    
+    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
+    	state = state + 1;
+    	if(state != 3){
+    		world.setBlock(x, y, z, electrolysmCore.nanoBlock.blockID);
+    	}
+    	if(state == 3){
+    		world.setBlockToAir(x, y, z);
+    	}
     }
     
 }

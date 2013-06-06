@@ -5,6 +5,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.advAtomics.platium;
 import mods.Electrolysm.electro.data.data;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,7 +25,7 @@ public class OrePlatinum extends Block {
 	
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName(itemIDName);
-	this.setHardness(3);
+	this.setHardness(platium.breaking / 10);
 	}
 
 	@Override
