@@ -1,5 +1,6 @@
 package mods.Electrolysm.electro.machines;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.Electrolysm.electro.electrolysmCore;
@@ -7,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -52,4 +54,11 @@ public class solarCollector extends Block {
         this.furnaceIconFront = par1IconRegister.registerIcon("Electrolysm:solarCollectorFront");
         this.furnaceIconTop = par1IconRegister.registerIcon("Electrolysm:solarCollectorTop");
     }
+    
+    public int onBlockPlaced(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
+    {
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("Place this block on the eastern side of the Matter Synthisiser, to power it.");	
+        return par9;
+    }
+
 }

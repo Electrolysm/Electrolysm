@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityPlatFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -25,8 +25,9 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class platFurnace extends BlockContainer {
+public class platFurnace extends Block {
 	
+	public static boolean multiFormed;
 	private static String IDName = "platFurnace";
 	private static boolean keepInventory = false;
 	private String TextureName;
@@ -42,7 +43,7 @@ public class platFurnace extends BlockContainer {
 		TextureName = textureName;
 		setTickRandomly(true);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName("matterSythisiser");
+		this.setUnlocalizedName(IDName);
 		this.setHardness(10);
 
 
@@ -50,11 +51,6 @@ public class platFurnace extends BlockContainer {
 
 	public String getTextureName() {
 		return this.TextureName;
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityMatterMachine();
 	}
 
 	@Override
@@ -182,7 +178,7 @@ public class platFurnace extends BlockContainer {
 	public static void updateState(boolean active, World world, int x, int y, int z)
 	{
 		 int metadata = world.getBlockMetadata(x, y, z);
-		 TileEntityMatterMachine tile = (TileEntityMatterMachine)world.getBlockTileEntity(x, y, z);
+		 TileEntityPlatFurnace tile = (TileEntityPlatFurnace)world.getBlockTileEntity(x, y, z);
 		 
 		 keepInventory = true;
 		 if(active)
@@ -203,4 +199,34 @@ public class platFurnace extends BlockContainer {
 			 world.setBlockTileEntity(x, y, z, tile);
 		 }
 	}
+	
+    public void blockPlaced(World World, int xCoord, int yCoord, int zCoord, Random par5Random) {
+
+	
+	boolean powered = World.getBlockId(xCoord - 1, yCoord, zCoord) == electrolysmCore.platinum.blockID;
+	boolean powered1 = World.getBlockId(xCoord + 1, yCoord, zCoord) == electrolysmCore.platinum.blockID;
+	boolean powered2 = World.getBlockId(xCoord - 1, yCoord, zCoord + 2) == electrolysmCore.platinum.blockID;
+	boolean powered3 = World.getBlockId(xCoord + 1, yCoord, zCoord + 2) == electrolysmCore.platinum.blockID;
+	
+	boolean solar1 = World.getBlockId(xCoord, yCoord, zCoord + 2) == electrolysmCore.platinum.blockID;
+	boolean solar3 = World.getBlockId(xCoord + 1, yCoord, zCoord + 1) == electrolysmCore.platinum.blockID;
+	boolean solar2 = World.getBlockId(xCoord - 1, yCoord, zCoord + 1) == electrolysmCore.platinum.blockID;
+
+	if(powered){
+		if(powered1){
+			if(powered2){
+				if(powered3){
+					if(solar1){
+						if(solar2){
+							if(solar3){
+								multiFormed = true;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+    
 }

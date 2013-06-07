@@ -112,9 +112,8 @@ public class TileEntityMatterMachine extends TileEntity implements IInventory{
 
 	@Override
 	public void updateEntity() {
-		boolean powered = worldObj.getBlockId(xCoord, yCoord, zCoord + 1) == electrolysmCore.solarCollector.blockID;
-	
-			
+		boolean powered = worldObj.getBlockId(xCoord + 1, yCoord, zCoord) == electrolysmCore.solarCollector.blockID;
+		
 		active = powered;
 
 		boolean canwork = (powered && heat > 10);
