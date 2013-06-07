@@ -104,12 +104,14 @@ public class BIRegistry {
 		  		       GameRegistry.registerBlock(electrolysmCore.matterSythisiser);
 		 		       GameRegistry.registerBlock(electrolysmCore.magmaticExtractor);
 		 		       GameRegistry.registerBlock(electrolysmCore.solarCollector);
-		 		       GameRegistry.registerBlock(electrolysmCore.Forge); 		    
+		 		       GameRegistry.registerBlock(electrolysmCore.Forge); 
+		 		       GameRegistry.registerBlock(electrolysmCore.platFurnace);
 		 		       
 		 		       LanguageRegistry.addName(electrolysmCore.magmaticExtractor, "Magmatic Extractor");
 		 		       LanguageRegistry.addName(electrolysmCore.matterSythisiser, "Matter Synthisiser");
 		 		       LanguageRegistry.addName(electrolysmCore.solarCollector, "Solar Collector");
 		 		       LanguageRegistry.addName(electrolysmCore.Forge, "Forge");
+		 		       LanguageRegistry.addName(electrolysmCore.platFurnace, "Platinum Furnace");
 		 		       
 		 		       
 		 		       LanguageRegistry.addName(electrolysmCore.sydiumLava, "Lava Contained by Sydium");

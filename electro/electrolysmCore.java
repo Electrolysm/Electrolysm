@@ -84,6 +84,7 @@ import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
 import mods.Electrolysm.electro.machines.Forge;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
+import mods.Electrolysm.electro.machines.platFurnace;
 import mods.Electrolysm.electro.machines.solarCollector;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
@@ -145,6 +146,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block matterSythisiser = new matterSythisiser(502, null);
 		public static Block solarCollector = new solarCollector(503);
 		public static Block Forge = new Forge(504, null);
+		public static Block platFurnace = new platFurnace(505, null);
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(620);
 

@@ -23,14 +23,15 @@ public class nanoBlock extends Block {
 
 	private static final String itemIDName = "nanoBlock";
 	public static int state;
-	
+	public static int Dropped;
+
 	public nanoBlock(int par1) {
 		super(par1, Material.iron);
 		// TODO Auto-generated constructor stub
 	
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName(itemIDName);
-	this.setHardness(40);
+	this.setHardness(25);
 	this.setResistance(10);
 	this.setLightValue(0.2F);
 	this.isOpaqueCube();
@@ -56,16 +57,20 @@ public class nanoBlock extends Block {
     
     public int quantityDroppedWithBonus(int par1, Random par2Random)
     {
-        return 4;
+        return Dropped;
     }
     
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int par5) {
     	state = state + 1;
     	if(state != 3){
     		world.setBlock(x, y, z, electrolysmCore.nanoBlock.blockID);
+    		Dropped = 0;
     	}
     	if(state == 3){
     		world.setBlockToAir(x, y, z);
+    		state = 0;
+    		Dropped = 4;
+    	
     	}
     }
     

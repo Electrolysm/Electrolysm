@@ -95,6 +95,16 @@ public class BICrafting {
 	 		    		   Character.valueOf('Z'), electrolysmCore.babbitt,
 	 		    		   Character.valueOf('M'), Block.furnaceIdle);
 	 		       
+	 		       GameRegistry.addRecipe(new ItemStack(electrolysmCore.Forge),
+	 		    		   "XXX", "ZYZ", "XXX",
+	 		    		   Character.valueOf('X'),net.minecraft.item.Item.ingotIron,
+	 		    		   Character.valueOf('Z'),Block.furnaceIdle,
+	 		    		   Character.valueOf('Y'),net.minecraft.item.Item.redstone);
+	 		       
+	 		       GameRegistry.addRecipe(new ItemStack(electrolysmCore.platFurnace),
+	 		    		   "XXX", "X X", "XXX",
+	 		    		   Character.valueOf('X'), electrolysmCore.platinum);
+	 		       
 	 		       //Crafting Tools
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenSword),
 	 		       			"  X", " X ", "Y  ",
