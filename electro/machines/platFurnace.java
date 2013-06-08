@@ -26,8 +26,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class platFurnace extends Block {
-	
-	public static boolean multiFormed;
+
 	private static String IDName = "platFurnace";
 	private static boolean keepInventory = false;
 	private String TextureName;
@@ -65,7 +64,7 @@ public class platFurnace extends Block {
 	                player.openGui(electrolysmCore.GUIinstance, 0, world, x, y, z);
 	  return true;
 	        }
-	
+
 
 	@SideOnly(Side.CLIENT)
 
@@ -149,37 +148,37 @@ public class platFurnace extends Block {
 		}
 		return false;
 	}
-	
+
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
 	{
 	        int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-	
+
 	        if (l == 0)
 		    {
 	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
 	        }
-	        
+
 		    if (l == 1)
 	        {
 	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
 	        }
-	
+
 		    if (l == 2)
 	        {
 	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
 	        }
-	
+
 		    if (l == 3)
 		    {
 	           par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
 		    }
 	 }
-	 
+
 	public static void updateState(boolean active, World world, int x, int y, int z)
 	{
 		 int metadata = world.getBlockMetadata(x, y, z);
 		 TileEntityPlatFurnace tile = (TileEntityPlatFurnace)world.getBlockTileEntity(x, y, z);
-		 
+
 		 keepInventory = true;
 		 if(active)
 		 {
@@ -189,44 +188,14 @@ public class platFurnace extends Block {
 		 {
 			// world.setBlock(x, y, z, BlocksHelper.geothermalOven.blockID);
 		 }
-		 
+
 		 keepInventory = false;
 		 world.setBlockMetadataWithNotify(x, y, z, metadata, 2);
-		 
+
 		 if(tile != null)
 		 {
 			 tile.validate();
 			 world.setBlockTileEntity(x, y, z, tile);
 		 }
-	}
-	
-    public void blockPlaced(World World, int xCoord, int yCoord, int zCoord, Random par5Random) {
-
-	
-	boolean powered = World.getBlockId(xCoord - 1, yCoord, zCoord) == electrolysmCore.platinum.blockID;
-	boolean powered1 = World.getBlockId(xCoord + 1, yCoord, zCoord) == electrolysmCore.platinum.blockID;
-	boolean powered2 = World.getBlockId(xCoord - 1, yCoord, zCoord + 2) == electrolysmCore.platinum.blockID;
-	boolean powered3 = World.getBlockId(xCoord + 1, yCoord, zCoord + 2) == electrolysmCore.platinum.blockID;
-	
-	boolean solar1 = World.getBlockId(xCoord, yCoord, zCoord + 2) == electrolysmCore.platinum.blockID;
-	boolean solar3 = World.getBlockId(xCoord + 1, yCoord, zCoord + 1) == electrolysmCore.platinum.blockID;
-	boolean solar2 = World.getBlockId(xCoord - 1, yCoord, zCoord + 1) == electrolysmCore.platinum.blockID;
-
-	if(powered){
-		if(powered1){
-			if(powered2){
-				if(powered3){
-					if(solar1){
-						if(solar2){
-							if(solar3){
-								multiFormed = true;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-    }
-    
+	}   
 }

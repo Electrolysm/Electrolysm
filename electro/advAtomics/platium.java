@@ -22,14 +22,14 @@ public class platium extends Block {
 	public platium(int par1) {
 		super(par1, Material.iron);
 		// TODO Auto-generated constructor stub
-	
+
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName(itemIDName);
 	this.setHardness(breaking);
 	this.setResistance(breaking);
 	}
 
-	
+
 	@Override
 	public void registerIcons(IconRegister reg)
 	{

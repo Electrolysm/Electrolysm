@@ -4,6 +4,7 @@ import java.io.File;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -147,6 +148,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block solarCollector = new solarCollector(503);
 		public static Block Forge = new Forge(504, null);
 		public static Block platFurnace = new platFurnace(505, null);
+
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(620);
 
@@ -263,6 +265,8 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        BICrafting.registerMODCrafting();
 	        
 	        BIRegistry.Registry();
+
+	        Tessellator tessellator = Tessellator.instance;
 
 
 		}

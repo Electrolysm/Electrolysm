@@ -2,8 +2,10 @@ package mods.Electrolysm.electro.machines.gui;
 
 
 
+import mods.Electrolysm.electro.machines.container.ContainerForge;
 import mods.Electrolysm.electro.machines.container.ContainerMatterMachine;
 import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityForge;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,10 +30,10 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerMagmaticExtractor((TileEntityMagmaticExtractor)entity, player.inventory);
 		}
-		/*if (entity instanceof TileEntityMicroscope)
+		if (entity instanceof TileEntityForge)
 		{
-			return new ContainerMircoscope((TileEntityMicroscope)entity, player.inventory);
-		}*/
+			return new ContainerForge(player.inventory, (TileEntityForge)entity);
+		}
 		
 		return null;
 	}
@@ -50,10 +52,10 @@ public class GuiHandler implements IGuiHandler
 			return new GuiMagmaticExtractor((TileEntityMagmaticExtractor)entity, player.inventory);
 		}
 		
-		/*if (entity instanceof TileEntityMicroscope)
+		if (entity instanceof TileEntityForge)
 		{
-			return new GuiMicroscope((TileEntityMicroscope)entity, player.inventory);
-		}*/
+			return new GuiForge(player.inventory, (TileEntityForge)entity);
+		}
 		
 		
 		return null;

@@ -25,7 +25,7 @@ public class OrePlatinum extends Block {
 	
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName(itemIDName);
-	this.setHardness(platium.breaking / 10);
+	this.setHardness(150 / 10);
 	}
 
 	@Override

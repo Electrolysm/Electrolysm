@@ -15,6 +15,9 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionHelper;
 import net.minecraft.world.World;
 
 public class hiddenSword extends Item
@@ -117,14 +120,15 @@ public class hiddenSword extends Item
 
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-     */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+     *//*
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player)
     {
         FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("There are more features for this weapon in later upadates!");
-        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        player.getActivePotionEffect(Potion.invisibility);
+        player.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
-
+*/
     /**
      * Returns if the item (tool) can harvest results from the block type.
      */

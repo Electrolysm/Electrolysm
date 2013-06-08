@@ -47,6 +47,14 @@ public class Forge extends BlockContainer {
 	                player.openGui(electrolysmCore.GUIinstance, 0, world, x, y, z);
 	  return true;
 	        }
+
+
+
+	public static void updateFurnaceBlockState(boolean b, World worldObj,
+			int xCoord, int yCoord, int zCoord) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

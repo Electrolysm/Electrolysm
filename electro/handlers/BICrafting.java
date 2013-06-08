@@ -5,9 +5,12 @@ import ic2.api.recipe.Recipes;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import mods.Electrolysm.api.machines.machineRecipes;
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.recipes.ForgeRecipes;
 
 public class BICrafting {
 
@@ -28,24 +31,9 @@ public class BICrafting {
 					Character.valueOf('Y'), Block.cobblestone);
 			
 			//Ingot Crafting
-				//Tier 1
-				GameRegistry.addRecipe(new ItemStack(electrolysmCore.ionicElectrum, 2),
-						"XYZ",
-						Character.valueOf('X'), electrolysmCore.electrumDust,
-						Character.valueOf('Y'), net.minecraft.item.Item.ingotIron,
-						Character.valueOf('Z'), net.minecraft.item.Item.coal);
-				
-				GameRegistry.addRecipe(new ItemStack(electrolysmCore.ironisedGold, 2),
-						"XYZ",
-						Character.valueOf('X'), net.minecraft.item.Item.ingotIron,
-						Character.valueOf('Y'), net.minecraft.item.Item.ingotGold,
-						Character.valueOf('Z'), net.minecraft.item.Item.coal);
-				
-				GameRegistry.addRecipe(new ItemStack(electrolysmCore.tumbaga, 2),
-						"XYZ",
-						Character.valueOf('X'), net.minecraft.item.Item.ingotGold,
-						Character.valueOf('Y'), electrolysmCore.copperDust,
-					Character.valueOf('Z'), net.minecraft.item.Item.coal);
+				//Tier 10
+			
+
 				
 				GameRegistry.addRecipe(new ItemStack(electrolysmCore.babbitt, 2),
 						"XYZ",
@@ -164,6 +152,8 @@ public class BICrafting {
 			{
 			//CraftingManagers.pulverizerManager.addRecipe(400, new ItemStack(NetherOresCore.getOreBlock(_blockIndex), 1, _metadata), pulvPriTo, pulvSecTo, 15, false);
 			}
+		
+
 	}
 	
 }
