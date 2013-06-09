@@ -38,6 +38,7 @@ public class Forge extends BlockContainer {
 	this.active = par2;
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName("Forge");
+	this.setHardness(3);
 	}
 
 	@Override
@@ -134,8 +135,8 @@ public class Forge extends BlockContainer {
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("Electrolysm:" + IDName);
-        this.furnaceIconFront = par1IconRegister.registerIcon(this.active ? "furnace_front_lit" : "furnace_front");
-        this.furnaceIconTop = par1IconRegister.registerIcon("Electrolysm:" + IDName + "Top");
+        this.furnaceIconFront = par1IconRegister.registerIcon("Electrolysm:" + IDName + "Front0");
+        this.furnaceIconTop = par1IconRegister.registerIcon("Electrolysm:" + IDName);
 
     }
 	

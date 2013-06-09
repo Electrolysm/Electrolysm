@@ -125,7 +125,7 @@ public class BIRegistry {
 		* ===========================================================================================================
 		*/
 		 		       	LanguageRegistry.addName(electrolysmCore.hiddenSword, "Hidden Sword");
-		 		       			   
+		 		       	LanguageRegistry.addName(electrolysmCore.hiddenPicaxe, "Hidden Picaxe");
 				
 		/*
 		* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

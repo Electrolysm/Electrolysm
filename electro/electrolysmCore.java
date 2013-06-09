@@ -50,6 +50,7 @@ import mods.Electrolysm.electro.data.TickRunning;
 import mods.Electrolysm.electro.data.data;
 import mods.Electrolysm.electro.handlers.BICrafting;
 import mods.Electrolysm.electro.handlers.BIRegistry;
+import mods.Electrolysm.electro.handlers.IDHandler;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.gui.GuiHandler;
@@ -117,51 +118,49 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  * ===============================================================================================================
  */
 		
-		public static int mixedOreID = 508;
-		
-		public static Block mixedOre = new mixedOre(mixedOreID);
-		public static Block copperOre = new copperOre(509);
-		public static Block tinOre = new tinOre(510);
-		public static Block leadOre = new leadOre(511);
-		public static Block silverOre = new silverOre(512);
-		public static Block OrePlatinum = new OrePlatinum(513);
+		public static Block mixedOre = new mixedOre(IDHandler.mixedOreID);
+		public static Block copperOre = new copperOre(IDHandler.copperOreID);
+		public static Block tinOre = new tinOre(IDHandler.tinOreID);
+		public static Block leadOre = new leadOre(IDHandler.leadOreID);
+		public static Block silverOre = new silverOre(IDHandler.silverOreID);
+		public static Block OrePlatinum = new OrePlatinum(IDHandler.platiumOreID);
 
 		//Ore Drops
-		public static electrumDust electrumDust = new electrumDust(514);
-		public static copperDust copperDust = new copperDust(515);
-		public static tinDust tinDust = new tinDust(516);
-		public static ferrousDust ferrousDust = new ferrousDust(517);
-		public static leadDust leadDust = new leadDust(518);
-		public static silverDust silverDust = new silverDust(519);
-		public static dustPlatinum dustPlatinum = new dustPlatinum(520);
+		public static electrumDust electrumDust = new electrumDust(IDHandler.electrumDustID);
+		public static copperDust copperDust = new copperDust(IDHandler.copperDustID);
+		public static tinDust tinDust = new tinDust(IDHandler.tinDustID);
+		public static ferrousDust ferrousDust = new ferrousDust(IDHandler.ferrousDustID);
+		public static leadDust leadDust = new leadDust(IDHandler.leadDustID);
+		public static silverDust silverDust = new silverDust(IDHandler.silverDustID);
+		public static dustPlatinum dustPlatinum = new dustPlatinum(IDHandler.platinumDustID);
 		
-		public static hiddenDust hiddenDust = new hiddenDust(521);
+		public static hiddenDust hiddenDust = new hiddenDust(IDHandler.hiddenDustID);
 
-		public static ingotPlatinum ingotPlatinum = new ingotPlatinum(522);
+		public static ingotPlatinum ingotPlatinum = new ingotPlatinum(IDHandler.platinumIngotID);
 
 /*
 * ===========================================================================================================
 * 										Machines
 * ===========================================================================================================
 */
-		public static Block magmaticExtractor = new magmaticExtractor(501, null);
-		public static Block matterSythisiser = new matterSythisiser(502, null);
-		public static Block solarCollector = new solarCollector(503);
-		public static Block Forge = new Forge(504, forgeActive);
-		public static Block platFurnace = new platFurnace(505, null);
+		public static Block magmaticExtractor = new magmaticExtractor(IDHandler.magmaticExtractorID, null);
+		public static Block matterSythisiser = new matterSythisiser(IDHandler.matterSynthisiserID, null);
+		public static Block solarCollector = new solarCollector(IDHandler.solarCollectorID);
+		public static Block Forge = new Forge(IDHandler.forgeID, false);
+		public static Block platFurnace = new platFurnace(IDHandler.platinumFurnaceID, null);
 		
 
 		//Parts(Products)
-		public static sydiumLava sydiumLava = new sydiumLava(620);
+		public static sydiumLava sydiumLava = new sydiumLava(IDHandler.sydiumLavaID);
 
 /*
 * ===========================================================================================================
 * 										Tools
 * ===========================================================================================================
 */	
-		public static hiddenSword hiddenSword = new hiddenSword(560, null);
+		public static hiddenSword hiddenSword = new hiddenSword(IDHandler.hiddenSwordID, null);
 	
-	    public static hiddenPicaxe	hiddenPicaxe = new hiddenPicaxe(561, null);
+	    public static hiddenPicaxe	hiddenPicaxe = new hiddenPicaxe(IDHandler.hiddenPicaxeID);
 /*
  * ===============================================================================================================
  * 											All Ingots
@@ -169,33 +168,33 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  */	
 	        
 		//Hidden Ingot
-		public static final hiddenIngot hiddenIngot = new hiddenIngot(599);
+		public static final hiddenIngot hiddenIngot = new hiddenIngot(IDHandler.hiddenIngotID);
 /*
 * ============================================================================
 * 									Tier 1
 * ============================================================================		
 */	
 		//Electrum + Iron (Strongish, light in colour)
-		public static final ionicElectrum ionicElectrum = new ionicElectrum(600);
+		public static final ionicElectrum ionicElectrum = new ionicElectrum(IDHandler.ionicElectrumID);
 		
 		//Iron + Gold (Brittle, Conductor of heat + electricity)
-		public static final ironisedGold ironisedGold = new ironisedGold(601);
+		public static final ironisedGold ironisedGold = new ironisedGold(IDHandler.ironisedGoldID);
 		
 		//Gold + Copper (Strong, Conductor of heat + electricity)
-		public static final tumbaga tumbaga = new tumbaga(602);
+		public static final tumbaga tumbaga = new tumbaga(IDHandler.tumbagaID);
 		
 		//Copper + Tin (Flexible, Light in Colour)
-		public static final babbitt babbitt = new babbitt(603);
+		public static final babbitt babbitt = new babbitt(IDHandler.babbittID);
 		
 		//Tin + ferrous (Flexible, Heavy) TextureDone
-		public static final pewter pewter = new pewter(604);
+		public static final pewter pewter = new pewter(IDHandler.pewterID);
 		
 		//Ferrous + Lead (Poisonous, Flammable, unstable(Deteriates into Syanic Acid(Liquid, like lava))) TextureDone
-		public static final sydium sydium = new sydium(605);
+		public static final sydium sydium = new sydium(IDHandler.sydiumID);
 		//public static syanicAcid syanicAcid = new syanicAcid(null);
 				
 		//Lead + Silver (Conductor of heat + electricity, Dark and shinny in colour) TextureDone
-		public static final tibetanSilver tibetanSilver = new tibetanSilver(607);
+		public static final tibetanSilver tibetanSilver = new tibetanSilver(IDHandler.tibetanSilverID);
 		
 
 /*
@@ -214,26 +213,26 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 * 										Advanced Atomics
 * ===========================================================================================================
 */
-        public static atomyBook atomyBook = new atomyBook(650);
+        public static atomyBook atomyBook = new atomyBook(IDHandler.atomyBookID);
         
         //machine Parts
-        public static glassLens glassLens = new glassLens(651);
+        public static glassLens glassLens = new glassLens(IDHandler.glassLensID);
         
         //high end constructions
-        public static final nanoTech nanoTech = new nanoTech(655);
-        public static final Block nanoBlock	= new nanoBlock(656);
+        public static final nanoTech nanoTech = new nanoTech(IDHandler.nanoTechID);
+        public static final Block nanoBlock	= new nanoBlock(IDHandler.nanoBlockID);
         
         //Machines
         //public static Block microScope = new microScope(660);
-        public static Block desk = new desk(661);
+        public static Block desk = new desk(IDHandler.deskID);
         //public static Block subFreezer = new subFreezer(662, null);
         
         //Plants
-        public static Block fibrePlant = new fibrePlant(680);
-        public static stickyString stickyString = new stickyString(681);
+        public static Block fibrePlant = new fibrePlant(IDHandler.fibrePlantID);
+        public static stickyString stickyString = new stickyString(IDHandler.stickyStringID);
         
         //Pressurised Furnace
-        public static Block platinum = new platium(682);
+        public static Block platinum = new platium(IDHandler.platinumID);
         
         /* 
  * ===============================================================================================================

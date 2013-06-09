@@ -24,11 +24,7 @@ public class ForgeRecipes
 
 	private ForgeRecipes()
 	{
-		this.addDoubleSmelting(new ItemStack(Block.oreIron), new ItemStack(Block.oreIron), new ItemStack(Item.ingotIron, 3));
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.copperOre), new ItemStack(Item.ingotIron), new ItemStack(electrolysmCore.mixedOre, 1));
-		this.addDoubleSmelting(new ItemStack(Item.ingotIron), new ItemStack(electrolysmCore.copperOre), new ItemStack(electrolysmCore.mixedOre, 1));
-
-	
+		
 	
 	}
 
