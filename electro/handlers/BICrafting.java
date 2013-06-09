@@ -99,6 +99,8 @@ public class BICrafting {
 	 		       			Character.valueOf('X'), electrolysmCore.hiddenIngot,
 	 		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
 	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenPicaxe), 
+	 		     
 	 		   //Crafting Adv. Atomics
 	 		       GameRegistry.addRecipe(new ItemStack(electrolysmCore.glassLens),
 	 		    		   "XXX",

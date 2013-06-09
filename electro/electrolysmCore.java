@@ -63,6 +63,7 @@ import mods.Electrolysm.electro.metals.tier1.pewter;
 import mods.Electrolysm.electro.metals.tier1.sydium;
 import mods.Electrolysm.electro.metals.tier1.tibetanSilver;
 import mods.Electrolysm.electro.metals.tier1.tumbaga;
+import mods.Electrolysm.electro.tools.hiddenPicaxe;
 import mods.Electrolysm.electro.tools.hiddenSword;
 import mods.Electrolysm.electro.world.OrePlatinum;
 import mods.Electrolysm.electro.world.OrePlatinum;
@@ -160,7 +161,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 */	
 		public static hiddenSword hiddenSword = new hiddenSword(560, null);
 	
-		
+	    public static hiddenPicaxe	hiddenPicaxe = new hiddenPicaxe(561, null);
 /*
  * ===============================================================================================================
  * 											All Ingots
