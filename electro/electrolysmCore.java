@@ -267,7 +267,6 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        
 	        BIRegistry.Registry();
 
-	        Tessellator tessellator = Tessellator.instance;
 
 
 		}
