@@ -28,12 +28,5 @@ public class hiddenPicaxe extends Item {
     public void registerIcons(IconRegister iconRegister) {
 		itemIcon = iconRegister.registerIcon("Electrolysm:" + itemIDName);	
 	}
-	
-	@SideOnly(Side.CLIENT)
 
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
-    {
-		Object whatIngot = "A strong metal, brilliant for armour!";
-		par3List.add(whatIngot );
-    }
 }
