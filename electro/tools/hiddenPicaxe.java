@@ -1,32 +1,37 @@
 package mods.Electrolysm.electro.tools;
 
-import java.util.List;
-
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
+import net.minecraftforge.common.MinecraftForge;
 
-public class hiddenPicaxe extends Item {
+public class hiddenPicaxe extends ItemPickaxe
+{
+  String name;
 
-	private static final String itemIDName = "hiddenPicaxe";
+  public hiddenPicaxe(int par1)
+  {
+    super(par1, EnumToolMaterial.IRON);
+    this.setCreativeTab(electrolysmCore.TabElectrolysm);
+    MinecraftForge.setToolClass(this, "pickaxe", EnumToolMaterial.EMERALD.getHarvestLevel());
+  }
 
-	public hiddenPicaxe(int par1) {
-		super(par1);
-		// TODO Auto-generated constructor stub
-	
-	this.setMaxStackSize(1);
-	this.setCreativeTab(electrolysmCore.TabElectrolysm);
-	this.setUnlocalizedName(itemIDName);
+  @Override
+  @SideOnly(Side.CLIENT)
+  public void registerIcons(IconRegister iconRegister) {
+		itemIcon = iconRegister.registerIcon("Electrolysm:" + "hiddenPicaxe");	
 	}
-	
-	@Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon("Electrolysm:" + itemIDName);	
-	}
+
+  public String func_77667_c(ItemStack par1ItemStack)
+  {
+    return this.name;
+  }
+
 
 }
