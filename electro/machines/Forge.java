@@ -22,7 +22,6 @@ public class Forge extends BlockContainer {
 	private static boolean keepInventory = false;
 	
 	private static String IDName = "forge";
-	private static int state;
 	
 	private String TextureName;
 	private Icon top;
@@ -31,11 +30,12 @@ public class Forge extends BlockContainer {
     private Icon furnaceIconTop;
     @SideOnly(Side.CLIENT)
     private Icon furnaceIconFront;
+   private boolean active;
     
-    
-	public Forge(int par1, Material par2Material) {
+	public Forge(int par1, boolean par2) {
 		super(par1, Material.iron);
 		// TODO Auto-generated constructor stub
+	this.active = par2;
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName("Forge");
 	}
@@ -101,11 +101,9 @@ public class Forge extends BlockContainer {
 		 keepInventory = true;
 		 if(active)
 		 {
-			 state = 1;
 		 }
 		 else
 		 {
-			state = 2;
 		 }
 		 
 		 keepInventory = false;
@@ -136,8 +134,9 @@ public class Forge extends BlockContainer {
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("Electrolysm:" + IDName);
-        this.furnaceIconFront = par1IconRegister.registerIcon("Electrolysm:" + IDName + "Front" + state);
+        this.furnaceIconFront = par1IconRegister.registerIcon(this.active ? "furnace_front_lit" : "furnace_front");
         this.furnaceIconTop = par1IconRegister.registerIcon("Electrolysm:" + IDName + "Top");
+
     }
 	
 

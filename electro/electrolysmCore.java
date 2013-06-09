@@ -146,8 +146,9 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block magmaticExtractor = new magmaticExtractor(501, null);
 		public static Block matterSythisiser = new matterSythisiser(502, null);
 		public static Block solarCollector = new solarCollector(503);
-		public static Block Forge = new Forge(504, null);
+		public static Block Forge = new Forge(504, forgeActive);
 		public static Block platFurnace = new platFurnace(505, null);
+		
 
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(620);
