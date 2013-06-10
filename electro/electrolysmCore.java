@@ -64,7 +64,10 @@ import mods.Electrolysm.electro.metals.tier1.pewter;
 import mods.Electrolysm.electro.metals.tier1.sydium;
 import mods.Electrolysm.electro.metals.tier1.tibetanSilver;
 import mods.Electrolysm.electro.metals.tier1.tumbaga;
+import mods.Electrolysm.electro.tools.hiddenAxe;
+import mods.Electrolysm.electro.tools.hiddenMulti;
 import mods.Electrolysm.electro.tools.hiddenPicaxe;
+import mods.Electrolysm.electro.tools.hiddenSpade;
 import mods.Electrolysm.electro.tools.hiddenSword;
 import mods.Electrolysm.electro.world.OrePlatinum;
 import mods.Electrolysm.electro.world.OrePlatinum;
@@ -159,8 +162,11 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 * ===========================================================================================================
 */	
 		public static hiddenSword hiddenSword = new hiddenSword(IDHandler.hiddenSwordID, null);
-	
 	    public static hiddenPicaxe	hiddenPicaxe = new hiddenPicaxe(IDHandler.hiddenPicaxeID);
+	    public static hiddenSpade hiddenSpade = new hiddenSpade(IDHandler.hiddenSpadeID);
+	    public static hiddenAxe hiddenAxe = new hiddenAxe(IDHandler.hiddenAxeID);
+	    public static hiddenMulti hiddenMulti = new hiddenMulti(IDHandler.hiddenMultiID, 0, null, null);
+
 /*
  * ===============================================================================================================
  * 											All Ingots

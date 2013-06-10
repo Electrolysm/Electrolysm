@@ -95,7 +95,7 @@ public class BICrafting {
 	 		       
 	 		       //Crafting Tools
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenSword),
-	 		       			"  X", " X ", "Y  ",
+	 		       			" X", "X", "Y",
 	 		       			Character.valueOf('X'), electrolysmCore.hiddenIngot,
 	 		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
 	 		      
@@ -103,6 +103,21 @@ public class BICrafting {
 	 		       			"  X", " X ", "Y  ",
 	 		       			Character.valueOf('X'), electrolysmCore.hiddenIngot,
 	 		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenSpade),
+	 		    		  "X", "Y", "Y",
+	 		    		  Character.valueOf('X'), electrolysmCore.hiddenIngot,
+	 		    		  Character.valueOf('Y'), Item.diamond);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenAxe),
+	 		    		  "XX ", "XY ", " Y ",
+	 		    		 Character.valueOf('X'), electrolysmCore.hiddenIngot,
+	 		    		 Character.valueOf('Y'), Item.diamond);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenAxe),
+	 		    		  " XX", " YX", " Y ",
+	 		    		 Character.valueOf('X'), electrolysmCore.hiddenIngot,
+	 		    		 Character.valueOf('Y'), Item.diamond);
 
 	 		     
 	 		   //Crafting Adv. Atomics
