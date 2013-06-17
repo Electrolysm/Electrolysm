@@ -177,7 +177,7 @@ public class TileEntityMatterMachine extends TileEntity implements IInventory{
 	}
 
 	public void writeToNBT(NBTTagCompound compound) {
-	//	super.writeToNBT(compound);
+		super.writeToNBT(compound);
 		NBTTagList var2 = new NBTTagList();
 
 		for (int var3 = 0; var3 < this.inventory.length; ++var3) {

@@ -1,5 +1,6 @@
 package mods.Electrolysm.electro.machines.container;
 
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityCrusher;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,9 +13,9 @@ import net.minecraft.tileentity.TileEntityFurnace;
 
 public class ContainerCrusher extends Container
 {
-	private TileEntityMatterMachine entity;
+	private TileEntityCrusher entity;
 	
-	public ContainerCrusher(TileEntityMatterMachine entity2, InventoryPlayer inventory)
+	public ContainerCrusher(TileEntityCrusher entity2, InventoryPlayer inventory)
 	{
 		this.entity = entity2;
 		

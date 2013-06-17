@@ -367,5 +367,6 @@ public class TileEntityForge extends TileEntity implements IInventory {
 	{
 
 	}
+	
 
 }

@@ -2,9 +2,11 @@ package mods.Electrolysm.electro.machines.gui;
 
 
 
+import mods.Electrolysm.electro.machines.container.ContainerCrusher;
 import mods.Electrolysm.electro.machines.container.ContainerForge;
 import mods.Electrolysm.electro.machines.container.ContainerMatterMachine;
 import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityCrusher;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityForge;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
@@ -34,7 +36,10 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerForge(player.inventory, (TileEntityForge)entity);
 		}
-		
+		if (entity instanceof TileEntityCrusher)
+		{
+			return new ContainerCrusher((TileEntityCrusher)entity, player.inventory);
+		}
 		return null;
 	}
 
@@ -57,6 +62,10 @@ public class GuiHandler implements IGuiHandler
 			return new GuiForge(player.inventory, (TileEntityForge)entity);
 		}
 		
+		if (entity instanceof TileEntityCrusher)
+		{
+			return new GuiCrusher((TileEntityCrusher)entity, player.inventory);
+		}
 		
 		return null;
 	}

@@ -3,7 +3,9 @@ package mods.Electrolysm.electro.machines.gui;
 import org.lwjgl.opengl.GL11;
 
 
+import mods.Electrolysm.electro.machines.container.ContainerCrusher;
 import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityCrusher;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,11 +14,11 @@ import net.minecraft.util.StatCollector;
 
 public class GuiCrusher extends GuiContainer
 {
-	private TileEntityMagmaticExtractor entity;
+	private TileEntityCrusher entity;
 
-	public GuiCrusher(TileEntityMagmaticExtractor entity,	InventoryPlayer inventory)
+	public GuiCrusher(TileEntityCrusher entity,	InventoryPlayer inventory)
 	{
-		super(new ContainerMagmaticExtractor(entity, inventory));
+		super(new ContainerCrusher(entity, inventory));
 		
 		this.entity = entity;
 	}
