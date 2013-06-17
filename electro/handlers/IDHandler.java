@@ -30,7 +30,7 @@ public class IDHandler {
 	public static int hiddenPicaxeID = startingID + 23;
 	public static int hiddenSpadeID = startingID + 24;
 	public static int hiddenAxeID = startingID + 25;
-	public static int hiddenMultiID = 626;
+	public static int lighteningAlteringID = 626;
 	public static int hiddenIngotID = startingID + 27;
 	public static int ionicElectrumID = startingID + 28;
 	public static int ironisedGoldID = startingID + 29;

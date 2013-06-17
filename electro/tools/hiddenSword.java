@@ -120,15 +120,13 @@ public class hiddenSword extends Item
 
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-     *//*
+     */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player)
     {
-        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("There are more features for this weapon in later upadates!");
-        player.getActivePotionEffect(Potion.invisibility);
         player.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
-*/
+
     /**
      * Returns if the item (tool) can harvest results from the block type.
      */
