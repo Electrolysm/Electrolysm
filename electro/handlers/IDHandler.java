@@ -47,6 +47,7 @@ public class IDHandler {
 	public static int fibrePlantID = startingID + 40;
 	public static int stickyStringID = startingID + 41;
 	public static int platinumID = startingID + 42;
+	public static int CrusherID = 643;
 	
 	//Items added after update (> 0.6.1)
 }

@@ -87,6 +87,7 @@ import mods.Electrolysm.electro.world.metalOreDrops.ironDust;
 import mods.Electrolysm.electro.world.metalOreDrops.leadDust;
 import mods.Electrolysm.electro.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.world.metalOreDrops.tinDust;
+import mods.Electrolysm.electro.machines.Crusher;
 import mods.Electrolysm.electro.machines.Forge;
 import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
@@ -151,7 +152,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block solarCollector = new solarCollector(IDHandler.solarCollectorID);
 		public static Block Forge = new Forge(IDHandler.forgeID, false);
 		public static Block platFurnace = new platFurnace(IDHandler.platinumFurnaceID, null);
-		
+		public static Block Crusher = new Crusher(IDHandler.CrusherID, null);
 
 		//Parts(Products)
 		public static sydiumLava sydiumLava = new sydiumLava(IDHandler.sydiumLavaID);

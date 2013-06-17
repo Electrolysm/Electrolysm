@@ -37,7 +37,7 @@ public class copperOre extends Block {
   
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return electrolysmCore.copperDust.itemID;
+        return electrolysmCore.copperOre.blockID;
     }
 	
 	
