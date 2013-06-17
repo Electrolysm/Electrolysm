@@ -10,5 +10,5 @@ public class Crusher extends Block {
 		// TODO Auto-generated constructor stub
 	}
 	
-
+	
 }
