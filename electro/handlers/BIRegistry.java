@@ -111,7 +111,7 @@ public class BIRegistry {
 		 		       LanguageRegistry.addName(electrolysmCore.matterSythisiser, "Matter Synthisiser");
 		 		       LanguageRegistry.addName(electrolysmCore.solarCollector, "Solar Collector");
 		 		       LanguageRegistry.addName(electrolysmCore.Forge, "Forge");
-		 		       LanguageRegistry.addName(electrolysmCore.platFurnace, "Platinum Furnace");
+		 		       LanguageRegistry.addName(electrolysmCore.platFurnace, "Platinum Induction Furnace");
 		 		       
 		 		       
 		 		       LanguageRegistry.addName(electrolysmCore.sydiumLava, "Lava Contained by Sydium");
