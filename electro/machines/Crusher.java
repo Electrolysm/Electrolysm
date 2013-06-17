@@ -9,5 +9,6 @@ public class Crusher extends Block {
 		super(par1, Material.iron);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 }
