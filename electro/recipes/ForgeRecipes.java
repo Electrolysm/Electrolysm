@@ -24,7 +24,10 @@ public class ForgeRecipes
 
 	private ForgeRecipes()
 	{
-		
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.electrumDust), new ItemStack(Item.ingotIron), new ItemStack(electrolysmCore.ionicElectrum));
+		this.addDoubleSmelting(new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.ironisedGold));
+		this.addDoubleSmelting(new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tumbaga));
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tinDust), new ItemStack(electrolysmCore.babbitt));
 	
 	}
 
