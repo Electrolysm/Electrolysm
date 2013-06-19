@@ -44,8 +44,8 @@ public class CrusherRecipes
      */
     public void addCrushing(int input, ItemStack output, float xp)
     {
-        this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
-        this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));
+        this.smeltingList.put(Integer.valueOf(input), output);
+        this.experienceList.put(Integer.valueOf(output.itemID), Float.valueOf(xp));
     }
     public ItemStack getSmeltingResult(ItemStack item) 
     {

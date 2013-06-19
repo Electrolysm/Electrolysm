@@ -30,35 +30,6 @@ public class BICrafting {
 					Character.valueOf('X'), electrolysmCore.mixedOre,
 					Character.valueOf('Y'), Block.cobblestone);
 			
-			//Ingot Crafting
-				//Tier 10
-			
-
-				
-				GameRegistry.addRecipe(new ItemStack(electrolysmCore.babbitt, 2),
-						"XYZ",
-						Character.valueOf('X'), electrolysmCore.copperDust,
-						Character.valueOf('Y'), electrolysmCore.tinDust,
-						Character.valueOf('Z'), net.minecraft.item.Item.coal);
-				
-				GameRegistry.addRecipe(new ItemStack(electrolysmCore.pewter, 2),
-						"XYZ",
-						Character.valueOf('X'), electrolysmCore.tinDust,
-						Character.valueOf('Y'), electrolysmCore.ferrousDust,
-				    Character.valueOf('Z'), net.minecraft.item.Item.coal);
-				
-				GameRegistry.addRecipe(new ItemStack(electrolysmCore.sydium, 2),
-						"XYZ",
-						Character.valueOf('X'), electrolysmCore.ferrousDust,
-						Character.valueOf('Y'), electrolysmCore.leadDust,
-					Character.valueOf('Z'), net.minecraft.item.Item.coal);
-				
-				GameRegistry.addRecipe(new ItemStack(electrolysmCore.tibetanSilver, 2),
-						"XYZ",
-						Character.valueOf('X'), electrolysmCore.leadDust,
-						Character.valueOf('Y'), electrolysmCore.silverDust,
-					Character.valueOf('Z'), net.minecraft.item.Item.coal);
-				
 				//Crafting Machines
 				
 	 		       GameRegistry.addRecipe(new ItemStack(electrolysmCore.magmaticExtractor),

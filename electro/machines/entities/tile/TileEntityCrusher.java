@@ -13,6 +13,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 
 public class TileEntityCrusher extends TileEntity implements IInventory{
@@ -28,6 +29,8 @@ public class TileEntityCrusher extends TileEntity implements IInventory{
 	public int furnaceCookTime = 5000;
 
 	public static boolean active = false;
+	
+	public static boolean powered = true;
 
 	public TileEntityCrusher() {
 		this.inventory = new ItemStack[2];
@@ -109,19 +112,17 @@ public class TileEntityCrusher extends TileEntity implements IInventory{
 	@Override
 	public void closeChest() {
 	}
-
+	
 	@Override
 	public void updateEntity() {
-		boolean powered = worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaStill.blockID;
-				//||worldObj.getBlockId(xCoord, yCoord - 1, zCoord) == Block.lavaMoving.blockID;
-			
-			
+
+		
 		active = powered;
 
 		boolean canwork = (powered && heat > 10);
 
 		if (heat < 50){
-			heat++;
+			heat = 100;
 		}
 
 		if (canwork) {
