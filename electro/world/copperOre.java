@@ -27,21 +27,7 @@ public class copperOre extends Block {
 	this.setHardness(3);
 	}
 
-    
-     
-    public int quantityDroppedWithBonus(int par1, Random par2Random)
-    {
-        return this.quantityDropped(par2Random) + par2Random.nextInt(par1 + 4);
-    }
 
-  
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return electrolysmCore.copperOre.blockID;
-    }
-	
-	
-	
 	@Override
 	public void registerIcons(IconRegister reg)
 	{

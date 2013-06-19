@@ -31,13 +31,18 @@ public class CrusherRecipes
     private CrusherRecipes()
     {
     	//Recipes
+    	this.addCrushing(electrolysmCore.copperOre.blockID, new ItemStack(electrolysmCore.copperDust, 2), 2);
+    	this.addCrushing(electrolysmCore.leadOre.blockID, new ItemStack(electrolysmCore.leadDust, 2),  2);
+    	this.addCrushing(electrolysmCore.silverOre.blockID, new ItemStack(electrolysmCore.silverDust, 2), 2);
+    	this.addCrushing(electrolysmCore.tinOre.blockID, new ItemStack(electrolysmCore.tinDust, 2), 2);
+    	this.addCrushing(electrolysmCore.OrePlatinum.blockID, new ItemStack(electrolysmCore.dustPlatinum, 2), 3);
     	//End
     }
 
     /**
      * Adds a smelting recipe.
      */
-    public void addCrushing(int par1, ItemStack par2ItemStack, float par3)
+    public void addCrushing(int input, ItemStack output, float xp)
     {
         this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
         this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));

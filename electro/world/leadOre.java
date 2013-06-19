@@ -26,13 +26,6 @@ public class leadOre extends Block {
 	this.setUnlocalizedName(itemIDName);
 	this.setHardness(3);
 	}
-
-	   public int idDropped(int par1, Random par2Random, int par3)
-	    {
-	        return electrolysmCore.leadDust.itemID;
-	    }
-
-
 	
     @Override
 	public void registerIcons(IconRegister reg)

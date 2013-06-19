@@ -118,6 +118,12 @@ public class BICrafting {
 	 		    		  " XX", " YX", " Y ",
 	 		    		 Character.valueOf('X'), electrolysmCore.hiddenIngot,
 	 		    		 Character.valueOf('Y'), Item.diamond);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.Crusher),
+	 		    		  "XYX", "YZY", "XYX",
+	 		    		  Character.valueOf('X'), Item.ingotIron,
+	 		    		  Character.valueOf('Y'), Block.pistonBase,
+	 		      		  Character.valueOf('Z'), Item.redstone);
 
 	 		     
 	 		   //Crafting Adv. Atomics
@@ -144,7 +150,7 @@ public class BICrafting {
 		//WorldGen Smelting
 		GameRegistry.addSmelting(electrolysmCore.hiddenDust.itemID, new ItemStack(electrolysmCore.hiddenIngot), 10F);
 		
-		GameRegistry.addSmelting(electrolysmCore.OrePlatinum.blockID, new ItemStack(electrolysmCore.OrePlatinum), 10F);
+		GameRegistry.addSmelting(electrolysmCore.OrePlatinum.blockID, new ItemStack(electrolysmCore.ingotPlatinum), 10F);
 		
 	}
 	

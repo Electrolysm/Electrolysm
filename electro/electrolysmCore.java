@@ -166,7 +166,6 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	    public static hiddenPicaxe	hiddenPicaxe = new hiddenPicaxe(IDHandler.hiddenPicaxeID);
 	    public static hiddenSpade hiddenSpade = new hiddenSpade(IDHandler.hiddenSpadeID);
 	    public static hiddenAxe hiddenAxe = new hiddenAxe(IDHandler.hiddenAxeID);
-	    public static lighteningAltering lighteningAltering = new lighteningAltering(IDHandler.lighteningAlteringID);
 
 /*
  * ===============================================================================================================

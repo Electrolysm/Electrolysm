@@ -26,21 +26,7 @@ public class silverOre extends Block {
 	this.setUnlocalizedName(itemIDName);
 	this.setHardness(3);
 	}
-
-	   public int idDropped(int par1, Random par2Random, int par3)
-	    {
-	        return electrolysmCore.silverDust.itemID;
-	    }
 		
-     
-    public int quantityDroppedWithBonus(int par1, Random par2Random)
-    {
-        return this.quantityDropped(par2Random) + par2Random.nextInt(par1 + 2);
-    }
-
-	
-	
-	
     @Override
 	public void registerIcons(IconRegister reg)
 	{
