@@ -24,11 +24,13 @@ public class ForgeRecipes
 
 	private ForgeRecipes()
 	{
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.electrumDust), new ItemStack(Item.ingotIron), new ItemStack(electrolysmCore.ionicElectrum));
-		this.addDoubleSmelting(new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.ironisedGold));
-		this.addDoubleSmelting(new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tumbaga));
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tinDust), new ItemStack(electrolysmCore.babbitt));
-	
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.electrumDust), new ItemStack(Item.ingotIron), new ItemStack(electrolysmCore.ionicElectrum, 2));
+		this.addDoubleSmelting(new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.ironisedGold, 2));
+		this.addDoubleSmelting(new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tumbaga, 2));
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tinDust), new ItemStack(electrolysmCore.babbitt, 2));
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.tinDust), new ItemStack(electrolysmCore.ferrousDust), new ItemStack(electrolysmCore.pewter, 2));
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.ferrousDust), new ItemStack(electrolysmCore.leadDust), new ItemStack(electrolysmCore.sydium, 2));
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.leadDust), new ItemStack(electrolysmCore.silverDust), new ItemStack(electrolysmCore.tibetanSilver, 2));
 	}
 
 	public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output) {
