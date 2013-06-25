@@ -114,6 +114,10 @@ public class BICrafting {
 	 		      GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.atomyBook), 
 	 		    		   net.minecraft.item.Item.book,
 	 		    		   electrolysmCore.pewter);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.platinum),
+	 		    		  "XXX", "XX", "XXX",
+	 		    		  Character.valueOf('X'), electrolysmCore.ingotPlatinum);
 	}
 
 	public static void registerSmeltingRecipes() {
