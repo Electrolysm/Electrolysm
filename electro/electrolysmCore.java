@@ -39,6 +39,8 @@ import mods.Electrolysm.electro.advAtomics.atomyBook;
 import mods.Electrolysm.electro.advAtomics.platium;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoBlock;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoTech;
+import mods.Electrolysm.electro.advAtomics.lasers.laserCase;
+import mods.Electrolysm.electro.advAtomics.lasers.laserGen;
 import mods.Electrolysm.electro.advAtomics.machines.desk;
 import mods.Electrolysm.electro.advAtomics.machines.microScope;
 import mods.Electrolysm.electro.advAtomics.machines.subFreezer;
@@ -96,7 +98,7 @@ import mods.Electrolysm.electro.machines.solarCollector;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
 
-	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.1")
+	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.2")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 	
@@ -216,29 +218,25 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 /*
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * ===========================================================================================================
-* 										Advanced Atomics
+* 										Advanced Physics
 * ===========================================================================================================
-*/
+*/		
+        //Basics
         public static atomyBook atomyBook = new atomyBook(IDHandler.atomyBookID);
-        
-        //machine Parts
         public static glassLens glassLens = new glassLens(IDHandler.glassLensID);
-        
-        //high end constructions
         public static final nanoTech nanoTech = new nanoTech(IDHandler.nanoTechID);
         public static final Block nanoBlock	= new nanoBlock(IDHandler.nanoBlockID);
-        
-        //Machines
-        //public static Block microScope = new microScope(660);
         public static Block desk = new desk(IDHandler.deskID);
-        //public static Block subFreezer = new subFreezer(662, null);
-        
         //Plants
         public static Block fibrePlant = new fibrePlant(IDHandler.fibrePlantID);
         public static stickyString stickyString = new stickyString(IDHandler.stickyStringID);
-        
-        //Pressurised Furnace
         public static Block platinum = new platium(IDHandler.platinumID);
+        
+        //Lasers
+        public static Block laserCase = new laserCase(IDHandler.laserCassID, null);
+        public static Block laserGen = new laserGen(IDHandler.laserGenID, null);
+        //public static Block laserAmp = new laserAmp(IDHandler.laserAmpID, null);
+        //public static Block laserDiff = new laserDiff(IDHandler.laserDiffID, null);
         
         /* 
  * ===============================================================================================================

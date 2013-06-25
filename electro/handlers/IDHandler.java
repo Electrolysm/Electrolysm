@@ -50,4 +50,9 @@ public class IDHandler {
 	public static int CrusherID = 643;
 	
 	//Items added after update (> 0.6.1)
+	//lasers
+	public static int laserGenID = 644;
+	public static int laserAmpID = 645;
+	public static int laserDiffID = 656;
+	public static int laserCassID = 657;
 }

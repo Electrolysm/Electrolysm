@@ -133,41 +133,33 @@ public class BIRegistry {
 		/*
 		* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		* ===========================================================================================================
-		* 										Advanced Atomics
+		* 										Advanced physics
 		* ===========================================================================================================
 		*/
 		 		       	
-		 		       	LanguageRegistry.addName(electrolysmCore.atomyBook, "Atomic's Book");
-		 		       	
-
+		 		       	LanguageRegistry.addName(electrolysmCore.atomyBook, "Physicist's " + "Encyclopedia");
 		 		       
-		 		       //Machine Parts
+		 		       //Basics
 		 		       LanguageRegistry.addName(electrolysmCore.glassLens, "Glass Lens");
-		 		       
-		 		       
-		 		       //Machines
-		 		       //GameRegistry.registerBlock(microScope);
-		 		       //GameRegistry.registerBlock(subFreezer);
-		 		       
 		 		       GameRegistry.registerBlock(electrolysmCore.desk);
 		 		       GameRegistry.registerBlock(electrolysmCore.nanoBlock);
 		 		       GameRegistry.registerBlock(electrolysmCore.platinum);
-		 		       
-		 		       //LanguageRegistry.addName(subFreezer, "Sub-Atomic Freezer");
-		 		       //LanguageRegistry.addName(microScope, "Advanced Microscope");
-		 		       
 		 		       LanguageRegistry.addName(electrolysmCore.desk, "Scientist's Desk");    
 		 		       LanguageRegistry.addName(electrolysmCore.nanoBlock, "Nano-Fibre Block");
 		 		       LanguageRegistry.addName(electrolysmCore.nanoTech, "Nano-Fibre Sheeting");
 		 		       LanguageRegistry.addName(electrolysmCore.platinum, "Redstone Infused Platinum Block");
-		 		       
-		 		       
-		 		        
-		 
 		 		       //Plants
 		 		       GameRegistry.registerBlock(electrolysmCore.fibrePlant);
 		 		       LanguageRegistry.addName(electrolysmCore.stickyString, "Sticky String");
 		 		       LanguageRegistry.addName(electrolysmCore.fibrePlant, "Fibre Plant Seeds");
+		 		       
+		 		       //Advanced
+		 		       //Lasers!
+		 		       GameRegistry.registerBlock(electrolysmCore.laserCase);
+		 		       GameRegistry.registerBlock(electrolysmCore.laserGen);
+		 		       
+		 		       LanguageRegistry.addName(electrolysmCore.laserCase, "Laser Case");
+		 		       LanguageRegistry.addName(electrolysmCore.laserGen, "Laser Generator");
 		 		      
 		 				}
 					}
