@@ -116,8 +116,8 @@ public class BICrafting {
 	 		    		   electrolysmCore.pewter);
 	 		      
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.platinum),
-	 		    		  "XXX", "XX", "XXX",
-	 		    		  Character.valueOf('X'), electrolysmCore.ingotPlatinum);
+	 		    		  "XXX", "XXX", "XXX",
+	 		    		 Character.valueOf('X'), electrolysmCore.ingotPlatinum);
 	}
 
 	public static void registerSmeltingRecipes() {
