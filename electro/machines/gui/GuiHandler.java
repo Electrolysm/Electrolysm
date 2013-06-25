@@ -6,10 +6,12 @@ import mods.Electrolysm.electro.machines.container.ContainerCrusher;
 import mods.Electrolysm.electro.machines.container.ContainerForge;
 import mods.Electrolysm.electro.machines.container.ContainerMatterMachine;
 import mods.Electrolysm.electro.machines.container.ContainerMagmaticExtractor;
+import mods.Electrolysm.electro.machines.container.ContainerPlatFurnace;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityCrusher;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityForge;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
+import mods.Electrolysm.electro.machines.entities.tile.TileEntityPlatFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -40,6 +42,10 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerCrusher((TileEntityCrusher)entity, player.inventory);
 		}
+		if (entity instanceof TileEntityPlatFurnace)
+		{
+			return new ContainerPlatFurnace(player.inventory, (TileEntityPlatFurnace)entity);
+		}
 		return null;
 	}
 
@@ -67,6 +73,10 @@ public class GuiHandler implements IGuiHandler
 			return new GuiCrusher((TileEntityCrusher)entity, player.inventory);
 		}
 		
+		if (entity instanceof TileEntityPlatFurnace)
+		{
+			return new GuiPlatFurnace(player.inventory, (TileEntityPlatFurnace)entity);
+		}
 		return null;
 	}
 }

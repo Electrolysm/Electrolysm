@@ -26,7 +26,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class platFurnace extends Block {
+public class platFurnace extends BlockContainer {
 
 	private static String IDName = "platFurnace";
 	private static boolean keepInventory = false;
@@ -198,6 +198,12 @@ public class platFurnace extends Block {
 			 tile.validate();
 			 world.setBlockTileEntity(x, y, z, tile);
 		 }
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world) {
+		// TODO Auto-generated method stub
+		return new TileEntityPlatFurnace();
 	}
 	
 	

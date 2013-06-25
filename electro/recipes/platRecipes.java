@@ -1,37 +1,43 @@
 package mods.Electrolysm.electro.recipes;
 
+import ic2.api.item.Items;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import cpw.mods.fml.common.Loader;
 
 import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ForgeRecipes
+public class platRecipes
 {
-	private static final ForgeRecipes smeltBase = new ForgeRecipes();
+	private static final platRecipes smeltBase = new platRecipes();
 
     private HashMap<List<Integer>, ItemStack> metaSmeltingList1 = new HashMap<List<Integer>, ItemStack>();
     private HashMap<List<Integer>, ItemStack> metaSmeltingList2 = new HashMap<List<Integer>, ItemStack>();
     private HashMap<List<Integer>, ItemStack> metaSmeltingCheckList1 = new HashMap<List<Integer>, ItemStack>();
     private HashMap<List<Integer>, ItemStack> metaSmeltingCheckList2 = new HashMap<List<Integer>, ItemStack>();
 
-	public static final ForgeRecipes smelting() {
+	public static final platRecipes smelting() {
 		return smeltBase;
 	}
 
-	private ForgeRecipes()
-	{
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.electrumDust), new ItemStack(Item.ingotIron), new ItemStack(electrolysmCore.ionicElectrum, 2));
-		this.addDoubleSmelting(new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.ironisedGold, 2));
-		this.addDoubleSmelting(new ItemStack(Item.ingotGold), new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tumbaga, 2));
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.copperDust), new ItemStack(electrolysmCore.tinDust), new ItemStack(electrolysmCore.babbitt, 2));
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.tinDust), new ItemStack(electrolysmCore.ferrousDust), new ItemStack(electrolysmCore.pewter, 2));
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.ferrousDust), new ItemStack(electrolysmCore.leadDust), new ItemStack(electrolysmCore.sydium, 2));
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.leadDust), new ItemStack(electrolysmCore.silverDust), new ItemStack(electrolysmCore.tibetanSilver, 2));
-		this.addDoubleSmelting(new ItemStack(Item.seeds, 32), new ItemStack(Item.spiderEye, 16),  new ItemStack(electrolysmCore.fibrePlant, 4));
+	private platRecipes()
+	{	
+		ItemStack nanoTech = new ItemStack(electrolysmCore.nanoTech, 4);
+		ItemStack nanoBlock = new ItemStack(electrolysmCore.nanoBlock);
+		
+		this.addDoubleSmelting(nanoTech, new ItemStack(Item.bucketWater), nanoBlock);
+		
+		if(Loader.isModLoaded("IC2"))
+		{
+			 ItemStack tinCan = Items.getItem("fuelCan");
+			 this.addDoubleSmelting(nanoTech, tinCan, nanoBlock);
+		}
 	}
 
 	public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output) {

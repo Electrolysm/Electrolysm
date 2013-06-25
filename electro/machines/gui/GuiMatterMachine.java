@@ -42,7 +42,7 @@ public class GuiMatterMachine extends GuiContainer
 			if(entity.active)
 			{
 				
-				//Is heat Provided
+				//Is heat Provided (Flame)
 				this.drawTexturedModalRect(x + 81, y + 46 + 12 - heat, 176, 4 - heat, 28, heat + 10);
 			}
 		}

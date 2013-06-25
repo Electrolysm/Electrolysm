@@ -66,17 +66,17 @@ public class BICrafting {
 	 		       
 	 		       //Crafting Tools
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenSword),
-	 		       			" X", "X", "Y",
-	 		       			Character.valueOf('X'), electrolysmCore.hiddenIngot,
-	 		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
-	 		      
-	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenPicaxe),
 	 		       			"  X", " X ", "Y  ",
 	 		       			Character.valueOf('X'), electrolysmCore.hiddenIngot,
 	 		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
 	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenPicaxe),
+	 		       			"XXX", " Y ", " Y ",
+	 		       			Character.valueOf('X'), electrolysmCore.hiddenIngot,
+	 		       			Character.valueOf('Y'), net.minecraft.item.Item.diamond);
+	 		      
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.hiddenSpade),
-	 		    		  "X", "Y", "Y",
+	 		    		  " X ", " Y ", " Y ",
 	 		    		  Character.valueOf('X'), electrolysmCore.hiddenIngot,
 	 		    		  Character.valueOf('Y'), Item.diamond);
 	 		      

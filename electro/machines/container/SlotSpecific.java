@@ -16,7 +16,7 @@ public class SlotSpecific extends Slot
 	
 	public boolean isItemValid(ItemStack stack)
 	{
-		if(stack.itemID == item.itemID)
+		if(stack.itemID == 335)
 		{
 			return true;
 		}
