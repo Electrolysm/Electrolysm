@@ -11,11 +11,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class dustPlatinum extends Item {
+public class ingotPlatinumRed extends Item {
 
-	private static final String itemIDName = "dustPlatinum";
+	private static final String itemIDName = "ingotPlatinum";
 
-	public dustPlatinum(int par1) {
+	public ingotPlatinumRed(int par1) {
 		super(par1);
 		// TODO Auto-generated constructor stub
 	

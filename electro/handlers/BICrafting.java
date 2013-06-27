@@ -1,5 +1,8 @@
 package mods.Electrolysm.electro.handlers;
 
+import thermalexpansion.api.crafting.CraftingHelpers;
+import thermalexpansion.api.crafting.IPulverizerManager;
+import thermalexpansion.api.crafting.IPulverizerRecipe;
 import ic2.api.item.Items;
 import ic2.api.recipe.Recipes;
 import cpw.mods.fml.common.Loader;
@@ -15,6 +18,7 @@ import mods.Electrolysm.electro.recipes.ForgeRecipes;
 public class BICrafting {
 
 	private static String name;
+	public static int ids;
 
 	//Creafting
 	public static void registerCraftingRecipes()
@@ -117,7 +121,37 @@ public class BICrafting {
 	 		      
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.platinum),
 	 		    		  "XXX", "XXX", "XXX",
-	 		    		 Character.valueOf('X'), electrolysmCore.ingotPlatinum);
+	 		    		 Character.valueOf('X'), electrolysmCore.ingotPlatinumRed);
+
+	 		      //Lasers!!
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.heatVent),
+	 		    		  "XYZ", "XYZ", "XYZ",
+	 		    		  Character.valueOf('X'), electrolysmCore.ironisedGold,
+	 		    		  Character.valueOf('Y'), electrolysmCore.tumbaga,
+	 		    		  Character.valueOf('Z'), electrolysmCore.tibetanSilver);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.laserCase),
+	 		    		  "XYX", "Y Y", "XYX",
+	 		    		  Character.valueOf('X'), electrolysmCore.ionicElectrum,
+	 		    		  Character.valueOf('Y'), electrolysmCore.heatVent);
+	 		
+	 if((Loader.isModLoaded("IC2")) != true){
+		 
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.laserLight),
+	 		    		  "XXX", "ZYY", "XXX",
+	 		    		  Character.valueOf('X'), Item.ingotIron,
+	 		    		  Character.valueOf('Y'), Item.diamond,
+	 		    		  Character.valueOf('Z'), Block.glowStone);
+	 }
+	 
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.laserGen),
+	 		    		  "MXM", "XYZ", "MXM",
+	 		    		  Character.valueOf('M'), electrolysmCore.heatVent,
+	 		    		  Character.valueOf('X'), Item.ingotIron,
+	 		    		  Character.valueOf('Y'), electrolysmCore.laserCase,
+	 		    		  Character.valueOf('Z'), electrolysmCore.laserLight); 
+	
 	}
 
 	public static void registerSmeltingRecipes() {
@@ -125,7 +159,7 @@ public class BICrafting {
 		//WorldGen Smelting
 		GameRegistry.addSmelting(electrolysmCore.hiddenDust.itemID, new ItemStack(electrolysmCore.hiddenIngot), 10F);
 		
-		GameRegistry.addSmelting(electrolysmCore.OrePlatinum.blockID, new ItemStack(electrolysmCore.ingotPlatinum), 10F);
+		GameRegistry.addSmelting(electrolysmCore.OrePlatinumRed.blockID, new ItemStack(electrolysmCore.ingotPlatinumRed), 10F);
 		
 	}
 	
@@ -136,11 +170,12 @@ public class BICrafting {
 		
 		if(Loader.isModLoaded("IC2"))
 			{
-			Recipes.macerator.addRecipe(new ItemStack(electrolysmCore.OrePlatinum), new ItemStack(electrolysmCore.dustPlatinum, 2));
-			Recipes.extractor.addRecipe(new ItemStack(electrolysmCore.ingotPlatinum, 2), new ItemStack(net.minecraft.item.Item.redstone));
+			Recipes.macerator.addRecipe(new ItemStack(electrolysmCore.OrePlatinumRed), new ItemStack(electrolysmCore.dustPlatinumRed, 2));
+			Recipes.extractor.addRecipe(new ItemStack(electrolysmCore.ingotPlatinumRed, 2), new ItemStack(net.minecraft.item.Item.redstone));
 			
 			 Class Ic2Items;
 			 ItemStack electronicCircuit = Items.getItem("electronicCircuit");
+			 ItemStack advCircuit = Items.getItem("advancedCircuit");
 
 			GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterSythisiser, 1),
 					"XZX", "XMX", "XYX",
@@ -148,11 +183,19 @@ public class BICrafting {
 		    		   Character.valueOf('Y'), electrolysmCore.ironisedGold,
 		    		   Character.valueOf('Z'), electrolysmCore.babbitt,
 		    		   Character.valueOf('M'), Block.furnaceIdle);
+			
+			GameRegistry.addRecipe(new ItemStack(electrolysmCore.laserLight),
+		    		  "BXX", "ZYY", "BXX",
+		    		  Character.valueOf('X'), Item.ingotIron,
+		    		  Character.valueOf('Y'), Item.diamond,
+		    		  Character.valueOf('Z'), Block.glowStone,
+		    		  Character.valueOf('B'), advCircuit);
 			}
 		
 		if(Loader.isModLoaded("ThermalExpansion"))
 			{
-			//CraftingManagers.pulverizerManager.addRecipe(400, new ItemStack(NetherOresCore.getOreBlock(_blockIndex), 1, _metadata), pulvPriTo, pulvSecTo, 15, false);
+			//CraftingHelpers.addPulverizerOreToDustRecipe(new ItemStack(electrolysmCore.OrePlatinumRed), new ItemStack(electrolysmCore.dustPlatinumRed));
+			//CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(electrolysmCore.OrePlatinum), new ItemStack(electrolysmCore.dustPlatinum));
 			}
 		
 

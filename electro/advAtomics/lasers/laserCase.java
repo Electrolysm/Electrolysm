@@ -6,7 +6,11 @@ import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class laserCase extends Block {
 	
@@ -21,9 +25,7 @@ public class laserCase extends Block {
     private Icon front;
     @SideOnly(Side.CLIENT)
     private Icon sides;
-    public String topID = "_top";
-    public String sideID = "_sides";
-    public String  frontID = "_front";
+
 	
 	public laserCase(int par1, Material par2Material) {
 		super(par1, material);
@@ -32,23 +34,54 @@ public class laserCase extends Block {
 	this.setUnlocalizedName(name);
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setHardness(hardness);
+	this.isOpaqueCube();
 
 	}
 	
-	
-	
+
     @SideOnly(Side.CLIENT)
-	public Icon getIcon(int par1, int par2)
+    public Icon getIcon(int par1, int par2)
     {
-        return par1 == 1 ? this.top : (par1 == 0 ? this.top : (par1 != par2 ? this.sides : this.front));
+        return par1 == 1 ? this.top : (par1 == 0 ? this.top : (par1 != par2 ? this.blockIcon : this.front));
     }
     
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.sides = par1IconRegister.registerIcon("Electrolysm:" + name + sideID);
-        this.front = par1IconRegister.registerIcon("Electrolysm:" + name + frontID);
-        this.top = par1IconRegister.registerIcon("Electrolysm:" + name + topID);
+        this.blockIcon = par1IconRegister.registerIcon("Electrolysm:" + "laserCase" + "_sides");
+        this.front = par1IconRegister.registerIcon("Electrolysm:" + name + "_front");
+        this.top = par1IconRegister.registerIcon("Electrolysm:" + "laserCase" + "_top");
+    }
+
+    
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
+	{
+	        int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+	        if (l == 0)
+		    {
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+	        }
+
+		    if (l == 1)
+	        {
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+	        }
+
+		    if (l == 2)
+	        {
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+	        }
+
+		    if (l == 3)
+		    {
+	           par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
+		    }
+	 }
+    
+    public boolean isOpaqueCube()
+    {
+        return true;
     }
 
 }

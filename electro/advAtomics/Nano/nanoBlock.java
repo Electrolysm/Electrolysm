@@ -28,7 +28,7 @@ public class nanoBlock extends Block {
 	public nanoBlock(int par1) {
 		super(par1, Material.iron);
 		// TODO Auto-generated constructor stub
-	
+
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName(itemIDName);
 	this.setHardness(25);
@@ -38,7 +38,7 @@ public class nanoBlock extends Block {
 	this.setLightOpacity(1);
 	}
 
-	
+
 	public Icon getIcon(int par1, int par2)
 	{
 		return this.blockIcon;

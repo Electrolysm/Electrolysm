@@ -29,7 +29,7 @@ public class BIRegistry {
 			 			GameRegistry.registerBlock(electrolysmCore.tinOre);
 			 			GameRegistry.registerBlock(electrolysmCore.leadOre);
 			 			GameRegistry.registerBlock(electrolysmCore.silverOre);
-			 			GameRegistry.registerBlock(electrolysmCore.OrePlatinum);
+			 			GameRegistry.registerBlock(electrolysmCore.OrePlatinumRed);
 
 
 			 			LanguageRegistry.addName(electrolysmCore.mixedOre, "Einsteinium Ore");
@@ -37,7 +37,7 @@ public class BIRegistry {
 			 			LanguageRegistry.addName(electrolysmCore.tinOre, "Tin Ore");
 			 			LanguageRegistry.addName(electrolysmCore.leadOre, "Lead Ore");
 			 			LanguageRegistry.addName(electrolysmCore.silverOre, "silver Ore");
-			 			LanguageRegistry.addName(electrolysmCore.OrePlatinum, "Redstone Infused Platinum Ore");
+			 			LanguageRegistry.addName(electrolysmCore.OrePlatinumRed, "Redstone Infused Platinum Ore");
 
 			 				 				 			
 		                OreDictionary.registerOre("dustLead", new ItemStack(electrolysmCore.leadDust));
@@ -46,11 +46,14 @@ public class BIRegistry {
 		                OreDictionary.registerOre("dustTin", new ItemStack(electrolysmCore.tinDust));
 		                OreDictionary.registerOre("dustElectrum", new ItemStack(electrolysmCore.electrumDust));
 		                OreDictionary.registerOre("dustFerrous", new ItemStack(electrolysmCore.ferrousDust));
-		                OreDictionary.registerOre("orePlatinum", new ItemStack(electrolysmCore.OrePlatinum));
-		                OreDictionary.registerOre("ingotRedstoneInfusedPlatinum", new ItemStack(electrolysmCore.ingotPlatinum));
-		                OreDictionary.registerOre("dustRedstoneInfusedPlatinum", new ItemStack(electrolysmCore.dustPlatinum));
-
-
+		                OreDictionary.registerOre("oreRedstonePlatinum", new ItemStack(electrolysmCore.OrePlatinumRed));
+		                OreDictionary.registerOre("ingotRedstoneInfusedPlatinum", new ItemStack(electrolysmCore.ingotPlatinumRed));
+		                OreDictionary.registerOre("dustRedstoneInfusedPlatinum", new ItemStack(electrolysmCore.dustPlatinumRed));
+		                OreDictionary.registerOre("oreCopper", new ItemStack(electrolysmCore.copperOre));
+		                OreDictionary.registerOre("oreTin", new ItemStack(electrolysmCore.tinOre));
+		                OreDictionary.registerOre("oreLead", new ItemStack(electrolysmCore.leadOre));
+		                OreDictionary.registerOre("oreSilver", new ItemStack(electrolysmCore.silverOre));
+		                OreDictionary.registerOre("orePlatinumRed", new ItemStack(electrolysmCore.OrePlatinumRed));
 		                
 		                LanguageRegistry.addName(electrolysmCore.electrumDust, "Electrum Dust");
 			 			LanguageRegistry.addName(electrolysmCore.copperDust, "Copper Dust");
@@ -58,8 +61,8 @@ public class BIRegistry {
 			 			LanguageRegistry.addName(electrolysmCore.ferrousDust, "Ferrous Dust");
 			 			LanguageRegistry.addName(electrolysmCore.leadDust, "Lead Dust");
 			 			LanguageRegistry.addName(electrolysmCore.silverDust, "Silver Dust");
-			 			LanguageRegistry.addName(electrolysmCore.ingotPlatinum, "Redstone Infused Platinum Ingot");
-			 			LanguageRegistry.addName(electrolysmCore.dustPlatinum, "Redstone Infused Platium Dust");
+			 			LanguageRegistry.addName(electrolysmCore.ingotPlatinumRed, "Redstone Infused Platinum Ingot");
+			 			LanguageRegistry.addName(electrolysmCore.dustPlatinumRed, "Redstone Infused Platium Dust");
 			 			
 
 			 			LanguageRegistry.addName(electrolysmCore.hiddenDust, "Hidden Matter Dust");
@@ -155,11 +158,14 @@ public class BIRegistry {
 		 		       
 		 		       //Advanced
 		 		       //Lasers!
+		 		       
 		 		       GameRegistry.registerBlock(electrolysmCore.laserCase);
 		 		       GameRegistry.registerBlock(electrolysmCore.laserGen);
 		 		       
 		 		       LanguageRegistry.addName(electrolysmCore.laserCase, "Laser Case");
 		 		       LanguageRegistry.addName(electrolysmCore.laserGen, "Laser Generator");
+		 		       LanguageRegistry.addName(electrolysmCore.heatVent, "Heat Vent");
+		 		       LanguageRegistry.addName(electrolysmCore.laserLight, "Laser Pen");
 		 		      
 		 				}
 					}

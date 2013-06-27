@@ -35,7 +35,7 @@ public class CrusherRecipes
     	this.addCrushing(electrolysmCore.leadOre.blockID, new ItemStack(electrolysmCore.leadDust, 2),  2);
     	this.addCrushing(electrolysmCore.silverOre.blockID, new ItemStack(electrolysmCore.silverDust, 2), 2);
     	this.addCrushing(electrolysmCore.tinOre.blockID, new ItemStack(electrolysmCore.tinDust, 2), 2);
-    	this.addCrushing(electrolysmCore.OrePlatinum.blockID, new ItemStack(electrolysmCore.dustPlatinum, 2), 3);
+    	this.addCrushing(electrolysmCore.OrePlatinumRed.blockID, new ItemStack(electrolysmCore.dustPlatinumRed, 2), 3);
     	//End
     }
 

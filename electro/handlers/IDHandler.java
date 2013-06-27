@@ -55,4 +55,6 @@ public class IDHandler {
 	public static int laserAmpID = 645;
 	public static int laserDiffID = 656;
 	public static int laserCassID = 657;
+	public static int heatVentID = 658;
+	public static int laserLightID = 659;
 }

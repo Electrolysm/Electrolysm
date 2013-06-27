@@ -15,11 +15,11 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class OrePlatinum extends Block {
+public class OrePlatinumRed extends Block {
 
 	private static final String itemIDName = "orePlatinum";
 
-	public OrePlatinum(int par1) {
+	public OrePlatinumRed(int par1) {
 		super(par1, Material.iron);
 		// TODO Auto-generated constructor stub
 	

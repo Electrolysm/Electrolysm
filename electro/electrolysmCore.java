@@ -39,8 +39,10 @@ import mods.Electrolysm.electro.advAtomics.atomyBook;
 import mods.Electrolysm.electro.advAtomics.platium;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoBlock;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoTech;
+import mods.Electrolysm.electro.advAtomics.lasers.heatVent;
 import mods.Electrolysm.electro.advAtomics.lasers.laserCase;
 import mods.Electrolysm.electro.advAtomics.lasers.laserGen;
+import mods.Electrolysm.electro.advAtomics.lasers.laserLight;
 import mods.Electrolysm.electro.advAtomics.machines.desk;
 import mods.Electrolysm.electro.advAtomics.machines.microScope;
 import mods.Electrolysm.electro.advAtomics.machines.subFreezer;
@@ -71,13 +73,13 @@ import mods.Electrolysm.electro.tools.lighteningAltering;
 import mods.Electrolysm.electro.tools.hiddenPicaxe;
 import mods.Electrolysm.electro.tools.hiddenSpade;
 import mods.Electrolysm.electro.tools.hiddenSword;
-import mods.Electrolysm.electro.world.OrePlatinum;
-import mods.Electrolysm.electro.world.OrePlatinum;
+import mods.Electrolysm.electro.world.OrePlatinumRed;
+import mods.Electrolysm.electro.world.OrePlatinumRed;
 import mods.Electrolysm.electro.world.WorldGenOres;
 import mods.Electrolysm.electro.world.WorldGenStructures;
 import mods.Electrolysm.electro.world.copperOre;
-import mods.Electrolysm.electro.world.dustPlatinum;
-import mods.Electrolysm.electro.world.ingotPlatinum;
+import mods.Electrolysm.electro.world.dustPlatinumRed;
+import mods.Electrolysm.electro.world.ingotPlatinumRed;
 import mods.Electrolysm.electro.world.leadOre;
 import mods.Electrolysm.electro.world.mixedOre;
 import mods.Electrolysm.electro.world.silverOre;
@@ -98,7 +100,7 @@ import mods.Electrolysm.electro.machines.solarCollector;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
 
-	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.2")
+	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.3")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 	
@@ -129,7 +131,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static Block tinOre = new tinOre(IDHandler.tinOreID);
 		public static Block leadOre = new leadOre(IDHandler.leadOreID);
 		public static Block silverOre = new silverOre(IDHandler.silverOreID);
-		public static Block OrePlatinum = new OrePlatinum(IDHandler.platiumOreID);
+		public static Block OrePlatinumRed = new OrePlatinumRed(IDHandler.platiumOreID);
 
 		//Ore Drops
 		public static electrumDust electrumDust = new electrumDust(IDHandler.electrumDustID);
@@ -138,11 +140,11 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 		public static ferrousDust ferrousDust = new ferrousDust(IDHandler.ferrousDustID);
 		public static leadDust leadDust = new leadDust(IDHandler.leadDustID);
 		public static silverDust silverDust = new silverDust(IDHandler.silverDustID);
-		public static dustPlatinum dustPlatinum = new dustPlatinum(IDHandler.platinumDustID);
+		public static dustPlatinumRed dustPlatinumRed = new dustPlatinumRed(IDHandler.platinumDustID);
 		
 		public static hiddenDust hiddenDust = new hiddenDust(IDHandler.hiddenDustID);
 
-		public static ingotPlatinum ingotPlatinum = new ingotPlatinum(IDHandler.platinumIngotID);
+		public static ingotPlatinumRed ingotPlatinumRed = new ingotPlatinumRed(IDHandler.platinumIngotID);
 
 /*
 * ===========================================================================================================
@@ -233,6 +235,8 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         public static Block platinum = new platium(IDHandler.platinumID);
         
         //Lasers
+        public static heatVent heatVent = new heatVent(IDHandler.heatVentID);
+        public static laserLight laserLight = new laserLight(IDHandler.laserLightID);
         public static Block laserCase = new laserCase(IDHandler.laserCassID, null);
         public static Block laserGen = new laserGen(IDHandler.laserGenID, null);
         //public static Block laserAmp = new laserAmp(IDHandler.laserAmpID, null);

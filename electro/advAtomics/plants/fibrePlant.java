@@ -5,7 +5,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.Random;
 
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
+
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.handlers.IDHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -17,7 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class fibrePlant extends BlockFlower
+public class fibrePlant extends BlockFlower implements IFactoryPlantable
 {
     @SideOnly(Side.CLIENT)
     private Icon[] iconArray;
@@ -199,4 +202,43 @@ public class fibrePlant extends BlockFlower
             this.iconArray[i] = par1IconRegister.registerIcon("Electrolysm:crops_" + i);
         }
     }
+
+	@Override
+	public int getSeedId() {
+		// TODO Auto-generated method stub
+		return IDHandler.fibrePlantID;
+	}
+
+	@Override
+	public int getPlantedBlockId(World world, int x, int y, int z,
+			ItemStack stack) {
+		// TODO Auto-generated method stub
+		return IDHandler.fibrePlantID;
+	}
+
+	@Override
+	public int getPlantedBlockMetadata(World world, int x, int y, int z,
+			ItemStack stack) {
+		// TODO Auto-generated method stub
+		return IDHandler.fibrePlantID;
+	}
+
+	@Override
+	public boolean canBePlantedHere(World world, int x, int y, int z,
+			ItemStack stack) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void prePlant(World world, int x, int y, int z, ItemStack stack) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postPlant(World world, int x, int y, int z, ItemStack stack) {
+		// TODO Auto-generated method stub
+		
+	}
 }

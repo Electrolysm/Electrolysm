@@ -58,7 +58,7 @@ public class platRecipes
 
 		ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1.itemID, item1.getItemDamage()));
 		ItemStack outputItem2 = this.metaSmeltingList2.get(Arrays.asList(item2.itemID, item2.getItemDamage()));
-
+/*
 		if (outputItem1.itemID == outputItem2.itemID) {
 			if (outputItem1.getItemDamage() == outputItem2.getItemDamage()) {
 				return outputItem1;
@@ -68,7 +68,8 @@ public class platRecipes
 		} else {
 			return null;
 		}
-
+*/
+		return outputItem1;
 	}
 
 	public ItemStack getSlot1ReduceAmount(ItemStack input) {

@@ -69,7 +69,7 @@ public class WorldGenOres implements IWorldGenerator{
 		int yCoord = random.nextInt(30);
 		int zCoord = chunkZ + random.nextInt(16);
 
-		(new WorldGenMinable(electrolysmCore.OrePlatinum.blockID, 6)).generate(world, random, xCoord, yCoord, zCoord);
+		(new WorldGenMinable(electrolysmCore.OrePlatinumRed.blockID, 6)).generate(world, random, xCoord, yCoord, zCoord);
 	}
 	}
 }
