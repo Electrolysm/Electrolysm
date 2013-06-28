@@ -74,4 +74,18 @@ public class nanoBlock extends Block {
     	}
     }
     
+    public void onBlockDestroyedByExplosion(World world, int x, int y, int z, Explosion explosion) {
+    	state = state + 1;
+    	if(state != 3){
+    		world.setBlock(x, y, z, electrolysmCore.nanoBlock.blockID);
+    		Dropped = 0;
+    	}
+    	if(state == 3){
+    		world.setBlockToAir(x, y, z);
+    		state = 0;
+    		Dropped = 1;
+	
+	}
+}
+    
 }

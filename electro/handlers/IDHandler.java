@@ -57,4 +57,6 @@ public class IDHandler {
 	public static int laserCassID = 657;
 	public static int heatVentID = 658;
 	public static int laserLightID = 659;
+	public static int laserBoilerID = 660;
+	public static int fakeLaserID = 661;
 }

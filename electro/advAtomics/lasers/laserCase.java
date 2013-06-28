@@ -4,15 +4,17 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.Electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class laserCase extends Block {
+public class laserCase extends BlockContainer {
 	
 	public String nameBefore = "adv." + this.getClass();
 	public String name = nameBefore.replace("adv.class mods.Electrolysm.electro.advAtomics.lasers.", "");
@@ -83,5 +85,12 @@ public class laserCase extends Block {
     {
         return true;
     }
+
+
+	@Override
+	public TileEntity createNewTileEntity(World world) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

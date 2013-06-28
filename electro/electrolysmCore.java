@@ -39,8 +39,12 @@ import mods.Electrolysm.electro.advAtomics.atomyBook;
 import mods.Electrolysm.electro.advAtomics.platium;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoBlock;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoTech;
+import mods.Electrolysm.electro.advAtomics.lasers.fakeLaser;
 import mods.Electrolysm.electro.advAtomics.lasers.heatVent;
+import mods.Electrolysm.electro.advAtomics.lasers.laserAmp;
+import mods.Electrolysm.electro.advAtomics.lasers.laserBoiler;
 import mods.Electrolysm.electro.advAtomics.lasers.laserCase;
+import mods.Electrolysm.electro.advAtomics.lasers.laserDiff;
 import mods.Electrolysm.electro.advAtomics.lasers.laserGen;
 import mods.Electrolysm.electro.advAtomics.lasers.laserLight;
 import mods.Electrolysm.electro.advAtomics.machines.desk;
@@ -239,8 +243,11 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         public static laserLight laserLight = new laserLight(IDHandler.laserLightID);
         public static Block laserCase = new laserCase(IDHandler.laserCassID, null);
         public static Block laserGen = new laserGen(IDHandler.laserGenID, null);
-        //public static Block laserAmp = new laserAmp(IDHandler.laserAmpID, null);
-        //public static Block laserDiff = new laserDiff(IDHandler.laserDiffID, null);
+        public static Block laserAmp = new laserAmp(IDHandler.laserAmpID, null);
+        public static Block laserDiff = new laserDiff(IDHandler.laserDiffID, null);
+        public static Block laserBoiler = new laserBoiler(IDHandler.laserBoilerID, null);
+        
+        public static Block fakeLaser = new fakeLaser(IDHandler.fakeLaserID);
         
         /* 
  * ===============================================================================================================

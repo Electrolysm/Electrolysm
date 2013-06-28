@@ -108,7 +108,7 @@ public class BICrafting {
 		
 	 		      
 	 		       GameRegistry.addRecipe(new ItemStack(electrolysmCore.nanoTech),
-	 		    		   "XX", "XX",
+	 		    		   "XXX", "XXX", "XXX",
 	 		    		   Character.valueOf('X'), electrolysmCore.stickyString);
 	 		       
 	 		       GameRegistry.addRecipe(new ItemStack(net.minecraft.item.Item.silk),
@@ -191,13 +191,13 @@ public class BICrafting {
 		    		  Character.valueOf('Z'), Block.glowStone,
 		    		  Character.valueOf('B'), advCircuit);
 			}
-		
+		/*
 		if(Loader.isModLoaded("ThermalExpansion"))
 			{
 			//CraftingHelpers.addPulverizerOreToDustRecipe(new ItemStack(electrolysmCore.OrePlatinumRed), new ItemStack(electrolysmCore.dustPlatinumRed));
 			//CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(electrolysmCore.OrePlatinum), new ItemStack(electrolysmCore.dustPlatinum));
 			}
-		
+		*/
 
 	}
 	

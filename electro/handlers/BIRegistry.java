@@ -161,9 +161,17 @@ public class BIRegistry {
 		 		       
 		 		       GameRegistry.registerBlock(electrolysmCore.laserCase);
 		 		       GameRegistry.registerBlock(electrolysmCore.laserGen);
+		 		       GameRegistry.registerBlock(electrolysmCore.laserAmp);
+		 		       GameRegistry.registerBlock(electrolysmCore.laserDiff);
+		 		       GameRegistry.registerBlock(electrolysmCore.laserBoiler);
+		 		       GameRegistry.registerBlock(electrolysmCore.fakeLaser);
 		 		       
 		 		       LanguageRegistry.addName(electrolysmCore.laserCase, "Laser Case");
 		 		       LanguageRegistry.addName(electrolysmCore.laserGen, "Laser Generator");
+		 		       LanguageRegistry.addName(electrolysmCore.laserAmp, "Laser Amplifier");
+		 		       LanguageRegistry.addName(electrolysmCore.laserDiff, "Laser Diffuser");
+		 		       LanguageRegistry.addName(electrolysmCore.laserBoiler, "Laser Boiler");
+		 		       LanguageRegistry.addName(electrolysmCore.fakeLaser, "Fake Laser");
 		 		       LanguageRegistry.addName(electrolysmCore.heatVent, "Heat Vent");
 		 		       LanguageRegistry.addName(electrolysmCore.laserLight, "Laser Pen");
 		 		      
