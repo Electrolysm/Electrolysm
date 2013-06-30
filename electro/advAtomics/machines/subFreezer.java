@@ -18,7 +18,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import mods.Electrolysm.electro.advAtomics.GUIs.TileEntity.TileEntitysubFreezer;
+import mods.Electrolysm.electro.advAtomics.GUIs.Entity.TileEntitysubFreezer;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 
 public class subFreezer extends BlockContainer {

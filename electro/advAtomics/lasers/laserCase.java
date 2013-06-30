@@ -22,11 +22,11 @@ public class laserCase extends BlockContainer {
 	public static int hardness = 3;
 	
 	@SideOnly(Side.CLIENT)
-    private Icon top;
+    public Icon top;
     @SideOnly(Side.CLIENT)
-    private Icon front;
+    public Icon front;
     @SideOnly(Side.CLIENT)
-    private Icon sides;
+    public Icon sides;
 
 	
 	public laserCase(int par1, Material par2Material) {

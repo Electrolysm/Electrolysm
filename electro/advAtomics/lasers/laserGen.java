@@ -33,7 +33,7 @@ public class laserGen extends laserCase {
     {
     if(player.isSneaking()){
     if(help < 1){
-   	 FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("Some lasers cannon be "
+   	 FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("Some lasers cannot be "
     + "seen with the naked eye; " 
     + "I think this is one of those!");
     }

@@ -28,6 +28,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -35,8 +36,10 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 
 
+import mods.Electrolysm.electro.advAtomics.ItemZS;
 import mods.Electrolysm.electro.advAtomics.atomyBook;
 import mods.Electrolysm.electro.advAtomics.platium;
+import mods.Electrolysm.electro.advAtomics.GUIs.Entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoBlock;
 import mods.Electrolysm.electro.advAtomics.Nano.nanoTech;
 import mods.Electrolysm.electro.advAtomics.lasers.fakeLaser;
@@ -107,7 +110,10 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.3")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
+	    
+	//EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true))
 	
+
 
 	public class electrolysmCore {
 	
@@ -249,6 +255,8 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         
         public static Block fakeLaser = new fakeLaser(IDHandler.fakeLaserID);
         
+        //Zombie Scientist
+        public static Item ItemZS = new ItemZS(IDHandler.ItemZS);
         /* 
  * ===============================================================================================================
  * ===============================================================================================================
@@ -281,6 +289,9 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        BICrafting.registerMODCrafting();
 	        
 	        BIRegistry.Registry();
+	        
+	        //Zombie Scientist
+	        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true);
 
 
 

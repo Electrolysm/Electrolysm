@@ -1,4 +1,4 @@
-package mods.Electrolysm.electro.advAtomics.GUIs.TileEntity;
+package mods.Electrolysm.electro.advAtomics.GUIs.Entity;
 
 import java.util.Iterator;
 import java.util.List;

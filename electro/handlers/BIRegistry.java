@@ -1,6 +1,10 @@
 package mods.Electrolysm.electro.handlers;
 
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.advAtomics.GUIs.Entity.EntityZombie_Scientist;
+import mods.Electrolysm.electro.advAtomics.lasers.TileEntity.TileEntityLaserBoiler;
+import mods.Electrolysm.electro.client.ModelZombie_Scientist;
+import mods.Electrolysm.electro.client.RenderZombie_Scientist;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.gui.GuiHandler;
@@ -8,7 +12,9 @@ import mods.Electrolysm.electro.world.WorldGenOres;
 import mods.Electrolysm.electro.world.WorldGenStructures;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -97,6 +103,7 @@ public class BIRegistry {
 		 		        NetworkRegistry.instance().registerGuiHandler(null, new GuiHandler());
 		                GameRegistry.registerTileEntity(TileEntityMagmaticExtractor.class, "containerMagmaticExtractor");
 		                GameRegistry.registerTileEntity(TileEntityMatterMachine.class, "containerMatterMachine");
+		                GameRegistry.registerTileEntity(TileEntityLaserBoiler.class, "TileEntityLaserBoiler");
 
 		/*
 		* ===========================================================================================================
@@ -174,7 +181,11 @@ public class BIRegistry {
 		 		       LanguageRegistry.addName(electrolysmCore.fakeLaser, "Fake Laser");
 		 		       LanguageRegistry.addName(electrolysmCore.heatVent, "Heat Vent");
 		 		       LanguageRegistry.addName(electrolysmCore.laserLight, "Laser Pen");
-		 		      
+		 		       
+		 		       
+		 		    //Zombie Scientist
+		 		    RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class, new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
+
 		 				}
 					}
 	}

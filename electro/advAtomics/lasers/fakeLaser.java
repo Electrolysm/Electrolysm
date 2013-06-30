@@ -3,6 +3,9 @@ package mods.Electrolysm.electro.advAtomics.lasers;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.advAtomics.lasers.TileEntity.TileEntityLaserGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -85,4 +88,5 @@ public class fakeLaser extends Block
   public void func_94332_a(IconRegister paramIconRegister)
   {
   }
+  
 }
