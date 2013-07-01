@@ -7,8 +7,10 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 
 public class EntityZombie_Scientist extends EntityMob {
@@ -55,12 +57,12 @@ public class EntityZombie_Scientist extends EntityMob {
     
     @Override
     public int getMaxHealth() {
-        return 100;
+        return 25;
     }
     
     @Override
     public int getAttackStrength(Entity par1Entity) {
-        return 15;
+        return 14;
     }
     
     @Override
@@ -70,25 +72,20 @@ public class EntityZombie_Scientist extends EntityMob {
     /**
      * These will be bacteria items once they have been added
      */
-    /*
-    protected void dropRareDrop(int par1)
+    
+    protected int getDropItemId()
     {
         switch (this.rand.nextInt(3))
         {
             case 0:
-                this.dropItem(Item.ingotIron.itemID, 1);
-                break;
-            case 1:
-                this.dropItem(Item.carrot.itemID, 1);
-                break;
-            case 2:
-                this.dropItem(Item.potato.itemID, 1);
+                return (Potion.blindness.id);
+            /*case 1:
+                this.dropItem(bacteria.rand, this.rand.nextInt(3));
+            */case 2:
+                return (Item.potato.itemID);
         }
-    }*/
-    
-    protected int getDropItemId()
-    {
         return Item.rottenFlesh.itemID;
     }
+    
     
 }

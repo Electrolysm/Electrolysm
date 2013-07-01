@@ -56,6 +56,7 @@ import mods.Electrolysm.electro.advAtomics.machines.subFreezer;
 import mods.Electrolysm.electro.advAtomics.parts.glassLens;
 import mods.Electrolysm.electro.advAtomics.plants.fibrePlant;
 import mods.Electrolysm.electro.advAtomics.plants.stickyString;
+import mods.Electrolysm.electro.bacteria.Bacteria;
 import mods.Electrolysm.electro.common.PacketHandler;
 import mods.Electrolysm.electro.data.TickRunning;
 import mods.Electrolysm.electro.data.data;
@@ -257,6 +258,8 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         
         //Zombie Scientist
         public static Item ItemZS = new ItemZS(IDHandler.ItemZS);
+        
+        //Bacteria
         /* 
  * ===============================================================================================================
  * ===============================================================================================================
@@ -287,7 +290,8 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        BICrafting.registerCraftingRecipes();
 	        BICrafting.registerSmeltingRecipes();
 	        BICrafting.registerMODCrafting();
-	        
+	        Bacteria.loadBacteria();
+
 	        BIRegistry.Registry();
 	        
 	        //Zombie Scientist

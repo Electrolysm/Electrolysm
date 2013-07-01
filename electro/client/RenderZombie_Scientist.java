@@ -9,8 +9,7 @@ import net.minecraft.entity.EntityLiving;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderZombie_Scientist extends RenderLiving
-{
+public class RenderZombie_Scientist extends RenderLiving{
     /** Model of the Zombie_Scientist. */
     protected ModelZombie_Scientist ModelZombie_Scientist;
 
