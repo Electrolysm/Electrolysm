@@ -57,6 +57,7 @@ import mods.Electrolysm.electro.advAtomics.parts.glassLens;
 import mods.Electrolysm.electro.advAtomics.plants.fibrePlant;
 import mods.Electrolysm.electro.advAtomics.plants.stickyString;
 import mods.Electrolysm.electro.bacteria.Bacteria;
+import mods.Electrolysm.electro.bacteria.BacteriaRegistry;
 import mods.Electrolysm.electro.common.PacketHandler;
 import mods.Electrolysm.electro.data.TickRunning;
 import mods.Electrolysm.electro.data.data;
@@ -290,9 +291,11 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        BICrafting.registerCraftingRecipes();
 	        BICrafting.registerSmeltingRecipes();
 	        BICrafting.registerMODCrafting();
-	        Bacteria.loadBacteria();
-
 	        BIRegistry.Registry();
+	        
+	        //Bacteria
+	        Bacteria.loadBacteria();
+	        BacteriaRegistry.registerBacteria();
 	        
 	        //Zombie Scientist
 	        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true);
