@@ -1,6 +1,7 @@
 package mods.Electrolysm.electro;
 
 import java.io.File;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -36,28 +37,11 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 
 
-import mods.Electrolysm.electro.advAtomics.ItemZS;
-import mods.Electrolysm.electro.advAtomics.atomyBook;
-import mods.Electrolysm.electro.advAtomics.platium;
-import mods.Electrolysm.electro.advAtomics.GUIs.Entity.EntityZombie_Scientist;
-import mods.Electrolysm.electro.advAtomics.Nano.nanoBlock;
-import mods.Electrolysm.electro.advAtomics.Nano.nanoTech;
-import mods.Electrolysm.electro.advAtomics.lasers.fakeLaser;
-import mods.Electrolysm.electro.advAtomics.lasers.heatVent;
-import mods.Electrolysm.electro.advAtomics.lasers.laserAmp;
-import mods.Electrolysm.electro.advAtomics.lasers.laserBoiler;
-import mods.Electrolysm.electro.advAtomics.lasers.laserCase;
-import mods.Electrolysm.electro.advAtomics.lasers.laserDiff;
-import mods.Electrolysm.electro.advAtomics.lasers.laserGen;
-import mods.Electrolysm.electro.advAtomics.lasers.laserLight;
-import mods.Electrolysm.electro.advAtomics.machines.desk;
-import mods.Electrolysm.electro.advAtomics.machines.microScope;
-import mods.Electrolysm.electro.advAtomics.machines.subFreezer;
-import mods.Electrolysm.electro.advAtomics.parts.glassLens;
-import mods.Electrolysm.electro.advAtomics.plants.fibrePlant;
-import mods.Electrolysm.electro.advAtomics.plants.stickyString;
-import mods.Electrolysm.electro.bacteria.Bacteria;
-import mods.Electrolysm.electro.bacteria.BacteriaRegistry;
+import mods.Electrolysm.api.bacteria.IBacteria;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
+import mods.Electrolysm.electro.biology.bacteria.BacteriaRegistry;
+import mods.Electrolysm.electro.biology.plants.fibrePlant;
+import mods.Electrolysm.electro.biology.plants.stickyString;
 import mods.Electrolysm.electro.common.PacketHandler;
 import mods.Electrolysm.electro.data.TickRunning;
 import mods.Electrolysm.electro.data.data;
@@ -106,6 +90,24 @@ import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
 import mods.Electrolysm.electro.machines.platFurnace;
 import mods.Electrolysm.electro.machines.solarCollector;
+import mods.Electrolysm.electro.physics.ItemAdmin;
+import mods.Electrolysm.electro.physics.atomyBook;
+import mods.Electrolysm.electro.physics.platium;
+import mods.Electrolysm.electro.physics.GUIs.Entity.EntityZombie_Scientist;
+import mods.Electrolysm.electro.physics.Nano.nanoBlock;
+import mods.Electrolysm.electro.physics.Nano.nanoTech;
+import mods.Electrolysm.electro.physics.lasers.fakeLaser;
+import mods.Electrolysm.electro.physics.lasers.heatVent;
+import mods.Electrolysm.electro.physics.lasers.laserAmp;
+import mods.Electrolysm.electro.physics.lasers.laserBoiler;
+import mods.Electrolysm.electro.physics.lasers.laserCase;
+import mods.Electrolysm.electro.physics.lasers.laserDiff;
+import mods.Electrolysm.electro.physics.lasers.laserGen;
+import mods.Electrolysm.electro.physics.lasers.laserLight;
+import mods.Electrolysm.electro.physics.machines.desk;
+import mods.Electrolysm.electro.physics.machines.microScope;
+import mods.Electrolysm.electro.physics.machines.subFreezer;
+import mods.Electrolysm.electro.physics.parts.glassLens;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
 
@@ -121,7 +123,9 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	
 		  
 		//Creative Tab
-		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm");
+		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
+		public static CreativeTabs TabElectrolysmPhysics = new TabElectrolysmPhysics(CreativeTabs.getNextID(),"Electrolysm|Physics");
+		public static CreativeTabs TabElectrolysmBiology = new TabElectrolysmBiology(CreativeTabs.getNextID(),"Electrolysm|Biology");
 		//End
 		
 		//ore Spawning
@@ -236,14 +240,9 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 * ===========================================================================================================
 */		
         //Basics
-        public static atomyBook atomyBook = new atomyBook(IDHandler.atomyBookID);
+        public static atomyBook atomyBook = new atomyBook(IDHandler.atomyBookID, null);
         public static glassLens glassLens = new glassLens(IDHandler.glassLensID);
-        public static final nanoTech nanoTech = new nanoTech(IDHandler.nanoTechID);
-        public static final Block nanoBlock	= new nanoBlock(IDHandler.nanoBlockID);
         public static Block desk = new desk(IDHandler.deskID);
-        //Plants
-        public static Block fibrePlant = new fibrePlant(IDHandler.fibrePlantID);
-        public static stickyString stickyString = new stickyString(IDHandler.stickyStringID);
         public static Block platinum = new platium(IDHandler.platinumID);
         
         //Lasers
@@ -254,13 +253,24 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         public static Block laserAmp = new laserAmp(IDHandler.laserAmpID, null);
         public static Block laserDiff = new laserDiff(IDHandler.laserDiffID, null);
         public static Block laserBoiler = new laserBoiler(IDHandler.laserBoilerID, null);
+               
         
-        public static Block fakeLaser = new fakeLaser(IDHandler.fakeLaserID);
+        
+/*
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* ===========================================================================================================
+* 										Advanced Biology
+* ===========================================================================================================
+*/
         
         //Zombie Scientist
-        public static Item ItemZS = new ItemZS(IDHandler.ItemZS);
+        public static Item ItemAdmin = new ItemAdmin(IDHandler.ItemAdminID);
         
-        //Bacteria
+        //Plants
+        public static Block fibrePlant = new fibrePlant(IDHandler.fibrePlantID);
+        public static stickyString stickyString = new stickyString(IDHandler.stickyStringID);
+        public static final nanoTech nanoTech = new nanoTech(IDHandler.nanoTechID);
+        public static final Block nanoBlock	= new nanoBlock(IDHandler.nanoBlockID);
         /* 
  * ===============================================================================================================
  * ===============================================================================================================
@@ -270,16 +280,9 @@ import mods.Electrolysm.electro.tools.hiddenSword;
  */
         @PreInit
         public void preInit(FMLPreInitializationEvent event) {
-                Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-                config.load();
-                
-                spawnCopperOre = config.get(Configuration.CATEGORY_GENERAL, "spawnCopperOre", true).getBoolean(true);
-                spawnTinOre = config.get(Configuration.CATEGORY_GENERAL, "spawnTinOre", true).getBoolean(true);
-                spawnLeadOre = config.get(Configuration.CATEGORY_GENERAL, "spawnLeadOre", true).getBoolean(true);
-                spawnSilverOre = config.get(Configuration.CATEGORY_GENERAL, "spawnSilverOre", true).getBoolean(true);
-
-                config.save();
+        	configHandler.init(event.getSuggestedConfigurationFile());
         }
+            
         
 		@PreInit
 		public void loadConfiguration(FMLPreInitializationEvent evt) {
@@ -299,7 +302,6 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        
 	        //Zombie Scientist
 	        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true);
-
 
 
 		}

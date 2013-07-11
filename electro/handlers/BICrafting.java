@@ -1,8 +1,5 @@
 package mods.Electrolysm.electro.handlers;
 
-import thermalexpansion.api.crafting.CraftingHelpers;
-import thermalexpansion.api.crafting.IPulverizerManager;
-import thermalexpansion.api.crafting.IPulverizerRecipe;
 import ic2.api.item.Items;
 import ic2.api.recipe.Recipes;
 import cpw.mods.fml.common.Loader;

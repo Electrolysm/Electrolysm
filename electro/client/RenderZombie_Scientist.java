@@ -2,7 +2,7 @@ package mods.Electrolysm.electro.client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.Electrolysm.electro.advAtomics.GUIs.Entity.EntityZombie_Scientist;
+import mods.Electrolysm.electro.physics.GUIs.Entity.EntityZombie_Scientist;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

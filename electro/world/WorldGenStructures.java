@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.ChestGenHooks;
@@ -22,6 +23,7 @@ public class WorldGenStructures implements IWorldGenerator{
 
 		//Make sure it's not generating in the end or nether
 		if(world.provider.dimensionId != 1 && world.provider.dimensionId != -1){
+			
 			generateSurface(world, random, x*16, z*16);
 			
 		}
@@ -29,7 +31,7 @@ public class WorldGenStructures implements IWorldGenerator{
 		}
 
     
-	private void generateSurface(World world, Random random, int x, int z){
+	public static void generateSurface(World world, Random random, int x, int z){
 
 		//Science Lab Generation Code:
 		if(random.nextInt(100) == 1)
@@ -39,186 +41,42 @@ public class WorldGenStructures implements IWorldGenerator{
 				int xCoord = x + random.nextInt(16);
 				int zCoord = z + random.nextInt(16);
 				int yCoord = getSurface(world, xCoord, zCoord);
-				int titanium = Block.cobblestoneMossy.blockID;
-				int torch = Block.torchWood.blockID;
+				int mossyStone = Block.cobblestoneMossy.blockID;
+				int glow = Block.glowStone.blockID;
+				int bar = Block.fenceIron.blockID;
+				int wood = Block.wood.blockID;
+				int grass = Block.grass.blockID;
+				int mossyStairs = Block.stairsCobblestone.blockID;
+				int pressure = Block.pressurePlateStone.blockID;
+				int dispenser = Block.dispenser.blockID;
 
-				for(int zA = 0; zA < 5; zA++)
-				{
-					for(int xA = 0; xA < 8; xA++)
-					{
-						createBlock(world, xCoord + xA, yCoord - 1, zCoord + zA, titanium, 0);
-					}
-				}
-				for(int zA = 0; zA < 5; zA++)
-				{
-					for(int xA = 0; xA < 8; xA++)
-					{
-						createBlock(world, xCoord + xA, yCoord + 3, zCoord + zA, titanium, 0);
-					}
-				}
-				for(int yA = 0; yA < 3; yA++)
-				{
-					for(int zA = 0; zA < 7; zA++)
-					{
-						createBlock(world, xCoord - 1, yCoord + yA, zCoord + zA - 1, titanium, 0);
-					}
-					for(int zA = 0; zA < 7; zA++)
-					{
-						createBlock(world, xCoord + 8, yCoord + yA, zCoord + zA - 1, titanium, 0);
-					}
-					for(int xA = 0; xA < 8; xA ++)
-					{
-						createBlock(world, xCoord + xA, yCoord + yA, zCoord - 1, titanium, 0);
-					}
-					for(int xA = 0; xA < 8; xA ++)
-					{
-						createBlock(world, xCoord + xA, yCoord + yA, zCoord + 5, titanium, 0);
-					}
-				}
-
-				createBlock(world, xCoord - 1, yCoord - 1, zCoord + 2, titanium, 0);
-
-				createBlock(world, xCoord + 7, yCoord, zCoord + 2, electrolysmCore.desk.blockID, 0);
-
-				createBlock(world, xCoord + 7, yCoord + 1, zCoord + 2, torch, 0);
-				createBlock(world, xCoord + 5, yCoord + 1, zCoord, torch, 0);
-				createBlock(world, xCoord + 5, yCoord + 1, zCoord + 4, torch, 0);
-				createBlock(world, xCoord + 2, yCoord + 1, zCoord, torch, 0);
-				createBlock(world, xCoord + 2, yCoord + 1, zCoord + 4, torch, 0);
-
-				createBlock(world, xCoord - 1, yCoord, zCoord + 2, net.minecraft.block.BlockAnvil.doorIron.blockID, 0);
-				createBlock(world, xCoord - 1, yCoord + 1, zCoord + 2, net.minecraft.block.BlockAnvil.doorIron.blockID, 8);
-				//Above door
-				createBlock(world, xCoord - 1, yCoord + 3, zCoord - 1, titanium, 8);				
-				createBlock(world, xCoord - 1, yCoord + 3, zCoord + 0, titanium, 8);				
-				createBlock(world, xCoord - 1, yCoord + 3, zCoord + 1, titanium, 8);
-				createBlock(world, xCoord - 1, yCoord + 3, zCoord + 2, titanium, 8);
-				createBlock(world, xCoord - 1, yCoord + 3, zCoord + 3, titanium, 8);
-				createBlock(world, xCoord - 1, yCoord + 3, zCoord + 4, titanium, 8);
-				createBlock(world, xCoord - 1, yCoord + 3, zCoord + 5, titanium, 8);
-				//left of door
-				createBlock(world, xCoord + 0, yCoord + 3, zCoord - 1, titanium, 8);				
-				createBlock(world, xCoord + 1, yCoord + 3, zCoord - 1, titanium, 8);				
-				createBlock(world, xCoord + 2, yCoord + 3, zCoord - 1, titanium, 8);				
-				createBlock(world, xCoord + 3, yCoord + 3, zCoord - 1, titanium, 8);				
-				createBlock(world, xCoord + 4, yCoord + 3, zCoord - 1, titanium, 8);				
-				createBlock(world, xCoord + 5, yCoord + 3, zCoord - 1, titanium, 8);
-				createBlock(world, xCoord + 6, yCoord + 3, zCoord - 1, titanium, 8);	
-				createBlock(world, xCoord + 7, yCoord + 3, zCoord - 1, titanium, 8);	
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord - 1, titanium, 8);	
-				//other end of door
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord - 1, titanium, 8);	
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord + 0, titanium, 8);
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord + 1, titanium, 8);	
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord + 2, titanium, 8);	
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord + 3, titanium, 8);
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord + 4, titanium, 8);	
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord + 5, titanium, 8);	
-				//right of door
-				createBlock(world, xCoord + 0, yCoord + 3, zCoord + 5, titanium, 8);				
-				createBlock(world, xCoord + 1, yCoord + 3, zCoord + 5, titanium, 8);				
-				createBlock(world, xCoord + 2, yCoord + 3, zCoord + 5, titanium, 8);	
-				createBlock(world, xCoord + 3, yCoord + 3, zCoord + 5, titanium, 8);
-				createBlock(world, xCoord + 4, yCoord + 3, zCoord + 5, titanium, 8);				
-				createBlock(world, xCoord + 5, yCoord + 3, zCoord + 5, titanium, 8);
-				createBlock(world, xCoord + 6, yCoord + 3, zCoord + 5, titanium, 8);	
-				createBlock(world, xCoord + 7, yCoord + 3, zCoord + 5, titanium, 8);	
-				createBlock(world, xCoord + 8, yCoord + 3, zCoord + 5, titanium, 8);
 
 				
+				createBlock(world, xCoord + 3, yCoord, zCoord + 4, dispenser, 0);
 				
-				createBlock(world, xCoord - 2, yCoord + 1, zCoord + 1, Block.stoneButton.blockID, 2);
-
-				createBlock(world, xCoord, yCoord, zCoord + 2, Block.pressurePlateStone.blockID, 0);
-
-				createBlock(world, xCoord + 3, yCoord, zCoord + 4, Block.chest.blockID, 0);
-				createBlock(world, xCoord + 4, yCoord, zCoord + 4, Block.chest.blockID, 0);
-
-				TileEntityChest tileEntityChest = new TileEntityChest();
+				
+				
+				TileEntityDispenser tileEntityChest = new TileEntityDispenser();
 				world.setBlockTileEntity(xCoord + 3, yCoord, zCoord + 4, tileEntityChest);
+
+				for (int slot = 0; slot < tileEntityChest.getSizeInventory(); slot++) {
+					int item = random.nextInt(9);
+
+					if (item == 1 || item == 2 || item == 3) {
+						tileEntityChest.setInventorySlotContents(0, new ItemStack(electrolysmCore.copperOre, 20));
+					}
 				}
 			}
-/*
-				for(int slot = 0; slot < tileEntityChest.getSizeInventory(); slot++)
-				{
-					int item = random.nextInt(250);
+	
+		}
+	}
 
-					if(item == 1 || item == 2 || item == 3)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(electrolysmCore.einsteiniumIngot, random.nextInt(2)+1));
-					}
-				if(item == 4 || item == 5 || item == 6)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.arsmiumIngot, random.nextInt(3)+1));
-					}
-					if(item == 7 || item == 8 || item == 9)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.bituminousCoal, random.nextInt(2)));
-					}
-					if(item == 10 || item == 11 || item == 12)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.copperIngot, random.nextInt(4)+1));
-					}
-					if(item == 13 || item == 14 || item == 15)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.cosileadiumAlloy, random.nextInt(2)));
-					}
-					if(item == 16 || item == 17 || item == 18)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.franciumIngot, random.nextInt(3)+1));
-					}
-					if(item == 19 || item == 20 || item == 21)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.leadIngot, random.nextInt(3)+1));
-					}
-					if(item == 22 || item == 23 || item == 24)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.ligniteCoal, random.nextInt(3)+1));
-					}
-					if(item == 25 || item == 26 || item == 27)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.platinumIngot, random.nextInt(3)+1));
-					}
-					if(item == 28 || item == 28 || item == 30)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.robotModel, random.nextInt(2)));
-					}
-					if(item == 31 || item == 31 || item == 33)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.siliconChip, random.nextInt(3)));
-					}
-					if(item == 34 || item == 34 || item == 36)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.siliconIngot, random.nextInt(3)+1));
-					}
-					if(item == 37 || item == 37 || item == 39)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.siliconWafer, random.nextInt(2)+1));
-					}
-					if(item == 40 || item == 40 || item == 42)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.titaniumIngot, random.nextInt(2)+1));
-					}
-					if(item == 43 || item == 43 || item == 45)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.tungstenIngot, random.nextInt(3)+1));
-					}
-					if(item == 46 || item == 46 || item == 48)
-					{
-						tileEntityChest.setInventorySlotContents(slot, new ItemStack(ItemsHelper.urdiumIngot, random.nextInt(3)+1));
-					}
-*/
-				}
-			//}
-		//}
-	//}
-
-	private void createBlock(World world, int xCoord, int yCoord, int zCoord, int blockID, int metadata)
+	private static void createBlock(World world, int xCoord, int yCoord, int zCoord, int blockID, int metadata)
 	{
 		world.setBlock(xCoord, yCoord, zCoord, blockID, metadata, 2);
 	}
 
-	private int getSurface(World world, int x, int z)
+	private static int getSurface(World world, int x, int z)
 	{
 		int height = 256;
 

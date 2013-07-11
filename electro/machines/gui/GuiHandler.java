@@ -12,8 +12,11 @@ import mods.Electrolysm.electro.machines.entities.tile.TileEntityForge;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityPlatFurnace;
+import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ContainerChest;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -46,6 +49,11 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerPlatFurnace(player.inventory, (TileEntityPlatFurnace)entity);
 		}
+		
+		if (entity instanceof TileEntityChest)
+		{
+			return new ContainerChest(player.inventory, (TileEntityChest)entity);
+		}
 		return null;
 	}
 
@@ -76,6 +84,11 @@ public class GuiHandler implements IGuiHandler
 		if (entity instanceof TileEntityPlatFurnace)
 		{
 			return new GuiPlatFurnace(player.inventory, (TileEntityPlatFurnace)entity);
+		}
+		
+		if (entity instanceof TileEntityChest)
+		{
+			return new GuiChest(player.inventory, (TileEntityChest)entity);
 		}
 		return null;
 	}

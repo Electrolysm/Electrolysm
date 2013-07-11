@@ -7,8 +7,8 @@ import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.advAtomics.lasers.TileEntity.TileEntityLaserGen;
 import mods.Electrolysm.electro.machines.platFurnace;
+import mods.Electrolysm.electro.physics.lasers.TileEntity.TileEntityLaserGen;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class TickRunning implements ITickHandler {
