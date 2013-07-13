@@ -1,8 +1,8 @@
 package mods.Electrolysm.electro.biology.bacteria;
 
-import mods.Electrolysm.electro.biology.bacteria.tier1.bacteriaFuso1;
-import mods.Electrolysm.electro.biology.bacteria.tier1.bacteriaFuso2;
 import net.minecraft.item.Item;
+import mods.Electrolysm.api.bacteria.BacteriaBaseClass;
+import mods.Electrolysm.electro.biology.bacteria.tier1.bacteriaFuso1;
 
 public class Bacteria {
 	

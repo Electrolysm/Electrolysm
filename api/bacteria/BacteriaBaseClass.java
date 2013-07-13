@@ -29,7 +29,7 @@ public class BacteriaBaseClass extends Item{
 		// TODO Auto-generated constructor stub
 		this.setUnlocalizedName(name);
 		this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
-		this.setFirstTrate(itemRand, itemID);
+		//this.setFirstTrate(itemRand, itemID);
 	}
 	
 	/**
@@ -67,9 +67,9 @@ public class BacteriaBaseClass extends Item{
 
 	
 	public static void setFirstTrate(Random random, int chosenTrate){
-		chosenTrate = random.nextInt(6);
 	
 	for(int cT = 0; cT < trateList.trates1.length; cT++){
+		chosenTrate = random.nextInt(6);
 		trate1 = trateList.trates1[chosenTrate];
 		
 	System.out.println(trate1);
@@ -77,7 +77,5 @@ public class BacteriaBaseClass extends Item{
 
 	}
 
-	
-	
-	
+
 }
