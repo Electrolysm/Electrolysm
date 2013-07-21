@@ -67,4 +67,8 @@ public class IDHandler {
 		public static int biomeID = 69;
 		
 	}
+	public static class researchNotes{
+		public static int RNNanoID = 670;
+		
+	}
 }

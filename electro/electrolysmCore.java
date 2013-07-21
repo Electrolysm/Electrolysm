@@ -67,6 +67,7 @@ import mods.Electrolysm.electro.metals.sydium;
 import mods.Electrolysm.electro.metals.sydiumLava;
 import mods.Electrolysm.electro.metals.tibetanSilver;
 import mods.Electrolysm.electro.metals.tumbaga;
+import mods.Electrolysm.electro.research.researchNotes;
 import mods.Electrolysm.electro.tools.hiddenAxe;
 import mods.Electrolysm.electro.tools.lighteningAltering;
 import mods.Electrolysm.electro.tools.hiddenPicaxe;
@@ -305,7 +306,9 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        //Bacteria
 	        Bacteria.loadBacteria();
 	        BacteriaRegistry.registerBacteria();
-	        
+	        //Research Notes
+	        researchNotes.advPhy();
+	        researchNotes.advBio();
 	        //Zombie Scientist
 	        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true);
 	        //Biome
