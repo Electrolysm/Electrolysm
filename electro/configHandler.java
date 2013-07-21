@@ -2,7 +2,7 @@ package mods.Electrolysm.electro;
 
 import java.io.File;
 
-import mods.Electrolysm.electro.handlers.IDHandler;
+import mods.Electrolysm.electro.basic.handlers.IDHandler;
 import net.minecraftforge.common.Configuration;
 
 public class configHandler {

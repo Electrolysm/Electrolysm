@@ -2,7 +2,6 @@ package mods.Electrolysm.electro.biology;
 
 import mods.Electrolysm.electro.electrolysmCore;
 import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
-import mods.Electrolysm.electro.world.WorldGenStructures;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;

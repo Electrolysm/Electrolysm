@@ -8,7 +8,7 @@ import java.util.Random;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.handlers.IDHandler;
+import mods.Electrolysm.electro.basic.handlers.IDHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
