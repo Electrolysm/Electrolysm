@@ -49,13 +49,9 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerPlatFurnace(player.inventory, (TileEntityPlatFurnace)entity);
 		}
-		
-		if (entity instanceof TileEntityChest)
-		{
-			return new ContainerChest(player.inventory, (TileEntityChest)entity);
-		}
-		return null;
+		return false;
 	}
+		
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
@@ -86,10 +82,6 @@ public class GuiHandler implements IGuiHandler
 			return new GuiPlatFurnace(player.inventory, (TileEntityPlatFurnace)entity);
 		}
 		
-		if (entity instanceof TileEntityChest)
-		{
-			return new GuiChest(player.inventory, (TileEntityChest)entity);
-		}
 		return null;
 	}
 }

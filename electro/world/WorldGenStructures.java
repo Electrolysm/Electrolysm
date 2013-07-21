@@ -5,14 +5,21 @@ import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CORRIDOR;
 import java.util.Random;
 
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityDispenser;
+import net.minecraft.util.Facing;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldManager;
+import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
@@ -24,17 +31,16 @@ public class WorldGenStructures implements IWorldGenerator{
 
 		//Make sure it's not generating in the end or nether
 		if(world.provider.dimensionId != 1 && world.provider.dimensionId != -1){
-			
-			generateSurface(world, random, x*16, z*16);
+				generateSurface(world, random, x*16, z*16);
+			}
 			
 		}
-
-		}
-
     
 	public static void generateSurface(World world, Random random, int x, int z){
 
 		//Science Lab Generation Code:
+	if(world.getBiomeGenForCoords(x, z) == electrolysmCore.diseasedBiomeObj)
+	{
 		if(random.nextInt(100) == 1)
 		{
 			for(int i = 0; i < 1; i++)
@@ -58,9 +64,6 @@ public class WorldGenStructures implements IWorldGenerator{
 				int books = Block.bookShelf.blockID;
 
 
-				//Layer 1
-				createBlock(world, xCoord + 7, yCoord - 1, zCoord - 10, redstone, 0);
-				createBlock(world, xCoord + 8, yCoord - 1, zCoord - 10, redstone, 0);
 				//Layer 2
 				for(int gx = 0; gx < 16; gx++)
 				{
@@ -68,7 +71,36 @@ public class WorldGenStructures implements IWorldGenerator{
 					{
 					createBlock(world, xCoord + gx, yCoord, zCoord - gy, grass, 0);
 					}
-				}	
+				}
+				for(int gx = 0; gx < 16; gx++)
+				{
+					for(int gy = 0; gy < 16; gy++)
+					{
+					createBlock(world, xCoord + gx, yCoord - 1, zCoord - gy, grass, 0);
+					}
+				}
+				for(int gx = 0; gx < 16; gx++)
+				{
+					for(int gy = 0; gy < 16; gy++)
+					{
+					createBlock(world, xCoord + gx, yCoord - 2, zCoord - gy, grass, 0);
+					}
+				}
+				for(int gx = 0; gx < 16; gx++)
+				{
+					for(int gy = 0; gy < 16; gy++)
+					{
+					createBlock(world, xCoord + gx, yCoord - 3, zCoord - gy, grass, 0);
+					}
+				}
+				for(int gx = 0; gx < 16; gx++)
+				{
+					for(int gy = 0; gy < 16; gy++)
+					{
+					createBlock(world, xCoord + gx, yCoord - 4, zCoord - gy, grass, 0);
+					}
+				}
+				
 				createBlock(world, xCoord + 6, yCoord, zCoord - 10, dispenser, 0);
 				createBlock(world, xCoord + 9, yCoord, zCoord - 10, dispenser, 0);
 				
@@ -484,7 +516,13 @@ public class WorldGenStructures implements IWorldGenerator{
 						createBlock(world, xCoord + 9, yCoord, zCoord - 5 + length, stoneSlabFull, 0);
 						createBlock(world, xCoord + 10, yCoord, zCoord - 5 + length, stoneSlabFull, 0);
 					}
-					
+					//Tnt Explosion
+					//Layer 1
+					createBlock(world, xCoord + 7, yCoord - 1, zCoord - 10, redstone, 0);
+					createBlock(world, xCoord + 8, yCoord - 1, zCoord - 10, redstone, 0);
+					createBlock(world, xCoord + 7, yCoord + 1, zCoord - 10, pressure, 0);
+					createBlock(world, xCoord + 8, yCoord + 1, zCoord - 10, pressure, 0);
+			
 					//Cage!
 					createBlock(world, xCoord + 9, yCoord + 1, zCoord - 3, ironBar, 0);
 					createBlock(world, xCoord + 9, yCoord + 2, zCoord - 3, ironBar, 0);
@@ -528,10 +566,11 @@ public class WorldGenStructures implements IWorldGenerator{
 					createBlock(world, xCoord + 12, yCoord + 1, zCoord - 11, books, 0);
 					createBlock(world, xCoord + 11, yCoord + 1, zCoord - 11, books, 0);
 					
+					spawnZombie_Scientist(world, xCoord, yCoord, zCoord);
 			}	
 		}
 	}
-
+}
 	private static void createBlock(World world, int xCoord, int yCoord, int zCoord, int blockID, int metadata)
 	{
 		world.setBlock(xCoord, yCoord, zCoord, blockID, metadata, 2);
@@ -559,4 +598,20 @@ public class WorldGenStructures implements IWorldGenerator{
 		return height + 1;
 
 				}
+	
+	public static EntityZombie_Scientist spawnZombie_Scientist(World world, int x, int y,
+			int z) {
+		EntityZombie_Scientist robot = new EntityZombie_Scientist(world);
+
+		EntityLiving entity = robot;
+		robot.setLocationAndAngles(x, y, z, MathHelper
+				.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
+		entity.rotationYawHead = entity.rotationYaw;
+		entity.renderYawOffset = entity.rotationYaw;
+		entity.initCreature();
+		world.spawnEntityInWorld(robot);
+		entity.playLivingSound();
+
+		return robot;
+	}
 	}

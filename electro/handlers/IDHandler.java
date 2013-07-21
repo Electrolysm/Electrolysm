@@ -61,4 +61,10 @@ public class IDHandler {
 	public static int laserBoiler_ActiveID = 661;
 	public static int fakeLaserID = 662;
 	public static int ItemAdminID = 663;
+	
+	public static class biomeIDs{
+		public static int grass = 200;
+		public static int biomeID = 69;
+		
+	}
 }

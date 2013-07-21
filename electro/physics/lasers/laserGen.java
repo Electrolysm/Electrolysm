@@ -2,8 +2,8 @@ package mods.Electrolysm.electro.physics.lasers;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.data.TickRunning;
-import mods.Electrolysm.electro.data.data;
+import mods.Electrolysm.electro.handlers.TickRunning;
+import mods.Electrolysm.electro.handlers.data;
 import mods.Electrolysm.electro.physics.lasers.TileEntity.TileEntityLaserGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

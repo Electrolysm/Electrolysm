@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DungeonHooks;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -38,29 +39,34 @@ import cpw.mods.fml.relauncher.Side;
 
 
 import mods.Electrolysm.api.bacteria.IBacteria;
+import mods.Electrolysm.electro.biology.ItemAdmin;
 import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import mods.Electrolysm.electro.biology.bacteria.BacteriaRegistry;
+import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
+import mods.Electrolysm.electro.biology.machines.microScope;
 import mods.Electrolysm.electro.biology.plants.fibrePlant;
 import mods.Electrolysm.electro.biology.plants.stickyString;
+import mods.Electrolysm.electro.biome.diseasedBiome;
+import mods.Electrolysm.electro.biome.diseasedGrass;
 import mods.Electrolysm.electro.common.PacketHandler;
-import mods.Electrolysm.electro.data.TickRunning;
-import mods.Electrolysm.electro.data.data;
 import mods.Electrolysm.electro.handlers.BICrafting;
 import mods.Electrolysm.electro.handlers.BIRegistry;
 import mods.Electrolysm.electro.handlers.IDHandler;
+import mods.Electrolysm.electro.handlers.TickRunning;
+import mods.Electrolysm.electro.handlers.data;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.gui.GuiHandler;
+import mods.Electrolysm.electro.metals.babbitt;
 import mods.Electrolysm.electro.metals.hiddenDust;
 import mods.Electrolysm.electro.metals.hiddenIngot;
+import mods.Electrolysm.electro.metals.ionicElectrum;
+import mods.Electrolysm.electro.metals.ironisedGold;
+import mods.Electrolysm.electro.metals.pewter;
+import mods.Electrolysm.electro.metals.sydium;
 import mods.Electrolysm.electro.metals.sydiumLava;
-import mods.Electrolysm.electro.metals.tier1.babbitt;
-import mods.Electrolysm.electro.metals.tier1.ionicElectrum;
-import mods.Electrolysm.electro.metals.tier1.ironisedGold;
-import mods.Electrolysm.electro.metals.tier1.pewter;
-import mods.Electrolysm.electro.metals.tier1.sydium;
-import mods.Electrolysm.electro.metals.tier1.tibetanSilver;
-import mods.Electrolysm.electro.metals.tier1.tumbaga;
+import mods.Electrolysm.electro.metals.tibetanSilver;
+import mods.Electrolysm.electro.metals.tumbaga;
 import mods.Electrolysm.electro.tools.hiddenAxe;
 import mods.Electrolysm.electro.tools.lighteningAltering;
 import mods.Electrolysm.electro.tools.hiddenPicaxe;
@@ -90,10 +96,8 @@ import mods.Electrolysm.electro.machines.magmaticExtractor;
 import mods.Electrolysm.electro.machines.matterSythisiser;
 import mods.Electrolysm.electro.machines.platFurnace;
 import mods.Electrolysm.electro.machines.solarCollector;
-import mods.Electrolysm.electro.physics.ItemAdmin;
 import mods.Electrolysm.electro.physics.atomyBook;
 import mods.Electrolysm.electro.physics.platium;
-import mods.Electrolysm.electro.physics.GUIs.Entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.physics.Nano.nanoBlock;
 import mods.Electrolysm.electro.physics.Nano.nanoTech;
 import mods.Electrolysm.electro.physics.lasers.fakeLaser;
@@ -105,8 +109,6 @@ import mods.Electrolysm.electro.physics.lasers.laserDiff;
 import mods.Electrolysm.electro.physics.lasers.laserGen;
 import mods.Electrolysm.electro.physics.lasers.laserLight;
 import mods.Electrolysm.electro.physics.machines.desk;
-import mods.Electrolysm.electro.physics.machines.microScope;
-import mods.Electrolysm.electro.physics.machines.subFreezer;
 import mods.Electrolysm.electro.physics.parts.glassLens;
 import mods.Electrolysm.electro.tools.hiddenSword;
 
@@ -230,7 +232,7 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 */		
 		public static GuiHandler guihandler = new GuiHandler();
 		
-        @Instance
+        @Instance("electrolysm")
         public static electrolysmCore GUIinstance;
         
 /*
@@ -271,6 +273,10 @@ import mods.Electrolysm.electro.tools.hiddenSword;
         public static stickyString stickyString = new stickyString(IDHandler.stickyStringID);
         public static final nanoTech nanoTech = new nanoTech(IDHandler.nanoTechID);
         public static final Block nanoBlock	= new nanoBlock(IDHandler.nanoBlockID);
+        //Biome
+        public static final Block diseasedGrass = new diseasedGrass(IDHandler.biomeIDs.grass, null);
+		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.biomeIDs.biomeID);
+        public BiomeGenBase diseasedBiome = diseasedBiomeObj;
         /* 
  * ===============================================================================================================
  * ===============================================================================================================
@@ -302,6 +308,8 @@ import mods.Electrolysm.electro.tools.hiddenSword;
 	        
 	        //Zombie Scientist
 	        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true);
+	        //Biome
+	        GameRegistry.addBiome(diseasedBiome);
 
 
 		}

@@ -1,12 +1,12 @@
 package mods.Electrolysm.electro.handlers;
 
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.client.ModelZombie_Scientist;
 import mods.Electrolysm.electro.client.RenderZombie_Scientist;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.machines.gui.GuiHandler;
-import mods.Electrolysm.electro.physics.GUIs.Entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.physics.lasers.TileEntity.TileEntityLaserBoiler;
 import mods.Electrolysm.electro.world.WorldGenOres;
 import mods.Electrolysm.electro.world.WorldGenStructures;
@@ -184,7 +184,9 @@ public class BIRegistry {
 		 		       
 		 		    //Zombie Scientist
 		 		    RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class, new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
-
+		 		    //Biome
+		 		    GameRegistry.registerBlock(electrolysmCore.diseasedGrass);
+		 		    LanguageRegistry.addName(electrolysmCore.diseasedGrass, "Diseased Grass");
 		 				}
 					}
 	}

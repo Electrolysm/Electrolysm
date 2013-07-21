@@ -2,7 +2,7 @@ package mods.Electrolysm.electro.machines.entities.tile;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.data.data;
+import mods.Electrolysm.electro.handlers.data;
 import mods.Electrolysm.electro.recipes.MagmaticRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

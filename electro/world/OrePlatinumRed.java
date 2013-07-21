@@ -5,7 +5,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.data.data;
+import mods.Electrolysm.electro.handlers.data;
 import mods.Electrolysm.electro.physics.platium;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
