@@ -69,6 +69,8 @@ public class IDHandler {
 	}
 	public static class researchNotes{
 		public static int RNNanoID = 670;
-		
+		public static int RNMicroS = 671;
+		public static int RNLaser = 672; 
+		public static int RNFibre = 673; 
 	}
 }
