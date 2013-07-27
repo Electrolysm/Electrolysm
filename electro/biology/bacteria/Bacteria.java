@@ -16,11 +16,11 @@ public class Bacteria {
 		
 		//Tier 1
 		//Fusobacteria
-		bacteriaFusoR = new BacteriaBaseClass(BacIDHandler.tier1.bacteriaFuso).setUnlocalizedName(posBac[1] + reBac[1]);
-		bacteriaFusoNR = new BacteriaBaseClass(BacIDHandler.tier1.bacteriaFuso + 1).setUnlocalizedName(posBac[1] + reBac[2]);
+		bacteriaFusoR = new BacteriaBaseClass(BacIDHandler.tier1.bacteriaFuso).setUnlocalizedName("bacteriaFusoR");
+		bacteriaFusoNR = new BacteriaBaseClass(BacIDHandler.tier1.bacteriaFuso + 1).setUnlocalizedName("bacteriaFusoNR");
 		//Nitrospirae
-		nitrospiraeR = new BacteriaBaseClass(BacIDHandler.tier1.nitrospirae).setUnlocalizedName(posBac[2] + reBac[1]);
-		nitrospiraeNR = new BacteriaBaseClass(BacIDHandler.tier1.nitrospirae + 1).setUnlocalizedName(posBac[2] + reBac[2]);
+		nitrospiraeR = new BacteriaBaseClass(BacIDHandler.tier1.nitrospirae).setUnlocalizedName("nitrospiraeR");
+		nitrospiraeNR = new BacteriaBaseClass(BacIDHandler.tier1.nitrospirae + 1).setUnlocalizedName("nitrospiraeNR");
 		
 		 
 		//Tier 2

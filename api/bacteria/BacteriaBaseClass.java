@@ -28,7 +28,6 @@ public class BacteriaBaseClass extends Item{
 	public BacteriaBaseClass(int par1) {
 		super(par1);
 		// TODO Auto-generated constructor stub
-		this.setUnlocalizedName(name + id);
 		this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
 		//this.setFirstTrate(itemRand, itemID);
 	}
