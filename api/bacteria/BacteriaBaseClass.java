@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -19,22 +20,23 @@ public class BacteriaBaseClass extends Item{
 	public EnumRarity textColour;
 	public String tier = "tier";
 	public boolean error;
+	public static int id;
 	
 	//Trates
 	public static String trate1;
 
-	
 	public BacteriaBaseClass(int par1) {
 		super(par1);
 		// TODO Auto-generated constructor stub
-		this.setUnlocalizedName(name);
+		this.setUnlocalizedName(name + id);
 		this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
 		//this.setFirstTrate(itemRand, itemID);
 	}
+
 	
 	/**
 	 * The colour of the item name (eg. with golden apples)
-	*/
+	
 	public EnumRarity getRarity(ItemStack is){ 
 		try{
 			if(name.contains(this.tier + "1")){
@@ -63,8 +65,8 @@ public class BacteriaBaseClass extends Item{
 		}
 			return textColour;
 		}
-
-
+*/
+/*
 	
 	public static void setFirstTrate(Random random, int chosenTrate){
 	
@@ -76,6 +78,6 @@ public class BacteriaBaseClass extends Item{
 		}	
 
 	}
-
+*/
 
 }

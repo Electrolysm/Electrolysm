@@ -1,5 +1,7 @@
 package mods.Electrolysm.electro.biology.entity;
 
+import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -7,10 +9,8 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 
 public class EntityZombie_Scientist extends EntityMob {
@@ -78,10 +78,10 @@ public class EntityZombie_Scientist extends EntityMob {
         switch (this.rand.nextInt(3))
         {
             case 0:
-                return (Potion.blindness.id);
-            /*case 1:
-                this.dropItem(bacteria.rand, this.rand.nextInt(3));
-            */case 2:
+                return (electrolysmCore.atomyBook.itemID);
+            case 1:
+                this.dropItem(Bacteria.bacteriaFusoR.itemID, 1); 
+            case 2:
                 return (Item.potato.itemID);
         }
         return Item.rottenFlesh.itemID;
