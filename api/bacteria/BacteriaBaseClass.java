@@ -17,10 +17,10 @@ public class BacteriaBaseClass extends Item{
 
 	public String nameBefore = "adv." + this.getClass();
 	public String name = nameBefore.replace("mods.Electrolysm.electro.bacteria.", "");
-	public EnumRarity textColour;
 	public String tier = "tier";
 	public boolean error;
 	public static int id;
+	public static EnumRarity textColour;
 	
 	//Trates
 	public static String trate1;
@@ -35,36 +35,32 @@ public class BacteriaBaseClass extends Item{
 	
 	/**
 	 * The colour of the item name (eg. with golden apples)
-	
+	*/
 	public EnumRarity getRarity(ItemStack is){ 
-		try{
+			
 			if(name.contains(this.tier + "1")){
-				textColour = EnumRarity.common;
+				return EnumRarity.common;
 			}
 			if(name.contains(this.tier + "2")){
-				textColour = EnumRarity.common;
+				return EnumRarity.common;
 			}
 			if(name.contains(this.tier + "3")){
-				textColour = EnumRarity.common;
+				return EnumRarity.common;
 			}
 			if(name.contains(this.tier + "4")){
-				textColour = EnumRarity.uncommon;
+				return EnumRarity.uncommon;
 			}
 			if(name.contains(this.tier + "5")){
-				textColour = EnumRarity.epic;
+				return EnumRarity.epic;
 			}
 			if(name.contains(this.tier + "6")){
-				textColour = EnumRarity.rare;
+				return EnumRarity.rare;
+			}else{
+				return EnumRarity.common;
 			}
 			
-		}catch (IndexOutOfBoundsException e) {
-	        // this should never happen...
-	        this.error = true;
-			return EnumRarity.common;
-		}
-			return textColour;
-		}
-*/
+	}
+
 /*
 	
 	public static void setFirstTrate(Random random, int chosenTrate){
@@ -78,5 +74,4 @@ public class BacteriaBaseClass extends Item{
 
 	}
 */
-
 }

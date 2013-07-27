@@ -53,7 +53,7 @@ public class WorldGenStructures implements IWorldGenerator{
 				int glow = Block.glowStone.blockID;
 				int ironBar = Block.fenceIron.blockID;
 				int wood = Block.wood.blockID;
-				int grass = 2;
+				int grass = electrolysmCore.diseasedGrass.blockID;
 				int stairs = Block.stairsCobblestone.blockID;
 				int pressure = Block.pressurePlateStone.blockID;
 				int dispenser = Block.tnt.blockID;
