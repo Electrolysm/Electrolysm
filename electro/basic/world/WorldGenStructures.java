@@ -62,6 +62,7 @@ public class WorldGenStructures implements IWorldGenerator{
 				int stoneSlabFull = Block.stoneDoubleSlab.blockID;
 				int desk = electrolysmCore.desk.blockID;
 				int books = Block.bookShelf.blockID;
+				int dirt = Block.dirt.blockID;
 
 
 				//Layer 2
@@ -76,28 +77,28 @@ public class WorldGenStructures implements IWorldGenerator{
 				{
 					for(int gy = 0; gy < 16; gy++)
 					{
-					createBlock(world, xCoord + gx, yCoord - 1, zCoord - gy, grass, 0);
+					createBlock(world, xCoord + gx, yCoord - 1, zCoord - gy, dirt, 0);
 					}
 				}
 				for(int gx = 0; gx < 16; gx++)
 				{
 					for(int gy = 0; gy < 16; gy++)
 					{
-					createBlock(world, xCoord + gx, yCoord - 2, zCoord - gy, grass, 0);
+					createBlock(world, xCoord + gx, yCoord - 2, zCoord - gy, dirt, 0);
 					}
 				}
 				for(int gx = 0; gx < 16; gx++)
 				{
 					for(int gy = 0; gy < 16; gy++)
 					{
-					createBlock(world, xCoord + gx, yCoord - 3, zCoord - gy, grass, 0);
+					createBlock(world, xCoord + gx, yCoord - 3, zCoord - gy, dirt, 0);
 					}
 				}
 				for(int gx = 0; gx < 16; gx++)
 				{
 					for(int gy = 0; gy < 16; gy++)
 					{
-					createBlock(world, xCoord + gx, yCoord - 4, zCoord - gy, grass, 0);
+					createBlock(world, xCoord + gx, yCoord - 4, zCoord - gy, dirt, 0);
 					}
 				}
 				
