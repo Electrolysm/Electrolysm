@@ -22,7 +22,7 @@ public class Bacteria {
 		nitrospiraeR = new BacteriaBaseClass(BacIDHandler.tier1.nitrospirae).setUnlocalizedName(posBac[2] + reBac[1]);
 		nitrospiraeNR = new BacteriaBaseClass(BacIDHandler.tier1.nitrospirae + 1).setUnlocalizedName(posBac[2] + reBac[2]);
 		
-		
+		 
 		//Tier 2
 		
 		//Tier 3
