@@ -16,7 +16,7 @@ public class diseasedBiome extends BiomeGenBase {
 	this.setBiomeName("Diseased Biome");
 	this.topBlock = (byte)electrolysmCore.diseasedGrass.blockID;
 	this.fillerBlock = (byte)Block.dirt.blockID;
-	this.spawnableCreatureList.add(new SpawnListEntry(EntityZombie_Scientist.class, 5, 3, 4));
+	this.spawnableMonsterList.add(new SpawnListEntry(EntityZombie_Scientist.class, 5, 3, 4));
 	this.setDisableRain();
 	this.setTemperatureRainfall(10000, 0);
 	}

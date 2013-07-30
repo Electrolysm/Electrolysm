@@ -5,12 +5,12 @@ public class IDHandler {
 	private static int startingID= 600;
 	
 	//Items before update (< 0.6.1)
-	public static int mixedOreID = startingID + 1;
-	public static int copperOreID = startingID + 2;
-	public static int tinOreID = startingID + 3;
-	public static int leadOreID = startingID + 4;
-	public static int silverOreID = startingID + 5;
-	public static int platiumOreID = startingID + 6;
+	public static int mixedOreID = startingID + 1;//
+	public static int copperOreID = startingID + 2;//
+	public static int tinOreID = startingID + 3;//
+	public static int leadOreID = startingID + 4;//
+	public static int silverOreID = startingID + 5;//
+	public static int platiumOreID = startingID + 6;//
 	public static int electrumDustID = startingID + 7;
 	public static int copperDustID = startingID + 8;
 	public static int tinDustID = startingID + 9;
@@ -20,11 +20,11 @@ public class IDHandler {
 	public static int platinumDustID = startingID + 13;
 	public static int hiddenDustID = startingID + 14;
 	public static int platinumIngotID = startingID + 15;
-	public static int magmaticExtractorID = startingID + 16;
-	public static int matterSynthisiserID = startingID + 17;
-	public static int solarCollectorID = startingID + 18;
-	public static int forgeID = startingID + 19;
-	public static int platinumFurnaceID = startingID + 20;
+	public static int magmaticExtractorID = startingID + 16;//
+	public static int matterSynthisiserID = startingID + 17;//
+	public static int solarCollectorID = startingID + 18;//
+	public static int forgeID = startingID + 19;//
+	public static int platinumFurnaceID = startingID + 20;//
 	public static int sydiumLavaID = startingID + 21;
 	public static int hiddenSwordID = startingID + 22;
 	public static int hiddenPicaxeID = startingID + 23;
@@ -42,12 +42,12 @@ public class IDHandler {
 	public static int atomyBookID = startingID + 35;
 	public static int glassLensID = startingID + 36;
 	public static int nanoTechID = startingID + 37;
-	public static int nanoBlockID = startingID + 38;
-	public static int deskID = startingID + 39;
-	public static int fibrePlantID = startingID + 40;
+	public static int nanoBlockID = startingID + 38;//
+	public static int deskID = startingID + 39;//
+	public static int fibrePlantID = startingID + 40;//
 	public static int stickyStringID = startingID + 41;
-	public static int platinumID = startingID + 42;
-	public static int CrusherID = 643;
+	public static int platinumID = startingID + 42;//
+	public static int CrusherID = 643;//
 	
 	//Items added after update (> 0.6.1)
 	//lasers

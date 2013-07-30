@@ -1,44 +1,5 @@
 package mods.Electrolysm.electro;
 
-import java.io.File;
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.DungeonHooks;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.Mod.ServerStarting;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.relauncher.Side;
-
-
-import mods.Electrolysm.api.bacteria.IBacteria;
 import mods.Electrolysm.electro.basic.biome.diseasedBiome;
 import mods.Electrolysm.electro.basic.biome.diseasedGrass;
 import mods.Electrolysm.electro.basic.common.PacketHandler;
@@ -46,23 +7,14 @@ import mods.Electrolysm.electro.basic.handlers.BICrafting;
 import mods.Electrolysm.electro.basic.handlers.BIRegistry;
 import mods.Electrolysm.electro.basic.handlers.IDHandler;
 import mods.Electrolysm.electro.basic.handlers.TickRunning;
-import mods.Electrolysm.electro.basic.handlers.data;
+import mods.Electrolysm.electro.basic.handlers.VersionHandler;
 import mods.Electrolysm.electro.basic.machines.Crusher;
 import mods.Electrolysm.electro.basic.machines.Forge;
 import mods.Electrolysm.electro.basic.machines.magmaticExtractor;
 import mods.Electrolysm.electro.basic.machines.matterSythisiser;
 import mods.Electrolysm.electro.basic.machines.platFurnace;
 import mods.Electrolysm.electro.basic.machines.solarCollector;
-import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMagmaticExtractor;
-import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.basic.machines.gui.GuiHandler;
-import mods.Electrolysm.electro.biology.ItemAdmin;
-import mods.Electrolysm.electro.biology.bacteria.Bacteria;
-import mods.Electrolysm.electro.biology.bacteria.BacteriaRegistry;
-import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
-import mods.Electrolysm.electro.biology.machines.microScope;
-import mods.Electrolysm.electro.biology.plants.fibrePlant;
-import mods.Electrolysm.electro.biology.plants.stickyString;
 import mods.Electrolysm.electro.basic.metals.babbitt;
 import mods.Electrolysm.electro.basic.metals.hiddenDust;
 import mods.Electrolysm.electro.basic.metals.hiddenIngot;
@@ -73,15 +25,13 @@ import mods.Electrolysm.electro.basic.metals.sydium;
 import mods.Electrolysm.electro.basic.metals.sydiumLava;
 import mods.Electrolysm.electro.basic.metals.tibetanSilver;
 import mods.Electrolysm.electro.basic.metals.tumbaga;
+import mods.Electrolysm.electro.basic.research.RNRegistry;
 import mods.Electrolysm.electro.basic.research.researchNotes;
 import mods.Electrolysm.electro.basic.tools.hiddenAxe;
 import mods.Electrolysm.electro.basic.tools.hiddenPicaxe;
 import mods.Electrolysm.electro.basic.tools.hiddenSpade;
 import mods.Electrolysm.electro.basic.tools.hiddenSword;
 import mods.Electrolysm.electro.basic.world.OrePlatinumRed;
-import mods.Electrolysm.electro.basic.world.OrePlatinumRed;
-import mods.Electrolysm.electro.basic.world.WorldGenOres;
-import mods.Electrolysm.electro.basic.world.WorldGenStructures;
 import mods.Electrolysm.electro.basic.world.copperOre;
 import mods.Electrolysm.electro.basic.world.dustPlatinumRed;
 import mods.Electrolysm.electro.basic.world.ingotPlatinumRed;
@@ -92,15 +42,19 @@ import mods.Electrolysm.electro.basic.world.tinOre;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.copperDust;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.electrumDust;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.ferrousDust;
-import mods.Electrolysm.electro.basic.world.metalOreDrops.ironDust;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.leadDust;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.tinDust;
+import mods.Electrolysm.electro.biology.ItemAdmin;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
+import mods.Electrolysm.electro.biology.bacteria.BacteriaRegistry;
+import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
+import mods.Electrolysm.electro.biology.plants.fibrePlant;
+import mods.Electrolysm.electro.biology.plants.stickyString;
 import mods.Electrolysm.electro.physics.atomyBook;
 import mods.Electrolysm.electro.physics.platium;
 import mods.Electrolysm.electro.physics.Nano.nanoBlock;
 import mods.Electrolysm.electro.physics.Nano.nanoTech;
-import mods.Electrolysm.electro.physics.lasers.fakeLaser;
 import mods.Electrolysm.electro.physics.lasers.heatVent;
 import mods.Electrolysm.electro.physics.lasers.laserAmp;
 import mods.Electrolysm.electro.physics.lasers.laserBoiler;
@@ -110,10 +64,21 @@ import mods.Electrolysm.electro.physics.lasers.laserGen;
 import mods.Electrolysm.electro.physics.lasers.laserLight;
 import mods.Electrolysm.electro.physics.machines.desk;
 import mods.Electrolysm.electro.physics.parts.glassLens;
-import mods.Electrolysm.electro.basic.tools.hiddenSword;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.world.biome.BiomeGenBase;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
-
-	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.3")
+	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.2")
 
 	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
 	    
@@ -122,7 +87,7 @@ import mods.Electrolysm.electro.basic.tools.hiddenSword;
 
 
 	public class electrolysmCore {
-	
+
 		  
 		//Creative Tab
 		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
@@ -232,7 +197,7 @@ import mods.Electrolysm.electro.basic.tools.hiddenSword;
 */		
 		public static GuiHandler guihandler = new GuiHandler();
 		
-        @Instance("electrolysm")
+        @Instance("Electrolysm")
         public static electrolysmCore GUIinstance;
         
 /*
@@ -287,20 +252,23 @@ import mods.Electrolysm.electro.basic.tools.hiddenSword;
         @PreInit
         public void preInit(FMLPreInitializationEvent event) {
         	configHandler.init(event.getSuggestedConfigurationFile());
+
+        configHandler.init(event.getSuggestedConfigurationFile());
         }
-            
         
 		@PreInit
-		public void loadConfiguration(FMLPreInitializationEvent evt) {
+		public void loadConfiguration(FMLPreInitializationEvent evt) throws Exception {
 			
 			//Version Check	
 			// Initialize the Version Check Tick Handler (Client only)
 	        TickRegistry.registerTickHandler(new TickRunning(), Side.CLIENT);
+	        TickRegistry.registerTickHandler(new VersionHandler(), Side.CLIENT);
 	        //Registries
 	        BICrafting.registerCraftingRecipes();
 	        BICrafting.registerSmeltingRecipes();
 	        BICrafting.registerMODCrafting();
 	        BIRegistry.Registry();
+	        VersionHandler.checkVersion();
 	        
 	        //Bacteria
 	        Bacteria.loadBacteria();
@@ -308,6 +276,7 @@ import mods.Electrolysm.electro.basic.tools.hiddenSword;
 	        //Research Notes
 	        researchNotes.advPhy();
 	        researchNotes.advBio();
+	        RNRegistry.registerNotes();
 	        //Zombie Scientist
 	        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true);
 	        //Biome

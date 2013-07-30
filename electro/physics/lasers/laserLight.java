@@ -12,7 +12,7 @@ import net.minecraft.util.Icon;
 public class laserLight extends Item {
 	
 	public String nameBefore = "adv." + this.getClass();
-	public String name = nameBefore.replace("adv.class mods.Electrolysm.electro.advAtomics.lasers.", "");
+	public String name = nameBefore.replace("adv.class mods.Electrolysm.electro.physics.lasers.", "");
 
 	public laserLight(int par1) {
 		super(par1);

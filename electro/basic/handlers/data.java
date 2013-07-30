@@ -22,9 +22,8 @@ public class data {
 	public static int tick;
 
 
-
 	//Hidden Matter Sword
-	public static int randNo;
+	public static String version ="0.6.2fdsf";
 
 	
 	

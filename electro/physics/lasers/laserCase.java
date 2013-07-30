@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class laserCase extends BlockContainer {
 	
 	public String nameBefore = "adv." + this.getClass();
-	public String name = nameBefore.replace("adv.class mods.Electrolysm.electro.advAtomics.lasers.", "");
+	public String name = nameBefore.replace("adv.class mods.Electrolysm.electro.physics.lasers.", "");
 	public static Material material = Material.iron;
 	public static int hardness = 3;
 	

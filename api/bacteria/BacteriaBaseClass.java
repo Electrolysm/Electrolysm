@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import mods.Electrolysm.electro.electrolysmCore;
 import mods.Electrolysm.electro.biology.bacteria.Bacteria;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -21,6 +22,7 @@ public class BacteriaBaseClass extends Item{
 	public boolean error;
 	public static int id;
 	public static EnumRarity textColour;
+	public static int tierID;
 	
 	//Trates
 	public static String trate1;
@@ -31,34 +33,11 @@ public class BacteriaBaseClass extends Item{
 		this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
 		//this.setFirstTrate(itemRand, itemID);
 	}
-
 	
-	/**
-	 * The colour of the item name (eg. with golden apples)
-	*/
-	public EnumRarity getRarity(ItemStack is){ 
-			
-			if(name.contains(this.tier + "1")){
-				return EnumRarity.common;
-			}
-			if(name.contains(this.tier + "2")){
-				return EnumRarity.common;
-			}
-			if(name.contains(this.tier + "3")){
-				return EnumRarity.common;
-			}
-			if(name.contains(this.tier + "4")){
-				return EnumRarity.uncommon;
-			}
-			if(name.contains(this.tier + "5")){
-				return EnumRarity.epic;
-			}
-			if(name.contains(this.tier + "6")){
-				return EnumRarity.rare;
-			}else{
-				return EnumRarity.common;
-			}
-			
+	@Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister) {
+		itemIcon = iconRegister.registerIcon("Electrolysm:" + "tier1Bacteria");	
 	}
 
 /*
@@ -74,4 +53,14 @@ public class BacteriaBaseClass extends Item{
 
 	}
 */
+	
+    public Item setTierID(int tier)
+    {
+        this.tierID = tier;
+        return this;
+    }
+    public int getTierID()
+    {
+        return this.tierID;
+    }
 }
