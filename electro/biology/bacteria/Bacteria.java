@@ -1,10 +1,15 @@
 package mods.Electrolysm.electro.biology.bacteria;
 
 import mods.Electrolysm.api.bacteria.BacteriaBaseClass;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class Bacteria {
+	
+	public static Item agarResin;
+	public static Block petriDish;
 	
 	public static Item bacteriaFusoR;
 	public static Item bacteriaFusoNR;
@@ -20,6 +25,8 @@ public class Bacteria {
 		
 		ItemStack stack;
 		int damage;
+		petriDish = new petriDish(BacIDHandler.petriDishID, null);
+		agarResin = new agarResin(BacIDHandler.agarResinID);
 		//Tier 1
 		//Fusobacteria
 		bacteriaFusoR = new BacteriaBaseClass(BacIDHandler.tier1.bacteriaFuso).setUnlocalizedName("FusoR");

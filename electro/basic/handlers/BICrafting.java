@@ -11,6 +11,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import mods.Electrolysm.api.machines.machineRecipes;
 import mods.Electrolysm.electro.electrolysmCore;
 import mods.Electrolysm.electro.basic.recipes.ForgeRecipes;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 
 public class BICrafting {
 
@@ -120,6 +121,12 @@ public class BICrafting {
 	 		    		  "XXX", "XXX", "XXX",
 	 		    		 Character.valueOf('X'), electrolysmCore.ingotPlatinumRed);
 
+	 		      //bacteria
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.agar),
+	 		    		  "SSS", "SBS", "SSS",
+	 		    		  Character.valueOf('S'), Item.sugar,
+	 		    		  Character.valueOf('B'), Item.slimeBall);
+	 		      
 	 		      //Lasers!!
 	 		      
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.heatVent),
@@ -148,7 +155,27 @@ public class BICrafting {
 	 		    		  Character.valueOf('X'), Item.ingotIron,
 	 		    		  Character.valueOf('Y'), electrolysmCore.laserCase,
 	 		    		  Character.valueOf('Z'), electrolysmCore.laserLight); 
-	
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.laserDiff),
+	 		    		  "VXV", "XMX", "VXV",
+	 		    		  Character.valueOf('V'), electrolysmCore.heatVent,
+	 		    		  Character.valueOf('X'), electrolysmCore.glassLens,
+	 		    		  Character.valueOf('M'), electrolysmCore.laserCase);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.laserAmp),
+	 		    		  "IVI", "GCG", "IVI",
+	 		    		  Character.valueOf('I'), Item.ingotIron,
+	 		    		  Character.valueOf('V'), electrolysmCore.heatVent,
+	 		    		  Character.valueOf('G'), electrolysmCore.glassLens,
+	 		    		  Character.valueOf('C'), electrolysmCore.laserCase);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.laserBoiler),
+	 		    		  "VVV", "TCW", "VVV",
+	 		    		  Character.valueOf('V'), electrolysmCore.heatVent,
+	 		    		  Character.valueOf('T'), electrolysmCore.tumbaga,
+	 		    		  Character.valueOf('C'), electrolysmCore.laserCase,
+	 		    		  Character.valueOf('W'), Item.bucketWater);
+
 	}
 
 	public static void registerSmeltingRecipes() {

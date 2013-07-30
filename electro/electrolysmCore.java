@@ -46,6 +46,8 @@ import mods.Electrolysm.electro.basic.world.metalOreDrops.leadDust;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.silverDust;
 import mods.Electrolysm.electro.basic.world.metalOreDrops.tinDust;
 import mods.Electrolysm.electro.biology.ItemAdmin;
+import mods.Electrolysm.electro.biology.agar;
+import mods.Electrolysm.electro.biology.agarTreat;
 import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import mods.Electrolysm.electro.biology.bacteria.BacteriaRegistry;
 import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
@@ -67,6 +69,8 @@ import mods.Electrolysm.electro.physics.parts.glassLens;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -242,6 +246,9 @@ import cpw.mods.fml.relauncher.Side;
         public static final Block diseasedGrass = new diseasedGrass(IDHandler.biomeIDs.grass, null);
 		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.biomeIDs.biomeID);
         public BiomeGenBase diseasedBiome = diseasedBiomeObj;
+        //bacteria
+        public static Item agarTreat = new agarTreat(IDHandler.agarTreatID, 5, 5, false);
+        public static Item agar = new agar(IDHandler.agarID);
         /* 
  * ===============================================================================================================
  * ===============================================================================================================
@@ -258,7 +265,7 @@ import cpw.mods.fml.relauncher.Side;
         
 		@PreInit
 		public void loadConfiguration(FMLPreInitializationEvent evt) throws Exception {
-			
+	        
 			//Version Check	
 			// Initialize the Version Check Tick Handler (Client only)
 	        TickRegistry.registerTickHandler(new TickRunning(), Side.CLIENT);

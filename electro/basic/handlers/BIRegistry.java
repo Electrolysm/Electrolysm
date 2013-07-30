@@ -6,6 +6,7 @@ import mods.Electrolysm.electro.basic.client.RenderZombie_Scientist;
 import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.basic.machines.gui.GuiHandler;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.physics.lasers.TileEntity.TileEntityLaserBoiler;
 import mods.Electrolysm.electro.basic.world.WorldGenOres;
@@ -187,6 +188,18 @@ public class BIRegistry {
 		 		    //Biome
 		 		    GameRegistry.registerBlock(electrolysmCore.diseasedGrass);
 		 		    LanguageRegistry.addName(electrolysmCore.diseasedGrass, "Diseased Grass");
-		 				}
+		 	/*
+		 	* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		 	* ===========================================================================================================
+		 	* 										Advanced Biology
+		 	* ===========================================================================================================
+		 	*/				
+		 		    
+		 		    
+
+		 
+		 
+		 
+		 }
 					}
 	}

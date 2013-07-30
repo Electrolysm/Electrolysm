@@ -1,6 +1,7 @@
 package mods.Electrolysm.electro.biology.bacteria;
 
 import net.minecraft.item.Item;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class BacteriaRegistry {
@@ -9,6 +10,11 @@ public class BacteriaRegistry {
 		String active = "";
 		String Nactive = "";
 		String bacteria = " Bacteria";
+		
+		GameRegistry.registerBlock(Bacteria.petriDish);
+		LanguageRegistry.addName(Bacteria.petriDish, "Petri Dish");
+		LanguageRegistry.addName(Bacteria.agarResin, "Agar Regin");
+		
 		
 		//Tier 1
 		LanguageRegistry.addName(Bacteria.bacteriaFusoR, active + Bacteria.bacteriaFusoR.getUnlocalizedName().replace("item.", "").replace("R", "") + bacteria);
