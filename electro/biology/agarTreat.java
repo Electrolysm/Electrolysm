@@ -20,6 +20,8 @@ public class agarTreat extends ItemFood {
 		// TODO Auto-generated constructor stub
 		this.setAlwaysEdible();
 		this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
+		this.setUnlocalizedName("agarTreat");
+
 	}
 	
     public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)

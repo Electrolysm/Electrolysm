@@ -188,13 +188,17 @@ public class BIRegistry {
 		 		    //Biome
 		 		    GameRegistry.registerBlock(electrolysmCore.diseasedGrass);
 		 		    LanguageRegistry.addName(electrolysmCore.diseasedGrass, "Diseased Grass");
+		 		    
+		 		    //Power Network
+		 		    GameRegistry.registerBlock(electrolysmCore.wire);
 		 	/*
 		 	* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		 	* ===========================================================================================================
 		 	* 										Advanced Biology
 		 	* ===========================================================================================================
 		 	*/				
-		 		    
+		 		    LanguageRegistry.addName(electrolysmCore.agar, "Agar Jelly");
+		 		    LanguageRegistry.addName(electrolysmCore.agarTreat, "Agar Treat");
 		 		    
 
 		 

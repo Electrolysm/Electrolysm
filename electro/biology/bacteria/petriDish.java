@@ -14,6 +14,7 @@ public class petriDish extends Block{
 		// TODO Auto-generated constructor stub
 		this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
 		this.setHardness(0);
+		this.stepSound = Block.soundGlassFootstep;
 	}
 	
 	 public int idDropped(int par1, Random rand, int par3)

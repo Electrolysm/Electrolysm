@@ -66,7 +66,9 @@ import mods.Electrolysm.electro.physics.lasers.laserGen;
 import mods.Electrolysm.electro.physics.lasers.laserLight;
 import mods.Electrolysm.electro.physics.machines.desk;
 import mods.Electrolysm.electro.physics.parts.glassLens;
+import mods.Electrolysm.electro.physics.power.ingame.wire;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -224,6 +226,9 @@ import cpw.mods.fml.relauncher.Side;
         public static Block laserAmp = new laserAmp(IDHandler.laserAmpID, null);
         public static Block laserDiff = new laserDiff(IDHandler.laserDiffID, null);
         public static Block laserBoiler = new laserBoiler(IDHandler.laserBoilerID, null);
+        
+        //Power Net
+        public static Block wire = new wire(750);//needs changing!
                
         
         
@@ -247,7 +252,7 @@ import cpw.mods.fml.relauncher.Side;
 		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.biomeIDs.biomeID);
         public BiomeGenBase diseasedBiome = diseasedBiomeObj;
         //bacteria
-        public static Item agarTreat = new agarTreat(IDHandler.agarTreatID, 5, 5, false);
+        public static Item agarTreat = new agarTreat(IDHandler.agarTreatID, 200, 200, true);
         public static Item agar = new agar(IDHandler.agarID);
         /* 
  * ===============================================================================================================

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,7 @@ public class ForgeRecipes
 		this.addDoubleSmelting(new ItemStack(electrolysmCore.ferrousDust), new ItemStack(electrolysmCore.leadDust), new ItemStack(electrolysmCore.sydium, 2));
 		this.addDoubleSmelting(new ItemStack(electrolysmCore.leadDust), new ItemStack(electrolysmCore.silverDust), new ItemStack(electrolysmCore.tibetanSilver, 2));
 		this.addDoubleSmelting(new ItemStack(Item.seeds, 32), new ItemStack(Item.spiderEye, 16),  new ItemStack(electrolysmCore.fibrePlant, 4));
+		this.addDoubleSmelting(new ItemStack(Bacteria.agarResin), new ItemStack(Item.sugar), new ItemStack(electrolysmCore.agarTreat));
 	}
 
 	public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output) {

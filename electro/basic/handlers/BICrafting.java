@@ -127,6 +127,7 @@ public class BICrafting {
 	 		    		  Character.valueOf('S'), Item.sugar,
 	 		    		  Character.valueOf('B'), Item.slimeBall);
 	 		      
+	 		     
 	 		      //Lasers!!
 	 		      
 	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.heatVent),

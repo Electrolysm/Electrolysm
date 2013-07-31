@@ -5,6 +5,7 @@ import static net.minecraftforge.common.ChestGenHooks.STRONGHOLD_CORRIDOR;
 import java.util.Random;
 
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
@@ -63,6 +64,7 @@ public class WorldGenStructures implements IWorldGenerator{
 				int desk = electrolysmCore.desk.blockID;
 				int books = Block.bookShelf.blockID;
 				int dirt = Block.dirt.blockID;
+				int petri = Bacteria.petriDish.blockID;
 
 
 				//Layer 2
@@ -563,6 +565,10 @@ public class WorldGenStructures implements IWorldGenerator{
 					createBlock(world, xCoord + 3, yCoord + 1, zCoord - 8, desk, 0);
 					createBlock(world, xCoord + 2, yCoord + 1, zCoord - 8, desk, 0);
 					
+					createBlock(world, xCoord + 4, yCoord + 2, zCoord - 8, petri, 0);
+					createBlock(world, xCoord + 3, yCoord + 2, zCoord - 8, petri, 0);
+					createBlock(world, xCoord + 13, yCoord + 2, zCoord - 11, petri, 0);
+
 					createBlock(world, xCoord + 13, yCoord + 1, zCoord - 11, desk, 0);
 					createBlock(world, xCoord + 12, yCoord + 1, zCoord - 11, books, 0);
 					createBlock(world, xCoord + 11, yCoord + 1, zCoord - 11, books, 0);

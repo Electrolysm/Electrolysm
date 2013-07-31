@@ -12,6 +12,7 @@ public class agar extends Item {
 		super(id);
 		// TODO Auto-generated constructor stub
 		this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
+		this.setUnlocalizedName("agar");
 	}
 
 	@Override
