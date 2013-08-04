@@ -265,7 +265,7 @@ import cpw.mods.fml.relauncher.Side;
         public static Item bionicChest = new bionicChest(IDHandler.robotics.bionicChestID);
         public static Item bionicHead = new bionicHead(IDHandler.robotics.bionicHeadID);
         public static Item bionicLeg = new bionicLeg(IDHandler.robotics.bionicLegID);
-        //Machines!
+        //====================Machines!==================================
         public static Block workBench = new workBench(IDHandler.robotics.machines.workBenchID, null);
         public static Block soldering = new soldering(IDHandler.robotics.machines.solderingID, null);
         public static Block partAssemb = new partAssemb(IDHandler.robotics.machines.partAssembID, null);
