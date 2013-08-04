@@ -66,7 +66,24 @@ import mods.Electrolysm.electro.physics.lasers.laserGen;
 import mods.Electrolysm.electro.physics.lasers.laserLight;
 import mods.Electrolysm.electro.physics.machines.desk;
 import mods.Electrolysm.electro.physics.parts.glassLens;
-import mods.Electrolysm.electro.physics.power.ingame.wire;
+import mods.Electrolysm.electro.physics.power.ingame.electWire;
+import mods.Electrolysm.electro.physics.power.ingame.electWire;
+import mods.Electrolysm.electro.physics.robotics.artMuscle;
+import mods.Electrolysm.electro.physics.robotics.bionicChest;
+import mods.Electrolysm.electro.physics.robotics.bionicHead;
+import mods.Electrolysm.electro.physics.robotics.bionicLeg;
+import mods.Electrolysm.electro.physics.robotics.carbonBone;
+import mods.Electrolysm.electro.physics.robotics.chipDup;
+import mods.Electrolysm.electro.physics.robotics.metalSheet;
+import mods.Electrolysm.electro.physics.robotics.microCont;
+import mods.Electrolysm.electro.physics.robotics.partAssemb;
+import mods.Electrolysm.electro.physics.robotics.servo;
+import mods.Electrolysm.electro.physics.robotics.silChip;
+import mods.Electrolysm.electro.physics.robotics.soldering;
+import mods.Electrolysm.electro.physics.robotics.upgrade;
+import mods.Electrolysm.electro.physics.robotics.wire;
+import mods.Electrolysm.electro.physics.robotics.bionicArm;
+import mods.Electrolysm.electro.physics.robotics.workBench;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -228,8 +245,30 @@ import cpw.mods.fml.relauncher.Side;
         public static Block laserBoiler = new laserBoiler(IDHandler.laserBoilerID, null);
         
         //Power Net
-        public static Block wire = new wire(750);//needs changing!
-               
+        public static Block electWire = new electWire(750, null);//needs changing!
+        
+        
+        //Robots
+        //Parts
+        public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
+        public static Item wire = new wire(IDHandler.robotics.wireID);
+        public static Item servo = new servo(IDHandler.robotics.servoID);
+        public static Item artMuscle = new artMuscle(IDHandler.robotics.artMuscleID);
+        public static Item carbonBone = new carbonBone(IDHandler.robotics.carbonBoneID);
+        //=====================Adv. Parts================================
+        public static Item microController = new microCont(IDHandler.robotics.microContID);
+        public static Item upgrade = new upgrade(IDHandler.robotics.upgradeID);
+        public static Item silChip = new silChip(IDHandler.robotics.silChipID);
+        public static Item ChipDup = new chipDup(IDHandler.robotics.chipDub);
+        //===============================================================
+        public static Item bionicArm = new bionicArm(IDHandler.robotics.bionicArmID);
+        public static Item bionicChest = new bionicChest(IDHandler.robotics.bionicChestID);
+        public static Item bionicHead = new bionicHead(IDHandler.robotics.bionicHeadID);
+        public static Item bionicLeg = new bionicLeg(IDHandler.robotics.bionicLegID);
+        //Machines!
+        public static Block workBench = new workBench(IDHandler.robotics.machines.workBenchID, null);
+        public static Block soldering = new soldering(IDHandler.robotics.machines.solderingID, null);
+        public static Block partAssemb = new partAssemb(IDHandler.robotics.machines.partAssembID, null);
         
         
 /*
@@ -280,7 +319,6 @@ import cpw.mods.fml.relauncher.Side;
 	        BICrafting.registerSmeltingRecipes();
 	        BICrafting.registerMODCrafting();
 	        BIRegistry.Registry();
-	        VersionHandler.checkVersion();
 	        
 	        //Bacteria
 	        Bacteria.loadBacteria();

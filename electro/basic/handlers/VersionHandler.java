@@ -12,7 +12,7 @@ import cpw.mods.fml.common.TickType;
 public class VersionHandler implements ITickHandler{
 	
 	private static String version;
-	
+	/*
 	public static void checkVersion() throws IOException
 	{
 		int times = 0;
@@ -23,7 +23,7 @@ public class VersionHandler implements ITickHandler{
           //  version = remoteVersionRepoStreams;
 			System.out.println(version);
 			}	
-
+*/
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 		// TODO Auto-generated method stub

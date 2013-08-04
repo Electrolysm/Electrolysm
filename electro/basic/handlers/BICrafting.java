@@ -201,7 +201,7 @@ public class BICrafting {
 			 Class Ic2Items;
 			 ItemStack electronicCircuit = Items.getItem("electronicCircuit");
 			 ItemStack advCircuit = Items.getItem("advancedCircuit");
-
+			 
 			GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterSythisiser, 1),
 					"XZX", "XMX", "XYX",
 		    		   Character.valueOf('X'), electronicCircuit,
@@ -223,7 +223,5 @@ public class BICrafting {
 			//CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(electrolysmCore.OrePlatinum), new ItemStack(electrolysmCore.dustPlatinum));
 			}
 		*/
-
 	}
-	
 }

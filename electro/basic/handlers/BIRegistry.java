@@ -183,15 +183,40 @@ public class BIRegistry {
 		 		       LanguageRegistry.addName(electrolysmCore.ItemAdmin, "Admin Multi-Tool");
 		 		       
 		 		       
-		 		    //Zombie Scientist
-		 		    RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class, new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
-		 		    //Biome
-		 		    GameRegistry.registerBlock(electrolysmCore.diseasedGrass);
-		 		    LanguageRegistry.addName(electrolysmCore.diseasedGrass, "Diseased Grass");
+		 		       //Zombie Scientist
+		 		       RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class, new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
+		 		       //Biome
+		 		       GameRegistry.registerBlock(electrolysmCore.diseasedGrass);
+		 		       LanguageRegistry.addName(electrolysmCore.diseasedGrass, "Diseased Grass");
 		 		    
-		 		    //Power Network
-		 		    GameRegistry.registerBlock(electrolysmCore.wire);
-		 	/*
+		 		       //Power Network
+		 		       GameRegistry.registerBlock(electrolysmCore.electWire);
+		 	
+		 		       //Robotics
+		 		       LanguageRegistry.addName(electrolysmCore.metalSheet, "Metal Sheeting");
+		 		       LanguageRegistry.addName(electrolysmCore.wire, "Muscle Wire");
+		 		       LanguageRegistry.addName(electrolysmCore.servo, "Electronic Servo");
+		 		       LanguageRegistry.addName(electrolysmCore.artMuscle, "Artificial Muscle");
+		 		       LanguageRegistry.addName(electrolysmCore.carbonBone, "Carbon(Nano) Artificial Bone");
+		 		       LanguageRegistry.addName(electrolysmCore.microController, "Micro Controller");
+		 		       LanguageRegistry.addName(electrolysmCore.silChip, "Silicon Chip");
+		 		       LanguageRegistry.addName(electrolysmCore.ChipDup, "Silicon Duplicator");
+		 		       LanguageRegistry.addName(electrolysmCore.upgrade, "Upgrades");
+		 		       //=======================================================================================
+		 		       LanguageRegistry.addName(electrolysmCore.bionicHead, "Bionic Head");
+		 		       LanguageRegistry.addName(electrolysmCore.bionicChest, "Bionic Chest");
+		 		       LanguageRegistry.addName(electrolysmCore.bionicArm, "Bionic Arm");
+		 		       LanguageRegistry.addName(electrolysmCore.bionicLeg, "BionicLeg");
+		 		       //machines
+		 		       GameRegistry.registerBlock(electrolysmCore.workBench);
+		 		       GameRegistry.registerBlock(electrolysmCore.soldering);
+		 		       GameRegistry.registerBlock(electrolysmCore.partAssemb);
+		 		       
+		 		       LanguageRegistry.addName(electrolysmCore.workBench, "Work Bench");
+		 		       LanguageRegistry.addName(electrolysmCore.soldering, "Soldering Station");
+		 		       LanguageRegistry.addName(electrolysmCore.partAssemb, "Part Assembler");
+
+		    /*
 		 	* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		 	* ===========================================================================================================
 		 	* 										Advanced Biology
