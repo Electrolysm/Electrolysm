@@ -1,4 +1,4 @@
-package mods.Electrolysm.electro.basic.client;
+package mods.Electrolysm.electro.client;
 
 import mods.Electrolysm.electro.physics.power.ingame.entity.wireTileEntity;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

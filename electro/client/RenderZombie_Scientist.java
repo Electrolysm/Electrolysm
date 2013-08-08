@@ -1,4 +1,4 @@
-package mods.Electrolysm.electro.basic.client;
+package mods.Electrolysm.electro.client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,7 +13,7 @@ public class RenderZombie_Scientist extends RenderLiving{
     /** Model of the Zombie_Scientist. */
     protected ModelZombie_Scientist ModelZombie_Scientist;
 
-    public RenderZombie_Scientist(mods.Electrolysm.electro.basic.client.ModelZombie_Scientist modelZombie_Scientist2, float f)
+    public RenderZombie_Scientist(mods.Electrolysm.electro.client.ModelZombie_Scientist modelZombie_Scientist2, float f)
     {
         super(new ModelZombie_Scientist(), 0.5F);
         this.ModelZombie_Scientist = (ModelZombie_Scientist)this.mainModel;

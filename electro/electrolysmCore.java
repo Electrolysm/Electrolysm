@@ -51,8 +51,10 @@ import mods.Electrolysm.electro.biology.agarTreat;
 import mods.Electrolysm.electro.biology.bacteria.Bacteria;
 import mods.Electrolysm.electro.biology.bacteria.BacteriaRegistry;
 import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
+import mods.Electrolysm.electro.biology.machines.microScope;
 import mods.Electrolysm.electro.biology.plants.fibrePlant;
 import mods.Electrolysm.electro.biology.plants.stickyString;
+import mods.Electrolysm.electro.client.ClientProxy;
 import mods.Electrolysm.electro.physics.atomyBook;
 import mods.Electrolysm.electro.physics.platium;
 import mods.Electrolysm.electro.physics.Nano.nanoBlock;
@@ -291,6 +293,7 @@ import cpw.mods.fml.relauncher.Side;
 		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.biomeIDs.biomeID);
         public BiomeGenBase diseasedBiome = diseasedBiomeObj;
         //bacteria
+        public static Block microscope = new microScope(IDHandler.microscopeID);
         public static Item agarTreat = new agarTreat(IDHandler.agarTreatID, 200, 200, true);
         public static Item agar = new agar(IDHandler.agarID);
         /* 
@@ -332,7 +335,10 @@ import cpw.mods.fml.relauncher.Side;
 	        //Biome
 	        GameRegistry.addBiome(diseasedBiome);
 
-
+	        //Rendering via Client
+	        ClientProxy ClientProxy = new ClientProxy();
+		
+	        ClientProxy.registerRenderThings();
 		}
 	}
 

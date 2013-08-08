@@ -1,8 +1,6 @@
 package mods.Electrolysm.electro.basic.handlers;
 
 import mods.Electrolysm.electro.electrolysmCore;
-import mods.Electrolysm.electro.basic.client.ModelZombie_Scientist;
-import mods.Electrolysm.electro.basic.client.RenderZombie_Scientist;
 import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.basic.machines.gui.GuiHandler;
@@ -11,6 +9,8 @@ import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.physics.lasers.TileEntity.TileEntityLaserBoiler;
 import mods.Electrolysm.electro.basic.world.WorldGenOres;
 import mods.Electrolysm.electro.basic.world.WorldGenStructures;
+import mods.Electrolysm.electro.client.ModelZombie_Scientist;
+import mods.Electrolysm.electro.client.RenderZombie_Scientist;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -224,6 +224,9 @@ public class BIRegistry {
 		 	*/				
 		 		    LanguageRegistry.addName(electrolysmCore.agar, "Agar Jelly");
 		 		    LanguageRegistry.addName(electrolysmCore.agarTreat, "Agar Treat");
+		 		    
+		 		    GameRegistry.registerBlock(electrolysmCore.microscope);
+		 		    LanguageRegistry.addName(electrolysmCore.microscope, "Microscope");
 		 		    
 
 		 
