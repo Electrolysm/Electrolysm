@@ -28,7 +28,7 @@ public class microScope extends BlockContainer {
 		super(par1, Material.iron);
 		// TODO Auto-generated constructor stub
 	
-	this.setCreativeTab(electrolysmCore.TabElectrolysmPhysics);
+	this.setCreativeTab(electrolysmCore.TabElectrolysmBiology);
 	this.setUnlocalizedName(itemIDName);
 	this.setHardness(3);
 	
@@ -87,5 +87,18 @@ public class microScope extends BlockContainer {
 	           par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
 		    }
 	 }
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player,
+	        int par6, float par7, float par8, float par9)
+	        {
+	  TileEntity te = world.getBlockTileEntity(x, y, z);
+	  if(te == null || player.isSneaking())
+	  {
+	   return false;
+	  }
+	                player.openGui(electrolysmCore.GUIinstance, 0, world, x, y, z);
+	  return true;
+	        }
 	
 }

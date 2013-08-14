@@ -64,6 +64,9 @@ public class IDHandler {
 	public static int agarTreatID = 664;
 	public static int agarID = 665;
 	public static int microscopeID = 666;
+	public static int reConcreteID = 667;
+	public static int reGlassID = 668;
+	public static int name = 669;
 	
 	public static class biomeIDs{
 		public static int grass = 200;

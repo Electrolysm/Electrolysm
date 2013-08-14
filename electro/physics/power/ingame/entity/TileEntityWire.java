@@ -3,7 +3,7 @@ package mods.Electrolysm.electro.physics.power.ingame.entity;
 import net.minecraft.block.Block;
 import universalelectricity.prefab.tile.TileEntityConductor;
 
-public class wireTileEntity extends TileEntityConductor
+public class TileEntityWire extends TileEntityConductor
 {
 	/**
 	 * Changed this if your mod wants to nerf Basic Component's copper wire.
@@ -11,7 +11,7 @@ public class wireTileEntity extends TileEntityConductor
 	public static double RESISTANCE = 0.05;
 	public static double MAX_AMPS = 200;
 
-	public wireTileEntity()
+	public TileEntityWire()
 	{
 		this.channel = "Electrolysm";
 	}

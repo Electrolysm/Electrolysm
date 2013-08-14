@@ -151,14 +151,20 @@ public class BIRegistry {
 		 		       	LanguageRegistry.addName(electrolysmCore.atomyBook, "Physicist's " + "Encyclopedia");
 		 		       
 		 		       //Basics
-		 		       LanguageRegistry.addName(electrolysmCore.glassLens, "Glass Lens");
 		 		       GameRegistry.registerBlock(electrolysmCore.desk);
 		 		       GameRegistry.registerBlock(electrolysmCore.nanoBlock);
 		 		       GameRegistry.registerBlock(electrolysmCore.platinum);
+		 		       GameRegistry.registerBlock(electrolysmCore.reConcrete);
+		 		       GameRegistry.registerBlock(electrolysmCore.reGlass);
+		 		       
+		 		       LanguageRegistry.addName(electrolysmCore.reConcrete, "Reinforced Concrete");
+		 		       LanguageRegistry.addName(electrolysmCore.reGlass, "Reinforced Glass");
 		 		       LanguageRegistry.addName(electrolysmCore.desk, "Scientist's Desk");    
 		 		       LanguageRegistry.addName(electrolysmCore.nanoBlock, "Nano-Fibre Block");
 		 		       LanguageRegistry.addName(electrolysmCore.nanoTech, "Nano-Fibre Sheeting");
 		 		       LanguageRegistry.addName(electrolysmCore.platinum, "Redstone Infused Platinum Block");
+		 		       LanguageRegistry.addName(electrolysmCore.glassLens, "Glass Lens");
+
 		 		       //Plants
 		 		       GameRegistry.registerBlock(electrolysmCore.fibrePlant);
 		 		       LanguageRegistry.addName(electrolysmCore.stickyString, "Sticky String");
@@ -191,6 +197,7 @@ public class BIRegistry {
 		 		    
 		 		       //Power Network
 		 		       GameRegistry.registerBlock(electrolysmCore.electWire);
+		 		       LanguageRegistry.addName(electrolysmCore.electWire, "Wire");
 		 	
 		 		       //Robotics
 		 		       LanguageRegistry.addName(electrolysmCore.metalSheet, "Metal Sheeting");

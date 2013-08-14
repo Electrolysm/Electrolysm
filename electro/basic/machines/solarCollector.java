@@ -60,5 +60,5 @@ public class solarCollector extends Block {
         FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage("Place this block on the eastern side of the Matter Synthisiser, to power it.");	
         return par9;
     }
-
+    
 }

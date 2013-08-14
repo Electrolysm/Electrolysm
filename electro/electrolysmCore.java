@@ -57,6 +57,8 @@ import mods.Electrolysm.electro.biology.plants.stickyString;
 import mods.Electrolysm.electro.client.ClientProxy;
 import mods.Electrolysm.electro.physics.atomyBook;
 import mods.Electrolysm.electro.physics.platium;
+import mods.Electrolysm.electro.physics.reConcrete;
+import mods.Electrolysm.electro.physics.reGlass;
 import mods.Electrolysm.electro.physics.Nano.nanoBlock;
 import mods.Electrolysm.electro.physics.Nano.nanoTech;
 import mods.Electrolysm.electro.physics.lasers.heatVent;
@@ -236,6 +238,8 @@ import cpw.mods.fml.relauncher.Side;
         public static glassLens glassLens = new glassLens(IDHandler.glassLensID);
         public static Block desk = new desk(IDHandler.deskID);
         public static Block platinum = new platium(IDHandler.platinumID);
+        public static Block reConcrete = new reConcrete(IDHandler.reConcreteID, null);
+        public static Block reGlass = new reGlass(IDHandler.reGlassID, null);
         
         //Lasers
         public static heatVent heatVent = new heatVent(IDHandler.heatVentID);

@@ -1,6 +1,6 @@
 package mods.Electrolysm.electro.client;
 
-import mods.Electrolysm.electro.physics.power.ingame.entity.wireTileEntity;
+import mods.Electrolysm.electro.physics.power.ingame.entity.TileEntityWire;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
@@ -12,7 +12,7 @@ public class RenderWire extends TileEntitySpecialRenderer
 {
 	public static final ModelWire model = new ModelWire();
 
-	public void renderModelAt(wireTileEntity tileEntity, double d, double d1, double d2, float f)
+	public void renderModelAt(TileEntityWire tileEntity, double d, double d1, double d2, float f)
 	{
 		// Texture file
 		this.bindTextureByName("/mods/Electrolysm/textures/models/wire.png");
@@ -57,6 +57,6 @@ public class RenderWire extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double var2, double var4, double var6, float var8)
 	{
-		this.renderModelAt((wireTileEntity) tileEntity, var2, var4, var6, var8);
+		this.renderModelAt((TileEntityWire) tileEntity, var2, var4, var6, var8);
 	}
 }

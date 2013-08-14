@@ -1,6 +1,7 @@
 package mods.Electrolysm.electro.basic.machines.entities.tile;
 
 import mods.Electrolysm.electro.electrolysmCore;
+import mods.Electrolysm.electro.basic.machines.solarCollector;
 import mods.Electrolysm.electro.basic.recipes.MatterRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -8,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 
 public class TileEntityMatterMachine extends TileEntity implements IInventory{
@@ -107,7 +109,8 @@ public class TileEntityMatterMachine extends TileEntity implements IInventory{
 
 	@Override
 	public void updateEntity() {
-		boolean powered = worldObj.getBlockId(xCoord + 1, yCoord, zCoord) == electrolysmCore.solarCollector.blockID;
+		boolean powered = worldObj.getBlockId(xCoord + 1, yCoord, zCoord) == electrolysmCore.solarCollector.blockID
+				&& this.isCreatingPower(worldObj, xCoord, yCoord, zCoord);
 		
 		active = powered;
 
@@ -218,6 +221,16 @@ public class TileEntityMatterMachine extends TileEntity implements IInventory{
 	{
 		return true;
 	}
-	
+	public static boolean isCreatingPower(World world, int x, int y, int z)
+    {
+    	if(world.canBlockSeeTheSky(x + 1, y, z));
+    	{
+    		if(world.isDaytime()){
+    			return true;
+    		}else{
+    			return false;
+    		}
+    	}
+    }
 	}
 
