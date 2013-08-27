@@ -4,18 +4,16 @@ import mods.Electrolysm.electro.electrolysmCore;
 import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMagmaticExtractor;
 import mods.Electrolysm.electro.basic.machines.entities.tile.TileEntityMatterMachine;
 import mods.Electrolysm.electro.basic.machines.gui.GuiHandler;
-import mods.Electrolysm.electro.biology.bacteria.Bacteria;
-import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
-import mods.Electrolysm.electro.physics.lasers.TileEntity.TileEntityLaserBoiler;
 import mods.Electrolysm.electro.basic.world.WorldGenOres;
 import mods.Electrolysm.electro.basic.world.WorldGenStructures;
+import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.client.ModelZombie_Scientist;
 import mods.Electrolysm.electro.client.RenderZombie_Scientist;
+import mods.Electrolysm.electro.physics.lasers.TileEntity.TileEntityLaserBoiler;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -189,8 +187,6 @@ public class BIRegistry {
 		 		       LanguageRegistry.addName(electrolysmCore.ItemAdmin, "Admin Multi-Tool");
 		 		       
 		 		       
-		 		       //Zombie Scientist
-		 		       RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class, new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
 		 		       //Biome
 		 		       GameRegistry.registerBlock(electrolysmCore.diseasedGrass);
 		 		       LanguageRegistry.addName(electrolysmCore.diseasedGrass, "Diseased Grass");
@@ -235,6 +231,14 @@ public class BIRegistry {
 		 		    GameRegistry.registerBlock(electrolysmCore.microscope);
 		 		    LanguageRegistry.addName(electrolysmCore.microscope, "Microscope");
 		 		    
+		 	/*
+			* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			* ===========================================================================================================
+			* 										Advanced Chemistry
+			* ===========================================================================================================
+			*/
+		 		    //GameRegistry.registerBlock(electrolysmCore.atomicID);
+		 		    LanguageRegistry.addName(electrolysmCore.atomicID, "Atomic Identifier");
 
 		 
 		 

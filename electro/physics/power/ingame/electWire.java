@@ -16,7 +16,6 @@ public class electWire extends BlockContainer {
 	this.setUnlocalizedName("electric Wire");
 	this.setStepSound(soundClothFootstep);
 	this.setBlockBounds(0.30F, 0.30F, 0.30F, 0.70F, 0.70F, 0.70F);
-
 	}
 	
 	//You don't want the normal render type, or it wont render properly.

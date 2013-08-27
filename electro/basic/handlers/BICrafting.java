@@ -176,6 +176,25 @@ public class BICrafting {
 	 		    		  Character.valueOf('T'), electrolysmCore.tumbaga,
 	 		    		  Character.valueOf('C'), electrolysmCore.laserCase,
 	 		    		  Character.valueOf('W'), Item.bucketWater);
+	 		      
+	 		      //Reinforced stuff
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.reConcrete),
+	 		    		  "XZX", "ZZZ", "XZX",
+	 		    		  Character.valueOf('Z'), Block.fenceIron,
+	 		    		  Character.valueOf('X'), Block.stone);
+	 		      
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.reGlass),
+	 		    		  "XZX", "ZZZ", "XZX",
+	 		    		  Character.valueOf('Z'), Block.fenceIron,
+	 		    		  Character.valueOf('X'), Block.glass);
+	 		      
+	 		      //MicroScope
+	 		      GameRegistry.addRecipe(new ItemStack(electrolysmCore.microscope),
+	 		    		  " ZN", "Z  ", "XYX",
+	 		    		  Character.valueOf('X'), Block.blockIron,
+	 		    		  Character.valueOf('Y'), Block.glowStone,
+	 		    		  Character.valueOf('Z'), Item.diamond,
+	 		    		  Character.valueOf('N'), electrolysmCore.glassLens);
 
 	}
 

@@ -101,4 +101,7 @@ public class IDHandler {
 			public static int partAssembID = 715;
 		}
 	}
+	public static class atomics{
+		public static int atomicsIDID = 675;
+	}
 }

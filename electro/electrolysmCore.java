@@ -2,7 +2,6 @@ package mods.Electrolysm.electro;
 
 import mods.Electrolysm.electro.basic.biome.diseasedBiome;
 import mods.Electrolysm.electro.basic.biome.diseasedGrass;
-import mods.Electrolysm.electro.basic.common.PacketHandler;
 import mods.Electrolysm.electro.basic.handlers.BICrafting;
 import mods.Electrolysm.electro.basic.handlers.BIRegistry;
 import mods.Electrolysm.electro.basic.handlers.IDHandler;
@@ -54,7 +53,11 @@ import mods.Electrolysm.electro.biology.entity.EntityZombie_Scientist;
 import mods.Electrolysm.electro.biology.machines.microScope;
 import mods.Electrolysm.electro.biology.plants.fibrePlant;
 import mods.Electrolysm.electro.biology.plants.stickyString;
+import mods.Electrolysm.electro.chemistry.atomicID;
 import mods.Electrolysm.electro.client.ClientProxy;
+import mods.Electrolysm.electro.client.ModelZombie_Scientist;
+import mods.Electrolysm.electro.client.RenderZombie_Scientist;
+import mods.Electrolysm.electro.common.PacketHandler;
 import mods.Electrolysm.electro.physics.atomyBook;
 import mods.Electrolysm.electro.physics.platium;
 import mods.Electrolysm.electro.physics.reConcrete;
@@ -71,8 +74,8 @@ import mods.Electrolysm.electro.physics.lasers.laserLight;
 import mods.Electrolysm.electro.physics.machines.desk;
 import mods.Electrolysm.electro.physics.parts.glassLens;
 import mods.Electrolysm.electro.physics.power.ingame.electWire;
-import mods.Electrolysm.electro.physics.power.ingame.electWire;
 import mods.Electrolysm.electro.physics.robotics.artMuscle;
+import mods.Electrolysm.electro.physics.robotics.bionicArm;
 import mods.Electrolysm.electro.physics.robotics.bionicChest;
 import mods.Electrolysm.electro.physics.robotics.bionicHead;
 import mods.Electrolysm.electro.physics.robotics.bionicLeg;
@@ -86,36 +89,35 @@ import mods.Electrolysm.electro.physics.robotics.silChip;
 import mods.Electrolysm.electro.physics.robotics.soldering;
 import mods.Electrolysm.electro.physics.robotics.upgrade;
 import mods.Electrolysm.electro.physics.robotics.wire;
-import mods.Electrolysm.electro.physics.robotics.bionicArm;
 import mods.Electrolysm.electro.physics.robotics.workBench;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.biome.BiomeGenBase;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 	@Mod(modid="Electrolysm", name="Electrolysm", version= "0.6.2")
 
-	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = true, packetHandler = PacketHandler.class)
-	    
+	@NetworkMod(channels = { "Electrolysm" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
+	 
 	//EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true))
 	
-
-
 	public class electrolysmCore {
 
-		  
+		//@SidedProxy(clientSide="mods.Electrolysm.electro.client.ClientProxy", serverSide="mods.Electrolysm.electro.common.CommonProxy")
+ 
 		//Creative Tab
 		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
 		public static CreativeTabs TabElectrolysmPhysics = new TabElectrolysmPhysics(CreativeTabs.getNextID(),"Electrolysm|Physics");
@@ -132,7 +134,7 @@ import cpw.mods.fml.relauncher.Side;
 		
 /*
  * ===============================================================================================================
- * 										World Generation + Ores
+ * 										World Generation + Ores (All  Craftble)
  * ===============================================================================================================
  */
 		
@@ -158,7 +160,7 @@ import cpw.mods.fml.relauncher.Side;
 
 /*
 * ===========================================================================================================
-* 										Machines
+* 										Machines (All Craftable)
 * ===========================================================================================================
 */
 		public static Block magmaticExtractor = new magmaticExtractor(IDHandler.magmaticExtractorID, null);
@@ -173,7 +175,7 @@ import cpw.mods.fml.relauncher.Side;
 
 /*
 * ===========================================================================================================
-* 										Tools
+* 										Tools (All Craftable)
 * ===========================================================================================================
 */	
 		public static hiddenSword hiddenSword = new hiddenSword(IDHandler.hiddenSwordID, null);
@@ -183,7 +185,7 @@ import cpw.mods.fml.relauncher.Side;
 	    
 /*
  * ===============================================================================================================
- * 											All Ingots
+ * 											All Ingots (All Craftable)
  * ===============================================================================================================		
  */	
 	        
@@ -230,7 +232,7 @@ import cpw.mods.fml.relauncher.Side;
 /*
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * ===========================================================================================================
-* 										Advanced Physics
+* 										Advanced Physics (All Craftable)
 * ===========================================================================================================
 */		
         //Basics
@@ -300,7 +302,15 @@ import cpw.mods.fml.relauncher.Side;
         public static Block microscope = new microScope(IDHandler.microscopeID);
         public static Item agarTreat = new agarTreat(IDHandler.agarTreatID, 200, 200, true);
         public static Item agar = new agar(IDHandler.agarID);
-        /* 
+        
+/*
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* ===========================================================================================================
+* 										Advanced Chemistry
+* ===========================================================================================================
+*/
+        public static Block atomicID = new atomicID(IDHandler.atomics.atomicsIDID, null);
+/* 
  * ===============================================================================================================
  * ===============================================================================================================
  * 										Config (In game Stuff)
@@ -315,16 +325,14 @@ import cpw.mods.fml.relauncher.Side;
         }
         
 		@PreInit
-		public void loadConfiguration(FMLPreInitializationEvent evt) throws Exception {
+		public void loadConfiguration(FMLPreInitializationEvent evt){
 	        
-			//Version Check	
-			// Initialize the Version Check Tick Handler (Client only)
 	        TickRegistry.registerTickHandler(new TickRunning(), Side.CLIENT);
 	        TickRegistry.registerTickHandler(new VersionHandler(), Side.CLIENT);
 	        //Registries
 	        BICrafting.registerCraftingRecipes();
 	        BICrafting.registerSmeltingRecipes();
-	        BICrafting.registerMODCrafting();
+	        //BICrafting.registerMODCrafting();
 	        BIRegistry.Registry();
 	        
 	        //Bacteria
@@ -334,15 +342,23 @@ import cpw.mods.fml.relauncher.Side;
 	        researchNotes.advPhy();
 	        researchNotes.advBio();
 	        RNRegistry.registerNotes();
-	        //Zombie Scientist
+	        //Scientist
 	        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie_Scientist", 2, this, 80, 3, true);
 	        //Biome
 	        GameRegistry.addBiome(diseasedBiome);
-
-	        //Rendering via Client
-	        ClientProxy ClientProxy = new ClientProxy();
+		}
 		
+		@SideOnly(Side.CLIENT)
+		@Init
+	    public void load(FMLInitializationEvent event) {
+	        ClientProxy ClientProxy = new ClientProxy();
 	        ClientProxy.registerRenderThings();
+	        VersionHandler.check();
+	        RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class, new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
+
+
+
+
 		}
 	}
 

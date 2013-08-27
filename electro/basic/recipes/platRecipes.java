@@ -33,11 +33,11 @@ public class platRecipes
 		
 		this.addDoubleSmelting(nanoTech, new ItemStack(Item.bucketWater), nanoBlock);
 		
-		if(Loader.isModLoaded("IC2"))
+		/*if(Loader.isModLoaded("IC2"))
 		{
 			 ItemStack tinCan = Items.getItem("fuelCan");
 			 this.addDoubleSmelting(nanoTech, tinCan, nanoBlock);
-		}
+		}*/
 	}
 
 	public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output) {

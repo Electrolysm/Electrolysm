@@ -23,7 +23,7 @@ public class data {
 
 
 	//Hidden Matter Sword
-	public static String version ="0.6.2fdsf";
+	public static String currentVersion ="0.6.2fdfds";
 
 	
 	
