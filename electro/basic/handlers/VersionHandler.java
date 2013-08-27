@@ -19,6 +19,8 @@ public class VersionHandler implements ITickHandler{
 	private boolean help;
 
 	public static void check(){
+		System.out.println("Starting Version Chech")
+		
 		URL url = null;
 		String inputLine = "";
 		
@@ -52,6 +54,9 @@ public class VersionHandler implements ITickHandler{
 		if(version.equals("OLD")){
 			chatMessage = "Electrolysm Mod is outdated please update.";
 		}
+		
+		System.out.println(version);
+		System.out.println("Ended Version Check")
 	}
 
 	@Override
