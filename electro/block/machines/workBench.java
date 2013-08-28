@@ -1,4 +1,4 @@
-package assets.electrolysm.electro.robotics;
+package assets.electrolysm.electro.block.machines;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.robotics.tile.TileEntityWorkBench;
+import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

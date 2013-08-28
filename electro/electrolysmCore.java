@@ -3,9 +3,12 @@ package assets.electrolysm.electro;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.handlers.IDHandler;
+import assets.electrolysm.electro.handlers.Names;
 import assets.electrolysm.electro.handlers.Referance;
+import assets.electrolysm.electro.handlers.RegisterBlock;
 import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.robotics.artMuscle;
 import assets.electrolysm.electro.robotics.bionicArm;
@@ -22,7 +25,6 @@ import assets.electrolysm.electro.robotics.silChip;
 import assets.electrolysm.electro.robotics.soldering;
 import assets.electrolysm.electro.robotics.upgrade;
 import assets.electrolysm.electro.robotics.wire;
-import assets.electrolysm.electro.robotics.workBench;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -61,6 +63,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item bionicChest = new bionicChest(IDHandler.robotics.bionicChestID);
         public static Item bionicHead = new bionicHead(IDHandler.robotics.bionicHeadID);
         public static Item bionicLeg = new bionicLeg(IDHandler.robotics.bionicLegID);
+        
         //====================Machines!==================================
         public static Block workBench = new workBench(IDHandler.robotics.machines.workBenchID, null);
         public static Block soldering = new soldering(IDHandler.robotics.machines.solderingID, null);
@@ -85,12 +88,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 		@EventHandler
 		public void loadConfiguration(FMLPreInitializationEvent evt){
 	        
-			GameRegistry.registerBlock(electrolysmCore.workBench);
-			GameRegistry.registerBlock(electrolysmCore.soldering);
-			LanguageRegistry.addName(electrolysmCore.workBench, "Work Bench");
-			LanguageRegistry.addName(electrolysmCore.soldering, "Soldering Station");
-			
-			
+		RegisterBlock.register();
+		Names.addName();
+		
 		}
 		
 		@SideOnly(Side.CLIENT)
