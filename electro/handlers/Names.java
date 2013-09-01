@@ -8,6 +8,8 @@ public class Names {
 	public static void addName() {
 
 		LanguageRegistry.addName(electrolysmCore.workBench, "Work Bench");
+		LanguageRegistry.addName(electrolysmCore.desk, "Scientist's Desk");
+		LanguageRegistry.addName(electrolysmCore.researchDesk, "Research Desk");
 		LanguageRegistry.addName(electrolysmCore.soldering, "Soldering Station");
 		
 	}

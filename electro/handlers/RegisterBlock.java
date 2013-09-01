@@ -8,6 +8,8 @@ public class RegisterBlock {
 	public static void register() {
 		
 		GameRegistry.registerBlock(electrolysmCore.workBench);
+		GameRegistry.registerBlock(electrolysmCore.desk);
+		GameRegistry.registerBlock(electrolysmCore.researchDesk);
 		GameRegistry.registerBlock(electrolysmCore.soldering);
 	}
 

@@ -27,7 +27,7 @@ public class workBench extends BlockContainer {
             this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + "ItemWorkBench");
         }
     	
-    	@Override
+    	@Override	
 		public TileEntity createNewTileEntity(World world) {
 			// TODO Auto-generated method stub
 			return new TileEntityWorkBench();

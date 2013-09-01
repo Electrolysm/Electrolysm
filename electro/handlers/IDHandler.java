@@ -2,6 +2,13 @@ package assets.electrolysm.electro.handlers;
 
 public class IDHandler {
 
+	public static class machines{
+		public static class basic{
+			public static int researchDeskID = 697;
+			public static int workBenchID = 698;
+			public static int deskID = 699;
+		}
+	}
 	
 	public static class robotics{
 
@@ -19,9 +26,17 @@ public class IDHandler {
 		public static int silChipID = 711;
 		public static int chipDub = 712;
 		public static class machines{
-			public static int workBenchID = 713;
 			public static int solderingID = 714;
 			public static int partAssembID = 715;
 		}
+	}
+	
+	public static class basic{
+		public static int labCoatID = 725;
+	}
+	
+	public static class research{
+		public static int cardID = 730;
+	
 	}
 }
