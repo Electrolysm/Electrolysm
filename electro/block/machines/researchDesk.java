@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -42,4 +43,15 @@ public class researchDesk extends BlockContainer {
 			public boolean renderAsNormalBlock() {
 		        return false;
 			}
+			
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+	{
+		if(player.isSneaking())
+		{
+			return false;
+		}else{
+            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            return true;
+		}
+	}
 }

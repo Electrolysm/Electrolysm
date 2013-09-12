@@ -37,6 +37,7 @@ public class IDHandler {
 	
 	public static class research{
 		public static int cardID = 730;
+		public static int paperID = 731;
 	
 	}
 }

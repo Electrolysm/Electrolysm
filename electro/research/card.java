@@ -13,20 +13,22 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class card extends Item {
+public class card extends Item{
 	
 	public card(int id) {
 		super(id);
-		// TODO Auto-generated constructor stub
+
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("IDcard");
-		//this.setMaxDamage(10);
 		this.setMaxStackSize(1);
 	}
 	
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-    {
-    	this.increaseLevel(stack, 1);
+    {	
+    	if(!player.isSneaking())
+    	{
+    		this.increaseLevel(stack, 1);	
+    	}
     	String message = "You current knowledge level is: " + stack.getItemDamage();
     	
     	if(player.isSneaking())
@@ -51,7 +53,7 @@ public class card extends Item {
     	}
     }
     
-    public void levelToZero(ItemStack stack, int amount)
+    public void levelToZero(ItemStack stack)
     {
     	stack.setItemDamage(0);
     }
