@@ -18,4 +18,8 @@ public class CommonProxy {
 
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
+	
+	//MOBs
+	public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
+
 }

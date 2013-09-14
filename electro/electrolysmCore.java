@@ -3,6 +3,11 @@ package assets.electrolysm.electro;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.world.biome.BiomeGenBase;
+import assets.electrolysm.electro.biome.EntityZombie_Scientist;
+import assets.electrolysm.electro.biome.diseasedBiome;
+import assets.electrolysm.electro.biome.diseasedGrass;
+import assets.electrolysm.electro.biome.spawnZS;
 import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
@@ -24,6 +29,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -47,6 +54,12 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Research System
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
+        
+        //Biome
+        public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
+        public static Block diseaseGrass = new diseasedGrass(IDHandler.basic.diseasedGrassID, null);
+		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.basic.biomeID);
+        public BiomeGenBase diseasedBiome = diseasedBiomeObj;
         /*
 		//Robots
         //Parts
@@ -93,7 +106,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 		Names.addName();
 		Register.addAchievementLocalizations();
 	    NetworkRegistry.instance().registerGuiHandler(null, new GUIHandler());
-
+	    GameRegistry.addBiome(diseasedBiome);
+        EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
+        		"Zombie_Scientist", 2, this, 80, 3, true);
 		}
 		
 		@SideOnly(Side.CLIENT)

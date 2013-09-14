@@ -33,6 +33,9 @@ public class IDHandler {
 	
 	public static class basic{
 		public static int labCoatID = 725;
+		public static int diseasedGrassID = 200;
+		public static int biomeID = 69;
+		public static int spawnZSID = 727;
 	}
 	
 	public static class research{
