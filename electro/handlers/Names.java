@@ -12,7 +12,9 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.workBench, "Work Bench");
 		LanguageRegistry.addName(electrolysmCore.desk, "Scientist's Desk");
 		LanguageRegistry.addName(electrolysmCore.researchDesk, "Research Desk");
-		//LanguageRegistry.addName(electrolysmCore.soldering, "Soldering Station");
+		LanguageRegistry.addName(electrolysmCore.blastProof, "Blast Proof Iron Block");
+		LanguageRegistry.addName(electrolysmCore.blastDoor, "Blast Proof Iron Door");
+
 		
 		//Items
 		for(int i = 0; i < Research.researchNotes.NAMES.length; i++)

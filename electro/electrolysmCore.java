@@ -3,11 +3,16 @@ package assets.electrolysm.electro;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemTool;
 import net.minecraft.world.biome.BiomeGenBase;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.biome.diseasedBiome;
 import assets.electrolysm.electro.biome.diseasedGrass;
 import assets.electrolysm.electro.biome.spawnZS;
+import assets.electrolysm.electro.block.basic.blastDesk;
+import assets.electrolysm.electro.block.basic.blastDoor;
+import assets.electrolysm.electro.block.basic.blastGlass;
+import assets.electrolysm.electro.block.basic.blastProof;
 import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
@@ -20,6 +25,7 @@ import assets.electrolysm.electro.handlers.Referance;
 import assets.electrolysm.electro.handlers.Register;
 import assets.electrolysm.electro.handlers.RegisterBlock;
 import assets.electrolysm.electro.handlers.VersionCheck;
+import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.researchPaper;
 import cpw.mods.fml.common.Mod;
@@ -60,8 +66,15 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block diseaseGrass = new diseasedGrass(IDHandler.basic.diseasedGrassID, null);
 		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.basic.biomeID);
         public BiomeGenBase diseasedBiome = diseasedBiomeObj;
+        //Security
+        public static Block blastProof = new blastProof(IDHandler.basic.blastProofID, null);
+        public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
+        public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null);
+        public static Block blastDesk = new blastDesk(IDHandler.basic.blastDeskID, null);
+        public static ItemTool plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
+        
         /*
-		//Robots
+		//Robots``
         //Parts
         public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
         public static Item wire = new wire(IDHandler.robotics.wireID);

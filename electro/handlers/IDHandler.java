@@ -36,11 +36,16 @@ public class IDHandler {
 		public static int diseasedGrassID = 200;
 		public static int biomeID = 69;
 		public static int spawnZSID = 727;
+		public static int blastProofID = 728;
+		public static int blastDoorID = 729;
+		public static int blastGrassID = 730;
+		public static int blastDeskID = 731;
+		public static int plasmaDrillID = 732;
 	}
 	
 	public static class research{
-		public static int cardID = 730;
-		public static int paperID = 731;
+		public static int cardID = 73;
+		public static int paperID = 733;
 	
 	}
 }

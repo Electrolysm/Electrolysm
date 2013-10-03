@@ -23,6 +23,7 @@ public class card extends Item{
 		this.setMaxStackSize(1);
 	}
 	
+	@SideOnly(Side.CLIENT)
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {	
     	if(!player.isSneaking())

@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,6 +17,7 @@ public class workBench extends BlockContainer {
 		// TODO Auto-generated constructor stub
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("workBench");
+		this.setHardness(4);
 	}
     
     	@Override
@@ -27,11 +27,6 @@ public class workBench extends BlockContainer {
             this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + "ItemWorkBench");
         }
     	
-    	@Override	
-		public TileEntity createNewTileEntity(World world) {
-			// TODO Auto-generated method stub
-			return new TileEntityWorkBench();
-		}
 		//You don't want the normal render type, or it wont render properly.
 		@Override
 		public int getRenderType() {
@@ -64,5 +59,11 @@ public class workBench extends BlockContainer {
 	            return true;
 	        }
 	    }
+
+		@Override
+		public TileEntity createNewTileEntity(World world) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 }
