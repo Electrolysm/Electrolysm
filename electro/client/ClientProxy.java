@@ -29,8 +29,4 @@ public class ClientProxy extends CommonProxy {
 					new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
 	}
 	
-	public static void printChatMessage(String message)
-	{
-		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
-	}
 }

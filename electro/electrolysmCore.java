@@ -24,6 +24,7 @@ import assets.electrolysm.electro.handlers.Names;
 import assets.electrolysm.electro.handlers.Referance;
 import assets.electrolysm.electro.handlers.Register;
 import assets.electrolysm.electro.handlers.RegisterBlock;
+import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.research.card;
@@ -37,6 +38,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -70,7 +72,6 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block blastProof = new blastProof(IDHandler.basic.blastProofID, null);
         public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
         public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null);
-        public static Block blastDesk = new blastDesk(IDHandler.basic.blastDeskID, null);
         public static ItemTool plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
         
         /*
@@ -122,6 +123,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 	    GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
         		"Zombie_Scientist", 2, this, 80, 3, true);
+        
+        TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+
 		}
 		
 		@SideOnly(Side.CLIENT)

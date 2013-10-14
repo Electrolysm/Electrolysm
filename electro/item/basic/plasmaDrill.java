@@ -4,16 +4,20 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.ForgeHooks;
 
-public class plasmaDrill extends ItemTool {
+public class plasmaDrill extends ItemPickaxe {
+
+    public static final Block[] blocksEffectiveAgainst = new Block[] {Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.stone, Block.sandStone, Block.cobblestoneMossy, Block.oreIron, Block.blockIron, Block.oreCoal, Block.blockGold, Block.oreGold, Block.oreDiamond, Block.blockDiamond, Block.ice, Block.netherrack, Block.oreLapis, Block.blockLapis, Block.oreRedstone, Block.oreRedstoneGlowing, Block.rail, Block.railDetector, Block.railPowered, Block.railActivator, Block.obsidian};
 
 	public plasmaDrill(int id, float par2, EnumToolMaterial toolMaterial, Block[] block) {
-		super(id, par2, EnumToolMaterial.EMERALD, block);
+		super(id, EnumToolMaterial.EMERALD);
 		
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("plasmaDrill");
@@ -22,6 +26,7 @@ public class plasmaDrill extends ItemTool {
         this.maxStackSize = 1;
         this.damageVsEntity = 20;
         this.efficiencyOnProperMaterial = 20;
+
 	}
 
 	 @SideOnly(Side.CLIENT)
@@ -41,4 +46,10 @@ public class plasmaDrill extends ItemTool {
 	    {
 	        return getStrVsBlock(stack, block);
 	    }
+	 
+	 @Override
+	 public boolean canHarvestBlock(Block par1Block)
+	 {
+		 return true;
+	 }
 }

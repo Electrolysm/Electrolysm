@@ -59,7 +59,7 @@ public class TileEntityBlastDoor extends TileEntity {
             
             player.setPosition(x + xBlock, y + 1, z + zBlock);
             String accessAllowed = "Access Granted";
-            ClientProxy.printChatMessage(accessAllowed);
+    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(accessAllowed);
     	}
 	}
 }

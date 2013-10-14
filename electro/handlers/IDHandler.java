@@ -39,12 +39,11 @@ public class IDHandler {
 		public static int blastProofID = 728;
 		public static int blastDoorID = 729;
 		public static int blastGrassID = 730;
-		public static int blastDeskID = 731;
-		public static int plasmaDrillID = 732;
+		public static int plasmaDrillID = 731;
 	}
 	
 	public static class research{
-		public static int cardID = 73;
+		public static int cardID = 732;
 		public static int paperID = 733;
 	
 	}

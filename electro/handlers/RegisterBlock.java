@@ -14,7 +14,6 @@ public class RegisterBlock {
 		
 		GameRegistry.registerBlock(electrolysmCore.blastProof);
 		GameRegistry.registerBlock(electrolysmCore.blastDoor);
-		GameRegistry.registerBlock(electrolysmCore.blastDesk);
 	}
 
 }
