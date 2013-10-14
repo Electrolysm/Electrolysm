@@ -1,4 +1,4 @@
-package mods.Electrolysm.electro.client;
+package assets.electrolysm.electro.client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
