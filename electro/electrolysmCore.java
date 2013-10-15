@@ -17,6 +17,7 @@ import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
+import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
 import assets.electrolysm.electro.handlers.GUIHandler;
 import assets.electrolysm.electro.handlers.IDHandler;
@@ -109,6 +110,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
         configHandler.init(event.getSuggestedConfigurationFile());
 		VersionCheck.check();
+		BetaHandler.beta();
 
         }
         
@@ -119,7 +121,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 		RegisterBlock.register();
 		Names.addName();
 		Register.addAchievementLocalizations();
-	    NetworkRegistry.instance().registerGuiHandler(null, new GUIHandler());
+	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 	    GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
         		"Zombie_Scientist", 2, this, 80, 3, true);
@@ -133,7 +135,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 	    public void load(FMLInitializationEvent event) {
 	        ClientProxy ClientProxy = new ClientProxy();
 	        ClientProxy.registerRenderThings();
-
 	}
 }
 

@@ -1,8 +1,5 @@
 package assets.electrolysm.electro.client;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderEntity;
-import net.minecraft.client.renderer.entity.RenderZombie;
 import net.minecraftforge.client.MinecraftForgeClient;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
@@ -14,6 +11,8 @@ import assets.electrolysm.electro.robotics.tile.TileEntitySoldering;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ClientProxy extends CommonProxy {
 
@@ -28,5 +27,4 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
 					new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
 	}
-	
 }
