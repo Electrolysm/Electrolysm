@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import assets.electrolysm.electro.electrolysmCore;
+
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -32,9 +34,17 @@ public static final WorkBenchCraftingManager getInstance()
 
 private WorkBenchCraftingManager()
 {
-         recipes = new ArrayList();
-        
-                //Your recipes go here
+    recipes = new ArrayList();
+    
+    this.addRecipe(new ItemStack(electrolysmCore.plasmaDrill), new Object[]{
+            "SNS",
+            "NNN",
+            "SNS",
+            'S', Item.book,
+            'N', Item.diamond
+            });
+
+                   Collections.sort(this.recipes, new WorkBenchRecipeSorter(this));
 }
 
 public ShapedRecipes addRecipe(ItemStack par1ItemStack, Object ... par2ArrayOfObj)

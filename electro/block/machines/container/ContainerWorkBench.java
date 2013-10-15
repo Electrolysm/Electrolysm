@@ -1,6 +1,6 @@
 package assets.electrolysm.electro.block.machines.container;
 
-import net.minecraft.block.Block;
+import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -67,7 +67,7 @@ public class ContainerWorkBench extends Container
 
 	/**
          * Called when the container is closed.
-         *//*
+         */
 	public void onContainerClosed(EntityPlayer par1EntityPlayer)
 	{
          super.onContainerClosed(par1EntityPlayer);
@@ -85,17 +85,20 @@ public class ContainerWorkBench extends Container
                  }
          }
 	}
-	*/
+	
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
-	{
-         return this.worldObj.getBlockId(this.posX, this.posY, this.posZ) != Block.workbench.blockID ? false : par1EntityPlayer.getDistanceSq((double)this.posX + 0.5D, (double)this.posY + 0.5D, (double)this.posZ + 0.5D) <= 64.0D;
-	}
+    {
+             return this.worldObj.getBlockId(this.posX, this.posY, this.posZ) != 
+            	electrolysmCore.workBench.blockID ? false : par1EntityPlayer.getDistanceSq
+            			((double)this.posX + 0.5D, 
+            					(double)this.posY + 0.5D, (double)this.posZ + 0.5D) <= 64.0D;
+    }
 
 	/**
          * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
          */
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
-	{/*
+	{
          ItemStack itemstack = null;
          Slot slot = (Slot)this.inventorySlots.get(par2);
 
@@ -148,7 +151,7 @@ public class ContainerWorkBench extends Container
 
                  slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
          }
-	 	*/
+	 	
          return null;
 	}
 

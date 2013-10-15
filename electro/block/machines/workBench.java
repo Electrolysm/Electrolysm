@@ -12,7 +12,7 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class workBench extends Block {
+public class workBench extends Block/*Container*/ {
 
 	public workBench(int id, Material mat) {
 		super(id, Material.iron);
