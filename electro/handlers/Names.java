@@ -2,6 +2,9 @@ package assets.electrolysm.electro.handlers;
 
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.advAtomics.liquids.plasma;
+import assets.electrolysm.electro.block.advMachines.energiser;
+import assets.electrolysm.electro.block.advMachines.injector;
 import assets.electrolysm.electro.research.Research;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -14,6 +17,11 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.researchDesk, "Research Desk");
 		LanguageRegistry.addName(electrolysmCore.blastProof, "Blast Proof Iron Block");
 		LanguageRegistry.addName(electrolysmCore.blastDoor, "Blast Proof Iron Door");
+		LanguageRegistry.addName(electrolysmCore.energiser, energiser.getDisplayName());
+		LanguageRegistry.addName(electrolysmCore.injector, injector.getDisplayName());
+
+		
+		LanguageRegistry.addName(electrolysmCore.plasma, plasma.getName());
 
 		
 		//Items

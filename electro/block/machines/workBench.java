@@ -1,6 +1,5 @@
 package assets.electrolysm.electro.block.machines;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -12,7 +11,7 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class workBench extends Block/*Container*/ {
+public class workBench extends BlockContainer {
 
 	public workBench(int id, Material mat) {
 		super(id, Material.iron);
@@ -58,5 +57,11 @@ public class workBench extends Block/*Container*/ {
 	            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
 	            return true;
 			}
+		}
+
+		@Override
+		public TileEntity createNewTileEntity(World world) {
+			// TODO Auto-generated method stub
+			return new TileEntityWorkBench();
 		}
 }

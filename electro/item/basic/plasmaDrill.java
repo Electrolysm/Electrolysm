@@ -1,18 +1,16 @@
 package assets.electrolysm.electro.item.basic;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import ic2.api.item.ICustomElectricItem;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
-import net.minecraftforge.common.ForgeHooks;
+import assets.electrolysm.electro.electrolysmCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class plasmaDrill extends ItemPickaxe {
+public class plasmaDrill extends ItemPickaxe{
 
     public static final Block[] blocksEffectiveAgainst = new Block[] {Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.stone, Block.sandStone, Block.cobblestoneMossy, Block.oreIron, Block.blockIron, Block.oreCoal, Block.blockGold, Block.oreGold, Block.oreDiamond, Block.blockDiamond, Block.ice, Block.netherrack, Block.oreLapis, Block.blockLapis, Block.oreRedstone, Block.oreRedstoneGlowing, Block.rail, Block.railDetector, Block.railPowered, Block.railActivator, Block.obsidian};
 
@@ -52,4 +50,15 @@ public class plasmaDrill extends ItemPickaxe {
 	 {
 		 return true;
 	 }
+	 
+	 public int getItemEnchantability()
+    {
+		 return 30;
+	}
+	    
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+	{
+	  	return true;
+	}
+
 }

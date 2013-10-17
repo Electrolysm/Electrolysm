@@ -47,4 +47,15 @@ public class IDHandler {
 		public static int paperID = 733;
 	
 	}
+	
+	public static class advAtomics{
+		public static class fluid{
+			public static int plasmaID = 735;
+			public static int plasmaBucketID = 736;
+		}
+	}
+	public static class advMachines{
+		public static int injectorID = 740;
+		public static int energiserID = 741;;
+	}
 }

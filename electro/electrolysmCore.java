@@ -5,11 +5,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.biome.BiomeGenBase;
+import assets.electrolysm.electro.advAtomics.liquids.plasma;
+import assets.electrolysm.electro.api.MachineBaseClass;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.biome.diseasedBiome;
 import assets.electrolysm.electro.biome.diseasedGrass;
 import assets.electrolysm.electro.biome.spawnZS;
-import assets.electrolysm.electro.block.basic.blastDesk;
+import assets.electrolysm.electro.block.advMachines.energiser;
+import assets.electrolysm.electro.block.advMachines.injector;
 import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
@@ -47,8 +50,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 	@Mod(modid=Referance.MOD_REF.MOD_ID, name=Referance.MOD_REF.MOD_ID, version= Referance.MOD_REF.VERSION)
  
 	@NetworkMod(channels = { Referance.MOD_REF.CHANNEL }, clientSideRequired = true, serverSideRequired = false, packetHandler = packetHandler.class)
-	 
-	
+
 	public class electrolysmCore {
 
 		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
@@ -60,6 +62,9 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block workBench = new workBench(IDHandler.machines.basic.workBenchID, null);
         public static Block desk = new desk(IDHandler.machines.basic.deskID, null);
         public static Block researchDesk = new researchDesk(IDHandler.machines.basic.researchDeskID, null);
+        //Advanced Machines
+        public static MachineBaseClass injector = new injector(IDHandler.advMachines.injectorID, null);
+        
         //Research System
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
@@ -73,6 +78,16 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block blastProof = new blastProof(IDHandler.basic.blastProofID, null);
         public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
         public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null);
+        
+        
+        //Advanced atomics
+        //Liquids
+        public static Block plasma = new plasma(IDHandler.advAtomics.fluid.plasmaID);
+        //Blocks
+        //Machines
+        public static MachineBaseClass energiser = new energiser(IDHandler.advMachines.energiserID, null); 
+        //Items
+        //Tools
         public static ItemTool plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
         
         /*
