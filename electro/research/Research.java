@@ -14,11 +14,9 @@ public class Research
     private static final Research researchBase = new Research();
 
     /** The list of smelting results. */
-    private static Map smeltingList = new HashMap();
-    private Map experienceList = new HashMap();
-    private static HashMap<List<Integer>, ItemStack> metaSmeltingList = new HashMap<List<Integer>, ItemStack>();
-    private HashMap<List<Integer>, Float> metaExperience = new HashMap<List<Integer>, Float>();
-
+    private Map researchList = new HashMap();
+    private Map cardIDList = new HashMap();
+    
     /**
      * Used to call methods addSmelting and getSmeltingResult.
      */
@@ -29,28 +27,38 @@ public class Research
 
     private Research()
     {
-        this.addResearch(Item.bucketEmpty.itemID, new ItemStack(Item.bucketLava), 0.5F);
+        this.addResearch(Item.bucketEmpty.itemID, new ItemStack(Item.bucketLava), 1);
     }
 
     /**
      * Adds a smelting recipe.
      */
-    public void addResearch(int par1, ItemStack par2ItemStack, float par3)
+    public void addResearch(int inputID, ItemStack output, int cardIDRequired)
     {
-        this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
-        this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));
+        this.researchList.put(Integer.valueOf(inputID), output);
+        this.cardIDList.put(Integer.valueOf(cardIDRequired), output);
     }
-    public static ItemStack getResearch(ItemStack item) 
+    public ItemStack getResearch(ItemStack item, ItemStack card) 
     {
         if (item == null)
         {
             return null;
         }
-        ItemStack ret = (ItemStack)metaSmeltingList.get(Arrays.asList(item.itemID, item.getItemDamage()));
-        if (ret != null) 
+        if(card == null)
         {
-            return ret;
+        	return null;
         }
-        return (ItemStack)smeltingList.get(Integer.valueOf(item.itemID));
+        ItemStack output1 = (ItemStack)this.researchList.get(Integer.valueOf(item.itemID));
+        ItemStack output2 = (ItemStack)this.cardIDList.get(Integer.valueOf(card.getItemDamage()));
+        
+        if(output1 == output2)
+        {
+        	return output1;
+        }
+        else
+        {
+        	return null;
+        }
+        
     }
 }

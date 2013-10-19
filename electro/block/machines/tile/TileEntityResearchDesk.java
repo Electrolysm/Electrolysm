@@ -6,8 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.research.IResearch;
 import assets.electrolysm.electro.research.Research;
 
 public class TileEntityResearchDesk extends TileEntity implements IInventory {
@@ -116,7 +114,23 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 		
 		ItemStack inStack = getStackInSlot(0);
 		ItemStack card = getStackInSlot(2);
-		ItemStack output = Research.research().getResearch(inStack);
+		ItemStack output = getStackInSlot(1);
+		ItemStack result = Research.research().getResearch(inStack, card);
+		
+		Random rand = new Random();
+		
+		if(card != null)
+		{
+			if(inStack != null)
+			{
+				if(result != null)
+				{
+					decrStackSize(0, 1);
+					setInventorySlotContents(1, result);
+					onInventoryChanged();
+				}
+			}
+		}
 	}
 /*
 	@Override
