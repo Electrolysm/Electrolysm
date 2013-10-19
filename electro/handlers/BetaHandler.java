@@ -22,8 +22,18 @@ public class BetaHandler {
 	}
 
 
-	public static int setID() {
-		// TODO Auto-generated method stub
-		return 0;
+	public static int setID() 
+	{
+		Random rand = new Random();
+		if(configHandler.idSet)
+		{
+			return configHandler.modIDInt;
+		}
+		else
+		{
+			configHandler.idSetD = true;
+			configHandler.idSet = true;
+			return rand.nextInt(100);
+		}
 	}
 }

@@ -13,6 +13,7 @@ import assets.electrolysm.electro.biome.diseasedGrass;
 import assets.electrolysm.electro.biome.spawnZS;
 import assets.electrolysm.electro.block.advMachines.energiser;
 import assets.electrolysm.electro.block.advMachines.injector;
+import assets.electrolysm.electro.block.advMachines.quantumComp;
 import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
@@ -85,6 +86,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block plasma = new plasma(IDHandler.advAtomics.fluid.plasmaID);
         //Blocks
         //Machines
+        public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
         public static MachineBaseClass energiser = new energiser(IDHandler.advMachines.energiserID, null); 
         //Items
         //Tools

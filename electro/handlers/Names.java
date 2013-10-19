@@ -5,6 +5,7 @@ import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.block.advMachines.energiser;
 import assets.electrolysm.electro.block.advMachines.injector;
+import assets.electrolysm.electro.block.advMachines.quantumComp;
 import assets.electrolysm.electro.research.Research;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -22,10 +23,11 @@ public class Names {
 
 		
 		LanguageRegistry.addName(electrolysmCore.plasma, plasma.getName());
+		LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
 
 		
 		//Items
-		for(int i = 0; i < Research.researchNotes.NAMES.length; i++)
+		for(int i = 0; i < 10/*Research.NAMES1.length*/; i++)
 		{
 			LanguageRegistry.addName(new ItemStack(electrolysmCore.researchPaper, 1, i), "Research Paper");
 		}

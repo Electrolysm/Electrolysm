@@ -1,13 +1,13 @@
 package assets.electrolysm.electro.block.machines.tile;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.research.IResearch;
 import assets.electrolysm.electro.research.Research;
 
 public class TileEntityResearchDesk extends TileEntity implements IInventory {
@@ -113,56 +113,34 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 	@Override
     public void updateEntity() 
 	{
-		int level;
-		String posResearch = null;
-		Random random = new Random();
+		
 		ItemStack inStack = getStackInSlot(0);
-		ItemStack output = getStackInSlot(1);
 		ItemStack card = getStackInSlot(2);
-		int id = 0;
-		int rand = random.nextInt(3);	
-			if(card != null)
+		ItemStack output = Research.getResearch(inStack);
+	}
+/*
+	@Override
+	public int getResearch(ItemStack input, ItemStack card, ItemStack output)
+	{
+		int inputID = input.itemID;
+		int cardLevel = card.getItemDamage();
+		
+		try{
+			if(cardLevel == 1)
 			{
-				level = card.getItemDamage();
-				try{
-					if(level == 0)
-					{
-						posResearch = (String) Research.Level1.get(rand);
-					}
-					if(level == 1)
-					{
-						posResearch = (String) Research.Level1.get(rand);
-					}
-					if(level == 2)
-					{
-						posResearch = (String) Research.Level1.get(rand);
-					}
-					if(level == 3)
-					{
-						posResearch = (String) Research.Level1.get(rand);
-					}	
-					if(level == 4)
-					{
-						posResearch = (String) Research.Level1.get(rand);
-					}
-					if(level == 5)
-					{
-						posResearch = (String) Research.Level1.get(rand);
-					}	
-				}finally{
-					
-			}
-			if(inStack != null)
-			{
-				id = inStack.itemID;
-				if(posResearch.contains("" + id))
+				for(int IDList = 0; IDList < 2; IDList++)
 				{
-					System.out.print("IT WORKS");
+					if(inputID == Research.levelIDs1[IDList])
+					{
+						System.out.println("ItemIsCorrect");
+						return Research.researchID1[IDList];
+					}
 				}
 			}
-			System.out.println(posResearch);
+		}finally{
 			
-		}
 	}
+		return 0;
+	}*/
 }
 

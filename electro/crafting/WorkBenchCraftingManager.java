@@ -29,7 +29,7 @@ public static final WorkBenchCraftingManager getInstance()
 {
                  return instance;
 }
-private WorkBenchCraftingManager()
+public WorkBenchCraftingManager()
 {
                  recipes = new ArrayList();
         

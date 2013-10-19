@@ -6,6 +6,9 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.crafting.WorkBenchCraftingManager;
+import assets.electrolysm.electro.world.WorldGenStructures;
+import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegisterBlock {
@@ -22,6 +25,9 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.plasma);
 		GameRegistry.registerBlock(electrolysmCore.energiser);
 		GameRegistry.registerBlock(electrolysmCore.injector);
+		GameRegistry.registerBlock(electrolysmCore.quantumComp);
+		
+		GameRegistry.registerWorldGenerator(new WorldGenStructures());
 		
 		//Fluids
 		/*

@@ -56,6 +56,7 @@ public class IDHandler {
 	}
 	public static class advMachines{
 		public static int injectorID = 740;
-		public static int energiserID = 741;;
+		public static int energiserID = 741;
+		public static int quantumCompID = 742;
 	}
 }
