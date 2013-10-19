@@ -42,17 +42,20 @@ public class VersionCheck {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			if(line.contains(Referance.MOD_REF.VERSION)){
-				version = "CURRENT";
-			}
-			if(!(line.contains(Referance.MOD_REF.VERSION))){
-				version = "OUTDATED";
-			}
-			if(version == ("CURRENT")){
-				chatMessage = "";
-			}	
-			if(version == ("OUTDATED")){
-				chatMessage = "The lastest version of Electrolysm is now available";
+			if(line != null)
+			{
+				if(line.contains(Referance.MOD_REF.VERSION)){
+					version = "CURRENT";
+				}
+				if(!(line.contains(Referance.MOD_REF.VERSION))){
+					version = "OUTDATED";
+				}
+				if(version == ("CURRENT")){
+					chatMessage = "";
+				}	
+				if(version == ("OUTDATED")){
+					chatMessage = "The lastest version of Electrolysm is now available";
+				}
 			}
 
 			System.out.println("[Electrolysm]" + version);

@@ -34,7 +34,7 @@ public class quantumComp extends BlockContainer{
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName(this.unlocalName);
 		this.setHardness(5.0F);
-		this.setBlockBounds(0, 0, 0, 0, 3, 0);
+		this.setBlockBounds(0, 0, 0, 1, 3, 1);
 	}
 
 	@Override

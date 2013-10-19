@@ -22,7 +22,7 @@ public class Research
     /**
      * Used to call methods addSmelting and getSmeltingResult.
      */
-    public static final Research smelting()
+    public static final Research research()
     {
         return researchBase;
     }
@@ -37,8 +37,8 @@ public class Research
      */
     public void addResearch(int par1, ItemStack par2ItemStack, float par3)
     {
-        //this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
-        //this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));
+        this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
+        this.experienceList.put(Integer.valueOf(par2ItemStack.itemID), Float.valueOf(par3));
     }
     public static ItemStack getResearch(ItemStack item) 
     {

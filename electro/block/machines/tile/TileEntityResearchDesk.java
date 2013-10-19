@@ -116,7 +116,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 		
 		ItemStack inStack = getStackInSlot(0);
 		ItemStack card = getStackInSlot(2);
-		ItemStack output = Research.getResearch(inStack);
+		ItemStack output = Research.research().getResearch(inStack);
 	}
 /*
 	@Override
