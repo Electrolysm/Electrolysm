@@ -125,9 +125,18 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 			{
 				if(result != null)
 				{
-					decrStackSize(0, 1);
-					setInventorySlotContents(1, result);
-					onInventoryChanged();
+					if(output == null)
+					{
+						if(inStack.stackSize >= 10)
+						{
+							decrStackSize(0, rand.nextInt(10));
+							if(rand.nextInt(card.getItemDamage() + 1) == 1)
+							{
+								setInventorySlotContents(1, result);
+							}
+							onInventoryChanged();
+						}
+					}
 				}
 			}
 		}

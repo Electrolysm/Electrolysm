@@ -74,15 +74,14 @@ public class researchPaper extends Item{
 	
 	
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) 
-    {/*
-    	for(int i = 0; i < Research.NAMES1.length; i++)
+    {
+    	for(int i = 0; i < Research.researchNames1.length; i++)
     	{
     		if(stack.getItemDamage() == i)
     		{
-    			list.add("Research: " + Research.NAMES1[i]);
+    			list.add("Research: " + Research.researchNames1[i]);
     		}
-    	}*/
-    	list.add("test");
+    	}
     }
 
 }
