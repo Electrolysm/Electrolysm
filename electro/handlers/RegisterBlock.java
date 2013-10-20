@@ -2,6 +2,8 @@ package assets.electrolysm.electro.handlers;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -39,6 +41,12 @@ public class RegisterBlock {
 					new ItemStack( Item.bucketEmpty )
 				)
 			);*/
+		
+		//Adding knowledge to dungeon chests
+		WeightedRandomChestContent itemChest = new WeightedRandomChestContent(electrolysmCore.knowledge.itemID,
+        		0, 1, 2, 0);
+        ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, itemChest);
+        //End
 	}
 
 }

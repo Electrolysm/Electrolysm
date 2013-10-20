@@ -3,8 +3,11 @@ package assets.electrolysm.electro;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.ChestGenHooks;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.api.MachineBaseClass;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
@@ -147,7 +150,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         		"Zombie_Scientist", 2, this, 80, 3, true);
         
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
-
+        
 		}
 		
 		@SideOnly(Side.CLIENT)

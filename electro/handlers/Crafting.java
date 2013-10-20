@@ -23,11 +23,20 @@ public class Crafting {
 				Character.valueOf('X'), Block.workbench,
 				Character.valueOf('Y'), Item.ingotIron);
 		
-		GameRegistry.addRecipe(new ItemStack(electrolysmCore.card),
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.card, 1, 1),
 				"   ", "XYX", "   ",
 				Character.valueOf('X'), Item.stick,
 				Character.valueOf('Y'), Item.paper);
 		
+		for(int i = 1; i <= 9; i++)
+		{
+			ItemStack cardLevels = new ItemStack(electrolysmCore.card, 1, i);
+			
+			GameRegistry.addRecipe(new ItemStack(electrolysmCore.card, 1, i + 1),
+					"XXX", "XZX", "XXX",
+					Character.valueOf('X'), electrolysmCore.knowledge,
+					Character.valueOf('Z'), cardLevels);
+		}
 		//Temporary Only Remove!
 		ItemStack cardL5 = new ItemStack(electrolysmCore.card, 1, 5);
 		

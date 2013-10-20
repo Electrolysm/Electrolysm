@@ -25,10 +25,11 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.plasma, plasma.getName());
 		LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
 		LanguageRegistry.addName(electrolysmCore.blastGlass, "Blast Proof Iron Glass");
+		LanguageRegistry.addName(electrolysmCore.plasmaDrill, "Plasma Drill");
 
 		
 		//Items
-		for(int i = 0; i < 10/*Research.NAMES1.length*/; i++)
+		for(int i = 0; i < Research.researchNames1.length; i++)
 		{
 			LanguageRegistry.addName(new ItemStack(electrolysmCore.researchPaper, 1, i), "Research Paper");
 		}
