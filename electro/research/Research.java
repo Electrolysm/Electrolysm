@@ -68,15 +68,22 @@ public class Research
         }
         ItemStack output1 = (ItemStack)this.researchList.get(Integer.valueOf(item.itemID));
         
-        int cardIDRequired = (Integer) this.cardIDList.get(output1);
-        
-        if(card.getItemDamage() >= cardIDRequired)
+        if(output1 != null)
         {
-        	return output1;
+        	int cardIDRequired = (Integer) this.cardIDList.get(output1);
+        
+        	if(card.getItemDamage() >= cardIDRequired)
+        	{
+        		return output1;
+       		}
+	        else
+	        {
+	        	return null; 
+	        }
         }
         else
         {
-		return null; 
+        	return null;
         }
     }
 }

@@ -33,6 +33,7 @@ import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.research.card;
+import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -69,6 +70,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Research System
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
+        public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
@@ -78,7 +80,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Security
         public static Block blastProof = new blastProof(IDHandler.basic.blastProofID, null);
         public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
-        public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null);
+        private static String[] glassTexture = { "","","","","","","","","","","","","","","","",""};
+        public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null, false, glassTexture);
         
         
         //Advanced atomics

@@ -24,6 +24,7 @@ public class Names {
 		
 		LanguageRegistry.addName(electrolysmCore.plasma, plasma.getName());
 		LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
+		LanguageRegistry.addName(electrolysmCore.blastGlass, "Blast Proof Iron Glass");
 
 		
 		//Items

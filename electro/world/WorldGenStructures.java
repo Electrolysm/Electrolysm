@@ -3,12 +3,11 @@ package assets.electrolysm.electro.world;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.MathHelper;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGenStructures implements IWorldGenerator{
@@ -49,6 +48,7 @@ public class WorldGenStructures implements IWorldGenerator{
 				int desk = electrolysmCore.desk.blockID;
 				int books = Block.bookShelf.blockID;
 				int dirt = Block.dirt.blockID;
+				int chest = Block.chest.blockID;
 
 
 				//Layer 2
@@ -533,7 +533,7 @@ public class WorldGenStructures implements IWorldGenerator{
 					createBlock(world, xCoord + 11, yCoord + 4, zCoord - 4, stoneSlabHalf, 0);
 					createBlock(world, xCoord + 12, yCoord + 4, zCoord - 4, stoneSlabHalf, 0);
 					
-					//=================
+					//Door way (inside)
 					createBlock(world, xCoord + 11, yCoord + 1, zCoord - 6, ironBar, 0);
 					createBlock(world, xCoord + 11, yCoord + 2, zCoord - 6, ironBar, 0);
 					createBlock(world, xCoord + 11, yCoord + 3, zCoord - 6, ironBar, 0);
@@ -545,14 +545,34 @@ public class WorldGenStructures implements IWorldGenerator{
 					createBlock(world, xCoord + 12, yCoord + 4, zCoord - 6, stoneSlabHalf, 0);
 					createBlock(world, xCoord + 13, yCoord + 4, zCoord - 6, stoneSlabHalf, 0);
 					
+					
+					//Desks - Books - Chests
 					createBlock(world, xCoord + 4, yCoord + 1, zCoord - 8, desk, 0);
 					createBlock(world, xCoord + 3, yCoord + 1, zCoord - 8, desk, 0);
 					createBlock(world, xCoord + 2, yCoord + 1, zCoord - 8, desk, 0);
 					
 					createBlock(world, xCoord + 13, yCoord + 1, zCoord - 11, desk, 0);
 					createBlock(world, xCoord + 12, yCoord + 1, zCoord - 11, books, 0);
-					createBlock(world, xCoord + 11, yCoord + 1, zCoord - 11, books, 0);
 					
+					createBlock(world, xCoord + 11, yCoord + 1, zCoord - 11, chest, 0);
+					
+					//Chest Inventory
+                    TileEntityChest tileEntityChest = new TileEntityChest();
+                    world.setBlockTileEntity(xCoord + 11, yCoord + 1, zCoord - 11, tileEntityChest);
+					
+                    for(int slot = 0; slot < tileEntityChest.getSizeInventory(); slot++) 
+                    {
+                    	int item = random.nextInt(250);
+                        int stackSize;
+
+                        if (item == 1 || item == 2 || item == 3) {
+                                stackSize = random.nextInt(2) + 1;
+                                tileEntityChest.setInventorySlotContents(slot,
+                                		new ItemStack(electrolysmCore.knowledge, stackSize));
+                        }
+                    }
+                    
+                    //End
 			}	
 		}
 	}

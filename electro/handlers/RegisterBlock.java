@@ -22,6 +22,7 @@ public class RegisterBlock {
 		
 		GameRegistry.registerBlock(electrolysmCore.blastProof);
 		GameRegistry.registerBlock(electrolysmCore.blastDoor);
+		GameRegistry.registerBlock(electrolysmCore.blastGlass);
 		GameRegistry.registerBlock(electrolysmCore.plasma);
 		GameRegistry.registerBlock(electrolysmCore.energiser);
 		GameRegistry.registerBlock(electrolysmCore.injector);

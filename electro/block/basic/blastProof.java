@@ -24,7 +24,10 @@ public class blastProof extends BlockContainer {
 	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + this.getUnlocalizedName().replace("tile.", ""));
+		if(!(this.getUnlocalizedName().contains("Glass")))
+		{
+	        this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + this.getUnlocalizedName().replace("tile.", ""));
+		}
     }
 
 	@Override
@@ -32,7 +35,5 @@ public class blastProof extends BlockContainer {
 		return null;
 	}
 
-	public void replace() {
-		
-	}
+
 }

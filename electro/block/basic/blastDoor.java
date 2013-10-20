@@ -49,7 +49,6 @@ public class blastDoor extends blastProof {
     public void registerIcons(IconRegister register)
     {
         this.blockIcon = register.registerIcon("electrolysm:" + this.getUnlocalizedName().replace("tile.", ""));
-        this.open = register.registerIcon("electrolysm:" + this.getUnlocalizedName().replace("tile.", "") + "_open");
     }
     
     @Override

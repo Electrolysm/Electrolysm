@@ -7,6 +7,7 @@ import assets.electrolysm.electro.handlers.BetaHandler;
 
 public class configHandler {
 	
+	public static int connectedTexturesMode = 2;
 	public static String modID;
 	public static int modIDInt;
 	public static boolean idSet;
