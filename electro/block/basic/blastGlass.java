@@ -17,6 +17,8 @@ public class blastGlass extends GlassBlockConnectedMeta {
 
 		this.setUnlocalizedName("blastGlass");
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setHardness(9000);
+		this.setBlockUnbreakable();
 	}
 
 	//It's not an opaque cube, so you need this.

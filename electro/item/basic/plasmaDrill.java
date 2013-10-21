@@ -3,9 +3,11 @@ package assets.electrolysm.electro.item.basic;
 import ic2.api.item.ICustomElectricItem;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -60,5 +62,27 @@ public class plasmaDrill extends ItemPickaxe{
 	{
 	  	return true;
 	}
+	
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
+    {
+    	if(world.getBlockId(x, y, z) == electrolysmCore.blastProof.blockID)
+    	{
+    		world.setBlockToAir(x, y, z);
+    		return true;
+    	}
+    	if(world.getBlockId(x, y, z) == electrolysmCore.blastDoor.blockID)
+    	{
+    		world.setBlockToAir(x, y, z);
+    		return true;
+    	}
+    	if(world.getBlockId(x, y, z) == electrolysmCore.blastGlass.blockID)
+    	{
+    		world.setBlockToAir(x, y, z);
+    		return true;
+    	}
+    	
+    	return false;
+    }
+
 
 }
