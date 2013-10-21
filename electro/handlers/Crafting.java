@@ -27,7 +27,7 @@ public class Crafting {
 				"   ", "XYX", "   ",
 				Character.valueOf('X'), Item.stick,
 				Character.valueOf('Y'), Item.paper);
-		
+
 		for(int i = 1; i <= 9; i++)
 		{
 			ItemStack cardLevels = new ItemStack(electrolysmCore.card, 1, i);
@@ -37,7 +37,24 @@ public class Crafting {
 					Character.valueOf('X'), electrolysmCore.knowledge,
 					Character.valueOf('Z'), cardLevels);
 		}
-		//Temporary Only Remove!
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastProof, 2),
+				"XYX", "YZY", "XYX",
+				Character.valueOf('X'), Block.blockIron,
+				Character.valueOf('Y'), Block.stone,
+				Character.valueOf('Z'), new ItemStack(electrolysmCore.researchPaper, 1, 0));
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastDoor),
+				"XX", "XX", "XX",
+				Character.valueOf('X'), electrolysmCore.blastProof);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastGlass, 4),
+				"XYX", "YXY", "XYX",
+				Character.valueOf('X'), electrolysmCore.blastProof,
+				Character.valueOf('Y'), Block.glass);
+		
+		
+		//Temporary Only - Remove!
 		ItemStack cardL5 = new ItemStack(electrolysmCore.card, 1, 5);
 		
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.desk),

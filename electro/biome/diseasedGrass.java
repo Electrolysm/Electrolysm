@@ -27,6 +27,7 @@ public class diseasedGrass extends BlockDirt {
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setHardness(1);
 	this.setStepSound(Block.soundGrassFootstep);
+	this.setUnlocalizedName("diseasedGrass");
 	}
 
     @SideOnly(Side.CLIENT)

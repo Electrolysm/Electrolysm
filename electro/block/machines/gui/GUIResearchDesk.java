@@ -46,18 +46,18 @@ public class GUIResearchDesk extends GuiContainer
     protected void drawGuiContainerForegroundLayer(int i, int j)
 	{
 		fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
-		
+		/*
 		fontRenderer.drawString(matrix(), 10, 40, 4210752);
 		fontRenderer.drawString(matrix(), 10, 48, 4210752);
 		fontRenderer.drawString(matrix(), 10, 56, 4210752);
 		fontRenderer.drawString(matrix(), 10, 62, 4210752);
 		fontRenderer.drawString(matrix(), 10, 70, 4210752);
 		fontRenderer.drawString(matrix(), 10, 78, 4210752);
-		fontRenderer.drawString(matrix(), 10, 86, 4210752);
+		fontRenderer.drawString(matrix(), 10, 86, 4210752); 
 		fontRenderer.drawString(matrix(), 10, 94, 4210752);
 		fontRenderer.drawString(matrix(), 10, 102, 4210752);
 		fontRenderer.drawString(matrix(), 10, 110, 4210752);
-	
+	*/
 	}
 	public String matrix()
 	{

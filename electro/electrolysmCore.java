@@ -66,11 +66,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 		//Basic Machines
         public static Block workBench = new workBench(IDHandler.machines.basic.workBenchID, null);
         public static Block desk = new desk(IDHandler.machines.basic.deskID, null);
-        public static Block researchDesk = new researchDesk(IDHandler.machines.basic.researchDeskID, null);
         //Advanced Machines
-        public static MachineBaseClass injector = new injector(IDHandler.advMachines.injectorID, null);
+        public static Block injector = new injector(IDHandler.advMachines.injectorID, null);
         
         //Research System
+        public static Block researchDesk = new researchDesk(IDHandler.machines.basic.researchDeskID, null);
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
         public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
@@ -93,13 +93,13 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Blocks
         //Machines
         public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
-        public static MachineBaseClass energiser = new energiser(IDHandler.advMachines.energiserID, null); 
-        //Items
+        public static Block energiser = new energiser(IDHandler.advMachines.energiserID, null); 
+        //Items 
         //Tools
         public static ItemTool plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
         
         /*
-		//Robots``
+		//Robots
         //Parts
         public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
         public static Item wire = new wire(IDHandler.robotics.wireID);

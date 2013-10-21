@@ -26,13 +26,9 @@ public class card extends Item{
 	@SideOnly(Side.CLIENT)
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {	
-    	if(!player.isSneaking())
-    	{
-    		this.increaseLevel(stack, 1);	
-    	}
     	String message = "You current knowledge level is: " + stack.getItemDamage();
     	
-    	if(player.isSneaking())
+    	if(!player.isSneaking())
     	{
     		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
     	}
@@ -58,5 +54,15 @@ public class card extends Item{
     {
     	stack.setItemDamage(0);
     }
+    
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) 
+    {
+    	String playerName = player.username;
+    	int cardLevel = stack.getItemDamage();
+    	
+    	list.add(playerName + "'s current level is: " + cardLevel);
+    }
+    
+    
     
 }

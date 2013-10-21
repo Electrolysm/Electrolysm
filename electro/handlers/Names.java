@@ -26,7 +26,10 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
 		LanguageRegistry.addName(electrolysmCore.blastGlass, "Blast Proof Iron Glass");
 		LanguageRegistry.addName(electrolysmCore.plasmaDrill, "Plasma Drill");
-
+		LanguageRegistry.addName(electrolysmCore.diseaseGrass, "Diseased Grass");
+		LanguageRegistry.addName(electrolysmCore.spawnZS, "Spawn Zombie-Scientist");
+		LanguageRegistry.addName(electrolysmCore.knowledge, "Knowledge Strip");
+		
 		
 		//Items
 		for(int i = 0; i < Research.researchNames1.length; i++)
