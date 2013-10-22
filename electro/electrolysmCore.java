@@ -8,6 +8,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ChestGenHooks;
+import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.api.MachineBaseClass;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
@@ -34,6 +35,7 @@ import assets.electrolysm.electro.handlers.Register;
 import assets.electrolysm.electro.handlers.RegisterBlock;
 import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
+import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
@@ -90,15 +92,17 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Advanced atomics
         //Liquids
         public static Block plasma = new plasma(IDHandler.advAtomics.fluid.plasmaID);
+        public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
         //Blocks
         //Machines
-        public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
+        //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
         public static Block energiser = new energiser(IDHandler.advMachines.energiserID, null); 
         //Items 
         //Tools
         public static ItemTool plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
+        public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
         
-        /*
+        /*9
 		//Robots
         //Parts
         public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
@@ -147,7 +151,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 	    GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
-        		"Zombie_Scientist", 2, this, 80, 3, true);
+        		"Zombie Scientist", 2, this, 80, 3, true);
         
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
         

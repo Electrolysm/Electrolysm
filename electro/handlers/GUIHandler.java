@@ -4,6 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.block.advMachines.container.ContainerEnergiser;
+import assets.electrolysm.electro.block.advMachines.container.ContainerInjector;
+import assets.electrolysm.electro.block.advMachines.gui.GUIEnergiser;
+import assets.electrolysm.electro.block.advMachines.gui.GUIInjector;
+import assets.electrolysm.electro.block.advMachines.te.TileEntityEnergiser;
+import assets.electrolysm.electro.block.advMachines.te.TileEntityInjector;
 import assets.electrolysm.electro.block.machines.container.ContainerResearchDesk;
 import assets.electrolysm.electro.block.machines.container.ContainerWorkBench;
 import assets.electrolysm.electro.block.machines.gui.GUIResearchDesk;
@@ -22,7 +28,18 @@ public class GUIHandler implements IGuiHandler{
 		{
 			return new ContainerResearchDesk((TileEntityResearchDesk)entity, player.inventory);
 		}
-
+		
+		if(entity instanceof TileEntityEnergiser)
+		{
+			return new ContainerEnergiser(player.inventory, (TileEntityEnergiser)entity);
+		}
+		
+		if(entity instanceof TileEntityInjector)
+		{
+			return new ContainerInjector(player.inventory, (TileEntityInjector)entity);
+		}
+		
+		//Crafting
 		switch(ID)
 		{
 		case 0: return ID == 0 && world.getBlockId(x, y, z) == electrolysmCore.workBench.blockID ? 
@@ -41,6 +58,17 @@ public class GUIHandler implements IGuiHandler{
 			return new GUIResearchDesk((TileEntityResearchDesk)entity, player.inventory);
 		}
 		
+		if(entity instanceof TileEntityEnergiser)
+		{
+			return new GUIEnergiser(player.inventory, (TileEntityEnergiser)entity);
+		}
+		
+		if(entity instanceof TileEntityInjector)
+		{
+			return new GUIInjector(player.inventory, (TileEntityInjector)entity);
+		}
+		
+		//Crafting
 		switch(ID)
 		{
 		case 0: return ID == 0 && world.getBlockId(x, y, z) == electrolysmCore.workBench.blockID ?

@@ -45,9 +45,8 @@ public class ContainerResearchDesk extends Container
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int par2)
+	public ItemStack transferStackInSlot(EntityPlayer player, int par2)
 	{
-		return null;
-
+        return null;
 	}
 }

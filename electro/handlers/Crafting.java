@@ -54,6 +54,19 @@ public class Crafting {
 				Character.valueOf('Y'), Block.glass);
 		
 		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.drillCasing),
+				" XY", "XZX", "BX ",
+				Character.valueOf('X'), Item.ingotIron,
+				Character.valueOf('Y'), Item.diamond,
+				Character.valueOf('Z'), Block.blockDiamond,
+				Character.valueOf('B'), Block.tnt);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.fluidStorage),
+				" X ", "Y Y", " Y ",
+				Character.valueOf('X'), electrolysmCore.blastGlass,
+				Character.valueOf('y'), electrolysmCore.blastProof);
+		
+		
 		//Temporary Only - Remove!
 		ItemStack cardL5 = new ItemStack(electrolysmCore.card, 1, 5);
 		

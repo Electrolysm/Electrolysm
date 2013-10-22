@@ -68,16 +68,19 @@ public class plasmaDrill extends ItemPickaxe{
     	if(world.getBlockId(x, y, z) == electrolysmCore.blastProof.blockID)
     	{
     		world.setBlockToAir(x, y, z);
+    		world.playSoundAtEntity(player, "dig.stone4", 1, 1);
     		return true;
     	}
     	if(world.getBlockId(x, y, z) == electrolysmCore.blastDoor.blockID)
     	{
     		world.setBlockToAir(x, y, z);
+    		world.playSoundAtEntity(player, "dig.stone4", 1, 1);
     		return true;
     	}
     	if(world.getBlockId(x, y, z) == electrolysmCore.blastGlass.blockID)
     	{
     		world.setBlockToAir(x, y, z);
+    		world.playSoundAtEntity(player, "dig.glass1", 1, 1);
     		return true;
     	}
     	

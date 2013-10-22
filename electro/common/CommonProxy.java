@@ -14,10 +14,13 @@ public class CommonProxy {
 
 	//GUIs
 	public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
-
-
+	public static ResourceLocation ENERGISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energiserGUI.png");
+	public static ResourceLocation INJECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/injectorGUI.png");
+	
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
+
+	public static String[] holdableFluids = {"Empty", "Plasma"};
 	
 	//MOBs
 	public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
