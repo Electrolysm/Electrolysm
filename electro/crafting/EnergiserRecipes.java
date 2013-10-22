@@ -9,8 +9,6 @@ import java.util.List;
 import assets.electrolysm.electro.electrolysmCore;
 
 import cpw.mods.fml.common.Loader;
-
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -29,7 +27,7 @@ public class EnergiserRecipes
 
 	private EnergiserRecipes()
 	{	
-		this.addDoubleSmelting(new ItemStack(Item.bucketWater), new ItemStack(electrolysmCore.fluidStorage, 4, 0),
+		this.addDoubleSmelting(new ItemStack(Item.bucketWater),new ItemStack(electrolysmCore.fluidStorage, 4, 0),
 				new ItemStack(electrolysmCore.fluidStorage, 4, 1));
 	}
 
@@ -51,18 +49,16 @@ public class EnergiserRecipes
 
 		ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1.itemID, item1.getItemDamage()));
 		ItemStack outputItem2 = this.metaSmeltingList2.get(Arrays.asList(item2.itemID, item2.getItemDamage()));
-/*
-		if (outputItem1.itemID == outputItem2.itemID) {
+
+		if (outputItem1 == outputItem2) {
 			if (outputItem1.getItemDamage() == outputItem2.getItemDamage()) {
 				return outputItem1;
 			} else {
-				return outputItem2;
+				return null;
 			}
 		} else {
 			return null;
 		}
-*/
-		return outputItem1;
 	}
 
 	public ItemStack getSlot1ReduceAmount(ItemStack input) {

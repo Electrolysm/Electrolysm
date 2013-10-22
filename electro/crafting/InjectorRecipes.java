@@ -5,6 +5,8 @@ import ic2.api.item.Items;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -25,7 +27,8 @@ public class InjectorRecipes
 
 	private InjectorRecipes()
 	{	
-		
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.drillCasing), new ItemStack(electrolysmCore.fluidStorage, 1, 1),
+				new ItemStack(electrolysmCore.plasmaDrill));
 	}
 
 	public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output) {
@@ -47,11 +50,11 @@ public class InjectorRecipes
 		ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1.itemID, item1.getItemDamage()));
 		ItemStack outputItem2 = this.metaSmeltingList2.get(Arrays.asList(item2.itemID, item2.getItemDamage()));
 
-		if (outputItem1.itemID == outputItem2.itemID) {
+		if (outputItem1 == outputItem2) {
 			if (outputItem1.getItemDamage() == outputItem2.getItemDamage()) {
 				return outputItem1;
 			} else {
-				return outputItem2;
+				return null;
 			}
 		} else {
 			return null;
