@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 public class Research
 {
 	
-	public static String[] researchNames1 = {"Blast-Proof Iron", "Schrödinger's Cat"};
+	public static String[] researchNames1 = {"Blast-Proof Iron", "Schrodinger's Cat"};
 	//Research Note metadata ID						0					1
 	
 	
