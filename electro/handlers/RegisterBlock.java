@@ -24,6 +24,7 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.injector);
 		//GameRegistry.registerBlock(electrolysmCore.quantumComp);
 		GameRegistry.registerBlock(electrolysmCore.graphite);
+		GameRegistry.registerBlock(electrolysmCore.modBlastGlass);
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
 		GameRegistry.registerWorldGenerator(new WorldGenOres());

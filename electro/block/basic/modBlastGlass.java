@@ -8,14 +8,13 @@ import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.GlassBlockConnectedMeta;
 
+public class modBlastGlass extends GlassBlockConnectedMeta {
 
-public class blastGlass extends GlassBlockConnectedMeta {
-
-	public blastGlass(int par1, String location, boolean hasAlpha,
+	public modBlastGlass(int par1, String location, boolean hasAlpha,
 			String[] textures) {
 		super(par1, location, hasAlpha, textures);
 
-		this.setUnlocalizedName("blastGlass");
+		this.setUnlocalizedName("modBlastGlass");
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setHardness(9000);
 		this.setBlockUnbreakable();

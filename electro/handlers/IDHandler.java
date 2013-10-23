@@ -39,21 +39,23 @@ public class IDHandler {
 		public static int blastProofID = 728;
 		public static int blastDoorID = 729;
 		public static int blastGrassID = 730;
-		public static int plasmaDrillID = 731;
-		public static int drillCasingID = 732;
+		public static int modBlastGrassID = 731;
+		public static int glassModifierID = 732;
+		public static int plasmaDrillID = 733;
+		public static int drillCasingID = 734;
 	}
 	
 	public static class research{
-		public static int cardID = 733;
-		public static int paperID = 734;
-		public static int knowledgeID = 735;
+		public static int cardID = 735;
+		public static int paperID = 736;
+		public static int knowledgeID = 737;
 	
 	}
 	
 	public static class advAtomics{
 		public static class fluid{
-			public static int plasmaID = 736;
-			public static int fluidStorageID = 737;
+			public static int plasmaID = 738;
+			public static int fluidStorageID = 739;
 		}
 	}
 	public static class advMachines{

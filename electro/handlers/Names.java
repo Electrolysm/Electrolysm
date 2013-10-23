@@ -26,6 +26,7 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.plasma, plasma.getName());
 		//LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
 		LanguageRegistry.addName(electrolysmCore.blastGlass, "Blast Proof Iron Glass");
+		LanguageRegistry.addName(electrolysmCore.modBlastGlass, "Modified Blast Proof Iron Glass");
 		LanguageRegistry.addName(electrolysmCore.plasmaDrill, "Plasma Drill");
 		LanguageRegistry.addName(electrolysmCore.diseaseGrass, "Diseased Grass");
 		LanguageRegistry.addName(electrolysmCore.spawnZS, "Spawn Zombie-Scientist");

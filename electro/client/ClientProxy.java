@@ -21,8 +21,9 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDesk.class, new RenderTileDesk());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityResearchDesk.class, new RenderTileResearchDesk());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityQuantumComp.class, new RenderTileQuantumComp());
-
-		MinecraftForgeClient.registerItemRenderer(electrolysmCore.researchDesk.blockID, new ItemRenderResearchDesk());
+		
+		RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
 					new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
 	}

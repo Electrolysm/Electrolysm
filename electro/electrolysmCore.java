@@ -19,6 +19,8 @@ import assets.electrolysm.electro.block.advMachines.injectionArm;
 import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
+import assets.electrolysm.electro.block.basic.glassModifier;
+import assets.electrolysm.electro.block.basic.modBlastGlass;
 import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
@@ -92,6 +94,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
         private static String[] glassTexture = { "","","","","","","","","","","","","","","","",""};
         public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null, false, glassTexture);
+        public static Block modBlastGlass = new modBlastGlass(IDHandler.basic.modBlastGrassID, null, false, glassTexture);
+        public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
         
         
         //Advanced atomics

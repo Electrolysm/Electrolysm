@@ -61,7 +61,7 @@ public class ModelResearchDesk extends ModelBase
     BookBack.render(f5);
   }
   
-  private void setRotation(ModelRenderer model, float x, float y, float z)
+  public void setRotation(ModelRenderer model, float x, float y, float z)
   {
     model.rotateAngleX = x;
     model.rotateAngleY = y;

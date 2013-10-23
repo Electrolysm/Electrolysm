@@ -1,16 +1,17 @@
 package assets.electrolysm.electro.block.machines;
 
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
+import assets.electrolysm.electro.client.ModelResearchDesk;
 
 public class researchDesk extends BlockContainer {
 
@@ -54,4 +55,34 @@ public class researchDesk extends BlockContainer {
             return true;
 		}
 	}
+	
+	
+	public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
+	{
+			ModelResearchDesk model = new ModelResearchDesk();
+			ModelRenderer renderer = new ModelRenderer(model);
+			
+	        int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+	
+	        if (l == 0)
+		    {
+	            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
+	            model.setRotation(renderer, l * 90, y, z);
+	        }
+	        
+		    if (l == 1)
+	        {
+	            par1World.setBlockMetadataWithNotify(x, y, z, 5, 2);
+	        }
+	
+		    if (l == 2)
+	        {
+	            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
+	        }
+	
+		    if (l == 3)
+		    {
+	           par1World.setBlockMetadataWithNotify(x, y, z, 4, 2);
+		    }
+	 }
 }
