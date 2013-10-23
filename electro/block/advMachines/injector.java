@@ -15,91 +15,110 @@ import assets.electrolysm.electro.block.advMachines.te.TileEntityInjector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class injector extends BlockContainer{
+public class injector extends BlockContainer
+{
 
-	public static String unlocalName = "injector";
-	public static String displayName = "Injector";
-	public static TileEntity te;
-	
 	@SideOnly(Side.CLIENT)
-	public Icon machineFront;
-	@SideOnly(Side.CLIENT)
-	public Icon machineSide;
-	@SideOnly(Side.CLIENT)
-	public Icon machineTop;
-	
+    private Icon furnaceIconTop;
+    @SideOnly(Side.CLIENT)
+    private Icon furnaceIconFront;
+   private boolean active;
+    
 	public injector(int id, Material mat) {
 		super(id, Material.iron);
-		
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName(this.unlocalName);
-		this.setHardness(5.0F);
+		// TODO Auto-generated constructor stub
+	this.setCreativeTab(electrolysmCore.TabElectrolysm);
+	this.setUnlocalizedName("Forge");
+	this.setHardness(3);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world)
-	{
+	public TileEntity createNewTileEntity(World world) {
+		// TODO Auto-generated method stub
 		return new TileEntityInjector();
 	}
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player,
+	        int par6, float par7, float par8, float par9)
+	        {
+	  TileEntity te = world.getBlockTileEntity(x, y, z);
+	  if(te == null || player.isSneaking())
+	  {
+	   return false;
+	  }
+	                player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+	  return true;
+	        }
 
-	public Icon getIcon(int par1, int par2)
-    {
-        return par1 == 1 ? this.machineTop : (par1 == 0 ? this.machineTop :
-        	(par1 != par2 ? this.machineSide : this.machineFront));
-    }
 
-    @SideOnly(Side.CLIENT)
 
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-        this.machineSide = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_side");
-        this.machineFront = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Front");
-        this.machineTop = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Top");
-    }
-    
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving living, ItemStack stack)
+	public static void updateFurnaceBlockState(boolean b, World worldObj,
+			int xCoord, int yCoord, int zCoord) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
 	{
-	        int l = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+	        int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 	
 	        if (l == 0)
 		    {
-	            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
 	        }
 	        
 		    if (l == 1)
 	        {
-	            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
 	        }
 	
 		    if (l == 2)
 	        {
-	            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
 	        }
 	
 		    if (l == 3)
 		    {
-	           world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+	           par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
 		    }
 	 }
-    
-	public static String getDisplayName() 
-	{
-		return displayName;
-	}
-
-	public static void updateFurnaceBlockState(boolean b, World worldObj,
-			int xCoord, int yCoord, int zCoord) {
-		
-	}
 	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+	public static void updateState(boolean active, World world, int x, int y, int z)
 	{
-		if(player.isSneaking())
-		{
-			return false;
-		}else{
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
-            return true;
-		}
+		 int metadata = world.getBlockMetadata(x, y, z);
+		 TileEntityInjector tile = (TileEntityInjector)world.getBlockTileEntity(x, y, z);
+		 
+		 if(active)
+		 {
+		 	}
+		 	else
+		 	{
+		 }
+
+		 world.setBlockMetadataWithNotify(x, y, z, metadata, 2);
+		 
+		 if(tile != null)
+		 {
+			 tile.validate();
+			 world.setBlockTileEntity(x, y, z, tile);
+		 }
 	}
+	@SideOnly(Side.CLIENT)
+    public Icon getIcon(int par1, int par2)
+    {
+        return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.furnaceIconFront : this.furnaceIconFront));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + "injector_side");
+        this.furnaceIconFront = par1IconRegister.registerIcon("Electrolysm:" + "injector_Front");
+        this.furnaceIconTop = par1IconRegister.registerIcon("Electrolysm:" + "injector_side");
+
+    }
+	
+
 }

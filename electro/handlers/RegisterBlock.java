@@ -1,16 +1,10 @@
 package assets.electrolysm.electro.handlers;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
-import net.minecraftforge.fluids.FluidRegistry;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.crafting.WorkBenchCraftingManager;
+import assets.electrolysm.electro.world.WorldGenOres;
 import assets.electrolysm.electro.world.WorldGenStructures;
-import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegisterBlock {
@@ -29,8 +23,10 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.energiser);
 		GameRegistry.registerBlock(electrolysmCore.injector);
 		//GameRegistry.registerBlock(electrolysmCore.quantumComp);
+		GameRegistry.registerBlock(electrolysmCore.graphite);
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
+		GameRegistry.registerWorldGenerator(new WorldGenOres());
 		
 		//Fluids
 		/*

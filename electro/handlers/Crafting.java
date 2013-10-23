@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Crafting {
@@ -49,7 +50,7 @@ public class Crafting {
 				Character.valueOf('X'), electrolysmCore.blastProof);
 		
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastGlass, 4),
-				"XYX", "YXY", "XYX",
+				"XYX", "Y Y", "XYX",
 				Character.valueOf('X'), electrolysmCore.blastProof,
 				Character.valueOf('Y'), Block.glass);
 		
@@ -61,19 +62,49 @@ public class Crafting {
 				Character.valueOf('Z'), Block.blockDiamond,
 				Character.valueOf('B'), Block.tnt);
 		
-		GameRegistry.addRecipe(new ItemStack(electrolysmCore.fluidStorage),
-				" X ", "Y Y", " Y ",
-				Character.valueOf('X'), electrolysmCore.blastGlass,
-				Character.valueOf('y'), electrolysmCore.blastProof);
+		for(int i = 0; i < CommonProxy.holdableFluids.length; i++)
+		{
+			GameRegistry.addRecipe(new ItemStack(electrolysmCore.fluidStorage, 4, i),
+					" X ", "Y Y", " Y ",
+					Character.valueOf('X'), electrolysmCore.blastGlass,
+					Character.valueOf('y'), electrolysmCore.blastProof);
+		}
 		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.injector),
+				"XMX", "BYN", "XMX", 
+				Character.valueOf('X'), electrolysmCore.graphite,
+				Character.valueOf('Y'), electrolysmCore.blastProof,
+				Character.valueOf('B'), Item.bucketEmpty,
+				Character.valueOf('N'), electrolysmCore.injectionArm,
+				Character.valueOf('M'), Item.diamond);
 		
-		//Temporary Only - Remove!
-		ItemStack cardL5 = new ItemStack(electrolysmCore.card, 1, 5);
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.energiser),
+				"XDX", "IYB", "XDX",
+				Character.valueOf('X'), electrolysmCore.blastProof,
+				Character.valueOf('Y'), electrolysmCore.graphite,
+				Character.valueOf('B'), Item.bucketEmpty,
+				Character.valueOf('I'), electrolysmCore.energisingRod,
+				Character.valueOf('D'), Item.diamond);
 		
-		GameRegistry.addRecipe(new ItemStack(electrolysmCore.desk),
-				"XXX", "XYX", "XXX",
-				Character.valueOf('X'), cardL5,
-				Character.valueOf('Y'), Block.bookShelf);
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.injectionArm),
+				"GBG", "CIC", " I ",
+				Character.valueOf('G'), Block.glowStone,
+				Character.valueOf('B'), Item.bucketEmpty,
+				Character.valueOf('C'), electrolysmCore.chunkGraphite,
+				Character.valueOf('I'), Item.ingotIron);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.energisingRod),
+				"ZXZ", " X ", " Y ",
+				Character.valueOf('X'), Item.ingotGold,
+				Character.valueOf('Y'), electrolysmCore.chunkGraphite,
+				Character.valueOf('Z'), electrolysmCore.graphite);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.chunkGraphite, 9), 
+				new ItemStack(electrolysmCore.graphite));
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.graphite),
+				"XXX", "XXX", "XXX",
+				Character.valueOf('X'), electrolysmCore.chunkGraphite);
 		
 		
 	}

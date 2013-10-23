@@ -39,7 +39,7 @@ public class TileEntityInjector extends TileEntity implements IInventory {
 	@Override
 	public String getInvName()
 	{
-		return "Platinum Stream Furnace";
+		return "Injector";
 	}
 
 	@Override

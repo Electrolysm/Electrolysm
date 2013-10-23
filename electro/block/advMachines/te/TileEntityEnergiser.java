@@ -39,7 +39,7 @@ public class TileEntityEnergiser extends TileEntity implements IInventory {
 	@Override
 	public String getInvName()
 	{
-		return "Platinum Stream Furnace";
+		return "Fluid Energiser";
 	}
 
 	@Override

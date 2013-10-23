@@ -19,7 +19,7 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.blastProof, "Blast Proof Iron Block");
 		LanguageRegistry.addName(electrolysmCore.blastDoor, "Blast Proof Iron Door");
 		LanguageRegistry.addName(electrolysmCore.energiser, energiser.getDisplayName());
-		LanguageRegistry.addName(electrolysmCore.injector, injector.getDisplayName());
+		LanguageRegistry.addName(electrolysmCore.injector, "Injector");
 
 		
 		LanguageRegistry.addName(electrolysmCore.plasma, plasma.getName());
@@ -30,6 +30,7 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.spawnZS, "Spawn Zombie-Scientist");
 		LanguageRegistry.addName(electrolysmCore.knowledge, "Knowledge Strip");
 		LanguageRegistry.addName(electrolysmCore.drillCasing, "Plasma Drill Casing");
+		LanguageRegistry.addName(electrolysmCore.graphite, "Graphite");
 		
 		
 		//Items

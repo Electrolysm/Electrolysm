@@ -1,23 +1,21 @@
 package assets.electrolysm.electro;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.ChestGenHooks;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
-import assets.electrolysm.electro.api.MachineBaseClass;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.biome.diseasedBiome;
 import assets.electrolysm.electro.biome.diseasedGrass;
 import assets.electrolysm.electro.biome.spawnZS;
 import assets.electrolysm.electro.block.advMachines.energiser;
+import assets.electrolysm.electro.block.advMachines.energisingRod;
 import assets.electrolysm.electro.block.advMachines.injector;
-import assets.electrolysm.electro.block.advMachines.quantumComp;
+import assets.electrolysm.electro.block.advMachines.injectionArm;
 import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
@@ -40,6 +38,8 @@ import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
+import assets.electrolysm.electro.world.chunkGraphite;
+import assets.electrolysm.electro.world.graphite;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -70,12 +70,17 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block desk = new desk(IDHandler.machines.basic.deskID, null);
         //Advanced Machines
         public static Block injector = new injector(IDHandler.advMachines.injectorID, null);
+        public static Item injectionArm = new injectionArm(IDHandler.advMachines.injectionArmID);
         
         //Research System
         public static Block researchDesk = new researchDesk(IDHandler.machines.basic.researchDeskID, null);
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
         public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
+        
+        //World Generation
+        public static BlockOre graphite = new graphite(IDHandler.worldGenOres.graphiteID);
+        public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
@@ -97,6 +102,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Machines
         //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
         public static Block energiser = new energiser(IDHandler.advMachines.energiserID, null); 
+        public static Item energisingRod = new energisingRod(IDHandler.advMachines.energisingRodID);
         //Items 
         //Tools
         public static ItemTool plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);

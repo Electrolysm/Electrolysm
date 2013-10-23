@@ -54,9 +54,9 @@ public class energiser extends BlockContainer{
 
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.machineSide = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_side");
-        this.machineFront = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Front");
-        this.machineTop = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Top");
+        this.machineSide = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_side");
+        this.machineFront = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_front");
+        this.machineTop = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_top");
     }
     
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving living, ItemStack stack)

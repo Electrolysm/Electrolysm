@@ -27,7 +27,7 @@ public class InjectorRecipes
 
 	private InjectorRecipes()
 	{	
-		this.addDoubleSmelting(new ItemStack(electrolysmCore.drillCasing), new ItemStack(electrolysmCore.fluidStorage, 1, 1),
+		this.addDoubleSmelting(new ItemStack(electrolysmCore.drillCasing), new ItemStack(electrolysmCore.fluidStorage, 16, 1),
 				new ItemStack(electrolysmCore.plasmaDrill));
 	}
 
