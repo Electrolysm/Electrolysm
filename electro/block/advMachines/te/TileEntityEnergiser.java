@@ -327,11 +327,7 @@ public class TileEntityEnergiser extends TileEntity implements IInventory {
 
 			if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD")) return 200;
 			if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD")) return 200;
-			if (i == Item.stick.itemID) return 100;
-			if (i == Item.coal.itemID) return 1600;
-			if (i == Item.bucketLava.itemID) return 20000;
-			if (i == Block.sapling.blockID) return 100;
-			if (i == Item.blazeRod.itemID) return 2400;
+			if (i == Item.bucketLava.itemID) return 1000;
 			return GameRegistry.getFuelValue(itemStack);
 		}
 	}

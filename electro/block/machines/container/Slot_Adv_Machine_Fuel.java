@@ -59,8 +59,8 @@ public class Slot_Adv_Machine_Fuel extends Slot
 	            if (var2 instanceof ItemTool && ((ItemTool) var2).getToolMaterialName().equals("WOOD")) return 200;
 	            //if (var2 instanceof ItemSword && ((ItemSword) var2).getToolMaterialName().equals("WOOD")) return 200;
 	            //if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 200;
-	            if (var1 == Item.bucketLava.itemID) return 160;
-	            if(var1 == Block.glowStone.blockID) return 100;
+	            if (var1 == Item.bucketLava.itemID) return 1000;
+	            if(var1 == Block.glowStone.blockID) return 1000;
 	            return GameRegistry.getFuelValue(par0ItemStack);
 	        }
 	    }

@@ -1,15 +1,15 @@
 package assets.electrolysm.electro.block.advMachines.container;
 
-import assets.electrolysm.electro.block.advMachines.te.TileEntityEnergiser;
-import assets.electrolysm.electro.block.machines.container.Slot_Adv_Machine_Fuel;
-import assets.electrolysm.electro.block.machines.container.SlotOutput;
-import assets.electrolysm.electro.crafting.EnergiserRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import assets.electrolysm.electro.block.advMachines.te.TileEntityEnergiser;
+import assets.electrolysm.electro.block.machines.container.SlotFluidStorage;
+import assets.electrolysm.electro.block.machines.container.SlotOutput;
+import assets.electrolysm.electro.block.machines.container.Slot_Adv_Machine_Fuel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,8 +24,8 @@ public class ContainerEnergiser extends Container
 	{
 		this.furnace = tileFurnace;
 		//																				ACROSS, UP
-		this.addSlotToContainer(new Slot(tileFurnace, TileEntityEnergiser.INGOT_SLOT_1_INDEX, 66, 17));
-		this.addSlotToContainer(new Slot(tileFurnace, TileEntityEnergiser.INGOT_SLOT_2_INDEX, 66, 52));
+		this.addSlotToContainer(new SlotFluidStorage(tileFurnace, TileEntityEnergiser.INGOT_SLOT_2_INDEX, 66, 17));
+		this.addSlotToContainer(new Slot(tileFurnace, TileEntityEnergiser.INGOT_SLOT_1_INDEX, 66, 52));
 		this.addSlotToContainer(new Slot_Adv_Machine_Fuel(tileFurnace, TileEntityEnergiser.FUEL_INVENTORY_INDEX, 24, 52));
 		this.addSlotToContainer(new SlotOutput(tileFurnace, TileEntityEnergiser.OUTPUT_INVENTORY_INDEX, 132, 35));
 

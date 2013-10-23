@@ -50,14 +50,54 @@ public class EnergiserRecipes
 		ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1.itemID, item1.getItemDamage()));
 		ItemStack outputItem2 = this.metaSmeltingList2.get(Arrays.asList(item2.itemID, item2.getItemDamage()));
 
-		if (outputItem1 == outputItem2) {
-			if (outputItem1.getItemDamage() == outputItem2.getItemDamage()) {
+		if (outputItem1 == outputItem2) 
+		{
+			if (outputItem1.getItemDamage() == outputItem2.getItemDamage()) 
+			{
 				return outputItem1;
-			} else {
+			}
+			else
+			{
+				ItemStack outputItem3 = this.metaSmeltingList1.get(Arrays.asList(item2.itemID, item2.getItemDamage()));
+				ItemStack outputItem4 = this.metaSmeltingList2.get(Arrays.asList(item1.itemID, item1.getItemDamage()));
+				
+				if(outputItem3 == outputItem4)
+				{
+					if(outputItem3.getItemDamage() == outputItem4.getItemDamage())
+					{
+						return outputItem3;
+					}
+					else
+					{
+						return null;
+					}
+				}
+				else
+				{
+					return null;
+				}
+			}
+		}
+		else
+		{
+			ItemStack outputItem3 = this.metaSmeltingList1.get(Arrays.asList(item2.itemID, item2.getItemDamage()));
+			ItemStack outputItem4 = this.metaSmeltingList2.get(Arrays.asList(item1.itemID, item1.getItemDamage()));
+			
+			if(outputItem3 == outputItem4)
+			{
+				if(outputItem3.getItemDamage() == outputItem4.getItemDamage())
+				{
+					return outputItem3;
+				}
+				else
+				{
+					return null;
+				}
+			}
+			else
+			{
 				return null;
 			}
-		} else {
-			return null;
 		}
 	}
 

@@ -6,6 +6,7 @@ import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.block.advMachines.energiser;
 import assets.electrolysm.electro.block.advMachines.injector;
 import assets.electrolysm.electro.block.advMachines.quantumComp;
+import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.research.Research;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -31,6 +32,9 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.knowledge, "Knowledge Strip");
 		LanguageRegistry.addName(electrolysmCore.drillCasing, "Plasma Drill Casing");
 		LanguageRegistry.addName(electrolysmCore.graphite, "Graphite");
+		LanguageRegistry.addName(electrolysmCore.chunkGraphite, "Graphite Chunk");
+		LanguageRegistry.addName(electrolysmCore.injectionArm, "Injection Arm");
+		LanguageRegistry.addName(electrolysmCore.energisingRod, "Energising Filament");
 		
 		
 		//Items
@@ -40,6 +44,11 @@ public class Names {
 		}
 		LanguageRegistry.addName(electrolysmCore.card, "ID Card");
 		
+		for(int i = 0; i < CommonProxy.holdableFluids.length; i++)
+		{
+			LanguageRegistry.addName(new ItemStack(electrolysmCore.fluidStorage, 1, i),
+					"Strengthened Fluid Storage Capsule");
+		}
 	}
 
 }

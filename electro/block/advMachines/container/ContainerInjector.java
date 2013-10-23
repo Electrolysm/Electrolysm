@@ -7,6 +7,7 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityInjector;
+import assets.electrolysm.electro.block.machines.container.SlotFluidStorage;
 import assets.electrolysm.electro.block.machines.container.Slot_Adv_Machine_Fuel;
 import assets.electrolysm.electro.block.machines.container.SlotOutput;
 import assets.electrolysm.electro.crafting.InjectorRecipes;
@@ -23,9 +24,9 @@ public class ContainerInjector extends Container
 	public ContainerInjector(InventoryPlayer inventoryPlayer, TileEntityInjector tileFurnace)
 	{
 		this.furnace = tileFurnace;
-		//																				ACROSS, UP
-		this.addSlotToContainer(new Slot(tileFurnace, TileEntityInjector.INGOT_SLOT_1_INDEX, 28 * 2, 17));
-		this.addSlotToContainer(new Slot(tileFurnace, TileEntityInjector.INGOT_SLOT_2_INDEX, 28 * 2, 52));
+		//																			  		ACROSS, UP
+		this.addSlotToContainer(new SlotFluidStorage(tileFurnace, TileEntityInjector.INGOT_SLOT_2_INDEX, 56, 17));
+		this.addSlotToContainer(new Slot(tileFurnace, TileEntityInjector.INGOT_SLOT_1_INDEX, 56, 52));
 		this.addSlotToContainer(new Slot_Adv_Machine_Fuel(tileFurnace, TileEntityInjector.FUEL_INVENTORY_INDEX, 36, 34));
 		this.addSlotToContainer(new SlotOutput(tileFurnace, TileEntityInjector.OUTPUT_INVENTORY_INDEX, 115, 35));
 
