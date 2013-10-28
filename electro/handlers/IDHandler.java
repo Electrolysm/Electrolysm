@@ -70,4 +70,8 @@ public class IDHandler {
 		public static int graphiteID = 780;
 		public static int chuckGraphiteID = 781;
 	}
+	
+	public static class craftingitems{
+		public static int copperwireID = 800;
+	}
 }

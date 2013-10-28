@@ -106,6 +106,12 @@ public class Crafting {
 				"XXX", "XXX", "XXX",
 				Character.valueOf('X'), electrolysmCore.chunkGraphite);
 		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.copperwire) ,
+		"WWW" , "CCC" , "WWW",
+		Character.valueOf('W'), Block.cloth,
+		Character.valueOf('C'), electrolysmCore.copper) ;
+				
+		
 		
 	}
 
