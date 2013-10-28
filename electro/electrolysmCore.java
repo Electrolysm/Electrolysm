@@ -25,7 +25,6 @@ import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
-import assets.electrolysm.electro.craftingitems.copperwire;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
 import assets.electrolysm.electro.handlers.GUIHandler;
@@ -40,6 +39,7 @@ import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.powerSystem.TEUDetector;
+import assets.electrolysm.electro.powerSystem.copperwire;
 import assets.electrolysm.electro.powerSystem.wireGold;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
@@ -78,10 +78,6 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Advanced Machines
         public static Block injector = new injector(IDHandler.advMachines.injectorID, null);
         public static Item injectionArm = new injectionArm(IDHandler.advMachines.injectionArmID);
-        
-        //Crafting Items
-        public static Item copperwire = new copperwire(IDHandler.craftingitems.copperwireID);
-        
         
         //Research System
         public static Block researchDesk = new researchDesk(IDHandler.machines.basic.researchDeskID, null);
@@ -125,6 +121,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Power System
         public static Item TEUDetector = new TEUDetector(IDHandler.powerGrid.TEUDetectorID);
         public static Block wireGold = new wireGold(IDHandler.powerGrid.wireGoldID, null);
+        public static Item copperwire = new copperwire(IDHandler.powerGrid.copperwireID);
+
         
         /*
 		//Robots	
