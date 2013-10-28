@@ -114,7 +114,7 @@ public class Crafting {
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.copperwire) ,
 				"WWW" , "CCC" , "WWW",
 				Character.valueOf('W'), Block.cloth,
-				Character.valueOf('C'), electrolysmCore.copperwire) ;
+				Character.valueOf('C'), electrolysmCore.copperIngot) ;
 				
 		
 		
