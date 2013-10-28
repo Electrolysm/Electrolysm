@@ -70,6 +70,7 @@ public class IDHandler {
 		public static int graphiteID = 780;
 		public static int chuckGraphiteID = 781;
 		public static int copperIngotID = 782;
+		public static int copperOreID = 783; 
 	}
 	
 

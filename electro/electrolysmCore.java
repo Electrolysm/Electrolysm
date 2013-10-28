@@ -45,6 +45,8 @@ import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
 import assets.electrolysm.electro.world.chunkGraphite;
+import assets.electrolysm.electro.world.copperIngot;
+import assets.electrolysm.electro.world.copperOre;
 import assets.electrolysm.electro.world.graphite;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -89,6 +91,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static BlockOre graphite = new graphite(IDHandler.worldGenOres.graphiteID);
         public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
         public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
+        public static BlockOre copperOre = new copperOre(IDHandler.worldGenOres.copperOreID);
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
