@@ -98,6 +98,7 @@ public class Crafting {
 				"XXX", "XXX", "XXX",
 				Character.valueOf('X'), electrolysmCore.chunkGraphite);
 		
+<<<<<<< HEAD
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastProof, 2),
 				"XYX", "YZY", "XYX",
 				Character.valueOf('X'), Block.blockIron,
@@ -109,6 +110,13 @@ public class Crafting {
 				Character.valueOf('X'), Item.ingotIron,
 				Character.valueOf('G'), Item.ingotGold,
 				Character.valueOf('Y'), Item.stick);
+=======
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.copperwire) ,
+		"WWW" , "CCC" , "WWW",
+		Character.valueOf('W'), Block.cloth,
+		Character.valueOf('C'), electrolysmCore.copper) ;
+				
+>>>>>>> refs/remotes/origin/master
 		
 		
 	}

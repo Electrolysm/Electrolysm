@@ -71,9 +71,14 @@ public class IDHandler {
 		public static int chuckGraphiteID = 781;
 	}
 	
+<<<<<<< HEAD
 	public static class powerGrid
 	{
 		public static int TEUDetectorID = 800;
 		public static int wireGoldID = 801;
+=======
+	public static class craftingitems{
+		public static int copperwireID = 800;
+>>>>>>> refs/remotes/origin/master
 	}
 }
