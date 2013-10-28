@@ -88,6 +88,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         //World Generation
         public static BlockOre graphite = new graphite(IDHandler.worldGenOres.graphiteID);
         public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
+        public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);

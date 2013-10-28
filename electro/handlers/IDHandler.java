@@ -69,6 +69,7 @@ public class IDHandler {
 	public static class worldGenOres{
 		public static int graphiteID = 780;
 		public static int chuckGraphiteID = 781;
+		public static int copperIngot = 782;
 	}
 	
 
