@@ -25,6 +25,8 @@ public class RegisterBlock {
 		//GameRegistry.registerBlock(electrolysmCore.quantumComp);
 		GameRegistry.registerBlock(electrolysmCore.graphite);
 		GameRegistry.registerBlock(electrolysmCore.modBlastGlass);
+		GameRegistry.registerBlock(electrolysmCore.wireGold);
+		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
 		GameRegistry.registerWorldGenerator(new WorldGenOres());
@@ -40,9 +42,11 @@ public class RegisterBlock {
 			);*/
 		
 		//Adding knowledge to dungeon chests
+		
 		WeightedRandomChestContent itemChest = new WeightedRandomChestContent(electrolysmCore.knowledge.itemID,
         		0, 1, 2, 0);
         ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, itemChest);
+        
         //End
 	}
 

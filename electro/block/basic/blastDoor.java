@@ -36,7 +36,7 @@ public class blastDoor extends blastProof {
 		TileEntityBlastDoor te = new TileEntityBlastDoor();
     	if(player.getHeldItem() == null)
     	{
-    		te.tpThrough(world, player, x, y, z, blockID);
+    		te.tpThrough(player, x, y, z);
     	}
     	
 		return true;

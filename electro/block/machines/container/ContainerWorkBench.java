@@ -1,6 +1,7 @@
 package assets.electrolysm.electro.block.machines.container;
 
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.handlers.IDHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -89,7 +90,7 @@ public class ContainerWorkBench extends Container
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
              return this.worldObj.getBlockId(this.posX, this.posY, this.posZ) != 
-            	electrolysmCore.workBench.blockID ? false : par1EntityPlayer.getDistanceSq
+            	IDHandler.machines.basic.workBenchID ? false : par1EntityPlayer.getDistanceSq
             			((double)this.posX + 0.5D, 
             					(double)this.posY + 0.5D, (double)this.posZ + 0.5D) <= 64.0D;
     }

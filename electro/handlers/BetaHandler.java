@@ -15,7 +15,7 @@ public class BetaHandler {
 		
 		if(configHandler.modID.contains("gamer"))
 		{
-		return false;
+			return false;
 		}
 		
 		return false;

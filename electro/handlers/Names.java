@@ -19,11 +19,11 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.researchDesk, "Research Desk");
 		LanguageRegistry.addName(electrolysmCore.blastProof, "Blast Proof Iron Block");
 		LanguageRegistry.addName(electrolysmCore.blastDoor, "Blast Proof Iron Door");
-		LanguageRegistry.addName(electrolysmCore.energiser, energiser.getDisplayName());
+		LanguageRegistry.addName(electrolysmCore.energiser, "Fluid Energiser");
 		LanguageRegistry.addName(electrolysmCore.injector, "Injector");
 
 		
-		LanguageRegistry.addName(electrolysmCore.plasma, plasma.getName());
+		//LanguageRegistry.addName(electrolysmCore.plasma, "Liquid Plasma");
 		//LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
 		LanguageRegistry.addName(electrolysmCore.blastGlass, "Blast Proof Iron Glass");
 		LanguageRegistry.addName(electrolysmCore.modBlastGlass, "Modified Blast Proof Iron Glass");
@@ -36,6 +36,7 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.chunkGraphite, "Graphite Chunk");
 		LanguageRegistry.addName(electrolysmCore.injectionArm, "Injection Arm");
 		LanguageRegistry.addName(electrolysmCore.energisingRod, "Energising Filament");
+		LanguageRegistry.addName(electrolysmCore.glassModifire, "Glass Modifier");
 		
 		
 		//Items
@@ -45,11 +46,13 @@ public class Names {
 		}
 		LanguageRegistry.addName(electrolysmCore.card, "ID Card");
 		
-		for(int i = 0; i < CommonProxy.holdableFluids.length; i++)
+		for(int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i++)
 		{
 			LanguageRegistry.addName(new ItemStack(electrolysmCore.fluidStorage, 1, i),
 					"Strengthened Fluid Storage Capsule");
 		}
+	
+	
 	}
 
 }

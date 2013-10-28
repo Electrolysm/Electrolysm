@@ -21,9 +21,7 @@ public class plasma extends BlockFluidClassic {
 
     public plasma(int id) {
             super(id, new ModFluidPlasma(), Material.water);
-            GameRegistry.registerBlock(this);
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setHardness(0.0F);
             this.setUnlocalizedName("fluidPlasma");
     }
     @Override
@@ -47,10 +45,4 @@ public class plasma extends BlockFluidClassic {
         this.flowing = register.registerIcon("electrolysm:" + "plasma");
         this.still = register.registerIcon("electrolysm:" + "plasma_still");
     }
-    
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
-    {
-    }
-
-   
 }

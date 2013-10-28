@@ -1,7 +1,10 @@
 package assets.electrolysm.electro.block.advMachines.gui;
 
+import java.util.List;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
@@ -50,5 +53,4 @@ public class GUIEnergiser extends GuiContainer
         i1 = this.inventoryFurnace.getCookProgressScaled(49);
         this.drawTexturedModalRect(xStart + 65, yStart + 35, 176, 14, i1 + 1, 41);
 	}
-
 }

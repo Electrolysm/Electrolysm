@@ -1,20 +1,17 @@
 package assets.electrolysm.electro.block.basic.te;
 
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.block.basic.blastDoor;
-import assets.electrolysm.electro.client.ClientProxy;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityBlastDoor extends TileEntity {
 
 	public boolean clicked;
 	public String username;
-	blastDoor block = new blastDoor(electrolysmCore.blastDoor.blockID, null);
 	 /**
      * Reads a tile entity from NBT.
      */
@@ -29,7 +26,7 @@ public class TileEntityBlastDoor extends TileEntity {
     {
     }
 	
-	public void tpThrough(World world, EntityPlayer player, int x, int y, int z, int blockID)
+	public void tpThrough(EntityPlayer player, int x, int y, int z)
 	{
 		if(player.getHeldItem() == null)
 		{
@@ -58,8 +55,6 @@ public class TileEntityBlastDoor extends TileEntity {
             }
             
             player.setPosition(x + xBlock, y + 1, z + zBlock);
-            String accessAllowed = "Access Granted";
-    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(accessAllowed);
     	}
 	}
 }

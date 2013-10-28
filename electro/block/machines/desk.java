@@ -54,13 +54,14 @@ public class desk extends BlockContainer {
 			}
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-	{
+	{/*
 		ItemStack stack = player.getHeldItem();
 		if(stack == new ItemStack(electrolysmCore.researchPaper))
 		{
 			stack.setItemDamage(stack.getItemDamage() - 1);
 		}
-		return true;
+		return true;*/
+		return false;
 	}
 
 }

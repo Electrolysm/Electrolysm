@@ -11,6 +11,8 @@ public class graphite extends BlockOre {
 		
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("graphite");
+		this.setHardness(5.0F);
+		this.setResistance(5.0F);
 	}
 
 	

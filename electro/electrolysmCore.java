@@ -33,10 +33,13 @@ import assets.electrolysm.electro.handlers.Names;
 import assets.electrolysm.electro.handlers.Referance;
 import assets.electrolysm.electro.handlers.Register;
 import assets.electrolysm.electro.handlers.RegisterBlock;
+import assets.electrolysm.electro.handlers.ResearchHandler;
 import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
+import assets.electrolysm.electro.powerSystem.TEUDetector;
+import assets.electrolysm.electro.powerSystem.wireGold;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
@@ -58,13 +61,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 	@Mod(modid=Referance.MOD_REF.MOD_ID, name=Referance.MOD_REF.MOD_ID, version= Referance.MOD_REF.VERSION)
  
-	@NetworkMod(channels = { Referance.MOD_REF.CHANNEL }, clientSideRequired = true, serverSideRequired = false, packetHandler = packetHandler.class)
+	@NetworkMod(channels = { Referance.MOD_REF.CHANNEL }, clientSideRequired = true, serverSideRequired = true, packetHandler = packetHandler.class)
 
 	public class electrolysmCore {
 
 		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
 
 		public static GUIHandler guiHandler = new GUIHandler();
+		
 		@Instance("Electrolysm")
 		public static electrolysmCore GUIInstance;
 		//Basic Machines
@@ -89,6 +93,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block diseaseGrass = new diseasedGrass(IDHandler.basic.diseasedGrassID, null);
 		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.basic.biomeID);
         public BiomeGenBase diseasedBiome = diseasedBiomeObj;
+
         //Security
         public static Block blastProof = new blastProof(IDHandler.basic.blastProofID, null);
         public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
@@ -109,11 +114,15 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item energisingRod = new energisingRod(IDHandler.advMachines.energisingRodID);
         //Items 
         //Tools
-        public static ItemTool plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
+        public static Item plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
         public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
         
-        /*9
-		//Robots
+        //Power System
+        public static Item TEUDetector = new TEUDetector(IDHandler.powerGrid.TEUDetectorID);
+        public static Block wireGold = new wireGold(IDHandler.powerGrid.wireGoldID, null);
+        
+        /*
+		//Robots	
         //Parts
         public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
         public static Item wire = new wire(IDHandler.robotics.wireID);
@@ -154,10 +163,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 		@EventHandler
 		public void loadConfiguration(FMLPreInitializationEvent evt){
 	    
-		Crafting.addCrafting();
+		Crafting.addCrafting(); 
 		RegisterBlock.register();
 		Names.addName();
 		Register.addAchievementLocalizations();
+		ResearchHandler.getOnlineResearch();
 	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 	    GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
@@ -172,7 +182,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 	    public void load(FMLInitializationEvent event) {
 	        ClientProxy ClientProxy = new ClientProxy();
 	        ClientProxy.registerRenderThings();
-	}
+		} 
 }
 
  				

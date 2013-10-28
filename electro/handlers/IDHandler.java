@@ -70,4 +70,10 @@ public class IDHandler {
 		public static int graphiteID = 780;
 		public static int chuckGraphiteID = 781;
 	}
+	
+	public static class powerGrid
+	{
+		public static int TEUDetectorID = 800;
+		public static int wireGoldID = 801;
+	}
 }

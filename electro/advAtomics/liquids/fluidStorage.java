@@ -30,18 +30,18 @@ public class fluidStorage extends Item {
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		int dmg = stack.getItemDamage();
-		return "fluidStorage_" + CommonProxy.holdableFluids[dmg];
+		return "fluidStorage_" + CommonProxy.HOLDABLE_FLUIDS[dmg];
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister reg)
 	{
-		fluidIcons = new Icon[CommonProxy.holdableFluids.length];
+		fluidIcons = new Icon[CommonProxy.HOLDABLE_FLUIDS.length];
 		
-		for(int i = 0; i < CommonProxy.holdableFluids.length; i ++)
+		for(int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i ++)
 		{
-			fluidIcons[i] = reg.registerIcon("electrolysm:fluidStorage/" + "fluidStorage_" + CommonProxy.holdableFluids[i]);
+			fluidIcons[i] = reg.registerIcon("electrolysm:fluidStorage/" + "fluidStorage_" + CommonProxy.HOLDABLE_FLUIDS[i]);
 		}
 	}
    
@@ -58,14 +58,14 @@ public class fluidStorage extends Item {
     	{
     		if(stack.getItemDamage() == i)
     		{
-    			list.add("Holding 1000mB of: " + CommonProxy.holdableFluids[i]);
+    			list.add("Holding 1000mB of: " + CommonProxy.HOLDABLE_FLUIDS[i]);
     		}
     	}
     }
 	
     public void getSubItems(int id, CreativeTabs creativeTab, List list)
     {
-    	for(int i = 0; i < CommonProxy.holdableFluids.length; i++)
+    	for(int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i++)
     	{
     		list.add(new ItemStack(electrolysmCore.fluidStorage, 1, i));
     	}

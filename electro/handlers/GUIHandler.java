@@ -40,6 +40,7 @@ public class GUIHandler implements IGuiHandler{
 		}
 		
 		//Crafting
+		
 		switch(ID)
 		{
 		case 0: return ID == 0 && world.getBlockId(x, y, z) == electrolysmCore.workBench.blockID ? 
@@ -69,11 +70,13 @@ public class GUIHandler implements IGuiHandler{
 		}
 		
 		//Crafting
+		
 		switch(ID)
 		{
 		case 0: return ID == 0 && world.getBlockId(x, y, z) == electrolysmCore.workBench.blockID ?
 				new GUIWorkBench(player.inventory, world, x, y, z) : null;
 		}
+		
 		return null;
 	}
 

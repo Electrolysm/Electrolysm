@@ -24,10 +24,10 @@ public class Crafting {
 				Character.valueOf('X'), Block.workbench,
 				Character.valueOf('Y'), Item.ingotIron);
 		
-		GameRegistry.addRecipe(new ItemStack(electrolysmCore.card, 1, 1),
-				"   ", "XYX", "   ",
-				Character.valueOf('X'), Item.stick,
-				Character.valueOf('Y'), Item.paper);
+		GameRegistry.addShapedRecipe(new ItemStack(electrolysmCore.card, 1, 1),
+				"XYX",
+				Character.valueOf('Y'), new ItemStack(Item.paper),
+				Character.valueOf('X'), new ItemStack(Item.stick));
 
 		for(int i = 1; i <= 9; i++)
 		{
@@ -38,12 +38,6 @@ public class Crafting {
 					Character.valueOf('X'), electrolysmCore.knowledge,
 					Character.valueOf('Z'), cardLevels);
 		}
-		
-		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastProof, 2),
-				"XYX", "YZY", "XYX",
-				Character.valueOf('X'), Block.blockIron,
-				Character.valueOf('Y'), Block.stone,
-				Character.valueOf('Z'), new ItemStack(electrolysmCore.researchPaper, 1, 0));
 		
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastDoor),
 				"XX", "XX", "XX",
@@ -62,13 +56,11 @@ public class Crafting {
 				Character.valueOf('Z'), Block.blockDiamond,
 				Character.valueOf('B'), Block.tnt);
 		
-		for(int i = 0; i < CommonProxy.holdableFluids.length; i++)
-		{
-			GameRegistry.addRecipe(new ItemStack(electrolysmCore.fluidStorage, 4, i),
-					" X ", "Y Y", " Y ",
-					Character.valueOf('X'), electrolysmCore.blastGlass,
-					Character.valueOf('y'), electrolysmCore.blastProof);
-		}
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.fluidStorage, 4),
+				" X ", "Y Y", " Y ",
+				Character.valueOf('X'), electrolysmCore.blastGlass,
+				Character.valueOf('Y'), electrolysmCore.blastProof);
+		
 		
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.injector),
 				"XMX", "BYN", "XMX", 
@@ -105,6 +97,18 @@ public class Crafting {
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.graphite),
 				"XXX", "XXX", "XXX",
 				Character.valueOf('X'), electrolysmCore.chunkGraphite);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastProof, 2),
+				"XYX", "YZY", "XYX",
+				Character.valueOf('X'), Block.blockIron,
+				Character.valueOf('Y'), Block.stone,
+				Character.valueOf('Z'), new ItemStack(electrolysmCore.researchPaper, 1, 0));  
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.glassModifire),
+				"XGX", " Y ", "Y",
+				Character.valueOf('X'), Item.ingotIron,
+				Character.valueOf('G'), Item.ingotGold,
+				Character.valueOf('Y'), Item.stick);
 		
 		
 	}

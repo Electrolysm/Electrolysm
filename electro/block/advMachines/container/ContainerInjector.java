@@ -24,7 +24,7 @@ public class ContainerInjector extends Container
 	public ContainerInjector(InventoryPlayer inventoryPlayer, TileEntityInjector tileFurnace)
 	{
 		this.furnace = tileFurnace;
-		//																			  		ACROSS, UP
+		//																			  					ACROSS, UP
 		this.addSlotToContainer(new SlotFluidStorage(tileFurnace, TileEntityInjector.INGOT_SLOT_2_INDEX, 56, 17));
 		this.addSlotToContainer(new Slot(tileFurnace, TileEntityInjector.INGOT_SLOT_1_INDEX, 56, 52));
 		this.addSlotToContainer(new Slot_Adv_Machine_Fuel(tileFurnace, TileEntityInjector.FUEL_INVENTORY_INDEX, 36, 34));

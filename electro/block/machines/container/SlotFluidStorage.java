@@ -1,6 +1,7 @@
 package assets.electrolysm.electro.block.machines.container;
 
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.handlers.IDHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -41,10 +42,8 @@ public class SlotFluidStorage extends Slot
 	        {
 	        	return true;
 	        }
-	        else
-	        {
-	        	return false;
-	        }
+
+	        return false;
 	    }
 
 }

@@ -20,7 +20,7 @@ public class CommonProxy {
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
 
-	public static String[] holdableFluids = {"Empty", "Plasma"};
+	public static String[] HOLDABLE_FLUIDS = {"Empty", "Plasma"};
 	
 	//MOBs
 	public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
