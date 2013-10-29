@@ -43,6 +43,7 @@ public class IDHandler {
 		public static int glassModifierID = 732;
 		public static int plasmaDrillID = 733;
 		public static int drillCasingID = 734;
+		public static int hammerID = 735;
 	}
 	
 	public static class research{

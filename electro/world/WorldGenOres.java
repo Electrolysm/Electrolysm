@@ -26,6 +26,20 @@ public class WorldGenOres implements IWorldGenerator{
 			int zCoord = chunkZ + random.nextInt(16);
 
 			(new WorldGenMinable(electrolysmCore.graphite.blockID, 6)).generate(world, random, xCoord, yCoord, zCoord);
+			
+		}
+
+	}
+    //Copper Ore Generation
+	private void generateSurface1(World world, Random random, int chunkX, int chunkZ){
+		for(int i = 0; i < 10; i++){
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(11);
+			int zCoord = chunkZ + random.nextInt(16);
+
+			(new WorldGenMinable(electrolysmCore.copperOre.blockID, 6)).generate(world, random, xCoord, yCoord, zCoord);
+			
+			
 		}
 	}
 }

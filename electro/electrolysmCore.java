@@ -20,6 +20,7 @@ import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
 import assets.electrolysm.electro.block.basic.glassModifier;
+import assets.electrolysm.electro.block.basic.hammer;
 import assets.electrolysm.electro.block.basic.modBlastGlass;
 import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
@@ -107,6 +108,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block modBlastGlass = new modBlastGlass(IDHandler.basic.modBlastGrassID, null, false, glassTexture);
         public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
         
+        //Tools
+        public static Item hammer = new hammer(IDHandler.basic.hammerID);
         
         //Advanced atomics
         //Liquids
