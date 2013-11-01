@@ -92,12 +92,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         //World Generation
         public static BlockOre graphite = new graphite(IDHandler.worldGenOres.graphiteID);
         public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
-<<<<<<< Updated upstream
         public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
         public static BlockOre copperOre = new copperOre(IDHandler.worldGenOres.copperOreID);
-=======
-        //public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
->>>>>>> Stashed changes
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
