@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.biome.BiomeGenBase;
+import assets.electrolysm.api.power.PowerHandler;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
@@ -91,8 +92,12 @@ import cpw.mods.fml.relauncher.SideOnly;
         //World Generation
         public static BlockOre graphite = new graphite(IDHandler.worldGenOres.graphiteID);
         public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
+<<<<<<< Updated upstream
         public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
         public static BlockOre copperOre = new copperOre(IDHandler.worldGenOres.copperOreID);
+=======
+        //public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
+>>>>>>> Stashed changes
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
@@ -167,6 +172,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         configHandler.init(event.getSuggestedConfigurationFile());
 		VersionCheck.check();
 		BetaHandler.beta();
+		PowerHandler.loadMap();
 
         }
         

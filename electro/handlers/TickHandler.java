@@ -31,7 +31,7 @@ public class TickHandler implements ITickHandler{
 		{
 			if(times <= 0)
 			{
-				FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(VersionCheck.chatMessage);
+				//FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(VersionCheck.chatMessage);
 				times = 100;
 			}
 	}

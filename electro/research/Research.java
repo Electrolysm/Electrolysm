@@ -44,6 +44,7 @@ public class Research
         this.addResearch(Block.blockIron.blockID,new ItemStack(electrolysmCore.researchPaper, 1, 0), 1);
         this.addResearch(Item.fishRaw.itemID, new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
         this.addResearch(Item.fishCooked.itemID, new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
+        this.addResearch(Item.appleGold.itemID, new ItemStack(electrolysmCore.researchPaper, 1, 0), 2);
     }
     
     
@@ -86,4 +87,16 @@ public class Research
         	return null;
         }
     }
+	
+	public static int cardToDesk(int itemDamage)
+	{
+		if(itemDamage == 1)
+		{
+			return 0;
+		}
+		int result = itemDamage * 3;
+		result = (int)result + 2;
+		
+		return (int)result;
+	}
 }

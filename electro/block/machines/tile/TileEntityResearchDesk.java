@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.research.Research;
 
 public class TileEntityResearchDesk extends TileEntity implements IInventory {
@@ -111,13 +112,28 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 	@Override
     public void updateEntity() 
 	{
-		
+		int deskID = electrolysmCore.desk.blockID;
+		int desksClose = 0;
 		ItemStack inStack = getStackInSlot(0);
 		ItemStack card = getStackInSlot(2);
 		ItemStack output = getStackInSlot(1);
 		ItemStack result = Research.research().getResearch(inStack, card);
 		
 		Random rand = new Random();
+		
+		for(int x = -2; x <= 2; x++)
+		{
+			for(int z = -2; z <= 2; z++)
+			{
+				for(int y = 0; y <= 1; y++)
+				{
+					if(worldObj.getBlockId(xCoord + x, yCoord + y, zCoord + z) == deskID)
+					{
+						desksClose = desksClose + 1;
+					}
+				}
+			}
+		}
 		
 		if(card != null)
 		{
@@ -129,12 +145,15 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 					{
 						if(inStack.stackSize >= 10)
 						{
-							decrStackSize(0, rand.nextInt(10));
-							if(rand.nextInt(card.getItemDamage() + 1) == 1)
+							if(desksClose <= Research.cardToDesk(card.getItemDamage()))
 							{
-								setInventorySlotContents(1, result);
+								decrStackSize(0, rand.nextInt(10));
+								if(rand.nextInt(card.getItemDamage() + 1) == 1)
+								{
+									setInventorySlotContents(1, result);
+								}
+								onInventoryChanged();
 							}
-							onInventoryChanged();
 						}
 					}
 				}
@@ -165,5 +184,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 	}
 		return 0;
 	}*/
+
+
 }
 

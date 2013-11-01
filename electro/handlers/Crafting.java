@@ -110,13 +110,13 @@ public class Crafting {
 				Character.valueOf('X'), Item.ingotIron,
 				Character.valueOf('G'), Item.ingotGold,
 				Character.valueOf('Y'), Item.stick);
-
+/*
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.copperwire) ,
 				"WWW" , "CCC" , "WWW",
 				Character.valueOf('W'), Block.cloth,
 				Character.valueOf('C'), electrolysmCore.copperIngot) ;
 				
-		
+		*/
 		
 	}
 

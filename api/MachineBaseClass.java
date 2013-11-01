@@ -1,4 +1,4 @@
-package assets.electrolysm.electro.api;
+package assets.electrolysm.api;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

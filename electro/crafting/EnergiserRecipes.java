@@ -1,7 +1,5 @@
 package assets.electrolysm.electro.crafting;
 
-import ic2.api.item.Items;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

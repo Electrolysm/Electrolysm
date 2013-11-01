@@ -2,16 +2,15 @@ package assets.electrolysm.electro.research;
 
 import java.util.List;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import assets.electrolysm.electro.electrolysmCore;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class card extends Item{
 	
@@ -61,6 +60,8 @@ public class card extends Item{
     	int cardLevel = stack.getItemDamage();
     	
     	list.add(playerName + "'s current level is: " + cardLevel);
+    	list.add("You require " + Research.cardToDesk(stack.getItemDamage()) + "Desks to complete " +
+    			"level " + stack.getItemDamage() + " research.");
     }
     
     

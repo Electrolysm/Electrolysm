@@ -1,11 +1,14 @@
 package assets.electrolysm.electro.powerSystem;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import assets.electrolysm.api.power.PowerConductor;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.api.power.PowerConductor;
+import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 
 public class TEUDetector extends Item {
 
@@ -20,15 +23,20 @@ public class TEUDetector extends Item {
 	
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
     {
-		PowerConductor te = (PowerConductor)world.getBlockTileEntity(x, y, z);
+		TileEntity te = world.getBlockTileEntity(x, y, z);
+		PowerConductor wireTE;
 		
-		if(world.getBlockId(x, y,z ) == electrolysmCore.wireGold.blockID)
+		if(te instanceof PowerConductor && !player.isSneaking())
 		{
-			te.getHeldTEU();
-			System.out.print(te.getHeldTEU());
+			wireTE = (PowerConductor)te;
+			FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(wireTE.getHeldTEU(wireTE) + "");
 			return true;
 		}
-		
+		if(te instanceof PowerConductor && player.isSneaking())
+		{
+			wireTE = (PowerConductor)te;
+			wireTE.setTEU(wireTE.getHeldTEU(wireTE) + 10);
+		}
 		return false;
     }
 }
