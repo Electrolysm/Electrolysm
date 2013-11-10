@@ -1,57 +1,128 @@
 package assets.electrolysm.electro.handlers;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.InvalidPropertiesFormatException;
-import java.util.Properties;
+import java.net.URLConnection;
 
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.Configuration;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-public class ResearchHandler {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
-    private static ResearchHandler instance = new ResearchHandler();
+public class ResearchHandler{
 
-    // The (publicly available) remote Research number authority file
-    private static final String REMOTE_Research_XML_FILE = "https://raw.github.com/pahimar/Equivalent-Exchange-3/master/Research.xml";
+	public static String downloadOnlineResearch()
+	{
+		    URL oURL;
+		    URLConnection oConnection;
+		    BufferedReader oReader;
+		    String sLine;
+		    StringBuilder sbResponse;
+		    String sResponse = null;
 
-    public static Properties remoteResearchProperties = new Properties();
+		    try
+		    {
+		        oURL = new URL("");
+		        oConnection = oURL.openConnection();
+		        oReader = new BufferedReader(new InputStreamReader(oConnection.getInputStream()));
+		        sbResponse = new StringBuilder();
 
-    // All possible results of the remote Research number check
-    public static final byte UNINITIALIZED = 0;
-    public static final byte CURRENT = 1;
-    public static final byte OUTDATED = 2;
-    public static final byte ERROR = 3;
-    public static final byte FINAL_ERROR = 4;
-    public static final byte MC_Research_NOT_FOUND = 5;
+		        while((sLine = oReader.readLine()) != null)
+		        {
+		            sbResponse.append(sLine);
+		        }
 
-    // Var to hold the result of the remote Research check, initially set to uninitialized
-    private static byte result = UNINITIALIZED;
-    public static String remoteResearch = null;
-    public static String remoteUpdateLocation;
+		        sResponse = sbResponse.toString();
+		    }
+		    catch(Exception e)
+		    {
+		        e.printStackTrace();
+		    }
 
-    
-    /***
-     * Checks the Research of the currently running instance of the mod against
-     * the remote Research authority, and sets the result of the check
-     * appropriately
-     */
-    
-    public static void getOnlineResearch() 
-    {
-        InputStream remoteResearchRepoStream = null;
-        result = UNINITIALIZED;
+		    return sResponse;
+	}
+	
+    public static void getStoredResearch(){
+    try {
 
-        try 
-        {
-            URL remoteResearchURL = new URL(REMOTE_Research_XML_FILE);
-            remoteResearchRepoStream = remoteResearchURL.openStream();
-            remoteResearchProperties.loadFromXML(remoteResearchRepoStream);
-		}
-        catch(IOException e) 
-		{
-			e.printStackTrace();
-		}
-    }
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+            Document doc = docBuilder.parse (new File("config/OnlineResearch/book.xml"));
+
+            // normalize text representation
+            doc.getDocumentElement ().normalize ();
+            System.out.println ("Root element of the doc is " + 
+                 doc.getDocumentElement().getNodeName());
+
+
+            NodeList listOfPersons = doc.getElementsByTagName("person");
+            int totalPersons = listOfPersons.getLength();
+            System.out.println("Total no of people : " + totalPersons);
+
+            for(int s=0; s<listOfPersons.getLength() ; s++){
+
+
+                Node firstPersonNode = listOfPersons.item(s);
+                if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE){
+
+
+                    Element firstPersonElement = (Element)firstPersonNode;
+
+                    //-------
+                    NodeList firstNameList = firstPersonElement.getElementsByTagName("first");
+                    Element firstNameElement = (Element)firstNameList.item(0);
+
+                    NodeList textFNList = firstNameElement.getChildNodes();
+                    System.out.println("First Name : " + 
+                           ((Node)textFNList.item(0)).getNodeValue().trim());
+
+                    //-------
+                    NodeList lastNameList = firstPersonElement.getElementsByTagName("last");
+                    Element lastNameElement = (Element)lastNameList.item(0);
+
+                    NodeList textLNList = lastNameElement.getChildNodes();
+                    System.out.println("Last Name : " + 
+                           ((Node)textLNList.item(0)).getNodeValue().trim());
+
+                    //----
+                    NodeList ageList = firstPersonElement.getElementsByTagName("age");
+                    Element ageElement = (Element)ageList.item(0);
+
+                    NodeList textAgeList = ageElement.getChildNodes();
+                    System.out.println("Age : " + 
+                           ((Node)textAgeList.item(0)).getNodeValue().trim());
+
+                    //------
+
+
+                }//end of if clause
+
+
+            }//end of for loop with s var
+
+
+        }catch (SAXParseException err) {
+        System.out.println ("** Parsing error" + ", line " 
+             + err.getLineNumber () + ", uri " + err.getSystemId ());
+        System.out.println(" " + err.getMessage ());
+
+        }catch (SAXException e) {
+        Exception x = e.getException ();
+        ((x == null) ? e : x).printStackTrace ();
+
+        }catch (Throwable t) {
+        t.printStackTrace ();
+        }
+        //System.exit (0);
+
+    }//end of main
+
+
 }

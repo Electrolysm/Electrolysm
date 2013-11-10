@@ -54,7 +54,7 @@ public class fluidStorage extends Item {
 	
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) 
     {
-    	for(int i = 0; i < Research.researchNames1.length; i++)
+    	for(int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i++)
     	{
     		if(stack.getItemDamage() == i)
     		{

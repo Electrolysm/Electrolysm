@@ -16,9 +16,24 @@ public class WorldGenOres implements IWorldGenerator{
 		if(world.provider.dimensionId != 1 && world.provider.dimensionId != -1){
 			generateSurface(world, random, chunkX * 16, chunkZ * 16);
 		}
+		else if(world.provider.dimensionId != 0)
+		{
+			generateEndNether(world, random, chunkX * 16, chunkZ * 16);
+		}
+		
 
 	}
-    //Graphite Ore Generation
+    private void generateEndNether(World world, Random random, int chunkX, int chunkZ) 
+    {
+    	for(int i = 0; i < 10; i++){
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(256);
+			int zCoord = chunkZ + random.nextInt(16);
+
+			(new WorldGenMinable(electrolysmCore.sulphurOre.blockID, 30)).generate(world, random, xCoord, yCoord, zCoord);
+		}		
+	}
+	//Graphite Ore Generation
 	private void generateSurface(World world, Random random, int chunkX, int chunkZ){
 		for(int i = 0; i < 10; i++){
 			int xCoord = chunkX + random.nextInt(16);
@@ -26,20 +41,20 @@ public class WorldGenOres implements IWorldGenerator{
 			int zCoord = chunkZ + random.nextInt(16);
 
 			(new WorldGenMinable(electrolysmCore.graphite.blockID, 6)).generate(world, random, xCoord, yCoord, zCoord);
-			
 		}
-
-	}
-    //Copper Ore Generation
-	private void generateSurface1(World world, Random random, int chunkX, int chunkZ){
 		for(int i = 0; i < 10; i++){
 			int xCoord = chunkX + random.nextInt(16);
-			int yCoord = random.nextInt(11);
+			int yCoord = random.nextInt(65);
 			int zCoord = chunkZ + random.nextInt(16);
 
-			(new WorldGenMinable(electrolysmCore.copperOre.blockID, 6)).generate(world, random, xCoord, yCoord, zCoord);
-			
-			
+			(new WorldGenMinable(electrolysmCore.copperOre.blockID, 10)).generate(world, random, xCoord, yCoord, zCoord);
 		}
+		for(int i = 0; i < 10; i++){
+			int xCoord = chunkX + random.nextInt(16);
+			int yCoord = random.nextInt(20);
+			int zCoord = chunkZ + random.nextInt(16);
+
+			(new WorldGenMinable(electrolysmCore.sulphurOre.blockID, 30)).generate(world, random, xCoord, yCoord, zCoord);
+		}	
 	}
 }

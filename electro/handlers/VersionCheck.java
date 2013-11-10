@@ -7,8 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import assets.electrolysm.electro.client.ClientProxy;
-
 public class VersionCheck {
 
 	private static String line;

@@ -72,6 +72,8 @@ public class IDHandler {
 		public static int chuckGraphiteID = 781;
 		public static int copperIngotID = 782;
 		public static int copperOreID = 783; 
+		public static int sulphurOreID = 784;
+		public static int sulphurID = 785;
 	}
 	
 
@@ -79,8 +81,27 @@ public class IDHandler {
 	{
 		public static int TEUDetectorID = 800;
 		public static int wireGoldID = 801;
-		public static int copperwireID = 802;
+		public static int wireGoldActiveID = 802;
+		public static int wireGoldOffID = 803;
+		public static int coalGenID = 804;
+		public static int nullID4 = 805;
+		public static int generator2 = 806;
+		public static int generator3 = 807;
+		public static int generator4 = 808;
+		public static int na = 809;
 
 	}
 
+	public static class oreProccessing{
+
+		public static int liquidiserID = 810;
+		public static int crusherID = 811;
+		public static int electrolisisCoreID = 812;
+		public static int electrolChamberID = 813;
+		public static int electrolDummyID = 814;
+		public static int seporatorID = 815;
+		public static int smelteryID = 816;
+		public static int dustsID = 817;
+		public static int impureDustsID = 818;
+	}
 }

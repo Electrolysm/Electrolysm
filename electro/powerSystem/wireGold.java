@@ -1,29 +1,24 @@
 package assets.electrolysm.electro.powerSystem;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.api.power.PowerHandler;
+import assets.electrolysm.api.power.wireBaseClass;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 
-public class wireGold extends BlockContainer {
+public class wireGold extends wireBaseClass
+{
+	public boolean power;
 
-	private TileEntityWire te = new TileEntityWire();
-	
-	public wireGold(int par1, Material par2Material) {
-		super(par1, Material.cloth);
-		
-		this.setUnlocalizedName("wireGold");
+	public wireGold(int id, Material mat) {
+		super(id, Material.cloth);
+
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setHardness(1F);
-		te.cableType = PowerHandler.cableTypesClass.goldCable;
+		this.setUnlocalizedName("wireGold");
+	}
+	
+	public void getPower(World world, int x, int y, int z)
+	{
+		//this block sits here and looks pretty :)
 	}
 
-	@Override
-	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
-		return new TileEntityWire();
-	}
 }

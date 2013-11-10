@@ -11,20 +11,27 @@ public class CommonProxy {
 	public static ResourceLocation MODEL_SOLDERING = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelSoldering.png");
 	public static ResourceLocation MODEL_DESK = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelDesk.png");
 	public static ResourceLocation MODEL_RESEARCH_DESK = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelResearchTable.png");
-
+	public static ResourceLocation MODEL_TRANSFORMER_SOURCE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelTransformerSource.png");
+	public static ResourceLocation MODEL_TRANSFORMER_MACHINE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelTransformerMachine.png");
+	public static ResourceLocation MODEL_QUANTUM_COMPUTER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelQuantumComp.png");
+	public static ResourceLocation GRAPHITE_WIRE_MODEL = new ResourceLocation(MOD_ID_LOWER, "textures/models/copperWire.png");
+	
 	//GUIs
 	public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
 	public static ResourceLocation ENERGISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energiserGUI.png");
 	public static ResourceLocation INJECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/injectorGUI.png");
+	public static ResourceLocation SMELTORY_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/smelteryGUI.png");
 	
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
+	public static String[] HOLDABLE_FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",
+		"Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate"};
+	public static final String[] DUSTS = {"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
 
-	public static String[] HOLDABLE_FLUIDS = {"Empty", "Plasma"};
 	
 	//MOBs
 	public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
 
-	public static final ResourceLocation MODEL_QUANTUM_COMPUTER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelQuantumComp.png");
+
 
 }

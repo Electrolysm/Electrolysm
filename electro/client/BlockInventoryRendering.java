@@ -3,11 +3,14 @@ package assets.electrolysm.electro.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
+import assets.electrolysm.electro.powerSystem.te.TileEntityTransformerMachine;
+import assets.electrolysm.electro.powerSystem.te.TileEntityTransformerSource;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockInventoryRendering implements ISimpleBlockRenderingHandler 
@@ -16,6 +19,8 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
 	private static TileEntityResearchDesk researchDeskTE = new TileEntityResearchDesk();
 	private static TileEntityDesk deskTE = new TileEntityDesk();
 	private static TileEntityWorkBench workBenchTE = new TileEntityWorkBench();
+	private static TileEntityTransformerMachine transformerMachineTE = new TileEntityTransformerMachine();
+	private static TileEntityTransformerSource transformerSourceTE = new TileEntityTransformerSource();
 	
 	
 	@Override
@@ -35,6 +40,15 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
 		{
 			entityRenderer.renderTileEntityAt(workBenchTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
 		}
+		/*else if(block == electrolysmCore.transformerMachine)
+		{
+			entityRenderer.renderTileEntityAt(transformerMachineTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+		}
+		else if(block == electrolysmCore.transformerSource)
+		{
+			entityRenderer.renderTileEntityAt(transformerSourceTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+		}
+		*/
 	}
 	
 	@Override

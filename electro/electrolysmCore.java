@@ -1,22 +1,23 @@
 package assets.electrolysm.electro;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemTool;
 import net.minecraft.world.biome.BiomeGenBase;
 import assets.electrolysm.api.power.PowerHandler;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
+import assets.electrolysm.electro.biome.VillagerScientist;
 import assets.electrolysm.electro.biome.diseasedBiome;
 import assets.electrolysm.electro.biome.diseasedGrass;
 import assets.electrolysm.electro.biome.spawnZS;
 import assets.electrolysm.electro.block.advMachines.energiser;
 import assets.electrolysm.electro.block.advMachines.energisingRod;
-import assets.electrolysm.electro.block.advMachines.injector;
 import assets.electrolysm.electro.block.advMachines.injectionArm;
+import assets.electrolysm.electro.block.advMachines.injector;
 import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
@@ -40,9 +41,19 @@ import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
+import assets.electrolysm.electro.oreProccessing.crusher;
+import assets.electrolysm.electro.oreProccessing.dusts;
+import assets.electrolysm.electro.oreProccessing.electrolChamber;
+import assets.electrolysm.electro.oreProccessing.electrolDummy;
+import assets.electrolysm.electro.oreProccessing.electrolisisCore;
+import assets.electrolysm.electro.oreProccessing.impureDusts;
+import assets.electrolysm.electro.oreProccessing.liquidiser;
+import assets.electrolysm.electro.oreProccessing.seporator;
+import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.powerSystem.TEUDetector;
-import assets.electrolysm.electro.powerSystem.copperwire;
 import assets.electrolysm.electro.powerSystem.wireGold;
+import assets.electrolysm.electro.powerSystem.wireGoldActive;
+import assets.electrolysm.electro.powerSystem.wireGoldOff;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
@@ -50,6 +61,9 @@ import assets.electrolysm.electro.world.chunkGraphite;
 import assets.electrolysm.electro.world.copperIngot;
 import assets.electrolysm.electro.world.copperOre;
 import assets.electrolysm.electro.world.graphite;
+import assets.electrolysm.electro.world.sulpherOre;
+import assets.electrolysm.electro.world.sulphur;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -62,7 +76,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 
 	@Mod(modid=Referance.MOD_REF.MOD_ID, name=Referance.MOD_REF.MOD_ID, version= Referance.MOD_REF.VERSION)
  
@@ -94,6 +107,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
         public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
         public static BlockOre copperOre = new copperOre(IDHandler.worldGenOres.copperOreID);
+        public static BlockOre sulphurOre = new sulpherOre(IDHandler.worldGenOres.sulphurOreID);
+        public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
@@ -126,11 +141,25 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
         public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
         
-        //Power System
+        //Power System -- WIP
         public static Item TEUDetector = new TEUDetector(IDHandler.powerGrid.TEUDetectorID);
         public static Block wireGold = new wireGold(IDHandler.powerGrid.wireGoldID, null);
-        public static Item copperwire = new copperwire(IDHandler.powerGrid.copperwireID);
-
+        public static Block wireGoldActive = new wireGoldActive(IDHandler.powerGrid.wireGoldActiveID, null);
+        public static Block wireGoldOff = new wireGoldOff(IDHandler.powerGrid.wireGoldOffID, null);
+        //public static Block coalGen = new coalGen(IDHandler.powerGrid.coalGenID, null);
+        
+        //Ore Proccessing -- WIP
+        public static BlockContainer crusher = new crusher(IDHandler.oreProccessing.crusherID, null);
+        public static BlockContainer liquidiser = new liquidiser(IDHandler.oreProccessing.liquidiserID, null);
+        public static BlockContainer electrolisisCore = new electrolisisCore(IDHandler.oreProccessing.electrolisisCoreID,
+        		null);
+        public static Block electrolChamber = new electrolChamber(IDHandler.oreProccessing.electrolChamberID, null);
+        public static BlockContainer electrolDummy = new electrolDummy(IDHandler.oreProccessing.electrolDummyID,
+        		null);
+        public static BlockContainer seperator = new seporator(IDHandler.oreProccessing.seporatorID, null);
+        public static BlockContainer smeltery = new smeltory(IDHandler.oreProccessing.smelteryID, null);
+        public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
+        public static Item dusts = new dusts(IDHandler.oreProccessing.dustsID);
         
         /*
 		//Robots	
@@ -179,14 +208,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 		RegisterBlock.register();
 		Names.addName();
 		Register.addAchievementLocalizations();
-		ResearchHandler.getOnlineResearch();
+		ResearchHandler.downloadOnlineResearch();
+		ResearchHandler.getStoredResearch();
 	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 	    GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
         		"Zombie Scientist", 2, this, 80, 3, true);
+        EntityRegistry.registerModEntity(VillagerScientist.class,
+        		"Villager Scientist", 3, this, 500, 80, true);
         
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
-        
 		}
 		
 		@SideOnly(Side.CLIENT)

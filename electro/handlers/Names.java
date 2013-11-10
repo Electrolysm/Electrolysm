@@ -51,6 +51,12 @@ public class Names {
 			LanguageRegistry.addName(new ItemStack(electrolysmCore.fluidStorage, 1, i),
 					"Strengthened Fluid Storage Capsule");
 		}
+		for(int i = 0; i < CommonProxy.DUSTS.length; i++)
+		{
+			LanguageRegistry.addName(new ItemStack(electrolysmCore.dusts, 1, i), CommonProxy.DUSTS[i] + " Dust");
+			LanguageRegistry.addName(new ItemStack(electrolysmCore.impureDusts, 1, i), "Impure " + 
+						CommonProxy.DUSTS[i] + " Dust");
+		}
 	
 	
 	}

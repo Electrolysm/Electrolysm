@@ -28,13 +28,14 @@ public class PowerConductor extends TileEntity{
 			int dy = y + dir.offsetY;
 			int dz = z + dir.offsetZ;
 			
-			PowerConductor te = (PowerConductor)world.getBlockTileEntity(dx, dy, dz);
+			TileEntity te = world.getBlockTileEntity(dx, dy, dz);
 			if(te instanceof PowerConductor)
 			{
 				
 				/*if((teP.getHeldTEU(teP) + this.getHeldTEU(teP)) <= teP.getMaxHeldTEU(teP))
 				{*/
-					te.setTEU(this.getHeldTEU(te));
+					PowerConductor teWire = (PowerConductor) te;
+					teWire.setTEU(this.getHeldTEU(this));
 				//}
 			}
 			

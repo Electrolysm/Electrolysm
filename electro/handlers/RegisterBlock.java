@@ -26,6 +26,16 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.graphite);
 		GameRegistry.registerBlock(electrolysmCore.modBlastGlass);
 		GameRegistry.registerBlock(electrolysmCore.wireGold);
+		GameRegistry.registerBlock(electrolysmCore.wireGoldActive);
+		GameRegistry.registerBlock(electrolysmCore.wireGoldOff);
+		GameRegistry.registerBlock(electrolysmCore.sulphurOre);
+		GameRegistry.registerBlock(electrolysmCore.electrolChamber);
+		GameRegistry.registerBlock(electrolysmCore.electrolDummy);
+		GameRegistry.registerBlock(electrolysmCore.electrolisisCore);
+		GameRegistry.registerBlock(electrolysmCore.crusher);
+		GameRegistry.registerBlock(electrolysmCore.liquidiser);
+		GameRegistry.registerBlock(electrolysmCore.seperator);
+		GameRegistry.registerBlock(electrolysmCore.smeltery);
 		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
