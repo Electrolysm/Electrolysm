@@ -1,10 +1,11 @@
 package assets.electrolysm.electro.handlers;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
-import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,43 +19,30 @@ import org.xml.sax.SAXParseException;
 
 public class ResearchHandler{
 
-	public static String downloadOnlineResearch()
-	{
-		    URL oURL;
-		    URLConnection oConnection;
-		    BufferedReader oReader;
-		    String sLine;
-		    StringBuilder sbResponse;
-		    String sResponse = null;
-
-		    try
-		    {
-		        oURL = new URL("");
-		        oConnection = oURL.openConnection();
-		        oReader = new BufferedReader(new InputStreamReader(oConnection.getInputStream()));
-		        sbResponse = new StringBuilder();
-
-		        while((sLine = oReader.readLine()) != null)
-		        {
-		            sbResponse.append(sLine);
-		        }
-
-		        sResponse = sbResponse.toString();
-		    }
-		    catch(Exception e)
-		    {
-		        e.printStackTrace();
-		    }
-
-		    return sResponse;
-	}
+	public static String down_file = "config/research.xml";
 	
+	@SuppressWarnings("resource")
+	public static void downloadOnlineResearch()
+	{
+		try
+		{
+			URL website = new URL("https://raw.github.com/Clarky158/Electrolysm/master/research.xml");
+			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+			FileOutputStream fos = new FileOutputStream(down_file);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+		
     public static void getStoredResearch(){
     try {
 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse (new File("config/OnlineResearch/book.xml"));
+            Document doc = docBuilder.parse (new File(down_file));
 
             // normalize text representation
             doc.getDocumentElement ().normalize ();
@@ -62,42 +50,31 @@ public class ResearchHandler{
                  doc.getDocumentElement().getNodeName());
 
 
-            NodeList listOfPersons = doc.getElementsByTagName("person");
-            int totalPersons = listOfPersons.getLength();
-            System.out.println("Total no of people : " + totalPersons);
+            NodeList listOfResearch = doc.getElementsByTagName("research");
+            int totalResearch = listOfResearch.getLength();
+            System.out.println("Total No. of online research : " + totalResearch);
 
-            for(int s=0; s<listOfPersons.getLength() ; s++){
-
-
-                Node firstPersonNode = listOfPersons.item(s);
-                if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE){
-
-
+            for(int s = 0; s < listOfResearch.getLength(); s++)
+            {
+                Node firstPersonNode = listOfResearch.item(s);
+               
+                if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE)
+                {
                     Element firstPersonElement = (Element)firstPersonNode;
-
-                    //-------
-                    NodeList firstNameList = firstPersonElement.getElementsByTagName("first");
+                    NodeList firstNameList = firstPersonElement.getElementsByTagName("input");
                     Element firstNameElement = (Element)firstNameList.item(0);
 
                     NodeList textFNList = firstNameElement.getChildNodes();
-                    System.out.println("First Name : " + 
+                    System.out.println("Input Item: " + 
                            ((Node)textFNList.item(0)).getNodeValue().trim());
 
                     //-------
-                    NodeList lastNameList = firstPersonElement.getElementsByTagName("last");
+                    NodeList lastNameList = firstPersonElement.getElementsByTagName("output");
                     Element lastNameElement = (Element)lastNameList.item(0);
 
                     NodeList textLNList = lastNameElement.getChildNodes();
-                    System.out.println("Last Name : " + 
+                    System.out.println("Output Item: " + 
                            ((Node)textLNList.item(0)).getNodeValue().trim());
-
-                    //----
-                    NodeList ageList = firstPersonElement.getElementsByTagName("age");
-                    Element ageElement = (Element)ageList.item(0);
-
-                    NodeList textAgeList = ageElement.getChildNodes();
-                    System.out.println("Age : " + 
-                           ((Node)textAgeList.item(0)).getNodeValue().trim());
 
                     //------
 

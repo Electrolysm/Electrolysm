@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <research>
-	<?plasmaDrill 4?>
+  	<input>water</input>
+	<output>2</output>
 </research>
+
