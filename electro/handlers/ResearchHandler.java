@@ -17,6 +17,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import assets.electrolysm.electro.research.Research;
+
 public class ResearchHandler{
 
 	public static String down_file = "config/research.xml";
@@ -60,6 +62,7 @@ public class ResearchHandler{
                
                 if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE)
                 {
+                    //-------input id
                     Element firstPersonElement = (Element)firstPersonNode;
                     NodeList firstNameList = firstPersonElement.getElementsByTagName("input");
                     Element firstNameElement = (Element)firstNameList.item(0);
@@ -68,7 +71,7 @@ public class ResearchHandler{
                     System.out.println("Input Item: " + 
                            ((Node)textFNList.item(0)).getNodeValue().trim());
 
-                    //-------
+                    //-------output meta
                     NodeList lastNameList = firstPersonElement.getElementsByTagName("output");
                     Element lastNameElement = (Element)lastNameList.item(0);
 
@@ -76,9 +79,20 @@ public class ResearchHandler{
                     System.out.println("Output Item: " + 
                            ((Node)textLNList.item(0)).getNodeValue().trim());
 
+                    //------card id required
+                    NodeList cardIDList = firstPersonElement.getElementsByTagName("cardID");
+                    Element cardIDElement = (Element)cardIDList.item(0);
+
+                    NodeList textLmList = cardIDElement.getChildNodes();
+                    System.out.println("Card ID required: " + 
+                           ((Node)textLmList.item(0)).getNodeValue().trim());
+
                     //------
-
-
+                    //Adding to research!
+                    Research.researchList.put(((Node)textFNList.item(0)).getNodeValue().trim(),
+                    		((Node)textLNList.item(0)).getNodeValue().trim());
+                    Research.cardIDList.put(((Node)textLNList.item(0)).getNodeValue().trim(),
+                    		((Node)textLmList.item(0)).getNodeValue().trim());
                 }//end of if clause
 
 

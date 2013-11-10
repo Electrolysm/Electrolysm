@@ -28,8 +28,8 @@ public class Research
     private static final Research researchBase = new Research();
 
     /** The list of smelting results. */
-    private Map researchList = new HashMap();
-    private Map cardIDList = new HashMap();
+    public static Map researchList = new HashMap();
+    public static Map cardIDList = new HashMap();
     
     /**
      * Used to call methods addSmelting and getSmeltingResult.
@@ -53,8 +53,8 @@ public class Research
      */
     public void addResearch(int inputID, ItemStack output, int cardIDRequired)
     {
-        this.researchList.put(Integer.valueOf(inputID), output);
-        this.cardIDList.put(output, Integer.valueOf(cardIDRequired));
+        this.researchList.put(Integer.valueOf(inputID), output.getItemDamage());
+        this.cardIDList.put(output.getItemDamage(), Integer.valueOf(cardIDRequired));
     }
     
 	public ItemStack getResearch(ItemStack item, ItemStack card) 
@@ -71,7 +71,7 @@ public class Research
         
         if(output1 != null)
         {
-        	int cardIDRequired = (Integer) this.cardIDList.get(output1);
+        	int cardIDRequired = (Integer) this.cardIDList.get(output1.getItemDamage());
         
         	if(card.getItemDamage() >= cardIDRequired)
         	{

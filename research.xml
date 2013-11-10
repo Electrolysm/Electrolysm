@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <research>
-  	<input>water</input>
+  	<input>1</input>
 	<output>2</output>
-</research>
+	<cardID>2</cardID></research>
 
