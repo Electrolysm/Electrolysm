@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<research>
-  	<input>1</input>
-<<<<<<< HEAD
-	<output>3</output>
-	<cardID>2</cardID>
-	</research>
-=======
-	<output>1</output>
-	<cardID>2</cardID>
-</research>
->>>>>>> refs/remotes/origin/master
 
+<research>
+  	
+	<input>1</input>
+	<output>3</output>
+
+	<cardID>2</cardID>
+
+</research>

@@ -1,5 +1,7 @@
 package assets.electrolysm.electro;
 
+import java.io.File;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockOre;
@@ -191,11 +193,13 @@ import cpw.mods.fml.relauncher.SideOnly;
  * ===============================================================================================================
  */
         @EventHandler
-        public void preInit(FMLPreInitializationEvent event) {
-        	configHandler.init(event.getSuggestedConfigurationFile());
-
-        configHandler.init(event.getSuggestedConfigurationFile());
-		VersionCheck.check();
+        public void preInit(FMLPreInitializationEvent event) 
+        {
+        	File configFile = new File("config/Electrolysm/Electrolysm.cfg");
+        configHandler.init(configFile);
+        System.out.println(configFile);
+        
+        VersionCheck.check();
 		BetaHandler.beta();
 		PowerHandler.loadMap();
 		ResearchHandler.downloadOnlineData();
