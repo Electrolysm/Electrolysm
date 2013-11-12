@@ -77,10 +77,10 @@ public class Research
                 if(card.getItemDamage() >= cardIDRequired)
                 {
                         return output1;
-                       }
+                }
                 else
                 {
-                        ItemStack outputOnline = (ItemStack)this.onlineResearchList.get(String.valueOf(item.itemID));
+                        ItemStack outputOnline = (ItemStack)this.onlineResearchList.get(Integer.valueOf(item.itemID));
                         
                         if(outputOnline != null)
                         {
@@ -103,7 +103,7 @@ public class Research
         }
         else
         {
-        	ItemStack outputOnline = (ItemStack)this.onlineResearchList.get(String.valueOf(item.itemID));
+        	ItemStack outputOnline = (ItemStack)this.onlineResearchList.get(Integer.valueOf(item.itemID));
             
             if(outputOnline != null)
             {
@@ -137,9 +137,9 @@ public class Research
             return (int)result;
 		}
 
-		public static void onlineResearch(String inputID, ItemStack output, int cardID)
+		public static void onlineResearch(int inputID, ItemStack output, int cardID)
 		{
-	        onlineResearchList.put(String.valueOf(inputID), output);
+	        onlineResearchList.put(Integer.valueOf(inputID), output);
 	        onlineCardIDList.put(output, Integer.valueOf(cardID));
 		}
 }

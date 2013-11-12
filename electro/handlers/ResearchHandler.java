@@ -10,12 +10,17 @@ import java.nio.channels.ReadableByteChannel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import net.minecraft.item.ItemStack;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.research.Research;
 
 public class ResearchHandler{
 
@@ -76,6 +81,8 @@ public class ResearchHandler{
                
                 if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE)
                 {
+                	
+                	//Input Item ID
                     Element firstPersonElement = (Element)firstPersonNode;
                     NodeList firstNameList = firstPersonElement.getElementsByTagName("input");
                     Element firstNameElement = (Element)firstNameList.item(0);
@@ -84,7 +91,7 @@ public class ResearchHandler{
                     System.out.println("Input Item: " + 
                            ((Node)textFNList.item(0)).getNodeValue().trim());
 
-                    //-------
+                    //Output Item ID
                     NodeList lastNameList = firstPersonElement.getElementsByTagName("output");
                     Element lastNameElement = (Element)lastNameList.item(0);
 
@@ -92,8 +99,20 @@ public class ResearchHandler{
                     System.out.println("Output Item: " + 
                            ((Node)textLNList.item(0)).getNodeValue().trim());
 
-                    //------
+                    //Required Card ID
+                    NodeList cardList = firstPersonElement.getElementsByTagName("cardID");
+                    Element cardElement = (Element)lastNameList.item(0);
 
+                    NodeList cardLNList = lastNameElement.getChildNodes();
+                    System.out.println("Card ID Req: " + 
+                           ((Node)textLNList.item(0)).getNodeValue().trim());
+
+                    int inputID = Integer.parseInt(((Node)textFNList.item(0)).getNodeValue().trim());
+                    ItemStack output = new ItemStack(electrolysmCore.researchPaper, 1,
+                    		Integer.parseInt(((Node)textLNList.item(0)).getNodeValue().trim()));
+                    int cardID = Integer.parseInt(((Node)textLNList.item(0)).getNodeValue().trim());
+                    
+                    Research.onlineResearch(inputID, output, cardID);
 
                 }//end of if clause
 
@@ -143,14 +162,19 @@ public class ResearchHandler{
                 {
                     //-------input id
                     Element firstPersonElement = (Element)firstPersonNode;
-                    NodeList firstNameList = firstPersonElement.getElementsByTagName(inputMeta + "");
+                    NodeList firstNameList = firstPersonElement.getElementsByTagName("infoData");
                     Element firstNameElement = (Element)firstNameList.item(0);
                     
                     NodeList textFNList = firstNameElement.getChildNodes();
                     
-                    String result = ((Node)textFNList.item(0)).getNodeValue().trim();
+                    String result1 = ((Node)textFNList.item(0)).getNodeValue().trim();
                     
-                    return result;
+                    if(result1.contains(inputMeta + ""))
+                    {
+                    	String result = result1.replace(inputMeta + "", "");
+                    	
+                    	return result;
+                    }
                 }
             }
             

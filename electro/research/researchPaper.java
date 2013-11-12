@@ -86,17 +86,17 @@ public class researchPaper extends Item{
     			{
     				list.add("Research: " + Research.researchNames1[i]);
     			}
-    			else if(ResearchHandler.getStoredNames(i) != null)
+    			if(ResearchHandler.getStoredNames(i) != null )
     			{
     				list.add("Research: " + ResearchHandler.getStoredNames(i));
     			}
-    			else
-    			{
-    				list.add("Unknown Methodology");
-    			}
     		}
     	}
-    	Map map = new HashMap();
+    	if((Research.researchNames1.length + ResearchHandler.amountOnlineResearch) < stack.getItemDamage())
+    	{
+    		list.add("Unknown Methodology");
+    	}
+  
     }
 
 }
