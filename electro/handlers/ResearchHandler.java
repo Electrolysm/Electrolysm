@@ -19,16 +19,32 @@ import org.xml.sax.SAXParseException;
 
 public class ResearchHandler{
 
-	public static String down_file = "config/research.xml";
+	public static String down_file = "config/electrolysm/research.xml";
+	public static String down_file_names = down_file.replace("research", "names");
+	public static int amountOnlineResearch;
 	
 	@SuppressWarnings("resource")
-	public static void downloadOnlineResearch()
+	public static void downloadOnlineData()
 	{
+		//Research Data Download
 		try
 		{
 			URL website = new URL("https://raw.github.com/Clarky158/Electrolysm/master/research.xml");
 			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 			FileOutputStream fos = new FileOutputStream(down_file);
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		//Research Note Data
+		try
+		{
+			URL website = new URL("https://raw.github.com/Clarky158/Electrolysm/master/names.xml");
+			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+			FileOutputStream fos = new FileOutputStream(down_file_names);
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 		} 
 		catch (IOException e) 
@@ -101,5 +117,55 @@ public class ResearchHandler{
 
     }//end of main
 
+    public static String getStoredNames(int inputMeta) 
+	{
+	    try 
+	    {
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+            Document doc = docBuilder.parse (new File(down_file_names));
 
+            // normalize text representation
+            doc.getDocumentElement ().normalize ();
+            System.out.println ("Root element of the doc is " + 
+                 doc.getDocumentElement().getNodeName());
+            
+            NodeList listOfResearch = doc.getElementsByTagName("names");
+            int totalResearch = listOfResearch.getLength();
+            System.out.println("Total No. of names : " + totalResearch);
+            amountOnlineResearch = totalResearch;
+            
+            for(int s = 0; s < listOfResearch.getLength(); s++)
+            {
+                Node firstPersonNode = listOfResearch.item(s);
+                
+                if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE)
+                {
+                    //-------input id
+                    Element firstPersonElement = (Element)firstPersonNode;
+                    NodeList firstNameList = firstPersonElement.getElementsByTagName(inputMeta + "");
+                    Element firstNameElement = (Element)firstNameList.item(0);
+                    
+                    NodeList textFNList = firstNameElement.getChildNodes();
+                    
+                    String result = ((Node)textFNList.item(0)).getNodeValue().trim();
+                    
+                    return result;
+                }
+            }
+            
+        }catch (SAXParseException err) {
+        System.out.println ("** Parsing error" + ", line " 
+             + err.getLineNumber () + ", uri " + err.getSystemId ());
+        System.out.println(" " + err.getMessage ());
+
+        }catch (SAXException e) {
+        Exception x = e.getException ();
+        ((x == null) ? e : x).printStackTrace ();
+
+        }catch (Throwable t) {
+        t.printStackTrace ();
+        }
+		return null;
+	}
 }
