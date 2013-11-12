@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<names>	
-	<infoData>0Blast-Proof Iron</infoData>
-</names>
-<names>
-	<infoData>1Schrödinger's Cat</infoData>
-</names>	
-<names>
-	<infoData>3test_test</infoData>
-</names>
+<head></head>
+	<names>	
+		<infoData>0Blast-Proof Iron</infoData>
+	</names>
+	<names>
+		<infoData>1Schrödinger's Cat</infoData>
+	</names>	
+	<names>
+		<infoData>3test_test</infoData>
+	</names>
+</head>
