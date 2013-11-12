@@ -198,7 +198,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 		VersionCheck.check();
 		BetaHandler.beta();
 		PowerHandler.loadMap();
-		ResearchHandler.downloadOnlineResearch();
+		ResearchHandler.downloadOnlineData();
 		ResearchHandler.getStoredResearch();
         }
         
