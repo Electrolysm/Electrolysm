@@ -40,10 +40,7 @@ public class Names {
 		
 		
 		//Items
-		for(int i = 0; i < Research.researchNames1.length; i++)
-		{
-			LanguageRegistry.addName(new ItemStack(electrolysmCore.researchPaper, 1, i), "Research Paper");
-		}
+		LanguageRegistry.addName(electrolysmCore.researchPaper, "Research Paper");
 		LanguageRegistry.addName(electrolysmCore.card, "ID Card");
 		
 		for(int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i++)

@@ -47,24 +47,24 @@ public class IDHandler {
 	}
 	
 	public static class research{
-		public static int cardID = 735;
-		public static int paperID = 736;
-		public static int knowledgeID = 737;
+		public static int cardID = 736;
+		public static int paperID = 737;
+		public static int knowledgeID = 738;
 	
 	}
 	
 	public static class advAtomics{
 		public static class fluid{
-			public static int plasmaID = 738;
-			public static int fluidStorageID = 739;
+			public static int plasmaID = 739;
+			public static int fluidStorageID = 740;
 		}
 	}
 	public static class advMachines{
-		public static int injectorID = 740;
-		public static int energiserID = 741;
-		public static int quantumCompID = 742;
-		public static int injectionArmID = 743;
-		public static int energisingRodID = 744;
+		public static int injectorID = 741;
+		public static int energiserID = 742;
+		public static int quantumCompID = 743;
+		public static int injectionArmID = 744;
+		public static int energisingRodID = 745;
 	}
 	
 	public static class worldGenOres{

@@ -198,7 +198,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 		VersionCheck.check();
 		BetaHandler.beta();
 		PowerHandler.loadMap();
-
+		ResearchHandler.downloadOnlineResearch();
+		ResearchHandler.getStoredResearch();
         }
         
 		@EventHandler
@@ -208,8 +209,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 		RegisterBlock.register();
 		Names.addName();
 		Register.addAchievementLocalizations();
-		ResearchHandler.downloadOnlineResearch();
-		ResearchHandler.getStoredResearch();
 	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 	    GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
