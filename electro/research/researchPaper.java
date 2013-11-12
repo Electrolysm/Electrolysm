@@ -92,7 +92,7 @@ public class researchPaper extends Item{
     			}
     			else
     			{
-    				list.add("Unknow Methodology");
+    				list.add("Unknown Methodology");
     			}
     		}
     	}
