@@ -64,21 +64,13 @@ public class researchPaper extends Item{
 	@SideOnly(Side.CLIENT)
 	public Icon getIconFromDamage(int dmg)
 	{
-		if(finished)
-		{
-			return icons[1];
-		}
-		if(!finished)
-		{
-			return icons[0];
-		}
-		return icons[100];
+		return icons[1];
 	}
 	
 	
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) 
     {
-    	for(int i = 0; i < ResearchHandler.amountOnlineResearch; i++)
+    	for(int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)
     	{
     		if(stack.getItemDamage() == i)
     		{
@@ -86,9 +78,14 @@ public class researchPaper extends Item{
     			{
     				list.add("Research: " + ResearchHandler.getStoredNames(i));
     			}
+    			else
+    			{
+    				list.add("ERROR");
+    				list.add("This is a bug please report it to the MOD author!");
+    			}
     		}
     	}
-    	if((ResearchHandler.amountOnlineResearch) < stack.getItemDamage())
+    	if((ResearchHandler.getAmountOfStoredNames() - 1) < stack.getItemDamage())
     	{
     		list.add("Unknown Methodology");
     	}

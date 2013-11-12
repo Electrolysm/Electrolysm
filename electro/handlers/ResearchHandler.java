@@ -26,7 +26,7 @@ public class ResearchHandler{
 
 	public static String down_file = "config/electrolysm/research.xml";
 	public static String down_file_names = down_file.replace("research", "names");
-	public static int amountOnlineResearch;
+	public static int amountOnlineNames;
 	
 	@SuppressWarnings("resource")
 	public static void downloadOnlineData()
@@ -152,9 +152,8 @@ public class ResearchHandler{
             NodeList listOfNames = doc.getElementsByTagName("names");
             int totalResearch = listOfNames.getLength();
             System.out.println("Total No. of names : " + totalResearch);
-            amountOnlineResearch = totalResearch;
             
-            for(int s = 0; s < listOfNames.getLength(); s++)
+            for(int s = 0; s < totalResearch; s++)
             {
                 Node firstPersonNode = listOfNames.item(s);
                 
@@ -175,10 +174,6 @@ public class ResearchHandler{
                     	
                     	return result;
                     }
-                    else
-                    {
-                    	return null;
-                    }
                 }
             }
             
@@ -197,4 +192,41 @@ public class ResearchHandler{
 	    
 		return null;
 	}
+    
+    public static int getAmountOfStoredNames() 
+ 	{
+ 	    try 
+ 	    {
+             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+             Document doc = docBuilder.parse (new File(down_file_names));
+
+             // normalize text representation
+             doc.getDocumentElement ().normalize ();
+             System.out.println ("Root element of the doc is " + 
+                  doc.getDocumentElement().getNodeName());
+             
+             NodeList listOfNames = doc.getElementsByTagName("names");
+             int totalNames = listOfNames.getLength();
+             System.out.println("Total No. of names : " + totalNames);
+ 	    
+ 	    
+             return totalNames;
+             
+             
+        }catch (SAXParseException err) {
+        System.out.println ("** Parsing error" + ", line " 
+             + err.getLineNumber () + ", uri " + err.getSystemId ());
+        System.out.println(" " + err.getMessage ());
+
+        }catch (SAXException e) {
+        Exception x = e.getException ();
+        ((x == null) ? e : x).printStackTrace ();
+
+        }catch (Throwable t) {
+        t.printStackTrace ();
+        }
+ 	    
+		return 0;
+ 	}
 }
