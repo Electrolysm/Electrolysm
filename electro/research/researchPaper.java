@@ -78,21 +78,17 @@ public class researchPaper extends Item{
 	
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) 
     {
-    	for(int i = 0; i < Research.researchNames1.length + ResearchHandler.amountOnlineResearch; i++)
+    	for(int i = 0; i < ResearchHandler.amountOnlineResearch; i++)
     	{
     		if(stack.getItemDamage() == i)
     		{
-    			if(Research.researchNames1[i] != null)
-    			{
-    				list.add("Research: " + Research.researchNames1[i]);
-    			}
-    			if(ResearchHandler.getStoredNames(i) != null )
+    			if(ResearchHandler.getStoredNames(i) != null)
     			{
     				list.add("Research: " + ResearchHandler.getStoredNames(i));
     			}
     		}
     	}
-    	if((Research.researchNames1.length + ResearchHandler.amountOnlineResearch) < stack.getItemDamage())
+    	if((ResearchHandler.amountOnlineResearch) < stack.getItemDamage())
     	{
     		list.add("Unknown Methodology");
     	}

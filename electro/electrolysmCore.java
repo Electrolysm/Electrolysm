@@ -204,6 +204,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 		PowerHandler.loadMap();
 		ResearchHandler.downloadOnlineData();
 		ResearchHandler.getStoredResearch();
+		System.out.println(ResearchHandler.getStoredNames(0));
         }
         
 		@EventHandler

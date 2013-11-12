@@ -149,14 +149,14 @@ public class ResearchHandler{
             System.out.println ("Root element of the doc is " + 
                  doc.getDocumentElement().getNodeName());
             
-            NodeList listOfResearch = doc.getElementsByTagName("names");
-            int totalResearch = listOfResearch.getLength();
+            NodeList listOfNames = doc.getElementsByTagName("names");
+            int totalResearch = listOfNames.getLength();
             System.out.println("Total No. of names : " + totalResearch);
             amountOnlineResearch = totalResearch;
             
-            for(int s = 0; s < listOfResearch.getLength(); s++)
+            for(int s = 0; s < listOfNames.getLength(); s++)
             {
-                Node firstPersonNode = listOfResearch.item(s);
+                Node firstPersonNode = listOfNames.item(s);
                 
                 if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE)
                 {
@@ -175,6 +175,10 @@ public class ResearchHandler{
                     	
                     	return result;
                     }
+                    else
+                    {
+                    	return null;
+                    }
                 }
             }
             
@@ -190,6 +194,7 @@ public class ResearchHandler{
         }catch (Throwable t) {
         t.printStackTrace ();
         }
+	    
 		return null;
 	}
 }
