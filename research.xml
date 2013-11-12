@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<research>
-  	
-	<input>1</input>
-	<output>3</output>
-
-	<cardID>2</cardID>
-
-</research>
+<head>
+	<research>
+		<input>1</input>
+		<output>2</output>
+		<cardID>2</cardID>
+	</research>
+</head>
