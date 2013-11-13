@@ -81,7 +81,7 @@ public class researchPaper extends Item{
     			else
     			{
     				list.add("ERROR");
-    				list.add("This is a bug please report it to the MOD author!");
+    				list.add("This is a bug! Please report it to the MOD author!");
     			}
     		}
     	}
