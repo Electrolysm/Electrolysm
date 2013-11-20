@@ -98,10 +98,9 @@ public class IDHandler {
 		public static int crusherID = 811;
 		public static int electrolisisCoreID = 812;
 		public static int electrolChamberID = 813;
-		public static int electrolDummyID = 814;
-		public static int seporatorID = 815;
-		public static int smelteryID = 816;
-		public static int dustsID = 817;
-		public static int impureDustsID = 818;
+		public static int seporatorID = 814;
+		public static int smelteryID = 815;
+		public static int dustsID = 816;
+		public static int impureDustsID = 817;
 	}
 }

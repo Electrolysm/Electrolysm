@@ -67,13 +67,9 @@ public class ResearchHandler{
 
             // normalize text representation
             doc.getDocumentElement ().normalize ();
-            System.out.println ("Root element of the doc is " + 
-                 doc.getDocumentElement().getNodeName());
-
 
             NodeList listOfResearch = doc.getElementsByTagName("research");
             int totalResearch = listOfResearch.getLength();
-            System.out.println("Total No. of online research : " + totalResearch);
 
             for(int s = 0; s < listOfResearch.getLength(); s++)
             {
@@ -88,24 +84,18 @@ public class ResearchHandler{
                     Element firstNameElement = (Element)firstNameList.item(0);
 
                     NodeList textFNList = firstNameElement.getChildNodes();
-                    System.out.println("Input Item: " + 
-                           ((Node)textFNList.item(0)).getNodeValue().trim());
 
                     //Output Item ID
                     NodeList lastNameList = firstPersonElement.getElementsByTagName("output");
                     Element lastNameElement = (Element)lastNameList.item(0);
 
                     NodeList textLNList = lastNameElement.getChildNodes();
-                    System.out.println("Output Item: " + 
-                           ((Node)textLNList.item(0)).getNodeValue().trim());
 
                     //Required Card ID
                     NodeList cardList = firstPersonElement.getElementsByTagName("cardID");
                     Element cardElement = (Element)lastNameList.item(0);
 
                     NodeList cardLNList = lastNameElement.getChildNodes();
-                    System.out.println("Card ID Req: " + 
-                           ((Node)textLNList.item(0)).getNodeValue().trim());
 
                     int inputID = Integer.parseInt(((Node)textFNList.item(0)).getNodeValue().trim());
                     ItemStack output = new ItemStack(electrolysmCore.researchPaper, 1,
@@ -146,12 +136,9 @@ public class ResearchHandler{
 
             // normalize text representation
             doc.getDocumentElement ().normalize ();
-            System.out.println ("Root element of the doc is " + 
-                 doc.getDocumentElement().getNodeName());
             
             NodeList listOfNames = doc.getElementsByTagName("names");
             int totalResearch = listOfNames.getLength();
-            System.out.println("Total No. of names : " + totalResearch);
             
             for(int s = 0; s < totalResearch; s++)
             {
@@ -203,13 +190,9 @@ public class ResearchHandler{
 
              // normalize text representation
              doc.getDocumentElement ().normalize ();
-             System.out.println ("Root element of the doc is " + 
-                  doc.getDocumentElement().getNodeName());
              
              NodeList listOfNames = doc.getElementsByTagName("names");
              int totalNames = listOfNames.getLength();
-             System.out.println("Total No. of names : " + totalNames);
- 	    
  	    
              return totalNames;
              

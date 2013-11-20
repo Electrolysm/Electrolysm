@@ -5,8 +5,10 @@ import assets.electrolysm.electro.configHandler;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.basic.blastProof;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -16,7 +18,7 @@ import net.minecraft.world.World;
  * 
  */
 
-public class GlassBlockConnected extends blastProof
+public class GlassBlockConnected extends BlockContainer
 {
     protected Icon[] icons = new Icon[16];
     private boolean shouldRenderSelectionBox = true;
@@ -631,4 +633,10 @@ public class GlassBlockConnected extends blastProof
     {
         return true;
     }
+
+	@Override
+	public TileEntity createNewTileEntity(World world) 
+	{
+		return null;
+	}
 }

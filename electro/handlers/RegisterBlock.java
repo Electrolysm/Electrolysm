@@ -30,7 +30,6 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.wireGoldOff);
 		GameRegistry.registerBlock(electrolysmCore.sulphurOre);
 		GameRegistry.registerBlock(electrolysmCore.electrolChamber);
-		GameRegistry.registerBlock(electrolysmCore.electrolDummy);
 		GameRegistry.registerBlock(electrolysmCore.electrolisisCore);
 		GameRegistry.registerBlock(electrolysmCore.crusher);
 		GameRegistry.registerBlock(electrolysmCore.liquidiser);

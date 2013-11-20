@@ -49,4 +49,17 @@ public class ContainerResearchDesk extends Container
 	{
         return null;
 	}
+	
+	 public void onContainerClosed(EntityPlayer par1EntityPlayer)
+	    {
+	        InventoryPlayer inventoryplayer = par1EntityPlayer.inventory;
+
+	        if (inventoryplayer.getItemStack() != null)
+	        {
+	            par1EntityPlayer.dropPlayerItem(inventoryplayer.getItemStack());
+	            inventoryplayer.setItemStack((ItemStack)null);
+	        }
+	        
+	        this.entity.isOpen = false;
+	    }
 }

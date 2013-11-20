@@ -12,7 +12,8 @@ import assets.electrolysm.electro.research.Research;
 public class TileEntityResearchDesk extends TileEntity implements IInventory {
 
 	private ItemStack[] inventory;
-
+	public boolean isOpen;
+	
 	public TileEntityResearchDesk() {
 		this.inventory = new ItemStack[3];
 	}
@@ -160,31 +161,5 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 			}
 		}
 	}
-/*
-	@Override
-	public int getResearch(ItemStack input, ItemStack card, ItemStack output)
-	{
-		int inputID = input.itemID;
-		int cardLevel = card.getItemDamage();
-		
-		try{
-			if(cardLevel == 1)
-			{
-				for(int IDList = 0; IDList < 2; IDList++)
-				{
-					if(inputID == Research.levelIDs1[IDList])
-					{
-						System.out.println("ItemIsCorrect");
-						return Research.researchID1[IDList];
-					}
-				}
-			}
-		}finally{
-			
-	}
-		return 0;
-	}*/
-
-
 }
 

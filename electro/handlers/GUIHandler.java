@@ -15,6 +15,9 @@ import assets.electrolysm.electro.block.machines.container.ContainerWorkBench;
 import assets.electrolysm.electro.block.machines.gui.GUIResearchDesk;
 import assets.electrolysm.electro.block.machines.gui.GUIWorkBench;
 import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
+import assets.electrolysm.electro.oreProccessing.container.ContainerElectrolysis;
+import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
+import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler{
@@ -37,6 +40,10 @@ public class GUIHandler implements IGuiHandler{
 		if(entity instanceof TileEntityInjector)
 		{
 			return new ContainerInjector(player.inventory, (TileEntityInjector)entity);
+		}
+		if(entity instanceof TileEntityElectrolisisCore)
+		{
+			return new ContainerElectrolysis((TileEntityElectrolisisCore)entity, player.inventory);
 		}
 		
 		//Crafting
@@ -67,6 +74,10 @@ public class GUIHandler implements IGuiHandler{
 		if(entity instanceof TileEntityInjector)
 		{
 			return new GUIInjector(player.inventory, (TileEntityInjector)entity);
+		}
+		if(entity instanceof TileEntityElectrolisisCore)
+		{
+			return new GUIElectrolysisCore((TileEntityElectrolisisCore)entity, player.inventory);
 		}
 		
 		//Crafting

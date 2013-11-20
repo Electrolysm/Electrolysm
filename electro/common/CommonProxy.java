@@ -21,12 +21,16 @@ public class CommonProxy {
 	public static ResourceLocation ENERGISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energiserGUI.png");
 	public static ResourceLocation INJECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/injectorGUI.png");
 	public static ResourceLocation SMELTORY_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/smelteryGUI.png");
-	
+	public static ResourceLocation ELECTROLYSIS_CORE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/electrolysisGUI.png");
+
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
 	public static String[] HOLDABLE_FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",
+	//METAs										0			1			2					3
 		"Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate"};
+	//METAs    4				5				6				7
 	public static final String[] DUSTS = {"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
+	//METAs									0		   1	  2		  3			4		5
 
 	
 	//MOBs

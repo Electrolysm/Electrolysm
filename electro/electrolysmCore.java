@@ -30,6 +30,7 @@ import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
+import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
 import assets.electrolysm.electro.handlers.GUIHandler;
@@ -46,7 +47,6 @@ import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.dusts;
 import assets.electrolysm.electro.oreProccessing.electrolChamber;
-import assets.electrolysm.electro.oreProccessing.electrolDummy;
 import assets.electrolysm.electro.oreProccessing.electrolisisCore;
 import assets.electrolysm.electro.oreProccessing.impureDusts;
 import assets.electrolysm.electro.oreProccessing.liquidiser;
@@ -65,12 +65,13 @@ import assets.electrolysm.electro.world.copperOre;
 import assets.electrolysm.electro.world.graphite;
 import assets.electrolysm.electro.world.sulpherOre;
 import assets.electrolysm.electro.world.sulphur;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.ServerStarting;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -84,6 +85,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 	@NetworkMod(channels = { Referance.MOD_REF.CHANNEL }, clientSideRequired = true, serverSideRequired = true, packetHandler = packetHandler.class)
 
 	public class electrolysmCore {
+
+        private static String[] ContectedTexture = { "","","","","","","","","","","","","","","","",""};
 
 		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
 
@@ -121,9 +124,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Security
         public static Block blastProof = new blastProof(IDHandler.basic.blastProofID, null);
         public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
-        private static String[] glassTexture = { "","","","","","","","","","","","","","","","",""};
-        public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null, false, glassTexture);
-        public static Block modBlastGlass = new modBlastGlass(IDHandler.basic.modBlastGrassID, null, false, glassTexture);
+        public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null, false, ContectedTexture);
+        public static Block modBlastGlass = new modBlastGlass(IDHandler.basic.modBlastGrassID, null, false, ContectedTexture);
         public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
         
         //Tools
@@ -155,9 +157,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static BlockContainer liquidiser = new liquidiser(IDHandler.oreProccessing.liquidiserID, null);
         public static BlockContainer electrolisisCore = new electrolisisCore(IDHandler.oreProccessing.electrolisisCoreID,
         		null);
-        public static Block electrolChamber = new electrolChamber(IDHandler.oreProccessing.electrolChamberID, null);
-        public static BlockContainer electrolDummy = new electrolDummy(IDHandler.oreProccessing.electrolDummyID,
-        		null);
+        public static Block electrolChamber = new electrolChamber(IDHandler.oreProccessing.electrolChamberID,
+        		null, false, ContectedTexture);
         public static BlockContainer seperator = new seporator(IDHandler.oreProccessing.seporatorID, null);
         public static BlockContainer smeltery = new smeltory(IDHandler.oreProccessing.smelteryID, null);
         public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
@@ -196,32 +197,31 @@ import cpw.mods.fml.relauncher.SideOnly;
         public void preInit(FMLPreInitializationEvent event) 
         {
         	File configFile = new File("config/Electrolysm/Electrolysm.cfg");
-        configHandler.init(configFile);
-        System.out.println(configFile);
-        
-        VersionCheck.check();
-		BetaHandler.beta();
-		PowerHandler.loadMap();
-		ResearchHandler.downloadOnlineData();
-		ResearchHandler.getStoredResearch();
-		System.out.println(ResearchHandler.getStoredNames(0));
+        	configHandler.init(configFile);
+      	 	System.out.println(configFile);
+      	  
+       	 	VersionCheck.check();
+			BetaHandler.beta();
+			PowerHandler.loadMap();
+			ResearchHandler.downloadOnlineData();
+			ResearchHandler.getStoredResearch();
         }
         
 		@EventHandler
 		public void loadConfiguration(FMLPreInitializationEvent evt){
 	    
-		Crafting.addCrafting(); 
-		RegisterBlock.register();
-		Names.addName();
-		Register.addAchievementLocalizations();
-	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
-	    GameRegistry.addBiome(diseasedBiome);
-        EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
-        		"Zombie Scientist", 2, this, 80, 3, true);
-        EntityRegistry.registerModEntity(VillagerScientist.class,
-        		"Villager Scientist", 3, this, 500, 80, true);
+			Crafting.addCrafting(); 
+			RegisterBlock.register();
+			Names.addName();
+			Register.addAchievementLocalizations();
+	   		GameRegistry.addBiome(diseasedBiome);
+        	EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
+        			"Zombie Scientist", 2, this, 80, 3, true);
+        	EntityRegistry.registerModEntity(VillagerScientist.class,
+        			"Villager Scientist", 3, this, 500, 80, true);
+        	TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
         
-        TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+    	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 		}
 		
 		@SideOnly(Side.CLIENT)
@@ -230,6 +230,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 	        ClientProxy ClientProxy = new ClientProxy();
 	        ClientProxy.registerRenderThings();
 		} 
+		
+		@ServerStarting
+		public void serverLoad(FMLServerStartingEvent event)
+		{
+			event.registerServerCommand(new UpdateResearch());
+		}
 }
 
  				
