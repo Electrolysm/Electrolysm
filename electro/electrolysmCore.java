@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author Ben
+ * 
+ */
 package assets.electrolysm.electro;
 
 import java.io.File;
@@ -44,6 +49,9 @@ import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
+import assets.electrolysm.electro.oreProccessing.electrolPort;
+import assets.electrolysm.electro.oreProccessing.node;
+import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.dusts;
 import assets.electrolysm.electro.oreProccessing.electrolChamber;
@@ -83,7 +91,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 	@Mod(modid=Referance.MOD_REF.MOD_ID, name=Referance.MOD_REF.MOD_ID, version= Referance.MOD_REF.VERSION)
  
 	@NetworkMod(channels = { Referance.MOD_REF.CHANNEL }, clientSideRequired = true, serverSideRequired = true, packetHandler = packetHandler.class)
-
+	
 	public class electrolysmCore {
 
         private static String[] ContectedTexture = { "","","","","","","","","","","","","","","","",""};
@@ -108,11 +116,11 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
         
         //World Generation
-        public static BlockOre graphite = new graphite(IDHandler.worldGenOres.graphiteID);
+        public static Block graphite = new graphite(IDHandler.worldGenOres.graphiteID, null);
         public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
         public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
-        public static BlockOre copperOre = new copperOre(IDHandler.worldGenOres.copperOreID);
-        public static BlockOre sulphurOre = new sulpherOre(IDHandler.worldGenOres.sulphurOreID);
+        public static Block copperOre = new copperOre(IDHandler.worldGenOres.copperOreID, null);
+        public static Block sulphurOre = new sulpherOre(IDHandler.worldGenOres.sulphurOreID, null);
         public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
         
         //Biome
@@ -163,6 +171,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static BlockContainer smeltery = new smeltory(IDHandler.oreProccessing.smelteryID, null);
         public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
         public static Item dusts = new dusts(IDHandler.oreProccessing.dustsID);
+        public static Item node = new node(IDHandler.oreProccessing.nodeID);
+        public static Block electrolPort = new electrolPort(IDHandler.oreProccessing.electrolPortID, null);
         
         /*
 		//Robots	

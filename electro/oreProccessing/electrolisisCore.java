@@ -8,7 +8,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
-
+/**
+ * 
+ * @author Ben
+ * @TODO Create texture rendering system, based on ItemStack in specified slot.
+ * 
+ */
 public class electrolisisCore extends BlockContainer {
 
 	public String className = "" + this.getClass();
@@ -24,8 +29,8 @@ public class electrolisisCore extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
+	public TileEntity createNewTileEntity(World world)
+	{
 		return new TileEntityElectrolisisCore();
 	}
 
@@ -54,10 +59,11 @@ public class electrolisisCore extends BlockContainer {
 	{
 		int chamber = electrolysmCore.electrolChamber.blockID;
 		int water = Block.waterStill.blockID;
+		int air = 0;
 		boolean isFormed = false;
 		
 		//Top row
-		if(world.getBlockId(x, y + 1, z) == water)
+		if(world.getBlockId(x, y + 1, z) == water || world.getBlockId(x, y + 1, z) == air)
 		{
 			if(world.getBlockId(x + 1, y + 1, z) == chamber)
 			{
@@ -95,18 +101,9 @@ public class electrolisisCore extends BlockContainer {
 										if(world.getBlockId(x, y - 1, z - 1) == chamber)
 										{
 		//Middle Row
-		for(int xx = -1; xx <= 1; xx++)
+		if(world.getBlockId(x, y, z) == chamber)
 		{
-			for(int zz = -1; zz <= 1; zz++)
-			{
-				if(zz != 0 && xx != 0)
-				{
-					if(world.getBlockId(x + xx, y, z + zz) == chamber)
-					{
-						isFormed = true;
-					}
-				}
-			}
+			
 		}
 										}
 									}
@@ -128,5 +125,22 @@ public class electrolisisCore extends BlockContainer {
 		}
 		
 		return isFormed;
+	}
+	
+	@Override
+	public int getRenderType() 
+	{
+        	return -1;	
+	}
+
+	@Override
+	public boolean isOpaqueCube() 
+	{
+			return false;
+	}
+
+	public boolean renderAsNormalBlock() 
+	{
+        return false;
 	}
 }

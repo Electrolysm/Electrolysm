@@ -102,5 +102,7 @@ public class IDHandler {
 		public static int smelteryID = 815;
 		public static int dustsID = 816;
 		public static int impureDustsID = 817;
+		public static int nodeID = 818;
+		public static int electrolPortID = 819;
 	}
 }

@@ -5,22 +5,16 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.electro.block.machines.container.SlotOutput;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
+import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
 
-public class ContainerElectrolysis extends Container
+public class ContainerPort extends Container
 {
-	private TileEntityElectrolisisCore entity;
+	private TileEntityPort entity;
 	
-	public ContainerElectrolysis(TileEntityElectrolisisCore entity2, InventoryPlayer inventory)
+	public ContainerPort(TileEntityPort entity2, InventoryPlayer inventory)
 	{
 		this.entity = entity2;
 		
-		this.addSlotToContainer(new Slot(entity2, 0, 11, 17));
-		this.addSlotToContainer(new Slot(entity2, 1, 149, 17));
-		this.addSlotToContainer(new SlotOutput(entity2, 2, 63, 10));
-		
-		this.addSlotToContainer(new Slot(entity2, 3, 63, 45));
 		this.addSlotToContainer(new Slot(entity2, 4, 97, 45));
 		
 	    int var3;

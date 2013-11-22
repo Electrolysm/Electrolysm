@@ -35,6 +35,7 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.liquidiser);
 		GameRegistry.registerBlock(electrolysmCore.seperator);
 		GameRegistry.registerBlock(electrolysmCore.smeltery);
+		GameRegistry.registerBlock(electrolysmCore.electrolPort);
 		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());

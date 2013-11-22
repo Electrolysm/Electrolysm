@@ -32,7 +32,7 @@ public class electrolisisRecipes
     	//ItemStacks - fluid
     	int copperSul = 3;
     	//ItemStacks - Dusts
-    	ItemStack impureCopper = new ItemStack(electrolysmCore.impureDusts, 2, 0);
+    	ItemStack impureCopper = new ItemStack(electrolysmCore.impureDusts, 4, 0);
     	//Recipes
     	this.addElectrolisis(copperSul, impureCopper);
     	//End

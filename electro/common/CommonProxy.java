@@ -15,6 +15,7 @@ public class CommonProxy {
 	public static ResourceLocation MODEL_TRANSFORMER_MACHINE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelTransformerMachine.png");
 	public static ResourceLocation MODEL_QUANTUM_COMPUTER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelQuantumComp.png");
 	public static ResourceLocation GRAPHITE_WIRE_MODEL = new ResourceLocation(MOD_ID_LOWER, "textures/models/copperWire.png");
+	public static ResourceLocation MODEL_ELECTROLYSIS_CORE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelElectrolysisCore.png");
 	
 	//GUIs
 	public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
@@ -22,7 +23,8 @@ public class CommonProxy {
 	public static ResourceLocation INJECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/injectorGUI.png");
 	public static ResourceLocation SMELTORY_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/smelteryGUI.png");
 	public static ResourceLocation ELECTROLYSIS_CORE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/electrolysisGUI.png");
-
+	public static ResourceLocation ELECTROLYSIS_PORT = new ResourceLocation(MOD_ID_LOWER, "texture/gui/electrolysisPort.png");
+	
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
 	public static String[] HOLDABLE_FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",

@@ -3,24 +3,21 @@ package assets.electrolysm.electro.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
-import assets.electrolysm.electro.powerSystem.te.TileEntityTransformerMachine;
-import assets.electrolysm.electro.powerSystem.te.TileEntityTransformerSource;
+import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockInventoryRendering implements ISimpleBlockRenderingHandler 
 {
 	public static final double POSITION_FIX = -0.5D;
-	private static TileEntityResearchDesk researchDeskTE = new TileEntityResearchDesk();
-	private static TileEntityDesk deskTE = new TileEntityDesk();
-	private static TileEntityWorkBench workBenchTE = new TileEntityWorkBench();
-	private static TileEntityTransformerMachine transformerMachineTE = new TileEntityTransformerMachine();
-	private static TileEntityTransformerSource transformerSourceTE = new TileEntityTransformerSource();
+	private static TileEntityResearchDesk RESEARCH_DESK_TE = new TileEntityResearchDesk();
+	private static TileEntityDesk DESK_TE = new TileEntityDesk();
+	private static TileEntityWorkBench WORK_BENCH_TE = new TileEntityWorkBench();
+	private static TileEntityElectrolisisCore ELECTROL_CORE_TE = new TileEntityElectrolisisCore();
 	
 	
 	@Override
@@ -30,25 +27,20 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
 		
 		if(block == electrolysmCore.researchDesk)
 		{
-			entityRenderer.renderTileEntityAt(researchDeskTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+			entityRenderer.renderTileEntityAt(RESEARCH_DESK_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
 		}
 		else if(block == electrolysmCore.desk)
 		{
-			entityRenderer.renderTileEntityAt(deskTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+			entityRenderer.renderTileEntityAt(DESK_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
 		}
 		else if(block == electrolysmCore.workBench)
 		{
-			entityRenderer.renderTileEntityAt(workBenchTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+			entityRenderer.renderTileEntityAt(WORK_BENCH_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
 		}
-		/*else if(block == electrolysmCore.transformerMachine)
+		else if(block == electrolysmCore.electrolisisCore)
 		{
-			entityRenderer.renderTileEntityAt(transformerMachineTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+			entityRenderer.renderTileEntityAt(ELECTROL_CORE_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
 		}
-		else if(block == electrolysmCore.transformerSource)
-		{
-			entityRenderer.renderTileEntityAt(transformerSourceTE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
-		}
-		*/
 	}
 	
 	@Override

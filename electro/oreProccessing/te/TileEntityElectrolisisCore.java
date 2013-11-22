@@ -16,10 +16,11 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 	{
 		int chamber = electrolysmCore.electrolChamber.blockID;
 		int water = Block.waterStill.blockID;
+		int air = 0;
 		boolean isFormed = false;
 		
 		//Top row
-		if(world.getBlockId(x, y + 1, z) == water)
+		if(world.getBlockId(x, y + 1, z) == water || world.getBlockId(x, y + 1, z) == air)
 		{
 			if(world.getBlockId(x + 1, y + 1, z) == chamber)
 			{
@@ -94,9 +95,6 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 
 	//GUI STUFF
 	
-private ItemStack[] inventory;
-
-	
 	public int furnaceBurnTime = 0;
 	
 	public int currentItemBurnTime = furnaceBurnTime;
@@ -109,13 +107,12 @@ private ItemStack[] inventory;
 	
 	public static boolean powered = true;
 
+	private ItemStack[] inventory;
+
 	public TileEntityElectrolisisCore() {
-		this.inventory = new ItemStack[4];
+		this.inventory = new ItemStack[5];
 	}
 
-
-		
-		
 	@Override
 	public int getSizeInventory() {
 		return inventory.length;
@@ -209,15 +206,26 @@ private ItemStack[] inventory;
 			ItemStack input1 = getStackInSlot(0);
 			ItemStack input2 = getStackInSlot(1);
 			ItemStack output1 = getStackInSlot(2);
-			ItemStack output2 = getStackInSlot(3);
-			ItemStack result;
+			ItemStack result1;
+			ItemStack node1 = getStackInSlot(3);
+			ItemStack node2 = getStackInSlot(4);
 			
+			ItemStack node = new ItemStack(electrolysmCore.node, 1);
+			
+			if(node1 == node2 && node1 == node)
+			{
+				return;
+			}
+			if(node1 == null || node2 == null)
+			{
+				return;
+			}
 			if(input1 != null && input2 != null)
 			{
 				if(input1.isItemEqual(input2))
 				{
-					result = electrolisisRecipes.smelting().getSmeltingResult(input1);
-					System.out.println(result);			
+					result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
+					System.out.println(result1);			
 				}
 				else
 				{
@@ -229,46 +237,44 @@ private ItemStack[] inventory;
 				return;
 			}
 			
-			if (result != null) 
+			if (result1 != null) 
 			{
 				if (furnaceBurnTime == furnaceCookTime)
 				{		
 					furnaceBurnTime = 0;
-					if (output1 == null && output2 == null) 
+					if (output1 == null) 
 					{
 						decrStackSize(0, 1);
 						decrStackSize(1, 1);
-						setInventorySlotContents(2, result);
-						setInventorySlotContents(3, result);
+						setInventorySlotContents(2, result1);
 						onInventoryChanged();
 						System.out.println("Done Proccess");
 					} 
 					else 
 					{
-						if (output1.isItemEqual(result) && output2.isItemEqual(result)) 
+						if (output1.isItemEqual(result1)) 
 						{
 							decrStackSize(0, 1);
 							decrStackSize(1, 1);
-							output1.stackSize++;
-							output2.stackSize++;
+							for(int i = 0; i < 4; i++)
+							{
+								output1.stackSize++;
+							}
 						}
 					}
 				} 
 				else 
 				{
 					furnaceBurnTime++;
-					if (output1 != null && !output1.isItemEqual(result) && output2 != null &&
-							!output2.isItemEqual(result))
+					if (output1 != null && !output1.isItemEqual(result1))
 					{
 						furnaceBurnTime = 0;
 					}
 				}
 			}
-			if (output1 != null && output1.stackSize == 0 &&
-					output2 != null && output2.stackSize == 0) 
+			if (output1 != null && output1.stackSize == 0) 
 			{
 				output1.stackSize = 1;
-				output2.stackSize = 1;
 			}
 		}
 
