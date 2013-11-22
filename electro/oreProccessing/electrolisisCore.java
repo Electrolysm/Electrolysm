@@ -59,6 +59,7 @@ public class electrolisisCore extends BlockContainer {
 	{
 		int chamber = electrolysmCore.electrolChamber.blockID;
 		int water = Block.waterStill.blockID;
+		int port = electrolysmCore.electrolPort.blockID;
 		int air = 0;
 		boolean isFormed = false;
 		
@@ -100,10 +101,32 @@ public class electrolisisCore extends BlockContainer {
 									{
 										if(world.getBlockId(x, y - 1, z - 1) == chamber)
 										{
+		
 		//Middle Row
-		if(world.getBlockId(x, y, z) == chamber)
+		if(world.getBlockId(x + 1, y, z) == chamber || world.getBlockId(x + 1, y, z) == port)
 		{
-			
+			if(world.getBlockId(x - 1, y, z) == chamber || world.getBlockId(x - 1, y, z) == port)
+			{
+				if(world.getBlockId(x, y, z + 1) == chamber || world.getBlockId(x, y, z + 1) == port)
+				{
+					if(world.getBlockId(x, y, z - 1) == chamber || world.getBlockId(x, y, z - 1) == port)
+					{
+						if(world.getBlockId(x + 1, y, z + 1) == chamber)
+						{
+							if(world.getBlockId(x - 1, y, z + 1) == chamber)
+							{
+								if(world.getBlockId(x + 1, y, z - 1) == chamber)
+								{
+									if(world.getBlockId(x - 1, y, z - 1) == chamber)
+									{
+										return true;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 										}
 									}
