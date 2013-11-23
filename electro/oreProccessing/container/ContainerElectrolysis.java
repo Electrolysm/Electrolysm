@@ -16,12 +16,12 @@ public class ContainerElectrolysis extends Container
 	{
 		this.entity = entity2;
 		
-		this.addSlotToContainer(new Slot(entity2, 0, 11, 17));
-		this.addSlotToContainer(new Slot(entity2, 1, 149, 17));
-		this.addSlotToContainer(new SlotOutput(entity2, 2, 63, 10));
+		this.addSlotToContainer(new Slot(entity2, 0, 9, 27));
+		this.addSlotToContainer(new Slot(entity2, 1, 147, 27));
+		this.addSlotToContainer(new SlotOutput(entity2, 2, 78, 18));
 		
-		this.addSlotToContainer(new Slot(entity2, 3, 63, 45));
-		this.addSlotToContainer(new Slot(entity2, 4, 97, 45));
+		this.addSlotToContainer(new Slot(entity2, 3, 61, 55));
+		this.addSlotToContainer(new Slot(entity2, 4, 95, 55));
 		
 	    int var3;
 

@@ -83,8 +83,6 @@ public class electrolisisCore extends BlockContainer {
 										if(world.getBlockId(x, y + 1, z - 1) == chamber)
 										{
 		//Bottom Row
-		if(world.getBlockId(x, y - 1, z) == chamber)
-		{
 			if(world.getBlockId(x + 1, y - 1, z) == chamber)
 			{
 				if(world.getBlockId(x + 1, y - 1, z + 1) == chamber)
@@ -145,7 +143,6 @@ public class electrolisisCore extends BlockContainer {
 					}
 				}
 			}
-		}
 		
 		return isFormed;
 	}

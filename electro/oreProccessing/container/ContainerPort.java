@@ -15,7 +15,7 @@ public class ContainerPort extends Container
 	{
 		this.entity = entity2;
 		
-		this.addSlotToContainer(new Slot(entity2, 4, 97, 45));
+		this.addSlotToContainer(new Slot(entity2, 0, 97, 45));
 		
 	    int var3;
 

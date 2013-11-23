@@ -107,9 +107,6 @@ public class TileEntityPort extends TileEntity implements IInventory {
 
 	}
 
-
-
-
 	@Override
 	public boolean isInvNameLocalized() 
 	{

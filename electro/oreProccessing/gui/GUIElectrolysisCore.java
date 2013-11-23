@@ -35,25 +35,24 @@ public class GUIElectrolysisCore extends GuiContainer
 		
 		if(progress != 0)
 		{
-			progress = progress / 4;
+			progress = progress / 50;
 		}
 		if(heat != 0)
 		{
 			heat = heat / 12;
 			if(entity.active)
 			{
-				this.drawTexturedModalRect(x + 83, y + 47 + 12 - heat, 176, 4 - heat, 28, heat + 10);
+				this.drawTexturedModalRect(x + 63, y + 27 + 12 - heat, 176, 4 - heat, 44, heat + 10);
 			}
 		}
 		
-		this.drawTexturedModalRect(x + 82, y + 23, 176, 14, progress - 1, 16);
+		this.drawTexturedModalRect(x + 82, y + 23, 176, 14, 80, progress - 50);
 	}
 	
 	@Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
 	{
 		fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
-        fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 	}
 
 }

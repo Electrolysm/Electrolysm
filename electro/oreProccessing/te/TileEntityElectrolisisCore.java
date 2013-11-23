@@ -108,11 +108,14 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 	@Override
 	public void updateEntity() {
 
-		
+		World world = worldObj;
 		active = powered;
 
 		boolean canwork = (powered && heat > 10);
 
+		int portID = electrolysmCore.electrolPort.blockID;
+		boolean portSet = false;
+		
 		if (heat < 50)
 		{
 			heat = 100;
@@ -162,11 +165,14 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 					furnaceBurnTime = 0;
 					if (output1 == null) 
 					{
-						decrStackSize(0, 1);
-						decrStackSize(1, 1);
-						setInventorySlotContents(2, result1);
-						onInventoryChanged();
-						System.out.println("Done Proccess");
+						if(this.getPorts(xCoord, yCoord, zCoord, worldObj) == 0)
+						{
+							decrStackSize(0, 1);
+							decrStackSize(1, 1);
+							setInventorySlotContents(2, result1);
+							onInventoryChanged();
+							System.out.println("Done Proccess");
+						}
 					} 
 					else 
 					{
@@ -205,12 +211,37 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 
 
 
+	private int getPorts(int x, int y, int z, World world)
+	{
+		int port = electrolysmCore.electrolPort.blockID;
+		int ports = 0;
+		
+		if(world.getBlockId(x + 1, y, z) == port)
+		{
+			ports = ports + 1;
+		}
+		if(world.getBlockId(x - 1, y, z) == port)
+		{
+			ports = port + 1;
+		}
+		if(world.getBlockId(x, y, z + 1) == port)
+		{
+			ports = ports + 1;
+		}
+		if(world.getBlockId(x, y, z - 1) == port)
+		{
+			ports = ports + 1;
+		}
+			
+		return ports;
+	}
+
 	@Override
 	public boolean isInvNameLocalized() 
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return false;
