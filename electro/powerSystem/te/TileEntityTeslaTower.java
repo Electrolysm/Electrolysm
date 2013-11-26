@@ -1,9 +1,14 @@
 package assets.electrolysm.electro.powerSystem.te;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.Random;
 
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
@@ -11,6 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -19,6 +25,10 @@ public class TileEntityTeslaTower extends TileEntity {
 	private float field_82138_c;
 	private long field_82137_b;
 
+	/**
+	 * @return
+	 * does something for the beacon beam.
+	 */
 	@SideOnly(Side.CLIENT)
     public float func_82125_v_()
     {
@@ -51,7 +61,15 @@ public class TileEntityTeslaTower extends TileEntity {
             return this.field_82138_c;
         }
     }
-	
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return
+	 * checks to see if the tower is formed.
+	 */
 	public boolean isTowerFormed(World world, int x, int y, int z)
 	{
 		int copperCoil = electrolysmCore.largeCopperCoil.blockID;
@@ -93,6 +111,15 @@ public class TileEntityTeslaTower extends TileEntity {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return
+	 * checks to see if the base of the tower is connected to a power source.
+	 */
 	public boolean isBaseRecievingPower(World world, int x, int y, int z)
 	{
 		int baseY = y - 5;
@@ -109,22 +136,41 @@ public class TileEntityTeslaTower extends TileEntity {
 		return false;
 	}
 	
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return boolean if it can distribute power
+	 * decides if the tower can distribute power to the local area.
+	 */
 	public boolean canDistribute(World world, int x, int y, int z)
 	{
 		if(this.isTowerFormed(world, x, y, z))
 		{
-			return true;
-		}
-		else if(this.isBaseRecievingPower(world, x, y, z))
-		{
-			return true;
+			if(this.isBaseRecievingPower(world, x, y, z))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{
 			return false;
 		}
 	}
-	
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * zaps the player depending on closeness to the tower
+	 */
 	public void zapPlayer(World world, int x, int y, int z)
 	{
 		EntityPlayer player;
@@ -133,21 +179,33 @@ public class TileEntityTeslaTower extends TileEntity {
 		int transmitRange = this.getTransmitDistance(world, x, y, z);
 		
 		player = world.getClosestPlayer(x, y, z, (this.getTransmitDistance(world, x, y, z) * 5));
-		distanceTooClosestPlayer = (int) player.getDistance(x, y, z);
 		
-		int playerX = (int)player.lastTickPosX; 
-		int playerY = (int)player.lastTickPosY;
-		int playerZ = (int)player.lastTickPosZ;
-		
-		if(rand.nextInt(this.getZapChance(distanceTooClosestPlayer, transmitRange)) == 1)
+		if(player != null)
 		{
-
-			this.spawnLighningBolt(world, playerX, playerY, playerZ);
-			player.performHurtAnimation();
-        	player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200, true));
+			distanceTooClosestPlayer = (int) player.getDistance(x, y, z);
+		
+			int playerX = (int)player.lastTickPosX; 
+			int playerY = (int)player.lastTickPosY;
+			int playerZ = (int)player.lastTickPosZ;
+		
+			if(this.canDistribute(world, x, y, z))
+			{
+				if(rand.nextInt(this.getZapChance(distanceTooClosestPlayer, transmitRange)) == 1)
+				{
+					this.spawnLighningBolt(world, playerX, playerY, playerZ);
+					player.performHurtAnimation();
+					player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200, true));
+				}
+			}
 		}
 	}
-	
+	/**
+	 * @param distanceTooClosestPlayer
+	 * @param transmitRange
+	 * @return chance
+	 * Uses distance too the closest player and the transmit range of the tower to calculate
+	 * the chance of the player being zapped by lightning
+	 */
     public int getZapChance(int distanceTooClosestPlayer, int transmitRange)
     {
     	int distance = distanceTooClosestPlayer;
@@ -160,19 +218,29 @@ public class TileEntityTeslaTower extends TileEntity {
     	System.out.println(chance);
     	if(distance < 7)
     	{
-    		return (int)(chance / 4);
+    		return (int)chance + 4;
     	}
     	else
     	{
-    		return chance;
+    		return (int)(chance * 4);
     	}
 	}
-
+    /**
+     * @param world
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     * returns the distance the tower can transmit power, based on tier.
+     */
 	public int getTransmitDistance(World world, int x, int y, int z)
     {
     	return 20;
 	}
 
+	/**
+	 * updates the whole tile entity
+	 */
 	public void updateEntity() 
     {
     	worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
@@ -181,8 +249,17 @@ public class TileEntityTeslaTower extends TileEntity {
     	this.isTowerFormed(worldObj, xCoord, yCoord, zCoord);
     	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
     	this.func_82125_v_();
+    	
     }
 	
+	/**
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return
+	 * spawns lightning bolt.
+	 */
 	public EntityLightningBolt spawnLighningBolt(World world, double x, double y, double z) 
 	{
 		Random rand = new Random();
@@ -199,5 +276,9 @@ public class TileEntityTeslaTower extends TileEntity {
         		2.0F, 0.5F + rand.nextFloat() * 0.2F);		return bolt;
 	}
 
+	public void transmitPower(World world, int x, int y, int z, int range)
+	{
+		
+	}
 
 }

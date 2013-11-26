@@ -80,7 +80,7 @@ public class teslaTowerCore extends BlockContainer
 		return false;
 	}
 
-	
+	/*
 	public boolean isOpaqueCube()
     {
         return false;
@@ -95,5 +95,5 @@ public class teslaTowerCore extends BlockContainer
 	 {
 		 return -1;
 	 }
-
+*/
 }

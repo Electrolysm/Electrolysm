@@ -21,5 +21,20 @@ public class ironFrames extends BlockContainer {
 		// TODO Auto-generated method stub
 		return new TileEntityIronFrame();
 	}
+	
+	public boolean isOpaqueCube()
+    {
+        return false;
+    }
+	
+	public boolean renderAsNormalBlock()
+	{
+		return false;
+	}
+	 
+	 public int getRenderType()
+	 {
+		 return -1;
+	 }
 
 }

@@ -3,6 +3,7 @@ package assets.electrolysm.electro.powerSystem;
 import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 
 public class largeCopperCoil extends Block {
 
@@ -12,5 +13,10 @@ public class largeCopperCoil extends Block {
 		this.setUnlocalizedName("largeCopperCoil");
 		this.setHardness(3F);
 	}
+	
+	public void registerIcons(IconRegister reg)
+    {
+		this.blockIcon = reg.registerIcon("electrolysm:" + "largeCopperCoild");
+    }
 
 }

@@ -18,6 +18,7 @@ public class CommonProxy {
 	public static ResourceLocation GRAPHITE_WIRE_MODEL = new ResourceLocation(MOD_ID_LOWER, "textures/models/copperWire.png");
 	public static ResourceLocation MODEL_ELECTROLYSIS_CORE_EMPTY = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelElectrolysisCore.png");
     public static ResourceLocation BEAM_MODEL = new ResourceLocation("textures/entity/beacon_beam.png");
+	public static ResourceLocation MODEL_IRON_FRAME = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelIronFrame.png");
 
 	//GUIs
 	public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
