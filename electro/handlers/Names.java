@@ -37,6 +37,9 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.injectionArm, "Injection Arm");
 		LanguageRegistry.addName(electrolysmCore.energisingRod, "Energising Filament");
 		LanguageRegistry.addName(electrolysmCore.glassModifire, "Glass Modifier");
+		LanguageRegistry.addName(electrolysmCore.sulphurOre, "Sulphur Ore");
+		LanguageRegistry.addName(electrolysmCore.sulphur, "Sulpure Crystals");
+		
 		
 		
 		//Items

@@ -17,6 +17,7 @@ public class ModelElectrolysisCore extends ModelBase
     ModelRenderer standShelf;
     ModelRenderer node1;
     ModelRenderer node2;
+    ModelRenderer Liquid;
   
   public ModelElectrolysisCore()
   {
@@ -83,6 +84,12 @@ public class ModelElectrolysisCore extends ModelBase
       node2.setTextureSize(256, 256);
       node2.mirror = true;
       setRotation(node2, 0F, 0F, 0F);
+      Liquid = new ModelRenderer(this, 0, 100);
+      Liquid.addBox(0F, 0F, 0F, 14, 1, 14);
+      Liquid.setRotationPoint(-7F, 17F, -7F);
+      Liquid.setTextureSize(256, 256);
+      Liquid.mirror = true;
+      setRotation(Liquid, 0F, 0F, 0F);
   }
   
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -99,6 +106,7 @@ public class ModelElectrolysisCore extends ModelBase
     standShelf.render(f5);
     node1.render(f5);
     node2.render(f5);
+    Liquid.render(f5);
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)

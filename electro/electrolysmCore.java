@@ -13,7 +13,6 @@ import net.minecraft.block.BlockOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.BiomeGenBase;
-import assets.electrolysm.api.power.PowerHandler;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
@@ -21,6 +20,7 @@ import assets.electrolysm.electro.biome.VillagerScientist;
 import assets.electrolysm.electro.biome.diseasedBiome;
 import assets.electrolysm.electro.biome.diseasedGrass;
 import assets.electrolysm.electro.biome.spawnZS;
+import assets.electrolysm.electro.block.ironFrames;
 import assets.electrolysm.electro.block.advMachines.energiser;
 import assets.electrolysm.electro.block.advMachines.energisingRod;
 import assets.electrolysm.electro.block.advMachines.injectionArm;
@@ -60,10 +60,9 @@ import assets.electrolysm.electro.oreProccessing.impureDusts;
 import assets.electrolysm.electro.oreProccessing.liquidiser;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
-import assets.electrolysm.electro.powerSystem.TEUDetector;
-import assets.electrolysm.electro.powerSystem.wireGold;
-import assets.electrolysm.electro.powerSystem.wireGoldActive;
-import assets.electrolysm.electro.powerSystem.wireGoldOff;
+import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
+import assets.electrolysm.electro.powerSystem.largeCopperCoil;
+import assets.electrolysm.electro.powerSystem.teslaTowerCore;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
@@ -154,11 +153,11 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
         
         //Power System -- WIP
-        public static Item TEUDetector = new TEUDetector(IDHandler.powerGrid.TEUDetectorID);
-        public static Block wireGold = new wireGold(IDHandler.powerGrid.wireGoldID, null);
-        public static Block wireGoldActive = new wireGoldActive(IDHandler.powerGrid.wireGoldActiveID, null);
-        public static Block wireGoldOff = new wireGoldOff(IDHandler.powerGrid.wireGoldOffID, null);
-        //public static Block coalGen = new coalGen(IDHandler.powerGrid.coalGenID, null);
+        public static Block teslaTowerCore = new teslaTowerCore(IDHandler.powerGrid.teslaCoreID, null);
+        public static Block largeCopperCoil = new largeCopperCoil(IDHandler.powerGrid.largeCopperCoilID, null);
+        
+        //Random Blocks
+        public static Block ironFrames = new ironFrames(IDHandler.blocks.ironFramesID, null);
         
         //Ore Proccessing -- WIP
         public static BlockContainer crusher = new crusher(IDHandler.oreProccessing.crusherID, null);
@@ -174,6 +173,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item node = new node(IDHandler.oreProccessing.nodeID);
         public static Block electrolPort = new electrolPort(IDHandler.oreProccessing.electrolPortID, null);
         
+        public static Block sulpuricAcid = new sulphuricAcid(IDHandler.oreProccessing.sulphuricAcidID);
+
         /*
 		//Robots	
         //Parts
@@ -212,7 +213,6 @@ import cpw.mods.fml.relauncher.SideOnly;
       	  
        	 	VersionCheck.check();
 			BetaHandler.beta();
-			PowerHandler.loadMap();
 			ResearchHandler.downloadOnlineData();
 			ResearchHandler.getStoredResearch();
         }

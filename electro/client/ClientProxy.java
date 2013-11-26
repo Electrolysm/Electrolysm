@@ -7,7 +7,7 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
+import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import assets.electrolysm.electro.robotics.tile.TileEntitySoldering;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -21,8 +21,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDesk.class, new RenderTileDesk());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityResearchDesk.class, new RenderTileResearchDesk());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityQuantumComp.class, new RenderTileQuantumComp());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderCopperWire());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectrolisisCore.class, new RenderTileElectrolysisCore());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeslaTower.class, new RenderTileTeslaTower());
 		
 		RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
 		

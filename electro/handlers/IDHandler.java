@@ -79,16 +79,16 @@ public class IDHandler {
 
 	public static class powerGrid
 	{
-		public static int TEUDetectorID = 800;
-		public static int wireGoldID = 801;
-		public static int wireGoldActiveID = 802;
-		public static int wireGoldOffID = 803;
-		public static int coalGenID = 804;
-		public static int nullID4 = 805;
-		public static int generator2 = 806;
-		public static int generator3 = 807;
-		public static int generator4 = 808;
-		public static int na = 809;
+		public static int teslaCoreID = 800;
+		public static int largeCopperCoilID = 801;
+		public static int null3 = 802;
+		public static int null4 = 803;
+		public static int null5 = 804;
+		public static int null6 = 805;
+		public static int null7 = 806;
+		public static int null8 = 807;
+		public static int null9 = 808;
+		public static int null10 = 809;
 
 	}
 
@@ -104,5 +104,11 @@ public class IDHandler {
 		public static int impureDustsID = 817;
 		public static int nodeID = 818;
 		public static int electrolPortID = 819;
+		public static int sulphuricAcidID = 820;
+	}
+	
+	public static class blocks{
+		
+		public static int ironFramesID = 830;
 	}
 }

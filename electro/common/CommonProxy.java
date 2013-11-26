@@ -5,7 +5,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class CommonProxy {
 
-	private static String MOD_ID_LOWER = (Referance.MOD_REF.MOD_ID.toLowerCase());
+	public static String MOD_ID_LOWER = (Referance.MOD_REF.MOD_ID.toLowerCase());
+	public static String MOD_MODEL_ELECTROL_LOCATION = "textures/models/electrolysis/";
 	
 	public static ResourceLocation MODELWORKBENCH = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelWorkBench.png");
 	public static ResourceLocation MODEL_SOLDERING = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelSoldering.png");
@@ -15,8 +16,9 @@ public class CommonProxy {
 	public static ResourceLocation MODEL_TRANSFORMER_MACHINE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelTransformerMachine.png");
 	public static ResourceLocation MODEL_QUANTUM_COMPUTER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelQuantumComp.png");
 	public static ResourceLocation GRAPHITE_WIRE_MODEL = new ResourceLocation(MOD_ID_LOWER, "textures/models/copperWire.png");
-	public static ResourceLocation MODEL_ELECTROLYSIS_CORE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelElectrolysisCore.png");
-	
+	public static ResourceLocation MODEL_ELECTROLYSIS_CORE_EMPTY = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelElectrolysisCore.png");
+    public static ResourceLocation BEAM_MODEL = new ResourceLocation("textures/entity/beacon_beam.png");
+
 	//GUIs
 	public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
 	public static ResourceLocation ENERGISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energiserGUI.png");
@@ -29,8 +31,8 @@ public class CommonProxy {
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
 	public static String[] HOLDABLE_FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",
 	//METAs										0			1			2					3
-		"Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate"};
-	//METAs    4				5				6				7
+		"Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate", "Silver Sulphate"};
+	//METAs    4				5				6				7				8
 	public static final String[] DUSTS = {"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
 	//METAs									0		   1	  2		  3			4		5
 

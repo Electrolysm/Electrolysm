@@ -2,6 +2,8 @@ package assets.electrolysm.electro.handlers;
 
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.world.WorldGenOres;
 import assets.electrolysm.electro.world.WorldGenStructures;
@@ -25,9 +27,6 @@ public class RegisterBlock {
 		//GameRegistry.registerBlock(electrolysmCore.quantumComp);
 		GameRegistry.registerBlock(electrolysmCore.graphite);
 		GameRegistry.registerBlock(electrolysmCore.modBlastGlass);
-		GameRegistry.registerBlock(electrolysmCore.wireGold);
-		GameRegistry.registerBlock(electrolysmCore.wireGoldActive);
-		GameRegistry.registerBlock(electrolysmCore.wireGoldOff);
 		GameRegistry.registerBlock(electrolysmCore.sulphurOre);
 		GameRegistry.registerBlock(electrolysmCore.electrolChamber);
 		GameRegistry.registerBlock(electrolysmCore.electrolisisCore);
@@ -36,6 +35,10 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.seperator);
 		GameRegistry.registerBlock(electrolysmCore.smeltery);
 		GameRegistry.registerBlock(electrolysmCore.electrolPort);
+		GameRegistry.registerBlock(electrolysmCore.sulpuricAcid);
+		GameRegistry.registerBlock(electrolysmCore.teslaTowerCore);
+		GameRegistry.registerBlock(electrolysmCore.largeCopperCoil);
+		GameRegistry.registerBlock(electrolysmCore.ironFrames);
 		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());

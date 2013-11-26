@@ -117,6 +117,24 @@ public class Crafting {
 				Character.valueOf('C'), electrolysmCore.copperIngot) ;
 				
 		*/
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.electrolChamber, 4), 
+				"XYX", "YDY", "XYX",
+				Character.valueOf('X'), Item.ingotIron,
+				Character.valueOf('Y'), Item.ingotGold,
+				Character.valueOf('D'), Item.diamond);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.electrolisisCore),
+				"G G", "YXY", "RYR",
+				Character.valueOf('G'), Item.ingotGold,
+				Character.valueOf('Y'), electrolysmCore.electrolChamber,
+				Character.valueOf('X'), Item.cauldron,
+				Character.valueOf('R'), Item.redstone);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.node),
+				"XYX", "XYX", " Z ",
+				Character.valueOf('X'), Item.ingotIron,
+				Character.valueOf('Y'), electrolysmCore.graphite,
+				Character.valueOf('Z'), electrolysmCore.chunkGraphite);
 		
 	}
 

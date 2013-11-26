@@ -1,12 +1,15 @@
 package assets.electrolysm.electro.oreProccessing.te;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.advAtomics.liquids.FluidOre;
+import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
+import assets.electrolysm.electro.client.RenderTileElectrolysisCore;
 import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
 
 public class TileEntityElectrolisisCore extends TileEntity implements IInventory
@@ -121,7 +124,8 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 			heat = 100;
 		}
 
-		if (canwork) {
+		if (canwork) 
+		{
 			furnaceCookTime = 5000 / heat;
 
 			ItemStack input1 = getStackInSlot(0);
@@ -146,7 +150,9 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 				if(input1.isItemEqual(input2))
 				{
 					result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
-					System.out.println(result1);			
+					System.out.println(result1);
+			    	worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+
 				}
 				else
 				{
@@ -206,10 +212,8 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 		{
 			furnaceBurnTime = 0;
 		}
+		
 	}
-
-
-
 
 	private int getPorts(int x, int y, int z, World world)
 	{
