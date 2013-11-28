@@ -61,7 +61,9 @@ import assets.electrolysm.electro.oreProccessing.liquidiser;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
+import assets.electrolysm.electro.powerSystem.crystal1;
 import assets.electrolysm.electro.powerSystem.largeCopperCoil;
+import assets.electrolysm.electro.powerSystem.plug;
 import assets.electrolysm.electro.powerSystem.teslaTowerCore;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
@@ -155,7 +157,11 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Power System -- WIP
         public static Block teslaTowerCore = new teslaTowerCore(IDHandler.powerGrid.teslaCoreID, null);
         public static Block largeCopperCoil = new largeCopperCoil(IDHandler.powerGrid.largeCopperCoilID, null);
-        
+        public static Block plug = new plug(IDHandler.powerGrid.plugID, null);
+        public static Item crystal1 = new crystal1(IDHandler.powerGrid.crystal1ID);
+        //public static Item crystal2 = new crystal2(IDHandler.powerGrid.crystal2ID);
+        //public static Item crystal3 = new crystal3(IDHandler.powerGrid.crystal3ID);
+
         //Random Blocks
         public static Block ironFrames = new ironFrames(IDHandler.blocks.ironFramesID, null);
         

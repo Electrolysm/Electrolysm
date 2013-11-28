@@ -81,10 +81,10 @@ public class IDHandler {
 	{
 		public static int teslaCoreID = 800;
 		public static int largeCopperCoilID = 801;
-		public static int null3 = 802;
-		public static int null4 = 803;
-		public static int null5 = 804;
-		public static int null6 = 805;
+		public static int plugID = 802;
+		public static int crystal1ID = 803;
+		public static int crystal2ID = 804;
+		public static int crystal3ID = 805;
 		public static int null7 = 806;
 		public static int null8 = 807;
 		public static int null9 = 808;

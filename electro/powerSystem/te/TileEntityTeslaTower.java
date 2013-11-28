@@ -1,14 +1,9 @@
 package assets.electrolysm.electro.powerSystem.te;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.util.Random;
 
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +11,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
-import cpw.mods.fml.common.FMLCommonHandler;
+import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -235,7 +231,24 @@ public class TileEntityTeslaTower extends TileEntity {
      */
 	public int getTransmitDistance(World world, int x, int y, int z)
     {
-    	return 20;
+		int h = y;
+		int r = CommonProxy.RANGE_TIER[(this.getTier(world, x, y, z))];
+    	
+		return (int)(r + (Math.sqrt(h * 3)));
+	}
+
+	/**
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return
+	 * gets the current tier of the crystal in the inventory
+	 */
+	private int getTier(World world, int x, int y, int z) 
+	{
+		int tier = 1;
+		return tier - 1;
 	}
 
 	/**
@@ -249,6 +262,9 @@ public class TileEntityTeslaTower extends TileEntity {
     	this.isTowerFormed(worldObj, xCoord, yCoord, zCoord);
     	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
     	this.func_82125_v_();
+    	
+    	this.transmitPower(worldObj, xCoord, yCoord, zCoord, this.getTransmitDistance(worldObj, xCoord,
+    			yCoord, zCoord), 1, "username");
     	
     }
 	
@@ -276,9 +292,13 @@ public class TileEntityTeslaTower extends TileEntity {
         		2.0F, 0.5F + rand.nextFloat() * 0.2F);		return bolt;
 	}
 
-	public void transmitPower(World world, int x, int y, int z, int range)
+	public void transmitPower(World world, int x, int y, int z, int range, int freq, String username)
 	{
-		
+		if(this.canDistribute(world, x, y, z))
+		{
+			TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
+					freq, username);
+		}
 	}
 
 }

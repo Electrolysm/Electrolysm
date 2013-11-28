@@ -34,6 +34,7 @@ public class teslaTowerCore extends BlockContainer
 		}
 		else
 		{
+			player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
 			System.out.println(this.isTowerFormed(world, x, y, z));
 			return true;
 		}

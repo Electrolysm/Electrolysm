@@ -39,6 +39,7 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.teslaTowerCore);
 		GameRegistry.registerBlock(electrolysmCore.largeCopperCoil);
 		GameRegistry.registerBlock(electrolysmCore.ironFrames);
+		GameRegistry.registerBlock(electrolysmCore.plug);
 		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
