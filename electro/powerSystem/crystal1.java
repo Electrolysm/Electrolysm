@@ -1,7 +1,8 @@
 package assets.electrolysm.electro.powerSystem;
 
-import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
+import assets.electrolysm.electro.electrolysmCore;
 
 public class crystal1 extends Item {
 
@@ -14,8 +15,18 @@ public class crystal1 extends Item {
 	
 	public static String[] getData()
 	{
-		String[] result = {"1", "username"};
+		NBTTagCompound nbt = new NBTTagCompound();
+	
+		String[] result = {nbt.getInteger("freq") + "", nbt.getString("username")};
 		return result;
+	}
+	
+	public static void setData(int freq, String username)
+	{
+		NBTTagCompound nbt = new NBTTagCompound();
+		
+		nbt.setInteger("freq", freq);
+		nbt.setString("username", username);
 	}
 
 }

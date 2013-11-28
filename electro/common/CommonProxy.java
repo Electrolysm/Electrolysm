@@ -26,7 +26,7 @@ public class CommonProxy {
 	public static ResourceLocation INJECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/injectorGUI.png");
 	public static ResourceLocation SMELTORY_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/smelteryGUI.png");
 	public static ResourceLocation ELECTROLYSIS_CORE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/electrolysisGUI.png");
-	public static ResourceLocation PORT_GUI = new ResourceLocation(MOD_ID_LOWER, "texture/gui/electrolysisPort.png");
+	public static ResourceLocation PORT_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/electrolysisPort.png");
 	
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};

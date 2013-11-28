@@ -22,8 +22,11 @@ import assets.electrolysm.electro.oreProccessing.gui.GUIPort;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
 import assets.electrolysm.electro.powerSystem.container.ConatainerPlug;
+import assets.electrolysm.electro.powerSystem.container.ContainerTeslaTower;
 import assets.electrolysm.electro.powerSystem.gui.GUIPlug;
+import assets.electrolysm.electro.powerSystem.gui.GUITeslaTower;
 import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
+import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler{
@@ -58,6 +61,10 @@ public class GUIHandler implements IGuiHandler{
 		if(entity instanceof TileEntityPlug)
 		{
 			return new ConatainerPlug((TileEntityPlug)entity, player.inventory);
+		}
+		if(entity instanceof TileEntityTeslaTower)
+		{
+			return new ContainerTeslaTower((TileEntityTeslaTower)entity, player.inventory);
 		}
 		
 		//Crafting
@@ -100,6 +107,10 @@ public class GUIHandler implements IGuiHandler{
 		if(entity instanceof TileEntityPlug)
 		{
 			return new GUIPlug((TileEntityPlug)entity, player.inventory);
+		}
+		if(entity instanceof TileEntityTeslaTower)
+		{
+			return new GUITeslaTower((TileEntityTeslaTower)entity, player.inventory);
 		}
 		
 		//Crafting

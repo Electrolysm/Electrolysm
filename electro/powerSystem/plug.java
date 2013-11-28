@@ -26,14 +26,20 @@ public class plug extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6,
     		float par7, float par8, float par9)
     {
+    	TileEntityPlug te = new TileEntityPlug();
+    	
     	if(player.isSneaking())
     	{
     		return false;
     	}
-    	else
+    	else if(te.isRecieving())
     	{
     		player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
     		return true;
+    	}
+    	else
+    	{
+    		return false;
     	}
     }
 

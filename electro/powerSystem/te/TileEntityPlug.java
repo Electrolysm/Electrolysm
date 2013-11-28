@@ -13,21 +13,7 @@ public class TileEntityPlug extends TileEntity implements IInventory{
 	@Override
 	public void updateEntity()
 	{
-		ItemStack crystalStack = this.getStackInSlot(0);
-		crystal1 crystal;
-		if(crystalStack != null)
-		{
-			crystal = (crystal1) crystalStack.getItem();
-			if(crystal != null)
-			{
-				String username = crystal.getData()[1];
-				int freq = Integer.parseInt(crystal.getData()[0]);
-				if(this.getClosestTowerWithinRange(worldObj, xCoord, yCoord, zCoord, freq, username))
-				{
-					System.out.println("Power is being transfered");
-				}
-			}
-		}
+		this.isRecieving();
 	}
 
 	private boolean getClosestTowerWithinRange(World world, int x, int y, int z, int freq, String username) 
@@ -58,6 +44,27 @@ public class TileEntityPlug extends TileEntity implements IInventory{
 		int zPower = (int)Math.pow((z - towerZ), 2);
 		
 		return (int)(Math.sqrt(xPower + yPower + zPower));
+	}
+	
+	public boolean isRecieving()
+	{
+		ItemStack crystalStack = this.getStackInSlot(0);
+		crystal1 crystal;
+		if(crystalStack != null)
+		{
+			crystal = (crystal1) crystalStack.getItem();
+			if(crystal != null)
+			{
+				String username = crystal.getData()[1];
+				int freq = Integer.parseInt(crystal.getData()[0]);
+				if(this.getClosestTowerWithinRange(worldObj, xCoord, yCoord, zCoord, freq, username))
+				{
+					System.out.println("Power is being transfered");
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/*
