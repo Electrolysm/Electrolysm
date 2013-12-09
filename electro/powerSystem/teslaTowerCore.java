@@ -1,5 +1,6 @@
 package assets.electrolysm.electro.powerSystem;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import net.minecraft.block.BlockContainer;
@@ -28,6 +29,7 @@ public class teslaTowerCore extends BlockContainer
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player,
     		int par6, float par7, float par8, float par9)
 	{
+		TileEntityTeslaTower te = new TileEntityTeslaTower();
 		if(player.isSneaking())
 		{
 			return false;
@@ -35,10 +37,10 @@ public class teslaTowerCore extends BlockContainer
 		else
 		{
 			player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
-			System.out.println(this.isTowerFormed(world, x, y, z));
 			return true;
 		}
 	}
+	
 	
 	public boolean isTowerFormed(World world, int x, int y, int z)
 	{

@@ -85,7 +85,7 @@ public class IDHandler {
 		public static int crystal1ID = 803;
 		public static int crystal2ID = 804;
 		public static int crystal3ID = 805;
-		public static int null7 = 806;
+		public static int coppercoilID = 806;
 		public static int null8 = 807;
 		public static int null9 = 808;
 		public static int null10 = 809;

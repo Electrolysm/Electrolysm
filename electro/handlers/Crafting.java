@@ -3,8 +3,8 @@ package assets.electrolysm.electro.handlers;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Crafting {
@@ -136,6 +136,29 @@ public class Crafting {
 				Character.valueOf('Y'), electrolysmCore.graphite,
 				Character.valueOf('Z'), electrolysmCore.chunkGraphite);
 		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.plug),
+				"GRG", "RRR", "SSS",
+				Character.valueOf('G'), Item.ingotGold,
+				Character.valueOf('R'), Item.redstone,
+				Character.valueOf('S'), Block.stone);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.largeCopperCoil, 4),
+				"CCC", "CIC", "CCC",
+				Character.valueOf('C'), electrolysmCore.copperCoil,
+				Character.valueOf('I'), Item.ingotIron);
+	
+		//Temp
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.teslaTowerCore),
+				" D ", "IGI", "ONO",
+				Character.valueOf('D'), Item.diamond,
+				Character.valueOf('I'), Item.ingotIron,
+				Character.valueOf('G'), Item.ingotGold,
+				Character.valueOf('O'), Block.obsidian,
+				Character.valueOf('N'), Block.netherBrick);
+		
+		//Temp
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.crystal1), 
+				Item.diamond);
 	}
 
 }

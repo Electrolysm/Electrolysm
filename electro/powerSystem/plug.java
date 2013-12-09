@@ -1,5 +1,6 @@
 package assets.electrolysm.electro.powerSystem;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,14 +33,10 @@ public class plug extends BlockContainer {
     	{
     		return false;
     	}
-    	else if(te.isRecieving())
+    	else
     	{
     		player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
     		return true;
-    	}
-    	else
-    	{
-    		return false;
     	}
     }
 

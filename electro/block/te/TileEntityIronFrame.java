@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 public class TileEntityIronFrame extends TileEntity 
 {
 	public boolean isRecieving()
-	{
+	{ /*
 		World world = worldObj;
-		Direction dir = new Direction();	
+		Direction dir = null;
 		int generatorID = 1;
 		
 		boolean[] overall = new boolean[4];
@@ -34,7 +34,8 @@ public class TileEntityIronFrame extends TileEntity
 				canRecieve = true;
 			}
 		}
-		return canRecieve;
+		return canRecieve;*/
+		return true;
 	}
 	
 	public int getRecievingTeU(World world, int x, int y, int z)

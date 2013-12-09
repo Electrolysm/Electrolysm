@@ -18,9 +18,9 @@ public class TileEntityPlug extends TileEntity implements IInventory{
 
 	private boolean getClosestTowerWithinRange(World world, int x, int y, int z, int freq, String username) 
 	{
-		for(int i = 0; i < TeslaTransmittingServer.user.size(); i++)
+		for(int i = 0; i < TeslaTransmittingServer.taken.size(); i++)
 		{
-			String[] serverData = TeslaTransmittingServer.getData(freq, username);
+			String[] serverData = TeslaTransmittingServer.getData(this.getStackInSlot(1));
 			int towerX = Integer.parseInt(serverData[0]);
 			int towerY = Integer.parseInt(serverData[1]);
 			int towerZ = Integer.parseInt(serverData[2]);
@@ -55,11 +55,10 @@ public class TileEntityPlug extends TileEntity implements IInventory{
 			crystal = (crystal1) crystalStack.getItem();
 			if(crystal != null)
 			{
-				String username = crystal.getData()[1];
-				int freq = Integer.parseInt(crystal.getData()[0]);
+				String username = /*crystal.getData()[1]*/ "user";
+				int freq = /*Integer.parseInt(crystal.getData()[0])*/ 1;
 				if(this.getClosestTowerWithinRange(worldObj, xCoord, yCoord, zCoord, freq, username))
 				{
-					System.out.println("Power is being transfered");
 					return true;
 				}
 			}

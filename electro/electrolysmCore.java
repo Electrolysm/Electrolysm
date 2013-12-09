@@ -61,6 +61,7 @@ import assets.electrolysm.electro.oreProccessing.liquidiser;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
+import assets.electrolysm.electro.powerSystem.copperCoil;
 import assets.electrolysm.electro.powerSystem.crystal1;
 import assets.electrolysm.electro.powerSystem.largeCopperCoil;
 import assets.electrolysm.electro.powerSystem.plug;
@@ -161,8 +162,9 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item crystal1 = new crystal1(IDHandler.powerGrid.crystal1ID);
         //public static Item crystal2 = new crystal2(IDHandler.powerGrid.crystal2ID);
         //public static Item crystal3 = new crystal3(IDHandler.powerGrid.crystal3ID);
+        public static Item copperCoil = new copperCoil(IDHandler.powerGrid.coppercoilID);
 
-        //Random Blocks
+        //Random Stuff
         public static Block ironFrames = new ironFrames(IDHandler.blocks.ironFramesID, null);
         
         //Ore Proccessing -- WIP

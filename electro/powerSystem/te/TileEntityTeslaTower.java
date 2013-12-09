@@ -1,11 +1,11 @@
 package assets.electrolysm.electro.powerSystem.te;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -16,14 +16,13 @@ import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
-import assets.electrolysm.electro.powerSystem.crystal1;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityTeslaTower extends TileEntity implements IInventory{
 
-	private float field_82138_c;
-	private long field_82137_b;
+	private float field_82138_c = 0;
+	private long field_82137_b = 0;
 
 	/**
 	 * @return
@@ -151,7 +150,14 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 		{
 			if(this.isBaseRecievingPower(world, x, y, z))
 			{
-				return true;
+				if(this.getStackInSlot(0) != null)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 			else
 			{
@@ -180,7 +186,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 		
 		player = world.getClosestPlayer(x, y, z, (this.getTransmitDistance(world, x, y, z) * 5));
 		
-		if(player != null)
+		if(player != null && this.canDistribute(world, x, y, z))
 		{
 			distanceTooClosestPlayer = (int) player.getDistance(x, y, z);
 		
@@ -193,7 +199,6 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 				if(rand.nextInt(this.getZapChance(distanceTooClosestPlayer, transmitRange)) == 1)
 				{
 					this.spawnLighningBolt(world, playerX, playerY, playerZ);
-					player.performHurtAnimation();
 					player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200, true));
 				}
 			}
@@ -260,31 +265,32 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 	 */
 	public void updateEntity() 
     {
+		EntityPlayer player = null;
     	worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
     	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     	
     	this.isTowerFormed(worldObj, xCoord, yCoord, zCoord);
     	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
-    	this.func_82125_v_();
     	
-    	if(this.getStackInSlot(0) != null)
+    	if(this.getCrystalData(player) != null)
     	{
     		this.transmitPower(worldObj, xCoord, yCoord, zCoord, this.getTransmitDistance(worldObj, xCoord,
-    				yCoord, zCoord), Integer.parseInt(this.getCrystalData()[0]), this.getCrystalData()[1]);
-    	}
-    	
+    				yCoord, zCoord), Integer.parseInt(this.getCrystalData(player)[0]),
+    				this.getCrystalData(player)[1]);
+    	}    	
     }
 	
-	public String[] getCrystalData()
+	public String[] getCrystalData(EntityPlayer player)
 	{
 		ItemStack crystalStack = this.getStackInSlot(0);
-		if(crystalStack != null)
+		if(crystalStack != null && crystalStack.isItemEqual(new ItemStack(electrolysmCore.crystal1)))
 		{
-			crystal1 crystal = (crystal1)crystalStack.getItem();
-			if(crystal != null)
-			{
-				return crystal.getData();
-			}
+			/*
+			List crystalTip = crystalStack.getTooltip(player, true);
+			String tip1 = (String) crystalTip.toArray()[0];
+			String tip2 = (String) crystalTip.toArray()[1];*/
+			String[] test = {"1", "user"};
+			return test;
 		}
 		return null;
 	}
@@ -319,7 +325,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 			if(freq != 0 && username != null)
 			{
 				TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
-						freq, username);
+						freq, username, this.getStackInSlot(1));
 			}
 		}
 	}
@@ -329,6 +335,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 	 * 		   GUI CODE
 	 * ========================
 	 */
+	// TODO Auto-generated method stub
 	private ItemStack[] inventory;
 	public boolean isOpen;
 	
