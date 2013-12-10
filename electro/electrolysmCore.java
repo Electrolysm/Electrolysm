@@ -32,6 +32,7 @@ import assets.electrolysm.electro.block.basic.glassModifier;
 import assets.electrolysm.electro.block.basic.hammer;
 import assets.electrolysm.electro.block.basic.modBlastGlass;
 import assets.electrolysm.electro.block.machines.desk;
+import assets.electrolysm.electro.block.machines.etching;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
@@ -140,6 +141,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         
         //Tools
         public static Item hammer = new hammer(IDHandler.basic.hammerID);
+        public static Block etching = new etching(IDHandler.blocks.etchingMachineID, null);
         
         //Advanced atomics
         //Liquids

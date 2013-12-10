@@ -25,14 +25,14 @@ public class sulpherOre extends Block {
 	@Override
 	public int quantityDropped(Random rand)
     {
-		int dropped = rand.nextInt(8);
-		if(dropped >= 5)
+		int dropped = rand.nextInt(5);
+		if(dropped >= 2)
 		{
 			return dropped;
 		}
 		else
 		{
-			return 5;
+			return 4;
 		}
     }
 	

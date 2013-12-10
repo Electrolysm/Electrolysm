@@ -13,24 +13,42 @@ public class TileEntityPlug extends TileEntity implements IInventory{
 	@Override
 	public void updateEntity()
 	{
-		this.isRecieving();
+		if(this.isRecieving())
+		{
+			worldObj.setBlock(xCoord, yCoord + 1, zCoord, 1);
+			System.out.println("Recieving Power");
+		}
+		else
+		{
+			System.out.println("Not Recieving Power");
+		}
 	}
 
 	private boolean getClosestTowerWithinRange(World world, int x, int y, int z, int freq, String username) 
 	{
 		for(int i = 0; i < TeslaTransmittingServer.taken.size(); i++)
 		{
-			String[] serverData = TeslaTransmittingServer.getData(this.getStackInSlot(1));
-			int towerX = Integer.parseInt(serverData[0]);
-			int towerY = Integer.parseInt(serverData[1]);
-			int towerZ = Integer.parseInt(serverData[2]);
-			
-			int distance = this.calculateDistance(x, y, z, towerX, towerY, towerZ);
-			int towerRange = Integer.parseInt(serverData[3]);
-			
-			if(distance <= towerRange)
+			crystal1 crystal = (crystal1) this.getStackInSlot(0).getItem();
+			String[] serverData = TeslaTransmittingServer.getData(this.getStackInSlot(0).getItemDamage(), 
+					crystal.getPin());
+				
+			if(serverData.length > 0)
 			{
+				int towerX = Integer.parseInt(serverData[0]);
+				int towerY = Integer.parseInt(serverData[1]);
+				int towerZ = Integer.parseInt(serverData[2]);
+			
+				int distance = this.calculateDistance(x, y, z, towerX, towerY, towerZ);
+				int towerRange = Integer.parseInt(serverData[3]);
+			
+				if(distance <= towerRange)
+				{
 				return true;
+				}
+			}
+			else
+			{
+				return false;
 			}
 		}
 		

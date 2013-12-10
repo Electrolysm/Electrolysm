@@ -110,5 +110,6 @@ public class IDHandler {
 	public static class blocks{
 		
 		public static int ironFramesID = 830;
+		public static int etchingMachineID = 831;
 	}
 }

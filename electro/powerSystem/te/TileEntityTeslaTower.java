@@ -199,7 +199,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 				if(rand.nextInt(this.getZapChance(distanceTooClosestPlayer, transmitRange)) == 1)
 				{
 					this.spawnLighningBolt(world, playerX, playerY, playerZ);
-					player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200, true));
+					//player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200, true));
 				}
 			}
 		}
@@ -223,11 +223,11 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
     	//System.out.println(chance);
     	if(distance < 7)
     	{
-    		return (int)chance + 4;
+    		return (int)(chance + 4) * 10;
     	}
     	else
     	{
-    		return (int)(chance * 4);
+    		return (int)((chance * 4) * 10);
     	}
 	}
     /**
@@ -325,7 +325,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 			if(freq != 0 && username != null)
 			{
 				TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
-						freq, username, this.getStackInSlot(1));
+						freq, username, this.getStackInSlot(0).getItemDamage());
 			}
 		}
 	}
@@ -333,9 +333,10 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 	/*
 	 * ========================
 	 * 		   GUI CODE
+	 * TODO
 	 * ========================
 	 */
-	// TODO Auto-generated method stub
+	
 	private ItemStack[] inventory;
 	public boolean isOpen;
 	

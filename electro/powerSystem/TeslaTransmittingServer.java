@@ -25,15 +25,15 @@ public class TeslaTransmittingServer {
 	//@SideOnly(Side.SERVER)
 	public static Map dName = new HashMap();
 	public static Map randomMap = new HashMap();
-	public static int[] crystalLst;
+	public static Map crystalList = new HashMap();
 
 	//SideOnly(Side.SERVER)
 	public static void saveTransmition(String dimensionName, int x, int y, int z, int range, int freq,
-			String username, ItemStack patternID)
+			String username, int patternID)
 	{
-		if(((ItemStack)taken.get(patternID)) == null)
+		if((taken.get(patternID)) == null)
 		{
-			taken.put(patternID, patternID);
+			taken.put(patternID, crystalList.get(patternID));
 			xCoord.put(patternID, x);
 			yCoord.put(patternID, y);
 			zCoord.put(patternID, z);
@@ -48,11 +48,11 @@ public class TeslaTransmittingServer {
 	}
 	
 	//@SideOnly(Side.SERVER)
-	public static String[] getData(ItemStack patternID)
+	public static String[] getData(int patternID, int pinNumber)
 	{
 		String[] result= new String[5];
 		
-		if((ItemStack)taken.get(patternID) != null)
+		if(Integer.parseInt((String) taken.get(patternID)) == pinNumber)
 		{
 			result[0] = (xCoord.get(patternID) + "");
 			result[1] = (yCoord.get(patternID) + "");
@@ -67,7 +67,7 @@ public class TeslaTransmittingServer {
 		}
 		return result;
 	}
-	
+	/*
 	public static int[] getNearestTowerWithSamePatternID(World World, int x, int y, int z, ItemStack patternID)
 	{
 	/*
@@ -78,7 +78,7 @@ public class TeslaTransmittingServer {
 		transmitRange.put(patternID, range);
 		freqency.put(patternID, freq);
 		dName.put(patternID, dimensionName);
-		*/
+		*//*
 		int[] xCoordX = new int[4];
 		int[] yCoordY = new int[4];
 		int[] zCoordZ = new int[4];
@@ -97,7 +97,7 @@ public class TeslaTransmittingServer {
 			}
 		}
 		return null; 
-	}
+	}*/
 	
 	private static int getArcRange(int TeU, int range) 
 	{
@@ -115,9 +115,9 @@ public class TeslaTransmittingServer {
 		return (int)(Math.sqrt(xPower + yPower + zPower));
 	}
 	
-	public static void putCrystalData(int damage)
+	public static void putCrystalData(int metaData, int pinNumber)
 	{
-		crystalLst[damage] = damage;
+		crystalList.put(metaData, pinNumber);
 	}
 	
 }
