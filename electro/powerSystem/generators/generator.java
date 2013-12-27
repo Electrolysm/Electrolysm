@@ -100,18 +100,9 @@ public class generator extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, 
     		int par6, float par7, float par8, float par9)
     {
-    	ItemStack meterStack = new ItemStack(electrolysmCore.energyMeter, 1, 0);
     	if(player.isSneaking())
     	{
-	    	if(player.getHeldItem().isItemEqual(meterStack))
-	    	{
-	    		this.printChatMessage(world, x, y, z);
-	    		return true;
-	    	}
-	    	else
-	    	{
-	    		return false;
-	    	}
+    		return false;
     	}
     	else
     	{
@@ -119,23 +110,7 @@ public class generator extends BlockContainer {
     		return true;
     	}
     }
-    
-    @SideOnly(Side.CLIENT)
-    private void printChatMessage(World world, int x, int y, int z) 
-    {
-    	if(world.isRemote)
-    	{
-    		TileEntityGenerator te = (TileEntityGenerator)world.getBlockTileEntity(x, y, z);
-    		String message = "This generator is producing " + String.valueOf(te.getSendTeU(world, x, y, z)) + " TeU";
-    		
-    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);	
-    	}
-    	else
-    	{
-    		
-    	}
-    }
-
+   
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
         int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;

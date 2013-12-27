@@ -2,12 +2,14 @@ package assets.electrolysm.electro.powerSystem.te;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
@@ -113,6 +115,19 @@ public class TileEntityTeslaTower extends TileEntity {
 	 * @param x
 	 * @param y
 	 * @param z
+	 * returns true if the block is recieving a redstone signal
+	 */
+	public boolean isRecievingRedstonePower(World world, int x, int y, int z)
+	{
+		return (world.isBlockIndirectlyGettingPowered(x, y, z));
+	}
+	
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
 	 * @return
 	 * checks to see if the base of the tower is connected to a power source.
 	 */
@@ -159,6 +174,26 @@ public class TileEntityTeslaTower extends TileEntity {
 			return false;
 		}
 	}
+	
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * decides if the tower can distribute power to the local area and that it isn't recieving redstone power.
+	 */
+	public boolean canDistributeRedstone(World world, int x, int y, int z)
+	{
+		if(this.canDistribute(world, x, y, z))
+		{
+			if(!(this.isRecievingRedstonePower(world, x, y, z)))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * 
 	 * @param world
@@ -184,7 +219,7 @@ public class TileEntityTeslaTower extends TileEntity {
 			int playerY = (int)player.lastTickPosY;
 			int playerZ = (int)player.lastTickPosZ;
 		
-			if(this.canDistribute(world, x, y, z))
+			if(this.canDistributeRedstone(world, x, y, z))
 			{
 				if(rand.nextInt(this.getZapChance(distanceTooClosestPlayer, transmitRange)) == 1)
 				{
@@ -261,12 +296,30 @@ public class TileEntityTeslaTower extends TileEntity {
     	this.transmitPower(worldObj, xCoord, yCoord, zCoord, this.getTransmitDistance(worldObj, xCoord,
     			yCoord, zCoord), 1, "username", this.getRecievingTeU(worldObj, xCoord, yCoord, zCoord));
     	
+    	if(!(this.isRecievingRedstonePower(worldObj, xCoord, yCoord, zCoord)) && 
+    			this.canDistribute(worldObj, xCoord, yCoord, zCoord))
+    	{
+    		//0 = active = no redstone
+    		//1 = deactive = redstone
+    		
+    		if(this.blockMetadata == 1)
+    		{
+    			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 0);
+    		}
+    	}
+    	else
+    	{
+    		if(this.blockMetadata == 0)
+    		{
+    			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 0);
+    		}
+    	}
     }
 	
 	public int getRecievingTeU(World world, int x, int y, int z)
 	{
 		int TeU = 0;
-		if(this.canDistribute(world, x, y, z))
+		if(this.canDistributeRedstone(world, x, y, z))
 		{
 			TileEntityIronFrame te = (TileEntityIronFrame) world.getBlockTileEntity(x, y - 5, z);
 			TeU = te.getRecievingTeU(world, x, y - 5, z);
@@ -299,7 +352,7 @@ public class TileEntityTeslaTower extends TileEntity {
 
 	public void transmitPower(World world, int x, int y, int z, int range, int freq, String username, int TeU)
 	{
-		if(this.canDistribute(world, x, y, z))
+		if(this.canDistributeRedstone(world, x, y, z))
 		{
 	    	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
 	    	this.func_82125_v_();

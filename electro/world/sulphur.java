@@ -1,7 +1,10 @@
 package assets.electrolysm.electro.world;
 
-import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
+import assets.electrolysm.electro.electrolysmCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class sulphur extends Item {
 
@@ -12,4 +15,10 @@ public class sulphur extends Item {
 	this.setUnlocalizedName("sulphurcrystal");
 	}
 
+	@Override 
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister reg)
+	{
+		this.itemIcon = reg.registerIcon("electrolysm:" + "sulphur-crystal");
+	}
 }

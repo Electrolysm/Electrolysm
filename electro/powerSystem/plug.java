@@ -35,35 +35,11 @@ public class plug extends BlockContainer {
     	
     	if(player.isSneaking())
     	{
-	    	if(player.getHeldItem().isItemEqual(meterStack))
-    		{
-    			this.printChatMessage(world, x, y, z);
-    			return true;
-    		}
-    		else
-    		{
-    			return false;
-    		}
+    		return false;
     	}
     	else
     	{
     		return false;
-    	}
-    }
-    
-    @SideOnly(Side.CLIENT)
-    private void printChatMessage(World world, int x, int y, int z) 
-    {
-    	if(world.isRemote)
-    	{
-        	TileEntityPlug te = (TileEntityPlug)world.getBlockTileEntity(x, y, z);
-    		String message = "This plug is recieving " + String.valueOf(te.getRecievedTeUPure(world, x, y, z)) + " TeU";
-    		
-    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);	
-    	}
-    	else
-    	{
-    		
     	}
     }
 }
