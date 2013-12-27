@@ -83,9 +83,9 @@ public class IDHandler {
 		public static int largeCopperCoilID = 801;
 		public static int plugID = 802;
 		public static int crystal1ID = 803;
-		public static int crystal2ID = 804;
-		public static int crystal3ID = 805;
-		public static int coppercoilID = 806;
+		public static int generatorID = 804;
+		public static int genMatterID = 805;
+		public static int energyMeterID = 806;
 		public static int null8 = 807;
 		public static int null9 = 808;
 		public static int null10 = 809;
@@ -110,6 +110,5 @@ public class IDHandler {
 	public static class blocks{
 		
 		public static int ironFramesID = 830;
-		public static int etchingMachineID = 831;
 	}
 }

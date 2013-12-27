@@ -32,7 +32,6 @@ import assets.electrolysm.electro.block.basic.glassModifier;
 import assets.electrolysm.electro.block.basic.hammer;
 import assets.electrolysm.electro.block.basic.modBlastGlass;
 import assets.electrolysm.electro.block.machines.desk;
-import assets.electrolysm.electro.block.machines.etching;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
@@ -62,11 +61,13 @@ import assets.electrolysm.electro.oreProccessing.liquidiser;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
-import assets.electrolysm.electro.powerSystem.copperCoil;
 import assets.electrolysm.electro.powerSystem.crystal1;
+import assets.electrolysm.electro.powerSystem.energyMeter;
 import assets.electrolysm.electro.powerSystem.largeCopperCoil;
 import assets.electrolysm.electro.powerSystem.plug;
 import assets.electrolysm.electro.powerSystem.teslaTowerCore;
+import assets.electrolysm.electro.powerSystem.generators.generator;
+import assets.electrolysm.electro.powerSystem.generators.matterGen;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
@@ -141,7 +142,6 @@ import cpw.mods.fml.relauncher.SideOnly;
         
         //Tools
         public static Item hammer = new hammer(IDHandler.basic.hammerID);
-        public static Block etching = new etching(IDHandler.blocks.etchingMachineID, null);
         
         //Advanced atomics
         //Liquids
@@ -162,11 +162,11 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block largeCopperCoil = new largeCopperCoil(IDHandler.powerGrid.largeCopperCoilID, null);
         public static Block plug = new plug(IDHandler.powerGrid.plugID, null);
         public static Item crystal1 = new crystal1(IDHandler.powerGrid.crystal1ID);
-        //public static Item crystal2 = new crystal2(IDHandler.powerGrid.crystal2ID);
-        //public static Item crystal3 = new crystal3(IDHandler.powerGrid.crystal3ID);
-        public static Item copperCoil = new copperCoil(IDHandler.powerGrid.coppercoilID);
-
-        //Random Stuff
+        public static Block generator = new generator(IDHandler.powerGrid.generatorID, null);
+        public static Block matterGen = new matterGen(IDHandler.powerGrid.genMatterID, null);
+        public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
+        
+        //Random Blocks
         public static Block ironFrames = new ironFrames(IDHandler.blocks.ironFramesID, null);
         
         //Ore Proccessing -- WIP
@@ -219,7 +219,6 @@ import cpw.mods.fml.relauncher.SideOnly;
         {
         	File configFile = new File("config/Electrolysm/Electrolysm.cfg");
         	configHandler.init(configFile);
-      	 	System.out.println(configFile);
       	  
        	 	VersionCheck.check();
 			BetaHandler.beta();

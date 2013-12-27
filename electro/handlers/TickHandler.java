@@ -2,11 +2,11 @@ package assets.electrolysm.electro.handlers;
 
 import java.util.EnumSet;
 
-import assets.electrolysm.electro.block.basic.te.TileEntityBlastDoor;
-import assets.electrolysm.electro.client.ClientProxy;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TickHandler implements ITickHandler{
 	
@@ -31,11 +31,17 @@ public class TickHandler implements ITickHandler{
 		{
 			if(times <= 0)
 			{
-				//FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(VersionCheck.chatMessage);
+				this.printChatMessage(VersionCheck.chatMessage);
 				times = 100;
 			}
 	}
 		return null;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void printChatMessage(String message)
+	{
+		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
 	}
 
 	@Override

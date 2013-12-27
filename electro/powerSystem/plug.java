@@ -1,13 +1,16 @@
 package assets.electrolysm.electro.powerSystem;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class plug extends BlockContainer {
 
@@ -27,17 +30,40 @@ public class plug extends BlockContainer {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6,
     		float par7, float par8, float par9)
     {
-    	TileEntityPlug te = new TileEntityPlug();
+    	ItemStack meterStack = new ItemStack(electrolysmCore.energyMeter);
+    	TileEntityPlug te = (TileEntityPlug)world.getBlockTileEntity(x, y, z);
     	
     	if(player.isSneaking())
     	{
-    		return false;
+	    	if(player.getHeldItem().isItemEqual(meterStack))
+    		{
+    			this.printChatMessage(world, x, y, z);
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
     	}
     	else
     	{
-    		player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
-    		return true;
+    		return false;
     	}
     }
-
+    
+    @SideOnly(Side.CLIENT)
+    private void printChatMessage(World world, int x, int y, int z) 
+    {
+    	if(world.isRemote)
+    	{
+        	TileEntityPlug te = (TileEntityPlug)world.getBlockTileEntity(x, y, z);
+    		String message = "This plug is recieving " + String.valueOf(te.getRecievedTeUPure(world, x, y, z)) + " TeU";
+    		
+    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);	
+    	}
+    	else
+    	{
+    		
+    	}
+    }
 }

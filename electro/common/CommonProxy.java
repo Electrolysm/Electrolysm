@@ -26,7 +26,11 @@ public class CommonProxy {
 	public static ResourceLocation INJECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/injectorGUI.png");
 	public static ResourceLocation SMELTORY_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/smelteryGUI.png");
 	public static ResourceLocation ELECTROLYSIS_CORE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/electrolysisGUI.png");
-	public static ResourceLocation PORT_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/electrolysisPort.png");
+	public static ResourceLocation PORT_GUI = new ResourceLocation(MOD_ID_LOWER, "texture/gui/electrolysisPort.png");
+	public static ResourceLocation GENERATOR_BASIC_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/generatorGUI.png");
+	public static ResourceLocation GENERATOR_GEO_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/geoGenGUI.png");
+	public static ResourceLocation GENERATOR_FUSION_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/fusionGenGUI.png");
+	public static ResourceLocation GENERATOR_MATTER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/matterGenGUI");
 	
 	//Items (With Subtypes)
 	public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
@@ -40,7 +44,7 @@ public class CommonProxy {
 	
 	//MOBs
 	public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
-	public static int[] RANGE_TIER = {25, 70, 125};
+	public static int[] RANGE_TIER = {40, 80, 135};
 
 
 

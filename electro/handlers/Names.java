@@ -39,6 +39,7 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.glassModifire, "Glass Modifier");
 		LanguageRegistry.addName(electrolysmCore.sulphurOre, "Sulphur Ore");
 		LanguageRegistry.addName(electrolysmCore.sulphur, "Sulpure Crystals");
+		LanguageRegistry.addName(electrolysmCore.energyMeter, "Energy Meter");
 		
 		
 		

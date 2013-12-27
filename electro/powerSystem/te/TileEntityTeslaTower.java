@@ -1,12 +1,9 @@
 package assets.electrolysm.electro.powerSystem.te;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
@@ -19,10 +16,10 @@ import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityTeslaTower extends TileEntity implements IInventory{
+public class TileEntityTeslaTower extends TileEntity {
 
-	private float field_82138_c = 0;
-	private long field_82137_b = 0;
+	private float field_82138_c;
+	private long field_82137_b;
 
 	/**
 	 * @return
@@ -150,14 +147,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 		{
 			if(this.isBaseRecievingPower(world, x, y, z))
 			{
-				if(this.getStackInSlot(0) != null)
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
+				return true;
 			}
 			else
 			{
@@ -186,7 +176,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 		
 		player = world.getClosestPlayer(x, y, z, (this.getTransmitDistance(world, x, y, z) * 5));
 		
-		if(player != null && this.canDistribute(world, x, y, z))
+		if(player != null)
 		{
 			distanceTooClosestPlayer = (int) player.getDistance(x, y, z);
 		
@@ -199,7 +189,8 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 				if(rand.nextInt(this.getZapChance(distanceTooClosestPlayer, transmitRange)) == 1)
 				{
 					this.spawnLighningBolt(world, playerX, playerY, playerZ);
-					//player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200, true));
+					player.performHurtAnimation();
+					player.addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200, true));
 				}
 			}
 		}
@@ -220,14 +211,13 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
     	chance = chance * (distance/range);
     	chance = (int) (chance + (range/Math.PI + 7));
     	chance = (int) ((int)chance * (Math.sqrt(chance)));
-    	//System.out.println(chance);
-    	if(distance < 7)
+    	if(distance < 2)
     	{
-    		return (int)(chance + 4) * 10;
+    		return (int)chance + 4;
     	}
     	else
     	{
-    		return (int)((chance * 4) * 10);
+    		return (int)(chance * 4);
     	}
 	}
     /**
@@ -242,7 +232,7 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
     {
 		int h = y;
 		int r = CommonProxy.RANGE_TIER[(this.getTier(world, x, y, z))];
-    	
+		
 		return (int)(r + (Math.sqrt(h * 3)));
 	}
 
@@ -265,34 +255,23 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
 	 */
 	public void updateEntity() 
     {
-		EntityPlayer player = null;
     	worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
     	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     	
-    	this.isTowerFormed(worldObj, xCoord, yCoord, zCoord);
-    	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
+    	this.transmitPower(worldObj, xCoord, yCoord, zCoord, this.getTransmitDistance(worldObj, xCoord,
+    			yCoord, zCoord), 1, "username", this.getRecievingTeU(worldObj, xCoord, yCoord, zCoord));
     	
-    	if(this.getCrystalData(player) != null)
-    	{
-    		this.transmitPower(worldObj, xCoord, yCoord, zCoord, this.getTransmitDistance(worldObj, xCoord,
-    				yCoord, zCoord), Integer.parseInt(this.getCrystalData(player)[0]),
-    				this.getCrystalData(player)[1]);
-    	}    	
     }
 	
-	public String[] getCrystalData(EntityPlayer player)
+	public int getRecievingTeU(World world, int x, int y, int z)
 	{
-		ItemStack crystalStack = this.getStackInSlot(0);
-		if(crystalStack != null && crystalStack.isItemEqual(new ItemStack(electrolysmCore.crystal1)))
+		int TeU = 0;
+		if(this.canDistribute(world, x, y, z))
 		{
-			/*
-			List crystalTip = crystalStack.getTooltip(player, true);
-			String tip1 = (String) crystalTip.toArray()[0];
-			String tip2 = (String) crystalTip.toArray()[1];*/
-			String[] test = {"1", "user"};
-			return test;
+			TileEntityIronFrame te = (TileEntityIronFrame) world.getBlockTileEntity(x, y - 5, z);
+			TeU = te.getRecievingTeU(world, x, y - 5, z);
 		}
-		return null;
+		return TeU;
 	}
 	/**
 	 * @param world
@@ -318,121 +297,15 @@ public class TileEntityTeslaTower extends TileEntity implements IInventory{
         		2.0F, 0.5F + rand.nextFloat() * 0.2F);		return bolt;
 	}
 
-	public void transmitPower(World world, int x, int y, int z, int range, int freq, String username)
+	public void transmitPower(World world, int x, int y, int z, int range, int freq, String username, int TeU)
 	{
 		if(this.canDistribute(world, x, y, z))
 		{
-			if(freq != 0 && username != null)
-			{
-				TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
-						freq, username, this.getStackInSlot(0).getItemDamage());
-			}
-		}
-	}
-	
-	/*
-	 * ========================
-	 * 		   GUI CODE
-	 * TODO
-	 * ========================
-	 */
-	
-	private ItemStack[] inventory;
-	public boolean isOpen;
-	
-	public TileEntityTeslaTower() {
-		this.inventory = new ItemStack[3];
-	}
-
-	@Override
-	public int getSizeInventory() 
-	{
-		return inventory.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return inventory[slot];
-	}
-	
-	@Override
-	public ItemStack decrStackSize(int slot, int amount) {
-		ItemStack stack = getStackInSlot(slot);
-
-		if (stack != null) {
-			if (stack.stackSize <= amount) {
-				setInventorySlotContents(slot, null);
-			} else {
-				stack = stack.splitStack(amount);
-				if (stack.stackSize == 0) {
-					setInventorySlotContents(slot, null);
-				}
-			}
-		}
-
-		return stack;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		ItemStack stack = getStackInSlot(slot);
-
-		if (stack != null) {
-			setInventorySlotContents(slot, null);
-		}
-
-		return stack;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		// TODO Auto-generated method stub
-		inventory[slot] = stack;
-
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
-			stack.stackSize = this.getInventoryStackLimit();
+	    	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
+	    	this.func_82125_v_();
+			TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
+					freq, username, TeU);
 		}
 	}
 
-	@Override
-	public String getInvName() {
-		// TODO Auto-generated method stub
-		return "Research Desk";
-	}
-
-	@Override
-	public boolean isInvNameLocalized() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		// TODO Auto-generated method stub
-		return 64;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public void openChest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void closeChest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		// TODO Auto-generated method stub
-		return true;
-	}
 }

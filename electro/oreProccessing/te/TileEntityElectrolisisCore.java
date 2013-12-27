@@ -150,7 +150,6 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 				if(input1.isItemEqual(input2))
 				{
 					result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
-					System.out.println(result1);
 			    	worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
 
 				}
@@ -177,7 +176,6 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 							decrStackSize(1, 1);
 							setInventorySlotContents(2, result1);
 							onInventoryChanged();
-							System.out.println("Done Proccess");
 						}
 					} 
 					else 

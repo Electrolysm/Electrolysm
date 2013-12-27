@@ -40,7 +40,6 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.largeCopperCoil);
 		GameRegistry.registerBlock(electrolysmCore.ironFrames);
 		GameRegistry.registerBlock(electrolysmCore.plug);
-		GameRegistry.registerBlock(electrolysmCore.etching);
 		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
@@ -63,11 +62,6 @@ public class RegisterBlock {
         ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, itemChest);
         
         //End
-	}
-	
-	public static void registerOreDictionary()
-	{
-		
 	}
 
 }

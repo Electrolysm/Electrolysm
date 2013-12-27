@@ -1,32 +1,33 @@
-package assets.electrolysm.electro.powerSystem.container;
+package assets.electrolysm.electro.powerSystem.generators.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
+import assets.electrolysm.electro.block.machines.container.SlotFuel;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 
-public class ConatainerPlug extends Container
+public class ContainerGenerator extends Container
 {
-	private TileEntityPlug entity;
+	private TileEntityGenerator entity;
 
-	public ConatainerPlug(TileEntityPlug entity, InventoryPlayer inventory)
+	public ContainerGenerator(TileEntityGenerator entity, InventoryPlayer inventory)
 	{
 		this.entity = entity;
 
-		this.addSlotToContainer(new Slot(entity, 0, 152, 6)); //top right
+		this.addSlotToContainer(new SlotFuel(entity, 0, 75, 55)); //top left (CARD)
 
 	    int var3;
 
-        /*for (var3 = 0; var3 < 3; ++var3)
+        for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
             	//full inventory
                 this.addSlotToContainer(new Slot(inventory, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
             }
-        }*/
+        }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
@@ -56,7 +57,5 @@ public class ConatainerPlug extends Container
 	            par1EntityPlayer.dropPlayerItem(inventoryplayer.getItemStack());
 	            inventoryplayer.setItemStack((ItemStack)null);
 	        }
-	        
-	        this.entity.isOpen = false;
 	    }
 }

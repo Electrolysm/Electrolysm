@@ -1,8 +1,7 @@
 package assets.electrolysm.electro.world;
 
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.item.Item;
 import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.item.Item;
 
 public class sulphur extends Item {
 
@@ -11,12 +10,6 @@ public class sulphur extends Item {
 
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName("sulphurcrystal");
-	}
-	
-	@Override
-	public void registerIcons(IconRegister reg)
-	{
-		this.itemIcon = reg.registerIcon("electrolysm:" + "sulphur-crystal");
 	}
 
 }

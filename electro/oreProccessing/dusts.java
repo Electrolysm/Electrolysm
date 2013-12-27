@@ -37,7 +37,7 @@ public class dusts extends Item {
 		
 		for(int i = 0; i < CommonProxy.DUSTS.length; i ++)
 		{
-			dustIcon[i] = reg.registerIcon("electrolysm:dusts/" + "dusts-" + CommonProxy.DUSTS[i]);
+			dustIcon[i] = reg.registerIcon("electrolysm:dusts/" + "dusts" + CommonProxy.DUSTS[i]);
 		}
 	}
    

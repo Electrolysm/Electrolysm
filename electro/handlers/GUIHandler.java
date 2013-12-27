@@ -21,12 +21,10 @@ import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
 import assets.electrolysm.electro.oreProccessing.gui.GUIPort;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
-import assets.electrolysm.electro.powerSystem.container.ConatainerPlug;
-import assets.electrolysm.electro.powerSystem.container.ContainerTeslaTower;
-import assets.electrolysm.electro.powerSystem.gui.GUIPlug;
-import assets.electrolysm.electro.powerSystem.gui.GUITeslaTower;
+import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGenerator;
+import assets.electrolysm.electro.powerSystem.generators.container.ContainerGenerator;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
-import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler{
@@ -58,14 +56,11 @@ public class GUIHandler implements IGuiHandler{
 		{
 			return new ContainerPort((TileEntityPort)entity, player.inventory);
 		}
-		if(entity instanceof TileEntityPlug)
+		if(entity instanceof TileEntityGenerator)
 		{
-			return new ConatainerPlug((TileEntityPlug)entity, player.inventory);
+			return new ContainerGenerator((TileEntityGenerator)entity, player.inventory);
 		}
-		if(entity instanceof TileEntityTeslaTower)
-		{
-			return new ContainerTeslaTower((TileEntityTeslaTower)entity, player.inventory);
-		}
+		
 		
 		//Crafting
 		
@@ -104,17 +99,11 @@ public class GUIHandler implements IGuiHandler{
 		{
 			return new GUIPort((TileEntityPort)entity, player.inventory);
 		}
-		if(entity instanceof TileEntityPlug)
+		if(entity instanceof TileEntityGenerator)
 		{
-			return new GUIPlug((TileEntityPlug)entity, player.inventory);
+			return new GUIGenerator((TileEntityGenerator)entity, player.inventory);
 		}
-		if(entity instanceof TileEntityTeslaTower)
-		{
-			return new GUITeslaTower((TileEntityTeslaTower)entity, player.inventory);
-		}
-		
 		//Crafting
-		
 		switch(ID)
 		{
 		case 0: return ID == 0 && world.getBlockId(x, y, z) == electrolysmCore.workBench.blockID ?
