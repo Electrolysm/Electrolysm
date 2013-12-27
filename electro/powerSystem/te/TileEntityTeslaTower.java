@@ -305,6 +305,7 @@ public class TileEntityTeslaTower extends TileEntity {
     		if(this.blockMetadata == 1)
     		{
     			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 0);
+    			TeslaTransmittingServer.clearAll();
     		}
     	}
     	else
@@ -312,6 +313,7 @@ public class TileEntityTeslaTower extends TileEntity {
     		if(this.blockMetadata == 0)
     		{
     			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 0);
+    			TeslaTransmittingServer.clearAll();
     		}
     	}
     }
@@ -350,7 +352,7 @@ public class TileEntityTeslaTower extends TileEntity {
         		2.0F, 0.5F + rand.nextFloat() * 0.2F);		return bolt;
 	}
 
-	public void transmitPower(World world, int x, int y, int z, int range, int freq, String username, int TeU)
+	public int transmitPower(World world, int x, int y, int z, int range, int freq, String username, int TeU)
 	{
 		if(this.canDistributeRedstone(world, x, y, z))
 		{
@@ -358,7 +360,11 @@ public class TileEntityTeslaTower extends TileEntity {
 	    	this.func_82125_v_();
 			TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
 					freq, username, TeU);
+			
+			return TeU;
 		}
+		
+		return 0;
 	}
 
 }

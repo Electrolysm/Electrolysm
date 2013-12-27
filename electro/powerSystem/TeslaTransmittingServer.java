@@ -30,6 +30,8 @@ public class TeslaTransmittingServer {
 		freqency.put(freq + ":" + username, freq);
 		dName.put(freq + ":" + username, dimensionName);
 		TeUMap.put(freq + ":" + username, TeU);
+		
+		//System.out.println("Transmition Saved");
 	}
 	
 	//@SideOnly(Side.SERVER)
@@ -37,14 +39,23 @@ public class TeslaTransmittingServer {
 	{
 		String[] result= new String[6];
 		
-		result[0] = (xCoord.get(freq + ":" + username) + "");
-		result[1] = (yCoord.get(freq + ":" + username) + "");
-		result[2] = (zCoord.get(freq + ":" + username) + "");
-		result[3] = (transmitRange.get(freq + ":" + username) + "");;
-		result[4] = (String)dName.get(freq + ":" + username);
-		result[5] = String.valueOf(TeUMap.get(freq + ":" + username));
-		
-		return result;
+		if(!(xCoord.isEmpty()))
+		{
+			result[0] = (xCoord.get(freq + ":" + username) + "");
+			result[1] = (yCoord.get(freq + ":" + username) + "");
+			result[2] = (zCoord.get(freq + ":" + username) + "");
+			result[3] = (transmitRange.get(freq + ":" + username) + "");;
+			result[4] = (String)dName.get(freq + ":" + username);
+			result[5] = String.valueOf(TeUMap.get(freq + ":" + username));
+			
+			//System.out.println("Data Pulled");
+
+			return result;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 	public static void clearAll()
@@ -57,5 +68,7 @@ public class TeslaTransmittingServer {
 		freqency.clear();
 		dName.clear();
 		TeUMap.clear();
+		
+		//System.out.println("Data Cleared");
 	}
 }

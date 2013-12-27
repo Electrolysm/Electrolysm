@@ -26,29 +26,31 @@ public class TileEntityPlug extends TileEntity{
 		for(int i = 0; i < TeslaTransmittingServer.user.size(); i++)
 		{
 			String[] serverData = TeslaTransmittingServer.getData(freq, username);
-			int towerX = Integer.parseInt(serverData[0]);
-			int towerY = Integer.parseInt(serverData[1]);
-			int towerZ = Integer.parseInt(serverData[2]);
-			
-			int distance = this.calculateDistance(x, y, z, towerX, towerY, towerZ);
-			int towerRange = Integer.parseInt(serverData[3]);
-			int TeU = Integer.parseInt(serverData[5]);
-			
-			//System.out.print(TeU);
-			
-			result[0] = towerX;
-			result[1] = towerY;
-			result[2] = towerZ;
-			result[3] = distance;
-			result[4] = towerRange;
-			result[5] = TeU;
-			
-			if(distance <= towerRange)
+			if(serverData != null && serverData[1] != null)
 			{
-				return result;
+				int towerX = Integer.parseInt(serverData[0]);
+				int towerY = Integer.parseInt(serverData[1]);
+				int towerZ = Integer.parseInt(serverData[2]);
+				
+				int distance = this.calculateDistance(x, y, z, towerX, towerY, towerZ);
+				int towerRange = Integer.parseInt(serverData[3]);
+				int TeU = Integer.parseInt(serverData[5]);
+				
+				//System.out.print(TeU);
+				
+				result[0] = towerX;
+				result[1] = towerY;
+				result[2] = towerZ;
+				result[3] = distance;
+				result[4] = towerRange;
+				result[5] = TeU;
+				
+				if(distance <= towerRange)
+				{
+					return result;
+				}
 			}
 		}
-		
 		return null;
 	}
 	public int getRecievedTeUPure(World world, int x, int y, int z)
