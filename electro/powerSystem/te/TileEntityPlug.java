@@ -66,23 +66,25 @@ public class TileEntityPlug extends TileEntity{
 		return 0;
 		
 	}
-	public int getRecievedTeUAfterResistance(World world, int x, int y, int z)
+	public float getRecievedTeUAfterResistance(World world, int x, int y, int z)
 	{
-		int frequency = 1;
-		String username = "username";
-		
-		if(this.getClosestTowerWithinRange(world, x, y, z, frequency, username) != null)
+		if(this.getClosestTowerWithinRange(world, x, y, z, 1, "username") != null &&
+				this.getRecievedTeUPure(world, x, y, z) > 0)
 		{
-			int[] towerData = this.getClosestTowerWithinRange(world, x, y, z, frequency, username);
+			int[] towerData = this.getClosestTowerWithinRange(world, x, y, z, 1, "username");
 	
-			int TeUBefore = towerData[5];
+			int TeUBefore = this.getRecievedTeUPure(world, x, y, z);
 			int towerRange = towerData[4];
 			int distanceTower = towerData[3];
 
-			int TeU = (int) (TeUBefore * this.calculateFraction(towerRange, distanceTower));
+			float TeU = (float) (TeUBefore - (0.5 * distanceTower));
+ 			
+			System.out.println(TeU);
 			
 			return TeU;
 		}
+		System.out.println("Error when calculating the TeU after Resistance");
+		
 		return 0;
 	}
 	

@@ -31,8 +31,11 @@ public class TickHandler implements ITickHandler{
 		{
 			if(times <= 0)
 			{
-				this.printChatMessage(VersionCheck.chatMessage);
-				times = 100;
+				if(VersionCheck.chatMessage != null)
+				{
+					this.printChatMessage(VersionCheck.chatMessage);
+					times = 100;
+				}
 			}
 	}
 		return null;

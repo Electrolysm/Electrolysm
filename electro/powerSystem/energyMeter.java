@@ -140,7 +140,8 @@ public class energyMeter extends Item {
     {
     	if(world.isRemote)
     	{
-    		String message = "This plug is recieving " + String.valueOf(te.getRecievedTeUPure(world, x, y, z)) + " TeU";
+    		String message = "This plug is recieving " + String.valueOf(te.getRecievedTeUAfterResistance(world, x, y, z))
+    				+ " TeU";
     		
     		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);	
     	}
