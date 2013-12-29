@@ -2,15 +2,26 @@ package assets.electrolysm.api.powerSystem.usageMachine;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
-
-public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachine
+import assets.electrolysm.api.items.ItemFetcher;
+import assets.electrolysm.api.powerSystem.TileEntityPlug;
+import assets.electrolysm.api.powerSystem.meter.IMeterable;
+import cpw.mods.fml.common.Loader;
+/**
+ * @author Clarky158
+ * @Return Extend this file to allow usage of Tesla Energy Unit power. Remember to override the updateEntity() method
+ * and to check canWork() before performing an operation. This way you will get the maximum out of the machine, and
+ * prevents people exploiting the problem.
+ */
+public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachine, IPullEnergy, IMeterable
 {
+	public boolean working;
+	
 	public void updateEntity()
 	{
-		this.canWork(worldObj, xCoord, yCoord, zCoord);
-		
+		if(Loader.isModLoaded("Electrolysm"))
+		{
+			this.canWork(worldObj, xCoord, yCoord, zCoord);
+		}
 	}
 
 	@Override
@@ -18,6 +29,7 @@ public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachin
 	{
 		if(this.isPowered(world, x, y, z))
 		{
+			if(this.getPlugRecievingTeU(world, x, y, z) >= this.getActivationEnergy())
 			return true;
 		}
 		return false;
@@ -26,15 +38,49 @@ public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachin
 	@Override
 	public boolean isPowered(World world, int x, int y, int z)
 	{
-		if(world.getBlockId(x, y - 1, z) == electrolysmCore.plug.blockID)
+		if(Loader.isModLoaded("Electrolysm"))
 		{
-			TileEntityPlug te = (TileEntityPlug)world.getBlockTileEntity(x, y - 1, z);
-			if(te.getRecievedTeUAfterResistance(world, x, y - 1, z) > 0)
+			if(world.getBlockId(x, y - 1, z) == ItemFetcher.getItemByUnlocalizedName("plug").itemID)
 			{
-				return true;
+				TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
+				if(teWorld instanceof TileEntityPlug)
+				{
+					TileEntityPlug te = (TileEntityPlug)teWorld;
+					if(te.getRecievedTeUAfterResistance(world, x, y - 1, z) > 0)
+					{
+						return true;
+					}
+				}
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public float getPlugRecievingTeU(World world, int x, int y, int z) 
+	{
+		if(Loader.isModLoaded("Electrolysm"))
+		{
+			TileEntity teWorld = world.getBlockTileEntity(x, y, z);
+			if(teWorld instanceof TileEntityPlug)
+			{
+				TileEntityPlug te = (TileEntityPlug)teWorld;
+				return te.getRecievedTeUAfterResistance(world, x, y, z);
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public int getActivationEnergy() 
+	{
+		return 0;
+	}
+
+	@Override
+	public boolean isWorking() 
+	{
+		return working;
 	}
 
 }

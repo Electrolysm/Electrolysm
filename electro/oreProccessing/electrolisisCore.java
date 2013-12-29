@@ -101,27 +101,19 @@ public class electrolisisCore extends BlockContainer {
 										{
 		
 		//Middle Row
-		if(world.getBlockId(x + 1, y, z) == chamber || world.getBlockId(x + 1, y, z) == port)
+		if(world.getBlockId(x + 1, y, z + 1) == chamber)
 		{
-			if(world.getBlockId(x - 1, y, z) == chamber || world.getBlockId(x - 1, y, z) == port)
+			if(world.getBlockId(x - 1, y, z + 1) == chamber)
 			{
-				if(world.getBlockId(x, y, z + 1) == chamber || world.getBlockId(x, y, z + 1) == port)
+				if(world.getBlockId(x + 1, y, z - 1) == chamber)
 				{
-					if(world.getBlockId(x, y, z - 1) == chamber || world.getBlockId(x, y, z - 1) == port)
+					if(world.getBlockId(x - 1, y, z - 1) == chamber)
 					{
-						if(world.getBlockId(x + 1, y, z + 1) == chamber)
-						{
-							if(world.getBlockId(x - 1, y, z + 1) == chamber)
-							{
-								if(world.getBlockId(x + 1, y, z - 1) == chamber)
-								{
-									if(world.getBlockId(x - 1, y, z - 1) == chamber)
-									{
-										return true;
-									}
-								}
-							}
-						}
+						return true;
+					}
+				}
+			}
+		}
 					}
 				}
 			}
@@ -139,10 +131,6 @@ public class electrolisisCore extends BlockContainer {
 									}
 								}
 							}
-						}
-					}
-				}
-			}
 		
 		return isFormed;
 	}

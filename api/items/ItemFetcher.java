@@ -9,8 +9,8 @@ public class ItemFetcher {
 
     static {
             try {
-                    core = Class.forName("assets.electrolysm.electro.electrolysmCore", false, ItemFetcher.class.getClassLoader());
-                    itemList = (Item[])core.getField("basicItems").get(null);
+                    core = Class.forName("assets.electrolysm.electro.electrolysmItem", false, ItemFetcher.class.getClassLoader());
+                    itemList = (Item[])core.getField("allItems").get(null);
             }
             catch (ClassNotFoundException e) {
                     System.out.println("electrolysmCore class not found!");
@@ -41,11 +41,14 @@ public class ItemFetcher {
     }
 
     public static Item getItemByUnlocalizedName(String name) {
-            for (int i = 0; i < itemList.length; i++) {
+            for (int i = 0; i < itemList.length; i++) 
+            {
                     Item it = itemList[i];
                     String sg = it.getUnlocalizedName();
                     if (name.equals(sg))
-                            return it;
+                    {
+                    	return it;
+                    }
             }
             return null;
     }

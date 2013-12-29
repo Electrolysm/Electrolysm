@@ -2,15 +2,14 @@ package assets.electrolysm.electro.powerSystem.te;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.common.CommonProxy;
@@ -286,6 +285,20 @@ public class TileEntityTeslaTower extends TileEntity {
 	}
 
 	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param te
+	 * This should keep the the transmitter (Tesla Tower) chunk loaded!
+	 */
+	public static void keepChunkLoaded(World world, int x, int y, int z, TileEntity te)
+	{
+		world.updateTileEntityChunkAndDoNothing(x, y, z, te);
+	}
+	
+	/**
 	 * updates the whole tile entity
 	 */
 	public void updateEntity() 
@@ -357,7 +370,11 @@ public class TileEntityTeslaTower extends TileEntity {
 		if(this.canDistributeRedstone(world, x, y, z))
 		{
 	    	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
-	    	this.func_82125_v_();
+	    	if(world.isRemote)
+	    	{
+	    		this.func_82125_v_();
+	    	}
+	    	this.keepChunkLoaded(world, x, y, z, this);
 			TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
 					freq, username, TeU);
 			

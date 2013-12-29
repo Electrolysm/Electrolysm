@@ -1,18 +1,19 @@
 package assets.electrolysm.electro.oreProccessing.te;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import assets.electrolysm.api.powerSystem.TileEntityPlug;
+import assets.electrolysm.api.powerSystem.meter.IMeterable;
+import assets.electrolysm.api.powerSystem.usageMachine.IPullEnergy;
+import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.advAtomics.liquids.FluidOre;
-import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
-import assets.electrolysm.electro.client.RenderTileElectrolysisCore;
 import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
 
-public class TileEntityElectrolisisCore extends TileEntity implements IInventory
+public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implements IInventory, IPullEnergy, IMeterable
 {
 	//GUI STUFF
 	
@@ -124,7 +125,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 			heat = 100;
 		}
 
-		if (canwork) 
+		if (canwork && this.canWork(worldObj, xCoord, yCoord, zCoord)) 
 		{
 			furnaceCookTime = 5000 / heat;
 
@@ -165,6 +166,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 			
 			if (result1 != null) 
 			{
+				this.working = true;
 				if (furnaceBurnTime == furnaceCookTime)
 				{		
 					furnaceBurnTime = 0;
@@ -199,6 +201,10 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 						furnaceBurnTime = 0;
 					}
 				}
+			}
+			else
+			{
+				working = false;
 			}
 			if (output1 != null && output1.stackSize == 0) 
 			{
@@ -247,5 +253,32 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return false;
+	}
+
+	@Override
+	public float getPlugRecievingTeU(World world, int x, int y, int z) 
+	{
+		if(Loader.isModLoaded("Electrolysm"))
+		{
+			TileEntity teWorld = world.getBlockTileEntity(x, y, z);
+			if(teWorld instanceof TileEntityPlug)
+			{
+				TileEntityPlug te = (TileEntityPlug)teWorld;
+				return te.getRecievedTeUAfterResistance(world, x, y, z);
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public int getActivationEnergy() 
+	{
+		return 90;
+	}
+
+	@Override
+	public boolean isWorking() 
+	{
+		return working;
 	}
 }

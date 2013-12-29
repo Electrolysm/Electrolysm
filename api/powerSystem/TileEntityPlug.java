@@ -1,26 +1,39 @@
-package assets.electrolysm.electro.powerSystem.te;
+package assets.electrolysm.api.powerSystem;
 
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.tile.IEnergySource;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
-import cpw.mods.fml.common.Loader;
 
-public class TileEntityPlug extends TileEntity{
+public class TileEntityPlug extends TileEntity implements ITeUReciever{
 
 	public void updateEntity()
 	{
 		if(this.getClosestTowerWithinRange(worldObj, xCoord, yCoord, zCoord, 1, "username") != null)
 		{
+			this.keepChunkLoaded(worldObj, xCoord, yCoord, zCoord, this);
 			//System.out.println("Power is being transfered");
 		}
 		//System.out.println(this.getRecievedTeUAfterResistance(worldObj, xCoord, yCoord, zCoord));
 		//System.out.println(this.getRecievedTeUPure(worldObj, xCoord, yCoord, zCoord));
 	}
+	
+	/**
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param te
+	 * This should keep the the transmitter (Tesla Tower) chunk loaded!
+	 */
+	@Override
+	public void keepChunkLoaded(World world, int x, int y, int z, TileEntity te)
+	{
+		world.updateTileEntityChunkAndDoNothing(x, y, z, te);
+	}
 
-	private int[] getClosestTowerWithinRange(World world, int x, int y, int z, int freq, String username) 
+	@Override
+	public int[] getClosestTowerWithinRange(World world, int x, int y, int z, int freq, String username) 
 	{
 		int[] result = new int[6];
 		for(int i = 0; i < TeslaTransmittingServer.user.size(); i++)
@@ -53,6 +66,8 @@ public class TileEntityPlug extends TileEntity{
 		}
 		return null;
 	}
+	
+	@Override
 	public int getRecievedTeUPure(World world, int x, int y, int z)
 	{
 		
@@ -66,6 +81,8 @@ public class TileEntityPlug extends TileEntity{
 		return 0;
 		
 	}
+	
+	@Override
 	public float getRecievedTeUAfterResistance(World world, int x, int y, int z)
 	{
 		if(this.getClosestTowerWithinRange(world, x, y, z, 1, "username") != null &&
@@ -88,13 +105,8 @@ public class TileEntityPlug extends TileEntity{
 		return 0;
 	}
 	
-	private float calculateFraction(int total, int fractionOfTotal)
-	{
-		float faction = (fractionOfTotal / total);
-		return faction;
-	}
-	
-	private int calculateDistance(int x, int y, int z, int towerX, int towerY, int towerZ) 
+	@Override
+	public int calculateDistance(int x, int y, int z, int towerX, int towerY, int towerZ) 
 	{
 		int xPower = (int)Math.pow((x - towerX), 2);
 		int yPower = (int)Math.pow((y - towerY), 2);
@@ -104,6 +116,7 @@ public class TileEntityPlug extends TileEntity{
 	}
 
 	//This is a temporary equation this will be changed!!
+	@Override
 	public float TeUtoAmps(int TeU)
 	{
 		float amps1 = (float)((Math.sqrt((TeU*Math.pow((Math.PI - 3), 2)) / Math.pow(Math.E, 2))));
@@ -122,12 +135,13 @@ public class TileEntityPlug extends TileEntity{
 	
 	}
 	
+	@Override
 	public int TeUtoVolts(int TeU)
 	{
 		return (TeU * 1000);
 	}
 	
-	
+	@Override
     public int TeUtoEU(int TeU)
     {
     	float amps = this.TeUtoAmps(TeU);

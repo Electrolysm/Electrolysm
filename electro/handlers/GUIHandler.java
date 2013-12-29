@@ -24,7 +24,6 @@ import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
 import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGenerator;
 import assets.electrolysm.electro.powerSystem.generators.container.ContainerGenerator;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
-import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler{

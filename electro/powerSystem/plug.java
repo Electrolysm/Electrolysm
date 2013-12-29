@@ -6,16 +6,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import assets.electrolysm.api.powerSystem.TileEntityPlug;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import assets.electrolysm.electro.powerSystem.te.TileEntityPlugBasic;
 
 public class plug extends BlockContainer {
 
 	public plug(int id, Material mat) {
-		super(id, Material.ice);
+		super(id, Material.iron);
 
 		this.setUnlocalizedName("plug");
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -24,7 +22,7 @@ public class plug extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World world) {
 		// TODO Auto-generated method stub
-		return new TileEntityPlug();
+		return new TileEntityPlugBasic();
 	}
 	
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6,

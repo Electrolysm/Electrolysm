@@ -6,9 +6,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import assets.electrolysm.api.powerSystem.TileEntityPlug;
+import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
-import assets.electrolysm.electro.powerSystem.te.TileEntityPlug;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -57,13 +58,13 @@ public class energyMeter extends Item {
 	    			TileEntityPlug te = (TileEntityPlug)worldTE;
 	    			this.printPlugMessage(world, x, y, z, te);
 	    			return true;
-	    		}/*
-	    		else if(worldTE instanceof TileEntityMachine)
+	    		}
+	    		else if(worldTE instanceof TileEntityEnergyMachine)
 	    		{
-	    			TileEntityMachine te = (TileEntityMachine)worldTE;
+	    			TileEntityEnergyMachine te = (TileEntityEnergyMachine)worldTE;
 	    			this.printMachineMessage(world, x, y, z, te);
 	    			return true;
-	    		}*/
+	    		}
 	    		else
 	    		{
 	    			return false;
@@ -72,21 +73,34 @@ public class energyMeter extends Item {
     	}
     	return false;
     }
-	/*
+	
     @SideOnly(Side.CLIENT)
-    private void printMachineMessage(World world, int x, int y, int z, TileEntityMachine te) 
+    private void printMachineMessage(World world, int x, int y, int z, TileEntityEnergyMachine te) 
     {
     	if(world.isRemote)
     	{
-    		String message = "This machine is using " + te.powerUsing() + " TeU";
+    		String message1 = "This machine is requires " + te.getActivationEnergy() + " TeU";
+    		String message2 = "This machine is using " + te.getActivationEnergy() + "TeU";
+    		String messageOn = "This machine is currently working";
+    		String messageOff =  "This machine isn't currently working";
     		
-    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);	
+    		if(te.isWorking())
+    		{
+	    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message2);	
+	    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(messageOn);	
+    		}
+    		else
+    		{
+	    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message1);	
+	    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(messageOff);	
+    		}
+
     	}
     	else
     	{
     		
     	}
-    }*/
+    }
     
     @SideOnly(Side.CLIENT)
     private void printGeneratorMessage(World world, String powerSend) 

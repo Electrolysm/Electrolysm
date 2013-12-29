@@ -24,4 +24,9 @@ public class hammer extends Item {
 	    {
 	        this.itemIcon = par1IconRegister.registerIcon("electrolysm:" + "Hammer");
 	    }
+
+		public static String unlocalName() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
