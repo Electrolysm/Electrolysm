@@ -44,6 +44,7 @@ public class IDHandler {
 		public static int plasmaDrillID = 733;
 		public static int drillCasingID = 734;
 		public static int hammerID = 735;
+		public static int stoneObsidianID = 746;
 	}
 	
 	public static class research{

@@ -101,9 +101,14 @@ public class Crafting {
 
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastProof, 2),
 				"XYX", "YZY", "XYX",
-				Character.valueOf('X'), Block.blockIron,
-				Character.valueOf('Y'), Block.stone,
+				Character.valueOf('X'), Item.ingotIron,
+				Character.valueOf('Y'), electrolysmCore.stoneObsidian,
 				Character.valueOf('Z'), new ItemStack(electrolysmCore.researchPaper, 1, 0));  
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.stoneObsidian, 8),
+				"XXX", "XYX", "XXX",
+				Character.valueOf('X'), Block.stone,
+				Character.valueOf('Y'), Block.obsidian);
 		
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.glassModifire),
 				"XGX", " Y ", "Y",

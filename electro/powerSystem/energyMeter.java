@@ -31,40 +31,44 @@ public class energyMeter extends Item {
 		this.itemIcon = reg.registerIcon("electrolysm:" + "energyMeter");
 	}
 	
+	
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x,
     		int y, int z, int par7, float par8, float par9, float par10)
     {
-    	if(player.isSneaking())
+    	if(world.isRemote)
     	{
-    		TileEntity worldTE = world.getBlockTileEntity(x, y, z);
-    		if(worldTE instanceof TileEntityGenerator)
-    		{
-    			TileEntityGenerator te = (TileEntityGenerator)worldTE;
-    			this.printGeneratorMessage(world, String.valueOf(te.getSendTeU(world, x, y, z)));
-    			return true;
-    		}
-    		else if(worldTE instanceof TileEntityTeslaTower)
-    		{
-    			TileEntityTeslaTower te = (TileEntityTeslaTower)worldTE;
-    			this.printTowerMessage(world, x, y, z,te);
-    			return true;
-    		}
-    		else if(worldTE instanceof TileEntityPlug)
-    		{
-    			TileEntityPlug te = (TileEntityPlug)worldTE;
-    			this.printPlugMessage(world, x, y, z, te);
-    			return true;
-    		}/*
-    		else if(worldTE instanceof TileEntityMachine)
-    		{
-    			TileEntityMachine te = (TileEntityMachine)worldTE;
-    			this.printMachineMessage(world, x, y, z, te);
-    			return true;
-    		}*/
-    		else
-    		{
-    			return false;
-    		}
+	    	if(player.isSneaking())
+	    	{
+	    		TileEntity worldTE = world.getBlockTileEntity(x, y, z);
+	    		if(worldTE instanceof TileEntityGenerator)
+	    		{
+	    			TileEntityGenerator te = (TileEntityGenerator)worldTE;
+	    			this.printGeneratorMessage(world, String.valueOf(te.getSendTeU(world, x, y, z)));
+	    			return true;
+	    		}
+	    		else if(worldTE instanceof TileEntityTeslaTower)
+	    		{
+	    			TileEntityTeslaTower te = (TileEntityTeslaTower)worldTE;
+	    			this.printTowerMessage(world, x, y, z,te);
+	    			return true;
+	    		}
+	    		else if(worldTE instanceof TileEntityPlug)
+	    		{
+	    			TileEntityPlug te = (TileEntityPlug)worldTE;
+	    			this.printPlugMessage(world, x, y, z, te);
+	    			return true;
+	    		}/*
+	    		else if(worldTE instanceof TileEntityMachine)
+	    		{
+	    			TileEntityMachine te = (TileEntityMachine)worldTE;
+	    			this.printMachineMessage(world, x, y, z, te);
+	    			return true;
+	    		}*/
+	    		else
+	    		{
+	    			return false;
+	    		}
+	    	}
     	}
     	return false;
     }
