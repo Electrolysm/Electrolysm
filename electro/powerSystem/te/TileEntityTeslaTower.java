@@ -308,6 +308,8 @@ public class TileEntityTeslaTower extends TileEntity {
     	
     	this.transmitPower(worldObj, xCoord, yCoord, zCoord, this.getTransmitDistance(worldObj, xCoord,
     			yCoord, zCoord), 1, "username", this.getRecievingTeU(worldObj, xCoord, yCoord, zCoord));
+    	//Temporary (For images)
+    	//this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
     	
     	if(!(this.isRecievingRedstonePower(worldObj, xCoord, yCoord, zCoord)) && 
     			this.canDistribute(worldObj, xCoord, yCoord, zCoord))

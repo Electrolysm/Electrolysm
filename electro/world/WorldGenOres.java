@@ -16,7 +16,7 @@ public class WorldGenOres implements IWorldGenerator{
 		if(world.provider.dimensionId != 1 && world.provider.dimensionId != -1){
 			generateSurface(world, random, chunkX * 16, chunkZ * 16);
 		}
-		else if(world.provider.dimensionId != 0)
+		else
 		{
 			generateEndNether(world, random, chunkX * 16, chunkZ * 16);
 		}
@@ -30,7 +30,7 @@ public class WorldGenOres implements IWorldGenerator{
 			int yCoord = random.nextInt(256);
 			int zCoord = chunkZ + random.nextInt(16);
 
-			(new WorldGenMinable(electrolysmCore.sulphurOre.blockID, 30)).generate(world, random, xCoord, yCoord, zCoord);
+
 		}		
 	}
 	//Graphite Ore Generation
@@ -54,7 +54,7 @@ public class WorldGenOres implements IWorldGenerator{
 			int yCoord = random.nextInt(20);
 			int zCoord = chunkZ + random.nextInt(16);
 
-			(new WorldGenMinable(electrolysmCore.sulphurOre.blockID, 30)).generate(world, random, xCoord, yCoord, zCoord);
+			(new WorldGenMinable(electrolysmCore.sulphurOre.blockID, 15)).generate(world, random, xCoord, yCoord, zCoord);
 		}	
 	}
 }

@@ -141,6 +141,10 @@ public class Crafting {
 				Character.valueOf('Y'), electrolysmCore.graphite,
 				Character.valueOf('Z'), electrolysmCore.chunkGraphite);
 		
+		GameRegistry.addRecipe(new ItemStack(Block.tnt),
+				"XYX", "XXX", "XYX",
+				Character.valueOf('X'), electrolysmCore.sulphur,
+				Character.valueOf('Y'), Block.sand);
 	}
 
 }

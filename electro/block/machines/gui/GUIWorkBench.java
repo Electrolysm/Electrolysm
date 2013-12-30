@@ -4,11 +4,11 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
 import assets.electrolysm.electro.block.machines.container.ContainerWorkBench;
+import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,9 +17,13 @@ public class GUIWorkBench extends GuiContainer
 {
 	private static final ResourceLocation texture = new ResourceLocation("textures/gui/container/crafting_table.png");
 
-	public GUIWorkBench(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5)
+	private TileEntityWorkBench entity;
+
+	public GUIWorkBench(TileEntityWorkBench entity,	InventoryPlayer inventory)
 	{
-         super(new ContainerWorkBench(par1InventoryPlayer, par2World, par3, par4, par5));
+		super(new ContainerWorkBench(entity, inventory));
+
+		this.entity = entity;
 	}
 	/**
     * Draw the foreground layer for the GuiContainer (everything in front of the items)

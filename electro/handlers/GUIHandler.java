@@ -3,7 +3,6 @@ package assets.electrolysm.electro.handlers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.advMachines.container.ContainerEnergiser;
 import assets.electrolysm.electro.block.advMachines.container.ContainerInjector;
 import assets.electrolysm.electro.block.advMachines.gui.GUIEnergiser;
@@ -15,6 +14,7 @@ import assets.electrolysm.electro.block.machines.container.ContainerWorkBench;
 import assets.electrolysm.electro.block.machines.gui.GUIResearchDesk;
 import assets.electrolysm.electro.block.machines.gui.GUIWorkBench;
 import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
+import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.oreProccessing.container.ContainerElectrolysis;
 import assets.electrolysm.electro.oreProccessing.container.ContainerPort;
 import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
@@ -59,15 +59,11 @@ public class GUIHandler implements IGuiHandler{
 		{
 			return new ContainerGenerator((TileEntityGenerator)entity, player.inventory);
 		}
-		
-		
-		//Crafting
-		
-		switch(ID)
+		if(entity instanceof TileEntityWorkBench)
 		{
-		case 0: return ID == 0 && world.getBlockId(x, y, z) == electrolysmCore.workBench.blockID ? 
-				new ContainerWorkBench(player.inventory, world, x, y, z) : null;
+			return new ContainerWorkBench((TileEntityWorkBench)entity, player.inventory);
 		}
+
 		return null;
 	}
 
@@ -102,13 +98,10 @@ public class GUIHandler implements IGuiHandler{
 		{
 			return new GUIGenerator((TileEntityGenerator)entity, player.inventory);
 		}
-		//Crafting
-		switch(ID)
+		if(entity instanceof TileEntityWorkBench)
 		{
-		case 0: return ID == 0 && world.getBlockId(x, y, z) == electrolysmCore.workBench.blockID ?
-				new GUIWorkBench(player.inventory, world, x, y, z) : null;
+			return new GUIWorkBench((TileEntityWorkBench)entity, player.inventory);
 		}
-		
 		return null;
 	}
 

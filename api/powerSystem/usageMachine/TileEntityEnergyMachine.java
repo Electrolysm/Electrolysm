@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 import assets.electrolysm.api.items.ItemFetcher;
 import assets.electrolysm.api.powerSystem.TileEntityPlug;
 import assets.electrolysm.api.powerSystem.meter.IMeterable;
+import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.common.Loader;
 /**
  * @author Clarky158
@@ -40,16 +41,13 @@ public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachin
 	{
 		if(Loader.isModLoaded("Electrolysm"))
 		{
-			if(world.getBlockId(x, y - 1, z) == ItemFetcher.getItemByUnlocalizedName("plug").itemID)
+			TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
+			if(teWorld instanceof TileEntityPlug)
 			{
-				TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
-				if(teWorld instanceof TileEntityPlug)
+				TileEntityPlug te = (TileEntityPlug)teWorld;
+				if(te.getRecievedTeUAfterResistance(world, x, y - 1, z) > 0)
 				{
-					TileEntityPlug te = (TileEntityPlug)teWorld;
-					if(te.getRecievedTeUAfterResistance(world, x, y - 1, z) > 0)
-					{
-						return true;
-					}
+					return true;
 				}
 			}
 		}

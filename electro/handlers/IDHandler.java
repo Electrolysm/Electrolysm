@@ -112,4 +112,8 @@ public class IDHandler {
 		
 		public static int ironFramesID = 830;
 	}
+	
+	public static class randomStuff{
+		public static int diamondShardID = 900;
+	}
 }

@@ -10,11 +10,11 @@ import assets.electrolysm.electro.electrolysmCore;
 public class sulpherOre extends Block {
 
 	public sulpherOre(int id, Material mat) {
-		super(id, Material.ground);
+		super(id, Material.rock);
 
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.setUnlocalizedName("sulphurOre");
-	this.setHardness(2F);
+	this.setHardness(1F);
 	}
 	
 	public void registerIcons(IconRegister reg)

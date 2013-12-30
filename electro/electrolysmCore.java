@@ -37,6 +37,7 @@ import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.UpdateResearch;
+import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
 import assets.electrolysm.electro.handlers.GUIHandler;
@@ -185,6 +186,9 @@ import cpw.mods.fml.relauncher.SideOnly;
         
         public static Block sulpuricAcid = new sulphuricAcid(IDHandler.oreProccessing.sulphuricAcidID);
 
+        //Random items for crafting
+        public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
+        
         /*
 		//Robots	
         //Parts

@@ -1,9 +1,8 @@
 package assets.electrolysm.electro.handlers;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.world.WorldGenOres;
 import assets.electrolysm.electro.world.WorldGenStructures;
@@ -39,6 +38,7 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.teslaTowerCore);
 		GameRegistry.registerBlock(electrolysmCore.largeCopperCoil);
 		GameRegistry.registerBlock(electrolysmCore.ironFrames);
+		GameRegistry.registerBlock(electrolysmCore.copperOre);
 		GameRegistry.registerBlock(electrolysmCore.plug);
 		
 		

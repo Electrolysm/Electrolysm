@@ -8,7 +8,7 @@ import assets.electrolysm.electro.electrolysmCore;
 public class graphite extends Block {
 
 	public graphite(int id, Material mat) {
-		super(id, Material.ground);
+		super(id, Material.rock);
 		
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("graphite");
