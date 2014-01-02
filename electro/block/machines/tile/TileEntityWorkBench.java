@@ -6,8 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.research.Research;
+import assets.electrolysm.electro.research.ResearchRecipes;
 
 public class TileEntityWorkBench extends TileEntity implements IInventory {
 
@@ -15,7 +17,7 @@ public class TileEntityWorkBench extends TileEntity implements IInventory {
 	public boolean isOpen;
 	
 	public TileEntityWorkBench() {
-		this.inventory = new ItemStack[10];
+		this.inventory = new ItemStack[11];
 	}
 
 	@Override
@@ -119,6 +121,7 @@ public class TileEntityWorkBench extends TileEntity implements IInventory {
 		{
 			recipe[i] = this.getStackInSlot(i);
 		}
+		this.checkSetResearchRecipes();
 	}
 	
 	public ItemStack[] recipe()
@@ -138,5 +141,61 @@ public class TileEntityWorkBench extends TileEntity implements IInventory {
 			this.setInventorySlotContents(i, null);
 		}
 	}
+
+	
+	public void checkSetResearchRecipes()
+    {
+		if(this.getStackInSlot(10) != null)
+		{
+			int dmg = (this.getStackInSlot(10).getItemDamage());
+			boolean[] all = new boolean[9];
+			
+				for(int i = 0; i < (this.inventory.length - 2); i++)
+	    		{
+	    			System.out.println("InventoryCheck");
+	    			
+	    			System.out.println(this.getStackInSlot(i));
+	    			System.out.println(ResearchRecipes.getRecipeBasedOnDamage(dmg)[i]);
+	    			
+	    			String teStack;
+	    			String recipeStack;
+	    			
+	    			if(this.getStackInSlot(i) == null)
+	    			{
+	    				teStack = "null";
+	    			}
+	    			else
+	    			{
+	    				teStack = this.getStackInSlot(i).toString();
+	    			}
+	    			if(ResearchRecipes.getRecipeBasedOnDamage(dmg)[i] == null)
+	    			{
+	    				recipeStack = "null";
+	    			}
+	    			else
+	    			{
+	    				recipeStack = ResearchRecipes.getRecipeBasedOnDamage(dmg)[i].toString();
+	    			}
+	    			if(teStack.contains(recipeStack))
+		    		{
+		    			System.out.println("true");
+		    			all[i] = true;
+		   			}
+	    			else
+	    			{
+	    				System.out.println("false");
+	    				all[i] = false;
+	    			}
+	    		}
+			System.out.println("BooleanCheck");
+			if(all[0] && all[1] && all[2] && all[3] && all[4] && all[5] && all[6] && all[7] && all[8])
+			{
+	    		System.out.println("SettingInventory");
+		    	this.setInventorySlotContents(9, ResearchRecipes.getResultBasedOnDamage(dmg));
+		    	this.onInventoryChanged();
+		    	this.clearInventory();
+		    }
+    	}
+    }  
 }
 

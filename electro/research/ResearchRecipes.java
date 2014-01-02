@@ -11,11 +11,25 @@ public class ResearchRecipes
 {
 	private static ItemStack[] recipe = new ItemStack[9];
 	
+	//List of all research recipes and note metadata
+	//Blast Proof Blocks - 0
+	//Shrodingers cat -1
+	//Tesla  Tower Core - 2
+	//Electromagnetic Containment - 3 - not finished
+	
 	public static ItemStack getResultBasedOnDamage(int damage) 
 	{
 		if(damage == 0)
 		{
 			return new ItemStack(electrolysmCore.blastProof, 8);
+		}
+		else if(damage == 1)
+		{
+			return null;
+		}
+		else if(damage == 2)
+		{
+			return new ItemStack(electrolysmCore.teslaTowerCore, 1);
 		}
 		else
 		{

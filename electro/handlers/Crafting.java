@@ -145,6 +145,45 @@ public class Crafting {
 				"XYX", "XXX", "XYX",
 				Character.valueOf('X'), electrolysmCore.sulphur,
 				Character.valueOf('Y'), Block.sand);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.luminousRedstone, 2), 
+				new ItemStack(Item.redstone),
+				new ItemStack(Item.redstone),
+				new ItemStack(Item.glowstone),
+				new ItemStack(electrolysmCore.sulphur));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.diamondShard, 4),
+				new ItemStack(electrolysmCore.hammer),
+				new ItemStack(electrolysmCore.fluidStorage, 1, 2),
+				new ItemStack(Item.diamond));
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.hammer),
+				"XYX", " Z ", " Z ",
+				Character.valueOf('X'), Item.ingotIron,
+				Character.valueOf('Y'), Item.ingotGold,
+				Character.valueOf('Z'), Block.stone);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.crystal1),
+				"XYX", "YGY", "XYX",
+				Character.valueOf('X'), electrolysmCore.diamondShard,
+				Character.valueOf('Y'), electrolysmCore.BlockLumRed,
+				Character.valueOf('G'), Item.diamond);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed),
+				new ItemStack(electrolysmCore.luminousRedstone),
+				new ItemStack(electrolysmCore.luminousRedstone),
+				new ItemStack(electrolysmCore.luminousRedstone),
+				new ItemStack(electrolysmCore.luminousRedstone));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.luminousRedstone, 4), 
+				new ItemStack(electrolysmCore.BlockLumRed));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed),
+				new ItemStack(Block.blockRedstone),
+				new ItemStack(Block.glowStone),
+				new ItemStack(Block.glowStone),
+				new ItemStack(Block.glowStone),
+				new ItemStack(electrolysmCore.sulphur));
 	}
 
 }

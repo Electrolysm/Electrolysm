@@ -37,7 +37,9 @@ import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.UpdateResearch;
+import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.diamondShard;
+import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
 import assets.electrolysm.electro.handlers.GUIHandler;
@@ -63,6 +65,7 @@ import assets.electrolysm.electro.oreProccessing.liquidiser;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
+import assets.electrolysm.electro.powerSystem.crystal;
 import assets.electrolysm.electro.powerSystem.energyMeter;
 import assets.electrolysm.electro.powerSystem.largeCopperCoil;
 import assets.electrolysm.electro.powerSystem.plug;
@@ -166,6 +169,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block generator = new generator(IDHandler.powerGrid.generatorID, null);
         public static Block matterGen = new matterGen(IDHandler.powerGrid.genMatterID, null);
         public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
+        public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
         
         //Random Blocks
         public static Block ironFrames = new ironFrames(IDHandler.blocks.ironFramesID, null);
@@ -188,7 +192,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
         //Random items for crafting
         public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
-        
+        public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
+        public static Block BlockLumRed = new BlockLumRed(IDHandler.randomStuff.BlockLumRedID, null);
         /*
 		//Robots	
         //Parts

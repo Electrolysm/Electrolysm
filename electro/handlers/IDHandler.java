@@ -83,7 +83,7 @@ public class IDHandler {
 		public static int teslaCoreID = 800;
 		public static int largeCopperCoilID = 801;
 		public static int plugID = 802;
-		public static int crystal1ID = 803;
+		public static int crystalID = 803;
 		public static int generatorID = 804;
 		public static int genMatterID = 805;
 		public static int energyMeterID = 806;
@@ -115,5 +115,7 @@ public class IDHandler {
 	
 	public static class randomStuff{
 		public static int diamondShardID = 900;
+		public static int luminousRedstoneID = 901;
+		public static int BlockLumRedID = 902;
 	}
 }

@@ -3,11 +3,13 @@ package assets.electrolysm.electro.research;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.common.CommonProxy;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -63,6 +65,13 @@ public class card extends Item{
     	list.add("You require " + Research.cardToDesk(stack.getItemDamage()) + "Desks to complete " +
     			"level " + stack.getItemDamage() + " research.");
     }
+    
+    @Override
+    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    {
+    	list.add(new ItemStack(electrolysmCore.card, 1, 1));
+    }
+    
     
     
     

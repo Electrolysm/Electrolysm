@@ -29,6 +29,7 @@ public class researchPaper extends Item{
 		super(id);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("researchPaper");
+		this.setMaxStackSize(1);
 	}
 	
 	public String getUnlocalizedName(ItemStack stack)
@@ -82,88 +83,8 @@ public class researchPaper extends Item{
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x,
     		int y, int z, int par7, float par8, float par9, float par10)
     {
-    	boolean[] all = new boolean[9];
-    	boolean overall;
-    	
-    	System.out.println("WorldRemoteCheck");
-    	if(world.isRemote)
-    	{
-    		this.checkSetResearchRecipes(stack, player, world, x, y, z, all);
-    		return true;
-    	}
-    	else
-    	{
-        	System.out.println("Failed");
-    		return false;
-    	}
+    	return false;
     }
     
-    @SideOnly(Side.CLIENT)
-    public void checkSetResearchRecipes(ItemStack stack, EntityPlayer player, World world, int x,
-    		int y, int z, boolean[] all)
-    {
-    	System.out.println("SneakingCheck");
-    	if(player.isSneaking())
-    	{
-    		System.out.println("TileEntityCheck");
-    		TileEntity teWorld = world.getBlockTileEntity(x, y, z);
-    		if(teWorld instanceof TileEntityWorkBench)
-    		{
-    			TileEntityWorkBench te = (TileEntityWorkBench)teWorld;
-    			
-    			for(int i = 0; i < (te.inventory.length - 1); i++)
-    			{
-    				System.out.println("InventoryCheck");
-    				
-    				System.out.println(te.getStackInSlot(i));
-    				System.out.println(ResearchRecipes.getRecipeBasedOnDamage(stack.getItemDamage())[i]);
-    				
-    				int dmg = stack.getItemDamage();
-    				String teStack;
-    				String recipeStack;
-    				
-    				if(te.getStackInSlot(i) == null)
-    				{
-    					teStack = "null";
-    				}
-    				else
-    				{
-    					teStack = te.getStackInSlot(i).toString();
-    				}
-    				if(ResearchRecipes.getRecipeBasedOnDamage(dmg)[i] == null)
-    				{
-    					recipeStack = "null";
-    				}
-    				else
-    				{
-    					recipeStack = ResearchRecipes.getRecipeBasedOnDamage(dmg)[i].toString();
-    				}
-    				if(teStack.contains(recipeStack))
-	    			{
-	    				System.out.println("true");
-	    				all[i] = true;
-	    			}
-    				else
-    				{
-    					System.out.println("false");
-    					all[i] = false;
-    				}
-    			}
-    		}
-    	}
-    	System.out.println("BooleanCheck");
-    	if(all[0] && all[1] && all[2] && all[3] && all[4] && all[5] && all[6] && all[7] && all[8])
-    	{
-    		System.out.println("End TileEntityCheck");
-    		TileEntity teWorld = world.getBlockTileEntity(x, y, z);
-    		if(teWorld instanceof TileEntityWorkBench)
-    		{
-    			System.out.println("SettingInventory");
-    			TileEntityWorkBench te = (TileEntityWorkBench)teWorld;
-    			//te.setInventorySlotContents(9, ResearchRecipes.getResultBasedOnDamage(stack.getItemDamage()));
-    			player.dropPlayerItem(ResearchRecipes.getResultBasedOnDamage(stack.getItemDamage()));
-    			//te.onInventoryChanged();
-    		}
-    	}
-    }
+    
 }

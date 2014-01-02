@@ -1,5 +1,7 @@
 package assets.electrolysm.electro.powerSystem;
 
+import java.util.Random;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +19,7 @@ public class plug extends BlockContainer {
 
 		this.setUnlocalizedName("plug");
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.blockHardness = 1.25F;
 	}
 
 	@Override
@@ -39,5 +42,11 @@ public class plug extends BlockContainer {
     	{
     		return false;
     	}
+    }
+    
+    @Override
+    public int idDropped(int par1, Random par2Random, int par3)
+    {
+        return this.blockID;
     }
 }
