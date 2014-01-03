@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class smeltory extends BlockContainer {
+public class smeltory extends oreProcessMachineBase {
 
 	public String className = "" + this.getClass();
 	public String unlocalName = className.replace("assets.electrolysm.electro", "");

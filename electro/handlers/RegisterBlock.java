@@ -31,7 +31,7 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.electrolisisCore);
 		GameRegistry.registerBlock(electrolysmCore.crusher);
 		GameRegistry.registerBlock(electrolysmCore.liquidiser);
-		GameRegistry.registerBlock(electrolysmCore.seperator);
+		//GameRegistry.registerBlock(electrolysmCore.seperator);
 		GameRegistry.registerBlock(electrolysmCore.smeltery);
 		GameRegistry.registerBlock(electrolysmCore.electrolPort);
 		GameRegistry.registerBlock(electrolysmCore.sulpuricAcid);

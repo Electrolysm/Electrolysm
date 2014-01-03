@@ -145,17 +145,19 @@ public class TileEntityWorkBench extends TileEntity implements IInventory {
 	
 	public void checkSetResearchRecipes()
     {
-		if(this.getStackInSlot(10) != null)
+		if(this.getStackInSlot(10) != null) 
 		{
 			int dmg = (this.getStackInSlot(10).getItemDamage());
 			boolean[] all = new boolean[9];
 			
+			if(ResearchRecipes.getRecipeBasedOnDamage(dmg) != null)
+			{
 				for(int i = 0; i < (this.inventory.length - 2); i++)
 	    		{
-	    			System.out.println("InventoryCheck");
+	    			//System.out.println("InventoryCheck");
 	    			
-	    			System.out.println(this.getStackInSlot(i));
-	    			System.out.println(ResearchRecipes.getRecipeBasedOnDamage(dmg)[i]);
+	    			//System.out.println(this.getStackInSlot(i));
+	    			//System.out.println(ResearchRecipes.getRecipeBasedOnDamage(dmg)[i]);
 	    			
 	    			String teStack;
 	    			String recipeStack;
@@ -178,23 +180,24 @@ public class TileEntityWorkBench extends TileEntity implements IInventory {
 	    			}
 	    			if(teStack.contains(recipeStack))
 		    		{
-		    			System.out.println("true");
+		    			//System.out.println("true");
 		    			all[i] = true;
 		   			}
 	    			else
 	    			{
-	    				System.out.println("false");
+	    				//System.out.println("false");
 	    				all[i] = false;
 	    			}
 	    		}
-			System.out.println("BooleanCheck");
-			if(all[0] && all[1] && all[2] && all[3] && all[4] && all[5] && all[6] && all[7] && all[8])
-			{
-	    		System.out.println("SettingInventory");
-		    	this.setInventorySlotContents(9, ResearchRecipes.getResultBasedOnDamage(dmg));
-		    	this.onInventoryChanged();
-		    	this.clearInventory();
-		    }
+				//System.out.println("BooleanCheck");
+				if(all[0] && all[1] && all[2] && all[3] && all[4] && all[5] && all[6] && all[7] && all[8])
+				{
+		    		//System.out.println("SettingInventory");
+			    	this.setInventorySlotContents(9, ResearchRecipes.getResultBasedOnDamage(dmg));
+			    	this.onInventoryChanged();
+			    	this.clearInventory();
+				}
+			}
     	}
     }  
 }

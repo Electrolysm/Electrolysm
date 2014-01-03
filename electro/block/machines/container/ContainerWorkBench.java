@@ -25,7 +25,7 @@ public class ContainerWorkBench extends Container
         }
 
         //Research Paper Slot
-        this.addSlotToContainer(new Slot(this.entity, 10, 124, 55));
+        this.addSlotToContainer(new SlotResearchNote(this.entity, 10, 124, 60));
         this.addSlotToContainer(new Slot(this.entity, 9, 124, 35));
         
 	    int var3;

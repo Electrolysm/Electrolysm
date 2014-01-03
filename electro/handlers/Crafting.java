@@ -181,8 +181,6 @@ public class Crafting {
 		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed),
 				new ItemStack(Block.blockRedstone),
 				new ItemStack(Block.glowStone),
-				new ItemStack(Block.glowStone),
-				new ItemStack(Block.glowStone),
 				new ItemStack(electrolysmCore.sulphur));
 	}
 

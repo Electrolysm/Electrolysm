@@ -47,7 +47,7 @@ public class ResearchRecipes
 		{
 			return null;
 		}
-		else if(damage == 3)
+		else if(damage == 2)
 		{
 			 return teslaTowerRecipe();
 		}
@@ -63,7 +63,7 @@ public class ResearchRecipes
 		recipe[1] = new ItemStack(Block.glass);
 		recipe[2] = new ItemStack(Block.blockGold);
 		recipe[3] = new ItemStack(electrolysmCore.stoneObsidian);
-		//recipe[4] = new ItemStack(electrolysmCore.crystamTier1);
+		recipe[4] = new ItemStack(electrolysmCore.crystal1);
 		recipe[5] = new ItemStack(electrolysmCore.stoneObsidian);
 		recipe[6] = new ItemStack(electrolysmCore.diamondShard);
 		recipe[7] = new ItemStack(Block.obsidian);

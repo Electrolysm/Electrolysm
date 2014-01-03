@@ -9,14 +9,13 @@ import org.lwjgl.opengl.GL11;
 
 import assets.electrolysm.electro.block.machines.container.ContainerWorkBench;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
+import assets.electrolysm.electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GUIWorkBench extends GuiContainer
 {
-	private static final ResourceLocation texture = new ResourceLocation("textures/gui/container/crafting_table.png");
-
 	private TileEntityWorkBench entity;
 
 	public GUIWorkBench(TileEntityWorkBench entity,	InventoryPlayer inventory)
@@ -39,7 +38,7 @@ public class GUIWorkBench extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
 	{
          GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-         this.mc.func_110434_K().func_110577_a(texture);
+         this.mc.func_110434_K().func_110577_a(CommonProxy.WORK_BENCH_GUI);
          int k = (this.width - this.xSize) / 2;
          int l = (this.height - this.ySize) / 2;
          this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);

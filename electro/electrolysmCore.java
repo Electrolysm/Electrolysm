@@ -189,11 +189,12 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block electrolPort = new electrolPort(IDHandler.oreProccessing.electrolPortID, null);
         
         public static Block sulpuricAcid = new sulphuricAcid(IDHandler.oreProccessing.sulphuricAcidID);
-
+        
         //Random items for crafting
         public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
         public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
         public static Block BlockLumRed = new BlockLumRed(IDHandler.randomStuff.BlockLumRedID, null);
+        
         /*
 		//Robots	
         //Parts

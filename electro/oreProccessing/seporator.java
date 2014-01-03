@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class seporator extends BlockContainer {
+public class seporator extends oreProcessMachineBase {
 
 	public String className = "" + this.getClass();
 	public String unlocalName = className.replace("assets.electrolysm.electro", "");
