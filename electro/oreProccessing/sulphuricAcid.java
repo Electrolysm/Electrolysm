@@ -44,8 +44,8 @@ public class sulphuricAcid extends BlockFluidClassic {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register)
     {
-        this.flowing = register.registerIcon("electrolysm:" + "sulpuric_Acid");
-        this.still = register.registerIcon("electrolysm:" + "sulpuric_Acid_still");
+        this.flowing = register.registerIcon("electrolysm:" + "sulpur_flow");
+        this.still = register.registerIcon("electrolysm:" + "sulpur_still");
     }
     
 	private void erodeWorld(World world, int x, int y, int z, Random rand) 
@@ -54,13 +54,19 @@ public class sulphuricAcid extends BlockFluidClassic {
     	if(rand.nextInt(50) == 1)
     	{
         	if(world.getBlockId(x, y - 1, z) == Block.dirt.blockID ||
-        			world.getBlockId(x, y - 1, z) == Block.stone.blockID ||
+        				world.getBlockId(x, y - 1, z) == Block.stone.blockID ||
         				world.getBlockId(x, y - 1, z) == Block.grass.blockID ||
         				world.getBlockMaterial(x, y - 1, z) == Material.ground ||
         				world.getBlockMaterial(x, y - 1, z) == Material.rock ||
-        				world.getBlockMaterial(x, y - 1, z) == Material.wood)
+        				world.getBlockMaterial(x, y - 1, z) == Material.wood ||
+        				world.getBlockId(x, y - 1, z) == Block.sand.blockID ||
+        				world.getBlockId(x, y - 1, z) == Block.sandStone.blockID)
         	{
-        		world.setBlock(x, y - 1, z, this.blockID);
+        		if(world.getBlockId(x, y - 1, z) != Block.bedrock.blockID ||
+        				world.getBlockId(x, y - 1, z) != Block.obsidian.blockID)
+        		{
+        			world.setBlock(x, y - 1, z, this.blockID);
+        		}
         	}
     	}		
 	}	
