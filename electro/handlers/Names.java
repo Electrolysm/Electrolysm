@@ -40,6 +40,7 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.sulphurOre, "Sulphur Ore");
 		LanguageRegistry.addName(electrolysmCore.sulphur, "Sulpure Crystals");
 		LanguageRegistry.addName(electrolysmCore.energyMeter, "Energy Meter");
+		LanguageRegistry.addName(electrolysmCore.sulpuricAcid, "Sulphuric Acid");
 		
 		
 		

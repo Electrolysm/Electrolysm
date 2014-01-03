@@ -54,16 +54,20 @@ public class sulphuricAcid extends BlockFluidClassic {
     	if(rand.nextInt(50) == 1)
     	{
         	if(world.getBlockId(x, y - 1, z) == Block.dirt.blockID ||
-        				world.getBlockId(x, y - 1, z) == Block.stone.blockID ||
-        				world.getBlockId(x, y - 1, z) == Block.grass.blockID ||
-        				world.getBlockMaterial(x, y - 1, z) == Material.ground ||
-        				world.getBlockMaterial(x, y - 1, z) == Material.rock ||
-        				world.getBlockMaterial(x, y - 1, z) == Material.wood ||
-        				world.getBlockId(x, y - 1, z) == Block.sand.blockID ||
-        				world.getBlockId(x, y - 1, z) == Block.sandStone.blockID)
+        	   world.getBlockId(x, y - 1, z) == Block.stone.blockID ||
+        	   world.getBlockId(x, y - 1, z) == Block.grass.blockID ||
+        	   world.getBlockMaterial(x, y - 1, z) == Material.ground ||
+        	   world.getBlockMaterial(x, y - 1, z) == Material.rock ||
+        	   world.getBlockMaterial(x, y - 1, z) == Material.wood ||
+        	   world.getBlockId(x, y - 1, z) == Block.sand.blockID ||
+        	   world.getBlockId(x, y - 1, z) == Block.sandStone.blockID)
         	{
-        		if(world.getBlockId(x, y - 1, z) != Block.bedrock.blockID ||
-        				world.getBlockId(x, y - 1, z) != Block.obsidian.blockID)
+        		if(world.getBlockId(x, y - 1, z) == Block.bedrock.blockID ||
+        				world.getBlockId(x, y - 1, z) == Block.obsidian.blockID)
+        		{
+
+        		}
+        		else
         		{
         			world.setBlock(x, y - 1, z, this.blockID);
         		}

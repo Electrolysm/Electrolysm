@@ -13,6 +13,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -91,7 +93,44 @@ public class fluidStorage extends Item implements IFluidOre{
     {
     	if(this.getBlockIDBasedOnItemStack(item) != 0)
     	{
-             world.setBlock(x, y, z, this.getBlockIDBasedOnItemStack(item));
+    		if(side == 0)
+    		{
+    			//Bottom
+                world.setBlock(x, y - 1, z, this.getBlockIDBasedOnItemStack(item));
+    		}
+    		else if(side == 1)
+    		{
+    			//Top
+                world.setBlock(x, y + 1, z, this.getBlockIDBasedOnItemStack(item));
+    		}
+    		else if(side == 2)
+    		{
+    			//Right
+    			world.setBlock(x, y, z - 1, this.getBlockIDBasedOnItemStack(item));
+    		}
+    		else if(side == 3)
+    		{
+    			world.setBlock(x, y, z + 1, this.getBlockIDBasedOnItemStack(item));
+    		}
+    		else if(side == 4)
+    		{
+    			world.setBlock(x - 1, y, z, this.getBlockIDBasedOnItemStack(item));
+    		}
+    		else if(side ==5)
+    		{
+    			world.setBlock(x + 1, y, z, this.getBlockIDBasedOnItemStack(item));
+    		}
+    		else
+    		{
+    			String message1 = "Unknown Error when placing liquid block!";
+    			String message2 = "This is a bug! Please report it to the MOD author";
+    			System.out.println(message1);
+    			System.out.println(message2);
+    			player.sendChatToPlayer(
+    					ChatMessageComponent.func_111077_e(message1).func_111059_a(EnumChatFormatting.DARK_RED));
+    			player.sendChatToPlayer(
+    					ChatMessageComponent.func_111077_e(message2).func_111059_a(EnumChatFormatting.DARK_RED));
+    		}
     	}
     	return false;
     }
