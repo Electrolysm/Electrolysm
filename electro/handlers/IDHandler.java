@@ -38,8 +38,8 @@ public class IDHandler {
 		public static int spawnZSID = 727;
 		public static int blastProofID = 728;
 		public static int blastDoorID = 729;
-		public static int blastGrassID = 730;
-		public static int modBlastGrassID = 731;
+		public static int blastGlassID = 730;
+		public static int modBlastGlassID = 731;
 		public static int glassModifierID = 732;
 		public static int plasmaDrillID = 733;
 		public static int drillCasingID = 734;

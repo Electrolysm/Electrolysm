@@ -125,26 +125,26 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
         
         //World Generation
-        public static Block graphite = new graphite(IDHandler.worldGenOres.graphiteID, null);
+        public static Block graphite = new graphite(configHandler.graphiteID, null);
         public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
         public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
-        public static Block copperOre = new copperOre(IDHandler.worldGenOres.copperOreID, null);
-        public static Block sulphurOre = new sulpherOre(IDHandler.worldGenOres.sulphurOreID, null);
+        public static Block copperOre = new copperOre(configHandler.copperOreID, null);
+        public static Block sulphurOre = new sulpherOre(configHandler.sulphurOreID, null);
         public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
         
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
-        public static Block diseaseGrass = new diseasedGrass(IDHandler.basic.diseasedGrassID, null);
+        public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
 		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.basic.biomeID);
         public BiomeGenBase diseasedBiome = diseasedBiomeObj;
 
         //Security
-        public static Block blastProof = new blastProof(IDHandler.basic.blastProofID, null);
-        public static Block blastDoor = new blastDoor(IDHandler.basic.blastDoorID, null);
-        public static Block blastGlass = new blastGlass(IDHandler.basic.blastGrassID, null, false, ContectedTexture);
-        public static Block modBlastGlass = new modBlastGlass(IDHandler.basic.modBlastGrassID, null, false, ContectedTexture);
+        public static Block blastProof = new blastProof(configHandler.blastProofID, null);
+        public static Block blastDoor = new blastDoor(configHandler.blastDoorID, null);
+        public static Block blastGlass = new blastGlass(configHandler.blastGlassID, null, false, ContectedTexture);
+        public static Block modBlastGlass = new modBlastGlass(configHandler.modBlastGlassID, null, false, ContectedTexture);
         public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
-        public static Block stoneObsidian = new stoneObsidian(IDHandler.basic.stoneObsidianID, null);
+        public static Block stoneObsidian = new stoneObsidian(configHandler.stoneObsidianID, null);
         
         //Tools
         public static Item hammer = new hammer(IDHandler.basic.hammerID);

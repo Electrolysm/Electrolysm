@@ -23,6 +23,14 @@ public class configHandler {
 	public static int injectorID;
 	public static int researchDeskID;
 	public static int graphiteID;
+	public static int copperOreID;
+	public static int sulphurOreID;
+	public static int diseaseGrassID;
+	public static int blastProofID;
+	public static int blastDoorID;
+	public static int blastGlassID;
+	public static int modBlastGlassID;
+	public static int stoneObsidianID;
 	//etc. Do them in order so you dont get confused
 	
 	public static void init(File file){
@@ -40,6 +48,14 @@ public class configHandler {
 		injectorID = config.get(BLOCK_CAT, "injectorID", IDHandler.advMachines.injectorID).getInt();
 		researchDeskID = config.get(BLOCK_CAT, "researchDeskID", IDHandler.machines.basic.researchDeskID).getInt();
         graphiteID = config.get(BLOCK_CAT, "graphiteID", IDHandler.worldGenOres.graphiteID).getInt();
+        copperOreID = config.get(BLOCK_CAT, "coppweOreID", IDHandler.worldGenOres.copperOreID).getInt();
+        sulphurOreID = config.get(BLOCK_CAT, "sulphurOreID", IDHandler.worldGenOres.sulphurOreID).getInt();
+        diseaseGrassID = config.get(BLOCK_CAT, "diseaseGrassID", IDHandler.basic.diseasedGrassID).getInt();
+        blastProofID = config.get(BLOCK_CAT, "blastProofID", IDHandler.basic.blastProofID).getInt();
+        blastDoorID = config.get(BLOCK_CAT, "balstDoorID", IDHandler.basic.blastDoorID).getInt();
+        blastGlassID = config.get(BLOCK_CAT, "blastGlassID", IDHandler.basic.blastGlassID).getInt();
+        modBlastGlassID = config.get(BLOCK_CAT, "modBlastGlassID", IDHandler.basic.modBlastGlassID).getInt();
+        stoneObsidianID = config.get(BLOCK_CAT, "stoneObsidianID", IDHandler.basic.stoneObsidianID).getInt();
         config.save();
 	}
 }
