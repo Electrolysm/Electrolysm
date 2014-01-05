@@ -29,8 +29,8 @@ public class GUIWorkBench extends GuiContainer
     */
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 		{
-         this.fontRenderer.drawString(I18n.func_135053_a("container.crafting"), 28, 6, 4210752);
-         this.fontRenderer.drawString(I18n.func_135053_a("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+         this.fontRenderer.drawString("Crafting", 28, 6, 4210752);
+         this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
 		}
 		/**
          * Draw the background layer for the GuiContainer (everything behind the items)

@@ -112,14 +112,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 		@Instance("Electrolysm")
 		public static electrolysmCore GUIInstance;
 		//Basic Machines
-        public static Block workBench = new workBench(IDHandler.machines.basic.workBenchID, null);
-        public static Block desk = new desk(IDHandler.machines.basic.deskID, null);
+        public static Block workBench = new workBench(configHandler.workBenchID, null);
+        public static Block desk = new desk(configHandler.deskID, null);
         //Advanced Machines
-        public static Block injector = new injector(IDHandler.advMachines.injectorID, null);
+        public static Block injector = new injector(configHandler.injectorID, null);
         public static Item injectionArm = new injectionArm(IDHandler.advMachines.injectionArmID);
         
         //Research System
-        public static Block researchDesk = new researchDesk(IDHandler.machines.basic.researchDeskID, null);
+        public static Block researchDesk = new researchDesk(configHandler.researchDeskID, null);
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
         public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
