@@ -44,15 +44,6 @@ public class UpdateResearch implements ICommand
 	 {
 		 EntityPlayer player;
          
-         if(icommandsender instanceof EntityPlayer)
-         {
-                 player = (EntityPlayer)icommandsender;
-         } 
-         else
-         {
-             icommandsender.sendChatToPlayer(ChatMessageComponent.func_111077_e("Client Only!").func_111059_a(EnumChatFormatting.DARK_RED));
-			 return;
-		 }
          icommandsender.sendChatToPlayer(ChatMessageComponent.func_111077_e("Updating research...").func_111059_a(EnumChatFormatting.GREEN));
     	 ResearchHandler.downloadOnlineData();
 		 ResearchHandler.getStoredResearch();
