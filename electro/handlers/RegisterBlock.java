@@ -39,7 +39,7 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.largeCopperCoil);
 		GameRegistry.registerBlock(electrolysmCore.ironFrames);
 		GameRegistry.registerBlock(electrolysmCore.copperOre);
-		GameRegistry.registerBlock(electrolysmCore.plug);
+		GameRegistry.registerBlock(electrolysmCore.plug, "E-TEP Plug");
 		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
@@ -60,8 +60,10 @@ public class RegisterBlock {
 		WeightedRandomChestContent itemChest = new WeightedRandomChestContent(electrolysmCore.knowledge.itemID,
         		0, 1, 2, 0);
         ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, itemChest);
-        
+        GameRegistry.registerFuelHandler(new FuelHandler());
         //End
 	}
+	
+	
 
 }

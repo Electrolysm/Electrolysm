@@ -21,9 +21,7 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.blastDoor, "Blast Proof Iron Door");
 		LanguageRegistry.addName(electrolysmCore.energiser, "Fluid Energiser");
 		LanguageRegistry.addName(electrolysmCore.injector, "Injector");
-
-		
-		//LanguageRegistry.addName(electrolysmCore.plasma, "Liquid Plasma");
+		LanguageRegistry.addName(electrolysmCore.plasma, "Liquid Plasma");
 		//LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
 		LanguageRegistry.addName(electrolysmCore.blastGlass, "Blast Proof Iron Glass");
 		LanguageRegistry.addName(electrolysmCore.modBlastGlass, "Modified Blast Proof Iron Glass");
@@ -38,14 +36,28 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.energisingRod, "Energising Filament");
 		LanguageRegistry.addName(electrolysmCore.glassModifire, "Glass Modifier");
 		LanguageRegistry.addName(electrolysmCore.sulphurOre, "Sulphur Ore");
-		LanguageRegistry.addName(electrolysmCore.sulphur, "Sulpure Crystals");
+		LanguageRegistry.addName(electrolysmCore.sulphur, "Sulphure Crystals");
 		LanguageRegistry.addName(electrolysmCore.energyMeter, "Energy Meter");
 		LanguageRegistry.addName(electrolysmCore.sulpuricAcid, "Sulphuric Acid");
-		
-		
+		LanguageRegistry.addName(electrolysmCore.copperOre, "Copper Ore");
+		LanguageRegistry.addName(electrolysmCore.teslaTowerCore, "Tesla Tower Main Frame");
+		LanguageRegistry.addName(electrolysmCore.largeCopperCoil, "Large Copper Coil");
+		LanguageRegistry.addName(electrolysmCore.copperCoil, "Copper Coil");
+		LanguageRegistry.addName(electrolysmCore.plug, "E-TEP Plug");
+		LanguageRegistry.addName(electrolysmCore.ironFrames, "Iron Frame");
+		LanguageRegistry.addName(electrolysmCore.hammer, "Hammer");
+		LanguageRegistry.addName(electrolysmCore.copperIngot, "Copper Ingot");
+		LanguageRegistry.addName(electrolysmCore.crystal1, "Electron Focus Crystal");
+		LanguageRegistry.addName(electrolysmCore.node, "Graphite Electrode");
+		LanguageRegistry.addName(electrolysmCore.luminousRedstone, "Luminous Redstone Dust");
+		LanguageRegistry.addName(electrolysmCore.diamondShard, "Diamond Shard");
+		LanguageRegistry.addName(electrolysmCore.crystalBase, "Crystal Base");
 		
 		//Items
-		LanguageRegistry.addName(electrolysmCore.researchPaper, "Research Paper");
+		for(int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)
+		{
+			LanguageRegistry.addName(new ItemStack(electrolysmCore.researchPaper, 1, i), "Research Paper");
+		}
 		LanguageRegistry.addName(electrolysmCore.card, "ID Card");
 		
 		for(int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i++)

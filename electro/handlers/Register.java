@@ -1,5 +1,7 @@
 package assets.electrolysm.electro.handlers;
 
+import assets.electrolysm.electro.electrolysmCore;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Register {
@@ -19,6 +21,12 @@ public class Register {
                     addAchievementName("LookingInto", "Looking into Things?");
                     addAchievementDesc("LookingInto", "You are begining to explore the sciences!!");
     }
+	
+	public static void addOreDictionary()
+	{
+		OreDictionary.registerOre("oreCopper", electrolysmCore.copperOre);
+		OreDictionary.registerOre("ingotCopper", electrolysmCore.copperIngot);
+	}
 
 	
 	

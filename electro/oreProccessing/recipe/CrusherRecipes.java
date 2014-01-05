@@ -18,7 +18,8 @@ public class CrusherRecipes
 	private Map crushing1 = new HashMap();
 	private Map crushing2 = new HashMap();
 	
-	public static final CrusherRecipes smelting() {
+	public static final CrusherRecipes smelting() 
+	{
 		return smeltBase;
 	}
 
@@ -27,6 +28,7 @@ public class CrusherRecipes
 		//		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
 		//METAs		0		   1	  2		  3			4		5
 		
+		//Ore Blocks
 		ArrayList<ItemStack> copperOre = OreDictionary.getOres("oreCopper");
 		ArrayList<ItemStack> tinOre = OreDictionary.getOres("oreTin");
 		ArrayList<ItemStack> silverOre = OreDictionary.getOres("oreSilver");
@@ -35,8 +37,19 @@ public class CrusherRecipes
 		ItemStack ironOre = new ItemStack(Block.oreIron);
 		ItemStack goldOre = new ItemStack(Block.oreGold);
 		
+		//Ingots
+		ArrayList<ItemStack> copperIngot = OreDictionary.getOres("ingotCopper");
+		ArrayList<ItemStack> tinIngot = OreDictionary.getOres("ingotTin");
+		ArrayList<ItemStack> silverIngot = OreDictionary.getOres("ingotSilver");
+		ArrayList<ItemStack> leadIngot = OreDictionary.getOres("ingotLead");
+		
+		ItemStack ironIngot = new ItemStack(Item.ingotIron);
+		ItemStack goldIngot = new ItemStack(Item.ingotGold);
+		
+		//Ore
 		this.addCrushing(ironOre, new ItemStack(electrolysmCore.impureDusts, 2, 2));
 		this.addCrushing(goldOre, new ItemStack(electrolysmCore.impureDusts, 2, 3));
+		
 		for(int i = 0; i < copperOre.size(); i++)
 		{
 			this.addCrushing(copperOre.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 0));
@@ -53,11 +66,35 @@ public class CrusherRecipes
 		{
 			this.addCrushing(leadOre.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 5));
 		}
+		
+		//Ingots
+		/*
+		this.addCrushing(ironIngot, new ItemStack(electrolysmCore.impureDusts, 2, 2));
+		this.addCrushing(goldIngot, new ItemStack(electrolysmCore.impureDusts, 2, 3));
+		
+		for(int i = 0; i < copperIngot.size(); i++)
+		{
+			this.addCrushing(copperIngot.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 0));
+		}
+		for(int i = 0; i < tinIngot.size(); i++)
+		{
+			this.addCrushing(tinIngot.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 2));
+		}
+		for(int i = 0; i < silverIngot.size(); i++)
+		{
+			this.addCrushing(silverIngot.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 4));
+		}
+		for(int i = 0; i < leadIngot.size(); i++)
+		{
+			this.addCrushing(leadIngot.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 5));
+		}
+		*/
 	}
 
-	public void addCrushing(ItemStack input, ItemStack output) {
-		this.crushing1.put(input, output);
-		this.crushing2.put(input, output);
+	public void addCrushing(ItemStack input, ItemStack output)
+	{
+		this.crushing1.put(Integer.valueOf(input.itemID), Integer.valueOf(output.getItemDamage()));
+		this.crushing2.put(Integer.valueOf(input.itemID), output);
 	}
 
 	public ItemStack getCrushingResult(ItemStack input) 
@@ -66,15 +103,22 @@ public class CrusherRecipes
 		{
 			return null;
 		}
-
-		ItemStack outputItem1 = (ItemStack)this.crushing1.get(input);
-		ItemStack outputItem2 = (ItemStack)this.crushing2.get(input);
-
-		if (outputItem1 == outputItem2) 
+		
+		if(this.crushing1.get(Integer.valueOf(input.itemID)) == null)
 		{
-			if (outputItem1.getItemDamage() == outputItem2.getItemDamage()) 
+			return null;
+		}
+		
+		int meta = Integer.valueOf((String.valueOf(this.crushing1.get(Integer.valueOf(input.itemID)))));
+		ItemStack output2 = (ItemStack)this.crushing2.get(Integer.valueOf(input.itemID));
+		
+		ItemStack output = new ItemStack(electrolysmCore.impureDusts, 2, meta);
+		
+		if(output2 != null)
+		{
+			if(output2.isItemEqual(output))
 			{
-				return outputItem1;
+				return output;
 			}
 			else
 			{
@@ -91,10 +135,4 @@ public class CrusherRecipes
 	{
 		return (ItemStack) this.crushing1.get(input);
 	}
-
-	public ItemStack getSlot2ReduceAmount(ItemStack input) 
-	{
-		return (ItemStack) this.crushing2.get(input);
-	}
-
 }

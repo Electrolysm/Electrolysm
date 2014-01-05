@@ -87,7 +87,7 @@ public class IDHandler {
 		public static int generatorID = 804;
 		public static int genMatterID = 805;
 		public static int energyMeterID = 806;
-		public static int null8 = 807;
+		public static int copperCoilID = 807;
 		public static int null9 = 808;
 		public static int null10 = 809;
 
@@ -117,5 +117,6 @@ public class IDHandler {
 		public static int diamondShardID = 900;
 		public static int luminousRedstoneID = 901;
 		public static int BlockLumRedID = 902;
+		public static int crystalBaseID = 903;
 	}
 }

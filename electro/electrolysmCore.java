@@ -9,9 +9,9 @@ import java.io.File;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockOre;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.world.biome.BiomeGenBase;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
@@ -38,6 +38,7 @@ import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
+import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.handlers.BetaHandler;
@@ -53,18 +54,18 @@ import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
-import assets.electrolysm.electro.oreProccessing.electrolPort;
-import assets.electrolysm.electro.oreProccessing.node;
-import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.dusts;
 import assets.electrolysm.electro.oreProccessing.electrolChamber;
+import assets.electrolysm.electro.oreProccessing.electrolPort;
 import assets.electrolysm.electro.oreProccessing.electrolisisCore;
 import assets.electrolysm.electro.oreProccessing.impureDusts;
 import assets.electrolysm.electro.oreProccessing.liquidiser;
+import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
+import assets.electrolysm.electro.powerSystem.copperCoil;
 import assets.electrolysm.electro.powerSystem.crystal;
 import assets.electrolysm.electro.powerSystem.energyMeter;
 import assets.electrolysm.electro.powerSystem.largeCopperCoil;
@@ -162,9 +163,10 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
         public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
         
-        //Power System -- WIP
+        //Power System
         public static Block teslaTowerCore = new teslaTowerCore(IDHandler.powerGrid.teslaCoreID, null);
         public static Block largeCopperCoil = new largeCopperCoil(IDHandler.powerGrid.largeCopperCoilID, null);
+        public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
         public static Block plug = new plug(IDHandler.powerGrid.plugID, null);
         public static Block generator = new generator(IDHandler.powerGrid.generatorID, null);
         public static Block matterGen = new matterGen(IDHandler.powerGrid.genMatterID, null);
@@ -194,6 +196,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
         public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
         public static Block BlockLumRed = new BlockLumRed(IDHandler.randomStuff.BlockLumRedID, null);
+        public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
         
         /*
 		//Robots	
@@ -243,11 +246,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 			RegisterBlock.register();
 			Names.addName();
 			Register.addAchievementLocalizations();
+			Register.addOreDictionary();
 	   		GameRegistry.addBiome(diseasedBiome);
         	EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
         			"Zombie Scientist", 2, this, 80, 3, true);
-        	EntityRegistry.registerModEntity(VillagerScientist.class,
-        			"Villager Scientist", 3, this, 500, 80, true);
+        	//EntityRegistry.registerModEntity(VillagerScientist.class,
+        	//		"Villager Scientist", 3, this, 500, 80, true);
         	TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
         
     	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
@@ -264,6 +268,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 		public void serverLoad(FMLServerStartingEvent event)
 		{
 			event.registerServerCommand(new UpdateResearch());
+			ResearchHandler.downloadOnlineData();
+			ResearchHandler.getStoredResearch();
 		}
 }
 

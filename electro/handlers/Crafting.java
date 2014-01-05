@@ -1,13 +1,19 @@
 package assets.electrolysm.electro.handlers;
 
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Crafting {
+
+	
+	
+	private static ItemStack ingotCopper = new ItemStack(electrolysmCore.copperIngot);
 
 	public static void addCrafting() {
 	
@@ -119,7 +125,7 @@ public class Crafting {
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.copperwire) ,
 				"WWW" , "CCC" , "WWW",
 				Character.valueOf('W'), Block.cloth,
-				Character.valueOf('C'), electrolysmCore.copperIngot) ;
+				Character.valueOf('C'), ingotCopper) ;
 				
 		*/
 		GameRegistry.addRecipe(new ItemStack(electrolysmCore.electrolChamber, 4), 
@@ -163,17 +169,60 @@ public class Crafting {
 				Character.valueOf('Y'), Item.ingotGold,
 				Character.valueOf('Z'), Block.stone);
 		
-		GameRegistry.addRecipe(new ItemStack(electrolysmCore.crystal1),
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.crystalBase),
 				"XYX", "YGY", "XYX",
 				Character.valueOf('X'), electrolysmCore.diamondShard,
 				Character.valueOf('Y'), electrolysmCore.BlockLumRed,
 				Character.valueOf('G'), Item.diamond);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.crystal1),
+				" X ", "SYS", "QRQ",
+				Character.valueOf('X'), Block.glowStone,
+				Character.valueOf('S'), electrolysmCore.diamondShard,
+				Character.valueOf('Y'), electrolysmCore.crystalBase,
+				Character.valueOf('Q'), Block.blockNetherQuartz,
+				Character.valueOf('R'), Item.redstone);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed),
 				new ItemStack(electrolysmCore.luminousRedstone),
 				new ItemStack(electrolysmCore.luminousRedstone),
 				new ItemStack(electrolysmCore.luminousRedstone),
 				new ItemStack(electrolysmCore.luminousRedstone));
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.ironFrames, 2),
+				"X X", " Y ", "X X",
+				Character.valueOf('X'), Item.ingotIron,
+				Character.valueOf('Y'), electrolysmCore.copperCoil);
+		
+			GameRegistry.addRecipe(new ItemStack(electrolysmCore.plug),
+					" C ", "LBL", "CRC",
+					Character.valueOf('C'), electrolysmCore.copperCoil,
+					Character.valueOf('L'), electrolysmCore.luminousRedstone,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('B'), Block.blockGold);
+			
+			GameRegistry.addRecipe(new ItemStack(electrolysmCore.copperCoil, 2),
+					"XXX", "XYX", "XXX",
+					Character.valueOf('Y'), Item.ingotIron,
+					Character.valueOf('X'), ingotCopper);
+			
+			GameRegistry.addRecipe(new ItemStack(electrolysmCore.energyMeter),
+					"C C", "IRI", "IGI",
+					Character.valueOf('C'), ingotCopper,
+					Character.valueOf('I'), Item.ingotIron,
+					Character.valueOf('R'), Item.redstone,
+					Character.valueOf('G'), Item.ingotGold);
+			
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.largeCopperCoil),
+				"XXX", "XYX", "XXX",
+				Character.valueOf('X'), electrolysmCore.copperCoil,
+				Character.valueOf('Y'), Item.ingotIron);
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.generator),
+				"III", "IRI", "FFF",
+				Character.valueOf('F'), Block.furnaceIdle,
+				Character.valueOf('R'), Item.redstone,
+				Character.valueOf('I'), Item.ingotIron);
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.luminousRedstone, 4), 
 				new ItemStack(electrolysmCore.BlockLumRed));

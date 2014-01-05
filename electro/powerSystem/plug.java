@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -11,6 +12,8 @@ import net.minecraft.world.World;
 import assets.electrolysm.api.powerSystem.TileEntityPlug;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityPlugBasic;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class plug extends BlockContainer {
 
@@ -48,5 +51,12 @@ public class plug extends BlockContainer {
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return this.blockID;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister reg)
+    {
+    	this.blockIcon = reg.registerIcon("electrolysm:" + "plug");
     }
 }
