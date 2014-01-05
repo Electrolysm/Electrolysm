@@ -22,6 +22,7 @@ public class configHandler {
 	public static int deskID;
 	public static int injectorID;
 	public static int researchDeskID;
+	public static int graphiteID;
 	//etc. Do them in order so you dont get confused
 	
 	public static void init(File file){
@@ -38,7 +39,7 @@ public class configHandler {
 		deskID = config.get(BLOCK_CAT, "DeskID", IDHandler.machines.basic.deskID).getInt();
 		injectorID = config.get(BLOCK_CAT, "injectorID", IDHandler.advMachines.injectorID).getInt();
 		researchDeskID = config.get(BLOCK_CAT, "researchDeskID", IDHandler.machines.basic.researchDeskID).getInt();
-
+        graphiteID = config.get(BLOCK_CAT, "graphiteID", IDHandler.worldGenOres.graphiteID).getInt();
         config.save();
 	}
 }

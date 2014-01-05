@@ -10,11 +10,9 @@ import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraftforge.common.Configuration;
 
 public class workBench extends BlockContainer {
 
-	Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 	
 	public workBench(int id, Material mat) {
 		super(id, Material.iron);
