@@ -28,7 +28,7 @@ public class injector extends BlockContainer
 		super(id, Material.iron);
 		// TODO Auto-generated constructor stub
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
-	this.setUnlocalizedName("Forge");
+	this.setUnlocalizedName("injector");
 	this.setHardness(3);
 	}
 

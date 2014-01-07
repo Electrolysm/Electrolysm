@@ -53,7 +53,7 @@ public class ItemRenderResearchDesk implements IItemRenderer
 				GL11.glPushMatrix();
 				{
 					Minecraft.getMinecraft().renderEngine
-					.func_110577_a(CommonProxy.MODEL_RESEARCH_DESK);
+					.bindTexture(CommonProxy.MODEL_RESEARCH_DESK);
 
 
 					scale = 1.2F;
@@ -78,7 +78,7 @@ public class ItemRenderResearchDesk implements IItemRenderer
 					GL11.glPushMatrix();
 					{
 						Minecraft.getMinecraft().renderEngine
-						.func_110577_a(CommonProxy.MODEL_RESEARCH_DESK);
+						.bindTexture(CommonProxy.MODEL_RESEARCH_DESK);
 
 
 						scale = 0.3F;
@@ -105,7 +105,7 @@ public class ItemRenderResearchDesk implements IItemRenderer
 					GL11.glPushMatrix();
 					{
 						Minecraft.getMinecraft().renderEngine
-								.func_110577_a(CommonProxy.MODEL_RESEARCH_DESK);
+								.bindTexture(CommonProxy.MODEL_RESEARCH_DESK);
 
 						scale = 0.7F;
 

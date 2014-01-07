@@ -36,7 +36,7 @@ public class RenderTileIronFrame extends TileEntitySpecialRenderer {
         //This is setting the initial location.
                 GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         //This is the texture of your block. It's pathed to be the same place as your other blocks here.
-                func_110628_a(CommonProxy.MODEL_IRON_FRAME);
+                bindTexture(CommonProxy.MODEL_IRON_FRAME);
         //This rotation part is very important! Without it, your model will render upside-down! And for some reason you DO need PushMatrix again!                       
                 GL11.glPushMatrix();
                 GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);

@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.biome.BiomeGenBase;
+import assets.electrolysm.electro.advAtomics.elements.elementProof;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
@@ -106,7 +107,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         private static String[] ContectedTexture = { "","","","","","","","","","","","","","","","",""};
 
 		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
-
+		public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
+		
 		public static GUIHandler guiHandler = new GUIHandler();
 		
 		@Instance("Electrolysm")
@@ -151,12 +153,14 @@ import cpw.mods.fml.relauncher.SideOnly;
         
         //Advanced atomics
         //Liquids
-        public static Block plasma = new plasma(IDHandler.advAtomics.fluid.plasmaID);
+        public static Block plasma = new plasma(configHandler.plasmaID);
         public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
-        //Blocks
+        //Atomics
+        public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
+        
         //Machines
         //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
-        public static Block energiser = new energiser(IDHandler.advMachines.energiserID, null); 
+        public static Block energiser = new energiser(configHandler.energiserID, null); 
         public static Item energisingRod = new energisingRod(IDHandler.advMachines.energisingRodID);
         //Items 
         //Tools
@@ -164,38 +168,36 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
         
         //Power System
-        public static Block teslaTowerCore = new teslaTowerCore(IDHandler.powerGrid.teslaCoreID, null);
-        public static Block largeCopperCoil = new largeCopperCoil(IDHandler.powerGrid.largeCopperCoilID, null);
+        public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
+        public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null);
         public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
-        public static Block plug = new plug(IDHandler.powerGrid.plugID, null);
-        public static Block generator = new generator(IDHandler.powerGrid.generatorID, null);
-        public static Block matterGen = new matterGen(IDHandler.powerGrid.genMatterID, null);
+        public static Block plug = new plug(configHandler.plugID, null);
+        public static Block generator = new generator(configHandler.generatorID, null);
+        public static Block matterGen = new matterGen(configHandler.matterGenID, null);
         public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
         public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
         
         //Random Blocks
-        public static Block ironFrames = new ironFrames(IDHandler.blocks.ironFramesID, null);
+        public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
         
         //Ore Proccessing -- WIP
-        public static BlockContainer crusher = new crusher(IDHandler.oreProccessing.crusherID, null);
-        public static BlockContainer liquidiser = new liquidiser(IDHandler.oreProccessing.liquidiserID, null);
-        public static BlockContainer electrolisisCore = new electrolisisCore(IDHandler.oreProccessing.electrolisisCoreID,
+        public static BlockContainer crusher = new crusher(configHandler.crusherID, null);
+        public static BlockContainer liquidiser = new liquidiser(configHandler.liquidizerID, null);
+        public static BlockContainer electrolisisCore = new electrolisisCore(configHandler.electrolysisCoreID,
         		null);
-        public static Block electrolChamber = new electrolChamber(IDHandler.oreProccessing.electrolChamberID,
+        public static Block electrolChamber = new electrolChamber(configHandler.electrolChamberID,
         		null, false, ContectedTexture);
-        public static BlockContainer seperator = new seporator(IDHandler.oreProccessing.seporatorID, null);
-        public static BlockContainer smeltery = new smeltory(IDHandler.oreProccessing.smelteryID, null);
+        public static BlockContainer seperator = new seporator(configHandler.seperatorID, null);
+        public static BlockContainer smeltery = new smeltory(configHandler.smelteryID, null);
         public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
         public static Item dusts = new dusts(IDHandler.oreProccessing.dustsID);
         public static Item node = new node(IDHandler.oreProccessing.nodeID);
-        public static Block electrolPort = new electrolPort(IDHandler.oreProccessing.electrolPortID, null);
-        
-        public static Block sulpuricAcid = new sulphuricAcid(IDHandler.oreProccessing.sulphuricAcidID);
+        public static Block sulpuricAcid = new sulphuricAcid(configHandler.sulphuricAcidID);
         
         //Random items for crafting
         public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
         public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
-        public static Block BlockLumRed = new BlockLumRed(IDHandler.randomStuff.BlockLumRedID, null);
+        public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
         public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
         
         /*

@@ -27,7 +27,7 @@ public class RenderTileTeslaTower extends TileEntitySpecialRenderer {
         if (f1 > 0.0F && te.canDistribute(te.worldObj, (int)x, (int)y, (int)z))
         {
             Tessellator tessellator = Tessellator.instance;
-            this.func_110628_a(CommonProxy.BEAM_MODEL);
+            this.bindTexture(CommonProxy.BEAM_MODEL);
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
             GL11.glDisable(GL11.GL_LIGHTING);

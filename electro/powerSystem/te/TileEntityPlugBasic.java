@@ -1,5 +1,8 @@
 package assets.electrolysm.electro.powerSystem.te;
 
+import java.util.List;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.api.powerSystem.TileEntityPlug;
@@ -30,7 +33,7 @@ public class TileEntityPlugBasic extends TileEntityPlug{
 	@Override
 	public void keepChunkLoaded(World world, int x, int y, int z, TileEntity te)
 	{
-		world.updateTileEntityChunkAndDoNothing(x, y, z, te);
+
 	}
 
 	@Override

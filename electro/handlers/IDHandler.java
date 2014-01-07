@@ -5,7 +5,7 @@ public class IDHandler {
 	public static class machines{
 		public static class basic{
 			public static int researchDeskID = 697;
-			public static int workBenchID = 698;
+			public static int workBenchID = 1000;
 			public static int deskID = 699;
 		}
 	}
@@ -118,5 +118,10 @@ public class IDHandler {
 		public static int luminousRedstoneID = 901;
 		public static int BlockLumRedID = 902;
 		public static int crystalBaseID = 903;
+	}
+	
+	public static class elements
+	{
+		public static int elementProofID = 950;
 	}
 }

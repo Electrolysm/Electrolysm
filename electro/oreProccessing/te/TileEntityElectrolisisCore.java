@@ -117,7 +117,6 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
 
 		boolean canwork = (powered && heat > 10);
 
-		int portID = electrolysmCore.electrolPort.blockID;
 		boolean portSet = false;
 		
 		if (heat < 50)
@@ -172,13 +171,10 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
 					furnaceBurnTime = 0;
 					if (output1 == null) 
 					{
-						if(this.getPorts(xCoord, yCoord, zCoord, worldObj) == 0)
-						{
-							decrStackSize(0, 1);
-							decrStackSize(1, 1);
-							setInventorySlotContents(2, result1);
-							onInventoryChanged();
-						}
+						decrStackSize(0, 1);
+						decrStackSize(1, 1);
+						setInventorySlotContents(2, result1);
+						onInventoryChanged();
 					} 
 					else 
 					{
@@ -217,31 +213,6 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
 			furnaceBurnTime = 0;
 		}
 		
-	}
-
-	private int getPorts(int x, int y, int z, World world)
-	{
-		int port = electrolysmCore.electrolPort.blockID;
-		int ports = 0;
-		
-		if(world.getBlockId(x + 1, y, z) == port)
-		{
-			ports = ports + 1;
-		}
-		if(world.getBlockId(x - 1, y, z) == port)
-		{
-			ports = port + 1;
-		}
-		if(world.getBlockId(x, y, z + 1) == port)
-		{
-			ports = ports + 1;
-		}
-		if(world.getBlockId(x, y, z - 1) == port)
-		{
-			ports = ports + 1;
-		}
-			
-		return ports;
 	}
 
 	@Override

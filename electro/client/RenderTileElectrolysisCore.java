@@ -37,7 +37,7 @@ public class RenderTileElectrolysisCore extends TileEntitySpecialRenderer {
             GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             	
-            func_110628_a(CommonProxy.MODEL_ELECTROLYSIS_CORE_EMPTY);
+            bindTexture(CommonProxy.MODEL_ELECTROLYSIS_CORE_EMPTY);
             
             GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);

@@ -28,7 +28,7 @@ public class ClientProxy extends CommonProxy {
 		
 		RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
-					new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
+		//RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
+			//		new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
 	}
 }

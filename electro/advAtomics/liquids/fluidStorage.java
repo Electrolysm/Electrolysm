@@ -127,9 +127,9 @@ public class fluidStorage extends Item implements IFluidOre{
     			System.out.println(message1);
     			System.out.println(message2);
     			player.sendChatToPlayer(
-    					ChatMessageComponent.func_111077_e(message1).func_111059_a(EnumChatFormatting.DARK_RED));
+    					ChatMessageComponent.createFromText(message1).setColor(EnumChatFormatting.DARK_RED));
     			player.sendChatToPlayer(
-    					ChatMessageComponent.func_111077_e(message2).func_111059_a(EnumChatFormatting.DARK_RED));
+    					ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));
     		}
     	}
     	return false;

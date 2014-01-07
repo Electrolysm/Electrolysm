@@ -295,7 +295,6 @@ public class TileEntityTeslaTower extends TileEntity {
 	 */
 	public static void keepChunkLoaded(World world, int x, int y, int z, TileEntity te)
 	{
-		world.updateTileEntityChunkAndDoNothing(x, y, z, te);
 	}
 	
 	/**

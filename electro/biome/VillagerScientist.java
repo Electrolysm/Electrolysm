@@ -121,8 +121,8 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
     protected void func_110147_ax()
     {
-        super.func_110147_ax();
-        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(0.5D);
+        super.func_110142_aN();
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(0.5D);
     }
 
     /**
@@ -146,12 +146,12 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
             if (this.villageObj == null)
             {
-                this.func_110177_bN();
+                this.func_110142_aN();
             }
             else
             {
                 ChunkCoordinates chunkcoordinates = this.villageObj.getCenter();
-                this.func_110171_b(chunkcoordinates.posX, chunkcoordinates.posY, chunkcoordinates.posZ, (int)((float)this.villageObj.getVillageRadius() * 0.6F));
+                this.setPositionAndUpdate(chunkcoordinates.posX, chunkcoordinates.posY, chunkcoordinates.posZ);
 
                 if (this.field_82190_bM)
                 {
@@ -633,7 +633,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
     public EntityLivingData func_110161_a(EntityLivingData par1EntityLivingData)
     {
-        par1EntityLivingData = super.func_110161_a(par1EntityLivingData);
+        par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
         VillagerRegistry.applyRandomTrade(EntityVillager, worldObj.rand);
         return par1EntityLivingData;
     }

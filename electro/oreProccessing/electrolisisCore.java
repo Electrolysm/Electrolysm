@@ -59,7 +59,6 @@ public class electrolisisCore extends BlockContainer {
 	{
 		int chamber = electrolysmCore.electrolChamber.blockID;
 		int water = Block.waterStill.blockID;
-		int port = electrolysmCore.electrolPort.blockID;
 		int air = 0;
 		boolean isFormed = false;
 		

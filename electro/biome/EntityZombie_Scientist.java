@@ -55,10 +55,6 @@ public class EntityZombie_Scientist extends EntityMob {
         return true;
     }
     
-    public int getMaxHealth() {
-        return 25;
-    }
-    
     public int getAttackStrength(Entity par1Entity) {
         return 14;
     }

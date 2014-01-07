@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.util.ResourceLocation;
 
-@SideOnly(Side.CLIENT)
 public class RenderZombie_Scientist extends RenderLiving
 {
 	
@@ -20,13 +19,18 @@ public class RenderZombie_Scientist extends RenderLiving
 		super(par1ModelBase, par2);	
 	}
 
-	protected ResourceLocation func_110832_a(EntityZombie_Scientist entityScientist)
+	protected ResourceLocation getEntityTexture1(EntityZombie_Scientist entityScientist)
 	{
 		return CommonProxy.ZOMBIE_SCIENTIST_TEXTURE;
 	}
 
 	protected ResourceLocation func_110775_a(Entity par1Entity)
 	{
-		return this.func_110832_a((EntityZombie_Scientist)par1Entity);
+		return this.getEntityTexture1((EntityZombie_Scientist)par1Entity);
+	}
+
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		return this.getEntityTexture1((EntityZombie_Scientist)entity);
 	}
 }
