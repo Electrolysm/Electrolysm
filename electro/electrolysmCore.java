@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.biome.BiomeGenBase;
+import assets.electrolysm.advAtomics.liquids.oil;
 import assets.electrolysm.electro.advAtomics.elements.elementProof;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
@@ -39,6 +40,7 @@ import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
+import assets.electrolysm.electro.crafting.items.ballOfPlastic;
 import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
@@ -133,7 +135,6 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block copperOre = new copperOre(configHandler.copperOreID, null);
         public static Block sulphurOre = new sulpherOre(configHandler.sulphurOreID, null);
         public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
-        
         //Biome
         public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
         public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
@@ -155,6 +156,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         //Liquids
         public static Block plasma = new plasma(configHandler.plasmaID);
         public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
+        public static Block oil = new oil(configHandler.oilID);
         //Atomics
         public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
         
@@ -199,6 +201,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
         public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
         public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
+        public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
         
         /*
 		//Robots	

@@ -58,14 +58,15 @@ public class IDHandler {
 		public static class fluid{
 			public static int plasmaID = 739;
 			public static int fluidStorageID = 740;
+			public static int oilID = 741;
 		}
 	}
 	public static class advMachines{
-		public static int injectorID = 741;
-		public static int energiserID = 742;
-		public static int quantumCompID = 743;
-		public static int injectionArmID = 744;
-		public static int energisingRodID = 745;
+		public static int injectorID = 751;
+		public static int energiserID = 752;
+		public static int quantumCompID = 753;
+		public static int injectionArmID = 754;
+		public static int energisingRodID = 755;
 	}
 	
 	public static class worldGenOres{
@@ -118,6 +119,7 @@ public class IDHandler {
 		public static int luminousRedstoneID = 901;
 		public static int BlockLumRedID = 902;
 		public static int crystalBaseID = 903;
+		public static int ballOfPlasticID = 904;
 	}
 	
 	public static class elements

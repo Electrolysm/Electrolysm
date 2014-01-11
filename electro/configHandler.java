@@ -73,7 +73,11 @@ public class configHandler {
 	public static int seperatorID;
 	public static int smelteryID;
 	public static int sulphuricAcidID;
-	public static int lumRedBlockID; 
+	public static int lumRedBlockID;
+	public static int oilID;
+	
+	//IDs - Items
+	public static int ballOfPlasticID;
 	//etc. Do them in order so you dont get confused
 	
 	public static void init(File file)
@@ -116,7 +120,10 @@ public class configHandler {
         smelteryID = config.getBlock( "smelteryID", IDHandler.oreProccessing.smelteryID).getInt(IDHandler.oreProccessing.smelteryID);
         sulphuricAcidID = config.getBlock( "sulphuricAcidID", IDHandler.oreProccessing.sulphuricAcidID).getInt(IDHandler.oreProccessing.sulphuricAcidID);
         lumRedBlockID = config.getBlock( "lumRedBlockID", IDHandler.randomStuff.BlockLumRedID).getInt(IDHandler.randomStuff.BlockLumRedID);
-        
+        oilID = config.getBlock( "oilID",IDHandler.advAtomics.fluid.oilID).getInt(IDHandler.advAtomics.fluid.oilID);
+       
+        //Items
+        ballOfPlasticID = config.getItem( "ballOfPlasticID", IDHandler.randomStuff.ballOfPlasticID).getInt(IDHandler.randomStuff.ballOfPlasticID);
         config.save();
 	}
 }
