@@ -42,46 +42,5 @@ public class charger extends BlockContainer {
 	public boolean renderAsNormalBlock() {
 		return false;
 	}
-	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-	{
-		TileEntityCharger te = (TileEntityCharger) world.getBlockTileEntity(x, y, z);
-		
-		if(player.isSneaking())
-		{
-			return false;
-		}else
-		{
-			if(player.getHeldItem() != null)
-			{
-				ItemStack stack = player.getHeldItem();
-				if(stack.getItemDamage() <= 10 && stack.getItemDamage() > 0)
-				{
-					te.delay = true;
-					if(world.isRemote)
-					{
-						this.printChatMessage();
-					}
-					return false;
-				}
-				else
-				{
-					te.delay = false;
-				}
-			}
-			else
-			{
-				return false;
-			}
-		}
-		return false;
-	}
-
-	@SideOnly(Side.CLIENT)
-	private void printChatMessage() 
-	{
-		String message = "This Charger is re-charging its energy levels, please wait.";
-		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
-	}
 
 }

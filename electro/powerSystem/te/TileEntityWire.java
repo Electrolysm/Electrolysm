@@ -69,7 +69,7 @@ public class TileEntityWire extends TileEntity
         this.visuallyConnected[side.ordinal()] = false;
     }
 
-	private boolean canConnect(ForgeDirection side) 
+	public boolean canConnect(ForgeDirection side) 
 	{
 		return true;
 	}	
@@ -172,5 +172,28 @@ public class TileEntityWire extends TileEntity
 			teu4 = teGen.getRecievingTeUOverall(world, x, y + 1, z);
 		}
 		return (teu1 + teu2 + teu3 + teu4);
+	}
+
+	public boolean backToTesla(World world, int x, int y, int z) 
+	{
+		for(int i = 0; i < adjacentConnections.length; i++)
+		{
+			if(visuallyConnected[i])
+			{
+				TileEntity tete = adjacentConnections[i];
+				
+				if(world.getBlockTileEntity(x, y, z) instanceof TileEntityIronFrame)
+				{
+					TileEntityIronFrame teFrame = (TileEntityIronFrame)tete;
+					if(teFrame.canBePowered(world, teFrame.xCoord, teFrame.yCoord, teFrame.zCoord));
+				}
+				TileEntityWire te = (TileEntityWire)adjacentConnections[i];
+				if(te.backToTesla(world, te.xCoord, te.yCoord, te.zCoord))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
