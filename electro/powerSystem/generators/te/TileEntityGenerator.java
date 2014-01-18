@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -404,5 +405,10 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
 	public void setGuiDisplayName(String displayName) 
 	{
 		
+	}
+
+	public boolean canConnect(ForgeDirection side) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

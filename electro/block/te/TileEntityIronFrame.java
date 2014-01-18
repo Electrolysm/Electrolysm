@@ -2,6 +2,7 @@ package assets.electrolysm.electro.block.te;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
@@ -121,5 +122,10 @@ public class TileEntityIronFrame extends TileEntity
 		}
 		
 		return (teu1 + teu2 + teu3 + teu4);
+	}
+
+	public boolean canConnect(ForgeDirection side) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

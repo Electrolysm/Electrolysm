@@ -90,7 +90,7 @@ public class IDHandler {
 		public static int genMatterID = 805;
 		public static int energyMeterID = 806;
 		public static int copperCoilID = 807;
-		public static int null9 = 808;
+		public static int wireID = 808;
 		public static int null10 = 809;
 
 	}
@@ -121,6 +121,7 @@ public class IDHandler {
 		public static int BlockLumRedID = 902;
 		public static int crystalBaseID = 903;
 		public static int ballOfPlasticID = 904;
+		public static int endoInsulatorID = 905;
 	}
 	
 	public static class elements

@@ -231,6 +231,16 @@ public class Crafting {
 				new ItemStack(Block.blockRedstone),
 				new ItemStack(Block.glowStone),
 				new ItemStack(electrolysmCore.sulphur));
+		
+		GameRegistry.addShapedRecipe(new ItemStack(electrolysmCore.wire, 28),
+				"WWW", "GGG", "WWW",
+				Character.valueOf('W'), electrolysmCore.endoInsulator,
+				Character.valueOf('G'), electrolysmCore.graphite);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.endoInsulator, 6), 
+				new ItemStack(electrolysmCore.ballOfPlastic),
+				new ItemStack(electrolysmCore.ballOfPlastic),
+				new ItemStack(Item.enderPearl));
 	}
 
 }

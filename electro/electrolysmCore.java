@@ -43,6 +43,7 @@ import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.ballOfPlastic;
 import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
+import assets.electrolysm.electro.crafting.items.endoInsulator;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
@@ -75,6 +76,7 @@ import assets.electrolysm.electro.powerSystem.energyMeter;
 import assets.electrolysm.electro.powerSystem.largeCopperCoil;
 import assets.electrolysm.electro.powerSystem.plug;
 import assets.electrolysm.electro.powerSystem.teslaTowerCore;
+import assets.electrolysm.electro.powerSystem.wire;
 import assets.electrolysm.electro.powerSystem.generators.generator;
 import assets.electrolysm.electro.powerSystem.generators.matterGen;
 import assets.electrolysm.electro.research.card;
@@ -180,6 +182,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block matterGen = new matterGen(configHandler.matterGenID, null);
         public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
         public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
+        public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
         
         //Random Blocks
         public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
@@ -204,6 +207,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
         public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
         public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
+        public static Item endoInsulator = new endoInsulator(IDHandler.randomStuff.endoInsulatorID);
         
         /*
 		//Robots	
