@@ -59,11 +59,11 @@ public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachin
 	{
 		if(Loader.isModLoaded("Electrolysm"))
 		{
-			TileEntity teWorld = world.getBlockTileEntity(x, y, z);
+			TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
 			if(teWorld instanceof TileEntityPlug)
 			{
 				TileEntityPlug te = (TileEntityPlug)teWorld;
-				return te.getRecievedTeUAfterResistance(world, x, y, z);
+				return te.getRecievedTeUAfterResistance(world, x, y - 1, z);
 			}
 		}
 		return 0;

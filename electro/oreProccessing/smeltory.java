@@ -1,8 +1,11 @@
 package assets.electrolysm.electro.oreProccessing;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -17,8 +20,15 @@ public class smeltory extends oreProcessMachineBase {
 		super(par1, Material.iron);
 
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
-	this.setUnlocalizedName(unlocalName);
+	this.setUnlocalizedName("smeltory");
 	this.setHardness(6.0F);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void registerIcon(IconRegister reg)
+	{
+		this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "smeltory_Front");
+		this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.world.IBlockAccess;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
 import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
@@ -20,6 +21,7 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
 	private static TileEntityWorkBench WORK_BENCH_TE = new TileEntityWorkBench();
 	private static TileEntityElectrolisisCore ELECTROL_CORE_TE = new TileEntityElectrolisisCore();
 	private static TileEntityIronFrame IRON_FRAME_TE = new TileEntityIronFrame();
+	private static TileEntityCharger CHARGER_TE = new TileEntityCharger();
 	
 	
 	@Override
@@ -46,6 +48,10 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
 		else if(block == electrolysmCore.ironFrames)
 		{
 			entityRenderer.renderTileEntityAt(IRON_FRAME_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+		}
+		else if(block == electrolysmCore.charger)
+		{
+			entityRenderer.renderTileEntityAt(CHARGER_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0f);
 		}
 	}
 	

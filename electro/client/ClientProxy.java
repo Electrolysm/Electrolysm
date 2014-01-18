@@ -1,6 +1,6 @@
 package assets.electrolysm.electro.client;
 
-import assets.electrolysm.electro.biome.EntityZombie_Scientist;
+import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityQuantumComp;
 import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
@@ -25,6 +25,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectrolisisCore.class, new RenderTileElectrolysisCore());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeslaTower.class, new RenderTileTeslaTower());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIronFrame.class, new RenderTileIronFrame());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCharger.class, new RenderTileCharger());
 		
 		RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
 		

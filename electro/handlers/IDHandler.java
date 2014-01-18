@@ -67,6 +67,7 @@ public class IDHandler {
 		public static int quantumCompID = 753;
 		public static int injectionArmID = 754;
 		public static int energisingRodID = 755;
+		public static int chargerID = 756;
 	}
 	
 	public static class worldGenOres{
