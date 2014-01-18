@@ -43,10 +43,13 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
 			{
 				if(visuallyConnected[i])
 				{
-					TileEntityWire te = (TileEntityWire)adjacentConnections[i];
-					if(te.backToTesla(world, te.xCoord, te.yCoord, te.zCoord))
+					if(adjacentConnections[i] instanceof  TileEntityWire)
 					{
-						return true;
+						TileEntityWire te = (TileEntityWire)adjacentConnections[i];
+						if(te.backToTesla(world, te.xCoord, te.yCoord, te.zCoord, x, y, z))
+						{
+							return true;
+						}
 					}
 				}
 			}

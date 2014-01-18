@@ -174,23 +174,36 @@ public class TileEntityWire extends TileEntity
 		return (teu1 + teu2 + teu3 + teu4);
 	}
 
-	public boolean backToTesla(World world, int x, int y, int z) 
+	public boolean backToTesla(World world, int x, int y, int z, int thisX, int thisY, int thisZ) 
 	{
+		System.out.println("TraceBack");
 		for(int i = 0; i < adjacentConnections.length; i++)
 		{
 			if(visuallyConnected[i])
 			{
+				System.out.println("visual");
 				TileEntity tete = adjacentConnections[i];
 				
-				if(world.getBlockTileEntity(x, y, z) instanceof TileEntityIronFrame)
+				System.out.println("coordCheck");
+				if(world.getBlockTileEntity(tete.xCoord, tete.yCoord, tete.zCoord) instanceof TileEntityIronFrame)
 				{
+					System.out.println("teCheck");
 					TileEntityIronFrame teFrame = (TileEntityIronFrame)tete;
 					if(teFrame.canBePowered(world, teFrame.xCoord, teFrame.yCoord, teFrame.zCoord));
+					{
+						System.out.println("powerCheck");
+							return true;
+					}
 				}
-				TileEntityWire te = (TileEntityWire)adjacentConnections[i];
-				if(te.backToTesla(world, te.xCoord, te.yCoord, te.zCoord))
+				else if(world.getBlockTileEntity(tete.xCoord, tete.yCoord, tete.zCoord) instanceof TileEntityWire)
 				{
-					return true;
+					System.out.println("elseTECheck");
+					TileEntityWire te = (TileEntityWire)adjacentConnections[i];
+					if(te.backToTesla(world, te.xCoord, te.yCoord, te.zCoord, x, y, z))
+					{
+						System.out.println("wireCheck");
+						return true;
+					}
 				}
 			}
 		}
