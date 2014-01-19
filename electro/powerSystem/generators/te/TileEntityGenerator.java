@@ -14,11 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityGenerator extends TileEntity implements IInventory, ISidedInventory{
@@ -27,92 +24,88 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
 	private int[] generatorPower = {100, 1000, 10000, 100000};
 	private int[] generatorIDs = {electrolysmCore.generator.blockID, 1, 1, electrolysmCore.matterGen.blockID,};
 	private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"}; 
-	protected boolean[] visuallyConnected = new boolean[6];
-    protected TileEntity[] adjacentConnections = new TileEntity[6];
-	
 	public boolean isWorking(World world, int x, int y, int z)
 	{
 		//int electrolysmCore.ironFrames.blockID = electrolysmCore.ironFrames.blockID;
 		//int electrolysmCore.teslaTowerCore.blockID = electrolysmCore.teslaTowerCore.blockID;
 		
-		int id = world.getBlockId(x, y, z);
+		//x + 1
+		int i = world.getBlockId(x, y, z);
 		
 		if(this.getStackInSlot(0) != null)
 		{
-			for(int i = 0; i < adjacentConnections.length; i++)
+			if(world.getBlockId(x + 1, y, z) == electrolysmCore.ironFrames.blockID)
 			{
-				if(visuallyConnected[i])
+				if(world.getBlockId(x + 1, y + 5, z) == electrolysmCore.teslaTowerCore.blockID)
 				{
-					if(adjacentConnections[i] instanceof  TileEntityWire)
+					TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x + 1, y + 5, z);
+					if(te instanceof TileEntityTeslaTower)
 					{
-						TileEntityWire te = (TileEntityWire)adjacentConnections[i];
-						if(te.backToTesla(world, te.xCoord, te.yCoord, te.zCoord, x, y, z))
+						if(te.isTowerFormed(world, x + 1, y + 5, z))
+						{
+							if(this.getStackInSlot(0) != null)
+							{
+								return true;
+							}
+						}
+					}
+					
+				}
+			}
+			//x - 1
+			else if(world.getBlockId(x - 1, y, z) == electrolysmCore.ironFrames.blockID && 
+					world.getBlockId(x - 1, y + 5, z) == electrolysmCore.teslaTowerCore.blockID)
+			{
+				TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x - 1, y + 5, z);
+				if(te instanceof TileEntityTeslaTower)
+				{
+					if(te.isTowerFormed(world, x - 1, y + 5, z))
+					{
+						if(this.getStackInSlot(0) != null)
 						{
 							return true;
 						}
 					}
+					
+				}
+			}
+			//z + 1
+			else if(world.getBlockId(x, y, z + 1) == electrolysmCore.ironFrames.blockID &&
+					world.getBlockId(x, y + 5, z + 1) == electrolysmCore.teslaTowerCore.blockID)
+			{
+				TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x, y + 5, z + 1);
+				if(te instanceof TileEntityTeslaTower)
+				{
+					if(te.isTowerFormed(world, x, y + 5, z + 1))
+					{
+						if(this.getStackInSlot(0) != null)
+						{
+							return true;
+						}
+					}
+					
+				}
+			}
+			//z - 1
+			else if(world.getBlockId(x, y, z - 1) == electrolysmCore.ironFrames.blockID && 
+					world.getBlockId(x, y + 5, z - 1) == electrolysmCore.teslaTowerCore.blockID)
+			{
+				TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x, y + 5, z - 1);
+				if(te instanceof TileEntityTeslaTower)
+				{
+					if(te.isTowerFormed(world, x, y + 5, z - 1))
+					{
+						if(this.getStackInSlot(0) != null)
+						{
+							return true;
+						}
+					}
+					
 				}
 			}
 		}
 		return false;
 	}
-	
-	@Override
-    public void updateEntity()
-    {
-        for (byte i = 0; i < 6; i++)
-        {
-            ForgeDirection dir = ForgeDirection.getOrientation(i);
-            this.updateConnection(this.worldObj.getBlockTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
-            		this.zCoord + dir.offsetZ), dir);
-        }
-    }
-    
-    public void updateConnection(TileEntity that, ForgeDirection side)
-    {
-        if (!this.worldObj.isRemote && that != null && this.canConnect(side))
-        {
-        }
-        else if (that instanceof TileEntityWire)
-        {
-          	TileEntityWire tileEntityIns = (TileEntityWire) that;
-               
-            if (((TileEntityWire) that).canConnect(side.getOpposite()))
-            {
-                  this.adjacentConnections[side.ordinal()] = that;
-                  this.visuallyConnected[side.ordinal()] = true;
-                      
-                  return;
-            }
-        }
-        else if (that instanceof TileEntityIronFrame)
-        {
-        	TileEntityIronFrame tileEntityIns = (TileEntityIronFrame) that;
-	           
-	        if (((TileEntityIronFrame) that).canConnect(side.getOpposite()))
-	        {
-	             this.adjacentConnections[side.ordinal()] = that;
-	             this.visuallyConnected[side.ordinal()] = true;
-	                
-	             return;
-	        }
-	    }
-        else if (that instanceof TileEntityGenerator)
-	    {
-        	TileEntityGenerator tileEntityIns = (TileEntityGenerator) that;
-	            
-	        if (((TileEntityGenerator) that).canConnect(side.getOpposite()))
-	        {
-	            this.adjacentConnections[side.ordinal()] = that;
-	            this.visuallyConnected[side.ordinal()] = true;
-	                
-	            return;
-	        }
-	    }
-        
-        this.adjacentConnections[side.ordinal()] = null;
-        this.visuallyConnected[side.ordinal()] = false;
-    }
 
 	public int getSendTeU(World world, int x, int y, int z)
 	{
@@ -167,6 +160,32 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
 	
 	
 	
+	
+	
+	@Override
+	public void updateEntity()
+	{/*
+		int burnTime = 0;
+		int time = 0;
+		
+		if(this.getStackInSlot(0) != null)
+		{
+			burnTime = this.getItemBurnTime(this.getStackInSlot(0));
+		}
+		if(this.getStackInSlot(0) != null)
+		{
+			if(time >= burnTime)
+			{
+				time = 0;
+				this.decrStackSize(0, 1);
+				this.onInventoryChanged();
+			}
+			else
+			{
+				time++;
+			}
+		}*/
+	}
 	
 	@Override
 	public int getSizeInventory() 
@@ -385,10 +404,5 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
 	public void setGuiDisplayName(String displayName) 
 	{
 		
-	}
-
-	public boolean canConnect(ForgeDirection side) {
-		// TODO Auto-generated method stub
-		return true;
 	}
 }

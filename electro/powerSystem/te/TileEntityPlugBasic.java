@@ -100,11 +100,11 @@ public class TileEntityPlugBasic extends TileEntityPlug{
 
 			float TeU = (float) (TeUBefore - (0.5 * distanceTower));
  			
-			//System.out.println(TeU);
+			System.out.println(TeU);
 			
 			return TeU;
 		}
-		//System.out.println("Error when calculating the TeU after Resistance");
+		System.out.println("Error when calculating the TeU after Resistance");
 		
 		return 0;
 	}
