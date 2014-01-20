@@ -91,23 +91,25 @@ public class IDHandler {
 		public static int energyMeterID = 806;
 		public static int copperCoilID = 807;
 		public static int wireID = 808;
-		public static int null10 = 809;
+		public static int eartherID = 809;
+		public static int advEartherID = 810;
+		public static int advWireID = 811;
 
 	}
 
 	public static class oreProccessing{
 
-		public static int liquidiserID = 810;
-		public static int crusherID = 811;
-		public static int electrolisisCoreID = 812;
-		public static int electrolChamberID = 813;
-		public static int seporatorID = 814;
-		public static int smelteryID = 815;
-		public static int dustsID = 816;
-		public static int impureDustsID = 817;
-		public static int nodeID = 818;
-		public static int electrolPortID = 819;
-		public static int sulphuricAcidID = 820;
+		public static int liquidiserID = 815;
+		public static int crusherID = 816;
+		public static int electrolisisCoreID = 817;
+		public static int electrolChamberID = 818;
+		public static int seporatorID = 819;
+		public static int smelteryID = 820;
+		public static int dustsID = 821;
+		public static int impureDustsID = 822;
+		public static int nodeID = 823;
+		public static int electrolPortID = 824;
+		public static int sulphuricAcidID = 825;
 	}
 	
 	public static class blocks{

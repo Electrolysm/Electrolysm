@@ -72,6 +72,7 @@ import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
 import assets.electrolysm.electro.advAtomics.liquids.oil;
 import assets.electrolysm.electro.powerSystem.copperCoil;
 import assets.electrolysm.electro.powerSystem.crystal;
+import assets.electrolysm.electro.powerSystem.earther;
 import assets.electrolysm.electro.powerSystem.energyMeter;
 import assets.electrolysm.electro.powerSystem.largeCopperCoil;
 import assets.electrolysm.electro.powerSystem.plug;
@@ -183,6 +184,9 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
         public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
         public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
+        public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
+        public static Block earther = new earther(IDHandler.powerGrid.eartherID, null); 
+        //public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
         
         //Random Blocks
         public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);

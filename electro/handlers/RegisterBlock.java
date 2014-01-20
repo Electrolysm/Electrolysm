@@ -42,6 +42,8 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.plug, "E-TEP Plug");
 		GameRegistry.registerBlock(electrolysmCore.charger);
 		GameRegistry.registerBlock(electrolysmCore.wire);
+		GameRegistry.registerBlock(electrolysmCore.advWire);
+		GameRegistry.registerBlock(electrolysmCore.earther);
 		
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());

@@ -4,6 +4,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
@@ -32,6 +33,13 @@ public class wire extends BlockContainer {
 	public void registerIcons(IconRegister reg)
 	{
 		this.blockIcon = reg.registerIcon("electrolysm:" + "graphiteWire");
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Icon getIcon(int side, int dmg)
+	{
+		return this.blockIcon;
 	}
 	
 	

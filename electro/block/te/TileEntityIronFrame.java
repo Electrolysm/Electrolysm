@@ -2,9 +2,12 @@ package assets.electrolysm.electro.block.te;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
+import assets.electrolysm.electro.powerSystem.te.TileEntityEarther;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
+import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 
 public class TileEntityIronFrame extends TileEntity 
 {
@@ -80,12 +83,72 @@ public class TileEntityIronFrame extends TileEntity
 		{
 			if(overall[i])
 			{
-				canRecieve = true;
+				if(this.isEarthed(world, x, y, z))
+					canRecieve = true;
 			}
 		}
 		return canRecieve;
 	}
 	
+	public boolean isEarthed(World world, int x, int y, int z) 
+	{
+		int wireID = electrolysmCore.wire.blockID;
+		TileEntityWire teWire = new TileEntityWire();
+		
+		if(world.getBlockId(x, y - 1, z) == wireID)
+		{
+			if(world.getBlockId(x, y - 2, z) == wireID)
+			{
+				if(world.getBlockId(x, y - 3, z) == wireID)
+				{
+					if(world.getBlockId(x, y - 4, z) == wireID)
+					{
+						if(world.getBlockId(x, y - 5, z) == wireID)
+						{
+							if(world.getBlockId(x, y - 6, z) == wireID)
+							{
+								if(world.getBlockId(x, y - 7, z) == wireID)
+								{
+									if(world.getBlockId(x, y - 8, z) == wireID)
+									{
+										if(world.getBlockId(x, y - 9, z) == wireID)
+										{
+											if(world.getBlockId(x, y - 10, z) == wireID)
+											{
+												if(world.getBlockId(x, y - 11, z) == wireID)
+												{
+													if(world.getBlockId(x, y - 12, z) == wireID)
+													{
+														if(this.checkEarthing(world, x, y - 12, z))
+														{
+															return true;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean checkEarthing(World world, int x, int y, int z) 
+	{
+		if(world.getBlockTileEntity(x, y - 1, z) instanceof TileEntityEarther)
+		{
+			TileEntityEarther te = (TileEntityEarther)world.getBlockTileEntity(x, y - 1, z);
+			
+			return (te.isSetUp(world, x, y - 1, z));
+		}
+		return false;
+	}
+
 	public int getRecievingTeU(World world, int x, int y, int z)
 	{
 		int generatorID = electrolysmCore.generator.blockID;
@@ -121,5 +184,14 @@ public class TileEntityIronFrame extends TileEntity
 		}
 		
 		return (teu1 + teu2 + teu3 + teu4);
+	}
+	
+	public boolean canConnect(ForgeDirection side) 
+	{
+		if(side == side.DOWN)
+		{
+			return true;
+		}
+		return false;
 	}
 }

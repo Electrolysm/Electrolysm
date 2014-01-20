@@ -11,6 +11,7 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
+import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockInventoryRendering implements ISimpleBlockRenderingHandler 

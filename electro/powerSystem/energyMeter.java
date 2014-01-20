@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import assets.electrolysm.api.powerSystem.TileEntityPlug;
 import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -65,6 +66,12 @@ public class energyMeter extends Item {
 	    			this.printMachineMessage(world, x, y, z, te);
 	    			return true;
 	    		}
+	    		else if(worldTE instanceof TileEntityIronFrame)
+	    		{
+	    			TileEntityIronFrame te = (TileEntityIronFrame)worldTE;
+	    			this.printIronFrameMessage(world, x, y, z, te);
+	    			return true;
+	    		}
 	    		else
 	    		{
 	    			return false;
@@ -75,6 +82,26 @@ public class energyMeter extends Item {
     }
 	
     @SideOnly(Side.CLIENT)
+    private void printIronFrameMessage(World world, int x, int y, int z, TileEntityIronFrame te) 
+    {
+    	String message;
+    	
+		if(world.isRemote)
+		{
+			if(te.isEarthed(world, x, y, z))
+			{
+				message = "This Iron Frame is the base of the Tesla Tower and is currently Earthed.";
+			}
+			else
+			{
+				message = "This Iron Frame isn't currently Earthed.";
+			}
+			
+			FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
     private void printMachineMessage(World world, int x, int y, int z, TileEntityEnergyMachine te) 
     {
     	if(world.isRemote)

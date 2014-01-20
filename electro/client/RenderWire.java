@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 
@@ -25,7 +26,14 @@ public class RenderWire extends TileEntitySpecialRenderer
         TileEntityWire tileEntity = (TileEntityWire) t;
         boolean[] connectedSides = tileEntity.getVisualConnections();
         
-        this.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/ModelWire.png"));
+        if(blockID == electrolysmCore.advWire.blockID)
+        {
+        	this.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/ModelAdvWire.png"));
+        }
+        else
+        {
+        	this.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/ModelWire.png"));
+        }
         
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
