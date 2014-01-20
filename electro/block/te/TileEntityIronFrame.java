@@ -48,7 +48,7 @@ public class TileEntityIronFrame extends TileEntity
 		//z + 1
 		else if(world.getBlockId(x, y, z + 1) == generatorID)
 		{
-			if(te instanceof TileEntityTeslaTower && te.isTowerFormed(world, x, y + 5, z))
+			if(te instanceof TileEntityTeslaTower && te.isTowerFormed(world, x, y + 5, z)) 
 			{
 				TileEntityGenerator teGen = (TileEntityGenerator)world.getBlockTileEntity(x, y, z + 1);
 				if(teGen.isWorking(world, x, y, z + 1))

@@ -11,7 +11,7 @@ public class TileEntityWire extends TileEntity
 {
     protected boolean[] visuallyConnected = new boolean[6];
     protected TileEntity[] adjacentConnections = new TileEntity[6];
-    /*
+    
     @Override
     public void updateEntity()
     {
@@ -40,6 +40,7 @@ public class TileEntityWire extends TileEntity
                   return;
             }
         }
+        /*
         else if (that instanceof TileEntityIronFrame)
         {
         	TileEntityIronFrame tileEntityIns = (TileEntityIronFrame) that;
@@ -64,6 +65,7 @@ public class TileEntityWire extends TileEntity
 	            return;
 	        }
 	    }
+	    */
         
         this.adjacentConnections[side.ordinal()] = null;
         this.visuallyConnected[side.ordinal()] = false;
@@ -83,7 +85,7 @@ public class TileEntityWire extends TileEntity
 	{
 		return adjacentConnections;
 	}
-	
+	/*
 	public int getRecievingTeUOverall(World world, int x, int y, int z, int thisX, int thisY, int thisZ)
 	{
 		return this.getRecievingTeUGenerator(world, x, y, z) + this.getRecievingTeUWire(world, x, y, z, thisX, thisY, thisZ);

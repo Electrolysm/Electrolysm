@@ -39,7 +39,7 @@ public class ContainerGenerator extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player) 
 	{
-		return entity.isUseableByPlayer(player);
+		return true;
 	}
 
 	@Override
@@ -50,12 +50,5 @@ public class ContainerGenerator extends Container
 	
 	 public void onContainerClosed(EntityPlayer par1EntityPlayer)
 	    {
-	        InventoryPlayer inventoryplayer = par1EntityPlayer.inventory;
-
-	        if (inventoryplayer.getItemStack() != null)
-	        {
-	            par1EntityPlayer.dropPlayerItem(inventoryplayer.getItemStack());
-	            inventoryplayer.setItemStack((ItemStack)null);
-	        }
 	    }
 }

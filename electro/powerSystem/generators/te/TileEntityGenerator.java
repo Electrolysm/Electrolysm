@@ -24,6 +24,7 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
 	private int[] generatorPower = {100, 1000, 10000, 100000};
 	private int[] generatorIDs = {electrolysmCore.generator.blockID, 1, 1, electrolysmCore.matterGen.blockID,};
 	private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"}; 
+	
 	public boolean isWorking(World world, int x, int y, int z)
 	{
 		//int electrolysmCore.ironFrames.blockID = electrolysmCore.ironFrames.blockID;
@@ -337,7 +338,7 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
 	@Override
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
-        return par1 == 2 ? false : (par1 == 1 ? isItemFuel(par2ItemStack) : true);
+        return true;
     }
 	
 	public static boolean isItemFuel(ItemStack itemStack)
