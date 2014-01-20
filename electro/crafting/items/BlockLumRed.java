@@ -1,16 +1,19 @@
 package assets.electrolysm.electro.crafting.items;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.crafting.items.te.TileEntityLumRed;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockLumRed extends Block {
+public class BlockLumRed extends BlockContainer {
 
 	public BlockLumRed(int id, Material mat) {
 		super(id, Material.glass);
@@ -48,5 +51,11 @@ public class BlockLumRed extends Block {
     {
         return 20;
     }
+
+	@Override
+	public TileEntity createNewTileEntity(World world) {
+		// TODO Auto-generated method stub
+		return new TileEntityLumRed();
+	}
 
 }

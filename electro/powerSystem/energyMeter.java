@@ -69,8 +69,16 @@ public class energyMeter extends Item {
 	    		else if(worldTE instanceof TileEntityIronFrame)
 	    		{
 	    			TileEntityIronFrame te = (TileEntityIronFrame)worldTE;
-	    			this.printIronFrameMessage(world, x, y, z, te);
-	    			return true;
+	    			if(te.isTowerBase(world, x, y, z))
+	    			{
+		    			this.printIronFrameMessage(world, x, y, z, te, true);
+		    			return true;
+	    			}
+	    			else
+	    			{
+	    				this.printIronFrameMessage(world, x, y, z, te, false);
+	    				return true; 
+	    			}
 	    		}
 	    		else
 	    		{
@@ -82,21 +90,27 @@ public class energyMeter extends Item {
     }
 	
     @SideOnly(Side.CLIENT)
-    private void printIronFrameMessage(World world, int x, int y, int z, TileEntityIronFrame te) 
+    private void printIronFrameMessage(World world, int x, int y, int z, TileEntityIronFrame te, boolean isTowerBase) 
     {
     	String message;
     	
 		if(world.isRemote)
 		{
-			if(te.isEarthed(world, x, y, z))
+			if(isTowerBase)
 			{
-				message = "This Iron Frame is the base of the Tesla Tower and is currently Earthed.";
+				if(te.isEarthed(world, x, y, z))
+				{
+					message = "This Iron Frame is currently Earthed.";
+				}
+				else
+				{
+					message = "This Iron Frame isn't currently Earthed.";
+				}
 			}
 			else
 			{
-				message = "This Iron Frame isn't currently Earthed.";
+				message = "This Iron Frame is not the base of a Tesla Tower.";
 			}
-			
 			FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
 		}
 	}

@@ -140,13 +140,60 @@ public class TileEntityIronFrame extends TileEntity
 
 	private boolean checkEarthing(World world, int x, int y, int z) 
 	{
-		if(world.getBlockTileEntity(x, y - 1, z) instanceof TileEntityEarther)
+		if(world.getBlockTileEntity(x + 1, y, z) instanceof TileEntityEarther)
 		{
-			TileEntityEarther te = (TileEntityEarther)world.getBlockTileEntity(x, y - 1, z);
-			
-			return (te.isSetUp(world, x, y - 1, z));
+			if(world.getBlockTileEntity(x - 1, y, z) instanceof TileEntityEarther)
+			{
+				if(world.getBlockTileEntity(x, y, z + 1) instanceof TileEntityEarther)
+				{
+					if(world.getBlockTileEntity(x, y, z - 1) instanceof TileEntityEarther)
+					{
+						//if(world.getBlockTileEntity(x, y - 1, z) instanceof TileEntityAdvEarther)
+						//{
+							TileEntityEarther te = new TileEntityEarther();
+							//TileEntityAdvEarther teAdv = new TileEntityAdvEarther();
+							
+							if(te.isSetUp(world, x + 1, y, z))
+							{
+								if(te.isSetUp(world, x - 1, y, z))
+								{
+									if(te.isSetUp(world, x, y, z + 1))
+									{
+										if(te.isSetUp(world, x, y, z - 1))
+										{
+											//if(teAdv.isSetUp(world, x, y - 1, z))
+											//{
+												return true;
+											//}
+										}
+									}
+								}
+							}
+						//}
+					}
+				}
+			}
 		}
 		return false;
+	}
+	
+	public boolean isTowerBase(World world, int x, int y, int z)
+	{
+		if(world.getBlockId(x, y + 5, z) == electrolysmCore.teslaTowerCore.blockID)
+		{
+			if(world.getBlockTileEntity(x, y + 5, z) instanceof TileEntityTeslaTower)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public int getRecievingTeU(World world, int x, int y, int z)

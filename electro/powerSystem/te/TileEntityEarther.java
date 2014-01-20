@@ -17,28 +17,34 @@ public class TileEntityEarther extends TileEntity
 	{
 		if(this.checkForMetal(world, x, y, z))
 		{
-			return true;
+			if(this.isFormed(world, x, y, z))
+			{
+				return true;
+			}
 		}
-		else
+		return false;
+	}
+
+	public boolean isFormed(World world, int x, int y, int z) 
+	{
+		int id1 = world.getBlockId(x, y -1, z);
+		int id2 = world.getBlockId(x, y - 2, z);
+		
+		if(id1 == electrolysmCore.advWire.blockID)
 		{
-			return false;
+			if(id2 == electrolysmCore.advWire.blockID)
+			{
+				return true;
+			}
 		}
+		return false;
 	}
 
 	private boolean checkForMetal(World world, int x, int y, int z) 
 	{
 		int id = world.getBlockId(x, y - 3, z);
 		
-		if(world.getBlockTileEntity(x, y - 3, z) instanceof IConductiveMetal)
-		{
-			IConductiveMetal metal = (IConductiveMetal)world.getBlockTileEntity(x, y - 3, z);
-			
-			if(metal.isMetalConductive())
-			{
-				return true;
-			}
-		}
-		else if( this.isIdOnList(id) || this.isOreDictionary(id))
+		if(id == electrolysmCore.BlockLumRed.blockID)
 		{
 			return true;
 		}
@@ -58,21 +64,6 @@ public class TileEntityEarther extends TileEntity
 		}
 	}
 
-	private boolean isIdOnList(int id) 
-	{
-		if(id == Block.blockGold.blockID)
-		{
-			return true;
-		}
-		else if(id == Block.blockIron.blockID)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
 
 	public boolean canConnect(ForgeDirection side, int id) 
 	{
@@ -91,6 +82,10 @@ public class TileEntityEarther extends TileEntity
 				return true;
 			}
 			else if(side == side.WEST)
+			{
+				return true;
+			}
+			else if(side == side.UP)
 			{
 				return true;
 			}

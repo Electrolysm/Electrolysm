@@ -70,6 +70,7 @@ import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
 import assets.electrolysm.electro.advAtomics.liquids.oil;
+import assets.electrolysm.electro.powerSystem.advEarther;
 import assets.electrolysm.electro.powerSystem.copperCoil;
 import assets.electrolysm.electro.powerSystem.crystal;
 import assets.electrolysm.electro.powerSystem.earther;
@@ -186,7 +187,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
         public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
         public static Block earther = new earther(IDHandler.powerGrid.eartherID, null); 
-        //public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
+        public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
         
         //Random Blocks
         public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);

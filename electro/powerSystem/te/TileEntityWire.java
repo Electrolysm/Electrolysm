@@ -5,6 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
+import assets.electrolysm.electro.crafting.items.te.TileEntityLumRed;
 
 public class TileEntityWire extends TileEntity
 {
@@ -61,6 +62,18 @@ public class TileEntityWire extends TileEntity
         	TileEntityEarther tileEntityIns = (TileEntityEarther) that;
         	
 	        if (((TileEntityEarther) that).canConnect(side.getOpposite(), thisID))
+	        {
+	            this.adjacentConnections[side.ordinal()] = that;
+	            this.visuallyConnected[side.ordinal()] = true;
+	                
+	            return;
+	        }
+	    }
+        else if (that instanceof TileEntityLumRed)
+	    {
+        	TileEntityLumRed tileEntityIns = (TileEntityLumRed) that;
+        	
+	        if (((TileEntityLumRed) that).canConnect(side.getOpposite(), thisID))
 	        {
 	            this.adjacentConnections[side.ordinal()] = that;
 	            this.visuallyConnected[side.ordinal()] = true;
