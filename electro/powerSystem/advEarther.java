@@ -2,6 +2,7 @@ package assets.electrolysm.electro.powerSystem;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityAdvEarther;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,7 +18,10 @@ public class advEarther extends BlockContainer {
 	
 	public advEarther(int id, Material mat) {
 		super(id, Material.iron);
-		// TODO Auto-generated constructor stub
+
+		this.setUnlocalizedName("advEarther");
+		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setHardness(2.3569824F);
 	}
 
 	@Override
