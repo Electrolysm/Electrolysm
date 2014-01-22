@@ -38,6 +38,7 @@ import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.CommandDate;
+import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.ballOfPlastic;
@@ -283,6 +284,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 		{
 			event.registerServerCommand(new UpdateResearch());
 			event.registerServerCommand(new CommandDate());
+			event.registerServerCommand(new CommandStardate());
 			ResearchHandler.downloadOnlineData();
 			ResearchHandler.getStoredResearch();
 		}

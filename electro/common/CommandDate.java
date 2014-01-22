@@ -51,9 +51,9 @@ public class CommandDate implements ICommand
 			 {
 				 if(in[0].equals("minecraft"))
 				 {
-					 if(in[1].equals("date"))
+					 if(in[1].equals("time"))
 					 {
-						 message = "Date:  " + this.getDate(worldinfo.getWorldTotalTime());
+						 message = "Time:  " + this.getDate(worldinfo.getWorldTotalTime());
 					 }
 					 else if(in[1].equals("stardate"))
 					 {
@@ -66,7 +66,7 @@ public class CommandDate implements ICommand
 				        		 .setColor(EnumChatFormatting.RED));
 						 return;
 					 }
-				 }/*
+				 }
 				 else if(in[0].equals("irl"))
 				 {
 					 if(in[1].equals("date"))
@@ -79,15 +79,15 @@ public class CommandDate implements ICommand
 					 }
 					 else
 					 {
-					  		message = "Incorrect syntax - /date [minecraft / irl] [date / stardate]";
+					  		message = "Incorrect syntax - /date [minecraft / irl] [time / stardate]";
 			         		icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
 			        		 		.setColor(EnumChatFormatting.RED));
 					 		return;
 					 }
-				 }*/
+				 }
 				 else
 				 {
-					 message = "Incorrect syntax - /date [minecraft / irl] [date / stardate]";
+					 message = "Incorrect syntax - /date [minecraft / irl] [time / stardate]";
 			         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
 			        		 .setColor(EnumChatFormatting.RED));
 					 return;
@@ -95,7 +95,7 @@ public class CommandDate implements ICommand
 			 }
 			 else
 			 {
-				 message = "Incorrect syntax - /date [minecraft / irl] [date / stardate]";
+				 message = "Incorrect syntax - /date [minecraft / irl] [time / stardate]";
 		         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
 		        		 .setColor(EnumChatFormatting.RED));
 				 return; 
@@ -103,7 +103,7 @@ public class CommandDate implements ICommand
 		 }
 		 else
 		 {
-			 message = "Incorrect syntax - /date [minecraft / irl] [date / stardate]";
+			 message = "Incorrect syntax - /date [minecraft / irl] [time / stardate]";
 	         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
 	        		 .setColor(EnumChatFormatting.RED));
 			 return;
@@ -123,7 +123,7 @@ public class CommandDate implements ICommand
 		 return "Seconds - " + seconds + " - Minutes - " + minutes + " - Days - " + days + " - Years - " + years; 
 	 }
 	 
-	 private String getStarDate(long time)
+	 protected String getStarDate(long time)
 	 {
 		 long seconds = time / 20;
 		 long minutes = seconds / 60;
