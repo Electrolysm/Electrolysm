@@ -11,7 +11,7 @@ public class diseasedBiome extends BiomeGenBase {
 	public diseasedBiome(int par1) {
 		super(par1);
 
-	this.setBiomeName("Diseased Biome");
+	this.setBiomeName("Diseased Grassland");
 	this.topBlock = (byte)electrolysmCore.diseaseGrass.blockID;
 	this.fillerBlock = (byte)Block.dirt.blockID;
 	this.spawnableMonsterList.removeAll(spawnableMonsterList);

@@ -282,8 +282,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 		@ServerStarting
 		public void serverLoad(FMLServerStartingEvent event)
 		{
-			event.registerServerCommand(new UpdateResearch());
-			event.registerServerCommand(new CommandDate());
+			//event.registerServerCommand(new UpdateResearch());
+			//event.registerServerCommand(new CommandDate());
 			event.registerServerCommand(new CommandStardate());
 			ResearchHandler.downloadOnlineData();
 			ResearchHandler.getStoredResearch();
