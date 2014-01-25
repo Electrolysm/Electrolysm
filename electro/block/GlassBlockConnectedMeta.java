@@ -57,9 +57,9 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     }
 
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (int id, CreativeTabs par2CreativeTabs, List list)
     {
-        
+        list.add(new ItemStack(this.blockID, 1, 0));
     }
 
     @Override

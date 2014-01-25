@@ -176,7 +176,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         
         //Power System
         public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
-        public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null);
+        public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null, 
+        		false, ContectedTexture);
         public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
         public static Block plug = new plug(configHandler.plugID, null);
         public static Block generator = new generator(configHandler.generatorID, null);
