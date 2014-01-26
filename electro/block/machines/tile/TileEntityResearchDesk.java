@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.research.Research;
@@ -119,9 +120,9 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 		ItemStack card = getStackInSlot(2);
 		ItemStack output = getStackInSlot(1);
 		ItemStack result = Research.research().getResearch(inStack, card);
-		
+
 		Random rand = new Random();
-		
+
 		for(int x = -2; x <= 2; x++)
 		{
 			for(int z = -2; z <= 2; z++)
@@ -135,7 +136,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 				}
 			}
 		}
-		
+
 		if(card != null)
 		{
 			if(inStack != null)
@@ -161,5 +162,35 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
 			}
 		}
 	}
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag)
+    {
+        super.readFromNBT(tag);
+
+        int itemID = tag.getInteger("itemID");
+        int stackSize = tag.getInteger("stackSize");
+        int itemDamage = tag.getInteger("itemMeta");
+
+        ItemStack stack = new ItemStack(itemID, stackSize, itemDamage);
+        this.setInventorySlotContents(2, stack);
+        this.onInventoryChanged();
+    }
+
+    /**
+     * Writes a tile entity to NBT.
+     */
+    @Override
+    public void writeToNBT(NBTTagCompound tag)
+    {
+        super.writeToNBT(tag);
+
+        if(this.getStackInSlot(2) != null)
+        {
+            tag.setInteger("itemID", this.getStackInSlot(2).itemID);
+            tag.setInteger("stackSize", this.getStackInSlot(2).stackSize);
+            tag.setInteger("itemMeta", this.getStackInSlot(2).getItemDamage());
+        }
+    }
 }
 

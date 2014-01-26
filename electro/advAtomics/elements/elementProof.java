@@ -55,7 +55,7 @@ public class elementProof extends Item {
     {
     	for(int i = 0; i < ElementHandler.elements.length; i++)
     	{
-    		list.add(new ItemStack(electrolysmCore.elementProof, 1, i));
+    		list.add(new ItemStack(this.itemID, 1, i));
     	}
     }
 }

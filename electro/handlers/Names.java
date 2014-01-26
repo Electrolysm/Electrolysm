@@ -51,17 +51,17 @@ public class Names {
 		LanguageRegistry.addName(electrolysmCore.node, "Graphite Electrode");
 		LanguageRegistry.addName(electrolysmCore.luminousRedstone, "Luminous Redstone Dust");
 		LanguageRegistry.addName(electrolysmCore.diamondShard, "Diamond Shard");
-		LanguageRegistry.addName(electrolysmCore.crystalBase, "Crystal Base");
+		LanguageRegistry.addName(electrolysmCore.crystalBase, "Crystal Base!");
 		
 		//Items
 		for(int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)
 		{
 			LanguageRegistry.addName(new ItemStack(electrolysmCore.researchPaper, 1, i), "Research Paper");
 		}
-		for(int i = 0; i < ElementHandler.elements.length; i++)
+		/*for(int i = 0; i < ElementHandler.elements.length; i++)
 		{
 			LanguageRegistry.addName(new ItemStack(electrolysmCore.elementProof, 1, i), ElementHandler.elements[i]);
-		}
+		}*/
 		LanguageRegistry.addName(electrolysmCore.card, "ID Card");
 		
 		for(int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i++)

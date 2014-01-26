@@ -16,7 +16,7 @@ public class TabElements extends CreativeTabs {
 	@SideOnly(Side.CLIENT)
 	public int getTabIconItemIndex() //The item it displays for your tab
 	{
-		return electrolysmCore.elementProof.itemID; //For this we'll use the ruby
+		return  electrolysmCore.advEarther.blockID;//electrolysmCore.elementProof.itemID; //For this we'll use the ruby
 	}
 	
 	public String getTranslatedTabLabel()

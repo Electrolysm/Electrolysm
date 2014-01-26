@@ -7,6 +7,7 @@ package assets.electrolysm.electro;
 
 import java.io.File;
 
+import assets.electrolysm.electro.handlers.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.creativetab.CreativeTabs;
@@ -46,17 +47,6 @@ import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.crafting.items.endoInsulator;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
-import assets.electrolysm.electro.handlers.BetaHandler;
-import assets.electrolysm.electro.handlers.Crafting;
-import assets.electrolysm.electro.handlers.GUIHandler;
-import assets.electrolysm.electro.handlers.IDHandler;
-import assets.electrolysm.electro.handlers.Names;
-import assets.electrolysm.electro.handlers.Referance;
-import assets.electrolysm.electro.handlers.Register;
-import assets.electrolysm.electro.handlers.RegisterBlock;
-import assets.electrolysm.electro.handlers.ResearchHandler;
-import assets.electrolysm.electro.handlers.TickHandler;
-import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.oreProccessing.crusher;
@@ -152,7 +142,6 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block modBlastGlass = new modBlastGlass(configHandler.modBlastGlassID, null, false, ContectedTexture);
         public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
         public static Block stoneObsidian = new stoneObsidian(configHandler.stoneObsidianID, null);
-        
         //Tools
         public static Item hammer = new hammer(IDHandler.basic.hammerID);
         
@@ -162,7 +151,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
         public static Block oil = new oil(configHandler.oilID);
         //Atomics
-        public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
+        //public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
         
         //Machines
         //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
@@ -263,6 +252,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 			Names.addName();
 			Register.addAchievementLocalizations();
 			Register.addOreDictionary();
+            TileEntityMappingHandler.addMappings();
 	   		GameRegistry.addBiome(diseasedBiome);
         	EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
         			"Zombie Scientist", 2, this, 80, 3, true);

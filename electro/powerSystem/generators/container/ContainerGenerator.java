@@ -16,7 +16,7 @@ public class ContainerGenerator extends Container
 	{
 		this.entity = entity;
 
-		this.addSlotToContainer(new SlotFuel(entity, 0, 75, 55)); //top left (CARD)
+		this.addSlotToContainer(new Slot(entity, 0, 75, 55)); //top left (CARD)
 
 	    int var3;
 

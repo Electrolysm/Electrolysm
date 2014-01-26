@@ -14,6 +14,7 @@ import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
+import java.math.BigDecimal;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class energyMeter extends Item {
@@ -169,8 +170,11 @@ public class energyMeter extends Item {
     		{	
     			if(te.canDistributeRedstone(world, x, y, z))
     			{
-    	    		message = "This Tesla Tower is transmitting " + 
+    	    		/*message = "This Tesla Tower is transmitting " +
     	    				String.valueOf(te.getRecievingTeU(world, x, y, z)) + " TeU";
+    	    				*/
+                    message = "This Tesla Tower is currently storing " + te.getStoredEnergy() + "/" +
+                            te.getMaxStoredEnergy() + "(" + this.getPersentage(te) + ")";
     			}
     			else if(te.canDistribute(world, x, y, z) && !(te.canDistributeRedstone(world, x, y, z)))
     			{
@@ -193,6 +197,16 @@ public class energyMeter extends Item {
     		
     	}
     }
+
+    public String getPersentage(TileEntityTeslaTower te)
+    {
+        float max = te.getMaxStoredEnergy();
+        float stored = te.getStoredEnergy();
+        float persent = ((stored * 100) / max);
+
+        return ((new BigDecimal(persent)) + "%");
+    }
+
     
     @SideOnly(Side.CLIENT)
     private void printPlugMessage(World world, int x, int y, int z, TileEntityPlug te) 

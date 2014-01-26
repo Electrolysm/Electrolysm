@@ -1,9 +1,12 @@
 package assets.electrolysm.electro.powerSystem.te;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
@@ -21,6 +24,59 @@ public class TileEntityTeslaTower extends TileEntity {
 
 	private float field_82138_c;
 	private long field_82137_b;
+    private int maxStoredEnergy = this.calculateMaxStoredPower();
+    private int storedEnergy;
+    private static Map classToNameMap = new HashMap();
+
+
+    public int calculateMaxStoredPower()
+    {
+        return (int)(Math.PI * 100000 * (int)(this.getTier() + 1));
+    }
+
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        this.storedEnergy = nbt.getInteger("storedEnergy");
+    }
+
+    /**
+     * Writes a tile entity to NBT.
+     */
+    public void writeToNBT(NBTTagCompound nbt)
+    {
+
+        nbt.setInteger("storedEnergy", this.getStoredEnergy());
+
+    }
+
+
+    public int getMaxStoredEnergy()
+    {
+        return this.maxStoredEnergy;
+    }
+
+    public int getStoredEnergy()
+    {
+        return this.storedEnergy;
+    }
+
+    public static void putMapping(Class par0Class, String par1Str)
+    {
+        classToNameMap.put(par0Class, par1Str);
+    }
+
+    public void addToStoredEnergy(int TeU)
+    {
+        if(this.getStoredEnergy() + TeU <= this.getMaxStoredEnergy())
+        {
+            this.storedEnergy = this.storedEnergy + TeU;
+            return;
+        }
+        else
+        {
+            return;
+        }
+    }
 
 	/**
 	 * @return
@@ -265,20 +321,16 @@ public class TileEntityTeslaTower extends TileEntity {
 	public int getTransmitDistance(World world, int x, int y, int z)
     {
 		int h = y;
-		int r = CommonProxy.RANGE_TIER[(this.getTier(world, x, y, z))];
+		int r = CommonProxy.RANGE_TIER[(this.getTier())];
 		
 		return (int)(r + (Math.sqrt(h * 3)));
 	}
 
 	/**
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
 	 * @return
 	 * gets the current tier of the crystal in the inventory
 	 */
-	private int getTier(World world, int x, int y, int z) 
+	private int getTier()
 	{
 		int tier = 1;
 		return tier - 1;
@@ -376,9 +428,14 @@ public class TileEntityTeslaTower extends TileEntity {
 	    		this.func_82125_v_();
 	    	}
 	    	this.keepChunkLoaded(world, x, y, z, this);
-			TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range, 
-					freq, username, TeU);
-			
+			//TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(), x, y, z, range,
+			//		freq, username, TeU);
+
+            if(TeU > 0)
+            {
+                this.addToStoredEnergy(TeU);
+            }
+
 			return TeU;
 		}
 		
