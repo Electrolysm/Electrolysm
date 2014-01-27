@@ -1,5 +1,6 @@
 package assets.electrolysm.electro.powerSystem.te;
 
+import assets.electrolysm.api.powerSystem.basicPowerAPI;
 import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
@@ -44,7 +45,7 @@ public class TileEntityEarther extends TileEntity
 	{
 		int id = world.getBlockId(x, y - 3, z);
 		
-		if(id == electrolysmCore.BlockLumRed.blockID)
+		if(Integer.parseInt(String.valueOf(basicPowerAPI.blockConductivityMap.get(id))) > 0)
 		{
 			return true;
 		}

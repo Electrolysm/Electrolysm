@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import assets.electrolysm.api.powerSystem.basicPowerAPI;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,6 +20,7 @@ import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 
 public class TileEntityTeslaTower extends TileEntity {
 
@@ -27,7 +29,7 @@ public class TileEntityTeslaTower extends TileEntity {
     private int maxStoredEnergy = this.calculateMaxStoredPower();
     private int storedEnergy;
     private static Map classToNameMap = new HashMap();
-
+    public static Map blockConductivityMap = basicPowerAPI.blockConductivityMap;
 
     public int calculateMaxStoredPower()
     {
@@ -47,6 +49,17 @@ public class TileEntityTeslaTower extends TileEntity {
 
         nbt.setInteger("storedEnergy", this.getStoredEnergy());
 
+    }
+
+    public float getPersentageFull()
+    {
+        float max = this.getMaxStoredEnergy();
+        float stored = this.getStoredEnergy();
+        float persent = ((stored * 100) / max);
+        persent = persent * 10;
+        persent = Math.round(persent);
+
+        return ((persent / 10));
     }
 
 
@@ -358,7 +371,7 @@ public class TileEntityTeslaTower extends TileEntity {
     	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     	
     	this.transmitPower(worldObj, xCoord, yCoord, zCoord, this.getTransmitDistance(worldObj, xCoord,
-    			yCoord, zCoord), 1, "username", this.getRecievingTeU(worldObj, xCoord, yCoord, zCoord));
+    			yCoord, zCoord), this.getRecievingTeU(worldObj, xCoord, yCoord, zCoord));
     	//Temporary (For images)
     	//this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
     	
@@ -418,8 +431,66 @@ public class TileEntityTeslaTower extends TileEntity {
         		2.0F, 0.5F + rand.nextFloat() * 0.2F);		return bolt;
 	}
 
-	public int transmitPower(World world, int x, int y, int z, int range, int freq, String username, int TeU)
+
+    public int getTransmitAvailable(World world, int x, int y, int z)
+    {
+        if(this.canDistributeRedstone(world, x, y, z))
+        {
+            int id = this.getEarthingMetalID(world, x, y, z);
+
+            if(id != 0)
+            {
+               int conductivity = (int)(Integer.parseInt(String.valueOf(this.blockConductivityMap.get(id))));
+                if(conductivity > 0)
+                {
+                    int TeU = 600 * (conductivity / 100);
+
+                    return TeU;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int getEarthingMetalID(World world, int x, int y, int z)
+    {
+        int id = world.getBlockId(x, y - 21, z);
+        return id;
+    }
+
+    public String getKeyCode(World world, int x, int y, int z)
+    {
+        String dimensionName = world.provider.getDimensionName();
+        String key = x + ":" + y + ":" + z + ":" + dimensionName;
+
+        return key;
+    }
+
+    public int getPersentageOp(World world, int x, int y, int z)
+    {
+        if(this.canDistributeRedstone(world, x, y, z))
+        {
+            int id = this.getEarthingMetalID(world, x, y, z);
+
+            if(id != 0)
+            {
+                int conductivity = (int)(Integer.parseInt(String.valueOf(this.blockConductivityMap.get(id))));
+                if(conductivity > 0)
+                {
+                    int TeU = (conductivity);
+
+                    return TeU;
+                }
+            }
+        }
+        return 0;
+    }
+
+
+
+	public int transmitPower(World world, int x, int y, int z, int range, int TeU)
 	{
+        Random rand = new Random();
 		if(this.canDistributeRedstone(world, x, y, z))
 		{
 	    	this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
@@ -434,6 +505,20 @@ public class TileEntityTeslaTower extends TileEntity {
             if(TeU > 0)
             {
                 this.addToStoredEnergy(TeU);
+                if(this.getPersentageFull() > 50)
+                {
+                    {
+                        int transmitAble = this.getTransmitAvailable(world, x, y, z);
+                        if(transmitAble < 0)
+                        {
+                            if(rand.nextInt(2) == 1)
+                            {
+                                TeslaTransmittingServer.saveTransmition(world.provider.getDimensionName(),
+                                        x, y, z, range, TeU);
+                            }
+                        }
+                    }
+                }
             }
 
 			return TeU;

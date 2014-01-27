@@ -6,6 +6,8 @@ import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 
 public class TileEntityPlug extends TileEntity implements ITeUReciever{
 
+    private String key = "";
+
 	public void updateEntity()
 	{
 		if(this.getClosestTowerWithinRange(worldObj, xCoord, yCoord, zCoord, 1, "username") != null)
@@ -31,13 +33,26 @@ public class TileEntityPlug extends TileEntity implements ITeUReciever{
 	{
 	}
 
+    public String getKey()
+    {
+        return this.key;
+    }
+
+    public void setKey(String keyCode)
+    {
+        this.key = keyCode;
+    }
+
+
 	@Override
 	public int[] getClosestTowerWithinRange(World world, int x, int y, int z, int freq, String username) 
 	{
+        String key = this.getKey();
+
 		int[] result = new int[6];
-		for(int i = 0; i < TeslaTransmittingServer.user.size(); i++)
+		for(int i = 0; i < TeslaTransmittingServer.TeUMap.size(); i++)
 		{
-			String[] serverData = TeslaTransmittingServer.getData(freq, username);
+			String[] serverData = TeslaTransmittingServer.getData(key);
 			if(serverData != null && serverData[1] != null)
 			{
 				int towerX = Integer.parseInt(serverData[0]);

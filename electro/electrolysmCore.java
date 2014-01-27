@@ -35,6 +35,7 @@ import assets.electrolysm.electro.block.basic.hammer;
 import assets.electrolysm.electro.block.basic.modBlastGlass;
 import assets.electrolysm.electro.block.basic.stoneObsidian;
 import assets.electrolysm.electro.block.machines.desk;
+import assets.electrolysm.electro.powerSystem.keyTransCoppier;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
@@ -177,7 +178,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
         public static Block earther = new earther(IDHandler.powerGrid.eartherID, null); 
         public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
-        
+        public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
+
         //Random Blocks
         public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
         

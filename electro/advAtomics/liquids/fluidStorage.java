@@ -18,8 +18,12 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.ItemFluidContainer;
 
-public class fluidStorage extends Item implements IFluidOre{
+public class fluidStorage extends ItemFluidContainer implements IFluidOre/*, IFluidContainerItem*/
+{
 
 	@SideOnly(Side.CLIENT)
 	private Icon[] fluidIcons;
@@ -30,7 +34,6 @@ public class fluidStorage extends Item implements IFluidOre{
 	this.setCreativeTab(electrolysmCore.TabElectrolysm);
 	this.hasSubtypes = true;
 	}
-	
 	
 	public String getUnlocalizedName(ItemStack stack)
 	{

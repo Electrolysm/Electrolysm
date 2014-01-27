@@ -94,6 +94,7 @@ public class IDHandler {
 		public static int eartherID = 809;
 		public static int advEartherID = 810;
 		public static int advWireID = 811;
+        public static int keyTransCoppierID = 812;
 
 	}
 

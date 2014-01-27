@@ -163,7 +163,8 @@ public class energyMeter extends Item {
     private void printTowerMessage(World world, int x, int y, int z, TileEntityTeslaTower te) 
     {
 		String message = "";
-		
+        String persentTransmit = "";
+
     	if(world.isRemote)
     	{
     		if(te.isTowerFormed(world, x, y, z))
@@ -175,7 +176,10 @@ public class energyMeter extends Item {
     	    				*/
                     message = "This Tesla Tower is currently storing " + te.getStoredEnergy() + "/" +
                             te.getMaxStoredEnergy() + "(" + this.getPersentage(te) + ")";
-    			}
+                    persentTransmit = "This Tesla Tower is currently opperating at " +
+                            te.getPersentageOp(world, x, y, z) + "%";
+
+                }
     			else if(te.canDistribute(world, x, y, z) && !(te.canDistributeRedstone(world, x, y, z)))
     			{
     				message = "This Tesla Tower is formed, but is recieving a redstone signal";
@@ -189,8 +193,12 @@ public class energyMeter extends Item {
     		{
     			message = "This Tesla Tower isn't correctly formed!";
     		}
-    		
-    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);	
+
+            String keyCodeMessgae = "The key code for this Tesla Tower is " + te.getKeyCode(world, x, y, z);
+
+    		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(keyCodeMessgae);
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(persentTransmit);
     	}
     	else
     	{
@@ -203,8 +211,10 @@ public class energyMeter extends Item {
         float max = te.getMaxStoredEnergy();
         float stored = te.getStoredEnergy();
         float persent = ((stored * 100) / max);
+        persent = persent * 10;
+        persent = Math.round(persent);
 
-        return ((new BigDecimal(persent)) + "%");
+        return ((persent / 10) + "%");
     }
 
     
