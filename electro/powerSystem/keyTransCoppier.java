@@ -3,6 +3,7 @@ package assets.electrolysm.electro.powerSystem;
 import assets.electrolysm.api.powerSystem.TileEntityPlug;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -49,6 +50,9 @@ public class keyTransCoppier extends Item
                     TileEntityTeslaTower te = (TileEntityTeslaTower)teWorld;
 
                     this.key = te.getKeyCode(world, x, y, z);
+                    //stack.setItemDamage(Byte.);
+                    String message = "Key Code '" + this.key + "' has been copied";
+                    FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
                     return true;
                 }
             }
@@ -61,11 +65,14 @@ public class keyTransCoppier extends Item
                     TileEntityPlug te = (TileEntityPlug)teWorld;
 
                     te.setKey(key);
+                    String message = "Key Code '" + this.key + "' has been set";
+                    FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
                     return true;
                 }
             }
         }
         return false;
     }
+
 
 }

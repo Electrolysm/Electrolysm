@@ -35,12 +35,14 @@ public class TileEntityPlug extends TileEntity implements ITeUReciever{
 
     public String getKey()
     {
+        //System.out.println("Key Code got");
         return this.key;
     }
 
     public void setKey(String keyCode)
     {
         this.key = keyCode;
+        System.out.println("Key Code set");
     }
 
 
@@ -53,6 +55,7 @@ public class TileEntityPlug extends TileEntity implements ITeUReciever{
 		for(int i = 0; i < TeslaTransmittingServer.TeUMap.size(); i++)
 		{
 			String[] serverData = TeslaTransmittingServer.getData(key);
+            System.out.println("Attempted to get key code");
 			if(serverData != null && serverData[1] != null)
 			{
 				int towerX = Integer.parseInt(serverData[0]);
