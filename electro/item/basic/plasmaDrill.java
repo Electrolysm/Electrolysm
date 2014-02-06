@@ -185,6 +185,24 @@ public class plasmaDrill extends ItemTool{
 
         return true;
     }
+    
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) 
+    {
+    	int dmg = stack.getItemDamage();
+    	int maxDmg = stack.getMaxDamage();
+    	
+    	String persent = this.calculatePersent(maxDmg, dmg);
+    	
+    	list.add(persent + " Energy Units Stored");
+    }
+    
+	public String calculatePersent(int maxDmg, int dmg)
+	{
+        	float persent = ((dmg * 100) / maxDmg);
+        	persent = persent * 10;
+        	persent = Math.round(persent);
 
+        	return ((persent / 10) + "%");
+	}
 
 }
