@@ -187,7 +187,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static BlockContainer crusher = new crusher(configHandler.crusherID, null);
         public static BlockContainer liquidiser = new liquidiser(configHandler.liquidizerID, null);
         public static BlockContainer electrolisisCore = new electrolisisCore(configHandler.electrolysisCoreID,
-        		null);
+        		null); 
         public static Block electrolChamber = new electrolChamber(configHandler.electrolChamberID,
         		null, false, ContectedTexture);
         public static BlockContainer seperator = new seporator(configHandler.seperatorID, null);
