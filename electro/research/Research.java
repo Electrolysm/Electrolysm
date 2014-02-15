@@ -34,7 +34,7 @@ public class Research
         return researchBase;
     }
 
-        private Research()
+    private Research()
     {
         this.addResearch(Block.blockIron.blockID,new ItemStack(electrolysmCore.researchPaper, 1, 0), 1);
         this.addResearch(Item.fishRaw.itemID, new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);

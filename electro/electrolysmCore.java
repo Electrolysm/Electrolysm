@@ -27,11 +27,14 @@ import assets.electrolysm.electro.block.advMachines.energiser;
 import assets.electrolysm.electro.block.advMachines.energisingRod;
 import assets.electrolysm.electro.block.advMachines.injectionArm;
 import assets.electrolysm.electro.block.advMachines.injector;
+import assets.electrolysm.electro.block.basic.blastBrick;
 import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
+import assets.electrolysm.electro.block.basic.floodLight;
 import assets.electrolysm.electro.block.basic.glassModifier;
 import assets.electrolysm.electro.block.basic.hammer;
+import assets.electrolysm.electro.block.basic.lightSource;
 import assets.electrolysm.electro.block.basic.modBlastGlass;
 import assets.electrolysm.electro.block.basic.stoneObsidian;
 import assets.electrolysm.electro.block.machines.desk;
@@ -72,6 +75,7 @@ import assets.electrolysm.electro.powerSystem.wire;
 import assets.electrolysm.electro.powerSystem.generators.generator;
 import assets.electrolysm.electro.powerSystem.generators.matterGen;
 import assets.electrolysm.electro.research.card;
+import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
 import assets.electrolysm.electro.world.chunkGraphite;
@@ -118,6 +122,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item injectionArm = new injectionArm(IDHandler.advMachines.injectionArmID);
         
         //Research System
+        public static Block idifier = new idifier(IDHandler.research.idifierID, null);
         public static Block researchDesk = new researchDesk(configHandler.researchDeskID, null);
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
@@ -138,6 +143,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
         //Security
         public static Block blastProof = new blastProof(configHandler.blastProofID, null);
+        public static Block blastBrick = new blastBrick(IDHandler.randomStuff.blastBrickID, null);
         public static Block blastDoor = new blastDoor(configHandler.blastDoorID, null);
         public static Block blastGlass = new blastGlass(configHandler.blastGlassID, null, false, ContectedTexture);
         public static Block modBlastGlass = new modBlastGlass(configHandler.modBlastGlassID, null, false, ContectedTexture);
@@ -204,7 +210,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
         public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
         public static Item endoInsulator = new endoInsulator(IDHandler.randomStuff.endoInsulatorID);
-        
+        public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
+        public static Block lightSource = new lightSource(IDHandler.randomStuff.lightSourceID, null);
         /*
 		//Robots	
         //Parts

@@ -61,7 +61,9 @@ public class teslaTowerCore extends BlockContainer
     {
     	if(this.isRecievingRedstonePower(world, x, y, z))
     	{
+    		TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x, y, z);
     		
+    		te.updateState(world, x, y, z);
     	}
     }
 

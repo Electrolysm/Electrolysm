@@ -51,14 +51,15 @@ public class IDHandler {
 		public static int cardID = 736;
 		public static int paperID = 737;
 		public static int knowledgeID = 738;
+		public static int idifierID = 739;
 	
 	}
 	
 	public static class advAtomics{
 		public static class fluid{
-			public static int plasmaID = 739;
-			public static int fluidStorageID = 740;
-			public static int oilID = 741;
+			public static int plasmaID = 743;
+			public static int fluidStorageID = 744;
+			public static int oilID = 745;
 		}
 	}
 	public static class advMachines{
@@ -125,6 +126,9 @@ public class IDHandler {
 		public static int crystalBaseID = 903;
 		public static int ballOfPlasticID = 904;
 		public static int endoInsulatorID = 905;
+		public static int blastBrickID = 906;
+		public static int floodLightID = 907;
+		public static int lightSourceID = 908;
 	}
 	
 	public static class elements

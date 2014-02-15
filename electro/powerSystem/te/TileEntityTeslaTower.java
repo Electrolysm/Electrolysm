@@ -374,16 +374,22 @@ public class TileEntityTeslaTower extends TileEntity {
     			yCoord, zCoord), this.getRecievingTeU(worldObj, xCoord, yCoord, zCoord));
     	//Temporary (For images)
     	//this.zapPlayer(worldObj, xCoord, yCoord, zCoord);
+    	this.updateState(worldObj, xCoord, yCoord, zCoord);
     	
-    	if(!(this.isRecievingRedstonePower(worldObj, xCoord, yCoord, zCoord)) && 
-    			this.canDistribute(worldObj, xCoord, yCoord, zCoord))
+    	
+    }
+	
+	public void updateState(World world, int x, int y, int z)
+	{
+		if(!(this.isRecievingRedstonePower(world, x, y, z)) && 
+    			this.canDistribute(world, x, y, z))
     	{
     		//0 = active = no redstone
     		//1 = deactive = redstone
     		
     		if(this.blockMetadata == 1)
     		{
-    			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 0);
+    			world.setBlockMetadataWithNotify(x, y, z, 0, 0);
     			TeslaTransmittingServer.clearAll();
     		}
     	}
@@ -391,11 +397,11 @@ public class TileEntityTeslaTower extends TileEntity {
     	{
     		if(this.blockMetadata == 0)
     		{
-    			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 0);
+    			world.setBlockMetadataWithNotify(x, y, z, 1, 0);
     			TeslaTransmittingServer.clearAll();
     		}
     	}
-    }
+	}
 	
 	public int getRecievingTeU(World world, int x, int y, int z)
 	{

@@ -45,7 +45,9 @@ public class RegisterBlock {
 		GameRegistry.registerBlock(electrolysmCore.advWire);
 		GameRegistry.registerBlock(electrolysmCore.earther);
 		GameRegistry.registerBlock(electrolysmCore.advEarther);
-		
+		GameRegistry.registerBlock(electrolysmCore.idifier);
+		GameRegistry.registerBlock(electrolysmCore.blastBrick);
+		GameRegistry.registerBlock(electrolysmCore.lightSource);
 		
 		GameRegistry.registerWorldGenerator(new WorldGenStructures());
 		GameRegistry.registerWorldGenerator(new WorldGenOres());

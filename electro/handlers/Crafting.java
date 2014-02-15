@@ -3,6 +3,7 @@ package assets.electrolysm.electro.handlers;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -241,6 +242,22 @@ public class Crafting {
 				new ItemStack(electrolysmCore.ballOfPlastic),
 				new ItemStack(electrolysmCore.ballOfPlastic),
 				new ItemStack(Item.enderPearl));
+		
+		GameRegistry.addRecipe(new ItemStack(electrolysmCore.idifier),
+				"IGI", "CGC", "IGI",
+				Character.valueOf('I'), Item.ingotIron,
+				Character.valueOf('G'), Material.glass,
+				Character.valueOf('C'), Block.chest,
+				Character.valueOf('G'), Item.ingotGold);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastBrick), 
+			new ItemStack(electrolysmCore.blastProof),
+			new ItemStack(electrolysmCore.blastProof),
+			new ItemStack(electrolysmCore.blastProof),
+			new ItemStack(electrolysmCore.blastProof));
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastProof, 4),  
+				new ItemStack(electrolysmCore.blastBrick));
 	}
 
 }

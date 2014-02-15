@@ -1,5 +1,6 @@
 package assets.electrolysm.electro.item.basic;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -23,6 +24,8 @@ public class plasmaDrill extends ItemTool{
 
     @SideOnly(Side.CLIENT)
     public Icon itemIconBroken;
+    public int breakingPoint = 1555;
+    
     
     public plasmaDrill(int id, float par2, EnumToolMaterial toolMaterial, Block[] block) {
 		super(id, par2, EnumToolMaterial.EMERALD, block);
@@ -191,7 +194,7 @@ public class plasmaDrill extends ItemTool{
     	int dmg = stack.getItemDamage();
     	int maxDmg = stack.getMaxDamage();
     	
-    	String persent = this.calculatePersent(maxDmg, dmg);
+    	String persent = this.calculatePersent(maxDmg, this.breakingPoint);
     	
     	list.add(persent + " Energy Units Stored");
     }
@@ -202,7 +205,7 @@ public class plasmaDrill extends ItemTool{
         	persent = persent * 10;
         	persent = Math.round(persent);
 
-        	return ((persent / 10) + "%");
+        	return (((persent / 10) - 100) + "%").replace("-", "");
 	}
 
 }
