@@ -36,6 +36,11 @@ public class TickHandler implements ITickHandler{
 					this.printChatMessage(VersionCheck.chatMessage);
 					times = 100;
 				}
+				if(NewsCheck.chatMessage != null)
+				{
+					this.printChatMessage("Electrolysm News: " + NewsCheck.chatMessage);]
+					times = 100;
+				}
 			}
 	}
 		return null;
