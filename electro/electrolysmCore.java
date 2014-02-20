@@ -248,6 +248,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         	configHandler.init(configFile);
       	  
        	 	VersionCheck.check();
+       	 	NewsCheck.check();
 			BetaHandler.beta();
 			ResearchHandler.downloadOnlineData();
 			ResearchHandler.getStoredResearch();
