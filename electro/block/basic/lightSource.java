@@ -4,6 +4,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 
 public class lightSource extends Block {
 
@@ -35,4 +37,11 @@ public class lightSource extends Block {
         return false;
 	}
 	
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+    {
+    	return null;
+    }
+    
+
+    
 }

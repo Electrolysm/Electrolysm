@@ -56,7 +56,7 @@ public class CrusherRecipes
 		}
 		for(int i = 0; i < tinOre.size(); i++)
 		{
-			this.addCrushing(tinOre.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 2));
+			this.addCrushing(tinOre.get(i), new ItemStack(electrolysmCore.impureDusts, 2, 1));
 		}
 		for(int i = 0; i < silverOre.size(); i++)
 		{

@@ -52,6 +52,7 @@ public class IDHandler {
 		public static int paperID = 737;
 		public static int knowledgeID = 738;
 		public static int idifierID = 739;
+		public static int autoDeskID = 740;
 	
 	}
 	
@@ -96,6 +97,7 @@ public class IDHandler {
 		public static int advEartherID = 810;
 		public static int advWireID = 811;
         public static int keyTransCoppierID = 812;
+        public static int ItemWireID = 813;
 
 	}
 

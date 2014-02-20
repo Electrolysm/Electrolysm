@@ -41,13 +41,6 @@ public class workBench extends BlockContainer {
 		public boolean renderAsNormalBlock() {
 	        return false;
 		}
-
-/*
-		@Override
-		public TileEntity createNewTileEntity(World world) {
-			// TODO Auto-generated method stub
-			return new TileEntityWorkBench();
-		}*/
 		
 		public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 		{

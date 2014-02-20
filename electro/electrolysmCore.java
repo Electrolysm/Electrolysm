@@ -63,6 +63,7 @@ import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
+import assets.electrolysm.electro.powerSystem.ItemWire;
 import assets.electrolysm.electro.powerSystem.advEarther;
 import assets.electrolysm.electro.powerSystem.copperCoil;
 import assets.electrolysm.electro.powerSystem.crystal;
@@ -74,6 +75,7 @@ import assets.electrolysm.electro.powerSystem.teslaTowerCore;
 import assets.electrolysm.electro.powerSystem.wire;
 import assets.electrolysm.electro.powerSystem.generators.generator;
 import assets.electrolysm.electro.powerSystem.generators.matterGen;
+import assets.electrolysm.electro.block.machines.autoDesk;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
@@ -127,6 +129,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static card card = new card(IDHandler.research.cardID);
         public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
         public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
+        public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
         
         //World Generation
         public static Block graphite = new graphite(configHandler.graphiteID, null);
@@ -185,6 +188,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Block earther = new earther(IDHandler.powerGrid.eartherID, null); 
         public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
         public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
+        public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
 
         //Random Blocks
         public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
@@ -210,8 +214,8 @@ import cpw.mods.fml.relauncher.SideOnly;
         public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
         public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
         public static Item endoInsulator = new endoInsulator(IDHandler.randomStuff.endoInsulatorID);
-        public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
         public static Block lightSource = new lightSource(IDHandler.randomStuff.lightSourceID, null);
+        //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
         /*
 		//Robots	
         //Parts

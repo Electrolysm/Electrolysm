@@ -42,7 +42,7 @@ public class NewsCheck {
 			}
 			if(line != null)
 			{
-        chatMessage = line;
+					chatMessage = line.replace("[Electrolysm]", "");
 			}
 
 			//System.out.println("[Electrolysm]" + version);

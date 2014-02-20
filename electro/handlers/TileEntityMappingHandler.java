@@ -14,6 +14,7 @@ import assets.electrolysm.electro.powerSystem.te.TileEntityAdvEarther;
 import assets.electrolysm.electro.powerSystem.te.TileEntityEarther;
 import assets.electrolysm.electro.powerSystem.te.TileEntityPlugBasic;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
+import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -37,6 +38,7 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityPlugBasic.class, "TileEntityPlugBasic");
         GameRegistry.registerTileEntity(TileEntityResearchDesk.class, "TileEntityResearchDesk");
         GameRegistry.registerTileEntity(TileEntityWorkBench.class, "TileEntityWorkBench");
+        GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
     }
 
 }

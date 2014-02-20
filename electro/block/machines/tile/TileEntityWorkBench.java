@@ -138,11 +138,19 @@ public class TileEntityWorkBench extends TileEntity implements IInventory {
 	{
 		for(int i = 0; i < 9; i++)
 		{
-			this.setInventorySlotContents(i, null);
+			ItemStack stack = this.getStackInSlot(i);
+			
+			if(stack != null)
+			{
+				if((stack.stackSize - 1) > 1)
+				{
+					ItemStack replace = new ItemStack(stack.itemID, stack.stackSize, stack.getItemDamage());
+					this.setInventorySlotContents(i, null);
+				}
+			}
 		}
 	}
 
-	
 	public void checkSetResearchRecipes()
     {
 		if(this.getStackInSlot(10) != null) 
@@ -161,14 +169,26 @@ public class TileEntityWorkBench extends TileEntity implements IInventory {
 	    			
 	    			String teStack;
 	    			String recipeStack;
+	    			ItemStack InStack;
 	    			
-	    			if(this.getStackInSlot(i) == null)
+	    			if(this.getStackInSlot(i) != null)
+	    			{
+		    			InStack = new ItemStack(this.getStackInSlot(i).itemID, this.getStackInSlot(i).stackSize - 1,
+		    					this.getStackInSlot(i).getItemDamage());
+	    			
+	    			}
+	    			else
+	    			{
+	    				InStack = null;
+	    			}
+	    			
+	    			if(InStack == null)
 	    			{
 	    				teStack = "null";
 	    			}
 	    			else
 	    			{
-	    				teStack = this.getStackInSlot(i).toString();
+	    				teStack = InStack.toString();
 	    			}
 	    			if(ResearchRecipes.getRecipeBasedOnDamage(dmg)[i] == null)
 	    			{

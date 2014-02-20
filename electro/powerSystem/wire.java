@@ -1,5 +1,7 @@
 package assets.electrolysm.electro.powerSystem;
 
+import java.util.Random;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -17,7 +19,7 @@ public class wire extends BlockContainer {
 	public wire(int par1, Material par2Material) {
 		super(par1, Material.cloth);
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		//this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("wireTeU");
 		this.setHardness(0.25F);
 	}
@@ -74,6 +76,24 @@ public class wire extends BlockContainer {
             this.maxY = te.getAdjacentConnections()[1] != null ? 1F : 0.7F;
             this.maxZ = te.getAdjacentConnections()[3] != null ? 1F : 0.7F;
         }
+    }
+	
+    public int idDropped(int par1, Random par2Random, int par3)
+    {
+    	return electrolysmCore.ItemWire.itemID;
+    }
+    
+    public int damageDropped(int par1)
+    {
+    	if(this.blockID == electrolysmCore.wire.blockID)
+    	{
+    		return 0;
+    	}
+    	else if(this.blockID == electrolysmCore.advWire.blockID)
+    	{
+    		return 1;
+    	}
+		return 0;
     }
 
 }
