@@ -12,18 +12,17 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+public class oil extends BlockFluidClassic
+{
+    @SideOnly(Side.CLIENT)
+    public Icon flowing;
+    @SideOnly(Side.CLIENT)
+    public Icon still;
 
-public class oil extends BlockFluidClassic {
-
-	@SideOnly(Side.CLIENT)
-	public Icon flowing;
-	@SideOnly(Side.CLIENT)
-	public Icon still;
-
-    public oil(int id) {
-            super(id, new ModFluidPlasma(), Material.water);
-            this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("Oil");
+    public oil(int id)
+    {
+        super(id, new ModFluidPlasma(), Material.water);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("Oil");
     }
 }
-    

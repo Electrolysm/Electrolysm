@@ -15,70 +15,77 @@ import cpw.mods.fml.common.Loader;
  */
 public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachine, IPullEnergy, IMeterable
 {
-	public boolean working;
-	
-	public void updateEntity()
-	{
-		if(Loader.isModLoaded("Electrolysm"))
-		{
-			this.canWork(worldObj, xCoord, yCoord, zCoord);
-		}
-	}
+    public boolean working;
 
-	@Override
-	public boolean canWork(World world, int x, int y, int z) 
-	{
-		if(this.isPowered(world, x, y, z))
-		{
-			if(this.getPlugRecievingTeU(world, x, y, z) >= this.getActivationEnergy())
-			return true;
-		}
-		return false;
-	}
+    public void updateEntity()
+    {
+        if (Loader.isModLoaded("Electrolysm"))
+        {
+            this.canWork(worldObj, xCoord, yCoord, zCoord);
+        }
+    }
 
-	@Override
-	public boolean isPowered(World world, int x, int y, int z)
-	{
-		if(Loader.isModLoaded("Electrolysm"))
-		{
-			TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
-			if(teWorld instanceof TileEntityPlug)
-			{
-				TileEntityPlug te = (TileEntityPlug)teWorld;
-				if(te.getRecievedTeUAfterResistance(world, x, y - 1, z) > 0)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    @Override
+    public boolean canWork(World world, int x, int y, int z)
+    {
+        if (this.isPowered(world, x, y, z))
+        {
+            if (this.getPlugRecievingTeU(world, x, y, z) >= this.getActivationEnergy())
+            {
+                return true;
+            }
+        }
 
-	@Override
-	public float getPlugRecievingTeU(World world, int x, int y, int z) 
-	{
-		if(Loader.isModLoaded("Electrolysm"))
-		{
-			TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
-			if(teWorld instanceof TileEntityPlug)
-			{
-				TileEntityPlug te = (TileEntityPlug)teWorld;
-				return te.getRecievedTeUAfterResistance(world, x, y - 1, z);
-			}
-		}
-		return 0;
-	}
+        return false;
+    }
 
-	@Override
-	public int getActivationEnergy() 
-	{
-		return 0;
-	}
+    @Override
+    public boolean isPowered(World world, int x, int y, int z)
+    {
+        if (Loader.isModLoaded("Electrolysm"))
+        {
+            TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
 
-	@Override
-	public boolean isWorking() 
-	{
-		return working;
-	}
+            if (teWorld instanceof TileEntityPlug)
+            {
+                TileEntityPlug te = (TileEntityPlug)teWorld;
 
+                if (te.getRecievedTeUAfterResistance(world, x, y - 1, z) > 0)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public float getPlugRecievingTeU(World world, int x, int y, int z)
+    {
+        if (Loader.isModLoaded("Electrolysm"))
+        {
+            TileEntity teWorld = world.getBlockTileEntity(x, y - 1, z);
+
+            if (teWorld instanceof TileEntityPlug)
+            {
+                TileEntityPlug te = (TileEntityPlug)teWorld;
+                return te.getRecievedTeUAfterResistance(world, x, y - 1, z);
+            }
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int getActivationEnergy()
+    {
+        return 0;
+    }
+
+    @Override
+    public boolean isWorking()
+    {
+        return working;
+    }
 }

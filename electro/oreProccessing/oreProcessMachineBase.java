@@ -15,43 +15,43 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class oreProcessMachineBase extends BlockContainer
 {
-	@SideOnly(Side.CLIENT)
-	public Icon frontIcon;
-	
-	
-	public oreProcessMachineBase(int id, Material mat) {
-		super(id, Material.iron);
-	}
+    @SideOnly(Side.CLIENT)
+    public Icon frontIcon;
 
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg)
-	{
-		this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta)
-	{
-		if(side == meta)
-		{
-			return this.frontIcon;
-		}
-		else
-		{
-			return this.blockIcon;
-		}
-	}
+    public oreProcessMachineBase(int id, Material mat)
+    {
+        super(id, Material.iron);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World world)
-	{
-		return null; 
-	}
-	
-	@Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+        this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int meta)
+    {
+        if (side == meta)
+        {
+            return this.frontIcon;
+        }
+        else
+        {
+            return this.blockIcon;
+        }
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world)
+    {
+        return null;
+    }
+
+    @Override
     public void getSubBlocks(int id, CreativeTabs tab, List list)
     {
-    	list.add(new ItemStack(this.blockID, 1, 3));
+        list.add(new ItemStack(this.blockID, 1, 3));
     }
 }

@@ -14,55 +14,65 @@ import net.minecraft.item.ItemTool;
 
 public class Slot_Adv_Machine_Fuel extends Slot
 {
+    public Slot_Adv_Machine_Fuel(IInventory inventory, int id, int x, int y)
+    {
+        super(inventory, id, x, y);
+    }
 
-	public Slot_Adv_Machine_Fuel(IInventory inventory, int id, int x, int y) 
-	{
-		super(inventory, id, x, y);
-	}
-	
-	public boolean isItemValid(ItemStack stack)
-	{
-		if(getItemBurnTime(stack) > 0)
-		{
-			return true;
-		}
-		
-		return false;
-	}
-	
-	 public static int getItemBurnTime(ItemStack par0ItemStack)
-	    {
-	        if (par0ItemStack == null)
-	        {
-	            return 0;
-	        }
-	        else
-	        {
-	            int var1 = par0ItemStack.getItem().itemID;
-	            Item var2 = par0ItemStack.getItem();
+    public boolean isItemValid(ItemStack stack)
+    {
+        if (getItemBurnTime(stack) > 0)
+        {
+            return true;
+        }
 
-	            if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[var1] != null)
-	            {
-	                Block var3 = Block.blocksList[var1];
+        return false;
+    }
 
-	                if (var3 == Block.woodSingleSlab)
-	                {
-	                    return 150;
-	                }
+    public static int getItemBurnTime(ItemStack par0ItemStack)
+    {
+        if (par0ItemStack == null)
+        {
+            return 0;
+        }
+        else
+        {
+            int var1 = par0ItemStack.getItem().itemID;
+            Item var2 = par0ItemStack.getItem();
 
-	                if (var3.blockMaterial == Material.wood)
-	                {
-	                    return 300;
-	                }
-	            }
+            if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[var1] != null)
+            {
+                Block var3 = Block.blocksList[var1];
 
-	            if (var2 instanceof ItemTool && ((ItemTool) var2).getToolMaterialName().equals("WOOD")) return 200;
-	            //if (var2 instanceof ItemSword && ((ItemSword) var2).getToolMaterialName().equals("WOOD")) return 200;
-	            //if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 200;
-	            if (var1 == Item.bucketLava.itemID) return 1000;
-	            if(var1 == Block.glowStone.blockID) return 1000;
-	            return GameRegistry.getFuelValue(par0ItemStack);
-	        }
-	    }
+                if (var3 == Block.woodSingleSlab)
+                {
+                    return 150;
+                }
 
+                if (var3.blockMaterial == Material.wood)
+                {
+                    return 300;
+                }
+            }
+
+            if (var2 instanceof ItemTool && ((ItemTool) var2).getToolMaterialName().equals("WOOD"))
+            {
+                return 200;
+            }
+
+            //if (var2 instanceof ItemSword && ((ItemSword) var2).getToolMaterialName().equals("WOOD")) return 200;
+            //if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 200;
+            if (var1 == Item.bucketLava.itemID)
+            {
+                return 1000;
+            }
+
+            if (var1 == Block.glowStone.blockID)
+            {
+                return 1000;
+            }
+
+            return GameRegistry.getFuelValue(par0ItemStack);
+        }
+    }
 }

@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 /**
- *  
+ *
  *  @author Ben
  *
  */
@@ -31,9 +31,10 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     }
 
     @Override
-    public Icon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+
         if (meta < icons.length)
         {
             return getConnectedBlockTexture(par1IBlockAccess, par2, par3, par4, par5, icons[meta]);
@@ -45,25 +46,25 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     }
 
     @Override
-    public boolean shouldConnectToBlock (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, int par6)
+    public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, int par6)
     {
         return par5 == this.blockID && (par6 == par1IBlockAccess.getBlockMetadata(par2, par3, par4) || ignoreMetaForConnectedGlass);
     }
 
     @Override
-    public Icon getIcon (int par1, int par2)
+    public Icon getIcon(int par1, int par2)
     {
         return icons[par2][0];
     }
 
     @Override
-    public void getSubBlocks (int id, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(int id, CreativeTabs par2CreativeTabs, List list)
     {
         list.add(new ItemStack(this.blockID, 1, 0));
     }
 
     @Override
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons(IconRegister par1IconRegister)
     {
         for (int i = 0; i < textures.length; i++)
         {
@@ -87,15 +88,14 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     }
 
     @Override
-    public int damageDropped (int par1)
+    public int damageDropped(int par1)
     {
         return par1;
     }
 
     @Override
-    public boolean canPlaceTorchOnTop (World world, int x, int y, int z)
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
     {
         return true;
     }
-
 }

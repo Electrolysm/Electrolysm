@@ -16,142 +16,142 @@ import assets.electrolysm.electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemWire extends Item {
+public class ItemWire extends Item
+{
+    String[] name = {"wire", "advWire"};
+    @SideOnly(Side.CLIENT)
+    private Icon[] wireIcon;
 
-	String[] name = {"wire", "advWire"}; 
-	@SideOnly(Side.CLIENT)
-	private Icon[] wireIcon;
-	
-	public ItemWire(int par1) {
-		super(par1);
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.hasSubtypes = true;
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg)
-	{
-		wireIcon = new Icon[2];
-		
-		wireIcon[0] = reg.registerIcon("electrolysm:" + "basicWire");
-		wireIcon[1] = reg.registerIcon("electrolysm:" + "advWire");
-	}
-   
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Icon getIconFromDamage(int dmg)
-	{
-		return wireIcon[dmg];
-	}
-	
-	public String getUnlocalizedName(ItemStack stack)
-	{
-		int dmg = stack.getItemDamage();
-		return "itemWire" + this.name[dmg];
-	}
-	
+    public ItemWire(int par1)
+    {
+        super(par1);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.hasSubtypes = true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+        wireIcon = new Icon[2];
+        wireIcon[0] = reg.registerIcon("electrolysm:" + "basicWire");
+        wireIcon[1] = reg.registerIcon("electrolysm:" + "advWire");
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIconFromDamage(int dmg)
+    {
+        return wireIcon[dmg];
+    }
+
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        int dmg = stack.getItemDamage();
+        return "itemWire" + this.name[dmg];
+    }
+
     public void getSubItems(int id, CreativeTabs creativeTab, List list)
     {
-    	for(int i = 0; i < 2; i++)
-    	{
-    		list.add(new ItemStack(electrolysmCore.ItemWire, 1, i));
-    	}
+        for (int i = 0; i < 2; i++)
+        {
+            list.add(new ItemStack(electrolysmCore.ItemWire, 1, i));
+        }
     }
-	
-	public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y,
-    		int z, int side, float clickX, float clickY, float clickZ)
+
+    public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y,
+                             int z, int side, float clickX, float clickY, float clickZ)
     {
-    	if(this.getBlockIDBasedOnItemStack(item) != 0)
-    	{
-    		if(side == 0)
-    		{
-    			//Bottom
-                if(world.getBlockId(x, y - 1, z) == 0)
+        if (this.getBlockIDBasedOnItemStack(item) != 0)
+        {
+            if (side == 0)
+            {
+                //Bottom
+                if (world.getBlockId(x, y - 1, z) == 0)
                 {
-    				world.setBlock(x, y - 1, z, this.getBlockIDBasedOnItemStack(item));
-    				item.stackSize = item.stackSize - 1;
-    				return true;
+                    world.setBlock(x, y - 1, z, this.getBlockIDBasedOnItemStack(item));
+                    item.stackSize = item.stackSize - 1;
+                    return true;
                 }
-    		}
-    		else if(side == 1)
-    		{
-    			//Top
-    			if(world.getBlockId(x, y + 1, z) == 0)
-    			{
-    				world.setBlock(x, y + 1, z, this.getBlockIDBasedOnItemStack(item));
-    				item.stackSize = item.stackSize - 1;
-    				return true;
-    			}
-    		}
-    		else if(side == 2)
-    		{
-    			//Right
-    			if(world.getBlockId(x, y, z - 1) == 0)
-    			{
-    				world.setBlock(x, y, z - 1, this.getBlockIDBasedOnItemStack(item));
-    				item.stackSize = item.stackSize - 1;
-    				return true;
-    			}
-    		}
-    		else if(side == 3)
-    		{
-    			if(world.getBlockId(x, y, z + 1) == 0)
-    			{
-    				world.setBlock(x, y, z + 1, this.getBlockIDBasedOnItemStack(item));
-    				item.stackSize = item.stackSize - 1;
-    				return true;
-    			}
-    		}
-    		else if(side == 4)
-    		{
-    			if(world.getBlockId(x - 1, y, z) == 0)
-    			{
-    				world.setBlock(x - 1, y, z, this.getBlockIDBasedOnItemStack(item));
-    				item.stackSize = item.stackSize - 1;
-    				return true;
-    			}
-    		}
-    		else if(side ==5)
-    		{
-    			if(world.getBlockId(x + 1, y, z) == 0)
-    			{
-    				world.setBlock(x + 1, y, z, this.getBlockIDBasedOnItemStack(item));
-    				item.stackSize = item.stackSize - 1;
-    				return true;
-    			}
-    		}
-    		else
-    		{
-    			String message1 = "Unknown Error when placing liquid block!";
-    			String message2 = "This is a bug! Please report it to the MOD author";
-    			System.out.println(message1);
-    			System.out.println(message2);
-    			player.sendChatToPlayer(
-    					ChatMessageComponent.createFromText(message1).setColor(EnumChatFormatting.DARK_RED));
-    			player.sendChatToPlayer(
-    					ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));
-    		}
-    	}
-    	return false;
+            }
+            else if (side == 1)
+            {
+                //Top
+                if (world.getBlockId(x, y + 1, z) == 0)
+                {
+                    world.setBlock(x, y + 1, z, this.getBlockIDBasedOnItemStack(item));
+                    item.stackSize = item.stackSize - 1;
+                    return true;
+                }
+            }
+            else if (side == 2)
+            {
+                //Right
+                if (world.getBlockId(x, y, z - 1) == 0)
+                {
+                    world.setBlock(x, y, z - 1, this.getBlockIDBasedOnItemStack(item));
+                    item.stackSize = item.stackSize - 1;
+                    return true;
+                }
+            }
+            else if (side == 3)
+            {
+                if (world.getBlockId(x, y, z + 1) == 0)
+                {
+                    world.setBlock(x, y, z + 1, this.getBlockIDBasedOnItemStack(item));
+                    item.stackSize = item.stackSize - 1;
+                    return true;
+                }
+            }
+            else if (side == 4)
+            {
+                if (world.getBlockId(x - 1, y, z) == 0)
+                {
+                    world.setBlock(x - 1, y, z, this.getBlockIDBasedOnItemStack(item));
+                    item.stackSize = item.stackSize - 1;
+                    return true;
+                }
+            }
+            else if (side == 5)
+            {
+                if (world.getBlockId(x + 1, y, z) == 0)
+                {
+                    world.setBlock(x + 1, y, z, this.getBlockIDBasedOnItemStack(item));
+                    item.stackSize = item.stackSize - 1;
+                    return true;
+                }
+            }
+            else
+            {
+                String message1 = "Unknown Error when placing liquid block!";
+                String message2 = "This is a bug! Please report it to the MOD author";
+                System.out.println(message1);
+                System.out.println(message2);
+                player.sendChatToPlayer(
+                    ChatMessageComponent.createFromText(message1).setColor(EnumChatFormatting.DARK_RED));
+                player.sendChatToPlayer(
+                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));
+            }
+        }
+
+        return false;
     }
 
+    private int getBlockIDBasedOnItemStack(ItemStack item)
+    {
+        int meta = item.getItemDamage();
 
-	private int getBlockIDBasedOnItemStack(ItemStack item) 
-	{
-		int meta = item.getItemDamage();
-		if(meta == 0)
-		{
-			return electrolysmCore.wire.blockID;
-		}
-		else if(meta == 1)
-		{
-			return electrolysmCore.advWire.blockID;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-
+        if (meta == 0)
+        {
+            return electrolysmCore.wire.blockID;
+        }
+        else if (meta == 1)
+        {
+            return electrolysmCore.advWire.blockID;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

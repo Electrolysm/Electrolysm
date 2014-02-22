@@ -16,34 +16,33 @@ import net.minecraft.item.ItemTool;
 
 public class SlotFluidStorage extends Slot
 {
+    public SlotFluidStorage(IInventory inventory, int id, int x, int y)
+    {
+        super(inventory, id, x, y);
+    }
 
-	public SlotFluidStorage(IInventory inventory, int id, int x, int y) 
-	{
-		super(inventory, id, x, y);
-	}
-	
-	public boolean isItemValid(ItemStack stack)
-	{
-		if(isStackFluidStorage(stack))
-		{
-			return true;
-		}
-		
-		return false;
-	}
-	
-	 public static boolean isStackFluidStorage(ItemStack stack)
-	    {
-	        if(stack == null)
-	        {
-	        	return false;
-	        }
-	        if(stack.itemID == electrolysmCore.fluidStorage.itemID)
-	        {
-	        	return true;
-	        }
+    public boolean isItemValid(ItemStack stack)
+    {
+        if (isStackFluidStorage(stack))
+        {
+            return true;
+        }
 
-	        return false;
-	    }
+        return false;
+    }
 
+    public static boolean isStackFluidStorage(ItemStack stack)
+    {
+        if (stack == null)
+        {
+            return false;
+        }
+
+        if (stack.itemID == electrolysmCore.fluidStorage.itemID)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

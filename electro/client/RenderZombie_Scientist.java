@@ -12,25 +12,25 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderZombie_Scientist extends RenderLiving
 {
-	
-	public RenderZombie_Scientist(ModelZombie_Scientist par1ModelBase, float par2)
+    public RenderZombie_Scientist(ModelZombie_Scientist par1ModelBase, float par2)
 
-	{
-		super(par1ModelBase, par2);	
-	}
+    {
+        super(par1ModelBase, par2);
+    }
 
-	protected ResourceLocation getEntityTexture1(EntityZombie_Scientist entityScientist)
-	{
-		return CommonProxy.ZOMBIE_SCIENTIST_TEXTURE;
-	}
+    protected ResourceLocation getEntityTexture1(EntityZombie_Scientist entityScientist)
+    {
+        return CommonProxy.ZOMBIE_SCIENTIST_TEXTURE;
+    }
 
-	protected ResourceLocation func_110775_a(Entity par1Entity)
-	{
-		return this.getEntityTexture1((EntityZombie_Scientist)par1Entity);
-	}
+    protected ResourceLocation func_110775_a(Entity par1Entity)
+    {
+        return this.getEntityTexture1((EntityZombie_Scientist)par1Entity);
+    }
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return this.getEntityTexture1((EntityZombie_Scientist)entity);
-	}
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity)
+    {
+        return this.getEntityTexture1((EntityZombie_Scientist)entity);
+    }
 }

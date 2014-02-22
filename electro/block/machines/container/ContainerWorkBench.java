@@ -10,11 +10,11 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 
 public class ContainerWorkBench extends Container
 {
-	private TileEntityWorkBench entity;
+    private TileEntityWorkBench entity;
 
-	public ContainerWorkBench(TileEntityWorkBench entity, InventoryPlayer inventory)
-	{
-		this.entity = entity;
+    public ContainerWorkBench(TileEntityWorkBench entity, InventoryPlayer inventory)
+    {
+        this.entity = entity;
 
         for (int l = 0; l < 3; ++l)
         {
@@ -27,50 +27,49 @@ public class ContainerWorkBench extends Container
         //Research Paper Slot
         this.addSlotToContainer(new SlotResearchNote(this.entity, 10, 124, 60));
         this.addSlotToContainer(new Slot(this.entity, 9, 124, 35));
-        
-	    int var3;
+        int var3;
 
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-            	//full inventory
+                //full inventory
                 this.addSlotToContainer(new Slot(inventory, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-        	//hotbar
+            //hotbar
             this.addSlotToContainer(new Slot(inventory, var3, 8 + var3 * 18, 142));
         }
-	}
+    }
 
-	@Override
-	public boolean canInteractWith(EntityPlayer player) 
-	{
-		return entity.isUseableByPlayer(player);
-	}
+    @Override
+    public boolean canInteractWith(EntityPlayer player)
+    {
+        return entity.isUseableByPlayer(player);
+    }
 
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int par2)
-	{
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int par2)
+    {
         return null;
-	}
-	
-	 public void onContainerClosed(EntityPlayer player)
-	    {
-	        InventoryPlayer inventoryplayer = player.inventory;
+    }
 
-	        if (inventoryplayer.getItemStack() != null)
-	        {
-	            player.dropPlayerItem(inventoryplayer.getItemStack());
-	            inventoryplayer.setItemStack((ItemStack)null);
-	        }
-	        if(this.entity.getStackInSlot(9) != null)
-	        {
-                player.dropPlayerItem(this.entity.getStackInSlot(9));
-	        }
-	        
-	    }
+    public void onContainerClosed(EntityPlayer player)
+    {
+        InventoryPlayer inventoryplayer = player.inventory;
+
+        if (inventoryplayer.getItemStack() != null)
+        {
+            player.dropPlayerItem(inventoryplayer.getItemStack());
+            inventoryplayer.setItemStack((ItemStack)null);
+        }
+
+        if (this.entity.getStackInSlot(9) != null)
+        {
+            player.dropPlayerItem(this.entity.getStackInSlot(9));
+        }
+    }
 }

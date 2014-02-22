@@ -5,11 +5,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityQuantumComp extends TileEntity
 {
-
-	
-	public void running()
-	{
-	
-	}
-
+    public void running()
+    {
+    }
 }

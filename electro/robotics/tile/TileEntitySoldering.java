@@ -5,7 +5,6 @@ import javax.swing.text.Position;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntitySoldering extends TileEntity {
-
-	
+public class TileEntitySoldering extends TileEntity
+{
 }

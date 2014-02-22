@@ -22,7 +22,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class TileEntityMappingHandler
 {
-
     public static void addMappings()
     {
         GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
@@ -40,5 +39,4 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityWorkBench.class, "TileEntityWorkBench");
         GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
     }
-
 }

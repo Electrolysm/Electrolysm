@@ -10,20 +10,17 @@ import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 
 public class ContainerElectrolysis extends Container
 {
-	private TileEntityElectrolisisCore entity;
-	
-	public ContainerElectrolysis(TileEntityElectrolisisCore entity2, InventoryPlayer inventory)
-	{
-		this.entity = entity2;
-		
-		this.addSlotToContainer(new Slot(entity2, 0, 9, 27));
-		this.addSlotToContainer(new Slot(entity2, 1, 147, 27));
-		this.addSlotToContainer(new SlotOutput(entity2, 2, 78, 18));
-		
-		this.addSlotToContainer(new Slot(entity2, 3, 61, 55));
-		this.addSlotToContainer(new Slot(entity2, 4, 95, 55));
-		
-	    int var3;
+    private TileEntityElectrolisisCore entity;
+
+    public ContainerElectrolysis(TileEntityElectrolisisCore entity2, InventoryPlayer inventory)
+    {
+        this.entity = entity2;
+        this.addSlotToContainer(new Slot(entity2, 0, 9, 27));
+        this.addSlotToContainer(new Slot(entity2, 1, 147, 27));
+        this.addSlotToContainer(new SlotOutput(entity2, 2, 78, 18));
+        this.addSlotToContainer(new Slot(entity2, 3, 61, 55));
+        this.addSlotToContainer(new Slot(entity2, 4, 95, 55));
+        int var3;
 
         for (var3 = 0; var3 < 3; ++var3)
         {
@@ -37,18 +34,17 @@ public class ContainerElectrolysis extends Container
         {
             this.addSlotToContainer(new Slot(inventory, var3, 8 + var3 * 18, 142));
         }
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) 
-	{
-		return entity.isUseableByPlayer(player);
-	}
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int index)
-    {
-       return null;
     }
 
+    @Override
+    public boolean canInteractWith(EntityPlayer player)
+    {
+        return entity.isUseableByPlayer(player);
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int index)
+    {
+        return null;
+    }
 }

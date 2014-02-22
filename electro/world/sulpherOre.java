@@ -7,37 +7,38 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import assets.electrolysm.electro.electrolysmCore;
 
-public class sulpherOre extends Block {
-
-	public sulpherOre(int id, Material mat) {
-		super(id, Material.rock);
-
-	this.setCreativeTab(electrolysmCore.TabElectrolysm);
-	this.setUnlocalizedName("sulphurOre");
-	this.setHardness(1F);
-	}
-	
-	public void registerIcons(IconRegister reg)
+public class sulpherOre extends Block
+{
+    public sulpherOre(int id, Material mat)
     {
-		this.blockIcon = reg.registerIcon("electrolysm:" + "sulphureOre");
+        super(id, Material.rock);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("sulphurOre");
+        this.setHardness(1F);
     }
-	
-	@Override
-	public int quantityDropped(Random rand)
+
+    public void registerIcons(IconRegister reg)
     {
-		int dropped = rand.nextInt(8);
-		if(dropped >= 5)
-		{
-			return dropped;
-		}
-		else
-		{
-			return 5;
-		}
+        this.blockIcon = reg.registerIcon("electrolysm:" + "sulphureOre");
     }
-	
-	@Override
-	public int idDropped(int par1, Random par2Random, int par3)
+
+    @Override
+    public int quantityDropped(Random rand)
+    {
+        int dropped = rand.nextInt(8);
+
+        if (dropped >= 5)
+        {
+            return dropped;
+        }
+        else
+        {
+            return 5;
+        }
+    }
+
+    @Override
+    public int idDropped(int par1, Random par2Random, int par3)
     {
         return electrolysmCore.sulphur.itemID;
     }

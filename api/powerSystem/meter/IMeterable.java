@@ -1,6 +1,6 @@
 package assets.electrolysm.api.powerSystem.meter;
 
-public interface IMeterable 
+public interface IMeterable
 {
-	boolean isWorking();
+    boolean isWorking();
 }

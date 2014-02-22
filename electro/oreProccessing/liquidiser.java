@@ -15,42 +15,44 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class liquidiser extends oreProcessMachineBase {
+public class liquidiser extends oreProcessMachineBase
+{
+    public liquidiser(int par1, Material par2Material)
+    {
+        super(par1, Material.iron);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("liquidizer");
+        this.setHardness(6.0F);
+    }
 
-	public liquidiser(int par1, Material par2Material) {
-		super(par1, Material.iron);
+    @Override
+    public TileEntity createNewTileEntity(World world)
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	this.setCreativeTab(electrolysmCore.TabElectrolysm);
-	this.setUnlocalizedName("liquidizer");
-	this.setHardness(6.0F);
-	}
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+        this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "liquidizerFront");
+        this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg)
-	{
-		this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "liquidizerFront");
-		this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
-	}
-	
-	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-	{
-		if(player.isSneaking())
-		{
-			return false;
-		}else{
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    {
+        if (player.isSneaking())
+        {
+            return false;
+        }
+        else
+        {
             player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
             return true;
-		}
-	}
-	
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+        }
+    }
+
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
         int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
@@ -79,14 +81,14 @@ public class liquidiser extends oreProcessMachineBase {
             ((TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
         }
     }
-    
+
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4)
     {
         super.onBlockAdded(par1World, par2, par3, par4);
         this.setDefaultDirection(par1World, par2, par3, par4);
     }
-    
+
     private void setDefaultDirection(World par1World, int par2, int par3, int par4)
     {
         if (!par1World.isRemote)
@@ -120,5 +122,4 @@ public class liquidiser extends oreProcessMachineBase {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
         }
     }
-    
 }

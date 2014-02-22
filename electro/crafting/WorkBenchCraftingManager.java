@@ -18,9 +18,10 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class WorkBenchCraftingManager 
-{/**
-    /** The static instance of this class */
+public class WorkBenchCraftingManager
+{
+    /**
+       /** The static instance of this class */
     private static final WorkBenchCraftingManager instance = new WorkBenchCraftingManager();
 
     /** A list of all the recipes added */
@@ -36,7 +37,6 @@ public class WorkBenchCraftingManager
 
     private WorkBenchCraftingManager()
     {
-        
         Collections.sort(this.recipes, new WorkBenchRecipeSorter(this));
     }
 
@@ -211,5 +211,4 @@ public class WorkBenchCraftingManager
     {
         return this.recipes;
     }
-
 }

@@ -7,16 +7,17 @@ import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class artMuscle extends Item {
-	
-	public artMuscle(int id) {
-		super(id);
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName("artMuscle");
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
+public class artMuscle extends Item
+{
+    public artMuscle(int id)
+    {
+        super(id);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("artMuscle");
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("charcoal");

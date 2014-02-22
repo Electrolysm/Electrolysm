@@ -16,12 +16,11 @@ public class ModelWire extends ModelBase
     ModelRenderer Front;
     ModelRenderer Top;
     ModelRenderer Bottom;
-    
+
     public ModelWire()
     {
         this.textureWidth = 64;
         this.textureHeight = 32;
-        
         this.Middle = new ModelRenderer(this, 0, 0);
         this.Middle.addBox(0F, 0F, 0F, 4, 4, 4);
         this.Middle.setRotationPoint(-2F, 14F, -2F);
@@ -65,49 +64,49 @@ public class ModelWire extends ModelBase
         this.Bottom.mirror = true;
         this.setRotation(this.Bottom, 0F, 0F, 0F);
     }
-    
+
     public void renderMiddle()
     {
         this.Middle.render(0.0625F);
     }
-    
+
     public void renderBottom()
     {
         this.Bottom.render(0.0625F);
     }
-    
+
     public void renderTop()
     {
         this.Top.render(0.0625F);
     }
-    
+
     public void renderLeft()
     {
         this.Left.render(0.0625F);
     }
-    
+
     public void renderRight()
     {
         this.Right.render(0.0625F);
     }
-    
+
     public void renderBack()
     {
         this.Back.render(0.0625F);
     }
-    
+
     public void renderFront()
     {
         this.Front.render(0.0625F);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {

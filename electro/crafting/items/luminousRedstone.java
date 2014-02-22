@@ -8,22 +8,20 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
 
-public class luminousRedstone extends Item {
+public class luminousRedstone extends Item
+{
+    public luminousRedstone(int par1)
+    {
+        super(par1);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setMaxStackSize(4);
+        this.setUnlocalizedName("luminousRedstone");
+    }
 
-	public luminousRedstone(int par1) {
-		super(par1);
-
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setMaxStackSize(4);
-		this.setUnlocalizedName("luminousRedstone");
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg)
-	{
-		this.itemIcon = reg.registerIcon("electrolysm:" + "luminousRedstone");
-	}
-	
-
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+        this.itemIcon = reg.registerIcon("electrolysm:" + "luminousRedstone");
+    }
 }

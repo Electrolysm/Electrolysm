@@ -6,16 +6,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.Icon;
 
-public class blastBrick extends blastProof {
+public class blastBrick extends blastProof
+{
+    public blastBrick(int id, Material mat)
+    {
+        super(id, Material.iron);
+    }
 
-	public blastBrick(int id, Material mat) {
-		super(id, Material.iron);
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta)
-	{
-		return this.iconBrick;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int meta)
+    {
+        return this.iconBrick;
+    }
 }

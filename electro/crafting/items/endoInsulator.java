@@ -6,20 +6,19 @@ import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class endoInsulator extends Item 
+public class endoInsulator extends Item
 {
-	public endoInsulator(int id) {
-		super(id);
+    public endoInsulator(int id)
+    {
+        super(id);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("endoInsulator");
+    }
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName("endoInsulator");
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IconRegister reg)
-	{
-		this.itemIcon = reg.registerIcon("electrolysm:" + "endoInsulator");
-	}
-
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister reg)
+    {
+        this.itemIcon = reg.registerIcon("electrolysm:" + "endoInsulator");
+    }
 }

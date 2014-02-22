@@ -60,7 +60,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
     private boolean isPlaying;
     Village villageObj;
     public static World world3;
-    
+
     /** This villager's current customer. */
     private EntityPlayer buyingPlayer;
 
@@ -88,7 +88,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
      * for 1 item
      */
     public static final Map blacksmithSellingList = new HashMap();
-	private static final EntityVillager EntityVillager = new EntityVillager(world3);
+    private static final EntityVillager EntityVillager = new EntityVillager(world3);
 
     public VillagerScientist(World par1World)
     {
@@ -492,6 +492,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                 }
 
                 break;
+
             case 1:
                 addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
 
@@ -505,6 +506,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                 }
 
                 break;
+
             case 2:
                 addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
                 int[] aint = new int[] {Item.swordIron.itemID, Item.swordDiamond.itemID, Item.plateIron.itemID, Item.plateDiamond.itemID, Item.axeIron.itemID, Item.axeDiamond.itemID, Item.pickaxeIron.itemID, Item.pickaxeDiamond.itemID};
@@ -528,9 +530,11 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
                     ++j;
                 }
+
             case 3:
                 addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
                 break;
+
             case 4:
                 addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
         }

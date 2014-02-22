@@ -7,46 +7,56 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class NewsCheck {
+public class NewsCheck
+{
+    private static String line;
+    public static boolean checkDone;
+    public static String chatMessage;
+    public static String version;
 
-	private static String line;
-	public static boolean checkDone;
-	public static String chatMessage;
-	public static String version;
+    public static void check()
+    {
+        System.out.println("[Electrolysm]Starting News Check");
+        URL url = null;
+        String inputLine = "";
 
-	public static void check(){
+        try
+        {
+            url = new URL("https://raw.github.com/Clarky158/Electrolysm/master/news.xml");
+        }
+        catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
 
-			System.out.println("[Electrolysm]Starting News Check");
+        BufferedReader in;
 
-			URL url = null;
-			String inputLine = "";
+        try
+        {
+            URLConnection con = url.openConnection();
+            con.setReadTimeout(1000);   //1 second
+            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-			try {
-				url = new URL("https://raw.github.com/Clarky158/Electrolysm/master/news.xml");
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			BufferedReader in;
-			try {
-				URLConnection con = url.openConnection();
-				con.setReadTimeout( 1000 ); //1 second
-				in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-				while ((inputLine = in.readLine()) != null) {
-					System.out.println("[Electrolysm]" + inputLine);
-					line = "[Electrolysm]" + inputLine;
-				}
-		 	   in.close();
+            while ((inputLine = in.readLine()) != null)
+            {
+                System.out.println("[Electrolysm]" + inputLine);
+                line = "[Electrolysm]" + inputLine;
+            }
 
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			if(line != null)
-			{
-					chatMessage = line.replace("[Electrolysm]", "");
-			}
+            in.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
-			//System.out.println("[Electrolysm]" + version);
-			System.out.println("[Electrolysm]Ended News Check");
-			checkDone = true;
-	}
+        if (line != null)
+        {
+            chatMessage = line.replace("[Electrolysm]", "");
+        }
+
+        //System.out.println("[Electrolysm]" + version);
+        System.out.println("[Electrolysm]Ended News Check");
+        checkDone = true;
+    }
 }

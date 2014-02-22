@@ -11,45 +11,45 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
-public class advEarther extends BlockContainer {
+public class advEarther extends BlockContainer
+{
+    @SideOnly(Side.CLIENT)
+    private Icon blockTop;
 
-	@SideOnly(Side.CLIENT)
-	private Icon blockTop;
-	
-	public advEarther(int id, Material mat) {
-		super(id, Material.iron);
+    public advEarther(int id, Material mat)
+    {
+        super(id, Material.iron);
+        this.setUnlocalizedName("advEarther");
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setHardness(2.3569824F);
+    }
 
-		this.setUnlocalizedName("advEarther");
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setHardness(2.3569824F);
-	}
+    @Override
+    public TileEntity createNewTileEntity(World world)
+    {
+        // TODO Auto-generated method stub
+        return new TileEntityAdvEarther();
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
-		return new TileEntityAdvEarther();
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IconRegister reg)
-	{
-		this.blockIcon = reg.registerIcon("electrolysm:" + "advEartherSide");
-		this.blockTop = reg.registerIcon("electrolysm:" + "advEartherTop");
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta)
-	{
-		if(side == 1 || side == 0)
-		{
-			return this.blockTop;
-		}
-		else
-		{
-			return this.blockIcon;
-		}
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister reg)
+    {
+        this.blockIcon = reg.registerIcon("electrolysm:" + "advEartherSide");
+        this.blockTop = reg.registerIcon("electrolysm:" + "advEartherTop");
+    }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int meta)
+    {
+        if (side == 1 || side == 0)
+        {
+            return this.blockTop;
+        }
+        else
+        {
+            return this.blockIcon;
+        }
+    }
 }

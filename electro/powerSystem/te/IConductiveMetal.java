@@ -1,6 +1,6 @@
 package assets.electrolysm.electro.powerSystem.te;
 
-public interface IConductiveMetal 
+public interface IConductiveMetal
 {
-	public boolean isMetalConductive();
+    public boolean isMetalConductive();
 }

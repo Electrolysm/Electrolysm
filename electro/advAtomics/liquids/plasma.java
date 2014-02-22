@@ -11,34 +11,33 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+public class plasma extends BlockFluidClassic
+{
+    @SideOnly(Side.CLIENT)
+    public Icon flowing;
+    @SideOnly(Side.CLIENT)
+    public Icon still;
 
-public class plasma extends BlockFluidClassic {
-
-	@SideOnly(Side.CLIENT)
-	public Icon flowing;
-	@SideOnly(Side.CLIENT)
-	public Icon still;
-
-    public plasma(int id) {
-            super(id, new ModFluidPlasma(), Material.water);
-            this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("fluidPlasma");
+    public plasma(int id)
+    {
+        super(id, new ModFluidPlasma(), Material.water);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("fluidPlasma");
     }
     @Override
-	@SideOnly(Side.CLIENT)
-	public Icon getIcon( int side, int meta )
-	{
-		if( side <= 1 )
-		{
-			return this.still;
-		}
-		else
-		{
-			return this.flowing;
-		}
-	}
-    
-    
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int meta)
+    {
+        if (side <= 1)
+        {
+            return this.still;
+        }
+        else
+        {
+            return this.flowing;
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register)
     {

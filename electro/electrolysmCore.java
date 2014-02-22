@@ -1,7 +1,7 @@
 /**
- * 
+ *
  * @author Ben
- * 
+ *
  */
 package assets.electrolysm.electro;
 
@@ -59,6 +59,8 @@ import assets.electrolysm.electro.oreProccessing.electrolChamber;
 import assets.electrolysm.electro.oreProccessing.electrolisisCore;
 import assets.electrolysm.electro.oreProccessing.impureDusts;
 import assets.electrolysm.electro.oreProccessing.liquidiser;
+import assets.electrolysm.electro.oreProccessing.net;
+import assets.electrolysm.electro.oreProccessing.nettedBlock;
 import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
@@ -101,199 +103,206 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-	@Mod(modid=Referance.MOD_REF.MOD_ID, name=Referance.MOD_REF.MOD_ID, version= Referance.MOD_REF.VERSION)
- 
-	@NetworkMod(channels = { Referance.MOD_REF.CHANNEL }, clientSideRequired = true, serverSideRequired = true, packetHandler = packetHandler.class)
-	
-	public class electrolysmCore {
+@Mod(modid = Referance.MOD_REF.MOD_ID, name = Referance.MOD_REF.MOD_ID, version = Referance.MOD_REF.VERSION)
 
-        private static String[] ContectedTexture = { "","","","","","","","","","","","","","","","",""};
+@NetworkMod(channels = { Referance.MOD_REF.CHANNEL }, clientSideRequired = true, serverSideRequired = true, packetHandler = packetHandler.class)
 
-		public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(),"Electrolysm|Basics of Science");
-		public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
-		
-		public static GUIHandler guiHandler = new GUIHandler();
-		
-		@Instance("Electrolysm")
-		public static electrolysmCore GUIInstance;
-		//Basic Machines
-        public static Block workBench = new workBench(configHandler.workBenchID, null);
-        public static Block desk = new desk(configHandler.deskID, null);
-        //Advanced Machines
-        public static Block injector = new injector(configHandler.injectorID, null);
-        public static Item injectionArm = new injectionArm(IDHandler.advMachines.injectionArmID);
-        
-        //Research System
-        public static Block idifier = new idifier(IDHandler.research.idifierID, null);
-        public static Block researchDesk = new researchDesk(configHandler.researchDeskID, null);
-        public static card card = new card(IDHandler.research.cardID);
-        public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
-        public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
-        public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
-        
-        //World Generation
-        public static Block graphite = new graphite(configHandler.graphiteID, null);
-        public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
-        public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
-        public static Block copperOre = new copperOre(configHandler.copperOreID, null);
-        public static Block sulphurOre = new sulpherOre(configHandler.sulphurOreID, null);
-        public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
-        //Biome
-        public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
-        public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
-		public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.basic.biomeID);
-        public BiomeGenBase diseasedBiome = diseasedBiomeObj;
+public class electrolysmCore
+{
+    private static String[] ContectedTexture = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
 
-        //Security
-        public static Block blastProof = new blastProof(configHandler.blastProofID, null);
-        public static Block blastBrick = new blastBrick(IDHandler.randomStuff.blastBrickID, null);
-        public static Block blastDoor = new blastDoor(configHandler.blastDoorID, null);
-        public static Block blastGlass = new blastGlass(configHandler.blastGlassID, null, false, ContectedTexture);
-        public static Block modBlastGlass = new modBlastGlass(configHandler.modBlastGlassID, null, false, ContectedTexture);
-        public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
-        public static Block stoneObsidian = new stoneObsidian(configHandler.stoneObsidianID, null);
-        //Tools
-        public static Item hammer = new hammer(IDHandler.basic.hammerID);
-        
-        //Advanced atomics
-        //Liquids
-        public static Block plasma = new plasma(configHandler.plasmaID);
-        public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
-        public static Block oil = new oil(configHandler.oilID);
-        //Atomics
-        //public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
-        
-        //Machines
-        //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
-        public static Block energiser = new energiser(configHandler.energiserID, null); 
-        public static Item energisingRod = new energisingRod(IDHandler.advMachines.energisingRodID);
-        public static Block charger = new charger(IDHandler.advMachines.chargerID, null);
-        //Items 
-        //Tools
-        public static Item plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
-        public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
-        
-        //Power System
-        public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
-        public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null, 
-        		false, ContectedTexture);
-        public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
-        public static Block plug = new plug(configHandler.plugID, null);
-        public static Block generator = new generator(configHandler.generatorID, null);
-        public static Block matterGen = new matterGen(configHandler.matterGenID, null);
-        public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
-        public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
-        public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
-        public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
-        public static Block earther = new earther(IDHandler.powerGrid.eartherID, null); 
-        public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
-        public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
-        public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
+    public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(), "Electrolysm|Basics of Science");
+    public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
 
-        //Random Blocks
-        public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
+    public static GUIHandler guiHandler = new GUIHandler();
+
+    @Instance("Electrolysm")
+    public static electrolysmCore GUIInstance;
+    //Basic Machines
+    public static Block workBench = new workBench(configHandler.workBenchID, null);
+    public static Block desk = new desk(configHandler.deskID, null);
+    //Advanced Machines
+    public static Block injector = new injector(configHandler.injectorID, null);
+    public static Item injectionArm = new injectionArm(IDHandler.advMachines.injectionArmID);
+
+    //Research System
+    public static Block idifier = new idifier(IDHandler.research.idifierID, null);
+    public static Block researchDesk = new researchDesk(configHandler.researchDeskID, null);
+    public static card card = new card(IDHandler.research.cardID);
+    public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
+    public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
+    public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
+
+    //World Generation
+    public static Block graphite = new graphite(configHandler.graphiteID, null);
+    public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
+    public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
+    public static Block copperOre = new copperOre(configHandler.copperOreID, null);
+    public static Block sulphurOre = new sulpherOre(configHandler.sulphurOreID, null);
+    public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
+    //Biome
+    public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
+    public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
+    public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.basic.biomeID);
+    public BiomeGenBase diseasedBiome = diseasedBiomeObj;
+
+    //Security
+    public static Block blastProof = new blastProof(configHandler.blastProofID, null);
+    public static Block blastBrick = new blastBrick(IDHandler.randomStuff.blastBrickID, null);
+    public static Block blastDoor = new blastDoor(configHandler.blastDoorID, null);
+    public static Block blastGlass = new blastGlass(configHandler.blastGlassID, null, false, ContectedTexture);
+    public static Block modBlastGlass = new modBlastGlass(configHandler.modBlastGlassID, null, false, ContectedTexture);
+    public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
+    public static Block stoneObsidian = new stoneObsidian(configHandler.stoneObsidianID, null);
+    //Tools
+    public static Item hammer = new hammer(IDHandler.basic.hammerID);
+
+    //Advanced atomics
+    //Liquids
+    public static Block plasma = new plasma(configHandler.plasmaID);
+    public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
+    public static Block oil = new oil(configHandler.oilID);
+    //Atomics
+    //public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
+
+    //Machines
+    //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
+    public static Block energiser = new energiser(configHandler.energiserID, null);
+    public static Item energisingRod = new energisingRod(IDHandler.advMachines.energisingRodID);
+    public static Block charger = new charger(IDHandler.advMachines.chargerID, null);
+    //Items
+    //Tools
+    public static Item plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
+    public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
+
+    //Power System
+    public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
+    public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null,
+            false, ContectedTexture);
+    public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
+    public static Block plug = new plug(configHandler.plugID, null);
+    public static Block generator = new generator(configHandler.generatorID, null);
+    public static Block matterGen = new matterGen(configHandler.matterGenID, null);
+    public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
+    public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
+    public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
+    public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
+    public static Block earther = new earther(IDHandler.powerGrid.eartherID, null);
+    public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
+    public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
+    public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
+
+    //Random Blocks
+    public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
+
+    //Ore Proccessing -- WIP
+    public static BlockContainer crusher = new crusher(configHandler.crusherID, null);
+    public static BlockContainer liquidiser = new liquidiser(configHandler.liquidizerID, null);
+    public static BlockContainer electrolisisCore = new electrolisisCore(configHandler.electrolysisCoreID,
+            null);
+    public static Block electrolChamber = new electrolChamber(configHandler.electrolChamberID,
+            null, false, ContectedTexture);
+    public static BlockContainer seperator = new seporator(configHandler.seperatorID, null);
+    public static BlockContainer smeltery = new smeltory(configHandler.smelteryID, null);
+    public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
+    public static Item dusts = new dusts(IDHandler.oreProccessing.dustsID);
+    public static Item node = new node(IDHandler.oreProccessing.nodeID);
+    public static Block sulpuricAcid = new sulphuricAcid(configHandler.sulphuricAcidID);
+    public static Block nettedBlock = new nettedBlock(IDHandler.oreProccessing.nettedBlockID, null);
+    public static Item net = new net(IDHandler.oreProccessing.netID);
+
+    //Random items for crafting
+    public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
+    public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
+    public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
+    public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
+    public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
+    public static Item endoInsulator = new endoInsulator(IDHandler.randomStuff.endoInsulatorID);
+    public static Block lightSource = new lightSource(IDHandler.randomStuff.lightSourceID, null);
+    //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
+    /*
+    //Robots
+    //Parts
+    public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
+    public static Item wire = new wire(IDHandler.robotics.wireID);
+    public static Item servo = new servo(IDHandler.robotics.servoID);
+    public static Item artMuscle = new artMuscle(IDHandler.robotics.artMuscleID);
+    public static Item carbonBone = new carbonBone(IDHandler.robotics.carbonBoneID);
+    //=====================Adv. Parts================================
+    public static Item microController = new microCont(IDHandler.robotics.microContID);
+    public static Item upgrade = new upgrade(IDHandler.robotics.upgradeID);
+    public static Item silChip = new silChip(IDHandler.robotics.silChipID);
+    public static Item ChipDup = new chipDup(IDHandler.robotics.chipDub);
+    //===============================================================
+    public static Item bionicArm = new bionicArm(IDHandler.robotics.bionicArmID);
+    public static Item bionicChest = new bionicChest(IDHandler.robotics.bionicChestID);
+    public static Item bionicHead = new bionicHead(IDHandler.robotics.bionicHeadID);
+    public static Item bionicLeg = new bionicLeg(IDHandler.robotics.bionicLegID);
+    //====================Machines!==================================
+    public static Block soldering = new soldering(IDHandler.robotics.machines.solderingID, null);
+    public static Block partAssemb = new partAssemb(IDHandler.robotics.machines.partAssembID, null);
+    */
+    /*
+     * ===============================================================================================================
+     * ===============================================================================================================
+     * 										Config (In game Stuff)
+     * ===============================================================================================================
+     * ===============================================================================================================
+     */
+    
+    long startTime;
+    
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+    	startTime = System.currentTimeMillis();
+    	
+        File configFile = new File("config/Electrolysm/Electrolysm.cfg");
+        configHandler.init(configFile);
+        VersionCheck.check();
+        NewsCheck.check();
+        BetaHandler.beta();
+        ResearchHandler.downloadOnlineData();
+        ResearchHandler.getStoredResearch();
+    }
+
+    @EventHandler
+    public void loadConfiguration(FMLPreInitializationEvent evt)
+    {
+        Crafting.addCrafting();
+        RegisterBlock.register();
+        Names.addName();
+        Register.addAchievementLocalizations();
+        Register.addOreDictionary();
+        TileEntityMappingHandler.addMappings();
+        GameRegistry.addBiome(diseasedBiome);
+        EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
+                                         "Zombie Scientist", 2, this, 80, 3, true);
+        //EntityRegistry.registerModEntity(VillagerScientist.class,
+        //		"Villager Scientist", 3, this, 500, 80, true);
+        TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+        NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
         
-        //Ore Proccessing -- WIP
-        public static BlockContainer crusher = new crusher(configHandler.crusherID, null);
-        public static BlockContainer liquidiser = new liquidiser(configHandler.liquidizerID, null);
-        public static BlockContainer electrolisisCore = new electrolisisCore(configHandler.electrolysisCoreID,
-        		null); 
-        public static Block electrolChamber = new electrolChamber(configHandler.electrolChamberID,
-        		null, false, ContectedTexture);
-        public static BlockContainer seperator = new seporator(configHandler.seperatorID, null);
-        public static BlockContainer smeltery = new smeltory(configHandler.smelteryID, null);
-        public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
-        public static Item dusts = new dusts(IDHandler.oreProccessing.dustsID);
-        public static Item node = new node(IDHandler.oreProccessing.nodeID);
-        public static Block sulpuricAcid = new sulphuricAcid(configHandler.sulphuricAcidID);
         
-        //Random items for crafting
-        public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
-        public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
-        public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
-        public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
-        public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
-        public static Item endoInsulator = new endoInsulator(IDHandler.randomStuff.endoInsulatorID);
-        public static Block lightSource = new lightSource(IDHandler.randomStuff.lightSourceID, null);
-        //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
-        /*
-		//Robots	
-        //Parts
-        public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
-        public static Item wire = new wire(IDHandler.robotics.wireID);
-        public static Item servo = new servo(IDHandler.robotics.servoID);
-        public static Item artMuscle = new artMuscle(IDHandler.robotics.artMuscleID);
-        public static Item carbonBone = new carbonBone(IDHandler.robotics.carbonBoneID);
-        //=====================Adv. Parts================================
-        public static Item microController = new microCont(IDHandler.robotics.microContID);
-        public static Item upgrade = new upgrade(IDHandler.robotics.upgradeID);
-        public static Item silChip = new silChip(IDHandler.robotics.silChipID);
-        public static Item ChipDup = new chipDup(IDHandler.robotics.chipDub);
-        //===============================================================
-        public static Item bionicArm = new bionicArm(IDHandler.robotics.bionicArmID);
-        public static Item bionicChest = new bionicChest(IDHandler.robotics.bionicChestID);
-        public static Item bionicHead = new bionicHead(IDHandler.robotics.bionicHeadID);
-        public static Item bionicLeg = new bionicLeg(IDHandler.robotics.bionicLegID);
-        //====================Machines!==================================
-        public static Block soldering = new soldering(IDHandler.robotics.machines.solderingID, null);
-        public static Block partAssemb = new partAssemb(IDHandler.robotics.machines.partAssembID, null);
-		*/
-/* 
- * ===============================================================================================================
- * ===============================================================================================================
- * 										Config (In game Stuff)
- * ===============================================================================================================
- * ===============================================================================================================
- */
-        @EventHandler
-        public void preInit(FMLPreInitializationEvent event) 
-        {
-        	File configFile = new File("config/Electrolysm/Electrolysm.cfg");
-        	configHandler.init(configFile);
-      	  
-       	 	VersionCheck.check();
-       	 	NewsCheck.check();
-			BetaHandler.beta();
-			ResearchHandler.downloadOnlineData();
-			ResearchHandler.getStoredResearch();
-        }
-        
-		@EventHandler
-		public void loadConfiguration(FMLPreInitializationEvent evt){
-	    
-			Crafting.addCrafting(); 
-			RegisterBlock.register();
-			Names.addName();
-			Register.addAchievementLocalizations();
-			Register.addOreDictionary();
-            TileEntityMappingHandler.addMappings();
-	   		GameRegistry.addBiome(diseasedBiome);
-        	EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
-        			"Zombie Scientist", 2, this, 80, 3, true);
-        	//EntityRegistry.registerModEntity(VillagerScientist.class,
-        	//		"Villager Scientist", 3, this, 500, 80, true);
-        	TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
-        
-    	    NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
-		}
-		
-		@SideOnly(Side.CLIENT)
-		@EventHandler
-	    public void load(FMLInitializationEvent event) {
-	        ClientProxy ClientProxy = new ClientProxy();
-	        ClientProxy.registerRenderThings();
-		} 
-		
-		@ServerStarting
-		public void serverLoad(FMLServerStartingEvent event)
-		{
-			//event.registerServerCommand(new UpdateResearch());
-			//event.registerServerCommand(new CommandDate());
-			event.registerServerCommand(new CommandStardate());
-			ResearchHandler.downloadOnlineData();
-			ResearchHandler.getStoredResearch();
-		}
+        long duration = System.currentTimeMillis() - startTime;
+        System.out.println("[Electrolysm] Electrolysm Started in " + duration + "ms");
+    }
+
+    @SideOnly(Side.CLIENT)
+    @EventHandler
+    public void load(FMLInitializationEvent event)
+    {
+        ClientProxy ClientProxy = new ClientProxy();
+        ClientProxy.registerRenderThings();
+    }
+
+    @ServerStarting
+    public void serverLoad(FMLServerStartingEvent event)
+    {
+        //event.registerServerCommand(new UpdateResearch());
+        //event.registerServerCommand(new CommandDate());
+        event.registerServerCommand(new CommandStardate());
+        ResearchHandler.downloadOnlineData();
+        ResearchHandler.getStoredResearch();
+    }
 }
-
- 				
-	

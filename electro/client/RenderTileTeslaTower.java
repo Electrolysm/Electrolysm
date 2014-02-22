@@ -10,17 +10,17 @@ import org.lwjgl.opengl.GL11;
 import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 
-public class RenderTileTeslaTower extends TileEntitySpecialRenderer {
+public class RenderTileTeslaTower extends TileEntitySpecialRenderer
+{
+    @Override
+    public void renderTileEntityAt(TileEntity te, double x, double y,
+                                   double z, float f)
+    {
+        this.renderTileEntityTeslaBeam((TileEntityTeslaTower)te, x, y, z, f);
+    }
 
-	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y,
-			double z, float f) 
-	{
-		this.renderTileEntityTeslaBeam((TileEntityTeslaTower)te, x, y, z, f);
-	}
-	
-	public void renderTileEntityTeslaBeam(TileEntityTeslaTower te, double x, double y, double z,
-			float par8)
+    public void renderTileEntityTeslaBeam(TileEntityTeslaTower te, double x, double y, double z,
+                                          float par8)
     {
         float f1 = te.func_82125_v_();
 
@@ -112,5 +112,4 @@ public class RenderTileTeslaTower extends TileEntitySpecialRenderer {
             GL11.glDepthMask(true);
         }
     }
-
 }

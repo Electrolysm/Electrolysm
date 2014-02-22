@@ -11,51 +11,57 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class workBench extends BlockContainer {
+public class workBench extends BlockContainer
+{
+    public workBench(int id, Material mat)
+    {
+        super(id, Material.iron);
+        // TODO Auto-generated constructor stub
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("workBench");
+        this.setHardness(4);
+    }
 
-	
-	public workBench(int id, Material mat) {
-		super(id, Material.iron);
-		// TODO Auto-generated constructor stub
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName("workBench");
-		this.setHardness(4);
-	}
-    
-    	@Override
-    	@SideOnly(Side.CLIENT)
-        public void registerIcons(IconRegister par1IconRegister)
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + "ItemWorkBench");
+    }
+
+    public int getRenderType()
+    {
+        return -1;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    {
+        if (player.isSneaking())
         {
-            this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + "ItemWorkBench");
+            return false;
         }
-    	
-		public int getRenderType() {
-	        	return -1;	
-		}
+        else
+        {
+            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            return true;
+        }
+    }
 
-		@Override
-		public boolean isOpaqueCube() {
-				return false;
-		}
-
-		public boolean renderAsNormalBlock() {
-	        return false;
-		}
-		
-		public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-		{
-			if(player.isSneaking())
-			{
-				return false;
-			}else{
-	            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
-	            return true;
-			}
-		}
-
-		@Override
-		public TileEntity createNewTileEntity(World world) {
-			// TODO Auto-generated method stub
-			return new TileEntityWorkBench();
-		}
+    @Override
+    public TileEntity createNewTileEntity(World world)
+    {
+        // TODO Auto-generated method stub
+        return new TileEntityWorkBench();
+    }
 }

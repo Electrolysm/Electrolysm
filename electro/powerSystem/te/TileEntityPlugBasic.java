@@ -10,5 +10,4 @@ import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 
 public class TileEntityPlugBasic extends TileEntityPlug
 {
-
 }

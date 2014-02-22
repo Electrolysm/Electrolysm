@@ -10,17 +10,15 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 
 public class ContainerResearchDesk extends Container
 {
-	private TileEntityResearchDesk entity;
+    private TileEntityResearchDesk entity;
 
-	public ContainerResearchDesk(TileEntityResearchDesk entity, InventoryPlayer inventory)
-	{
-		this.entity = entity;
-
-		this.addSlotToContainer(new Slot(entity, 0, 152, 6)); //top right
-		this.addSlotToContainer(new Slot(entity, 1, 152, 116)); //bottom right
-		this.addSlotToContainer(new Slot(entity, 2, 9, 6)); //top left (CARD)
-
-	    int var3;
+    public ContainerResearchDesk(TileEntityResearchDesk entity, InventoryPlayer inventory)
+    {
+        this.entity = entity;
+        this.addSlotToContainer(new Slot(entity, 0, 152, 6)); //top right
+        this.addSlotToContainer(new Slot(entity, 1, 152, 116)); //bottom right
+        this.addSlotToContainer(new Slot(entity, 2, 9, 6)); //top left (CARD)
+        int var3;
 
         /*for (var3 = 0; var3 < 3; ++var3)
         {
@@ -33,33 +31,33 @@ public class ContainerResearchDesk extends Container
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-        	//hotbar
+            //hotbar
             this.addSlotToContainer(new Slot(inventory, var3, 8 + var3 * 18, 142));
         }
-	}
+    }
 
-	@Override
-	public boolean canInteractWith(EntityPlayer player) 
-	{
-		return entity.isUseableByPlayer(player);
-	}
+    @Override
+    public boolean canInteractWith(EntityPlayer player)
+    {
+        return entity.isUseableByPlayer(player);
+    }
 
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int par2)
-	{
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int par2)
+    {
         return null;
-	}
-	
-	 public void onContainerClosed(EntityPlayer par1EntityPlayer)
-	    {
-	        InventoryPlayer inventoryplayer = par1EntityPlayer.inventory;
+    }
 
-	        if (inventoryplayer.getItemStack() != null)
-	        {
-	            par1EntityPlayer.dropPlayerItem(inventoryplayer.getItemStack());
-	            inventoryplayer.setItemStack((ItemStack)null);
-	        }
-	        
-	        this.entity.isOpen = false;
-	    }
+    public void onContainerClosed(EntityPlayer par1EntityPlayer)
+    {
+        InventoryPlayer inventoryplayer = par1EntityPlayer.inventory;
+
+        if (inventoryplayer.getItemStack() != null)
+        {
+            par1EntityPlayer.dropPlayerItem(inventoryplayer.getItemStack());
+            inventoryplayer.setItemStack((ItemStack)null);
+        }
+
+        this.entity.isOpen = false;
+    }
 }

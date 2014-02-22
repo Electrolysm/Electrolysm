@@ -10,168 +10,185 @@ import net.minecraft.tileentity.TileEntity;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.research.Research;
 
-public class TileEntityResearchDesk extends TileEntity implements IInventory {
+public class TileEntityResearchDesk extends TileEntity implements IInventory
+{
+    private ItemStack[] inventory;
+    public boolean isOpen;
 
-	private ItemStack[] inventory;
-	public boolean isOpen;
-	
-	public TileEntityResearchDesk() {
-		this.inventory = new ItemStack[3];
-	}
+    public TileEntityResearchDesk()
+    {
+        this.inventory = new ItemStack[3];
+    }
 
-	@Override
-	public int getSizeInventory() 
-	{
-		return inventory.length;
-	}
+    @Override
+    public int getSizeInventory()
+    {
+        return inventory.length;
+    }
 
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return inventory[slot];
-	}
-	
-	@Override
-	public ItemStack decrStackSize(int slot, int amount) {
-		ItemStack stack = getStackInSlot(slot);
+    @Override
+    public ItemStack getStackInSlot(int slot)
+    {
+        return inventory[slot];
+    }
 
-		if (stack != null) {
-			if (stack.stackSize <= amount) {
-				setInventorySlotContents(slot, null);
-			} else {
-				stack = stack.splitStack(amount);
-				if (stack.stackSize == 0) {
-					setInventorySlotContents(slot, null);
-				}
-			}
-		}
+    @Override
+    public ItemStack decrStackSize(int slot, int amount)
+    {
+        ItemStack stack = getStackInSlot(slot);
 
-		return stack;
-	}
+        if (stack != null)
+        {
+            if (stack.stackSize <= amount)
+            {
+                setInventorySlotContents(slot, null);
+            }
+            else
+            {
+                stack = stack.splitStack(amount);
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		ItemStack stack = getStackInSlot(slot);
+                if (stack.stackSize == 0)
+                {
+                    setInventorySlotContents(slot, null);
+                }
+            }
+        }
 
-		if (stack != null) {
-			setInventorySlotContents(slot, null);
-		}
+        return stack;
+    }
 
-		return stack;
-	}
+    @Override
+    public ItemStack getStackInSlotOnClosing(int slot)
+    {
+        ItemStack stack = getStackInSlot(slot);
 
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		// TODO Auto-generated method stub
-		inventory[slot] = stack;
+        if (stack != null)
+        {
+            setInventorySlotContents(slot, null);
+        }
 
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
-			stack.stackSize = this.getInventoryStackLimit();
-		}
-	}
+        return stack;
+    }
 
-	@Override
-	public String getInvName() {
-		// TODO Auto-generated method stub
-		return "Research Desk";
-	}
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack stack)
+    {
+        // TODO Auto-generated method stub
+        inventory[slot] = stack;
 
-	@Override
-	public boolean isInvNameLocalized() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        {
+            stack.stackSize = this.getInventoryStackLimit();
+        }
+    }
 
-	@Override
-	public int getInventoryStackLimit() {
-		// TODO Auto-generated method stub
-		return 64;
-	}
+    @Override
+    public String getInvName()
+    {
+        // TODO Auto-generated method stub
+        return "Research Desk";
+    }
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		// TODO Auto-generated method stub
-		return true;
-	}
+    @Override
+    public boolean isInvNameLocalized()
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	@Override
-	public void openChest() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public int getInventoryStackLimit()
+    {
+        // TODO Auto-generated method stub
+        return 64;
+    }
 
-	@Override
-	public void closeChest() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityplayer)
+    {
+        // TODO Auto-generated method stub
+        return true;
+    }
 
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
-	@Override
-    public void updateEntity() 
-	{
-		int deskID = electrolysmCore.desk.blockID;
-		int desksClose = 0;
-		ItemStack inStack = getStackInSlot(0);
-		ItemStack card = getStackInSlot(2);
-		ItemStack output = getStackInSlot(1);
-		ItemStack result = Research.research().getResearch(inStack, card);
+    @Override
+    public void openChest()
+    {
+        // TODO Auto-generated method stub
+    }
 
-		Random rand = new Random();
+    @Override
+    public void closeChest()
+    {
+        // TODO Auto-generated method stub
+    }
 
-		for(int x = -2; x <= 2; x++)
-		{
-			for(int z = -2; z <= 2; z++)
-			{
-				for(int y = 0; y <= 1; y++)
-				{
-					if(worldObj.getBlockId(xCoord + x, yCoord + y, zCoord + z) == deskID)
-					{
-						desksClose = desksClose + 1;
-					}
-				}
-			}
-		}
+    @Override
+    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    {
+        // TODO Auto-generated method stub
+        return true;
+    }
 
-		if(card != null)
-		{
-			if(inStack != null)
-			{
-				if(result != null)
-				{
-					if(output == null)
-					{
-						if(inStack.stackSize >= 10)
-						{
-							if(desksClose <= Research.cardToDesk(card.getItemDamage()))
-							{
-								decrStackSize(0, rand.nextInt(10));
-								if(rand.nextInt(card.getItemDamage() + 1) == 1)
-								{
-									setInventorySlotContents(1, result);
-								}
-								onInventoryChanged();
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+    @Override
+    public void updateEntity()
+    {
+        int deskID = electrolysmCore.desk.blockID;
+        int desksClose = 0;
+        ItemStack inStack = getStackInSlot(0);
+        ItemStack card = getStackInSlot(2);
+        ItemStack output = getStackInSlot(1);
+        ItemStack result = Research.research().getResearch(inStack, card);
+        Random rand = new Random();
+
+        for (int x = -2; x <= 2; x++)
+        {
+            for (int z = -2; z <= 2; z++)
+            {
+                for (int y = 0; y <= 1; y++)
+                {
+                    if (worldObj.getBlockId(xCoord + x, yCoord + y, zCoord + z) == deskID)
+                    {
+                        desksClose = desksClose + 1;
+                    }
+                }
+            }
+        }
+
+        if (card != null)
+        {
+            if (inStack != null)
+            {
+                if (result != null)
+                {
+                    if (output == null)
+                    {
+                        if (inStack.stackSize >= 10)
+                        {
+                            if (desksClose <= Research.cardToDesk(card.getItemDamage()))
+                            {
+                                decrStackSize(0, rand.nextInt(10));
+
+                                if (rand.nextInt(card.getItemDamage() + 1) == 1)
+                                {
+                                    setInventorySlotContents(1, result);
+                                }
+
+                                onInventoryChanged();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound tag)
     {
         super.readFromNBT(tag);
-
         int itemID = tag.getInteger("itemID");
         int stackSize = tag.getInteger("stackSize");
         int itemDamage = tag.getInteger("itemMeta");
-
         ItemStack stack = new ItemStack(itemID, stackSize, itemDamage);
         this.setInventorySlotContents(2, stack);
         this.onInventoryChanged();
@@ -185,7 +202,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
     {
         super.writeToNBT(tag);
 
-        if(this.getStackInSlot(2) != null)
+        if (this.getStackInSlot(2) != null)
         {
             tag.setInteger("itemID", this.getStackInSlot(2).itemID);
             tag.setInteger("stackSize", this.getStackInSlot(2).stackSize);
@@ -193,4 +210,3 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory {
         }
     }
 }
-

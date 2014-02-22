@@ -6,17 +6,14 @@ import net.minecraft.util.Icon;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-public class ModFluidPlasma extends Fluid {
-
-	 public ModFluidPlasma() {
-         super("ModFluidPlasma");
-         this.setDensity(0);
-         this.setViscosity(0);
-         this.isGaseous = true;
-         
-         FluidRegistry.registerFluid(this);
-         
-         
-         
-  }
+public class ModFluidPlasma extends Fluid
+{
+    public ModFluidPlasma()
+    {
+        super("ModFluidPlasma");
+        this.setDensity(0);
+        this.setViscosity(0);
+        this.isGaseous = true;
+        FluidRegistry.registerFluid(this);
+    }
 }

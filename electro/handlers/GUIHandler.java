@@ -29,91 +29,101 @@ import assets.electrolysm.electro.powerSystem.generators.container.ContainerGene
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import cpw.mods.fml.common.network.IGuiHandler;
 
-public class GUIHandler implements IGuiHandler{
+public class GUIHandler implements IGuiHandler
+{
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        TileEntity entity = world.getBlockTileEntity(x, y, z);
 
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		
-		TileEntity entity = world.getBlockTileEntity(x, y, z);
-		
-		if(entity instanceof TileEntityResearchDesk)
-		{
-			return new ContainerResearchDesk((TileEntityResearchDesk)entity, player.inventory);
-		}
-		
-		if(entity instanceof TileEntityEnergiser)
-		{
-			return new ContainerEnergiser(player.inventory, (TileEntityEnergiser)entity);
-		}
-		
-		if(entity instanceof TileEntityInjector)
-		{
-			return new ContainerInjector(player.inventory, (TileEntityInjector)entity);
-		}
-		if(entity instanceof TileEntityElectrolisisCore)
-		{
-			return new ContainerElectrolysis((TileEntityElectrolisisCore)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityPort)
-		{
-			return new ContainerPort((TileEntityPort)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityGenerator)
-		{
-			return new ContainerGenerator((TileEntityGenerator)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityWorkBench)
-		{
-			return new ContainerWorkBench((TileEntityWorkBench)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityCrusher)
-		{
-			return new ContainerCrusher(player.inventory, (TileEntityCrusher)entity);
-		}
+        if (entity instanceof TileEntityResearchDesk)
+        {
+            return new ContainerResearchDesk((TileEntityResearchDesk)entity, player.inventory);
+        }
 
-		return null;
-	}
+        if (entity instanceof TileEntityEnergiser)
+        {
+            return new ContainerEnergiser(player.inventory, (TileEntityEnergiser)entity);
+        }
 
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		
-		TileEntity entity = world.getBlockTileEntity(x, y, z);
-		
-		if(entity instanceof TileEntityResearchDesk)
-		{
-			return new GUIResearchDesk((TileEntityResearchDesk)entity, player.inventory);
-		}
-		
-		if(entity instanceof TileEntityEnergiser)
-		{
-			return new GUIEnergiser(player.inventory, (TileEntityEnergiser)entity);
-		}
-		
-		if(entity instanceof TileEntityInjector)
-		{
-			return new GUIInjector(player.inventory, (TileEntityInjector)entity);
-		}
-		if(entity instanceof TileEntityElectrolisisCore)
-		{
-			return new GUIElectrolysisCore((TileEntityElectrolisisCore)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityPort)
-		{
-			return new GUIPort((TileEntityPort)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityGenerator)
-		{
-			return new GUIGenerator((TileEntityGenerator)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityWorkBench)
-		{
-			return new GUIWorkBench((TileEntityWorkBench)entity, player.inventory);
-		}
-		if(entity instanceof TileEntityCrusher)
-		{
-			return new GUICrusher(player.inventory, (TileEntityCrusher)entity);
-		}
-		return null;
-	}
+        if (entity instanceof TileEntityInjector)
+        {
+            return new ContainerInjector(player.inventory, (TileEntityInjector)entity);
+        }
 
+        if (entity instanceof TileEntityElectrolisisCore)
+        {
+            return new ContainerElectrolysis((TileEntityElectrolisisCore)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityPort)
+        {
+            return new ContainerPort((TileEntityPort)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityGenerator)
+        {
+            return new ContainerGenerator((TileEntityGenerator)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityWorkBench)
+        {
+            return new ContainerWorkBench((TileEntityWorkBench)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityCrusher)
+        {
+            return new ContainerCrusher(player.inventory, (TileEntityCrusher)entity);
+        }
+
+        return null;
+    }
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        TileEntity entity = world.getBlockTileEntity(x, y, z);
+
+        if (entity instanceof TileEntityResearchDesk)
+        {
+            return new GUIResearchDesk((TileEntityResearchDesk)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityEnergiser)
+        {
+            return new GUIEnergiser(player.inventory, (TileEntityEnergiser)entity);
+        }
+
+        if (entity instanceof TileEntityInjector)
+        {
+            return new GUIInjector(player.inventory, (TileEntityInjector)entity);
+        }
+
+        if (entity instanceof TileEntityElectrolisisCore)
+        {
+            return new GUIElectrolysisCore((TileEntityElectrolisisCore)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityPort)
+        {
+            return new GUIPort((TileEntityPort)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityGenerator)
+        {
+            return new GUIGenerator((TileEntityGenerator)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityWorkBench)
+        {
+            return new GUIWorkBench((TileEntityWorkBench)entity, player.inventory);
+        }
+
+        if (entity instanceof TileEntityCrusher)
+        {
+            return new GUICrusher(player.inventory, (TileEntityCrusher)entity);
+        }
+
+        return null;
+    }
 }

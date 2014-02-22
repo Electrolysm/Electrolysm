@@ -4,11 +4,6 @@
 // Keep in mind that you still need to fill in some blanks
 // - ZeuX
 
-
-
-
-
-
 package assets.electrolysm.electro.client;
 
 import net.minecraft.client.model.ModelBase;
@@ -17,80 +12,78 @@ import net.minecraft.entity.Entity;
 
 public class ModelQuantumComputer extends ModelBase
 {
-  //fields
+    //fields
     ModelRenderer Processer;
     ModelRenderer hold1;
     ModelRenderer hold2;
     ModelRenderer hold3;
     ModelRenderer hold4;
     ModelRenderer hold5;
-  
-  public ModelQuantumComputer()
-  {
-    textureWidth = 256;
-    textureHeight = 256;
-    
-      Processer = new ModelRenderer(this, 0, 17);
-      Processer.addBox(0F, 0F, 0F, 2, 4, 1);
-      Processer.setRotationPoint(-1F, 20F, 0F);
-      Processer.setTextureSize(256, 256);
-      Processer.mirror = true;
-      setRotation(Processer, 0F, 0F, 0F);
-      hold1 = new ModelRenderer(this, 0, 35);
-      hold1.addBox(0F, 0F, 0F, 4, 5, 3);
-      hold1.setRotationPoint(-2F, 15F, -1F);
-      hold1.setTextureSize(256, 256);
-      hold1.mirror = true;
-      setRotation(hold1, 0F, 0F, 0F);
-      hold2 = new ModelRenderer(this, 0, 57);
-      hold2.addBox(0F, 0F, 0F, 6, 9, 5);
-      hold2.setRotationPoint(-3F, 6F, -2F);
-      hold2.setTextureSize(256, 256);
-      hold2.mirror = true;
-      setRotation(hold2, 0F, 0F, 0F);
-      hold3 = new ModelRenderer(this, 0, 80);
-      hold3.addBox(0F, 0F, 0F, 8, 7, 7);
-      hold3.setRotationPoint(-4F, -1F, -3F);
-      hold3.setTextureSize(256, 256);
-      hold3.mirror = true;
-      setRotation(hold3, 0F, 0F, 0F);
-      hold4 = new ModelRenderer(this, 0, 118);
-      hold4.addBox(0F, 0F, 0F, 10, 13, 9);
-      hold4.setRotationPoint(-5F, -14F, -4F);
-      hold4.setTextureSize(256, 256);
-      hold4.mirror = true;
-      setRotation(hold4, 0F, 0F, 0F);
-      hold5 = new ModelRenderer(this, 0, 155);
-      hold5.addBox(0F, 0F, 0F, 16, 10, 16);
-      hold5.setRotationPoint(-8F, -24F, -8F);
-      hold5.setTextureSize(256, 256);
-      hold5.mirror = true;
-      setRotation(hold5, 0F, 0F, 0F);
-  }
-  
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-  {
-    super.render(entity, f, f1, f2, f3, f4, f5);
-    setRotationAngles(f, f1, f2, f3, f4, f5);
-    Processer.render(f5);
-    hold1.render(f5);
-    hold2.render(f5);
-    hold3.render(f5);
-    hold4.render(f5);
-    hold5.render(f5);
-  }
-  
-  private void setRotation(ModelRenderer model, float x, float y, float z)
-  {
-    model.rotateAngleX = x;
-    model.rotateAngleY = y;
-    model.rotateAngleZ = z;
-  }
-  
-  public void setRotationAngles(float f,
-		  float f1, float f2, float f3, float f4, float f5)
-  {
-    super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
-  }
 
+    public ModelQuantumComputer()
+    {
+        textureWidth = 256;
+        textureHeight = 256;
+        Processer = new ModelRenderer(this, 0, 17);
+        Processer.addBox(0F, 0F, 0F, 2, 4, 1);
+        Processer.setRotationPoint(-1F, 20F, 0F);
+        Processer.setTextureSize(256, 256);
+        Processer.mirror = true;
+        setRotation(Processer, 0F, 0F, 0F);
+        hold1 = new ModelRenderer(this, 0, 35);
+        hold1.addBox(0F, 0F, 0F, 4, 5, 3);
+        hold1.setRotationPoint(-2F, 15F, -1F);
+        hold1.setTextureSize(256, 256);
+        hold1.mirror = true;
+        setRotation(hold1, 0F, 0F, 0F);
+        hold2 = new ModelRenderer(this, 0, 57);
+        hold2.addBox(0F, 0F, 0F, 6, 9, 5);
+        hold2.setRotationPoint(-3F, 6F, -2F);
+        hold2.setTextureSize(256, 256);
+        hold2.mirror = true;
+        setRotation(hold2, 0F, 0F, 0F);
+        hold3 = new ModelRenderer(this, 0, 80);
+        hold3.addBox(0F, 0F, 0F, 8, 7, 7);
+        hold3.setRotationPoint(-4F, -1F, -3F);
+        hold3.setTextureSize(256, 256);
+        hold3.mirror = true;
+        setRotation(hold3, 0F, 0F, 0F);
+        hold4 = new ModelRenderer(this, 0, 118);
+        hold4.addBox(0F, 0F, 0F, 10, 13, 9);
+        hold4.setRotationPoint(-5F, -14F, -4F);
+        hold4.setTextureSize(256, 256);
+        hold4.mirror = true;
+        setRotation(hold4, 0F, 0F, 0F);
+        hold5 = new ModelRenderer(this, 0, 155);
+        hold5.addBox(0F, 0F, 0F, 16, 10, 16);
+        hold5.setRotationPoint(-8F, -24F, -8F);
+        hold5.setTextureSize(256, 256);
+        hold5.mirror = true;
+        setRotation(hold5, 0F, 0F, 0F);
+    }
+
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        super.render(entity, f, f1, f2, f3, f4, f5);
+        setRotationAngles(f, f1, f2, f3, f4, f5);
+        Processer.render(f5);
+        hold1.render(f5);
+        hold2.render(f5);
+        hold3.render(f5);
+        hold4.render(f5);
+        hold5.render(f5);
+    }
+
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+
+    public void setRotationAngles(float f,
+                                  float f1, float f2, float f3, float f4, float f5)
+    {
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
+    }
 }

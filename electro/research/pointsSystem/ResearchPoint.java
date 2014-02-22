@@ -11,14 +11,13 @@ import net.minecraft.item.crafting.RecipesMapCloning;
 import net.minecraft.item.crafting.RecipesWeapons;
 import net.minecraftforge.oredict.RecipeSorter;
 
-public class ResearchPoint 
+public class ResearchPoint
 {
+    Item stack;
 
-	Item stack;
-	
-	static
-	{
-		Object x;
-		CraftingManager.getInstance().getRecipeList();
-	}
+    static
+    {
+        Object x;
+        CraftingManager.getInstance().getRecipeList();
+    }
 }

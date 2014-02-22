@@ -16,34 +16,33 @@ import net.minecraft.item.ItemTool;
 
 public class SlotResearchNote extends Slot
 {
+    public SlotResearchNote(IInventory inventory, int id, int x, int y)
+    {
+        super(inventory, id, x, y);
+    }
 
-	public SlotResearchNote(IInventory inventory, int id, int x, int y) 
-	{
-		super(inventory, id, x, y);
-	}
-	
-	public boolean isItemValid(ItemStack stack)
-	{
-		if(isStackResearchPaper(stack))
-		{
-			return true;
-		}
-		
-		return false;
-	}
-	
-	 public static boolean isStackResearchPaper(ItemStack stack)
-	    {
-	        if(stack == null)
-	        {
-	        	return false;
-	        }
-	        if(stack.itemID == electrolysmCore.researchPaper.itemID)
-	        {
-	        	return true;
-	        }
+    public boolean isItemValid(ItemStack stack)
+    {
+        if (isStackResearchPaper(stack))
+        {
+            return true;
+        }
 
-	        return false;
-	    }
+        return false;
+    }
 
+    public static boolean isStackResearchPaper(ItemStack stack)
+    {
+        if (stack == null)
+        {
+            return false;
+        }
+
+        if (stack.itemID == electrolysmCore.researchPaper.itemID)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

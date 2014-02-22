@@ -15,241 +15,264 @@ import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
 
 public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implements IInventory, IPullEnergy, IMeterable
 {
-	//GUI STUFF
-	
-	public int furnaceBurnTime = 0;
-	
-	public int currentItemBurnTime = furnaceBurnTime;
-	
-	public int heat = 0;
+    //GUI STUFF
 
-	public int furnaceCookTime = 5000;
+    public int furnaceBurnTime = 0;
 
-	public static boolean active = false;
-	
-	public static boolean powered = true;
+    public int currentItemBurnTime = furnaceBurnTime;
 
-	private ItemStack[] inventory;
+    public int heat = 0;
 
-	public TileEntityElectrolisisCore() {
-		this.inventory = new ItemStack[5];
-	}
+    public int furnaceCookTime = 5000;
 
-	@Override
-	public int getSizeInventory() {
-		return inventory.length;
-	}
+    public static boolean active = false;
 
-	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return inventory[slot];
-	}
+    public static boolean powered = true;
 
-	@Override
-	public ItemStack decrStackSize(int slot, int amount) {
-		ItemStack stack = getStackInSlot(slot);
+    private ItemStack[] inventory;
 
-		if (stack != null) {
-			if (stack.stackSize <= amount) {
-				setInventorySlotContents(slot, null);
-			} else {
-				stack = stack.splitStack(amount);
-				if (stack.stackSize == 0) {
-					setInventorySlotContents(slot, null);
-				}
-			}
-		}
+    public TileEntityElectrolisisCore()
+    {
+        this.inventory = new ItemStack[5];
+    }
 
-		return stack;
-	}
+    @Override
+    public int getSizeInventory()
+    {
+        return inventory.length;
+    }
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		ItemStack stack = getStackInSlot(slot);
+    @Override
+    public ItemStack getStackInSlot(int slot)
+    {
+        return inventory[slot];
+    }
 
-		if (stack != null) {
-			setInventorySlotContents(slot, null);
-		}
+    @Override
+    public ItemStack decrStackSize(int slot, int amount)
+    {
+        ItemStack stack = getStackInSlot(slot);
 
-		return stack;
-	}
+        if (stack != null)
+        {
+            if (stack.stackSize <= amount)
+            {
+                setInventorySlotContents(slot, null);
+            }
+            else
+            {
+                stack = stack.splitStack(amount);
 
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		inventory[slot] = stack;
+                if (stack.stackSize == 0)
+                {
+                    setInventorySlotContents(slot, null);
+                }
+            }
+        }
 
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
-			stack.stackSize = this.getInventoryStackLimit();
-		}
-	}
+        return stack;
+    }
 
-	@Override
-	public String getInvName() {
-		return "Electrolisis Chamber";
-	}
+    @Override
+    public ItemStack getStackInSlotOnClosing(int slot)
+    {
+        ItemStack stack = getStackInSlot(slot);
 
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
+        if (stack != null)
+        {
+            setInventorySlotContents(slot, null);
+        }
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-				this.zCoord) != this ? false : player.getDistanceSq(
-				(double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-				(double) this.zCoord + 0.5D) <= 64.0D;
-	}
+        return stack;
+    }
 
-	@Override
-	public void openChest() {
-	}
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack stack)
+    {
+        inventory[slot] = stack;
 
-	@Override
-	public void closeChest() {
-	}
-	
-	@Override
-	public void updateEntity() {
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        {
+            stack.stackSize = this.getInventoryStackLimit();
+        }
+    }
 
-		World world = worldObj;
-		active = powered;
+    @Override
+    public String getInvName()
+    {
+        return "Electrolisis Chamber";
+    }
 
-		boolean canwork = (powered && heat > 10);
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
+    }
 
-		boolean portSet = false;
-		
-		if (heat < 50)
-		{
-			heat = 100;
-		}
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player)
+    {
+        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
+                                                this.zCoord) != this ? false : player.getDistanceSq(
+                   (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
+                   (double) this.zCoord + 0.5D) <= 64.0D;
+    }
 
-		if (canwork && this.canWork(worldObj, xCoord, yCoord, zCoord)) 
-		{
-			furnaceCookTime = 5000 / heat;
+    @Override
+    public void openChest()
+    {
+    }
 
-			ItemStack input1 = getStackInSlot(0);
-			ItemStack input2 = getStackInSlot(1);
-			ItemStack output1 = getStackInSlot(2);
-			ItemStack result1;
-			ItemStack node1 = getStackInSlot(3);
-			ItemStack node2 = getStackInSlot(4);
-			
-			ItemStack node = new ItemStack(electrolysmCore.node, 1);
-			
-			if(node1 == node2 && node1 == node)
-			{
-				return;
-			}
-			if(node1 == null || node2 == null)
-			{
-				return;
-			}
-			if(input1 != null && input2 != null)
-			{
-				if(input1.isItemEqual(input2))
-				{
-					result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
-			    	worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+    @Override
+    public void closeChest()
+    {
+    }
 
-				}
-				else
-				{
-					return;
-				}
-			}
-			else
-			{
-				return;
-			}
-			
-			if (result1 != null) 
-			{
-				this.working = true;
-				if (furnaceBurnTime == furnaceCookTime)
-				{		
-					furnaceBurnTime = 0;
-					if (output1 == null) 
-					{
-						decrStackSize(0, 1);
-						decrStackSize(1, 1);
-						setInventorySlotContents(2, result1);
-						onInventoryChanged();
-					} 
-					else 
-					{
-						if (output1.isItemEqual(result1)) 
-						{
-							decrStackSize(0, 1);
-							decrStackSize(1, 1);
-							for(int i = 0; i < 4; i++)
-							{
-								output1.stackSize++;
-							}
-						}
-					}
-				} 
-				else 
-				{
-					furnaceBurnTime++;
-					if (output1 != null && !output1.isItemEqual(result1))
-					{
-						furnaceBurnTime = 0;
-					}
-				}
-			}
-			else
-			{
-				working = false;
-			}
-			if (output1 != null && output1.stackSize == 0) 
-			{
-				output1.stackSize = 1;
-			}
-		}
+    @Override
+    public void updateEntity()
+    {
+        World world = worldObj;
+        active = powered;
+        boolean canwork = (powered && heat > 10);
+        boolean portSet = false;
 
-		if (getStackInSlot(0) == null)
-		{
-			furnaceBurnTime = 0;
-		}
-		
-	}
+        if (heat < 50)
+        {
+            heat = 100;
+        }
 
-	@Override
-	public boolean isInvNameLocalized() 
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return false;
-	}
+        if (canwork && this.canWork(worldObj, xCoord, yCoord, zCoord))
+        {
+            furnaceCookTime = 5000 / heat;
+            ItemStack input1 = getStackInSlot(0);
+            ItemStack input2 = getStackInSlot(1);
+            ItemStack output1 = getStackInSlot(2);
+            ItemStack result1;
+            ItemStack node1 = getStackInSlot(3);
+            ItemStack node2 = getStackInSlot(4);
+            ItemStack node = new ItemStack(electrolysmCore.node, 1);
 
-	@Override
-	public float getPlugRecievingTeU(World world, int x, int y, int z) 
-	{
-		if(Loader.isModLoaded("Electrolysm"))
-		{
-			TileEntity teWorld = world.getBlockTileEntity(x, y, z);
-			if(teWorld instanceof TileEntityPlug)
-			{
-				TileEntityPlug te = (TileEntityPlug)teWorld;
-				return te.getRecievedTeUAfterResistance(world, x, y, z);
-			}
-		}
-		return 0;
-	}
+            if (node1 == node2 && node1 == node)
+            {
+                return;
+            }
 
-	@Override
-	public int getActivationEnergy() 
-	{
-		return 90;
-	}
+            if (node1 == null || node2 == null)
+            {
+                return;
+            }
 
-	@Override
-	public boolean isWorking() 
-	{
-		return working;
-	}
+            if (input1 != null && input2 != null)
+            {
+                if (input1.isItemEqual(input2))
+                {
+                    result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
+                    worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            if (result1 != null)
+            {
+                this.working = true;
+
+                if (furnaceBurnTime == furnaceCookTime)
+                {
+                    furnaceBurnTime = 0;
+
+                    if (output1 == null)
+                    {
+                        decrStackSize(0, 1);
+                        decrStackSize(1, 1);
+                        setInventorySlotContents(2, result1);
+                        onInventoryChanged();
+                    }
+                    else
+                    {
+                        if (output1.isItemEqual(result1))
+                        {
+                            decrStackSize(0, 1);
+                            decrStackSize(1, 1);
+
+                            for (int i = 0; i < 4; i++)
+                            {
+                                output1.stackSize++;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    furnaceBurnTime++;
+
+                    if (output1 != null && !output1.isItemEqual(result1))
+                    {
+                        furnaceBurnTime = 0;
+                    }
+                }
+            }
+            else
+            {
+                working = false;
+            }
+
+            if (output1 != null && output1.stackSize == 0)
+            {
+                output1.stackSize = 1;
+            }
+        }
+
+        if (getStackInSlot(0) == null)
+        {
+            furnaceBurnTime = 0;
+        }
+    }
+
+    @Override
+    public boolean isInvNameLocalized()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    {
+        return false;
+    }
+
+    @Override
+    public float getPlugRecievingTeU(World world, int x, int y, int z)
+    {
+        if (Loader.isModLoaded("Electrolysm"))
+        {
+            TileEntity teWorld = world.getBlockTileEntity(x, y, z);
+
+            if (teWorld instanceof TileEntityPlug)
+            {
+                TileEntityPlug te = (TileEntityPlug)teWorld;
+                return te.getRecievedTeUAfterResistance(world, x, y, z);
+            }
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int getActivationEnergy()
+    {
+        return 90;
+    }
+
+    @Override
+    public boolean isWorking()
+    {
+        return working;
+    }
 }

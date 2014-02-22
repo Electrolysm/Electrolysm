@@ -9,15 +9,13 @@ import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
 
 public class ContainerPort extends Container
 {
-	private TileEntityPort entity;
-	
-	public ContainerPort(TileEntityPort entity2, InventoryPlayer inventory)
-	{
-		this.entity = entity2;
-		
-		this.addSlotToContainer(new Slot(entity2, 0, 97, 45));
-		
-	    int var3;
+    private TileEntityPort entity;
+
+    public ContainerPort(TileEntityPort entity2, InventoryPlayer inventory)
+    {
+        this.entity = entity2;
+        this.addSlotToContainer(new Slot(entity2, 0, 97, 45));
+        int var3;
 
         for (var3 = 0; var3 < 3; ++var3)
         {
@@ -31,18 +29,17 @@ public class ContainerPort extends Container
         {
             this.addSlotToContainer(new Slot(inventory, var3, 8 + var3 * 18, 142));
         }
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) 
-	{
-		return entity.isUseableByPlayer(player);
-	}
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int index)
-    {
-       return null;
     }
 
+    @Override
+    public boolean canInteractWith(EntityPlayer player)
+    {
+        return entity.isUseableByPlayer(player);
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int index)
+    {
+        return null;
+    }
 }

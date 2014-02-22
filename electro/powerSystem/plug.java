@@ -15,48 +15,49 @@ import assets.electrolysm.electro.powerSystem.te.TileEntityPlugBasic;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class plug extends BlockContainer {
-
-	public plug(int id, Material mat) {
-		super(id, Material.iron);
-
-		this.setUnlocalizedName("plug");
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.blockHardness = 1.25F;
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
-		return new TileEntityPlugBasic();
-	}
-	
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6,
-    		float par7, float par8, float par9)
+public class plug extends BlockContainer
+{
+    public plug(int id, Material mat)
     {
-    	ItemStack meterStack = new ItemStack(electrolysmCore.energyMeter);
-    	TileEntityPlug te = (TileEntityPlug)world.getBlockTileEntity(x, y, z);
-    	
-    	if(player.isSneaking())
-    	{
-    		return false;
-    	}
-    	else
-    	{
-    		return false;
-    	}
+        super(id, Material.iron);
+        this.setUnlocalizedName("plug");
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.blockHardness = 1.25F;
     }
-    
+
+    @Override
+    public TileEntity createNewTileEntity(World world)
+    {
+        // TODO Auto-generated method stub
+        return new TileEntityPlugBasic();
+    }
+
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6,
+                                    float par7, float par8, float par9)
+    {
+        ItemStack meterStack = new ItemStack(electrolysmCore.energyMeter);
+        TileEntityPlug te = (TileEntityPlug)world.getBlockTileEntity(x, y, z);
+
+        if (player.isSneaking())
+        {
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return this.blockID;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister reg)
     {
-    	this.blockIcon = reg.registerIcon("electrolysm:" + "plug");
+        this.blockIcon = reg.registerIcon("electrolysm:" + "plug");
     }
 }

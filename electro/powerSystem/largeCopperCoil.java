@@ -4,22 +4,22 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.block.GlassBlockConnectedMeta;
 
-public class largeCopperCoil extends GlassBlockConnectedMeta {
-
+public class largeCopperCoil extends GlassBlockConnectedMeta
+{
     public largeCopperCoil(int par1, String location, boolean hasAlpha, String... textures)
     {
-	    super(par1, location, hasAlpha, textures);
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName("largeCopperCoil");
-		this.setHardness(3F);
-	}
-	
+        super(par1, location, hasAlpha, textures);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("largeCopperCoil");
+        this.setHardness(3F);
+    }
+
     @Override
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons(IconRegister par1IconRegister)
     {
         for (int i = 0; i < textures.length; i++)
         {
-        	this.folder = "copper";
+            this.folder = "copper";
             icons[i][0] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass");
             icons[i][1] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_1_d");
             icons[i][2] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_1_u");
@@ -38,5 +38,4 @@ public class largeCopperCoil extends GlassBlockConnectedMeta {
             icons[i][15] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_4");
         }
     }
-
 }

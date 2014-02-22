@@ -15,41 +15,44 @@ import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class crusher extends oreProcessMachineBase {
+public class crusher extends oreProcessMachineBase
+{
+    public crusher(int par1, Material par2Material)
+    {
+        super(par1, Material.iron);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("crusher");
+        this.setHardness(6.0F);
+    }
 
-	public crusher(int par1, Material par2Material) {
-		super(par1, Material.iron);
+    @Override
+    public TileEntity createNewTileEntity(World world)
+    {
+        // TODO Auto-generated method stub
+        return new TileEntityCrusher();
+    }
 
-	this.setCreativeTab(electrolysmCore.TabElectrolysm);
-	this.setUnlocalizedName("crusher");
-	this.setHardness(6.0F);
-	}
+    @SideOnly(Side.CLIENT)
+    public void registerIcon(IconRegister reg)
+    {
+        this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front");
+        this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World world) {
-		// TODO Auto-generated method stub
-		return new TileEntityCrusher();
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void registerIcon(IconRegister reg)
-	{
-		this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front");
-		this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
-	}
-
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-	{
-		if(player.isSneaking())
-		{
-			return false;
-		}else{
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    {
+        if (player.isSneaking())
+        {
+            return false;
+        }
+        else
+        {
             player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
             return true;
-		}
-	}
-	
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+        }
+    }
+
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
         int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
@@ -78,14 +81,14 @@ public class crusher extends oreProcessMachineBase {
             ((TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
         }
     }
-    
+
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4)
     {
         super.onBlockAdded(par1World, par2, par3, par4);
         this.setDefaultDirection(par1World, par2, par3, par4);
     }
-    
+
     private void setDefaultDirection(World par1World, int par2, int par3, int par4)
     {
         if (!par1World.isRemote)

@@ -17,37 +17,37 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class energiser extends BlockContainer{
+public class energiser extends BlockContainer
+{
+    public static String unlocalName = "energiser";;
+    public static String displayName = "Fluid Energiser";
+    public static TileEntity te;
 
-	public static String unlocalName = "energiser";;
-	public static String displayName = "Fluid Energiser";
-	public static TileEntity te;
-	
-	@SideOnly(Side.CLIENT)
-	public Icon machineFront;
-	@SideOnly(Side.CLIENT)
-	public Icon machineSide;
-	@SideOnly(Side.CLIENT)
-	public Icon machineTop;
-	
-	public energiser(int id, Material mat) {
-		super(id, Material.iron);
-		
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName(this.unlocalName);
-		this.setHardness(5.0F);
-	}
+    @SideOnly(Side.CLIENT)
+    public Icon machineFront;
+    @SideOnly(Side.CLIENT)
+    public Icon machineSide;
+    @SideOnly(Side.CLIENT)
+    public Icon machineTop;
 
-	@Override
-	public TileEntity createNewTileEntity(World world)
-	{
-		return new TileEntityEnergiser();
-	}
+    public energiser(int id, Material mat)
+    {
+        super(id, Material.iron);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName(this.unlocalName);
+        this.setHardness(5.0F);
+    }
 
-	public Icon getIcon(int par1, int par2)
+    @Override
+    public TileEntity createNewTileEntity(World world)
+    {
+        return new TileEntityEnergiser();
+    }
+
+    public Icon getIcon(int par1, int par2)
     {
         return par1 == 1 ? this.machineTop : (par1 == 0 ? this.machineTop :
-        	(par1 != par2 ? this.machineSide : this.machineFront));
+                                              (par1 != par2 ? this.machineSide : this.machineFront));
     }
 
     @SideOnly(Side.CLIENT)
@@ -58,45 +58,47 @@ public class energiser extends BlockContainer{
         this.machineFront = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_front");
         this.machineTop = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_top");
     }
-    
+
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving living, ItemStack stack)
-	{
-	        int l = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-	
-	        if (l == 0)
-		    {
-	            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
-	        }
-	        
-		    if (l == 1)
-	        {
-	            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
-	        }
-	
-		    if (l == 2)
-	        {
-	            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
-	        }
-	
-		    if (l == 3)
-		    {
-	           world.setBlockMetadataWithNotify(x, y, z, 4, 2);
-		    }
-	 }
-    
-	public static String getDisplayName() 
-	{
-		return displayName;
-	}
-	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-	{
-		if(player.isSneaking())
-		{
-			return false;
-		}else{
+    {
+        int l = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        if (l == 0)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        }
+
+        if (l == 1)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, 5, 2);
+        }
+
+        if (l == 2)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, 3, 2);
+        }
+
+        if (l == 3)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, 4, 2);
+        }
+    }
+
+    public static String getDisplayName()
+    {
+        return displayName;
+    }
+
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    {
+        if (player.isSneaking())
+        {
+            return false;
+        }
+        else
+        {
             player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
             return true;
-		}
-	}
+        }
+    }
 }

@@ -9,23 +9,22 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 
-public class stoneObsidian extends Block {
-
-	public stoneObsidian(int id, Material mat) {
-		super(id, Material.ground);
-
-		this.setUnlocalizedName("stoneObsidian");
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setHardness(10F);
-		GameRegistry.registerBlock(this);
-		LanguageRegistry.addName(this, "Obsidian Embedded Stone");
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+public class stoneObsidian extends Block
+{
+    public stoneObsidian(int id, Material mat)
     {
-		this.blockIcon = reg.registerIcon("electrolysm:" + "stoneObsidian");
+        super(id, Material.ground);
+        this.setUnlocalizedName("stoneObsidian");
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setHardness(10F);
+        GameRegistry.registerBlock(this);
+        LanguageRegistry.addName(this, "Obsidian Embedded Stone");
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+        this.blockIcon = reg.registerIcon("electrolysm:" + "stoneObsidian");
+    }
 }

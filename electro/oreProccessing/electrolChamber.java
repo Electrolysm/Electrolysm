@@ -14,24 +14,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class electrolChamber extends GlassBlockConnectedMeta{
+public class electrolChamber extends GlassBlockConnectedMeta
+{
+    public String className = "" + this.getClass();
+    public String unlocalName = className.replace("assets.electrolysm.electro", "");
+    public String textureName = unlocalName.replace(".", "/");
 
-	public String className = "" + this.getClass();
-	public String unlocalName = className.replace("assets.electrolysm.electro", "");
-	public String textureName = unlocalName.replace(".", "/");
-	
-	public electrolChamber(int par1, String location, boolean hasAlpha,
-			String[] textures) {
-		super(par1, location, hasAlpha, textures);
-
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName(unlocalName);
-		this.setHardness(6.0F);
+    public electrolChamber(int par1, String location, boolean hasAlpha,
+                           String[] textures)
+    {
+        super(par1, location, hasAlpha, textures);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName(unlocalName);
+        this.setHardness(6.0F);
         this.setStepSound(Block.soundMetalFootstep);
-	}
-	
-	@Override
-    public void registerIcons (IconRegister par1IconRegister)
+    }
+
+    @Override
+    public void registerIcons(IconRegister par1IconRegister)
     {
         for (int i = 0; i < textures.length; i++)
         {
@@ -53,11 +53,9 @@ public class electrolChamber extends GlassBlockConnectedMeta{
             icons[i][15] = par1IconRegister.registerIcon("electrolysm:electrol/" + folder + "/glass_4");
         }
     }
-	
-	public void getSubItems(int id, CreativeTabs creativeTab, List list)
+
+    public void getSubItems(int id, CreativeTabs creativeTab, List list)
     {
-    	list.add(new ItemStack(this));
+        list.add(new ItemStack(this));
     }
-
-
 }

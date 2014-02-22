@@ -14,63 +14,62 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public class UpdateResearch implements ICommand
 {
-	private List aliases;
-	public UpdateResearch()
-	{
-		this.aliases = new ArrayList();
-		this.aliases.add("updateResearch");
-	}
+    private List aliases;
+    public UpdateResearch()
+    {
+        this.aliases = new ArrayList();
+        this.aliases.add("updateResearch");
+    }
 
-	@Override
-	public String getCommandName()
-  	{
-		return "researchUpdater";
-  	}
+    @Override
+    public String getCommandName()
+    {
+        return "researchUpdater";
+    }
 
-	@Override
-	public String getCommandUsage(ICommandSender icommandsender)
-	{
-  	  return "/updateResearch";
-  	}
+    @Override
+    public String getCommandUsage(ICommandSender icommandsender)
+    {
+        return "/updateResearch";
+    }
 
-  	@Override
-  	public List getCommandAliases()
-  	{
-  	  return this.aliases;
- 	}
+    @Override
+    public List getCommandAliases()
+    {
+        return this.aliases;
+    }
 
-	 @Override
-	 public void processCommand(ICommandSender icommandsender, String[] astring)
-	 {
-		 EntityPlayer player;
-         
-         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Updating research...").setColor(EnumChatFormatting.GREEN));
-    	 ResearchHandler.downloadOnlineData();
-		 ResearchHandler.getStoredResearch();
-         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Research has been updated").setColor(EnumChatFormatting.GREEN));
-	 }
+    @Override
+    public void processCommand(ICommandSender icommandsender, String[] astring)
+    {
+        EntityPlayer player;
+        icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Updating research...").setColor(EnumChatFormatting.GREEN));
+        ResearchHandler.downloadOnlineData();
+        ResearchHandler.getStoredResearch();
+        icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Research has been updated").setColor(EnumChatFormatting.GREEN));
+    }
 
-	 @Override
-	 public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
-  	 {
-  	      return true;
-  	 }
+    @Override
+    public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
+    {
+        return true;
+    }
 
-	 @Override
-  	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
-  	{
-		 return null;
-  	}
+    @Override
+    public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
+    {
+        return null;
+    }
 
-	 @Override
-  	public boolean isUsernameIndex(String[] astring, int i)
-  	{
-  		  return false;
-  	}
+    @Override
+    public boolean isUsernameIndex(String[] astring, int i)
+    {
+        return false;
+    }
 
-	 @Override
-  	public int compareTo(Object o)
-  	{
-		 return 0;
-  	}
+    @Override
+    public int compareTo(Object o)
+    {
+        return 0;
+    }
 }

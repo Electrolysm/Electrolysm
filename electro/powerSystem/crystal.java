@@ -6,21 +6,20 @@ import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 
-public class crystal extends Item {
+public class crystal extends Item
+{
+    public crystal(int id)
+    {
+        super(id);
+        this.setMaxStackSize(1);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("crystal");
+    }
 
-	public crystal(int id) {
-		super(id);
-
-		this.setMaxStackSize(1);
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName("crystal");
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister reg)
-	{
-		this.itemIcon = reg.registerIcon("electrolysm:" + "crystalTier1");
-	}
-	
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+        this.itemIcon = reg.registerIcon("electrolysm:" + "crystalTier1");
+    }
 }

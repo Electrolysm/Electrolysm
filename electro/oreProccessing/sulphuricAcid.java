@@ -14,71 +14,70 @@ import assets.electrolysm.electro.advAtomics.liquids.ModFluidSulphuricAcid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class sulphuricAcid extends BlockFluidClassic {
+public class sulphuricAcid extends BlockFluidClassic
+{
+    @SideOnly(Side.CLIENT)
+    public Icon flowing;
+    @SideOnly(Side.CLIENT)
+    public Icon still;
 
-	@SideOnly(Side.CLIENT)
-	public Icon flowing;
-	@SideOnly(Side.CLIENT)
-	public Icon still;
-
-    public sulphuricAcid(int id) {
-            super(id, new ModFluidSulphuricAcid(), Material.water);
-            this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("fluidSulpuricAcid");
+    public sulphuricAcid(int id)
+    {
+        super(id, new ModFluidSulphuricAcid(), Material.water);
+        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setUnlocalizedName("fluidSulpuricAcid");
     }
     @Override
-	@SideOnly(Side.CLIENT)
-	public Icon getIcon( int side, int meta )
-	{
-		if( side <= 1 )
-		{
-			return this.still;
-		}
-		else
-		{
-			return this.flowing;
-		}
-	}
-    
-    
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int meta)
+    {
+        if (side <= 1)
+        {
+            return this.still;
+        }
+        else
+        {
+            return this.flowing;
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register)
     {
         this.flowing = register.registerIcon("electrolysm:" + "sulpur_flow");
         this.still = register.registerIcon("electrolysm:" + "sulpur_still");
     }
-    
-	private void erodeWorld(World world, int x, int y, int z, Random rand) 
-	{
-		world.scheduleBlockUpdate(x, y, z, blockID, tickRate);
-    	if(rand.nextInt(50) == 1)
-    	{
-        	if(world.getBlockId(x, y - 1, z) == Block.dirt.blockID ||
-        	   world.getBlockId(x, y - 1, z) == Block.stone.blockID ||
-        	   world.getBlockId(x, y - 1, z) == Block.grass.blockID ||
-        	   world.getBlockMaterial(x, y - 1, z) == Material.ground ||
-        	   world.getBlockMaterial(x, y - 1, z) == Material.rock ||
-        	   world.getBlockMaterial(x, y - 1, z) == Material.wood ||
-        	   world.getBlockId(x, y - 1, z) == Block.sand.blockID ||
-        	   world.getBlockId(x, y - 1, z) == Block.sandStone.blockID)
-        	{
-        		if(world.getBlockId(x, y - 1, z) == Block.bedrock.blockID ||
-        				world.getBlockId(x, y - 1, z) == Block.obsidian.blockID)
-        		{
 
-        		}
-        		else
-        		{
-        			world.setBlock(x, y - 1, z, this.blockID);
-        		}
-        	}
-    	}		
-	}	
-	
-	
-	public void updateTick(World world, int x, int y, int z, Random rand)
+    private void erodeWorld(World world, int x, int y, int z, Random rand)
     {
-    	this.erodeWorld(world, x, y, z, rand);
+        world.scheduleBlockUpdate(x, y, z, blockID, tickRate);
+
+        if (rand.nextInt(50) == 1)
+        {
+            if (world.getBlockId(x, y - 1, z) == Block.dirt.blockID ||
+                    world.getBlockId(x, y - 1, z) == Block.stone.blockID ||
+                    world.getBlockId(x, y - 1, z) == Block.grass.blockID ||
+                    world.getBlockMaterial(x, y - 1, z) == Material.ground ||
+                    world.getBlockMaterial(x, y - 1, z) == Material.rock ||
+                    world.getBlockMaterial(x, y - 1, z) == Material.wood ||
+                    world.getBlockId(x, y - 1, z) == Block.sand.blockID ||
+                    world.getBlockId(x, y - 1, z) == Block.sandStone.blockID)
+            {
+                if (world.getBlockId(x, y - 1, z) == Block.bedrock.blockID ||
+                        world.getBlockId(x, y - 1, z) == Block.obsidian.blockID)
+                {
+                }
+                else
+                {
+                    world.setBlock(x, y - 1, z, this.blockID);
+                }
+            }
+        }
+    }
+
+    public void updateTick(World world, int x, int y, int z, Random rand)
+    {
+        this.erodeWorld(world, x, y, z, rand);
         int quantaRemaining = quantaPerBlock - world.getBlockMetadata(x, y, z);
         int expQuanta = -101;
 
@@ -87,11 +86,11 @@ public class sulphuricAcid extends BlockFluidClassic {
         {
             int y2 = y - densityDir;
 
-            if (world.getBlockId(x,     y2, z    ) == blockID || 
-                world.getBlockId(x - 1, y2, z    ) == blockID || 
-                world.getBlockId(x + 1, y2, z    ) == blockID ||
-                world.getBlockId(x,     y2, z - 1) == blockID ||
-                world.getBlockId(x,     y2, z + 1) == blockID)
+            if (world.getBlockId(x,     y2, z) == blockID ||
+                    world.getBlockId(x - 1, y2, z) == blockID ||
+                    world.getBlockId(x + 1, y2, z) == blockID ||
+                    world.getBlockId(x,     y2, z - 1) == blockID ||
+                    world.getBlockId(x,     y2, z + 1) == blockID)
             {
                 expQuanta = quantaPerBlock - 1;
             }
@@ -102,7 +101,6 @@ public class sulphuricAcid extends BlockFluidClassic {
                 maxQuanta = getLargerQuanta(world, x + 1, y, z,     maxQuanta);
                 maxQuanta = getLargerQuanta(world, x,     y, z - 1, maxQuanta);
                 maxQuanta = getLargerQuanta(world, x,     y, z + 1, maxQuanta);
-
                 expQuanta = maxQuanta - 1;
             }
 
@@ -137,6 +135,7 @@ public class sulphuricAcid extends BlockFluidClassic {
 
         // Flow outward if possible
         int flowMeta = quantaPerBlock - quantaRemaining + 1;
+
         if (flowMeta >= quantaPerBlock)
         {
             return;
@@ -148,13 +147,28 @@ public class sulphuricAcid extends BlockFluidClassic {
             {
                 flowMeta = 1;
             }
+
             boolean flowTo[] = getOptimalFlowDirections(world, x, y, z);
 
-            if (flowTo[0]) flowIntoBlock(world, x - 1, y, z,     flowMeta);
-            if (flowTo[1]) flowIntoBlock(world, x + 1, y, z,     flowMeta);
-            if (flowTo[2]) flowIntoBlock(world, x,     y, z - 1, flowMeta);
-            if (flowTo[3]) flowIntoBlock(world, x,     y, z + 1, flowMeta);
+            if (flowTo[0])
+            {
+                flowIntoBlock(world, x - 1, y, z,     flowMeta);
+            }
+
+            if (flowTo[1])
+            {
+                flowIntoBlock(world, x + 1, y, z,     flowMeta);
+            }
+
+            if (flowTo[2])
+            {
+                flowIntoBlock(world, x,     y, z - 1, flowMeta);
+            }
+
+            if (flowTo[3])
+            {
+                flowIntoBlock(world, x,     y, z + 1, flowMeta);
+            }
         }
     }
-
 }

@@ -21,7 +21,6 @@ public class keyTransCoppier extends Item
     public keyTransCoppier(int id)
     {
         super(id);
-
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("keyTransCoppier");
         this.setMaxStackSize(1);
@@ -37,18 +36,17 @@ public class keyTransCoppier extends Item
     String key = "";
 
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x,
-         int y, int z, int par7, float par8, float par9, float par10)
+                             int y, int z, int par7, float par8, float par9, float par10)
     {
-        if(player.isSneaking())
+        if (player.isSneaking())
         {
-            if(world.getBlockId(x, y, z) == electrolysmCore.teslaTowerCore.blockID)
+            if (world.getBlockId(x, y, z) == electrolysmCore.teslaTowerCore.blockID)
             {
                 TileEntity teWorld = world.getBlockTileEntity(x, y, z);
 
-                if(teWorld instanceof TileEntityTeslaTower)
+                if (teWorld instanceof TileEntityTeslaTower)
                 {
                     TileEntityTeslaTower te = (TileEntityTeslaTower)teWorld;
-
                     this.key = te.getKeyCode(world, x, y, z);
                     //stack.setItemDamage(Byte.);
                     String message = "Key Code '" + this.key + "' has been copied";
@@ -56,14 +54,13 @@ public class keyTransCoppier extends Item
                     return true;
                 }
             }
-            else if(world.getBlockId(x, y, z) == electrolysmCore.plug.blockID)
+            else if (world.getBlockId(x, y, z) == electrolysmCore.plug.blockID)
             {
-                TileEntity teWorld = world.getBlockTileEntity(x, y ,z);
+                TileEntity teWorld = world.getBlockTileEntity(x, y , z);
 
-                if(teWorld instanceof TileEntityPlug)
+                if (teWorld instanceof TileEntityPlug)
                 {
                     TileEntityPlug te = (TileEntityPlug)teWorld;
-
                     te.setKey(key);
                     String message = "Key Code '" + this.key + "' has been set";
                     FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
@@ -71,8 +68,7 @@ public class keyTransCoppier extends Item
                 }
             }
         }
+
         return false;
     }
-
-
 }

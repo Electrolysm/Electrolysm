@@ -7,19 +7,19 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class bionicLeg extends Item {
+public class bionicLeg extends Item
+{
+    public bionicLeg(int id)
+    {
+        super(id);
+        this.setCreativeTab(CreativeTabs.tabCombat);
+        this.setUnlocalizedName("bionicLeg");
+    }
 
-	public bionicLeg(int id) {
-		super(id);
-		this.setCreativeTab(CreativeTabs.tabCombat);
-		this.setUnlocalizedName("bionicLeg");
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
+    @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("Electrolysm:" + this.getUnlocalizedName().replace("item.", ""));
     }
-
 }

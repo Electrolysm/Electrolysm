@@ -11,7 +11,7 @@ public class TileEntityWire extends TileEntity
 {
     protected boolean[] visuallyConnected = new boolean[6];
     protected TileEntity[] adjacentConnections = new TileEntity[6];
-    
+
     @Override
     public void updateEntity()
     {
@@ -19,11 +19,11 @@ public class TileEntityWire extends TileEntity
         {
             ForgeDirection dir = ForgeDirection.getOrientation(i);
             this.updateConnection(this.worldObj.getBlockTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
-            		this.zCoord + dir.offsetZ), dir, this.worldObj.getBlockId(this.xCoord + dir.offsetX,
-            				this.yCoord + dir.offsetY, this.zCoord + dir.offsetZ));
+                                  this.zCoord + dir.offsetZ), dir, this.worldObj.getBlockId(this.xCoord + dir.offsetX,
+                                          this.yCoord + dir.offsetY, this.zCoord + dir.offsetZ));
         }
     }
-    
+
     public void updateConnection(TileEntity that, ForgeDirection side, int id)
     {
         int thisID = worldObj.getBlockId(xCoord, yCoord, zCoord);
@@ -33,83 +33,75 @@ public class TileEntityWire extends TileEntity
         }
         else if (that instanceof TileEntityWire)
         {
-          	TileEntityWire tileEntityIns = (TileEntityWire) that;
-               
+            TileEntityWire tileEntityIns = (TileEntityWire) that;
+
             if (((TileEntityWire) that).canConnect(side.getOpposite()))
             {
-                  this.adjacentConnections[side.ordinal()] = that;
-                  this.visuallyConnected[side.ordinal()] = true;
-                      
-                  return;
+                this.adjacentConnections[side.ordinal()] = that;
+                this.visuallyConnected[side.ordinal()] = true;
+                return;
             }
         }
-        
         else if (that instanceof TileEntityIronFrame)
         {
-        	TileEntityIronFrame tileEntityIns = (TileEntityIronFrame) that;
-	           
-	        if (((TileEntityIronFrame) that).canConnect(side.getOpposite()))
-	        {
-	             this.adjacentConnections[side.ordinal()] = that;
-	             this.visuallyConnected[side.ordinal()] = true;
-	                
-	             return;
-	        }
-	    }
-        
+            TileEntityIronFrame tileEntityIns = (TileEntityIronFrame) that;
+
+            if (((TileEntityIronFrame) that).canConnect(side.getOpposite()))
+            {
+                this.adjacentConnections[side.ordinal()] = that;
+                this.visuallyConnected[side.ordinal()] = true;
+                return;
+            }
+        }
         else if (that instanceof TileEntityEarther)
-	    {
-        	TileEntityEarther tileEntityIns = (TileEntityEarther) that;
-        	
-	        if (((TileEntityEarther) that).canConnect(side.getOpposite(), thisID))
-	        {
-	            this.adjacentConnections[side.ordinal()] = that;
-	            this.visuallyConnected[side.ordinal()] = true;
-	                
-	            return;
-	        }
-	    }
+        {
+            TileEntityEarther tileEntityIns = (TileEntityEarther) that;
+
+            if (((TileEntityEarther) that).canConnect(side.getOpposite(), thisID))
+            {
+                this.adjacentConnections[side.ordinal()] = that;
+                this.visuallyConnected[side.ordinal()] = true;
+                return;
+            }
+        }
         else if (that instanceof TileEntityLumRed)
-	    {
-        	TileEntityLumRed tileEntityIns = (TileEntityLumRed) that;
-        	
-	        if (((TileEntityLumRed) that).canConnect(side.getOpposite(), thisID))
-	        {
-	            this.adjacentConnections[side.ordinal()] = that;
-	            this.visuallyConnected[side.ordinal()] = true;
-	                
-	            return;
-	        }
-	    }
-	    
-        
+        {
+            TileEntityLumRed tileEntityIns = (TileEntityLumRed) that;
+
+            if (((TileEntityLumRed) that).canConnect(side.getOpposite(), thisID))
+            {
+                this.adjacentConnections[side.ordinal()] = that;
+                this.visuallyConnected[side.ordinal()] = true;
+                return;
+            }
+        }
+
         this.adjacentConnections[side.ordinal()] = null;
         this.visuallyConnected[side.ordinal()] = false;
     }
 
-	public boolean canConnect(ForgeDirection side) 
-	{
-		return true;
-	}	
-	
+    public boolean canConnect(ForgeDirection side)
+    {
+        return true;
+    }
+
     public boolean[] getVisualConnections()
     {
         return this.visuallyConnected;
     }
 
-	public TileEntity[] getAdjacentConnections() 
-	{
-		return adjacentConnections;
-	}
-	
-	public Block getBlockType()
+    public TileEntity[] getAdjacentConnections()
     {
-		return electrolysmCore.wire;
+        return adjacentConnections;
     }
-	
-	public int getBlockMetadata()
+
+    public Block getBlockType()
     {
-		return 0;
+        return electrolysmCore.wire;
     }
-	
+
+    public int getBlockMetadata()
+    {
+        return 0;
+    }
 }
