@@ -1,4 +1,4 @@
-package assets.electrolysm.electro.oreProccessing.recipe;
+package assets.electrolysm.electro.oreProccessing.recipes;
 
 import java.util.ArrayList;
 import java.util.Arrays;

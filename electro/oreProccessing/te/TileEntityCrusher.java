@@ -7,7 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.recipe.CrusherRecipes;
+import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
 import assets.electrolysm.electro.research.Research;
 
 public class TileEntityCrusher extends TileEntity implements IInventory

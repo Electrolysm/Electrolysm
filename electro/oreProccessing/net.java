@@ -2,7 +2,11 @@ package assets.electrolysm.electro.oreProccessing;
 
 import java.util.ArrayList;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,6 +24,13 @@ public class net extends Item {
 		this.setHasSubtypes(true);
 		this.maxStackSize = 1;
 	}
+	//net
+	
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+        this.itemIcon = par1IconRegister.registerIcon("electrolysm:" + "net");
+    }
 	
 	//Ore Blocks
     ArrayList<ItemStack> copperOre = OreDictionary.getOres("oreCopper");

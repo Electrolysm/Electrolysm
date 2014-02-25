@@ -13,6 +13,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.handlers.LoggerHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -62,6 +63,17 @@ public class ItemWire extends Item
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y,
                              int z, int side, float clickX, float clickY, float clickZ)
     {
+    	int deductAmount = 0;
+    	
+    	if(player.capabilities.isCreativeMode)
+    	{
+    		deductAmount = 0;
+    	}
+    	else
+    	{
+    		deductAmount = 1;
+    	}
+    	
         if (this.getBlockIDBasedOnItemStack(item) != 0)
         {
             if (side == 0)
@@ -70,7 +82,7 @@ public class ItemWire extends Item
                 if (world.getBlockId(x, y - 1, z) == 0)
                 {
                     world.setBlock(x, y - 1, z, this.getBlockIDBasedOnItemStack(item));
-                    item.stackSize = item.stackSize - 1;
+                    item.stackSize = item.stackSize - deductAmount;
                     return true;
                 }
             }
@@ -80,7 +92,7 @@ public class ItemWire extends Item
                 if (world.getBlockId(x, y + 1, z) == 0)
                 {
                     world.setBlock(x, y + 1, z, this.getBlockIDBasedOnItemStack(item));
-                    item.stackSize = item.stackSize - 1;
+                    item.stackSize = item.stackSize - deductAmount;
                     return true;
                 }
             }
@@ -90,7 +102,7 @@ public class ItemWire extends Item
                 if (world.getBlockId(x, y, z - 1) == 0)
                 {
                     world.setBlock(x, y, z - 1, this.getBlockIDBasedOnItemStack(item));
-                    item.stackSize = item.stackSize - 1;
+                    item.stackSize = item.stackSize - deductAmount;
                     return true;
                 }
             }
@@ -99,7 +111,7 @@ public class ItemWire extends Item
                 if (world.getBlockId(x, y, z + 1) == 0)
                 {
                     world.setBlock(x, y, z + 1, this.getBlockIDBasedOnItemStack(item));
-                    item.stackSize = item.stackSize - 1;
+                    item.stackSize = item.stackSize - deductAmount;
                     return true;
                 }
             }
@@ -108,7 +120,7 @@ public class ItemWire extends Item
                 if (world.getBlockId(x - 1, y, z) == 0)
                 {
                     world.setBlock(x - 1, y, z, this.getBlockIDBasedOnItemStack(item));
-                    item.stackSize = item.stackSize - 1;
+                    item.stackSize = item.stackSize - deductAmount;
                     return true;
                 }
             }
@@ -117,20 +129,22 @@ public class ItemWire extends Item
                 if (world.getBlockId(x + 1, y, z) == 0)
                 {
                     world.setBlock(x + 1, y, z, this.getBlockIDBasedOnItemStack(item));
-                    item.stackSize = item.stackSize - 1;
+                    item.stackSize = item.stackSize - deductAmount;
                     return true;
                 }
             }
             else
             {
-                String message1 = "Unknown Error when placing liquid block!";
+                String message1 = "Unknown Error when placing wire block!";
                 String message2 = "This is a bug! Please report it to the MOD author";
-                System.out.println(message1);
-                System.out.println(message2);
-                player.sendChatToPlayer(
+                
+                LoggerHandler.severe(message1);
+                LoggerHandler.severe(message2);
+                /* 
+				player.sendChatToPlayer(
                     ChatMessageComponent.createFromText(message1).setColor(EnumChatFormatting.DARK_RED));
                 player.sendChatToPlayer(
-                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));
+                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));*/
             }
         }
 

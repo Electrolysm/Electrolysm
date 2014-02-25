@@ -7,12 +7,12 @@ public class IDHandler
         public static class basic
         {
             public static int researchDeskID = 697;
-            public static int workBenchID = 1000;
+            public static int workBenchID = 698;
             public static int deskID = 699;
         }
     }
 
-    public static class robotics
+    public static class robotics4
     {
         public static int metalSheetID = 700;
         public static int wireID = 701;

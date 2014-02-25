@@ -16,7 +16,7 @@ public class NewsCheck
 
     public static void check()
     {
-        System.out.println("[Electrolysm]Starting News Check");
+        LoggerHandler.info(("Starting News Check"));
         URL url = null;
         String inputLine = "";
 
@@ -39,7 +39,7 @@ public class NewsCheck
 
             while ((inputLine = in.readLine()) != null)
             {
-                System.out.println("[Electrolysm]" + inputLine);
+                //System.out.println("[Electrolysm]" + inputLine);
                 line = "[Electrolysm]" + inputLine;
             }
 
@@ -56,7 +56,7 @@ public class NewsCheck
         }
 
         //System.out.println("[Electrolysm]" + version);
-        System.out.println("[Electrolysm]Ended News Check");
+        LoggerHandler.info("Ended News Check");
         checkDone = true;
     }
 }

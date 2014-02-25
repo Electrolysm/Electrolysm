@@ -1,65 +1,72 @@
 package assets.electrolysm.api.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import assets.electrolysm.electro.handlers.LoggerHandler;
 
 public class ItemFetcher
 {
     private static Class core;
-    private static Item[] itemList;
-
-    static
+ 
+    
+    public static ItemStack getItem(String id, int stackSize)
     {
-        try
-        {
-            core = Class.forName("assets.electrolysm.electro.electrolysmItem", false, ItemFetcher.class.getClassLoader());
-            itemList = (Item[])core.getField("allItems").get(null);
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println("electrolysmCore class not found!");
-            e.printStackTrace();
-        }
-        catch (IllegalArgumentException e)
-        {
-            System.out.println("electrolysmCore class not read!");
-            e.printStackTrace();
-        }
-        catch (IllegalAccessException e)
-        {
-            System.out.println("electrolysmCore class not read!");
-            e.printStackTrace();
-        }
-        catch (NoSuchFieldException e)
-        {
-            System.out.println("electrolysmCore class not read!");
-            e.printStackTrace();
-        }
-        catch (SecurityException e)
-        {
-            System.out.println("electrolysmCore class not read!");
-            e.printStackTrace();
-        }
+    	try
+    	{
+    		if(core == null)
+    		{
+    			core = Class.forName("");
+    		}
+    		Object ret = core.getField(id).get(null);
+    		
+    		if(ret instanceof Item)
+    		{
+    			return (new ItemStack((Item)ret, stackSize));
+    		}
+    		else if(ret instanceof Block)
+    		{
+    			return (new ItemStack((Block)ret, stackSize));
+    		}
+    		else
+    		{
+    			return null;
+    		}
+    	}
+    	catch(Exception e)
+    	{
+    		LoggerHandler.severe("Error fetching - " + id + " - form class");
+    		return null;
+    	}
     }
-
-    /** For fetching items by enum ordinal */
-    public static Item getItemByOrdinal(int ordinal)
+    
+    public static ItemStack getItem(String id, int meta, int stackSize)
     {
-        return itemList[ordinal];
-    }
-
-    public static Item getItemByUnlocalizedName(String name)
-    {
-        for (int i = 0; i < itemList.length; i++)
-        {
-            Item it = itemList[i];
-            String sg = it.getUnlocalizedName();
-
-            if (name.equals(sg))
-            {
-                return it;
-            }
-        }
-
-        return null;
+    	try
+    	{
+    		if(core == null)
+    		{
+    			core = Class.forName("");
+    		}
+    		Object ret = core.getField(id).get(null);
+    		
+    		if(ret instanceof Item)
+    		{
+    			return (new ItemStack((Item)ret, stackSize, meta));
+    		}
+    		else if(ret instanceof Block)
+    		{
+    			return (new ItemStack((Block)ret, stackSize, meta));
+    		}
+    		else
+    		{
+    			return null;
+    		}
+    	}
+    	catch(Exception e)
+    	{
+    		LoggerHandler.severe("Error fetching - " + id + " - form class");
+    		return null;
+    	}
     }
 }

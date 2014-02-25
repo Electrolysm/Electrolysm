@@ -285,7 +285,7 @@ public class electrolysmCore
         
         
         long duration = System.currentTimeMillis() - startTime;
-        System.out.println("[Electrolysm] Electrolysm Started in " + duration + "ms");
+        LoggerHandler.info("Electrolysm Started in " + duration + "ms");
     }
 
     @SideOnly(Side.CLIENT)

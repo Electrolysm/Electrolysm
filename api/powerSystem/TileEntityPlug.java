@@ -2,6 +2,7 @@ package assets.electrolysm.api.powerSystem;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import assets.electrolysm.electro.handlers.LoggerHandler;
 import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 
 public class TileEntityPlug extends TileEntity implements ITeUReciever
@@ -111,7 +112,7 @@ public class TileEntityPlug extends TileEntity implements ITeUReciever
             return TeU;
         }
 
-        System.out.println("Error when calculating the TeU after Resistance");
+        LoggerHandler.severe("Error when calculating the TeU after Resistance");
         return 0;
     }
 

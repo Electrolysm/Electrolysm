@@ -133,7 +133,7 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
     {
         World world = worldObj;
         active = powered;
-        boolean canwork = (powered && heat > 10);
+        boolean canwork = /*(powered && heat > 10)*/true;
         boolean portSet = false;
 
         if (heat < 50)
@@ -141,7 +141,7 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
             heat = 100;
         }
 
-        if (canwork && this.canWork(worldObj, xCoord, yCoord, zCoord))
+        if (canwork/* && this.canWork(worldObj, xCoord, yCoord, zCoord)*/)
         {
             furnaceCookTime = 5000 / heat;
             ItemStack input1 = getStackInSlot(0);

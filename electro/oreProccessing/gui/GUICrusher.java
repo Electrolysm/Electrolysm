@@ -35,7 +35,7 @@ public class GUICrusher extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(CommonProxy.ENERGISER_GUI);
+        this.mc.renderEngine.bindTexture(CommonProxy.CRUSHER_GUI);
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;
         this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);

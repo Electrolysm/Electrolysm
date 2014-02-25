@@ -16,7 +16,7 @@ public class VersionCheck
 
     public static void check()
     {
-        System.out.println("[Electrolysm]Starting Version Check");
+        LoggerHandler.info("Starting Version Check");
         URL url = null;
         String inputLine = "";
 
@@ -39,7 +39,7 @@ public class VersionCheck
 
             while ((inputLine = in.readLine()) != null)
             {
-                System.out.println("[Electrolysm]" + inputLine);
+                //System.out.println("[Electrolysm]" + inputLine);
                 line = "[Electrolysm]" + inputLine;
             }
 
@@ -73,8 +73,8 @@ public class VersionCheck
             }
         }
 
-        System.out.println("[Electrolysm]" + version);
-        System.out.println("[Electrolysm]Ended Version Check");
+        //System.out.println("[Electrolysm]" + version);
+        LoggerHandler.info("Ended Version Check");
         checkDone = true;
     }
 }

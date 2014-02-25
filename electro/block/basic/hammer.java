@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,13 +24,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class hammer extends ItemTool
 {
-    public static final Block[] blocksEffectiveAgainst = new Block[] {electrolysmCore.nettedBlock, electrolysmCore.nettedBlock};
+    public static final Block[] blocksEffectiveAgainst = new Block[] {electrolysmCore.nettedBlock};
 	
     public hammer(int id)
     {
-        super(id, 10F, EnumToolMaterial.EMERALD, blocksEffectiveAgainst);
+        super(id, 10F, EnumToolMaterial.IRON, blocksEffectiveAgainst);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("Hammer");
+        this.damageVsEntity = 2.5F;
         this.maxStackSize = 1;
         this.efficiencyOnProperMaterial = 10;
         this.toolMaterial = EnumToolMaterial.EMERALD;
@@ -38,17 +40,16 @@ public class hammer extends ItemTool
     @Override
     public float getStrVsBlock(ItemStack stack, Block block)
     {
-		ItemStack blockStack = new ItemStack(block);
-    	for(int i = 0; i < blocksEffectiveAgainst.length; i++)
-    	{
-    		if(block == 
-    				blocksEffectiveAgainst[i])
-    		{
-    			return 10F;
-    		}
-    	}
+   		if(block == electrolysmCore.nettedBlock)
+   		{
+   			return 10F;
+   		}
+   		else if(block.blockMaterial == Material.rock)
+   		{
+   			return 5F;
+   		}
 
-    	return 0F;
+    	return 1F;
     }
 	
 	@Override

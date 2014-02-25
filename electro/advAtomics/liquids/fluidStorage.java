@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.handlers.LoggerHandler;
 import assets.electrolysm.electro.research.Research;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -22,7 +23,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.ItemFluidContainer;
 
-public class fluidStorage extends ItemFluidContainer implements IFluidOre/*, IFluidContainerItem*/
+public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerItem*/
 {
     @SideOnly(Side.CLIENT)
     private Icon[] fluidIcons;
@@ -34,6 +35,7 @@ public class fluidStorage extends ItemFluidContainer implements IFluidOre/*, IFl
         this.hasSubtypes = true;
     }
 
+    @Override
     public String getUnlocalizedName(ItemStack stack)
     {
         int dmg = stack.getItemDamage();
@@ -126,12 +128,14 @@ public class fluidStorage extends ItemFluidContainer implements IFluidOre/*, IFl
             {
                 String message1 = "Unknown Error when placing liquid block!";
                 String message2 = "This is a bug! Please report it to the MOD author";
-                System.out.println(message1);
-                System.out.println(message2);
+
+                LoggerHandler.severe(message1);
+                LoggerHandler.severe(message2);
+                /*
                 player.sendChatToPlayer(
                     ChatMessageComponent.createFromText(message1).setColor(EnumChatFormatting.DARK_RED));
                 player.sendChatToPlayer(
-                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));
+                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));*/
             }
         }
 
