@@ -220,6 +220,14 @@ public class Crafting
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastProof, 4),
                                         new ItemStack(electrolysmCore.blastBrick));
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.microchipBoard),
+        		               "   ", "BBB", "   ",
+        		               'B', electrolysmCore.ballOfPlastic);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.transistor),
+        		               " I ", " R ", "C C",
+        		               'I', Item.ingotIron,
+        		               'R', Item.redstone,
+        		               'C', electrolysmCore.copperIngot);
     }
     //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs		0		   1	  2		  3			4		5

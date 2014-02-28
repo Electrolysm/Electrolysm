@@ -130,7 +130,7 @@ public class IDHandler
         public static int ironFramesID = 830;
     }
 
-    public static class randomStuff
+    public static class craftingItems
     {
         public static int diamondShardID = 900;
         public static int luminousRedstoneID = 901;
@@ -141,6 +141,8 @@ public class IDHandler
         public static int blastBrickID = 906;
         public static int floodLightID = 907;
         public static int lightSourceID = 908;
+        public static int microchipBoardID = 909;
+        public static int transistorID = 910;
     }
 
     public static class elements

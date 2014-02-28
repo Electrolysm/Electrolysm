@@ -47,10 +47,13 @@ import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.ballOfPlastic;
+import assets.electrolysm.electro.crafting.items.chipBoard;
 import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.crafting.items.endoInsulator;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
+import assets.electrolysm.electro.crafting.items.microchipBoard;
+import assets.electrolysm.electro.crafting.items.transistor;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.oreProccessing.crusher;
@@ -214,13 +217,15 @@ public class electrolysmCore
     public static Item net = new net(IDHandler.oreProccessing.netID);
 
     //Random items for crafting
-    public static Item diamondShard = new diamondShard(IDHandler.randomStuff.diamondShardID);
-    public static Item luminousRedstone = new luminousRedstone(IDHandler.randomStuff.luminousRedstoneID);
+    public static Item diamondShard = new diamondShard(IDHandler.craftingItems.diamondShardID);
+    public static Item luminousRedstone = new luminousRedstone(IDHandler.craftingItems.luminousRedstoneID);
     public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
-    public static Item crystalBase = new crystalBase(IDHandler.randomStuff.crystalBaseID);
+    public static Item crystalBase = new crystalBase(IDHandler.craftingItems.crystalBaseID);
     public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
-    public static Item endoInsulator = new endoInsulator(IDHandler.randomStuff.endoInsulatorID);
-    public static Block lightSource = new lightSource(IDHandler.randomStuff.lightSourceID, null);
+    public static Item endoInsulator = new endoInsulator(IDHandler.craftingItems.endoInsulatorID);
+    public static Block lightSource = new lightSource(IDHandler.craftingItems.lightSourceID, null);
+    public static Item microchipBoard = new microchipBoard(IDHandler.craftingItems.microchipBoardID);
+    public static Item transistor = new transistor(IDHandler.craftingItems.transistorID);
     //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
     /*
     //Robots
