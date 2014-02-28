@@ -1,21 +1,24 @@
 package assets.electrolysm.electro.handlers;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Crafting
 {
-    private static ItemStack ingotCopper = new ItemStack(electrolysmCore.copperIngot);
 
     public static void addCrafting()
     {
+    	ItemStack ingotCopper = new ItemStack(electrolysmCore.copperIngot);
+    	
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.researchDesk),
                                " X ", "YZY", "BMB",
                                'X', Item.book,
@@ -214,7 +217,30 @@ public class Crafting
                                         new ItemStack(electrolysmCore.blastProof),
                                         new ItemStack(electrolysmCore.blastProof),
                                         new ItemStack(electrolysmCore.blastProof));
+        
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastProof, 4),
                                         new ItemStack(electrolysmCore.blastBrick));
     }
+    //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
+    //METAs		0		   1	  2		  3			4		5
+	public static void addFurnaceRecipes() 
+	{
+		int impureID = electrolysmCore.impureDusts.itemID;
+		ItemStack copperIngot = new ItemStack(electrolysmCore.copperIngot);
+		ItemStack tinIngot = new ItemStack(electrolysmCore.ingots, 1, 0);
+		ItemStack silverIngot = new ItemStack(electrolysmCore.ingots, 1, 1);
+		ItemStack leadIngot = new ItemStack(electrolysmCore.ingots, 1, 2);
+
+		ItemStack ironIngot = new ItemStack(Item.ingotIron);
+        ItemStack goldIngot = new ItemStack(Item.ingotGold);
+        float impureXP = 1.23456789F;
+        
+		FurnaceRecipes.smelting().addSmelting(impureID, 0, copperIngot, impureXP);
+		FurnaceRecipes.smelting().addSmelting(impureID, 1, tinIngot, impureXP);
+		FurnaceRecipes.smelting().addSmelting(impureID, 2, ironIngot, impureXP);
+		FurnaceRecipes.smelting().addSmelting(impureID, 3, goldIngot, impureXP);
+		FurnaceRecipes.smelting().addSmelting(impureID, 4, silverIngot, impureXP);
+		FurnaceRecipes.smelting().addSmelting(impureID, 5, leadIngot, impureXP);
+
+	}
 }

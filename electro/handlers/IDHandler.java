@@ -87,6 +87,7 @@ public class IDHandler
         public static int copperOreID = 783;
         public static int sulphurOreID = 784;
         public static int sulphurID = 785;
+        public static int modIngotID = 786;
     }
 
     public static class powerGrid

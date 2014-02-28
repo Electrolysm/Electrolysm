@@ -58,6 +58,7 @@ import assets.electrolysm.electro.oreProccessing.dusts;
 import assets.electrolysm.electro.oreProccessing.electrolChamber;
 import assets.electrolysm.electro.oreProccessing.electrolisisCore;
 import assets.electrolysm.electro.oreProccessing.impureDusts;
+import assets.electrolysm.electro.oreProccessing.ingots;
 import assets.electrolysm.electro.oreProccessing.liquidiser;
 import assets.electrolysm.electro.oreProccessing.net;
 import assets.electrolysm.electro.oreProccessing.nettedBlock;
@@ -140,6 +141,7 @@ public class electrolysmCore
     public static Block copperOre = new copperOre(configHandler.copperOreID, null);
     public static Block sulphurOre = new sulpherOre(configHandler.sulphurOreID, null);
     public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
+    public static Item ingots = new ingots(IDHandler.worldGenOres.modIngotID);
     //Biome
     public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
     public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
@@ -156,7 +158,7 @@ public class electrolysmCore
     public static Block stoneObsidian = new stoneObsidian(configHandler.stoneObsidianID, null);
     //Tools
     public static Item hammer = new hammer(IDHandler.basic.hammerID);
-
+    
     //Advanced atomics
     //Liquids
     public static Block plasma = new plasma(configHandler.plasmaID);
@@ -270,22 +272,17 @@ public class electrolysmCore
     public void loadConfiguration(FMLPreInitializationEvent evt)
     {
         Crafting.addCrafting();
+        Crafting.addFurnaceRecipes();
         RegisterBlock.register();
         Names.addName();
-        Register.addAchievementLocalizations();
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();
         GameRegistry.addBiome(diseasedBiome);
-        EntityRegistry.registerModEntity(EntityZombie_Scientist.class,
-                                         "Zombie Scientist", 2, this, 80, 3, true);
-        //EntityRegistry.registerModEntity(VillagerScientist.class,
-        //		"Villager Scientist", 3, this, 500, 80, true);
+        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
         NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
         
-        
-        long duration = System.currentTimeMillis() - startTime;
-        LoggerHandler.info("Electrolysm Started in " + duration + "ms");
+        LoggerHandler.info("Electrolysm Started in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     @SideOnly(Side.CLIENT)
@@ -299,8 +296,6 @@ public class electrolysmCore
     @ServerStarting
     public void serverLoad(FMLServerStartingEvent event)
     {
-        //event.registerServerCommand(new UpdateResearch());
-        //event.registerServerCommand(new CommandDate());
         event.registerServerCommand(new CommandStardate());
         ResearchHandler.downloadOnlineData();
         ResearchHandler.getStoredResearch();

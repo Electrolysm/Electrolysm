@@ -2,6 +2,7 @@ package assets.electrolysm.electro.block.basic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -119,7 +120,7 @@ public class hammer extends ItemTool
     	
     	if(id == electrolysmCore.nettedBlock.blockID)
     	{
-    		ItemStack drop = new ItemStack(electrolysmCore.impureDusts, 2, meta);
+    		ItemStack drop = new ItemStack(electrolysmCore.impureDusts, this.getDustRandomAmount(1, 2), meta);
         	ItemStack net = new ItemStack(electrolysmCore.net, 1, 0);
     		livingBase.entityDropItem(drop, 0);
         	livingBase.entityDropItem(net, 0);
@@ -127,6 +128,20 @@ public class hammer extends ItemTool
     	
     	return true;
     }
+
+	private int getDustRandomAmount(int i, int j)
+	{
+		Random rand = new Random();
+		
+		if(rand.nextInt(10) >= 5)
+		{
+			return i;
+		}
+		else
+		{
+			return j;
+		}
+	}
     
     
 }

@@ -52,16 +52,12 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.luminousRedstone, "Luminous Redstone Dust");
         LanguageRegistry.addName(electrolysmCore.diamondShard, "Diamond Shard");
         LanguageRegistry.addName(electrolysmCore.crystalBase, "Crystal Base");
-
         
-        //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
-        //METAs		0		   1	  2		  3			4		5
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1, 0), "Netted Copper Ore");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1, 1), "Netted Tin Ore");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1, 2), "Netted Iron Ore");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1, 3), "Netted Gold Ore");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1, 4), "Netted Silver Ore");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1, 5), "Netted Lead Ore");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1), "Netted Ore");
+        
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 0), "Tin Ingot");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 1), "Silver Ingot");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 2), "Lead Ingot");
 
         //Items
         for (int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)
