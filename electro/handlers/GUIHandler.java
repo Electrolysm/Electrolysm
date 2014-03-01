@@ -121,7 +121,7 @@ public class GUIHandler implements IGuiHandler
 
         if (entity instanceof TileEntityCrusher)
         {
-            return new GUICrusher(player.inventory, (TileEntityCrusher)entity);
+            return new GUICrusher((TileEntityCrusher)entity, player.inventory);
         }
 
         return null;

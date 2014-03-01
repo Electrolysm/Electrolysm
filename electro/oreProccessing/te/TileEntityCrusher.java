@@ -5,8 +5,9 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
@@ -151,6 +152,9 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     	}
     }
 
+    public int time = 0;
+    public int crushTime = 400;
+    
     @Override
     public void updateEntity()
     {
@@ -172,36 +176,48 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         if(grindStone != null)
         {
         	extraDust = this.getExtraDust(grindStone);
+        	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
+        	{
+        		crushTime = (int)(crushTime /*/ (this.getExtraDust(grindStone) + 1)*/);
+        	}
         }
         
         if (inStack != null)
         {
             if (result != null)
             {
-                if (output == null)
-                {
-                    int outputSize = 0;
-                    int resultSize = result.stackSize;
-
-                    if (((resultSize + outputSize) < 64))
-                    {
-                        this.decrStackSize(0, 1);
-                        this.setInventorySlotContents(1, result2);
-                        this.onInventoryChanged();
-                    }
-                }
-                else
-                {
-                    int outputSize = output.stackSize;
-                    int resultSize = result.stackSize;
-
-                    if (((resultSize + outputSize) < 64))
-                    {
-                        this.decrStackSize(0, 1);
-                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
-                        this.onInventoryChanged();
-                    }
-                }
+            	if(time == crushTime)
+            	{
+            		time = 0;
+	                if (output == null)
+	                {
+	                    int outputSize = 0;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) <= 64))
+	                    {
+	                        this.decrStackSize(0, 1);
+	                        this.setInventorySlotContents(1, result2);
+	                        this.onInventoryChanged();
+	                    }
+	                }
+	                else
+	                {
+	                    int outputSize = output.stackSize;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) < 64))
+	                    {
+	                        this.decrStackSize(0, 1);
+	                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
+	                        this.onInventoryChanged();
+	                    }
+	                }
+            	}
+            	else
+            	{
+            		time = time + 1;
+            	}
             }
         }
     }
@@ -246,4 +262,36 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     {
         return side != 0 || slot != 1 || item.getItem() == electrolysmCore.impureDusts;
     }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+            super.readFromNBT(tagCompound);
+            
+            NBTTagList tagList = tagCompound.getTagList("Inventory");
+            for (int i = 0; i < tagList.tagCount(); i++) {
+                    NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                    byte slot = tag.getByte("Slot");
+                    if (slot >= 0 && slot < inventory.length) {
+                            inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
+                    }
+            }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tagCompound) {
+            super.writeToNBT(tagCompound);
+                            
+            NBTTagList itemList = new NBTTagList();
+            for (int i = 0; i < inventory.length; i++) {
+                    ItemStack stack = inventory[i];
+                    if (stack != null) {
+                            NBTTagCompound tag = new NBTTagCompound();
+                            tag.setByte("Slot", (byte) i);
+                            stack.writeToNBT(tag);
+                            itemList.appendTag(tag);
+                    }
+            }
+            tagCompound.setTag("Inventory", itemList);
+    }
+
 }

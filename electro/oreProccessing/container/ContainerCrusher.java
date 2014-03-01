@@ -41,77 +41,19 @@ public class ContainerCrusher extends Container
     }
 
     @Override
-    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    public boolean canInteractWith(EntityPlayer player)
     {
-        /*
-        super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
-        par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
-        par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
-        */
+        return furnace.isUseableByPlayer(player);
     }
 
     @Override
-    public void detectAndSendChanges()
-    {
-        super.detectAndSendChanges();
-
-        for (int i = 0; i < this.crafters.size(); ++i)
-        {
-            /*			ICrafting icrafting = (ICrafting)this.crafters.get(i);
-
-            			if (this.lastCookTime != this.furnace.furnaceCookTime)
-            			{
-            				icrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
-            			}
-
-            			if (this.lastBurnTime != this.furnace.furnaceBurnTime)
-            			{
-            				icrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
-            			}
-
-            			if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
-            			{
-            				icrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
-            			}
-            			*/
-        }
-
-        /*
-        		this.lastCookTime = this.furnace.furnaceCookTime;
-        		this.lastBurnTime = this.furnace.furnaceBurnTime;
-        		this.lastItemBurnTime = this.furnace.currentItemBurnTime;
-        	*/
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void updateProgressBar(int par1, int par2)
-    {
-        if (par1 == 0)
-        {
-            //this.furnace.furnaceCookTime = par2;
-        }
-
-        if (par1 == 1)
-        {
-            //this.furnace.furnaceBurnTime = par2;
-        }
-
-        if (par1 == 2)
-        {
-            //this.furnace.currentItemBurnTime = par2;
-        }
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer entityplayer)
-    {
-        return true;
-    }
-
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int par2)
+    public ItemStack transferStackInSlot(EntityPlayer player, int par2)
     {
         return null;
+    }
+
+    public void onContainerClosed(EntityPlayer par1EntityPlayer)
+    {
+        
     }
 }
