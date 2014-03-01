@@ -17,4 +17,11 @@ public class microchipBoard extends Item
             this.setUnlocalizedName("Microchip Board");
         }
     }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "microchipBoard");
+    }
 }

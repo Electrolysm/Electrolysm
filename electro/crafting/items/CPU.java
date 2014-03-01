@@ -17,4 +17,11 @@ public class CPU extends Item
             this.setUnlocalizedName("CPU");
         }
     }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "CPU");
+    }
 }

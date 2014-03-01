@@ -154,6 +154,8 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     @Override
     public void updateEntity()
     {
+    	this.onInventoryChanged();
+    	
         ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
         ItemStack grindStone = getStackInSlot(2);

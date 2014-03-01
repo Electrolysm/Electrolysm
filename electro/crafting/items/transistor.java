@@ -1,10 +1,10 @@
 package assets.electrolysm.electro.crafting.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
+import assets.electrolysm.electro.electrolysmCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class transistor extends Item
 {
@@ -12,9 +12,15 @@ public class transistor extends Item
     {
         super(par1);
         // TODO Auto-generated constructor stub
-        {
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("Transistor");
-        }
+            this.setUnlocalizedName("transistor");
+        //transistor
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "transistor");
     }
 }

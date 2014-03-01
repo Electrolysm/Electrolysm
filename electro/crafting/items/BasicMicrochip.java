@@ -17,4 +17,11 @@ public class BasicMicrochip extends Item
             this.setUnlocalizedName("Basic Microchip");
         }
     }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "basicMicro");
+    }
 }
