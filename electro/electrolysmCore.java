@@ -46,15 +46,14 @@ import assets.electrolysm.electro.common.CommandDate;
 import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.crafting.items.BasicMicrochip;
-import assets.electrolysm.electro.crafting.items.BasicMicrochipBoard;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.CPU;
 import assets.electrolysm.electro.crafting.items.advancedMicrochip;
 import assets.electrolysm.electro.crafting.items.ballOfPlastic;
-import assets.electrolysm.electro.crafting.items.chipBoard;
 import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.crafting.items.endoInsulator;
+import assets.electrolysm.electro.crafting.items.grindStone;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
@@ -120,7 +119,7 @@ public class electrolysmCore
     private static String[] ContectedTexture = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
 
     public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(), "Electrolysm|Basics of Science");
-    public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
+    //public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
 
     public static GUIHandler guiHandler = new GUIHandler();
 
@@ -157,7 +156,7 @@ public class electrolysmCore
 
     //Security
     public static Block blastProof = new blastProof(configHandler.blastProofID, null);
-    public static Block blastBrick = new blastBrick(IDHandler.randomStuff.blastBrickID, null);
+    public static Block blastBrick = new blastBrick(IDHandler.craftingItems.blastBrickID, null);
     public static Block blastDoor = new blastDoor(configHandler.blastDoorID, null);
     public static Block blastGlass = new blastGlass(configHandler.blastGlassID, null, false, ContectedTexture);
     public static Block modBlastGlass = new modBlastGlass(configHandler.modBlastGlassID, null, false, ContectedTexture);
@@ -200,7 +199,7 @@ public class electrolysmCore
     public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
     public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
     public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
-
+    
     //Random Blocks
     public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
 
@@ -233,6 +232,7 @@ public class electrolysmCore
     public static Item CPU = new CPU(IDHandler.craftingItems.CPUID);
     public static Item BasicMicrochip = new BasicMicrochip(IDHandler.craftingItems.BasicMicrochipID);
     public static Item advancedMicrochip = new advancedMicrochip(IDHandler.craftingItems.advancedMicrochipID);
+    public static Item grindStone = new grindStone(IDHandler.craftingItems.grindStoneID);
     //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
     /*
     //Robots

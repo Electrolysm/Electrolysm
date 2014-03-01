@@ -3,6 +3,7 @@ package assets.electrolysm.electro.oreProccessing;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -29,7 +30,7 @@ public class liquidiser extends oreProcessMachineBase
     public TileEntity createNewTileEntity(World world)
     {
         // TODO Auto-generated method stub
-        return null;
+        return new TileEntityLiquidiser();
     }
 
     @SideOnly(Side.CLIENT)

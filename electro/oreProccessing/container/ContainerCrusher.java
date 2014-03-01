@@ -22,9 +22,9 @@ public class ContainerCrusher extends Container
     {
         this.furnace = tileFurnace;
         //																				ACROSS, UP
-        this.addSlotToContainer(new Slot(tileFurnace, 0, 66 - 20 - 2, 17 + 18));
+        this.addSlotToContainer(new Slot(tileFurnace, 0, 44, 17 + 18));
+        this.addSlotToContainer(new SlotGrinder(tileFurnace, 2, 79, 17 + 18));
         this.addSlotToContainer(new SlotOutput(tileFurnace, 1, 132 + 2 - 18, 35));
-        this.addSlotToContainer(new SlotOutput(tileFurnace, 2, 132 + 2 - 18, 35));
 
         for (int invRow = 0; invRow < 3; ++invRow)
         {

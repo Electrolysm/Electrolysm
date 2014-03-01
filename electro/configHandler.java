@@ -116,10 +116,10 @@ public class configHandler
         seperatorID = config.getBlock("seperatorID", IDHandler.oreProccessing.seporatorID).getInt(IDHandler.oreProccessing.seporatorID);
         smelteryID = config.getBlock("smelteryID", IDHandler.oreProccessing.smelteryID).getInt(IDHandler.oreProccessing.smelteryID);
         sulphuricAcidID = config.getBlock("sulphuricAcidID", IDHandler.oreProccessing.sulphuricAcidID).getInt(IDHandler.oreProccessing.sulphuricAcidID);
-        lumRedBlockID = config.getBlock("lumRedBlockID", IDHandler.randomStuff.BlockLumRedID).getInt(IDHandler.randomStuff.BlockLumRedID);
+        lumRedBlockID = config.getBlock("lumRedBlockID", IDHandler.craftingItems.BlockLumRedID).getInt(IDHandler.craftingItems.BlockLumRedID);
         oilID = config.getBlock("oilID", IDHandler.advAtomics.fluid.oilID).getInt(IDHandler.advAtomics.fluid.oilID);
         //Items
-        ballOfPlasticID = config.getItem("ballOfPlasticID", IDHandler.randomStuff.ballOfPlasticID).getInt(IDHandler.randomStuff.ballOfPlasticID);
+        ballOfPlasticID = config.getItem("ballOfPlasticID", IDHandler.craftingItems.ballOfPlasticID).getInt(IDHandler.craftingItems.ballOfPlasticID);
         config.save();
     }
 }

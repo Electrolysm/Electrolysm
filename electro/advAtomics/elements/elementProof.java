@@ -20,7 +20,7 @@ public class elementProof extends Item
     public elementProof(int id)
     {
         super(id);
-        this.setCreativeTab(electrolysmCore.TabElements);
+        //this.setCreativeTab(electrolysmCore.TabElements);
     }
 
     @SideOnly(Side.CLIENT)

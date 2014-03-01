@@ -16,7 +16,9 @@ import cpw.mods.fml.common.Loader;
 public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachine, IPullEnergy, IMeterable
 {
     public boolean working;
-
+    public static int activationEnergy;
+    
+    
     public void updateEntity()
     {
         if (Loader.isModLoaded("Electrolysm"))
@@ -76,12 +78,26 @@ public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachin
 
         return 0;
     }
-
+    
     @Override
     public int getActivationEnergy()
     {
-        return 0;
+        return activationEnergy;
     }
+    
+    public boolean setActivationEnergy(int energyTeU)
+    {
+    	if(energyTeU < 0)
+    	{
+    		activationEnergy = energyTeU;
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
+    
 
     @Override
     public boolean isWorking()

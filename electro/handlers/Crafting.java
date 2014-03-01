@@ -246,6 +246,16 @@ public class Crafting
         		              'P', electrolysmCore.CPU,
         		              'B', electrolysmCore.BasicMicrochip,
         		              'R', Item.redstone);
+        
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.grindStone, 1, 0),
+        		"CCC", "CSC", "CCC",
+        		Character.valueOf('C'), Block.cobblestone,
+        		Character.valueOf('S'), Item.stick);
+        
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.grindStone, 1, 1),
+        		"III", "ISI", "III",
+        		Character.valueOf('I'), Item.ingotIron,
+        		Character.valueOf('S'), new ItemStack(electrolysmCore.grindStone, 1, 0));
     }
     //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs		0		   1	  2		  3			4		5
