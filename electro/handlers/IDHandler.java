@@ -143,6 +143,9 @@ public class IDHandler
         public static int lightSourceID = 908;
         public static int microchipBoardID = 909;
         public static int transistorID = 910;
+        public static int CPUID = 911;
+        public static int BasicMicrochipID = 912;
+        public static int advancedMicrochipID = 913;
     }
 
     public static class elements

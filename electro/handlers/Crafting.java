@@ -220,14 +220,32 @@ public class Crafting
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastProof, 4),
                                         new ItemStack(electrolysmCore.blastBrick));
-        GameRegistry.addRecipe(new ItemStack(electrolysmCore.microchipBoard),
-        		               "   ", "BBB", "   ",
-        		               'B', electrolysmCore.ballOfPlastic);
+        GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.microchipBoard),
+        		                        new ItemStack(electrolysmCore.ballOfPlastic),
+        		                        new ItemStack(electrolysmCore.ballOfPlastic),
+        		                        new ItemStack(electrolysmCore.ballOfPlastic));
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.transistor),
         		               " I ", " R ", "C C",
         		               'I', Item.ingotIron,
         		               'R', Item.redstone,
         		               'C', electrolysmCore.copperIngot);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.CPU),
+        		              "CTC", "TRT", "CTC",
+        		              'C', electrolysmCore.copperIngot,
+        		              'T', electrolysmCore.transistor,
+        		              'R', Item.redstone);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.BasicMicrochip),
+        		              "   ", "RTR", "CMC",
+        		              'T', electrolysmCore.transistor,
+        		              'R', Item.redstone,
+        		              'C', electrolysmCore.copperIngot,
+        		              'M', electrolysmCore.microchipBoard);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.advancedMicrochip),
+        		              "   ", "CPC", "BRB",
+        		              'C', electrolysmCore.copperIngot,
+        		              'P', electrolysmCore.CPU,
+        		              'B', electrolysmCore.BasicMicrochip,
+        		              'R', Item.redstone);
     }
     //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs		0		   1	  2		  3			4		5

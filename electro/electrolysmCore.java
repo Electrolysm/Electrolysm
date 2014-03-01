@@ -45,7 +45,11 @@ import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.CommandDate;
 import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.UpdateResearch;
+import assets.electrolysm.electro.crafting.items.BasicMicrochip;
+import assets.electrolysm.electro.crafting.items.BasicMicrochipBoard;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
+import assets.electrolysm.electro.crafting.items.CPU;
+import assets.electrolysm.electro.crafting.items.advancedMicrochip;
 import assets.electrolysm.electro.crafting.items.ballOfPlastic;
 import assets.electrolysm.electro.crafting.items.chipBoard;
 import assets.electrolysm.electro.crafting.items.crystalBase;
@@ -226,6 +230,9 @@ public class electrolysmCore
     public static Block lightSource = new lightSource(IDHandler.craftingItems.lightSourceID, null);
     public static Item microchipBoard = new microchipBoard(IDHandler.craftingItems.microchipBoardID);
     public static Item transistor = new transistor(IDHandler.craftingItems.transistorID);
+    public static Item CPU = new CPU(IDHandler.craftingItems.CPUID);
+    public static Item BasicMicrochip = new BasicMicrochip(IDHandler.craftingItems.BasicMicrochipID);
+    public static Item advancedMicrochip = new advancedMicrochip(IDHandler.craftingItems.advancedMicrochipID);
     //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
     /*
     //Robots
