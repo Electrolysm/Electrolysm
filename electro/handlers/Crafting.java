@@ -21,11 +21,11 @@ public class Crafting
     	
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.researchDesk),
                                " X ", "YZY", "BMB",
-                               'X', Item.book,
+                               'X', electrolysmCore.inkAndQuill,
                                'Y', Item.ingotIron,
-                               'Z', Block.enchantmentTable,
-                               'B', Block.workbench,
-                               'M', Item.diamond);
+                               'Z', Item.paper,
+                               'B', Block.bookShelf,
+                               'M', Block.workbench);
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.workBench),
                                "YXY", "Y Y", "Y Y",
                                'X', Block.workbench,
@@ -256,6 +256,10 @@ public class Crafting
         		"III", "ISI", "III",
         		Character.valueOf('I'), Item.ingotIron,
         		Character.valueOf('S'), new ItemStack(electrolysmCore.grindStone, 1, 0));
+        GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.inkAndQuill),
+        		                        new ItemStack(Item.dyePowder, 2, 0),
+        		                        new ItemStack(Item.potion, 0),
+        		                        new ItemStack(Item.feather));
     }
     //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs		0		   1	  2		  3			4		5

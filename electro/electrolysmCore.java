@@ -54,6 +54,7 @@ import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.crafting.items.endoInsulator;
 import assets.electrolysm.electro.crafting.items.grindStone;
+import assets.electrolysm.electro.crafting.items.inkAndQuill;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
@@ -233,6 +234,7 @@ public class electrolysmCore
     public static Item BasicMicrochip = new BasicMicrochip(IDHandler.craftingItems.BasicMicrochipID);
     public static Item advancedMicrochip = new advancedMicrochip(IDHandler.craftingItems.advancedMicrochipID);
     public static Item grindStone = new grindStone(IDHandler.craftingItems.grindStoneID);
+    public static Item inkAndQuill = new inkAndQuill(IDHandler.craftingItems.inkAndQuillID);
     //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
     /*
     //Robots
