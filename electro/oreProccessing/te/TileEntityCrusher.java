@@ -153,6 +153,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     }
 
     public int time = 0;
+    public int maxCrushTime = 400;
     public int crushTime = 400;
     
     @Override
@@ -164,61 +165,85 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         ItemStack output = getStackInSlot(1);
         ItemStack grindStone = getStackInSlot(2);
         ItemStack result = CrusherRecipes.smelting().getCrushingResult(inStack);
-       
         int extraDust = 0;
         ItemStack result2 = result;
         Random rand = new Random();
-        
+
+        if(grindStone != null)
+        {
+        	//extraDust = this.getExtraDust(grindStone);
+        	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
+        	{
+        		crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 1));
+        	}
+        	else
+        	{
+        		crushTime = maxCrushTime;
+        	}
+        }
+        else
+        {
+        	crushTime = maxCrushTime;
+        }
         if(result != null)
         {
         	result2 = new ItemStack(result.getItem(), result.stackSize + extraDust, result.getItemDamage());
         }
-        if(grindStone != null)
-        {
-        	extraDust = this.getExtraDust(grindStone);
-        	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
-        	{
-        		crushTime = (int)(crushTime /*/ (this.getExtraDust(grindStone) + 1)*/);
-        	}
-        }
+        
         
         if (inStack != null)
         {
             if (result != null)
             {
-            	if(time == crushTime)
-            	{
-            		time = 0;
-	                if (output == null)
-	                {
-	                    int outputSize = 0;
-	                    int resultSize = result.stackSize;
-	
-	                    if (((resultSize + outputSize) <= 64))
-	                    {
-	                        this.decrStackSize(0, 1);
+                if (output == null)
+                {
+                    int outputSize = 0;
+                    int resultSize = result.stackSize;
+
+                    if (((resultSize + outputSize) <= 64))
+                    {
+                    	if(time == crushTime)
+                    	{
+                    		time = 0;
+                    		this.decrStackSize(0, 1);
 	                        this.setInventorySlotContents(1, result2);
 	                        this.onInventoryChanged();
-	                    }
-	                }
-	                else
-	                {
-	                    int outputSize = output.stackSize;
-	                    int resultSize = result.stackSize;
-	
-	                    if (((resultSize + outputSize) < 64))
-	                    {
+                    	}
+                    	else
+                    	{
+                    		time = time + 1;
+                    	}
+                    }
+                }
+                else
+                {
+                    int outputSize = output.stackSize;
+                    int resultSize = result.stackSize;
+
+                    if (((resultSize + outputSize) < 64))
+                    {
+                    	if(time == crushTime)
+                    	{
+                    		time = 0;
 	                        this.decrStackSize(0, 1);
 	                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
 	                        this.onInventoryChanged();
-	                    }
-	                }
-            	}
-            	else
-            	{
-            		time = time + 1;
-            	}
+                    	}
+                    	else
+                    	{
+                    		time = time + 1;
+                    	}
+                    }
+                }
+           	}
+            else
+            {
+            	time = 0;
             }
+        }
+        else
+        {
+        	time = 0;
         }
     }
 
@@ -275,6 +300,8 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
                             inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
                     }
             }
+            
+            time = tagCompound.getInteger("time");
     }
 
     @Override
@@ -292,6 +319,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
                     }
             }
             tagCompound.setTag("Inventory", itemList);
+            tagCompound.setInteger("time", time);
     }
 
 }

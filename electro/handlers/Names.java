@@ -52,7 +52,7 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.luminousRedstone, "Luminous Redstone Dust");
         LanguageRegistry.addName(electrolysmCore.diamondShard, "Diamond Shard");
         LanguageRegistry.addName(electrolysmCore.crystalBase, "Crystal Base");
-        
+        LanguageRegistry.addName(electrolysmCore.blastBrick, "Blast Proof Iron Brick");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1), "Netted Ore");
         
         LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 0), "Tin Ingot");

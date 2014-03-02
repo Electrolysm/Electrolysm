@@ -34,13 +34,7 @@ public class CrusherRecipes
         ArrayList<ItemStack> leadOre = OreDictionary.getOres("oreLead");
         ItemStack ironOre = new ItemStack(Block.oreIron);
         ItemStack goldOre = new ItemStack(Block.oreGold);
-        //Ingots
-        ArrayList<ItemStack> copperIngot = OreDictionary.getOres("ingotCopper");
-        ArrayList<ItemStack> tinIngot = OreDictionary.getOres("ingotTin");
-        ArrayList<ItemStack> silverIngot = OreDictionary.getOres("ingotSilver");
-        ArrayList<ItemStack> leadIngot = OreDictionary.getOres("ingotLead");
-        ItemStack ironIngot = new ItemStack(Item.ingotIron);
-        ItemStack goldIngot = new ItemStack(Item.ingotGold);
+
         //Ore
         this.addCrushing(ironOre, new ItemStack(electrolysmCore.impureDusts, 2, 2));
         this.addCrushing(goldOre, new ItemStack(electrolysmCore.impureDusts, 2, 3));

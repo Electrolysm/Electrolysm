@@ -235,7 +235,7 @@ public class electrolysmCore
     public static Item advancedMicrochip = new advancedMicrochip(IDHandler.craftingItems.advancedMicrochipID);
     public static Item grindStone = new grindStone(IDHandler.craftingItems.grindStoneID);
     public static Item inkAndQuill = new inkAndQuill(IDHandler.craftingItems.inkAndQuillID);
-    //public static Block floodLight = new floodLight(IDHandler.randomStuff.floodLightID, null);
+
     /*
     //Robots
     //Parts
@@ -288,6 +288,7 @@ public class electrolysmCore
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();
         RegisterBlock.register();
+        new MultipartHandler();
         Names.addName();
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();

@@ -11,6 +11,8 @@ public class blastBrick extends blastProof
     public blastBrick(int id, Material mat)
     {
         super(id, Material.iron);
+        
+        this.setUnlocalizedName("blastBrick");
     }
 
     @Override

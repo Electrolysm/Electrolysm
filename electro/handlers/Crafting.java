@@ -266,6 +266,7 @@ public class Crafting
 	public static void addFurnaceRecipes() 
 	{
 		int impureID = electrolysmCore.impureDusts.itemID;
+		int pureID = electrolysmCore.dusts.itemID;
 		ItemStack copperIngot = new ItemStack(electrolysmCore.copperIngot);
 		ItemStack tinIngot = new ItemStack(electrolysmCore.ingots, 1, 0);
 		ItemStack silverIngot = new ItemStack(electrolysmCore.ingots, 1, 1);
@@ -274,6 +275,7 @@ public class Crafting
 		ItemStack ironIngot = new ItemStack(Item.ingotIron);
         ItemStack goldIngot = new ItemStack(Item.ingotGold);
         float impureXP = 1.23456789F;
+        float pureXP = 5.789F;
         
 		FurnaceRecipes.smelting().addSmelting(impureID, 0, copperIngot, impureXP);
 		FurnaceRecipes.smelting().addSmelting(impureID, 1, tinIngot, impureXP);
@@ -281,6 +283,13 @@ public class Crafting
 		FurnaceRecipes.smelting().addSmelting(impureID, 3, goldIngot, impureXP);
 		FurnaceRecipes.smelting().addSmelting(impureID, 4, silverIngot, impureXP);
 		FurnaceRecipes.smelting().addSmelting(impureID, 5, leadIngot, impureXP);
+		
+		FurnaceRecipes.smelting().addSmelting(pureID, 0, copperIngot, pureXP);
+		FurnaceRecipes.smelting().addSmelting(pureID, 1, tinIngot, pureXP);
+		FurnaceRecipes.smelting().addSmelting(pureID, 2, ironIngot, pureXP);
+		FurnaceRecipes.smelting().addSmelting(pureID, 3, goldIngot, pureXP);
+		FurnaceRecipes.smelting().addSmelting(pureID, 4, silverIngot, pureXP);
+		FurnaceRecipes.smelting().addSmelting(pureID, 5, leadIngot, pureXP);
 
 	}
 }
