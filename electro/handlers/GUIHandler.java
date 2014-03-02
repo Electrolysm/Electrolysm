@@ -17,12 +17,15 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.oreProccessing.container.ContainerCrusher;
 import assets.electrolysm.electro.oreProccessing.container.ContainerElectrolysis;
+import assets.electrolysm.electro.oreProccessing.container.ContainerLiquidiser;
 import assets.electrolysm.electro.oreProccessing.container.ContainerPort;
 import assets.electrolysm.electro.oreProccessing.gui.GUICrusher;
 import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
+import assets.electrolysm.electro.oreProccessing.gui.GUILiquidiser;
 import assets.electrolysm.electro.oreProccessing.gui.GUIPort;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
+import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
 import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGenerator;
 import assets.electrolysm.electro.powerSystem.generators.container.ContainerGenerator;
@@ -75,6 +78,10 @@ public class GUIHandler implements IGuiHandler
         {
             return new ContainerCrusher(player.inventory, (TileEntityCrusher)entity);
         }
+        if(entity instanceof TileEntityLiquidiser)
+        {
+        	return new ContainerLiquidiser(player.inventory, (TileEntityLiquidiser)entity);
+        }
 
         return null;
     }
@@ -122,6 +129,10 @@ public class GUIHandler implements IGuiHandler
         if (entity instanceof TileEntityCrusher)
         {
             return new GUICrusher((TileEntityCrusher)entity, player.inventory);
+        }
+        if(entity instanceof TileEntityLiquidiser)
+        {
+        	return new GUILiquidiser((TileEntityLiquidiser)entity, player.inventory);
         }
 
         return null;

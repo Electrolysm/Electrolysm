@@ -1,6 +1,7 @@
 package assets.electrolysm.electro.handlers;
 
 import net.minecraft.block.Block;
+import assets.electrolysm.electro.configHandler;
 import assets.electrolysm.electro.electrolysmCore;
 import codechicken.microblock.BlockMicroMaterial;
 import codechicken.multipart.MultiPartRegistry.IPartFactory;
@@ -19,7 +20,16 @@ public class MultipartHandler
 	
 	public MultipartHandler()
 	{
-		addMultiparts();
+		if(configHandler.multipart)
+		{
+			addMultiparts();
+			LoggerHandler.info("Adding Multipart Blocks");
+		}
+		else
+		{
+			LoggerHandler.config("Multipart Blocks not added, due to configuration options!");
+			LoggerHandler.config("Change config options to add Multipart Blocks");
+		}
 	}
 
 	private void addMultiparts()

@@ -123,6 +123,7 @@ public class IDHandler
         public static int sulphuricAcidID = 825;
         public static int netID = 826;
         public static int nettedBlockID = 827;
+        public static int crystalID = 828;
     }
 
     public static class blocks

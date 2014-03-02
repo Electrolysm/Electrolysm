@@ -88,7 +88,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     public String getInvName()
     {
         // TODO Auto-generated method stub
-        return "Research Desk";
+        return "Crusher";
     }
 
     @Override

@@ -2,10 +2,10 @@ package assets.electrolysm.electro.oreProccessing.te;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.api.powerSystem.meter.IMeterable;
 import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
+import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
 
 public class TileEntityLiquidiser extends TileEntityEnergyMachine implements IMeterable, IInventory//, ISidedInventory
 {
@@ -129,10 +129,79 @@ public class TileEntityLiquidiser extends TileEntityEnergyMachine implements IMe
         return true;
     }
 
+    public int time;
+    public int maxLiquidTime = 600;
+    public int liquidTime = 600;
+    
     @Override
     public void updateEntity()
     {
+    	ItemStack input = this.getStackInSlot(0);
+    	ItemStack output = this.getStackInSlot(1);
+    	ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(input);
+    	int NoInput = LiquidiserRecipes.liquidising().getNoInput(result);
     	
+    	if(input != null)
+    	{
+    		if(result != null && input.stackSize >= NoInput)
+    		{
+    			if(output == null)
+    			{
+    				int outputSize = 0;
+    				int resultSize = result.stackSize;
+    				
+    				if((outputSize + resultSize) <= 64)
+    				{
+    					if(time == liquidTime)
+    					{
+    						time = 0;
+    						this.decrStackSize(0, NoInput);
+    						this.setInventorySlotContents(1, result);
+    						this.onInventoryChanged();
+    					}
+    					else
+    					{
+    						time = time + 1;
+    					}
+    				}
+    			}
+    			else
+    			{
+    				int outputSize = output.stackSize;
+    				int resultSize = result.stackSize;
+    				int result2Size = (outputSize + resultSize);
+    				
+    				if((outputSize + resultSize) <= 64)
+    				{
+    					if(time == liquidTime)
+    					{
+    						time = 0;
+    						this.decrStackSize(0, NoInput);
+    						this.setInventorySlotContents(1, new ItemStack(result.getItem(), result2Size,
+    								result.getItemDamage()));
+    						this.onInventoryChanged();
+    					}
+    					else
+    					{
+    						time = time + 1;
+    					}
+    				}
+    			}
+    		}
+    		else
+    		{
+    			time = 0;
+    		}
+    		
+    	}
+    	else 
+    	{
+    		time = 0;
+    	}
     }
+
+	public void setGuiDisplayName(String displayName) {
+		
+	}
 
 }

@@ -43,7 +43,9 @@ public class configHandler
     public static int modIDInt;
     public static boolean idSet;
     public static boolean idSetD;
-
+    //MultiPart Compaterbility
+    public static boolean multipart;
+    
     //IDs - Blocks
     public static int workBenchID;
     public static int deskID;
@@ -120,6 +122,9 @@ public class configHandler
         oilID = config.getBlock("oilID", IDHandler.advAtomics.fluid.oilID).getInt(IDHandler.advAtomics.fluid.oilID);
         //Items
         ballOfPlasticID = config.getItem("ballOfPlasticID", IDHandler.craftingItems.ballOfPlasticID).getInt(IDHandler.craftingItems.ballOfPlasticID);
+        
+        //Multiparts
+        multipart = config.get("MULTIPART", "addMultiparts", true).getBoolean(true);
         config.save();
     }
 }

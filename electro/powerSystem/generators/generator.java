@@ -186,6 +186,7 @@ public class generator extends BlockContainer
         }
     }
 
+    @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         TileEntityGenerator tileentityfurnace = (TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4);

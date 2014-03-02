@@ -61,6 +61,7 @@ import assets.electrolysm.electro.crafting.items.transistor;
 import assets.electrolysm.electro.item.basic.drillCasing;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.oreProccessing.crusher;
+import assets.electrolysm.electro.oreProccessing.crystalOre;
 import assets.electrolysm.electro.oreProccessing.dusts;
 import assets.electrolysm.electro.oreProccessing.electrolChamber;
 import assets.electrolysm.electro.oreProccessing.electrolisisCore;
@@ -219,6 +220,7 @@ public class electrolysmCore
     public static Block sulpuricAcid = new sulphuricAcid(configHandler.sulphuricAcidID);
     public static Block nettedBlock = new nettedBlock(IDHandler.oreProccessing.nettedBlockID, null);
     public static Item net = new net(IDHandler.oreProccessing.netID);
+    public static Item crystal = new crystalOre(IDHandler.oreProccessing.crystalID);
 
     //Random items for crafting
     public static Item diamondShard = new diamondShard(IDHandler.craftingItems.diamondShardID);

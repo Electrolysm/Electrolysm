@@ -36,7 +36,7 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.energisingRod, "Energising Filament");
         LanguageRegistry.addName(electrolysmCore.glassModifire, "Glass Modifier");
         LanguageRegistry.addName(electrolysmCore.sulphurOre, "Sulphur Ore");
-        LanguageRegistry.addName(electrolysmCore.sulphur, "Sulphure Crystals");
+        LanguageRegistry.addName(electrolysmCore.sulphur, "Sulphur Crystals");
         LanguageRegistry.addName(electrolysmCore.energyMeter, "Energy Meter");
         LanguageRegistry.addName(electrolysmCore.sulpuricAcid, "Sulphuric Acid");
         LanguageRegistry.addName(electrolysmCore.copperOre, "Copper Ore");
@@ -82,6 +82,7 @@ public class Names
             LanguageRegistry.addName(new ItemStack(electrolysmCore.dusts, 1, i), CommonProxy.DUSTS[i] + " Dust");
             LanguageRegistry.addName(new ItemStack(electrolysmCore.impureDusts, 1, i), "Impure " +
                                      CommonProxy.DUSTS[i] + " Dust");
+            LanguageRegistry.addName(new ItemStack(electrolysmCore.crystal, 1, i), CommonProxy.DUSTS[i] + "Sulphate Crystal");
         }
     }
 }
