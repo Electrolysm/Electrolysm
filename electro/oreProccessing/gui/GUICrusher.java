@@ -1,15 +1,22 @@
 package assets.electrolysm.electro.oreProccessing.gui;
 
+import java.util.List;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
+import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.oreProccessing.container.ContainerCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
+import codechicken.nei.VisiblityData;
+import codechicken.nei.api.INEIGuiHandler;
+import codechicken.nei.api.TaggedInventoryArea;
 
-public class GUICrusher extends GuiContainer
+public class GUICrusher extends GuiContainer //implements INEIGuiHandler
 {
     private TileEntityCrusher entity;
 
@@ -43,5 +50,53 @@ public class GUICrusher extends GuiContainer
     {
         fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
     }
+
     
+    //NEI
+    /*
+	@Override
+	public VisiblityData modifyVisiblity(GuiContainer gui,
+			VisiblityData currentVisibility) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getItemSpawnSlot(GuiContainer gui, ItemStack item) 
+	{
+		if(gui instanceof GUICrusher)
+		{
+			ItemStack grindStone = new ItemStack(electrolysmCore.grindStone);
+			if(item.isItemEqual(grindStone))
+			{
+				return 2;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		return -1;
+	}
+
+	@Override
+	public List<TaggedInventoryArea> getInventoryAreas(GuiContainer gui) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean handleDragNDrop(GuiContainer gui, int mousex, int mousey,
+			ItemStack draggedStack, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hideItemPanelSlot(GuiContainer gui, int x, int y, int w,
+			int h) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+    */
 }

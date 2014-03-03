@@ -82,7 +82,7 @@ public class Names
             LanguageRegistry.addName(new ItemStack(electrolysmCore.dusts, 1, i), CommonProxy.DUSTS[i] + " Dust");
             LanguageRegistry.addName(new ItemStack(electrolysmCore.impureDusts, 1, i), "Impure " +
                                      CommonProxy.DUSTS[i] + " Dust");
-            LanguageRegistry.addName(new ItemStack(electrolysmCore.crystal, 1, i), CommonProxy.DUSTS[i] + "Sulphate Crystal");
+            LanguageRegistry.addName(new ItemStack(electrolysmCore.crystal, 1, i), CommonProxy.DUSTS[i] + " Sulphate Crystal");
         }
     }
 }

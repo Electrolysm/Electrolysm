@@ -1,6 +1,5 @@
 package assets.electrolysm.electro.handlers;
 
-import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityEnergiser;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityInjector;
 import assets.electrolysm.electro.block.basic.te.TileEntityBlastDoor;
@@ -9,6 +8,7 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
+import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import assets.electrolysm.electro.powerSystem.te.TileEntityAdvEarther;
 import assets.electrolysm.electro.powerSystem.te.TileEntityEarther;
@@ -38,5 +38,6 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityResearchDesk.class, "TileEntityResearchDesk");
         GameRegistry.registerTileEntity(TileEntityWorkBench.class, "TileEntityWorkBench");
         GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
+        GameRegistry.registerTileEntity(TileEntityLiquidiser.class, "TileEntityLiquidiser");
     }
 }

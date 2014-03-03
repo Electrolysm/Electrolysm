@@ -33,7 +33,7 @@ public class LiquidiserRecipes
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
             this.addLiquidising(electrolysmCore.impureDusts.itemID, i, 
-            		new ItemStack(electrolysmCore.crystal, 1, 1));
+            		new ItemStack(electrolysmCore.crystal, 1, i));
         }
     }
 
@@ -48,11 +48,21 @@ public class LiquidiserRecipes
         {
             return null;
         }
-	    for(int i = 0; i <) 
-        ItemStack crystal = new ItemStack
-	        if()
-
-        return (ItemStack)smeltingList.get(Integer.valueOf(item.itemID));
+	    for(int i = 0; i < CommonProxy.DUSTS.length; i++)
+	    { 
+	    	ItemStack impureDust = new ItemStack(electrolysmCore.impureDusts, 1, i);
+	        if(item.isItemEqual(impureDust))
+	        {
+	        	return (new ItemStack(electrolysmCore.crystal, 1, i));
+	        }
+	    }
+	    
+        return (ItemStack)metaSmeltingList.get(Integer.valueOf(item.itemID));
     }
+
+	public Map getLiquidsMap() 
+	{
+		return this.metaSmeltingList;
+	}
 
 }

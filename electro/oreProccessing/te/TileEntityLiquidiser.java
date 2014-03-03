@@ -130,7 +130,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     {
     	if(stack != null)
     	{
-	    	ItemStack recipe = CrusherRecipes.smelting().getCrushingResult(stack);
+	    	ItemStack recipe = LiquidiserRecipes.liquidising().getLiquidisingResult(stack);
 	    	if(slot == 0)
 	    	{
 	    		if(recipe != null)
@@ -169,22 +169,17 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 
         if (inStack != null)
         {
-        	System.out.println("inStack");
             if (result != null)
             {
-            	System.out.println("result");
                 if (output == null)
                 {
-                	System.out.println("output");
                     int outputSize = 0;
                     int resultSize = result.stackSize;
 
                     if (((resultSize + outputSize) <= 64))
                     {
-                    	System.out.println("stack");
                     	if(time == crushTime)
                     	{
-                        	System.out.println("time");
                     		time = 0;
                     		this.decrStackSize(0, 1);
 	                        this.setInventorySlotContents(1, result2);
@@ -192,7 +187,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
                     	}
                     	else
                     	{
-                        	System.out.println("elseTime");
                     		time = time + 1;
                     	}
                     }
@@ -204,10 +198,8 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 
                     if (((resultSize + outputSize) < 64))
                     {
-                    	System.out.println("stack2");
                     	if(time == crushTime)
                     	{
-                        	System.out.println("time2");
                     		time = 0;
 	                        this.decrStackSize(0, 1);
 	                        output.stackSize = (output.stackSize + result.stackSize);
@@ -215,7 +207,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
                     	}
                     	else
                     	{
-                        	System.out.println("elseTime2");
                     		time = time + 1;
                     	}
                     }
@@ -223,13 +214,11 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
            	}
             else
             {
-            	System.out.println("elseResult");
             	time = 0;
             }
         }
         else
         {
-        	System.out.println("elseInStack");
         	time = 0;
         }
     }

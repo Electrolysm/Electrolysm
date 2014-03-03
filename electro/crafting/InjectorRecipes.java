@@ -3,6 +3,7 @@ package assets.electrolysm.electro.crafting;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.common.Loader;
@@ -32,10 +33,16 @@ public class InjectorRecipes
 
     public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output)
     {
-        this.metaSmeltingList1.put(Arrays.asList(input1.itemID, input1.getItemDamage()), output);
-        this.metaSmeltingList2.put(Arrays.asList(input2.itemID, input2.getItemDamage()), output);
+        this.metaSmeltingList1.put(Arrays.asList(input1.itemID, input2.itemID), output);
+        this.metaSmeltingList2.put(Arrays.asList(input1.getItemDamage(), input2.getItemDamage()), output);
+        
         this.metaSmeltingCheckList1.put(Arrays.asList(input1.itemID, input1.getItemDamage()), input1);
         this.metaSmeltingCheckList2.put(Arrays.asList(input2.itemID, input2.getItemDamage()), input2);
+    }
+    
+    public Map getInjectorMap()
+    {
+    	return this.metaSmeltingList1;
     }
 
     public ItemStack getDoubleSmeltingResult(ItemStack item1, ItemStack item2)
@@ -50,8 +57,8 @@ public class InjectorRecipes
             return null;
         }
 
-        ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1.itemID, item1.getItemDamage()));
-        ItemStack outputItem2 = this.metaSmeltingList2.get(Arrays.asList(item2.itemID, item2.getItemDamage()));
+        ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1.itemID, item2.itemID));
+        ItemStack outputItem2 = this.metaSmeltingList2.get(Arrays.asList(item1.getItemDamage(), item2.getItemDamage()));
 
         if (outputItem1 == outputItem2)
         {

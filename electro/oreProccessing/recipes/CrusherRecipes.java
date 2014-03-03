@@ -89,6 +89,11 @@ public class CrusherRecipes
         this.crushing2.put(Integer.valueOf(input.itemID), output);
     }
 
+    public Map getCrushingMap()
+    {
+    	return this.crushing2;
+    }
+    
     public ItemStack getCrushingResult(ItemStack input)
     {
         if (input == null)
