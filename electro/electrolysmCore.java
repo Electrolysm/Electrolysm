@@ -48,11 +48,13 @@ import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.crafting.items.BasicMicrochip;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.CPU;
+import assets.electrolysm.electro.crafting.items.advancedCPU;
 import assets.electrolysm.electro.crafting.items.advancedMicrochip;
 import assets.electrolysm.electro.crafting.items.ballOfPlastic;
 import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
 import assets.electrolysm.electro.crafting.items.endoInsulator;
+import assets.electrolysm.electro.crafting.items.experimentalMicrochip;
 import assets.electrolysm.electro.crafting.items.grindStone;
 import assets.electrolysm.electro.crafting.items.inkAndQuill;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
@@ -237,6 +239,8 @@ public class electrolysmCore
     public static Item advancedMicrochip = new advancedMicrochip(IDHandler.craftingItems.advancedMicrochipID);
     public static Item grindStone = new grindStone(IDHandler.craftingItems.grindStoneID);
     public static Item inkAndQuill = new inkAndQuill(IDHandler.craftingItems.inkAndQuillID);
+    public static Item experimentalMicrochip = new experimentalMicrochip(IDHandler.craftingItems.experimentalMicrochipID);
+    public static Item advancedCPU = new advancedCPU(IDHandler.craftingItems.advancedCPUID);
 
     /*
     //Robots

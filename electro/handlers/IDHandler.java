@@ -149,6 +149,8 @@ public class IDHandler
         public static int advancedMicrochipID = 913;
         public static int grindStoneID = 914;
         public static int inkAndQuillID = 915;
+        public static int experimentalMicrochipID = 916;
+        public static int advancedCPUID = 917;
     }
 
     public static class elements
