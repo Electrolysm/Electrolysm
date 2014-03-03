@@ -27,7 +27,7 @@ public class GUILiquidiser extends GuiContainer
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
-        int progress = (int)((entity.time * 90) / entity.liquidTime);
+        int progress = (int)((entity.time * 90) / entity.crushTime);
         int heat;
 
         if (progress != 0)

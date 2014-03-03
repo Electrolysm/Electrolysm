@@ -1,23 +1,26 @@
 package assets.electrolysm.electro.oreProccessing.te;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.api.powerSystem.meter.IMeterable;
-import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
 import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
 
-public class TileEntityLiquidiser extends TileEntityEnergyMachine implements IMeterable, IInventory//, ISidedInventory
+public class TileEntityLiquidiser extends TileEntity implements IInventory, ISidedInventory
 {
     private ItemStack[] inventory;
     public boolean isOpen;
-        
-	public TileEntityLiquidiser()
-	{
-		super();
-		
-		this.activationEnergy = 67;
-		this.inventory = new ItemStack[2];
+
+    public TileEntityLiquidiser()
+    {
+        this.inventory = new ItemStack[2];
     }
 
     @Override
@@ -86,7 +89,7 @@ public class TileEntityLiquidiser extends TileEntityEnergyMachine implements IMe
     public String getInvName()
     {
         // TODO Auto-generated method stub
-        return "Research Desk";
+        return "Displasment Chamber";
     }
 
     @Override
@@ -123,84 +126,180 @@ public class TileEntityLiquidiser extends TileEntityEnergyMachine implements IMe
     }
 
     @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
-        // TODO Auto-generated method stub
-        return true;
+    	if(stack != null)
+    	{
+	    	ItemStack recipe = CrusherRecipes.smelting().getCrushingResult(stack);
+	    	if(slot == 0)
+	    	{
+	    		if(recipe != null)
+	    		{
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			return false;
+	    		}
+	    	}
+	    	else
+	    	{
+	    		return false;
+	    	}
+    	}
+    	else 
+    	{
+    		return false;
+    	}
     }
 
-    public int time;
-    public int maxLiquidTime = 600;
-    public int liquidTime = 600;
+    public int time = 0;
+    public int maxCrushTime = 400;
+    public int crushTime = 400;
     
     @Override
     public void updateEntity()
     {
-    	ItemStack input = this.getStackInSlot(0);
-    	ItemStack output = this.getStackInSlot(1);
-    	ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(input);
-    	int NoInput = LiquidiserRecipes.liquidising().getNoInput(result);
+    	this.onInventoryChanged();
     	
-    	if(input != null)
-    	{
-    		if(result != null && input.stackSize >= NoInput)
-    		{
-    			if(output == null)
-    			{
-    				int outputSize = 0;
-    				int resultSize = result.stackSize;
-    				
-    				if((outputSize + resultSize) <= 64)
-    				{
-    					if(time == liquidTime)
-    					{
-    						time = 0;
-    						this.decrStackSize(0, NoInput);
-    						this.setInventorySlotContents(1, result);
-    						this.onInventoryChanged();
-    					}
-    					else
-    					{
-    						time = time + 1;
-    					}
-    				}
-    			}
-    			else
-    			{
-    				int outputSize = output.stackSize;
-    				int resultSize = result.stackSize;
-    				int result2Size = (outputSize + resultSize);
-    				
-    				if((outputSize + resultSize) <= 64)
-    				{
-    					if(time == liquidTime)
-    					{
-    						time = 0;
-    						this.decrStackSize(0, NoInput);
-    						this.setInventorySlotContents(1, new ItemStack(result.getItem(), result2Size,
-    								result.getItemDamage()));
-    						this.onInventoryChanged();
-    					}
-    					else
-    					{
-    						time = time + 1;
-    					}
-    				}
-    			}
-    		}
-    		else
-    		{
-    			time = 0;
-    		}
-    		
-    	}
-    	else 
-    	{
-    		time = 0;
-    	}
+        ItemStack inStack = getStackInSlot(0);
+        ItemStack output = getStackInSlot(1);
+        ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(inStack);
+        ItemStack result2 = result;
+
+        if (inStack != null)
+        {
+        	System.out.println("inStack");
+            if (result != null)
+            {
+            	System.out.println("result");
+                if (output == null)
+                {
+                	System.out.println("output");
+                    int outputSize = 0;
+                    int resultSize = result.stackSize;
+
+                    if (((resultSize + outputSize) <= 64))
+                    {
+                    	System.out.println("stack");
+                    	if(time == crushTime)
+                    	{
+                        	System.out.println("time");
+                    		time = 0;
+                    		this.decrStackSize(0, 1);
+	                        this.setInventorySlotContents(1, result2);
+	                        this.onInventoryChanged();
+                    	}
+                    	else
+                    	{
+                        	System.out.println("elseTime");
+                    		time = time + 1;
+                    	}
+                    }
+                }
+                else
+                {
+                    int outputSize = output.stackSize;
+                    int resultSize = result.stackSize;
+
+                    if (((resultSize + outputSize) < 64))
+                    {
+                    	System.out.println("stack2");
+                    	if(time == crushTime)
+                    	{
+                        	System.out.println("time2");
+                    		time = 0;
+	                        this.decrStackSize(0, 1);
+	                        output.stackSize = (output.stackSize + result.stackSize);
+	                        this.onInventoryChanged();
+                    	}
+                    	else
+                    	{
+                        	System.out.println("elseTime2");
+                    		time = time + 1;
+                    	}
+                    }
+                }
+           	}
+            else
+            {
+            	System.out.println("elseResult");
+            	time = 0;
+            }
+        }
+        else
+        {
+        	System.out.println("elseInStack");
+        	time = 0;
+        }
+    }
+
+	int[] slots_bottom = {1};
+	int[] slots_top = {0};
+	int[] slots_sides = {1};
+	
+    public int[] getAccessibleSlotsFromSide(int side)
+    {
+        if(side == 0)
+        {
+        	return slots_bottom;
+        }
+        else if(side == 1)
+        {
+        	return slots_top;
+        }
+        else
+        {
+        	return slots_sides;
+        }
+    }
+
+    public boolean canInsertItem(int slot, ItemStack item, int side)
+    {
+        return this.isItemValidForSlot(slot, item);
+    }
+
+    public boolean canExtractItem(int slot, ItemStack item, int side)
+    {
+        return side != 0 || slot != 1 || item.getItem() == electrolysmCore.crystal;
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+            super.readFromNBT(tagCompound);
+            
+            NBTTagList tagList = tagCompound.getTagList("Inventory");
+            for (int i = 0; i < tagList.tagCount(); i++) {
+                    NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                    byte slot = tag.getByte("Slot");
+                    if (slot >= 0 && slot < inventory.length) {
+                            inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
+                    }
+            }
+            
+            time = tagCompound.getInteger("time");
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tagCompound) {
+            super.writeToNBT(tagCompound);
+                            
+            NBTTagList itemList = new NBTTagList();
+            for (int i = 0; i < inventory.length; i++) {
+                    ItemStack stack = inventory[i];
+                    if (stack != null) {
+                            NBTTagCompound tag = new NBTTagCompound();
+                            tag.setByte("Slot", (byte) i);
+                            stack.writeToNBT(tag);
+                            itemList.appendTag(tag);
+                    }
+            }
+            tagCompound.setTag("Inventory", itemList);
+            tagCompound.setInteger("time", time);
     }
 
 	public void setGuiDisplayName(String displayName) {
+		// TODO Auto-generated method stub
 		
 	}
 

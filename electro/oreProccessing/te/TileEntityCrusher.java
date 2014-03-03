@@ -260,7 +260,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	}
 	int[] slots_bottom = {1};
 	int[] slots_top = {0};
-	int[] slots_sides = {2};
+	int[] slots_sides = {2, 1};
 	
     public int[] getAccessibleSlotsFromSide(int side)
     {
