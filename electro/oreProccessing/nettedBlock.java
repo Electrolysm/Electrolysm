@@ -31,7 +31,8 @@ public class nettedBlock extends Block {
 	@Override
     public String getUnlocalizedName()
     {
-        return this.getTextureName();
+        //return this.getTextureName();
+		return "nettedBlock";
     }
 	/*
     @Override

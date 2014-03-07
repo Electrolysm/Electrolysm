@@ -91,7 +91,7 @@ public class hammer extends ItemTool
     	if(this.isShiftKeyDown())
     	{
     		String hammer = ChatMessageComponent.createFromText("This hammer breaks:").setColor(EnumChatFormatting.GREEN) + "";
-    		list.add("§l§a" + hammer);
+    		list.add("la" + hammer);
     		list.add("Iron");
     		list.add("Gold");
     		list.add("Tin");
@@ -101,7 +101,7 @@ public class hammer extends ItemTool
     	else
     	{
     		String shift = ChatMessageComponent.createFromText("<Shift>").setColor(EnumChatFormatting.GOLD) + "";
-    		list.add("Press " + "§e" + shift + "§7" + " for more info");
+    		list.add("Press " + "e" + shift + "7" + " for more info");
     	}
     }
     

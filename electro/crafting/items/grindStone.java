@@ -15,7 +15,7 @@ import net.minecraft.util.Icon;
 public class grindStone extends Item {
 
 	@SideOnly(Side.CLIENT)
-	private Icon[] grindStoneIcon = new Icon[3];
+    private Icon[] grindStoneIcon;
 	
 	public grindStone(int id) {
 		super(id);
@@ -34,6 +34,8 @@ public class grindStone extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister reg)
     {
+        grindStoneIcon = new Icon[3];
+    	
         for (int i = 0; i < grindStoneIcon.length; i ++)
         {
         	grindStoneIcon[i] = reg.registerIcon("electrolysm:" + "grindStone-" + i);
@@ -49,7 +51,7 @@ public class grindStone extends Item {
 
     public void getSubItems(int id, CreativeTabs creativeTab, List list)
     {
-        for (int i = 0; i < grindStoneIcon.length; i++)
+        for (int i = 0; i < 3; i++)
         {
             list.add(new ItemStack(electrolysmCore.grindStone, 1, i));
         }
