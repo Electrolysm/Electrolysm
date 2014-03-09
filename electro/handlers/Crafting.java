@@ -268,9 +268,9 @@ public class Crafting
         		              'D', Item.diamond,
         		              'M', electrolysmCore.advancedMicrochip,
         		              'C', electrolysmCore.copperIngot);
-        GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.graphiteRod),
-        		                        new ItemStack(electrolysmCore.graphite),
-        		                        new ItemStack(electrolysmCore.graphite));
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.graphiteRod), 
+"X  ", "X  ", "   ",
+'X', electrolysmCore.chunkGraphite);
         		                        
         		              
         		              
