@@ -28,25 +28,20 @@ public class GUIElectrolysisCore extends GuiContainer
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
-        int progress = entity.furnaceBurnTime;
-        int heat = entity.heat;
-
-        if (progress != 0)
+        
+        if (entity.active)
         {
-            progress = progress / 50;
+            this.drawTexturedModalRect(x + 63, y + 27 + 12, 176, 4, 44, 10);
         }
-
-        if (heat != 0)
-        {
-            heat = heat / 12;
-
-            if (entity.active)
-            {
-                this.drawTexturedModalRect(x + 63, y + 27 + 12 - heat, 176, 4 - heat, 44, heat + 10);
-            }
-        }
-
-        this.drawTexturedModalRect(x + 82, y + 23, 176, 14, 80, progress - 50);
+        int progress = (entity.time);
+        int progress2 = ((progress * 29) / entity.electroTime);
+        int progress1 = ((progress * 37) / entity.electroTime);
+        /**
+         * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
+         */
+        this.drawTexturedModalRect(x + 27, y + 33, 176, 16, 26 + 6, 37 - progress1);
+        this.drawTexturedModalRect(x + 82, y + 23, 226, 19, 16, 29 - progress2);
+        //this.drawTexturedModalRect(x + 82, y + 23, 176, 14, 80, progress - 50);
     }
 
     @Override

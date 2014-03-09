@@ -1,9 +1,11 @@
 package assets.electrolysm.electro.oreProccessing.te;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.api.powerSystem.TileEntityPlug;
@@ -12,19 +14,12 @@ import assets.electrolysm.api.powerSystem.usageMachine.IPullEnergy;
 import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
+import cpw.mods.fml.common.Loader;
 
-public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implements IInventory, IPullEnergy, IMeterable
+public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implements IInventory, IPullEnergy,
+																				IMeterable, ISidedInventory
 {
     //GUI STUFF
-
-    public int furnaceBurnTime = 0;
-
-    public int currentItemBurnTime = furnaceBurnTime;
-
-    public int heat = 0;
-
-    public int furnaceCookTime = 5000;
-
     public static boolean active = false;
 
     public static boolean powered = true;
@@ -128,26 +123,23 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
     {
     }
 
+    public int time = 0;
+    public int MaxElectroTime = 100;
+    public int electroTime = 100;
+    
     @Override
     public void updateEntity()
     {
-        World world = worldObj;
         active = powered;
-        boolean canwork = /*(powered && heat > 10)*/true;
-        boolean portSet = false;
+        boolean canwork = /*this.canWork(worldObj, xCoord, yCoord, zCoord)*/true;
 
-        if (heat < 50)
+        if (canwork)
         {
-            heat = 100;
-        }
-
-        if (canwork/* && this.canWork(worldObj, xCoord, yCoord, zCoord)*/)
-        {
-            furnaceCookTime = 5000 / heat;
             ItemStack input1 = getStackInSlot(0);
             ItemStack input2 = getStackInSlot(1);
-            ItemStack output1 = getStackInSlot(2);
-            ItemStack result1;
+            ItemStack output = getStackInSlot(2);
+            ItemStack result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
+            ItemStack result2 = electrolisisRecipes.smelting().getSmeltingResult(input2);
             ItemStack node1 = getStackInSlot(3);
             ItemStack node2 = getStackInSlot(4);
             ItemStack node = new ItemStack(electrolysmCore.node, 1);
@@ -156,82 +148,87 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
             {
                 return;
             }
-
             if (node1 == null || node2 == null)
             {
                 return;
             }
-
-            if (input1 != null && input2 != null)
+            
+            if(input1 != null && input2 != null)
             {
-                if (input1.isItemEqual(input2))
-                {
-                    result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
-                    worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
-                }
-                else
-                {
-                    return;
-                }
+            	if(input1.isItemEqual(input2))
+            	{
+            		if(result1 != null && result2 != null)
+            		{
+            			if(result1.isItemEqual(result2))
+            			{
+            				//output check!!
+            				if(output == null)
+            				{
+            					int outputSize = 0;
+                                int resultSize = result1.stackSize;
+
+                                if (((resultSize + outputSize) <= 64))
+                                {
+                                	if(time == electroTime)
+                                	{
+                                		time = 0;
+                                		this.decrStackSize(0, 1);
+                                		this.decrStackSize(1, 1);
+                                		this.setInventorySlotContents(2, result1);
+                                		this.onInventoryChanged();
+                                	}
+                                	else
+                                	{
+                                		time = time + 1;
+                                	}
+                                }
+            				}
+            				else
+            				{
+            					int outputSize = output.stackSize;
+                                int resultSize = result1.stackSize;
+
+                                if (((resultSize + outputSize) <= 64))
+                                {
+                                	if(time == electroTime)
+                                	{
+                                		time = 0;
+                                		this.decrStackSize(0, 1);
+                                		this.decrStackSize(1, 1);
+                                		output.stackSize = (output.stackSize + 4);
+                                		this.onInventoryChanged();
+                                	}
+                                	else
+                                	{
+                                		time = time + 1;
+                                	}
+                                }
+            				}
+            			}
+            			else
+            			{
+            				time = 0;
+            			}
+            		}
+            		else
+            		{
+            			time = 0;
+            		}
+            	}
+            	else
+            	{
+            		time  = 0;
+            	}
             }
             else
             {
-                return;
+            	time = 0;
             }
 
-            if (result1 != null)
-            {
-                this.working = true;
-
-                if (furnaceBurnTime == furnaceCookTime)
-                {
-                    furnaceBurnTime = 0;
-
-                    if (output1 == null)
-                    {
-                        decrStackSize(0, 1);
-                        decrStackSize(1, 1);
-                        setInventorySlotContents(2, result1);
-                        onInventoryChanged();
-                    }
-                    else
-                    {
-                        if (output1.isItemEqual(result1))
-                        {
-                            decrStackSize(0, 1);
-                            decrStackSize(1, 1);
-
-                            for (int i = 0; i < 4; i++)
-                            {
-                                output1.stackSize++;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    furnaceBurnTime++;
-
-                    if (output1 != null && !output1.isItemEqual(result1))
-                    {
-                        furnaceBurnTime = 0;
-                    }
-                }
-            }
-            else
-            {
-                working = false;
-            }
-
-            if (output1 != null && output1.stackSize == 0)
-            {
-                output1.stackSize = 1;
-            }
         }
-
-        if (getStackInSlot(0) == null)
+        else
         {
-            furnaceBurnTime = 0;
+        	time = 0;
         }
     }
 
@@ -242,9 +239,34 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
     }
 
     @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    public boolean isItemValidForSlot(int slot, ItemStack itemstack)
     {
-        return false;
+    	if(slot == 0 || slot == 1)
+    	{
+    		 if(electrolisisRecipes.smelting().getSmeltingResult(itemstack) != null)
+    		 {
+    			 return true;
+    		 }
+    		 else
+    		 {
+    			 return false;
+    		 }
+    	}
+    	else if(slot == 3 || slot == 4)
+    	{
+    		if(itemstack.getItem() == electrolysmCore.node)
+    		{
+    			return true;
+    		}
+    		else
+    		{
+    			return false;
+    		}
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
 
     @Override
@@ -274,5 +296,70 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
     public boolean isWorking()
     {
         return working;
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+        super.readFromNBT(tagCompound);
+        
+        NBTTagList tagList = tagCompound.getTagList("Inventory");
+        for (int i = 0; i < tagList.tagCount(); i++) {
+                NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                byte slot = tag.getByte("Slot");
+                if (slot >= 0 && slot < inventory.length) {
+                        inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
+                }
+        }
+        
+    }
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tagCompound) {
+	        super.writeToNBT(tagCompound);
+	                        
+	        NBTTagList itemList = new NBTTagList();
+	        for (int i = 0; i < inventory.length; i++) {
+	                ItemStack stack = inventory[i];
+	                if (stack != null) {
+	                        NBTTagCompound tag = new NBTTagCompound();
+	                        tag.setByte("Slot", (byte) i);
+	                        stack.writeToNBT(tag);
+	                        itemList.appendTag(tag);
+	                }
+	        }
+	        tagCompound.setTag("Inventory", itemList);
+	}
+
+	int[] slots_bottom = {2};
+	int[] slots_top = {0, 1, 3, 4};
+	int[] slots_sides = {2};
+	
+	@Override
+	public int[] getAccessibleSlotsFromSide(int side)
+    {
+        if(side == 0)
+        {
+        	return slots_bottom;
+        }
+        else if(side == 1)
+        {
+        	return slots_top;
+        }
+        else
+        {
+        	return slots_sides;
+        }
+    }
+
+	@Override
+    public boolean canInsertItem(int slot, ItemStack item, int side)
+    {
+        return this.isItemValidForSlot(slot, item);
+    }
+
+	@Override
+    public boolean canExtractItem(int slot, ItemStack item, int side)
+    {
+        return side != 0 || slot != 1 || slot != 3 || slot != 4 || item.getItem() == electrolysmCore.dusts;
     }
 }

@@ -17,4 +17,11 @@ public class advancedCPU extends Item
             this.setUnlocalizedName("Advanced CPU");
         }
     }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "advCPU");
+    }
 }

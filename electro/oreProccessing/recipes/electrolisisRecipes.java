@@ -1,15 +1,14 @@
 package assets.electrolysm.electro.oreProccessing.recipes;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import assets.electrolysm.electro.electrolysmCore;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import scala.actors.threadpool.Arrays;
+
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.common.CommonProxy;
 
 public class electrolisisRecipes
 {
@@ -37,6 +36,7 @@ public class electrolisisRecipes
         int tinSul = 6;
         int leadSul = 7;
         int silverSul = 8;
+        
         //ItemStacks - Dusts
         ItemStack pureCopper = new ItemStack(electrolysmCore.dusts, 4, 0);
         ItemStack pureIron = new ItemStack(electrolysmCore.dusts, 4, 2);
@@ -45,30 +45,38 @@ public class electrolisisRecipes
         ItemStack pureLead = new ItemStack(electrolysmCore.dusts, 4, 5);
         ItemStack pureSilver = new ItemStack(electrolysmCore.dusts, 4, 4);
         //Local MOD Recipes
-        this.addElectrolisis(copperSul, pureCopper);
-        this.addElectrolisis(ironSul, pureIron);
-        this.addElectrolisis(goldSul, pureGold);
-        this.addElectrolisis(tinSul, pureTin);
-        this.addElectrolisis(leadSul, pureLead);
-        this.addElectrolisis(silverSul, pureSilver);
-        //Ore Dictionary Recipes
-        //OreDictionary.getOres("");
+        this.addElectrolisis(new ItemStack(electrolysmCore.fluidStorage, 1, copperSul), pureCopper);
+        this.addElectrolisis(new ItemStack(electrolysmCore.fluidStorage, 1, ironSul), pureIron);
+        this.addElectrolisis(new ItemStack(electrolysmCore.fluidStorage, 1, goldSul), pureGold);
+        this.addElectrolisis(new ItemStack(electrolysmCore.fluidStorage, 1, tinSul), pureTin);
+        this.addElectrolisis(new ItemStack(electrolysmCore.fluidStorage, 1, leadSul), pureLead);
+        this.addElectrolisis(new ItemStack(electrolysmCore.fluidStorage, 1, silverSul), pureSilver);
+        
+        for(int i = 0; i < CommonProxy.DUSTS.length; i++)
+        {
+        	ItemStack crystalStack = new ItemStack(electrolysmCore.crystal, 1, i);
+        	ItemStack dustStack = new ItemStack(electrolysmCore.dusts, 4, i);
+        	
+        	this.addElectrolisis(crystalStack, dustStack);
+        }
         //End
     }
 
     /**
      * Adds a smelting recipe.
      */
-    public void addElectrolisis(int inputMeta, ItemStack output)
+    public void addElectrolisis(ItemStack input, ItemStack output)
     {
-        this.electrolysisMap.put(Integer.valueOf(inputMeta), output);
+    	Object[] inputList = {input.itemID, input.getItemDamage()};
+        this.electrolysisMap.put(Arrays.asList(inputList), output);
     }
 
     public ItemStack getSmeltingResult(ItemStack item)
     {
         if (item != null)
         {
-            ItemStack result = (ItemStack)this.electrolysisMap.get(Integer.valueOf(item.getItemDamage()));
+        	Object[] itemList = {item.itemID, item.getItemDamage()};
+            ItemStack result = (ItemStack)this.electrolysisMap.get(Arrays.asList(itemList));
 
             if (result != null)
             {

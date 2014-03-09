@@ -21,8 +21,8 @@ public class ContainerLiquidiser extends Container
     {
         this.furnace = tileFurnace;
         //																				ACROSS, UP
-        this.addSlotToContainer(new Slot(tileFurnace, 0, 44, 17 + 18));
-        this.addSlotToContainer(new SlotOutput(tileFurnace, 1, 132 + 2 - 18, 35));
+        this.addSlotToContainer(new Slot(tileFurnace, 0, 80, 13));
+        this.addSlotToContainer(new SlotOutput(tileFurnace, 1, 80, 60));
 
         for (int invRow = 0; invRow < 3; ++invRow)
         {

@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.ChatMessageComponent;
@@ -35,7 +36,7 @@ public class hammer extends ItemTool
         this.damageVsEntity = 2.5F;
         this.maxStackSize = 1;
         this.efficiencyOnProperMaterial = 10;
-        this.toolMaterial = EnumToolMaterial.EMERALD;
+        this.toolMaterial = EnumToolMaterial.IRON;
     }
     
     @Override
@@ -47,10 +48,19 @@ public class hammer extends ItemTool
    		}
    		else if(block.blockMaterial == Material.rock)
    		{
-   			return 5F;
+   			if(block.blockHardness < Block.blockDiamond.blockHardness)
+   			{
+   				return 3.5F;
+   			}
+   			else
+   			{
+   				return 1F;
+   			}
    		}
-
-    	return 1F;
+   		else
+   		{
+   			return 1F;
+   		}
     }
 	
 	@Override
@@ -67,7 +77,6 @@ public class hammer extends ItemTool
 
     public static String unlocalName()
     {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -142,6 +151,20 @@ public class hammer extends ItemTool
 			return j;
 		}
 	}
+	
+	@Override
+    public boolean getIsRepairable(ItemStack hammer, ItemStack repairStuff)
+	{
+		if(repairStuff == (new ItemStack(Item.ingotIron)) || repairStuff == (new ItemStack(Item.ingotGold)))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
     
     
 }

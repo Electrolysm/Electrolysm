@@ -15,11 +15,11 @@ public class ContainerElectrolysis extends Container
     public ContainerElectrolysis(TileEntityElectrolisisCore entity2, InventoryPlayer inventory)
     {
         this.entity = entity2;
-        this.addSlotToContainer(new Slot(entity2, 0, 9, 27));
-        this.addSlotToContainer(new Slot(entity2, 1, 147, 27));
-        this.addSlotToContainer(new SlotOutput(entity2, 2, 78, 18));
-        this.addSlotToContainer(new Slot(entity2, 3, 61, 55));
-        this.addSlotToContainer(new Slot(entity2, 4, 95, 55));
+        this.addSlotToContainer(new Slot(entity2, 0, 9, 27)); //input
+        this.addSlotToContainer(new Slot(entity2, 1, 147, 27)); //input
+        this.addSlotToContainer(new SlotOutput(entity2, 2, 78, 18)); //Output
+        this.addSlotToContainer(new Slot(entity2, 3, 61, 55)); //node
+        this.addSlotToContainer(new Slot(entity2, 4, 95, 55)); //node
         int var3;
 
         for (var3 = 0; var3 < 3; ++var3)

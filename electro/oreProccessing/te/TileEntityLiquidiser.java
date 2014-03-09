@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
 import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
@@ -161,12 +162,19 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     public void updateEntity()
     {
     	this.onInventoryChanged();
-    	
-        ItemStack inStack = getStackInSlot(0);
+
+    	int connectedLiquids = this.getConnectedLiquids(worldObj, xCoord, yCoord, zCoord);
+        
+    	ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
         ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(inStack);
         ItemStack result2 = result;
 
+        if(connectedLiquids > 0)
+        {
+        	crushTime = maxCrushTime / connectedLiquids;
+        }
+        
         if (inStack != null)
         {
             if (result != null)
@@ -222,6 +230,35 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
         	time = 0;
         }
     }
+
+	private int getConnectedLiquids(World world, int x, int y, int z) 
+	{
+		int id1 = world.getBlockId(x + 1, y, z);
+		int id2 = world.getBlockId(x - 1, y, z);
+		int id3 = world.getBlockId(x, y, z + 1);
+		int id4 = world.getBlockId(x, y, z - 1);
+		
+		int overall = 0;
+		
+		if(id1 == electrolysmCore.sulpuricAcid.blockID)
+		{
+			overall = overall + 1;
+		}
+		if(id2 == electrolysmCore.sulpuricAcid.blockID)
+		{
+			overall = overall + 1;
+		}
+		if(id3 == electrolysmCore.sulpuricAcid.blockID)
+		{
+			overall = overall + 1;
+		}
+		if(id4 == electrolysmCore.sulpuricAcid.blockID)
+		{
+			overall = overall + 1;
+		}
+		
+		return overall;
+	}
 
 	int[] slots_bottom = {1};
 	int[] slots_top = {0};

@@ -65,8 +65,8 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadTransferRects()
     {
-        //transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "liquidising"));
-        transferRects.add(new RecipeTransferRect(new Rectangle(80, 80, 80, 80), "liquidising"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "liquidising"));
+        //transferRects.add(new RecipeTransferRect(new Rectangle(80, 80, 80, 80), "liquidising"));
 
     }
     
@@ -158,15 +158,23 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void drawExtras(int recipe)
-    {
-        //drawProgressBar(51, 25, 176, 0, 14, 14, 48, 7);
-        drawProgressBar(64 - 5, 20 - 11, 0, 166, 90, 16, 90, 0);
+    {/**
+        * @param x X position on screen
+        * @param y Y position on screen
+        * @param tx Texture X position
+        * @param ty Texture Y position
+        * @param w Texture width
+        * @param h Texture height
+        * @param ticks The amount of ticks for the bar to complete
+        * @param direction 0 right, 1 down, 2 left, 3 up. If bit 3 is set the bar will shrink rather extend
+         * */
+        drawProgressBar(39, 44 - 15, 0, 166, 90, 16, 90, 0);
     }
     
     @Override
     public String getOverlayIdentifier()
     {
-        return "Liquidiser";
+        return "Displacement Chamber";
     }
     
     @Override

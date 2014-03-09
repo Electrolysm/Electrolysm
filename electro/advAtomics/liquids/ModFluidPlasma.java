@@ -10,7 +10,7 @@ public class ModFluidPlasma extends Fluid
 {
     public ModFluidPlasma()
     {
-        super("ModFluidPlasma");
+        super("Plasma");
         this.setDensity(0);
         this.setViscosity(0);
         this.isGaseous = true;

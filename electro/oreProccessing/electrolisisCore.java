@@ -62,7 +62,7 @@ public class electrolisisCore extends BlockContainer
         boolean isFormed = false;
 
         //Top row
-        if (world.getBlockId(x, y + 1, z) == water || world.getBlockId(x, y + 1, z) == air)
+        if (world.getBlockId(x, y + 1, z) != chamber)
         {
             if (world.getBlockId(x + 1, y + 1, z) == chamber)
             {
