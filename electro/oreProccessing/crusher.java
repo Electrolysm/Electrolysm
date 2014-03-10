@@ -22,14 +22,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class crusher extends oreProcessMachineBase
 {
-    public crusher(int par1, Material par2Material)
+	
+	public crusher(int par1, Material par2Material)
     {
         super(par1, Material.iron);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("crusher");
         this.setHardness(6.0F);
+    	active = this.getUnlocalizedName().toLowerCase().contains("active");
     }
-
+	
     @Override
     public TileEntity createNewTileEntity(World world)
     {
@@ -37,10 +37,12 @@ public class crusher extends oreProcessMachineBase
         return new TileEntityCrusher();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcon(IconRegister reg)
+    public void registerIcons(IconRegister reg)
     {
         this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front");
+        //this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front_Active");
         this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
     }
 

@@ -3,6 +3,7 @@ package assets.electrolysm.electro.oreProccessing;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -24,10 +25,12 @@ public class smeltory extends oreProcessMachineBase
         this.setHardness(6.0F);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcon(IconRegister reg)
+    public void registerIcons(IconRegister reg)
     {
         this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "smeltory_Front");
+        this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "smeltory_Front_Active");
         this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
     }
 
@@ -35,7 +38,7 @@ public class smeltory extends oreProcessMachineBase
     public TileEntity createNewTileEntity(World world)
     {
         // TODO Auto-generated method stub
-        return null;
+        return new TileEntitySmeltory();
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)

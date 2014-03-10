@@ -40,6 +40,7 @@ public class liquidiser extends oreProcessMachineBase
     public void registerIcons(IconRegister reg)
     {
         this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "liquidizerFront");
+        this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "liquidizerFront");
         this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
     }
 

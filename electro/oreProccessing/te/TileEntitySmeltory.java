@@ -11,16 +11,19 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
+import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
+import assets.electrolysm.electro.oreProccessing.recipes.SmeltoryRecipes;
 
-public class TileEntityCrusher extends TileEntity implements IInventory, ISidedInventory
+public class TileEntitySmeltory extends TileEntity implements IInventory, ISidedInventory
 {
     private ItemStack[] inventory;
     public boolean isOpen;
 
-    public TileEntityCrusher()
+    public TileEntitySmeltory()
     {
-        this.inventory = new ItemStack[3];
+        this.inventory = new ItemStack[2];
     }
 
     @Override
@@ -89,7 +92,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     public String getInvName()
     {
         // TODO Auto-generated method stub
-        return "Crusher";
+        return "Smeltory";
     }
 
     @Override
@@ -109,7 +112,6 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -130,7 +132,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     {
     	if(stack != null)
     	{
-	    	ItemStack recipe = CrusherRecipes.smelting().getCrushingResult(stack);
+	    	ItemStack recipe = SmeltoryRecipes.smelting().getSmeltingResult(stack);
 	    	if(slot == 0)
 	    	{
 	    		if(recipe != null)
@@ -154,43 +156,26 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     }
 
     public int time = 0;
-    public int maxCrushTime = 400;
-    public int crushTime = 400;
+    public int maxSmeltTime = 400;
+    public int smeltTime = 400;
     
     @Override
     public void updateEntity()
     {
     	this.onInventoryChanged();
-    	
-        ItemStack inStack = getStackInSlot(0);
-        ItemStack output = getStackInSlot(1);
-        ItemStack grindStone = getStackInSlot(2);
-        ItemStack result = CrusherRecipes.smelting().getCrushingResult(inStack);
-        int extraDust = 0;
-        ItemStack result2 = result;
-        Random rand = new Random();
 
-        if(grindStone != null)
-        {
-        	//extraDust = this.getExtraDust(grindStone);
-        	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
-        	{
-        		crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 1));
-        	}
-        	else
-        	{
-        		crushTime = maxCrushTime;
-        	}
-        }
-        else
-        {
-        	crushTime = maxCrushTime;
-        }
-        if(result != null)
-        {
-        	result2 = new ItemStack(result.getItem(), result.stackSize + extraDust, result.getItemDamage());
-        }
+    	ItemStack inStack = getStackInSlot(0);
+        ItemStack output = getStackInSlot(1);
+        ItemStack result = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
+        ItemStack result2 = result;
         
+    	int inputPersent = this.getInputPersent(inStack);
+
+        if(inputPersent == 100)
+        {
+        	int inputDecimal = (inputPersent / 100);
+        	smeltTime = maxSmeltTime * (inputDecimal);
+        }
         
         if (inStack != null)
         {
@@ -203,7 +188,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 
                     if (((resultSize + outputSize) <= 64))
                     {
-                    	if(time == crushTime)
+                    	if(time == smeltTime)
                     	{
                     		time = 0;
                     		this.decrStackSize(0, 1);
@@ -223,11 +208,11 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 
                     if (((resultSize + outputSize) < 64))
                     {
-                    	if(time == crushTime)
+                    	if(time == smeltTime)
                     	{
                     		time = 0;
 	                        this.decrStackSize(0, 1);
-	                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
+	                        output.stackSize = (output.stackSize + result.stackSize);
 	                        this.onInventoryChanged();
                     	}
                     	else
@@ -248,20 +233,27 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         }
     }
 
-	private int getExtraDust(ItemStack grindStone)
+	private int getInputPersent(ItemStack input) 
 	{
-		if(grindStone == null)
+		String unlocalName = input.getUnlocalizedName();
+		
+		if(unlocalName.contains("dust"))
 		{
-			return -1;
+			return 90;
+		}
+		else if(unlocalName.contains("ingot"))
+		{
+			return 110;
 		}
 		else
 		{
-			return (grindStone.getItemDamage());
+			return 100;
 		}
 	}
+
 	int[] slots_bottom = {1};
 	int[] slots_top = {0};
-	int[] slots_sides = {2, 1};
+	int[] slots_sides = {1};
 	
     public int[] getAccessibleSlotsFromSide(int side)
     {
@@ -286,7 +278,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || item.getItem() == electrolysmCore.impureDusts;
+        return side != 0 || slot != 1 || item.getItem() == electrolysmCore.crystal;
     }
     
     @Override
@@ -322,5 +314,10 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
             tagCompound.setTag("Inventory", itemList);
             tagCompound.setInteger("time", time);
     }
+
+	public void setGuiDisplayName(String displayName) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

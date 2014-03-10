@@ -16,9 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ContainerCrusher extends Container
 {
     private TileEntityCrusher furnace;
-    private int lastCookTime = 0;
-    public int lastBurnTime = 0;
-    private int lastItemBurnTime = 0;
 
     public ContainerCrusher(InventoryPlayer inventoryPlayer, TileEntityCrusher tileFurnace)
     {

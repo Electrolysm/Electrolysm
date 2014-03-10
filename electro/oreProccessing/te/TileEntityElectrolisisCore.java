@@ -16,14 +16,10 @@ import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
 import cpw.mods.fml.common.Loader;
 
-public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implements IInventory, IPullEnergy,
-																				IMeterable, ISidedInventory
+public class TileEntityElectrolisisCore extends TileEntity implements IInventory, /*IPullEnergy,
+																				IMeterable, */ISidedInventory
 {
     //GUI STUFF
-    public static boolean active = false;
-
-    public static boolean powered = true;
-
     private ItemStack[] inventory;
 
     public TileEntityElectrolisisCore()
@@ -107,11 +103,25 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
-                                                this.zCoord) != this ? false : player.getDistanceSq(
-                   (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
-                   (double) this.zCoord + 0.5D) <= 64.0D;
+        if(this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this)
+        {
+        	return true;
+        }
+        else if((player.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,(double) this.zCoord + 0.5D) 
+        		<= 64.0D))
+        {
+        	return true;
+        }/*
+        else if(active)
+        {
+        	return true;
+        }
+        else*/
+        {
+        	return false;
+        }
     }
+    
 
     @Override
     public void openChest()
@@ -126,14 +136,23 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
     public int time = 0;
     public int MaxElectroTime = 100;
     public int electroTime = 100;
+    public boolean active = false;
     
     @Override
     public void updateEntity()
     {
-        active = powered;
-        boolean canwork = /*this.canWork(worldObj, xCoord, yCoord, zCoord)*/true;
-
-        if (canwork)
+    	this.onInventoryChanged();
+    	
+        if(time == 0)
+        {
+        	active = false;
+        }
+        else
+        {
+        	active = true;
+        }
+        
+        if (true)
         {
             ItemStack input1 = getStackInSlot(0);
             ItemStack input2 = getStackInSlot(1);
@@ -144,16 +163,13 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
             ItemStack node2 = getStackInSlot(4);
             ItemStack node = new ItemStack(electrolysmCore.node, 1);
 
-            if (node1 == node2 && node1 == node)
-            {
-                return;
-            }
             if (node1 == null || node2 == null)
             {
+            	time = 0;
                 return;
             }
             
-            if(input1 != null && input2 != null)
+            if(input1 != null && input2 != null && node1.isItemEqual(node2))
             {
             	if(input1.isItemEqual(input2))
             	{
@@ -174,7 +190,8 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
                                 		time = 0;
                                 		this.decrStackSize(0, 1);
                                 		this.decrStackSize(1, 1);
-                                		this.setInventorySlotContents(2, result1);
+                                		this.setInventorySlotContents(2, new ItemStack(result1.getItem(), 
+                                				result1.stackSize, result1.getItemDamage()));
                                 		this.onInventoryChanged();
                                 	}
                                 	else
@@ -195,7 +212,8 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
                                 		time = 0;
                                 		this.decrStackSize(0, 1);
                                 		this.decrStackSize(1, 1);
-                                		output.stackSize = (output.stackSize + 4);
+                                		this.setInventorySlotContents(2, new ItemStack(result1.getItem(), 
+                                				result1.stackSize + outputSize, result1.getItemDamage()));
                                 		this.onInventoryChanged();
                                 	}
                                 	else
@@ -225,10 +243,6 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
             	time = 0;
             }
 
-        }
-        else
-        {
-        	time = 0;
         }
     }
 
@@ -267,35 +281,6 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
     	{
     		return false;
     	}
-    }
-
-    @Override
-    public float getPlugRecievingTeU(World world, int x, int y, int z)
-    {
-        if (Loader.isModLoaded("Electrolysm"))
-        {
-            TileEntity teWorld = world.getBlockTileEntity(x, y, z);
-
-            if (teWorld instanceof TileEntityPlug)
-            {
-                TileEntityPlug te = (TileEntityPlug)teWorld;
-                return te.getRecievedTeUAfterResistance(world, x, y, z);
-            }
-        }
-
-        return 0;
-    }
-
-    @Override
-    public int getActivationEnergy()
-    {
-        return 90;
-    }
-
-    @Override
-    public boolean isWorking()
-    {
-        return working;
     }
     
     @Override
@@ -360,6 +345,7 @@ public class TileEntityElectrolisisCore extends TileEntityEnergyMachine implemen
 	@Override
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || slot != 3 || slot != 4 || item.getItem() == electrolysmCore.dusts;
+        return side != 0 || slot != 1 || slot != 3 || slot != 4 || item.getItem() == electrolysmCore.dusts
+        		|| active != false; 
     }
 }

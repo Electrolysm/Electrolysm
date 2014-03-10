@@ -75,7 +75,7 @@ public class Crafting
                                'I', electrolysmCore.energisingRod,
                                'D', electrolysmCore.advancedMicrochip);
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.injectionArm),
-                               " IB", "II", "CI ",
+                               " IB", "III", "CI ",
                                'B', electrolysmCore.fluidStorage,
                                'C', electrolysmCore.BasicMicrochip,
                                'I', Item.ingotIron);

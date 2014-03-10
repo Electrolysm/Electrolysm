@@ -28,10 +28,9 @@ public class ResearchHandler
     public static String down_file_names = down_file.replace("research", "names");
     public static int amountOnlineNames;
 
-    @SuppressWarnings("resource")
     public static void downloadOnlineData()
     {
-        //Research Data Download
+        /*//Research Data Download
         try
         {
             URL website = new URL("https://raw.github.com/Clarky158/Electrolysm/master/research.xml");
@@ -55,12 +54,12 @@ public class ResearchHandler
         catch (IOException e)
         {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public static void getStoredResearch()
     {
-        try
+        /*try
         {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -113,12 +112,12 @@ public class ResearchHandler
             t.printStackTrace();
         }
 
-        //System.exit (0);
+        //System.exit (0);*/
     }//end of main
 
     public static String getStoredNames(int inputMeta)
     {
-        try
+        /*try
         {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -164,12 +163,12 @@ public class ResearchHandler
         {
             t.printStackTrace();
         }
-
+*/
         return null;
     }
 
     public static int getAmountOfStoredNames()
-    {
+    {/*
         try
         {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -196,7 +195,7 @@ public class ResearchHandler
         {
             t.printStackTrace();
         }
-
+*/
         return 0;
     }
 }
