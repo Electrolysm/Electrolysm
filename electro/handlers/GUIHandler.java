@@ -19,14 +19,17 @@ import assets.electrolysm.electro.oreProccessing.container.ContainerCrusher;
 import assets.electrolysm.electro.oreProccessing.container.ContainerElectrolysis;
 import assets.electrolysm.electro.oreProccessing.container.ContainerLiquidiser;
 import assets.electrolysm.electro.oreProccessing.container.ContainerPort;
+import assets.electrolysm.electro.oreProccessing.container.ContainerSmeltory;
 import assets.electrolysm.electro.oreProccessing.gui.GUICrusher;
 import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
 import assets.electrolysm.electro.oreProccessing.gui.GUILiquidiser;
 import assets.electrolysm.electro.oreProccessing.gui.GUIPort;
+import assets.electrolysm.electro.oreProccessing.gui.GUISmeltory;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
+import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
 import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGenerator;
 import assets.electrolysm.electro.powerSystem.generators.container.ContainerGenerator;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
@@ -82,6 +85,10 @@ public class GUIHandler implements IGuiHandler
         {
         	return new ContainerLiquidiser(player.inventory, (TileEntityLiquidiser)entity);
         }
+        if(entity instanceof TileEntitySmeltory)
+        {
+        	return new ContainerSmeltory(player.inventory, (TileEntitySmeltory)entity);
+        }
 
         return null;
     }
@@ -133,6 +140,10 @@ public class GUIHandler implements IGuiHandler
         if(entity instanceof TileEntityLiquidiser)
         {
         	return new GUILiquidiser((TileEntityLiquidiser)entity, player.inventory);
+        }
+        if(entity instanceof TileEntitySmeltory)
+        {
+        	return new GUISmeltory((TileEntitySmeltory)entity, player.inventory);
         }
 
         return null;

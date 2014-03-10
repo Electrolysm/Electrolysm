@@ -200,12 +200,14 @@ public class Crafting
                                         new ItemStack(electrolysmCore.ballOfPlastic),
                                         new ItemStack(electrolysmCore.ballOfPlastic),
                                         new ItemStack(Item.enderPearl));
+        
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.idifier),
                                "IGI", "RMR", "ICI",
                                'I', Item.ingotIron,
-                               'G', Material.glass,
+                               'G', Block.glass,
                                'C', Block.chest,
                                'M', electrolysmCore.BasicMicrochip);
+        
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastBrick),
                                         new ItemStack(electrolysmCore.blastProof),
                                         new ItemStack(electrolysmCore.blastProof),

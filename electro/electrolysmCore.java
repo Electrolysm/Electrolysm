@@ -305,7 +305,8 @@ public class electrolysmCore
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
         NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
         
-        LoggerHandler.info("Electrolysm Started in " + (System.currentTimeMillis() - startTime) + "ms");
+        long duration = (System.currentTimeMillis() - startTime);
+        LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (duration / 1000) + " secs)");
     }
 
     @SideOnly(Side.CLIENT)

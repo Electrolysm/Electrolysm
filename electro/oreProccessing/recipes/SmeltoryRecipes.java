@@ -47,7 +47,6 @@ public class SmeltoryRecipes
             return null;
         }
 
-        int meta = Integer.valueOf((String.valueOf(this.crushing1.get(Integer.valueOf(input.itemID)))));
         ItemStack output1 = (ItemStack)this.crushing2.get(Integer.valueOf(input.itemID));
         ItemStack output2 = FurnaceRecipes.smelting().getSmeltingResult(input.itemID);
 

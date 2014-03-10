@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
@@ -156,8 +157,8 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     }
 
     public int time = 0;
-    public int maxSmeltTime = 400;
-    public int smeltTime = 400;
+    public int maxSmeltTime = 200;
+    public int smeltTime = 200;
     
     @Override
     public void updateEntity()
@@ -166,7 +167,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 
     	ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
-        ItemStack result = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
+        ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
         ItemStack result2 = result;
         
     	int inputPersent = this.getInputPersent(inStack);
@@ -235,15 +236,22 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 
 	private int getInputPersent(ItemStack input) 
 	{
-		String unlocalName = input.getUnlocalizedName();
-		
-		if(unlocalName.contains("dust"))
+		if(input != null)
 		{
-			return 90;
-		}
-		else if(unlocalName.contains("ingot"))
-		{
-			return 110;
+			String unlocalName = input.getUnlocalizedName();
+			
+			if(unlocalName.contains("dust"))
+			{
+				return 90;
+			}
+			else if(unlocalName.contains("ingot"))
+			{
+				return 110;
+			}
+			else
+			{
+				return 100;
+			}
 		}
 		else
 		{
