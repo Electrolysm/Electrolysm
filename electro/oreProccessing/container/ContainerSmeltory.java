@@ -89,7 +89,7 @@ public class ContainerSmeltory extends Container
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(itemstack1, 3, 39, false))
+            else if (!this.mergeItemStack(itemstack1, 3, 38, false))
             {
                 return null;
             }

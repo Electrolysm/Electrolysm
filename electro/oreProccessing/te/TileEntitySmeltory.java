@@ -1,7 +1,6 @@
 package assets.electrolysm.electro.oreProccessing.te;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -10,11 +9,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.smeltory;
-import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
-import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
 import assets.electrolysm.electro.oreProccessing.recipes.SmeltoryRecipes;
 
 public class TileEntitySmeltory extends TileEntity implements IInventory, ISidedInventory
@@ -133,7 +128,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     {
     	if(stack != null)
     	{
-	    	ItemStack recipe = SmeltoryRecipes.smelting().getSmeltingResult(stack);
+	    	ItemStack recipe = FurnaceRecipes.smelting().getSmeltingResult(stack);
 	    	if(slot == 0)
 	    	{
 	    		if(recipe != null)
@@ -157,8 +152,8 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     }
 
     public int time = 0;
-    public int maxSmeltTime = 200;
-    public int smeltTime = 200;
+    public int maxSmeltTime = 60;
+    public int smeltTime = 60;
     
     @Override
     public void updateEntity()
@@ -168,16 +163,16 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     	ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
         ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
-        ItemStack result2 = result;
+        ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
         
     	int inputPersent = this.getInputPersent(inStack);
-
-        if(inputPersent == 100)
+/*
+        if(inputPersent != 100)
         {
-        	int inputDecimal = (inputPersent / 100);
-        	smeltTime = maxSmeltTime * (inputDecimal);
+        	float inputDecimal = (inputPersent / 100);
+        	smeltTime = (int) (maxSmeltTime * (inputDecimal));
         }
-        
+        */
         if (inStack != null)
         {
             if (result != null)
@@ -193,7 +188,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
                     	{
                     		time = 0;
                     		this.decrStackSize(0, 1);
-	                        this.setInventorySlotContents(1, result2);
+	                        this.setInventorySlotContents(1, result);
 	                        this.onInventoryChanged();
                     	}
                     	else
@@ -242,11 +237,11 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 			
 			if(unlocalName.contains("dust"))
 			{
-				return 90;
+				return 75;
 			}
 			else if(unlocalName.contains("ingot"))
 			{
-				return 110;
+				return 139;
 			}
 			else
 			{
