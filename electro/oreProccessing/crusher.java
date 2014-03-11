@@ -28,6 +28,7 @@ public class crusher extends oreProcessMachineBase
         super(par1, Material.iron);
         this.setHardness(6.0F);
     	active = this.getUnlocalizedName().toLowerCase().contains("active");
+    	this.setCreativeTab(electrolysmCore.TabElectrolysm);
     }
 	
     @Override

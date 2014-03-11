@@ -30,13 +30,16 @@ public class GUISmeltory extends GuiContainer //implements INEIGuiHandler
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
         int progress = (int)((entity.time * 38) / entity.smeltTime);
-        int heat;
+        int temp = (int)((entity.temp * 38) / entity.maxTemp);
 
         if (progress != 0)
         {
             this.drawTexturedModalRect(x + 69, y + 24, 176, 0, progress + 1, 38);
         }
-
+        if(temp != 0)
+        {
+        	this.drawTexturedModalRect(x + 13, x + 12, 176, 51, 6, 60 - progress);
+        }
         //this.drawTexturedModalRect(x + 150, y + 25, 176, 14, 24, progress);
     }
 

@@ -155,6 +155,9 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     public int maxSmeltTime = 60;
     public int smeltTime = 60;
     
+    public int temp = 0;
+    public int maxTemp = 100;
+    
     @Override
     public void updateEntity()
     {
@@ -177,45 +180,53 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
         {
             if (result != null)
             {
-                if (output == null)
-                {
-                    int outputSize = 0;
-                    int resultSize = result.stackSize;
-
-                    if (((resultSize + outputSize) <= 64))
-                    {
-                    	if(time == smeltTime)
-                    	{
-                    		time = 0;
-                    		this.decrStackSize(0, 1);
-	                        this.setInventorySlotContents(1, result);
-	                        this.onInventoryChanged();
-                    	}
-                    	else
-                    	{
-                    		time = time + 1;
-                    	}
-                    }
+            	if(temp == maxTemp)
+            	{
+	                if (output == null)
+	                {
+	                    int outputSize = 0;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) <= 64))
+	                    {
+	                    	if(time == smeltTime)
+	                    	{
+	                    		time = 0;
+	                    		this.decrStackSize(0, 1);
+		                        this.setInventorySlotContents(1, result);
+		                        this.onInventoryChanged();
+	                    	}
+	                    	else
+	                    	{
+	                    		time = time + 1;
+	                    	}
+	                    }
+	                }
+	                else
+	                {
+	                    int outputSize = output.stackSize;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) < 64))
+	                    {
+	                    	if(time == smeltTime)
+	                    	{
+	                    		time = 0;
+		                        this.decrStackSize(0, 1);
+		                        output.stackSize = (output.stackSize + result.stackSize);
+		                        this.onInventoryChanged();
+	                    	}
+	                    	else
+	                    	{
+	                    		time = time + 1;
+	                    	}
+	                    }
+	                }
+	                
                 }
-                else
+            	else
                 {
-                    int outputSize = output.stackSize;
-                    int resultSize = result.stackSize;
-
-                    if (((resultSize + outputSize) < 64))
-                    {
-                    	if(time == smeltTime)
-                    	{
-                    		time = 0;
-	                        this.decrStackSize(0, 1);
-	                        output.stackSize = (output.stackSize + result.stackSize);
-	                        this.onInventoryChanged();
-                    	}
-                    	else
-                    	{
-                    		time = time + 1;
-                    	}
-                    }
+                	temp = temp + 1;
                 }
            	}
             else
