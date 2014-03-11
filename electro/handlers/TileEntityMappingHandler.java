@@ -9,6 +9,7 @@ import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
+import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import assets.electrolysm.electro.powerSystem.te.TileEntityAdvEarther;
 import assets.electrolysm.electro.powerSystem.te.TileEntityEarther;
@@ -39,5 +40,6 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityWorkBench.class, "TileEntityWorkBench");
         GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
         GameRegistry.registerTileEntity(TileEntityLiquidiser.class, "TileEntityLiquidiser");
+        GameRegistry.registerTileEntity(TileEntitySmeltory.class, "TileEntitySmeltory");
     }
 }

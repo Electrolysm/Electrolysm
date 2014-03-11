@@ -97,10 +97,12 @@ public class hammer extends ItemTool
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
+		String sectionSign = "\u00a7";
+		
     	if(this.isShiftKeyDown())
     	{
     		String hammer = ChatMessageComponent.createFromText("This hammer breaks:").setColor(EnumChatFormatting.GREEN) + "";
-    		list.add("la" + hammer);
+    		list.add(sectionSign + "l" + sectionSign + "a" + hammer);
     		list.add("Iron");
     		list.add("Gold");
     		list.add("Tin");
@@ -110,7 +112,7 @@ public class hammer extends ItemTool
     	else
     	{
     		String shift = ChatMessageComponent.createFromText("<Shift>").setColor(EnumChatFormatting.GOLD) + "";
-    		list.add("Press " + "e" + shift + "7" + " for more info");
+    		list.add("Press " + sectionSign + "e" + shift + sectionSign + "7" + " for more info");
     	}
     }
     

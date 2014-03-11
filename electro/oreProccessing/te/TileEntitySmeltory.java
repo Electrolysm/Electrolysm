@@ -1,6 +1,7 @@
 package assets.electrolysm.electro.oreProccessing.te;
 
-import net.minecraft.block.Block;
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -150,6 +151,11 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     		return false;
     	}
     }
+    
+    public void setRedstonePower(boolean powered)
+    {
+    	this.redstonePower = powered;
+    }
 
     public int time = 0;
     public int maxSmeltTime = 60;
@@ -157,6 +163,8 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     
     public int temp = 0;
     public int maxTemp = 100;
+    public int maxMaxTemp = 100;
+    boolean redstonePower;
     
     @Override
     public void updateEntity()
@@ -167,15 +175,19 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
         ItemStack output = getStackInSlot(1);
         ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
         ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
-        
+        Random rand = new Random();
     	int inputPersent = this.getInputPersent(inStack);
-/*
-        if(inputPersent != 100)
-        {
-        	float inputDecimal = (inputPersent / 100);
-        	smeltTime = (int) (maxSmeltTime * (inputDecimal));
-        }
-        */
+    	redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
+    	
+    	/*
+    	if(redstonePower && ((temp + 1) <= maxTemp))
+    	{
+    		if(rand.nextInt(15) == 1)
+    		{
+    			temp = temp + 1;
+    		}
+    	}*/
+    	
         if (inStack != null)
         {
             if (result != null)
@@ -213,7 +225,8 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 	                    	{
 	                    		time = 0;
 		                        this.decrStackSize(0, 1);
-		                        output.stackSize = (output.stackSize + result.stackSize);
+		                        this.setInventorySlotContents(1, new ItemStack(result.getItem(), 
+		                        		(result.stackSize + output.stackSize), result.getItemDamage()));
 		                        this.onInventoryChanged();
 	                    	}
 	                    	else
@@ -226,17 +239,34 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
                 }
             	else
                 {
-                	temp = temp + 1;
+            		if(rand.nextInt(5) == 1)
+            		{
+            			temp = temp + 1;
+            		}
                 }
            	}
             else
             {
             	time = 0;
+            	if((temp - 1) > 0 && rand.nextInt(10) == 1)
+            	{
+            		if(!(redstonePower))
+            		{
+            			temp = temp - 1;
+            		}
+            	}
             }
         }
         else
         {
         	time = 0;
+        	if((temp - 1) > 0 && rand.nextInt(10) == 1)
+        	{
+        		if(!(redstonePower))
+        		{
+        			temp = temp - 1;
+        		}        	
+        	}
         }
     }
 
@@ -265,9 +295,9 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 		}
 	}
 
-	int[] slots_bottom = {1};
-	int[] slots_top = {0};
-	int[] slots_sides = {1};
+	int[] slots_bottom = {1, 1};
+	int[] slots_top = {0, 0};
+	int[] slots_sides = {1, 1};
 	
     public int[] getAccessibleSlotsFromSide(int side)
     {
@@ -292,7 +322,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || item.getItem() == electrolysmCore.crystal;
+        return side != 0 || item.getItem() == electrolysmCore.ingots;
     }
     
     @Override
@@ -309,6 +339,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
             }
             
             time = tagCompound.getInteger("time");
+            temp = tagCompound.getInteger("temp123456");
     }
 
     @Override
@@ -327,6 +358,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
             }
             tagCompound.setTag("Inventory", itemList);
             tagCompound.setInteger("time", time);
+            tagCompound.setInteger("temp123456", temp);
     }
 
 	public void setGuiDisplayName(String displayName) {

@@ -306,8 +306,8 @@ public class electrolysmCore
         NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
         
         long duration = (System.currentTimeMillis() - startTime);
-        float secs = (duration / 1000);
-        LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + secs + " secs)");
+        float secs = ((duration / 1000) * 100);
+        LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
     }
 
     @SideOnly(Side.CLIENT)

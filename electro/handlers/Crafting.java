@@ -281,13 +281,13 @@ public class Crafting
 	{
 		int impureID = electrolysmCore.impureDusts.itemID;
 		int pureID = electrolysmCore.dusts.itemID;
-		ItemStack copperIngot = new ItemStack(electrolysmCore.copperIngot);
+		ItemStack copperIngot = new ItemStack(electrolysmCore.copperIngot, 1);
 		ItemStack tinIngot = new ItemStack(electrolysmCore.ingots, 1, 0);
 		ItemStack silverIngot = new ItemStack(electrolysmCore.ingots, 1, 1);
 		ItemStack leadIngot = new ItemStack(electrolysmCore.ingots, 1, 2);
 
-		ItemStack ironIngot = new ItemStack(Item.ingotIron);
-        ItemStack goldIngot = new ItemStack(Item.ingotGold);
+		ItemStack ironIngot = new ItemStack(Item.ingotIron, 1);
+        ItemStack goldIngot = new ItemStack(Item.ingotGold, 1);
         float impureXP = 1.23456789F;
         float pureXP = 5.789F;
         

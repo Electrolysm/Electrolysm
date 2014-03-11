@@ -4,11 +4,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
+import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class smeltory extends oreProcessMachineBase
@@ -35,6 +37,12 @@ public class smeltory extends oreProcessMachineBase
     }
 
     @Override
+    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
+    {
+        return true;
+    }
+    
+    @Override
     public TileEntity createNewTileEntity(World world)
     {
         // TODO Auto-generated method stub
@@ -52,5 +60,25 @@ public class smeltory extends oreProcessMachineBase
             player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
             return true;
         }
+    }
+    
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, int block)
+    {
+        TileEntitySmeltory te = (TileEntitySmeltory)world.getBlockTileEntity(x, y, z);
+
+        if (this.isRecievingRedstonePower(world, x, y, z))
+        {
+            te.setRedstonePower(true);
+        }
+        else
+        {
+        	te.setRedstonePower(false);
+        }
+    }
+    
+    public boolean isRecievingRedstonePower(World world, int x, int y, int z)
+    {
+        return (world.isBlockIndirectlyGettingPowered(x, y, z));
     }
 }
