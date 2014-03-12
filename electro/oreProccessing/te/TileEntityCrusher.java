@@ -156,6 +156,10 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     public int time = 0;
     public int maxCrushTime = 400;
     public int crushTime = 400;
+    public int rotations = 0;
+    public int maxRotations = 100;
+    public int maxRotaionsFinal = 100;
+    public boolean active = false;
     
     @Override
     public void updateEntity()
@@ -175,7 +179,14 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         	//extraDust = this.getExtraDust(grindStone);
         	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
         	{
-        		crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 1));
+        		if(active == false)
+        		{
+        			crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 1));
+        			if(this.getExtraDust(grindStone) != 0)
+        			{
+        				maxRotations = (int)(maxRotaionsFinal / (this.getExtraDust(grindStone)));
+        			}
+        		}
         	}
         	else
         	{
@@ -196,55 +207,70 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         {
             if (result != null)
             {
-                if (output == null)
-                {
-                    int outputSize = 0;
-                    int resultSize = result.stackSize;
-
-                    if (((resultSize + outputSize) <= 64))
-                    {
-                    	if(time == crushTime)
-                    	{
-                    		time = 0;
-                    		this.decrStackSize(0, 1);
-	                        this.setInventorySlotContents(1, result2);
-	                        this.onInventoryChanged();
-                    	}
-                    	else
-                    	{
-                    		time = time + 1;
-                    	}
-                    }
-                }
-                else
-                {
-                    int outputSize = output.stackSize;
-                    int resultSize = result.stackSize;
-
-                    if (((resultSize + outputSize) < 64))
-                    {
-                    	if(time == crushTime)
-                    	{
-                    		time = 0;
-	                        this.decrStackSize(0, 1);
-	                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
-	                        this.onInventoryChanged();
-                    	}
-                    	else
-                    	{
-                    		time = time + 1;
-                    	}
-                    }
-                }
+            	if(rotations == maxRotations)
+            	{
+	                if (output == null)
+	                {
+	                    int outputSize = 0;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) <= 64))
+	                    {
+	                    	if(time == crushTime)
+	                    	{
+	                    		time = 0;
+	                    		active = false;
+	                    		this.decrStackSize(0, 1);
+		                        this.setInventorySlotContents(1, result2);
+		                        this.onInventoryChanged();
+	                    	}
+	                    	else
+	                    	{
+	                    		time = time + 1;
+	                    		active = true;
+	                    	}
+	                    }
+	                }
+	                else
+	                {
+	                    int outputSize = output.stackSize;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) < 64))
+	                    {
+	                    	if(time == crushTime)
+	                    	{
+	                    		time = 0;
+	                    		active = false;
+		                        this.decrStackSize(0, 1);
+		                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
+		                        this.onInventoryChanged();
+	                    	}
+	                    	else
+	                    	{
+	                    		time = time + 1;
+	                    		active = true;
+	                    	}
+	                    }
+	                }
+            	}
+            	else
+            	{
+            		rotations = rotations + 1;
+            	}
            	}
             else
             {
             	time = 0;
+            	rotations = 0;
+            	active = true;
             }
         }
         else
         {
         	time = 0;
+        	rotations = 0;
+        	active = true;
         }
     }
 

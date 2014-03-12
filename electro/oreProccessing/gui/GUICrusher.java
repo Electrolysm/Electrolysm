@@ -48,7 +48,10 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
+    	String rotationString = "Rotations: " + entity.rotations  + "RPM";
         fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRenderer.drawString(rotationString, 13, 6 + 60 + 6, 4210752);
+        
     }
 
     
