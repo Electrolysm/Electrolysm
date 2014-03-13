@@ -195,7 +195,7 @@ public class Crafting
         GameRegistry.addShapedRecipe(new ItemStack(electrolysmCore.wire, 28),
                                      "WWW", "GGG", "WWW",
                                      'W', electrolysmCore.endoInsulator,
-                                     'G', electrolysmCore.graphite);
+                                     'G', electrolysmCore.graphiteRod);
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.endoInsulator, 6),
                                         new ItemStack(electrolysmCore.ballOfPlastic),
                                         new ItemStack(electrolysmCore.ballOfPlastic),
@@ -269,8 +269,33 @@ public class Crafting
         		              'M', electrolysmCore.advancedMicrochip,
         		              'C', electrolysmCore.copperIngot);
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.graphiteRod), 
-"X  ", "X  ", "   ",
-'X', electrolysmCore.chunkGraphite);
+                                "X  ", "X  ", "   ",
+                                'X', electrolysmCore.chunkGraphite);
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.charger),
+        		               "CCC", "IRI", "IMI",
+        		               'C', electrolysmCore.copperIngot,
+        		               'I', Item.ingotIron,
+        		               'R', Item.redstone);
+         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.plasmaDrill),
+        		                         new ItemStack(electrolysmCore.drillCasing),
+        		                         new ItemStack(electrolysmCore.drillHead));
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.teslaTowerCore),
+        		                "CCC", "BRB ","BMB",
+        		                'C', electrolysmCore.crystal1,
+        		                'B', electrolysmCore.blastProof,
+        		                'R', Item.redstone,
+        		                'M', electrolysmCore.advancedCPU);
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterGen),
+        		                "SMS", "CGC", "SMS",
+        		                'S', electrolysmCore.stoneObsidian,
+        		                'M', electrolysmCore.experimentalMicrochip,
+        		                'C', electrolysmCore.copperIngot,
+        		                'G', electrolysmCore.generator);
+         
+        		                
+        		              
+         
+         
         		                        
         		              
         		              
@@ -304,6 +329,7 @@ public class Crafting
 		FurnaceRecipes.smelting().addSmelting(pureID, 3, goldIngot, pureXP);
 		FurnaceRecipes.smelting().addSmelting(pureID, 4, silverIngot, pureXP);
 		FurnaceRecipes.smelting().addSmelting(pureID, 5, leadIngot, pureXP);
+	    GameRegistry.addSmelting(electrolysmCore.copperOre.blockID, new ItemStack(electrolysmCore.copperIngot, 1),2F);
 
 	}
 }

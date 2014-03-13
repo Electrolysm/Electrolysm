@@ -62,6 +62,7 @@ import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
 import assets.electrolysm.electro.item.basic.drillCasing;
+import assets.electrolysm.electro.item.basic.drillHead;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.crystalOre;
@@ -185,8 +186,9 @@ public class electrolysmCore
     public static Block charger = new charger(IDHandler.advMachines.chargerID, null);
     //Items
     //Tools
-    public static Item plasmaDrill = new plasmaDrill(IDHandler.basic.plasmaDrillID, 0, null, null);
-    public static Item drillCasing = new drillCasing(IDHandler.basic.drillCasingID);
+    public static Item plasmaDrill = new plasmaDrill(IDHandler.tools.plasmaDrillID, 0, null, null);
+    public static Item drillCasing = new drillCasing(IDHandler.tools.drillCasingID);
+    public static Item drillHead = new drillHead(IDHandler.tools.drillHeadID);
 
     //Power System
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
@@ -225,7 +227,7 @@ public class electrolysmCore
     public static Item net = new net(IDHandler.oreProccessing.netID);
     public static Item crystal = new crystalOre(IDHandler.oreProccessing.crystalID);
 
-    //Random items for crafting
+    // items for crafting
     public static Item diamondShard = new diamondShard(IDHandler.craftingItems.diamondShardID);
     public static Item luminousRedstone = new luminousRedstone(IDHandler.craftingItems.luminousRedstoneID);
     public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);

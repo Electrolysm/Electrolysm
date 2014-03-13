@@ -45,10 +45,8 @@ public class IDHandler
         public static int blastGlassID = 730;
         public static int modBlastGlassID = 731;
         public static int glassModifierID = 732;
-        public static int plasmaDrillID = 733;
-        public static int drillCasingID = 734;
-        public static int hammerID = 735;
-        public static int stoneObsidianID = 746;
+        public static int hammerID = 733;
+        public static int stoneObsidianID = 734;
     }
 
     public static class research
@@ -154,8 +152,13 @@ public class IDHandler
         public static int graphiteRodID= 918;
     }
 
-    public static class elements
-    {
-        public static int elementProofID = 950;
-    }
+
+	public static class tools
+	{
+		public static int drillCasingID = 1000;
+    	public static int plasmaDrillID = 1001;
+    	public static int drillHeadID = 1002;
+	}
+
+	
 }
