@@ -50,7 +50,8 @@ public class RegisterBlock
         GameRegistry.registerWorldGenerator(new WorldGenStructures());
         GameRegistry.registerWorldGenerator(new WorldGenOres());
         GameRegistry.registerBlock(electrolysmCore.nettedBlock);
-        //GameRegistry.registerBlock(electrolysmCore.crusherActive);
+        GameRegistry.registerBlock(electrolysmCore.crusherActive);
+        GameRegistry.registerBlock(electrolysmCore.smeltoryActive);
         
         //Fluids
         /*

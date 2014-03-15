@@ -1,7 +1,9 @@
 package assets.electrolysm.electro.oreProccessing;
 
 import java.util.List;
+import java.util.Random;
 
+import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 
 import net.minecraft.block.Block;
@@ -10,7 +12,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
@@ -24,13 +28,15 @@ public class oreProcessMachineBase extends BlockContainer
     public Icon frontIcon;
     @SideOnly(Side.CLIENT)
     public Icon frontActive;
-    
-	public boolean active;
+	public boolean active = false;
+	public static boolean keepInventory;
+	public TileEntity tileentity;
 
     
-    public oreProcessMachineBase(int id, Material mat)
+    public oreProcessMachineBase(int id, Material mat, boolean isActive)
     {
         super(id, Material.iron);
+        this.active = isActive;
     }
 
     @SideOnly(Side.CLIENT)
@@ -47,11 +53,11 @@ public class oreProcessMachineBase extends BlockContainer
         {
         	if(this.active)
         	{
-        		return this.frontIcon;
+        		return this.frontActive;
         	}
         	else
         	{
-        		return this.frontActive;
+        		return this.frontIcon;
         	}
         }
         else
@@ -72,36 +78,6 @@ public class oreProcessMachineBase extends BlockContainer
         list.add(new ItemStack(this.blockID, 1, 3));
     }
     
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
-        }
-
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
-        }
-
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
-        }
-
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-        }
-
-        if (par6ItemStack.hasDisplayName())
-        {
-            ((TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
-        }
-    }
-
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4)
     {
@@ -140,6 +116,31 @@ public class oreProcessMachineBase extends BlockContainer
             }
 
             par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
+        }
+    }
+    
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+    {
+        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        if (l == 0)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+        }
+
+        if (l == 1)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
+        }
+
+        if (l == 2)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
+        }
+
+        if (l == 3)
+        {
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
         }
     }
 }

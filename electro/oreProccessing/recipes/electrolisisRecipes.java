@@ -1,10 +1,8 @@
 package assets.electrolysm.electro.oreProccessing.recipes;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-import scala.actors.threadpool.Arrays;
 
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.electrolysmCore;

@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
 
 public class TileEntityCrusher extends TileEntity implements IInventory, ISidedInventory
@@ -156,6 +157,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     public int time = 0;
     public int maxCrushTime = 400;
     public int crushTime = 400;
+    
     public int rotations = 0;
     public int maxRotations = 100;
     public int maxRotaionsFinal = 100;
@@ -164,6 +166,21 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     @Override
     public void updateEntity()
     {
+    	if(active)
+    	{
+    		if(worldObj.getBlockId(xCoord, yCoord, zCoord) == electrolysmCore.crusher.blockID)
+    		{
+    			crusher.updateFurnaceBlockState(true, worldObj, xCoord, yCoord, zCoord);
+    		}
+    	}
+    	else
+    	{
+    		if(worldObj.getBlockId(xCoord, yCoord, zCoord) == electrolysmCore.crusherActive.blockID)
+    		{
+    			crusher.updateFurnaceBlockState(false, worldObj, xCoord, yCoord, zCoord);
+    		}
+    	}
+    	
     	this.onInventoryChanged();
     	
         ItemStack inStack = getStackInSlot(0);
@@ -257,20 +274,21 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
             	else
             	{
             		rotations = rotations + 1;
+            		active = true;
             	}
            	}
             else
             {
             	time = 0;
             	rotations = 0;
-            	active = true;
+            	active = false;
             }
         }
         else
         {
         	time = 0;
         	rotations = 0;
-        	active = true;
+        	active = false;
         }
     }
 

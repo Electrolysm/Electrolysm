@@ -1,16 +1,11 @@
 package assets.electrolysm.electro.oreProccessing.recipes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraftforge.oredict.OreDictionary;
-import assets.electrolysm.electro.electrolysmCore;
 
 public class SmeltoryRecipes
 {
@@ -26,7 +21,6 @@ public class SmeltoryRecipes
 
     private SmeltoryRecipes()
     {
-    
     }
     
     public void addSmelting(ItemStack input, ItemStack output)

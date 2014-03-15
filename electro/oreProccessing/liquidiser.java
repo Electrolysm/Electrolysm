@@ -21,12 +21,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class liquidiser extends oreProcessMachineBase
 {
-    public liquidiser(int par1, Material par2Material)
+    public liquidiser(int par1, Material par2Material, boolean isActive)
     {
-        super(par1, Material.iron);
+        super(par1, Material.iron, isActive);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("liquidizer");
         this.setHardness(6.0F);
+        this.active = isActive;
     }
 
     @Override

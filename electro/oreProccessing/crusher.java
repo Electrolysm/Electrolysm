@@ -23,12 +23,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class crusher extends oreProcessMachineBase
 {
 	
-	public crusher(int par1, Material par2Material)
+	public crusher(int par1, Material par2Material, boolean isActive)
     {
-        super(par1, Material.iron);
+        super(par1, Material.iron, isActive);
         this.setHardness(6.0F);
-    	active = this.getUnlocalizedName().toLowerCase().contains("active");
+        this.setUnlocalizedName("crusher");
     	this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.active = isActive;
     }
 	
     @Override
@@ -43,7 +44,7 @@ public class crusher extends oreProcessMachineBase
     public void registerIcons(IconRegister reg)
     {
         this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front");
-        //this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front_Active");
+        this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front_Active");
         this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
     }
 
@@ -60,85 +61,14 @@ public class crusher extends oreProcessMachineBase
         }
     }
 
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
-        }
-
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
-        }
-
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
-        }
-
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-        }
-
-        if (par6ItemStack.hasDisplayName())
-        {
-            ((TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
-        }
-    }
-
-    @Override
-    public void onBlockAdded(World par1World, int par2, int par3, int par4)
-    {
-        super.onBlockAdded(par1World, par2, par3, par4);
-        this.setDefaultDirection(par1World, par2, par3, par4);
-    }
-
-    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
-    {
-        if (!par1World.isRemote)
-        {
-            int l = par1World.getBlockId(par2, par3, par4 - 1);
-            int i1 = par1World.getBlockId(par2, par3, par4 + 1);
-            int j1 = par1World.getBlockId(par2 - 1, par3, par4);
-            int k1 = par1World.getBlockId(par2 + 1, par3, par4);
-            byte b0 = 3;
-
-            if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1])
-            {
-                b0 = 3;
-            }
-
-            if (Block.opaqueCubeLookup[i1] && !Block.opaqueCubeLookup[l])
-            {
-                b0 = 2;
-            }
-
-            if (Block.opaqueCubeLookup[j1] && !Block.opaqueCubeLookup[k1])
-            {
-                b0 = 5;
-            }
-
-            if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1])
-            {
-                b0 = 4;
-            }
-
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
-        }
-    }
-    
-Random furnaceRand = new Random();
+    Random furnaceRand = new Random();
     
     @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         TileEntityCrusher tileentityfurnace = (TileEntityCrusher)par1World.getBlockTileEntity(par2, par3, par4);
 
-        if (tileentityfurnace != null)
+        if (tileentityfurnace != null && !(keepInventory))
         {
             for (int j1 = 0; j1 < tileentityfurnace.getSizeInventory(); ++j1)
             {
@@ -180,5 +110,33 @@ Random furnaceRand = new Random();
         }
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
+    }
+    
+    /**
+     * Update which block ID the furnace is using depending on whether or not it is burning
+     */
+    public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
+    {
+        int l = par1World.getBlockMetadata(par2, par3, par4);
+        TileEntity tileentity = par1World.getBlockTileEntity(par2, par3, par4);
+        keepInventory = true;
+
+        if (par0)
+        {
+            par1World.setBlock(par2, par3, par4, electrolysmCore.crusherActive.blockID);
+        }
+        else
+        {
+            par1World.setBlock(par2, par3, par4, electrolysmCore.crusher.blockID);
+        }
+
+        keepInventory = false;
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
+
+        if (tileentity != null)
+        {
+            tileentity.validate();
+            par1World.setBlockTileEntity(par2, par3, par4, tileentity);
+        }
     }
 }

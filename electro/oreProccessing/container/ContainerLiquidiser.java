@@ -13,9 +13,6 @@ import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 public class ContainerLiquidiser extends Container
 {
     private TileEntityLiquidiser furnace;
-    private int lastCookTime = 0;
-    public int lastBurnTime = 0;
-    private int lastItemBurnTime = 0;
 
     public ContainerLiquidiser(InventoryPlayer inventoryPlayer, TileEntityLiquidiser tileFurnace)
     {

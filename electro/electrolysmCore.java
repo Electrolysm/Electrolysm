@@ -211,14 +211,15 @@ public class electrolysmCore
     public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
 
     //Ore Proccessing -- WIP
-    public static BlockContainer crusher = new crusher(configHandler.crusherID, null);
-    public static BlockContainer liquidiser = new liquidiser(configHandler.liquidizerID, null);
+    public static BlockContainer crusher = (BlockContainer) new crusher(configHandler.crusherID, null, false)
+    				.setCreativeTab(TabElectrolysm);
+    public static BlockContainer liquidiser = new liquidiser(configHandler.liquidizerID, null, false);
     public static BlockContainer electrolisisCore = new electrolisisCore(configHandler.electrolysisCoreID,
             null);
     public static Block electrolChamber = new electrolChamber(configHandler.electrolChamberID,
             null, false, ContectedTexture);
-    public static BlockContainer seperator = new seporator(configHandler.seperatorID, null);
-    public static BlockContainer smeltery = new smeltory(configHandler.smelteryID, null);
+    public static BlockContainer seperator = new seporator(configHandler.seperatorID, null, false);
+    public static BlockContainer smeltery = new smeltory(configHandler.smelteryID, null, false);
     public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
     public static Item dusts = new dusts(IDHandler.oreProccessing.dustsID);
     public static Item node = new node(IDHandler.oreProccessing.nodeID);
@@ -226,6 +227,9 @@ public class electrolysmCore
     public static Block nettedBlock = new nettedBlock(IDHandler.oreProccessing.nettedBlockID, null);
     public static Item net = new net(IDHandler.oreProccessing.netID);
     public static Item crystal = new crystalOre(IDHandler.oreProccessing.crystalID);
+    
+    public static BlockContainer crusherActive = new crusher(IDHandler.oreProccessing.crusherActiveID, null, true);
+    public static BlockContainer smeltoryActive = new smeltory(IDHandler.oreProccessing.smeltoryActiveID, null, true);
 
     // items for crafting
     public static Item diamondShard = new diamondShard(IDHandler.craftingItems.diamondShardID);

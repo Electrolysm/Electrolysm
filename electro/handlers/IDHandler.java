@@ -122,11 +122,13 @@ public class IDHandler
         public static int netID = 826;
         public static int nettedBlockID = 827;
         public static int crystalID = 828;
+        public static int crusherActiveID = 829;
+        public static int smeltoryActiveID = 830;
     }
 
     public static class blocks
     {
-        public static int ironFramesID = 830;
+        public static int ironFramesID = 831;
     }
 
     public static class craftingItems
