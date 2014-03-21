@@ -3,6 +3,7 @@ package assets.electrolysm.electro.handlers.nei;
 import assets.electrolysm.electro.block.advMachines.gui.GUIInjector;
 import assets.electrolysm.electro.handlers.Referance;
 import assets.electrolysm.electro.oreProccessing.gui.GUICrusher;
+import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
 import assets.electrolysm.electro.oreProccessing.gui.GUILiquidiser;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
@@ -22,6 +23,10 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 		API.registerRecipeHandler(new LiquidiserRecipeHandler());
 		API.setGuiOffset(GUILiquidiser.class, 0, 0);
 		
+		//Electrolysis
+		API.registerRecipeHandler(new ElectrolysisRecipeHander());
+		API.registerRecipeHandler(new ElectrolysisRecipeHander());
+		API.setGuiOffset(GUIElectrolysisCore.class, 0, 0);
 		//Injector
 		/*
 		API.registerRecipeHandler(new InjectorRecipeHandler());

@@ -4,27 +4,25 @@ import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.gui.GUILiquidiser;
-import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
+import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
+import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
-public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
+public class ElectrolysisRecipeHander extends TemplateRecipeHandler {
 
 	public class SmeltingPair extends CachedRecipe
     {
         public SmeltingPair(ItemStack ingred, ItemStack result)
         {
-            ingred.stackSize = 1;
-            //											x	y
-            this.ingred = new PositionedStack(ingred, 75, 15 - 16 + 3);
-            this.result = new PositionedStack(result, 75, 50 + 1 - 2);
+        	ingred.stackSize = 1;
+            this.ingred = new PositionedStack(ingred, 46 - 7, 17 + 16 - 9);
+            this.result = new PositionedStack(result, 111, 24);
         }
         
         public PositionedStack getIngredient()
@@ -112,19 +110,19 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
 	    @Override
 	    public void loadTransferRects()
 	    {
-	        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "injecting"));
+	        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "electrolysing"));
 	    }
 	    
 	    @Override
 	    public Class<? extends GuiContainer> getGuiClass()
 	    {
-	        return GUILiquidiser.class;
+	        return GUIElectrolysisCore.class;
 	    }
 	    
 	    @Override
 	    public String getRecipeName()
 	    {
-	        return "injecting";
+	        return "electrolysing";
 	    }
 	    
 	    @Override
@@ -136,9 +134,9 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
 	    @Override
 	    public void loadCraftingRecipes(String outputId, Object... results)
 	    {
-	        if(outputId.equals("injecting") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
+	        if(outputId.equals("electrolysing") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
 	        {
-	        	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+	        	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
 	            
 	            for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
 	            {
@@ -155,7 +153,7 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
 	    @Override
 	    public void loadCraftingRecipes(ItemStack result)
 	    {
-	    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+        	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
 	        
 	        for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
 	        {
@@ -172,7 +170,7 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
 	    {
 	        if(inputId.equals("fuel") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
 	        {
-	            loadCraftingRecipes("injecting");
+	            loadCraftingRecipes("electrolysing");
 	        }
 	        else
 	        {
@@ -183,7 +181,7 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
 	    @Override
 	    public void loadUsageRecipes(ItemStack ingredient)
 	    {
-	    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+        	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
 	        
 	        for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
 	        {
@@ -205,12 +203,12 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
 	    public void drawExtras(int recipe)
 	    {
 	        //drawProgressBar(51, 25, 176, 0, 14, 14, 48, 7);
-	        drawProgressBar(64 - 5, 20 - 11, 0, 166, 90, 16, 90, 0);
+	        //drawProgressBar(64 - 5, 20 - 11, 0, 166, 90, 16, 90, 0);
 	    }
 	    
 	    public String getOverlayIdentifier()
 	    {
-	        return "Injector";
+	        return "Electrolysis";
 	    }
 	    
 	}
@@ -223,21 +221,21 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadTransferRects()
     {
-        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "liquidising"));
-        //transferRects.add(new RecipeTransferRect(new Rectangle(80, 80, 80, 80), "liquidising"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "electrolysing"));
+        //transferRects.add(new RecipeTransferRect(new Rectangle(80, 80, 80, 80), "electrolysing"));
 
     }
     
     @Override
     public Class<? extends GuiContainer> getGuiClass()
     {
-        return GUILiquidiser.class;
+        return GUIElectrolysisCore.class;
     }
     
     @Override
     public String getRecipeName()
     {
-        return "Liquidising";
+        return "Electrolysis";
     }
     
     @Override
@@ -249,9 +247,9 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("liquidising") && getClass() == LiquidiserRecipeHandler.class)//don't want subclasses getting a hold of this
+        if(outputId.equals("electrolysing") && getClass() == ElectrolysisRecipeHander.class)//don't want subclasses getting a hold of this
         {
-        	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+        	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
             
             for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
             {
@@ -268,7 +266,7 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
         
         for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
         {
@@ -283,9 +281,9 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(String inputId, Object... ingredients)
     {
-        if(inputId.equals("fuel") && getClass() == LiquidiserRecipeHandler.class)//don't want subclasses getting a hold of this
+        if(inputId.equals("fuel") && getClass() == ElectrolysisRecipeHander.class)//don't want subclasses getting a hold of this
         {
-            loadCraftingRecipes("liquidising");
+            loadCraftingRecipes("electrolysing");
         }
         else
         {
@@ -296,7 +294,7 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
         
         for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
         {
@@ -311,7 +309,7 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
     @Override
     public String getGuiTexture()
     {
-        return CommonProxy.LIQUIDISER_GUI.toString();
+        return CommonProxy.NEI_ELECTROL_GUI.toString();
     }
 
     @Override
@@ -326,13 +324,12 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler {
         * @param ticks The amount of ticks for the bar to complete
         * @param direction 0 right, 1 down, 2 left, 3 up. If bit 3 is set the bar will shrink rather extend
          * */
-        drawProgressBar(39, 44 - 15, 0, 166, 90, 16, 90, 0);
     }
     
     @Override
     public String getOverlayIdentifier()
     {
-        return "Displacement Chamber";
+        return "Electrolysis Chamber";
     }
     
     @Override

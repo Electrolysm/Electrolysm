@@ -2,6 +2,7 @@ package assets.electrolysm.electro.oreProccessing.recipes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import scala.actors.threadpool.Arrays;
@@ -86,4 +87,9 @@ public class electrolisisRecipes
 
         return null;
     }
+
+	public Map getSmeltingMap() {
+		// TODO Auto-generated method stub
+		return this.electrolysisMap;
+	}
 }
