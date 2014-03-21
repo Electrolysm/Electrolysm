@@ -189,12 +189,17 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     	
     	this.onInventoryChanged();
 
-    	ItemStack inStack = getStackInSlot(0);
-        ItemStack output = getStackInSlot(1);
+    	ItemStack inStack = this.getStackInSlot(0);
+        ItemStack output = this.getStackInSlot(1);
         ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
         ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
         Random rand = new Random();
+<<<<<<< HEAD
 
+=======
+    	redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
+    	
+>>>>>>> a67cc750a26523d897f24cedcd00626ba519329c
     	/*
     	if(redstonePower && ((temp + 1) <= maxTemp))
     	{
@@ -208,8 +213,8 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
         {
             if (result != null)
             {
-            	if(temp == maxTemp)
-            	{
+            	//if(temp == maxTemp)
+            	//{
 	                if (output == null)
 	                {
 	                    int outputSize = 0;
@@ -237,7 +242,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 	                    int outputSize = output.stackSize;
 	                    int resultSize = result.stackSize;
 	
-	                    if (((resultSize + outputSize) < 64))
+	                    if (((resultSize + outputSize) < 64) && output.isItemEqual(result))
 	                    {
 	                    	if(time == smeltTime)
 	                    	{
@@ -256,6 +261,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 	                    }
 	                }
 	                
+<<<<<<< HEAD
                 }
             	else
                 {
@@ -265,6 +271,16 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
             		}
             		active = true;
                 }
+=======
+                //}
+            	//else
+                //{
+            		//if(rand.nextInt(5) == 1)
+            		//{
+            	//		temp = temp + 1;
+            	//	}
+                //}
+>>>>>>> a67cc750a26523d897f24cedcd00626ba519329c
            	}
             else
             {

@@ -311,8 +311,8 @@ public class Crafting
 		ItemStack silverIngot = new ItemStack(electrolysmCore.ingots, 1, 1);
 		ItemStack leadIngot = new ItemStack(electrolysmCore.ingots, 1, 2);
 
-		ItemStack ironIngot = new ItemStack(Item.ingotIron, 1);
-        ItemStack goldIngot = new ItemStack(Item.ingotGold, 1);
+		ItemStack ironIngot = new ItemStack(Item.ingotIron, 1, 0);
+        ItemStack goldIngot = new ItemStack(Item.ingotGold, 1, 0);
         float impureXP = 1.23456789F;
         float pureXP = 5.789F;
         
@@ -329,7 +329,12 @@ public class Crafting
 		FurnaceRecipes.smelting().addSmelting(pureID, 3, goldIngot, pureXP);
 		FurnaceRecipes.smelting().addSmelting(pureID, 4, silverIngot, pureXP);
 		FurnaceRecipes.smelting().addSmelting(pureID, 5, leadIngot, pureXP);
+<<<<<<< HEAD
 	    GameRegistry.addSmelting(electrolysmCore.copperOre.blockID, new ItemStack(electrolysmCore.copperIngot, 1),2F);
+=======
+		
+		//GameRegistry.addSmelting(pureID, goldIngot, pureXP);
+>>>>>>> a67cc750a26523d897f24cedcd00626ba519329c
 
 	}
 }
