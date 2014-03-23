@@ -280,7 +280,7 @@ public class Crafting
         		                         new ItemStack(electrolysmCore.drillCasing),
         		                         new ItemStack(electrolysmCore.drillHead));
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.teslaTowerCore),
-        		                "CCC", "BRB ","BMB",
+        		                "RCR", "BRB ","BMB",
         		                'C', electrolysmCore.crystal1,
         		                'B', electrolysmCore.blastProof,
         		                'R', Item.redstone,
@@ -291,14 +291,64 @@ public class Crafting
         		                'M', electrolysmCore.experimentalMicrochip,
         		                'C', electrolysmCore.copperIngot,
         		                'G', electrolysmCore.generator);
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.wire, 3),
+        		               "WWW", "CRC", "WWW",
+        		               'W', Block.cloth,
+        		               'C', electrolysmCore.copperIngot,
+        		               'R', Item.redstone);
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.advWire, 3),
+        		               "PPP", "GRG", "PPP",
+        		               'P', electrolysmCore.ballOfPlastic,
+        		               'G', Item.ingotGold,
+        		               'R', Item.redstone);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.earther, 2),
+        		              "WGW", "WRW", "WGW",
+        		              'W', Block.cloth,
+        		              'G', electrolysmCore.graphiteRod,
+        		              'R', Item.redstone);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.advEarther, 2),
+        		               "PGP", "PIP", "PGP",
+        		               "P", electrolysmCore.ballOfPlastic,
+        		               'G', electrolysmCore.graphiteRod,
+        		               'I', Item.ingotGold);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.crusher),
+        		              "IMI", "PGP", "ICI",
+        		              'I', Item.ingotIron,
+        		              'M', electrolysmCore.BasicMicrochip,
+        		              'P', Block.pistonBase,
+        		              'G', electrolysmCore.grindStone,
+        		              'C', electrolysmCore.copperIngot);
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.liquidiser),
+        		               "ILI", "RLM", "IFI",
+        		               'I', Item.ingotIron,
+        		               'L', electrolysmCore.fluidStorage,
+        		               'R', Item.redstone,
+        		               'M', electrolysmCore.advancedMicrochip,
+        		               'F', Block.furnaceIdle);
+       GameRegistry.addRecipe(new ItemStack(electrolysmCore.seperator),
+    		                 "IRI", "LNL", "IMI",
+    		                 'I', Item.ingotIron,
+    		                 'R', Item.redstone,
+    		                 'L', electrolysmCore.fluidStorage,
+    		                 'N', electrolysmCore.net,
+    		                 'M', electrolysmCore.advancedMicrochip);
+       GameRegistry.addRecipe(new ItemStack(electrolysmCore.smeltery),
+    		                 "IRI", "IMI", "FFF",
+    		                 'I', Item.ingotIron,
+    		                 'R', Item.redstone,
+    		                 'M', electrolysmCore.advancedMicrochip,
+    		                 'F', Block.furnaceIdle);
+       GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.net),
+    		                          new ItemStack(Item.silk),
+    		                          new ItemStack(Item.silk), 
+    		                          new ItemStack(Item.silk),
+    		                          new ItemStack(Item.silk));
+       GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.nettedBlock),
+    		                          new ItemStack(electrolysmCore.net),
+    		                          new ItemStack(electrolysmCore.net),
+    		                          new ItemStack(electrolysmCore.net),
+    		                          new ItemStack(electrolysmCore.net));
          
-        		                
-        		              
-         
-         
-        		                        
-        		              
-        		              
     }
     //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs		0		   1	  2		  3			4		5
