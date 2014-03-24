@@ -2,6 +2,8 @@ package assets.electrolysm.electro.handlers;
 
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.advAtomics.liquids.Fluids;
+import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
 import assets.electrolysm.electro.block.advMachines.energiser;
 import assets.electrolysm.electro.block.advMachines.injector;
@@ -71,7 +73,7 @@ public class Names
         }*/
         LanguageRegistry.addName(electrolysmCore.card, "ID Card");
 
-        for (int i = 0; i < CommonProxy.HOLDABLE_FLUIDS.length; i++)
+        for (int i = 0; i < CommonProxy.FLUIDS.length; i++)
         {
             LanguageRegistry.addName(new ItemStack(electrolysmCore.fluidStorage, 1, i),
                                      "Strengthened Fluid Storage Capsule");

@@ -2,56 +2,69 @@ package assets.electrolysm.electro.advAtomics.liquids;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
-import assets.electrolysm.electro.handlers.LoggerHandler;
-import assets.electrolysm.electro.research.Research;
+import org.apache.commons.lang3.text.WordUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatMessageComponent;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
-import net.minecraftforge.fluids.ItemFluidContainer;
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.handlers.LoggerHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerItem*/
+public class fluidRegistry extends Item /*implements IFluidContainerItem*/
 {
     @SideOnly(Side.CLIENT)
     private Icon[] fluidIcons;
 
-    public fluidStorage(int ID)
+	Fluid[] fluid = new Fluid[100];
+
+    public fluidRegistry(int ID)
     {
         super(ID);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.hasSubtypes = true;
+        
+        System.out.println(Integer.MAX_VALUE);
+    	
+        for(int b = 0; b < Block.blocksList.length; b++)
+    	{
+        	for(int i = 0; i < fluid.length; i++)
+    		{
+    			if(FluidRegistry.lookupFluidForBlock(Block.blocksList[b]) != null)
+    			{
+   					System.out.println("Setting Fluid");
+   					fluid[i] = FluidRegistry.lookupFluidForBlock(Block.blocksList[b]);
+    			}
+    		}
+    	}
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
         int dmg = stack.getItemDamage();
-        return "fluidStorage_" + CommonProxy.FLUIDS[dmg];
+        return "fluidRegistry_" + fluid[dmg].getName();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister reg)
     {
-        fluidIcons = new Icon[CommonProxy.FLUIDS.length];
-
-        for (int i = 0; i < CommonProxy.FLUIDS.length; i ++)
+        fluidIcons = new Icon[fluid.length];
+        
+        for(int i = 0; i < fluidIcons.length; i++)
         {
-            fluidIcons[i] = reg.registerIcon("electrolysm:fluidStorage/" +
-                                             "fluidStorage_" + CommonProxy.FLUIDS[i].replace(" ", "_"));
+        	fluidIcons[i] = reg.registerIcon("electrolysm:fluidRegistry/" 
+        					+ "fluidIcon_" + WordUtils.capitalize(fluid[i].getName().replace(" ", "_")));
         }
     }
 
@@ -64,37 +77,28 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        for (int i = 0; i < CommonProxy.FLUIDS.length; i++)
-        {
-            if (stack.getItemDamage() == i)
-            {
-                list.add("Holding 1000mB of: " + CommonProxy.FLUIDS[i]);
-            }
-        }
+    	String name = fluid[stack.getItemDamage()].getName();
+    	
+    	list.add("Holding 1000mB of: " + name);
     }
 
     public void getSubItems(int id, CreativeTabs creativeTab, List list)
     {
-        for (int i = 0; i < CommonProxy.FLUIDS.length; i++)
+    	boolean stop = false;
+    	
+        for (int i = 0; i < fluid.length; i++)
         {
-            list.add(new ItemStack(electrolysmCore.fluidStorage, 1, i));
+        	if(fluid[i] != fluid[0] && stop == false)
+        	{
+        		list.add(new ItemStack(electrolysmCore.fluidRegistry, 1, i));
+        		stop = true;
+        	}
         }
-    }
-
-    @Override
-    public String getOreFluid(ItemStack item)
-    {
-        if (CommonProxy.FLUIDS[item.getItemDamage()].contains("Sulphate"))
-        {
-            return CommonProxy.FLUIDS[item.getItemDamage()];
-        }
-
-        return null;
     }
 
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y,
                              int z, int side, float clickX, float clickY, float clickZ)
-    {
+    {/*
         if (this.getBlockIDBasedOnItemStack(item) != 0)
         {
             if (side == 0)
@@ -135,9 +139,9 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
                 player.sendChatToPlayer(
                     ChatMessageComponent.createFromText(message1).setColor(EnumChatFormatting.DARK_RED));
                 player.sendChatToPlayer(
-                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));*/
+                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));*//*
             }
-        }
+        }*/
 
         return false;
     }

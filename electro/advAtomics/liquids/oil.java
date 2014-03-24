@@ -21,7 +21,7 @@ public class oil extends BlockFluidClassic
 
     public oil(int id)
     {
-        super(id, new ModFluidPlasma(), Material.water);
+        super(id, new ModFluidOil(), Material.water);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("Oil");
     }

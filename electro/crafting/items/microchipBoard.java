@@ -22,6 +22,6 @@ public class microchipBoard extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister reg)
     {
-    	this.itemIcon = reg.registerIcon("electrolysm:" + "microchipBoard");
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "microBoard");
     }
 }

@@ -1,7 +1,11 @@
 package assets.electrolysm.electro.common;
 
-import assets.electrolysm.electro.handlers.Referance;
+import java.util.Map;
+
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.handlers.Referance;
 
 public class CommonProxy
 {
@@ -40,15 +44,20 @@ public class CommonProxy
     
     //Items (With Subtypes)
     public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
-    public static String[] HOLDABLE_FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",
-                           //METAs										0			1			2					3
-                           "Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate", "Silver Sulphate"
-                                             };
-    //METAs    4				5				6				7				8
+    public static String[] FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",
+                           //METAs	  	0			1			2					3
+                           "Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate", "Silver Sulphate"};
+    //METAs   						 4				5				6				7				8
+    
+    public static int[] FLUID_IDS = {0, electrolysmCore.plasma.blockID, electrolysmCore.sulpuricAcid.blockID, 
+		0, 0, 0, 0, 0, 0};
+    
     public static final String[] DUSTS = {"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs									0		   1	  2		  3			4		5
 
     //MOBs
     public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
     public static int[] RANGE_TIER = {40, 80, 135};
+    
+    
 }

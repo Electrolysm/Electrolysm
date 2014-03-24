@@ -120,11 +120,13 @@ public class configHandler
         sulphuricAcidID = config.getBlock("sulphuricAcidID", IDHandler.oreProccessing.sulphuricAcidID).getInt(IDHandler.oreProccessing.sulphuricAcidID);
         lumRedBlockID = config.getBlock("lumRedBlockID", IDHandler.craftingItems.BlockLumRedID).getInt(IDHandler.craftingItems.BlockLumRedID);
         oilID = config.getBlock("oilID", IDHandler.advAtomics.fluid.oilID).getInt(IDHandler.advAtomics.fluid.oilID);
+        
         //Items
         ballOfPlasticID = config.getItem("ballOfPlasticID", IDHandler.craftingItems.ballOfPlasticID).getInt(IDHandler.craftingItems.ballOfPlasticID);
         
         //Multiparts
         multipart = config.get("MULTIPART", "addMultiparts", true).getBoolean(true);
+        
         config.save();
     }
 }

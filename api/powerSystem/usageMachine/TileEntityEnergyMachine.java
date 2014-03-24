@@ -2,7 +2,7 @@ package assets.electrolysm.api.powerSystem.usageMachine;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.api.items.ItemFetcher;
+import assets.electrolysm.api.items.Fetcher;
 import assets.electrolysm.api.powerSystem.TileEntityPlug;
 import assets.electrolysm.api.powerSystem.meter.IMeterable;
 import assets.electrolysm.electro.electrolysmCore;

@@ -14,6 +14,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.BiomeGenBase;
 import assets.electrolysm.electro.advAtomics.elements.elementProof;
+import assets.electrolysm.electro.advAtomics.liquids.Fluids;
+import assets.electrolysm.electro.advAtomics.liquids.fluidRegistry;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.oil;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
@@ -124,7 +126,7 @@ public class electrolysmCore
 {
     private static String[] ContectedTexture = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
 
-    public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(), "Electrolysm|Basics of Science");
+    public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(), "Electrolysm");
     //public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
 
     public static GUIHandler guiHandler = new GUIHandler();
@@ -175,6 +177,7 @@ public class electrolysmCore
     //Liquids
     public static Block plasma = new plasma(configHandler.plasmaID);
     public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
+    public static Item fluidRegistry = new fluidRegistry(IDHandler.advAtomics.fluid.fluidRegistryID);
     public static Block oil = new oil(configHandler.oilID);
     //Atomics
     //public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
@@ -292,13 +295,14 @@ public class electrolysmCore
         VersionCheck.check();
         NewsCheck.check();
         BetaHandler.beta();
-        ResearchHandler.downloadOnlineData();
-        ResearchHandler.getStoredResearch();
+        //ResearchHandler.downloadOnlineData();
+        //ResearchHandler.getStoredResearch();
     }
 
     @EventHandler
     public void loadConfiguration(FMLPreInitializationEvent evt)
     {
+    	//Fluids.registerStuff();
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();
         RegisterBlock.register();
@@ -320,7 +324,7 @@ public class electrolysmCore
     @EventHandler
     public void load(FMLInitializationEvent event)
     {
-        ClientProxy ClientProxy = new ClientProxy();
+    	ClientProxy ClientProxy = new ClientProxy();
         ClientProxy.registerRenderThings();
     }
 

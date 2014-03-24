@@ -1,11 +1,12 @@
 package assets.electrolysm.api.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.handlers.LoggerHandler;
 
-public class ItemFetcher
+public class Fetcher
 {
     private static Class core;
  
@@ -66,6 +67,32 @@ public class ItemFetcher
     	catch(Exception e)
     	{
     		LoggerHandler.severe("Error fetching - " + id + " - form class");
+    		return null;
+    	}
+    }
+    
+    public static CreativeTabs getCreativeTab()
+    {
+    	try
+    	{
+    		if(core == null)
+    		{
+    			core = Class.forName("");
+    		}
+    		Object ret = core.getField("TabElectrolysm").get(null);
+    		
+    		if(ret instanceof CreativeTabs)
+    		{
+    			return ((CreativeTabs)ret);
+    		}
+    		else
+    		{
+    			return null;
+    		}
+    	}
+    	catch(Exception e)
+    	{
+    		LoggerHandler.severe("Error fetching - " + "TabElectrolysm" + " - form class");
     		return null;
     	}
     }
