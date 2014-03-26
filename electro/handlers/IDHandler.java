@@ -65,6 +65,7 @@ public class IDHandler
             public static int plasmaID = 743;
             public static int fluidStorageID = 744;
             public static int oilID = 745;
+            public static int fluidRegistryID = 746;
         }
     }
     public static class advMachines
