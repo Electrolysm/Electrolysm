@@ -6,10 +6,12 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.handlers.TickHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -31,11 +33,9 @@ public class advancedMicrochip extends Item
         super(par1);
         {
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("advMicrochip");
             this.hasSubtypes = true;
-            LanguageRegistry.addName(new ItemStack(this, 1, 0), "Advanced Microchip");
-            LanguageRegistry.addName(new ItemStack(this, 1, 1), "Creepified Microchip");
-            
+            //LanguageRegistry.addName(new ItemStack(this, 1, 0), "Advanced Microchip");
+
             for(int i = 0; i < 5; i++)
             {
             	GameRegistry.addShapelessRecipe(new ItemStack(this, 1, 1), 
@@ -47,6 +47,14 @@ public class advancedMicrochip extends Item
             		new ItemStack(Item.skull, 1, i));
             }
         }
+    }
+    
+    @Override
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        int dmg = stack.getItemDamage();
+        String[] type = {"EXPERIM", "CREEP"};
+        return "advMicrochip" + type[dmg];
     }
     
     public void getSubItems(int id, CreativeTabs creativeTab, List list)
@@ -63,14 +71,23 @@ public class advancedMicrochip extends Item
         //stack.damageItem(2, livingBase2);
         if(stack.getItemDamage() != 0)
         {
-        	TickHandler.canRun = true;
-        	TickHandler.entity = player;
-        	TickHandler.target = target;
-        	stack.stackSize = stack.stackSize - 1;
-        	return true;
+        	if(!(target instanceof EntityHorse))
+        	{
+            	TickHandler.canRun = true;
+            	TickHandler.entity = player;
+            	TickHandler.target = target;
+        		stack.stackSize = stack.stackSize - 1;
+        		return true;
+        	}
+        	else
+        	{
+        		return false;
+        	}
         }
-        
-        return false;
+        else
+        {
+        	return false;
+        }
     }
     
     @Override

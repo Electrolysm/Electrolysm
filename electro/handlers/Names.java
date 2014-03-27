@@ -56,29 +56,48 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.crystalBase, "Crystal Base");
         LanguageRegistry.addName(electrolysmCore.blastBrick, "Blast Proof Iron Brick");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1), "Netted Ore");
-        
+        LanguageRegistry.addName(electrolysmCore.card, "ID Card");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 0), "Tin Ingot");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 1), "Silver Ingot");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 2), "Lead Ingot");
-
+        LanguageRegistry.addName(electrolysmCore.earther, "Basic Earthing Block");
+        LanguageRegistry.addName(electrolysmCore.advEarther, "Advanced Earthing Machine");
+        LanguageRegistry.addName(electrolysmCore.liquidiser, "Displacement Chamber");
+        LanguageRegistry.addName(electrolysmCore.crusher, "Crusher");
+        LanguageRegistry.addName(electrolysmCore.electrolisisCore, "Electrolysis Chamber");
+        LanguageRegistry.addName(electrolysmCore.electrolChamber, "Electrolysis Wall");
+        LanguageRegistry.addName(electrolysmCore.smeltery, "Smeltery");
+        LanguageRegistry.addName(electrolysmCore.smeltoryActive, "Smeltory");
+        LanguageRegistry.addName(electrolysmCore.crusherActive, "Crusher");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.ItemWire, 1, 0), "Basic Earthing Wire");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.ItemWire, 1, 1), "Advanced Earthing Wire");
+        LanguageRegistry.addName(electrolysmCore.net, "Ore Net");
+        LanguageRegistry.addName(electrolysmCore.endoInsulator, "Endothermic Insulator");
+        LanguageRegistry.addName(electrolysmCore.microchipBoard, "Chip Board");
+        LanguageRegistry.addName(electrolysmCore.CPU, "CPU");
+        LanguageRegistry.addName(electrolysmCore.advancedCPU, "Advanced CPU");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.advancedMicrochip, 1, 0), "Advanced Microchip");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.advancedMicrochip, 1, 1), "Creepified Microchip");
+        LanguageRegistry.addName(electrolysmCore.experimentalMicrochip, "Experimental Microchip");
+        LanguageRegistry.addName(electrolysmCore.transistor, "Transistor");
+        LanguageRegistry.addName(electrolysmCore.graphiteRod, "Graphite Rod");
+        
+        
         //Items
         for (int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)
         {
             LanguageRegistry.addName(new ItemStack(electrolysmCore.researchPaper, 1, i), "Research Paper");
         }
-
-        /*for(int i = 0; i < ElementHandler.elements.length; i++)
+        for(int i = 0; i < 3; i++)
         {
-        	LanguageRegistry.addName(new ItemStack(electrolysmCore.elementProof, 1, i), ElementHandler.elements[i]);
-        }*/
-        LanguageRegistry.addName(electrolysmCore.card, "ID Card");
-
+        	String[] tier = {"Stone", "Iron", "Diamond"};
+        	LanguageRegistry.addName(new ItemStack(electrolysmCore.grindStone, 1, i), tier[i] + " Grind Stone"); 
+        }
         for (int i = 0; i < CommonProxy.FLUIDS.length; i++)
         {
             LanguageRegistry.addName(new ItemStack(electrolysmCore.fluidStorage, 1, i),
                                      "Strengthened Fluid Storage Capsule");
         }
-
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
             LanguageRegistry.addName(new ItemStack(electrolysmCore.dusts, 1, i), CommonProxy.DUSTS[i] + " Dust");
@@ -86,5 +105,10 @@ public class Names
                                      CommonProxy.DUSTS[i] + " Dust");
             LanguageRegistry.addName(new ItemStack(electrolysmCore.crystal, 1, i), CommonProxy.DUSTS[i] + " Sulphate Crystal");
         }
+        
+        /*for(int i = 0; i < ElementHandler.elements.length; i++)
+        {
+        	LanguageRegistry.addName(new ItemStack(electrolysmCore.elementProof, 1, i), ElementHandler.elements[i]);
+        }*/
     }
 }

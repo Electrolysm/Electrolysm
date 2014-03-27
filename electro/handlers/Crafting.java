@@ -317,12 +317,15 @@ public class Crafting
         		               'R', Item.redstone);
          
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.teslaTowerCore),
-<<<<<<< cb53680238f8d58d7bf4d2cbb35ac1e298426b4c
-        		                "RCR", "BRB ","BMB",
-        		                'C', electrolysmCore.crystal1,
-        		                'B', electrolysmCore.blastProof,
-        		                'R', Item.redstone,
-        		                'M', electrolysmCore.advancedCPU);
+	                "IVG", "SCS", "DOD",
+	                'I', Block.blockIron,
+	                'V', Block.glass,
+	                'G', Block.blockGold,
+	                'S', electrolysmCore.stoneObsidian,
+	                'C', electrolysmCore.crystal1,
+	                'D', electrolysmCore.diamondShard,
+	                'O', Block.obsidian);
+         
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterGen),
         		                "SMS", "CGC", "SMS",
         		                'S', electrolysmCore.stoneObsidian,
@@ -339,16 +342,18 @@ public class Crafting
         		               'P', electrolysmCore.ballOfPlastic,
         		               'G', Item.ingotGold,
         		               'R', Item.redstone);
-        GameRegistry.addRecipe(new ItemStack(electrolysmCore.earther, 2),
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.earther),
         		              "WGW", "WRW", "WGW",
-        		              'W', Block.cloth,
+        		              'W', Item.ingotIron,
         		              'G', electrolysmCore.graphiteRod,
         		              'R', Item.redstone);
-        GameRegistry.addRecipe(new ItemStack(electrolysmCore.advEarther, 2),
-        		               "PGP", "PIP", "PGP",
-        		               "P", electrolysmCore.ballOfPlastic,
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.advEarther),
+        		               "PGP", "PBP", "PGP",
+        		               'P', electrolysmCore.ballOfPlastic,
         		               'G', electrolysmCore.graphiteRod,
-        		               'I', Item.ingotGold);
+        		               'I', Item.ingotGold,
+        		               'B', electrolysmCore.earther);
+        
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.crusher),
         		              "IMI", "PGP", "ICI",
         		              'I', Item.ingotIron,
@@ -363,6 +368,7 @@ public class Crafting
         		               'R', Item.redstone,
         		               'M', electrolysmCore.advancedMicrochip,
         		               'F', Block.furnaceIdle);
+        /*
        GameRegistry.addRecipe(new ItemStack(electrolysmCore.seperator),
     		                 "IRI", "LNL", "IMI",
     		                 'I', Item.ingotIron,
@@ -370,6 +376,7 @@ public class Crafting
     		                 'L', electrolysmCore.fluidStorage,
     		                 'N', electrolysmCore.net,
     		                 'M', electrolysmCore.advancedMicrochip);
+       */
        GameRegistry.addRecipe(new ItemStack(electrolysmCore.smeltery),
     		                 "IRI", "IMI", "FFF",
     		                 'I', Item.ingotIron,
@@ -386,22 +393,9 @@ public class Crafting
     		                          new ItemStack(electrolysmCore.net),
     		                          new ItemStack(electrolysmCore.net),
     		                          new ItemStack(electrolysmCore.net));
-         
-=======
-        		                "IVG", "SCS", "DOD",
-        		                'I', Block.blockIron,
-        		                'V', Block.glass,
-        		                'G', Block.blockGold,
-        		                'S', electrolysmCore.stoneObsidian,
-        		                'C', electrolysmCore.crystal1,
-        		                'D', electrolysmCore.diamondShard,
-        		                'O', Block.obsidian);
-        		              
->>>>>>> bf8d7b9b3c640cfc0932614fe7cea3879964a5eb
     }
-    //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
-    //METAs		0		   1	  2		  3			4		5
-	public static void addFurnaceRecipes() 
+
+    public static void addFurnaceRecipes() 
 	{
 		int impureID = electrolysmCore.impureDusts.itemID;
 		int pureID = electrolysmCore.dusts.itemID;

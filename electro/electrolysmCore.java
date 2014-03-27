@@ -177,7 +177,7 @@ public class electrolysmCore
     //Liquids
     public static Block plasma = new plasma(configHandler.plasmaID);
     public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
-    public static Item fluidRegistry = new fluidRegistry(IDHandler.advAtomics.fluid.fluidRegistryID);
+    public static Item fluidRegistry/* = new fluidRegistry(IDHandler.advAtomics.fluid.fluidRegistryID)*/;
     public static Block oil = new oil(configHandler.oilID);
     //Atomics
     //public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
@@ -213,7 +213,7 @@ public class electrolysmCore
     //Random Blocks
     public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
 
-    //Ore Proccessing -- WIP
+    //Ore Proccessing
     public static BlockContainer crusher = (BlockContainer) new crusher(configHandler.crusherID, null, false)
     				.setCreativeTab(TabElectrolysm);
     public static BlockContainer liquidiser = new liquidiser(configHandler.liquidizerID, null, false);

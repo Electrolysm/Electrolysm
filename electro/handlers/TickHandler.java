@@ -4,6 +4,7 @@ import java.util.EnumSet;
 import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatMessageComponent;
@@ -82,7 +83,7 @@ public class TickHandler implements ITickHandler
     		World world = target.worldObj;
     		System.out.println(target.getDistanceToEntity(entity));
     		
-    		if(target.getDistanceToEntity(entity) >= 10)
+    		if(target.getDistanceToEntity(entity) >= 10 && !(target instanceof EntityHorse))
     		{
     			//this.dropInventory(target);
     			
