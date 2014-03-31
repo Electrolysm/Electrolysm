@@ -34,8 +34,8 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
-        int progress = (int)((entity.time * 46) / entity.crushTime);
-        int heat;
+        
+        int progress = entity.getScaledProgress(46);
 
         if (progress != 0)
         {
@@ -48,9 +48,34 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-    	String rotationString = "Rotations: " + entity.rotations  + "RPM";
-        fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
-        fontRenderer.drawString(rotationString, 13, 6 + 60 + 6, 4210752);
+    	String RotationString = "Rotations: " + entity.getRotations()  + "RPM";
+    	String EnergyString = "Energy: " + this.getEnergyStat(entity.currentEnergy, entity);
+        
+    	fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
+        //fontRenderer.drawString(EnergyString, 13, 6 + 60 + 6 + 10, 4210752);
+        fontRenderer.drawString(RotationString, 13, 6 + 60 + 6, 4210752);
         
     }
+
+    private String lastOutput;
+    
+	private String getEnergyStat(long currentEnergy, TileEntityCrusher te) 
+	{
+		String empty = "Empty";
+		String part = "Part Filled";
+		String full = "Full";
+		
+		if(currentEnergy <= (te.energy.getEnergyCapacity() * 0.1))
+		{
+			return empty;
+		}
+		else if(currentEnergy <= (te.energy.getEnergyCapacity() * 0.75))
+		{
+			return part;
+		}
+		else
+		{
+			return full;
+		}
+	}
 }
