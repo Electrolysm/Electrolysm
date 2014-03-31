@@ -122,4 +122,72 @@ public class ContainerCrusher extends Container
     {
         
     }
+    
+    //GUI Progress Bar Stuff
+    private int lastTime;
+    private int lastRotations;
+    private int lastEnergy;
+    
+    
+    @Override
+    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    {
+        super.addCraftingToCrafters(par1ICrafting);
+        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.rotations);
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.time);
+        par1ICrafting.sendProgressBarUpdate(this, 2, (int)(this.furnace.currentEnergy));
+    }
+
+    /**
+     * Looks for changes made in the container, sends them to every listener.
+     */
+    public void detectAndSendChanges()
+    {
+        super.detectAndSendChanges();
+
+        for (int i = 0; i < this.crafters.size(); ++i)
+        {
+            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+
+            if (this.lastTime != this.furnace.time)
+            {
+                icrafting.sendProgressBarUpdate(this, 0, this.furnace.time);
+            }
+
+            if (this.lastRotations != this.furnace.rotations)
+            {
+                icrafting.sendProgressBarUpdate(this, 1, this.furnace.rotations);
+            }
+            
+            if (this.lastEnergy != this.furnace.currentEnergy)
+            {
+                icrafting.sendProgressBarUpdate(this, 2, (int)(this.furnace.currentEnergy));
+            }
+
+        }
+
+        this.lastTime = this.furnace.time;
+        this.lastRotations = this.furnace.rotations;
+        this.lastEnergy = (int)(this.furnace.currentEnergy);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void updateProgressBar(int par1, int par2)
+    {
+        if (par1 == 0)
+        {
+            this.furnace.time = par2;
+        }
+
+        if (par1 == 1)
+        {
+            this.furnace.rotations = par2;
+        }
+        
+        if(par1 == 2)
+        {
+        	this.furnace.currentEnergy = par2;
+        }
+    }
 }
