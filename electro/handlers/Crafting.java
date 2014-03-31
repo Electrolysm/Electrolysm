@@ -237,7 +237,8 @@ public class Crafting
                                'I', Item.ingotIron,
                                'G', Block.glass,
                                'C', Block.chest,
-                               'M', Item.ingotGold);
+                               'R', Item.redstone,
+                               'M', electrolysmCore.advancedMicrochip);
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastBrick),
                                         new ItemStack(electrolysmCore.blastProof),
@@ -273,7 +274,7 @@ public class Crafting
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.advancedMicrochip, 1, 0),
         		              "   ", "CPC", "BRB",
         		              'C', electrolysmCore.copperIngot,
-        		              'P', electrolysmCore.advancedCPU,
+        		              'P', electrolysmCore.CPU,
         		              'B', electrolysmCore.BasicMicrochip,
         		              'R', Item.redstone);
         
@@ -332,21 +333,25 @@ public class Crafting
         		                'M', electrolysmCore.experimentalMicrochip,
         		                'C', electrolysmCore.copperIngot,
         		                'G', electrolysmCore.generator);
+         
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.wire, 3),
         		               "WWW", "CRC", "WWW",
         		               'W', Block.cloth,
         		               'C', electrolysmCore.copperIngot,
         		               'R', Item.redstone);
+         
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.advWire, 3),
         		               "PPP", "GRG", "PPP",
         		               'P', electrolysmCore.ballOfPlastic,
         		               'G', Item.ingotGold,
         		               'R', Item.redstone);
+         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.earther),
         		              "WGW", "WRW", "WGW",
         		              'W', Item.ingotIron,
         		              'G', electrolysmCore.graphiteRod,
         		              'R', Item.redstone);
+        
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.advEarther),
         		               "PGP", "PBP", "PGP",
         		               'P', electrolysmCore.ballOfPlastic,
@@ -361,6 +366,7 @@ public class Crafting
         		              'P', Block.pistonBase,
         		              'G', electrolysmCore.grindStone,
         		              'C', electrolysmCore.copperIngot);
+        
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.liquidiser),
         		               "ILI", "RLM", "IFI",
         		               'I', Item.ingotIron,
@@ -383,16 +389,11 @@ public class Crafting
     		                 'R', Item.redstone,
     		                 'M', electrolysmCore.advancedMicrochip,
     		                 'F', Block.furnaceIdle);
-       GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.net),
-    		                          new ItemStack(Item.silk),
-    		                          new ItemStack(Item.silk), 
-    		                          new ItemStack(Item.silk),
-    		                          new ItemStack(Item.silk));
-       GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.nettedBlock),
-    		                          new ItemStack(electrolysmCore.net),
-    		                          new ItemStack(electrolysmCore.net),
-    		                          new ItemStack(electrolysmCore.net),
-    		                          new ItemStack(electrolysmCore.net));
+       
+GameRegistry.addRecipe(new ItemStack(electrolysmCore.net),
+		              "   S", " WS", "W  ",
+		              'S', Item.silk,
+		              'W', Item.stick);
     }
 
     public static void addFurnaceRecipes() 
