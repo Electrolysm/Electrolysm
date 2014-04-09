@@ -42,14 +42,9 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.energyMeter, "Energy Meter");
         LanguageRegistry.addName(electrolysmCore.sulpuricAcid, "Sulphuric Acid");
         LanguageRegistry.addName(electrolysmCore.copperOre, "Copper Ore");
-        LanguageRegistry.addName(electrolysmCore.teslaTowerCore, "Tesla Tower Main Frame");
-        LanguageRegistry.addName(electrolysmCore.largeCopperCoil, "Large Copper Coil");
-        LanguageRegistry.addName(electrolysmCore.copperCoil, "Copper Coil");
-        LanguageRegistry.addName(electrolysmCore.plug, "E-TEP Plug");
         LanguageRegistry.addName(electrolysmCore.ironFrames, "Iron Frame");
         LanguageRegistry.addName(electrolysmCore.hammer, "Hammer");
         LanguageRegistry.addName(electrolysmCore.copperIngot, "Copper Ingot");
-        LanguageRegistry.addName(electrolysmCore.crystal1, "Electron Focus Crystal");
         LanguageRegistry.addName(electrolysmCore.node, "Graphite Electrode");
         LanguageRegistry.addName(electrolysmCore.luminousRedstone, "Luminous Redstone Dust");
         LanguageRegistry.addName(electrolysmCore.diamondShard, "Diamond Shard");
@@ -60,8 +55,6 @@ public class Names
         LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 0), "Tin Ingot");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 1), "Silver Ingot");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 2), "Lead Ingot");
-        LanguageRegistry.addName(electrolysmCore.earther, "Basic Earthing Block");
-        LanguageRegistry.addName(electrolysmCore.advEarther, "Advanced Earthing Machine");
         LanguageRegistry.addName(electrolysmCore.liquidiser, "Displacement Chamber");
         LanguageRegistry.addName(electrolysmCore.crusher, "Crusher");
         LanguageRegistry.addName(electrolysmCore.electrolisisCore, "Electrolysis Chamber");
@@ -69,8 +62,6 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.smeltery, "Smeltery");
         LanguageRegistry.addName(electrolysmCore.smeltoryActive, "Smeltory");
         LanguageRegistry.addName(electrolysmCore.crusherActive, "Crusher");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.ItemWire, 1, 0), "Basic Earthing Wire");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.ItemWire, 1, 1), "Advanced Earthing Wire");
         LanguageRegistry.addName(electrolysmCore.net, "Ore Net");
         LanguageRegistry.addName(electrolysmCore.endoInsulator, "Endothermic Insulator");
         LanguageRegistry.addName(electrolysmCore.microchipBoard, "Chip Board");

@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
-import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;

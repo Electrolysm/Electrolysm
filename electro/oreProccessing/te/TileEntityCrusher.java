@@ -35,6 +35,7 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
     @Override
     public int getSizeInventory()
     {
+    	//Sets Inventory Size
         return inventory.length;
     }
 
@@ -164,13 +165,12 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
 
     public int time = 0;
     private int maxCrushTime = 400;
-    private int crushTime = 400;
+    public int crushTime = 400;
     
     public int rotations = 0;
     private int maxRotations = 100;
     private int maxRotaionsFinal = 100;
     
-    private boolean active= false;
 	private long requiredEnergy = 500;
     
     @Override

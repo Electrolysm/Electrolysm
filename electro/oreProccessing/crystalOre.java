@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
 public class crystalOre extends Item {
-
+	
 	@SideOnly(Side.CLIENT)
 	private Icon[] crystalIcon;
 	
@@ -30,7 +30,7 @@ public class crystalOre extends Item {
         int dmg = stack.getItemDamage();
         return "crystalOre" + CommonProxy.DUSTS[dmg];
     }
-
+	
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister reg)

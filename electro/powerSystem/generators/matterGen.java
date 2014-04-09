@@ -3,7 +3,6 @@ package assets.electrolysm.electro.powerSystem.generators;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,7 +18,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -87,12 +85,12 @@ public class matterGen extends generator
 
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)
     {
-        TeslaTransmittingServer.clearAll();
+        //TeslaTransmittingServer.clearAll();
     }
 
     public void onBlockDestroyedByExplosion(World par1World, int par2, int par3, int par4, Explosion par5Explosion)
     {
-        TeslaTransmittingServer.clearAll();
+        //TeslaTransmittingServer.clearAll();
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player,
@@ -121,10 +119,10 @@ public class matterGen extends generator
     private void printChatMessage(World world, int x, int y, int z)
     {
         if (world.isRemote)
-        {
+        {/*
             TileEntityGenerator te = (TileEntityGenerator)world.getBlockTileEntity(x, y, z);
             String message = "This generator is producing " + String.valueOf(te.getSendTeU(world, x, y, z)) + " TeU";
-            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);*/
         }
         else
         {

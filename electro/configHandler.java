@@ -19,12 +19,7 @@ import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
-import assets.electrolysm.electro.powerSystem.copperCoil;
-import assets.electrolysm.electro.powerSystem.crystal;
 import assets.electrolysm.electro.powerSystem.energyMeter;
-import assets.electrolysm.electro.powerSystem.largeCopperCoil;
-import assets.electrolysm.electro.powerSystem.plug;
-import assets.electrolysm.electro.powerSystem.teslaTowerCore;
 import assets.electrolysm.electro.powerSystem.generators.generator;
 import assets.electrolysm.electro.powerSystem.generators.matterGen;
 

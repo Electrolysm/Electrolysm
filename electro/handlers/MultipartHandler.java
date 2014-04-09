@@ -1,10 +1,9 @@
 package assets.electrolysm.electro.handlers;
 
+import codechicken.microblock.BlockMicroMaterial;
 import net.minecraft.block.Block;
 import assets.electrolysm.electro.configHandler;
 import assets.electrolysm.electro.electrolysmCore;
-import codechicken.microblock.BlockMicroMaterial;
-import codechicken.multipart.MultiPartRegistry.IPartFactory;
 
 public class MultipartHandler
 {
@@ -40,7 +39,6 @@ public class MultipartHandler
         BlockMicroMaterial.createAndRegister(electrolysmCore.BlockLumRed);
         BlockMicroMaterial.createAndRegister(electrolysmCore.diseaseGrass);
         BlockMicroMaterial.createAndRegister(electrolysmCore.graphite);
-        BlockMicroMaterial.createAndRegister(electrolysmCore.largeCopperCoil);
         BlockMicroMaterial.createAndRegister(electrolysmCore.stoneObsidian);
         BlockMicroMaterial.createAndRegister(electrolysmCore.sulphurOre);
 	}

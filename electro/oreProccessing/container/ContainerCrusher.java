@@ -126,6 +126,7 @@ public class ContainerCrusher extends Container
     //GUI Progress Bar Stuff
     private int lastTime;
     private int lastRotations;
+    private int lastCrushTime;
     private int lastEnergy;
     
     
@@ -135,6 +136,7 @@ public class ContainerCrusher extends Container
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.rotations);
         par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.time);
+        par1ICrafting.sendProgressBarUpdate(this, 3, this.furnace.crushTime);
         par1ICrafting.sendProgressBarUpdate(this, 2, (int)(this.furnace.currentEnergy));
     }
 
@@ -163,10 +165,16 @@ public class ContainerCrusher extends Container
             {
                 icrafting.sendProgressBarUpdate(this, 2, (int)(this.furnace.currentEnergy));
             }
+            
+            if (this.lastCrushTime != this.furnace.crushTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 3, (this.furnace.crushTime));
+            }
 
         }
 
         this.lastTime = this.furnace.time;
+        this.lastCrushTime = this.furnace.crushTime;
         this.lastRotations = this.furnace.rotations;
         this.lastEnergy = (int)(this.furnace.currentEnergy);
     }
@@ -188,6 +196,11 @@ public class ContainerCrusher extends Container
         if(par1 == 2)
         {
         	this.furnace.currentEnergy = par2;
+        }
+        
+        if(par1 == 3)
+        {
+        	this.furnace.crushTime = par2;
         }
     }
 }

@@ -5,12 +5,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
-import assets.electrolysm.electro.powerSystem.te.TileEntityEarther;
-import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 
 public class TileEntityIronFrame extends TileEntity
-{
+{/*
     public boolean isRecieving()
     {
         World world = this.getWorldObj();
@@ -252,5 +249,5 @@ public class TileEntityIronFrame extends TileEntity
         }
 
         return false;
-    }
+    }*/
 }

@@ -3,7 +3,6 @@ package assets.electrolysm.api.powerSystem.usageMachine;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.api.items.Fetcher;
-import assets.electrolysm.api.powerSystem.TileEntityPlug;
 import assets.electrolysm.api.powerSystem.meter.IMeterable;
 import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.common.Loader;
@@ -13,8 +12,8 @@ import cpw.mods.fml.common.Loader;
  * and to check canWork() before performing an operation. This way you will get the maximum out of the machine, and
  * prevents people exploiting the problem.
  */
-public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachine, IPullEnergy, IMeterable
-{
+public class TileEntityEnergyMachine extends TileEntity //implements IEnergyMachine, IPullEnergy, IMeterable
+{/*
     public boolean working;
     public static int activationEnergy;
     
@@ -103,5 +102,5 @@ public class TileEntityEnergyMachine extends TileEntity implements IEnergyMachin
     public boolean isWorking()
     {
         return working;
-    }
+    }*/
 }

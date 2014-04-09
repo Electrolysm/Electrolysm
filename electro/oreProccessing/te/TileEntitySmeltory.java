@@ -15,13 +15,14 @@ import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.recipes.SmeltoryRecipes;
 
-public class TileEntitySmeltory extends TileEntity implements IInventory, ISidedInventory
+public class TileEntitySmeltory extends TileEntityElectrical implements IInventory, ISidedInventory
 {
     private ItemStack[] inventory;
     public boolean isOpen;
 
     public TileEntitySmeltory()
     {
+    	super(500000);
         this.inventory = new ItemStack[2];
     }
 
@@ -169,6 +170,8 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     boolean redstonePower;
     public boolean active = false;
     
+    public int requiredEnergy = 500;
+    
     @Override
     public void updateEntity()
     {
@@ -187,114 +190,117 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     		}
     	}
     	
-    	this.onInventoryChanged();
-
-    	ItemStack inStack = this.getStackInSlot(0);
-        ItemStack output = this.getStackInSlot(1);
-        ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
-        ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
-        Random rand = new Random();
-
-    	redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
-    	
-    	/*
-    	if(redstonePower && ((temp + 1) <= maxTemp))
+    	if(this.energy.getEnergy() > this.requiredEnergy)
     	{
-    		if(rand.nextInt(15) == 1)
-    		{
-    			temp = temp + 1;
+	    	this.onInventoryChanged();
+	
+	    	ItemStack inStack = this.getStackInSlot(0);
+	        ItemStack output = this.getStackInSlot(1);
+	        ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
+	        ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
+	        Random rand = new Random();
+	
+	    	redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
+	    	
+	    	/*
+	    	if(redstonePower && ((temp + 1) <= maxTemp))
+	    	{
+	    		if(rand.nextInt(15) == 1)
+	    		{
+	    			temp = temp + 1;
+	    		}
+	    	}*/
+	    	
+	        if (inStack != null)
+	        {
+	            if (result != null)
+	            {
+	            	//if(temp == maxTemp)
+	            	//{
+		                if (output == null)
+		                {
+		                    int outputSize = 0;
+		                    int resultSize = result.stackSize;
+		
+		                    if (((resultSize + outputSize) <= 64))
+		                    {
+		                    	if(time == smeltTime)
+		                    	{
+		                    		time = 0;
+		                    		active = false;
+		                    		this.decrStackSize(0, 1);
+			                        this.setInventorySlotContents(1, result);
+			                        this.onInventoryChanged();
+		                    	}
+		                    	else
+		                    	{
+		                    		time = time + 1;
+		                    		active = true;
+		                    	}
+		                    }
+		                }
+		                else
+		                {
+		                    int outputSize = output.stackSize;
+		                    int resultSize = result.stackSize;
+		
+		                    if (((resultSize + outputSize) < 64) && output.isItemEqual(result))
+		                    {
+		                    	if(time == smeltTime)
+		                    	{
+		                    		time = 0;
+		                    		active = false;
+			                        this.decrStackSize(0, 1);
+			                        this.setInventorySlotContents(1, new ItemStack(result.getItem(), 
+			                        		(result.stackSize + output.stackSize), result.getItemDamage()));
+			                        this.onInventoryChanged();
+		                    	}
+		                    	else
+		                    	{
+		                    		time = time + 1;
+		                    		active = true;
+		                    	}
+		                    }
+		                }
+		                
+	                }
+	            	else
+	                {
+	            		if(rand.nextInt(5) == 1)
+	            		{
+	            			temp = temp + 1;
+	            		}
+	            		active = true;
+	                }
+	                //}
+	            	//else
+	                //{
+	            		//if(rand.nextInt(5) == 1)
+	            		//{
+	            	//		temp = temp + 1;
+	            	//	}
+	                //}
+	           	}
+	            else
+	            {
+	            	time = 0;
+	            	if((temp - 1) >= 0 && rand.nextInt(10) == 1)
+	            	{
+	            		if(!(redstonePower))
+	            		{
+	            			temp = temp - 1;
+	            		}
+	            	}
+	            	if(temp == 0 && time == 0)
+	        		{
+	        			active = false;
+	        		}
+	        		else
+	        		{
+	        			active = true;
+	        		}
+	            }
     		}
-    	}*/
-    	
-        if (inStack != null)
-        {
-            if (result != null)
-            {
-            	//if(temp == maxTemp)
-            	//{
-	                if (output == null)
-	                {
-	                    int outputSize = 0;
-	                    int resultSize = result.stackSize;
-	
-	                    if (((resultSize + outputSize) <= 64))
-	                    {
-	                    	if(time == smeltTime)
-	                    	{
-	                    		time = 0;
-	                    		active = false;
-	                    		this.decrStackSize(0, 1);
-		                        this.setInventorySlotContents(1, result);
-		                        this.onInventoryChanged();
-	                    	}
-	                    	else
-	                    	{
-	                    		time = time + 1;
-	                    		active = true;
-	                    	}
-	                    }
-	                }
-	                else
-	                {
-	                    int outputSize = output.stackSize;
-	                    int resultSize = result.stackSize;
-	
-	                    if (((resultSize + outputSize) < 64) && output.isItemEqual(result))
-	                    {
-	                    	if(time == smeltTime)
-	                    	{
-	                    		time = 0;
-	                    		active = false;
-		                        this.decrStackSize(0, 1);
-		                        this.setInventorySlotContents(1, new ItemStack(result.getItem(), 
-		                        		(result.stackSize + output.stackSize), result.getItemDamage()));
-		                        this.onInventoryChanged();
-	                    	}
-	                    	else
-	                    	{
-	                    		time = time + 1;
-	                    		active = true;
-	                    	}
-	                    }
-	                }
-	                
-                }
-            	else
-                {
-            		if(rand.nextInt(5) == 1)
-            		{
-            			temp = temp + 1;
-            		}
-            		active = true;
-                }
-                //}
-            	//else
-                //{
-            		//if(rand.nextInt(5) == 1)
-            		//{
-            	//		temp = temp + 1;
-            	//	}
-                //}
-           	}
-            else
-            {
-            	time = 0;
-            	if((temp - 1) >= 0 && rand.nextInt(10) == 1)
-            	{
-            		if(!(redstonePower))
-            		{
-            			temp = temp - 1;
-            		}
-            	}
-            	if(temp == 0 && time == 0)
-        		{
-        			active = false;
-        		}
-        		else
-        		{
-        			active = true;
-        		}
-            }
        /* }
         else
         {
@@ -315,6 +321,11 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     			active = true;
     		}
         }*/
+    	
+    	if(time > 0 || temp > 0)
+    	{
+    		this.energy.setEnergy(this.energy.getEnergy() - this.requiredEnergy);
+    	}
     }
 
 	int[] slots_bottom = {1, 1};

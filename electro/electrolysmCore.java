@@ -40,7 +40,6 @@ import assets.electrolysm.electro.block.basic.lightSource;
 import assets.electrolysm.electro.block.basic.modBlastGlass;
 import assets.electrolysm.electro.block.basic.stoneObsidian;
 import assets.electrolysm.electro.block.machines.desk;
-import assets.electrolysm.electro.powerSystem.keyTransCoppier;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
@@ -80,16 +79,7 @@ import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
-import assets.electrolysm.electro.powerSystem.ItemWire;
-import assets.electrolysm.electro.powerSystem.advEarther;
-import assets.electrolysm.electro.powerSystem.copperCoil;
-import assets.electrolysm.electro.powerSystem.crystal;
-import assets.electrolysm.electro.powerSystem.earther;
 import assets.electrolysm.electro.powerSystem.energyMeter;
-import assets.electrolysm.electro.powerSystem.largeCopperCoil;
-import assets.electrolysm.electro.powerSystem.plug;
-import assets.electrolysm.electro.powerSystem.teslaTowerCore;
-import assets.electrolysm.electro.powerSystem.wire;
 import assets.electrolysm.electro.powerSystem.generators.generator;
 import assets.electrolysm.electro.powerSystem.generators.matterGen;
 import assets.electrolysm.electro.block.machines.autoDesk;
@@ -194,14 +184,14 @@ public class electrolysmCore
     public static Item drillHead = new drillHead(IDHandler.tools.drillHeadID);
 
     //Power System
+    /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
     public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null,
             false, ContectedTexture);
     public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
     public static Block plug = new plug(configHandler.plugID, null);
-    public static Block generator = new generator(configHandler.generatorID, null);
-    public static Block matterGen = new matterGen(configHandler.matterGenID, null);
-    public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
+    */public static Block generator = new generator(configHandler.generatorID, null);
+    public static Block matterGen = new matterGen(configHandler.matterGenID, null);/*
     public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
     public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
     public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
@@ -209,7 +199,9 @@ public class electrolysmCore
     public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
     public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
     public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
-    
+    */
+    public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
+
     //Random Blocks
     public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
 

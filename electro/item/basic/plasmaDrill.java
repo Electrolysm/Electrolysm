@@ -137,7 +137,7 @@ public class plasmaDrill extends ItemTool
         {
             TileEntityCharger te = (TileEntityCharger)worldTE;
 
-            if (te.canWork(world, x, y, z) && !(player.capabilities.isCreativeMode))
+            if (/*te.canWork(world, x, y, z) && */!(player.capabilities.isCreativeMode))
             {
                 if (stack.getItemDamage() == 0)
                 {

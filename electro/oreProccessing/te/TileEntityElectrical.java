@@ -5,16 +5,23 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import universalelectricity.api.UniversalClass;
 import universalelectricity.api.energy.EnergyStorageHandler;
+import universalelectricity.api.energy.IEnergyContainer;
 import universalelectricity.api.energy.IEnergyInterface;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @UniversalClass
-public class TileEntityElectrical extends TileEntity implements IEnergyInterface{
+public class TileEntityElectrical extends TileEntity implements IEnergyInterface, IEnergyContainer{
 
 	@SideOnly(Side.CLIENT)
 	public EnergyStorageHandler energy;
 	public long currentEnergy;
+	public boolean active = false;
+	
+	public boolean isActive()
+	{
+		return active;
+	}
 
     public TileEntityElectrical(long capacity)
     {
@@ -76,11 +83,25 @@ public class TileEntityElectrical extends TileEntity implements IEnergyInterface
 		return 0;
 	}
 
-    
-    public long setEnergy(ForgeDirection from, long energy)
-    {
-        this.energy.setEnergy(energy);
-        return energy;
-    }
+	@Override
+	public long getEnergy(ForgeDirection from) 
+	{
+		return this.energy.getEnergy();
+	}
+
+	@Override
+	public long getEnergyCapacity(ForgeDirection from) 
+	{	
+		return this.energy.getEnergyCapacity();
+	}
+
+	@Override
+	public void setEnergy(ForgeDirection from, long energyIn) 
+	{
+		if(this.getInputDirections(from))
+		{
+			this.energy.setEnergy(energyIn);
+		}
+	}
 
 }

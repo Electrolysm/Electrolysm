@@ -26,11 +26,11 @@ public class ResearchRecipes
         else if (damage == 1)
         {
             return null;
-        }
+        }/*
         else if (damage == 2)
         {
             return new ItemStack(electrolysmCore.teslaTowerCore, 1);
-        }
+        }*/
         else
         {
             return null;
@@ -46,17 +46,17 @@ public class ResearchRecipes
         else if (damage == 1)
         {
             return null;
-        }
+        }/*
         else if (damage == 2)
         {
             return teslaTowerRecipe();
-        }
+        }*/
         else
         {
             return null;
         }
     }
-
+/*
     public static ItemStack[] teslaTowerRecipe()
     {
         recipe[0] = new ItemStack(Block.blockIron);
@@ -69,7 +69,7 @@ public class ResearchRecipes
         recipe[7] = new ItemStack(Block.obsidian);
         recipe[8] = new ItemStack(electrolysmCore.diamondShard);
         return recipe;
-    }
+    }*/
 
     public static ItemStack[] blastProofRecipe()
     {

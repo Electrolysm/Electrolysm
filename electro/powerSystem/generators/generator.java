@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -23,7 +22,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.TeslaTransmittingServer;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -91,12 +89,12 @@ public class generator extends BlockContainer
 
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)
     {
-        TeslaTransmittingServer.clearAll();
+        //TeslaTransmittingServer.clearAll();
     }
 
     public void onBlockDestroyedByExplosion(World par1World, int par2, int par3, int par4, Explosion par5Explosion)
     {
-        TeslaTransmittingServer.clearAll();
+        //TeslaTransmittingServer.clearAll();
     }
 
     @Override
@@ -240,7 +238,7 @@ public class generator extends BlockContainer
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         TileEntityGenerator te = (TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4);
-
+/*
         if (te.isWorking(par1World, par2, par3, par4))
         {
             int l = par1World.getBlockMetadata(par2, par3, par4);
@@ -270,7 +268,7 @@ public class generator extends BlockContainer
                 par1World.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
                 par1World.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
             }
-        }
+        }*/
     }
 
     @Override

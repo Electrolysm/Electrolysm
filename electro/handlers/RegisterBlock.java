@@ -34,16 +34,9 @@ public class RegisterBlock
         GameRegistry.registerBlock(electrolysmCore.smeltery);
         //GameRegistry.registerBlock(electrolysmCore.electrolPort);
         GameRegistry.registerBlock(electrolysmCore.sulpuricAcid);
-        GameRegistry.registerBlock(electrolysmCore.teslaTowerCore);
-        GameRegistry.registerBlock(electrolysmCore.largeCopperCoil);
         GameRegistry.registerBlock(electrolysmCore.ironFrames);
         GameRegistry.registerBlock(electrolysmCore.copperOre);
-        GameRegistry.registerBlock(electrolysmCore.plug, "E-TEP Plug");
         GameRegistry.registerBlock(electrolysmCore.charger);
-        GameRegistry.registerBlock(electrolysmCore.wire);
-        GameRegistry.registerBlock(electrolysmCore.advWire);
-        GameRegistry.registerBlock(electrolysmCore.earther);
-        GameRegistry.registerBlock(electrolysmCore.advEarther);
         GameRegistry.registerBlock(electrolysmCore.idifier);
         GameRegistry.registerBlock(electrolysmCore.blastBrick);
         GameRegistry.registerBlock(electrolysmCore.lightSource);

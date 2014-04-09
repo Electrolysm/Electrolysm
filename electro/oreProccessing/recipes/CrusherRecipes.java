@@ -1,13 +1,18 @@
 package assets.electrolysm.electro.oreProccessing.recipes;
 
+import ic2.api.recipe.IRecipeInput;
+import ic2.api.recipe.RecipeOutput;
+import ic2.api.recipe.Recipes;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraftforge.oredict.OreDictionary;
 import assets.electrolysm.electro.electrolysmCore;
 
@@ -25,6 +30,11 @@ public class CrusherRecipes
 
     private CrusherRecipes()
     {
+    	if(ModLoader.isModLoaded("IC2"))
+    	{
+    	}
+    	
+    	
         //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
         //METAs		0		   1	  2		  3			4		5
         //Ore Blocks

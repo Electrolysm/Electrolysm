@@ -14,7 +14,7 @@ public class ballOfPlastic extends Item
         // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("Ball of plasic");
+            this.setUnlocalizedName("ballPlasic");
         }
     }
 }

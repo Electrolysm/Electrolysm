@@ -11,7 +11,6 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
@@ -21,7 +20,6 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
     private static TileEntityDesk DESK_TE = new TileEntityDesk();
     private static TileEntityWorkBench WORK_BENCH_TE = new TileEntityWorkBench();
     private static TileEntityElectrolisisCore ELECTROL_CORE_TE = new TileEntityElectrolisisCore();
-    private static TileEntityIronFrame IRON_FRAME_TE = new TileEntityIronFrame();
     private static TileEntityCharger CHARGER_TE = new TileEntityCharger();
 
     @Override
@@ -44,10 +42,6 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
         else if (block == electrolysmCore.electrolisisCore)
         {
             entityRenderer.renderTileEntityAt(ELECTROL_CORE_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
-        }
-        else if (block == electrolysmCore.ironFrames)
-        {
-            entityRenderer.renderTileEntityAt(IRON_FRAME_TE, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         }
         else if (block == electrolysmCore.charger)
         {

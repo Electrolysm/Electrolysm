@@ -6,17 +6,10 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import assets.electrolysm.api.powerSystem.TileEntityPlug;
-import assets.electrolysm.api.powerSystem.meter.IMeterable;
-import assets.electrolysm.api.powerSystem.usageMachine.IPullEnergy;
-import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
-import cpw.mods.fml.common.Loader;
 
-public class TileEntityElectrolisisCore extends TileEntity implements IInventory, /*IPullEnergy,
+public class TileEntityElectrolisisCore extends TileEntityElectrical implements IInventory, /*IPullEnergy,
 																				IMeterable, */ISidedInventory
 {
     //GUI STUFF
@@ -24,6 +17,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 
     public TileEntityElectrolisisCore()
     {
+    	super(50000000);
         this.inventory = new ItemStack[5];
     }
 
@@ -137,6 +131,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     public int MaxElectroTime = 100;
     public int electroTime = 100;
     public boolean active = false;
+    private int requiredEnergy = 5000;
     
     @Override
     public void updateEntity()
@@ -152,7 +147,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
         	active = true;
         }
         
-        if (true)
+        if (this.energy.getEnergy() > this.requiredEnergy)
         {
             ItemStack input1 = getStackInSlot(0);
             ItemStack input2 = getStackInSlot(1);
@@ -243,6 +238,11 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
             	time = 0;
             }
 
+        }
+        
+        if(time > 0)
+        {
+        	this.energy.setEnergy(this.energy.getEnergy() - this.requiredEnergy);
         }
     }
 

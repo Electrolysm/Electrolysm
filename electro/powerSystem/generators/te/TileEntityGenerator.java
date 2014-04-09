@@ -15,7 +15,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.te.TileEntityTeslaTower;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityGenerator extends TileEntity implements IInventory, ISidedInventory
@@ -25,6 +24,7 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
     private int[] generatorIDs = {electrolysmCore.generator.blockID, 1, 1, electrolysmCore.matterGen.blockID,};
     private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"};
 
+    /*
     public boolean isWorking(World world, int x, int y, int z)
     {
         //int electrolysmCore.ironFrames.blockID = electrolysmCore.ironFrames.blockID;
@@ -121,7 +121,7 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
         }
 
         return 0;
-    }
+    }*/
 
     @Override
     public void readFromNBT(NBTTagCompound tag)

@@ -15,6 +15,10 @@ import net.minecraft.util.Icon;
 
 public class ingots extends Item {
 
+	//tin = 0
+	//silver = 1
+	//lead = 2
+	
 	@SideOnly(Side.CLIENT)
 	private Icon[] ingotIcon;
 	
