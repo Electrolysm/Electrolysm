@@ -7,6 +7,7 @@ package assets.electrolysm.electro;
 
 import java.io.File;
 
+import assets.electrolysm.api.LoggerHandler;
 import assets.electrolysm.electro.handlers.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -46,6 +47,7 @@ import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.CommandDate;
 import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.UpdateResearch;
+import assets.electrolysm.electro.powerSystem.endoCable;
 import assets.electrolysm.electro.crafting.items.BasicMicrochip;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.CPU;
@@ -181,17 +183,18 @@ public class electrolysmCore
     //Tools
     public static Item plasmaDrill = new plasmaDrill(IDHandler.tools.plasmaDrillID, 0, null, null);
     public static Item drillCasing = new drillCasing(IDHandler.tools.drillCasingID);
-    public static Item drillHead = new drillHead(IDHandler.tools.drillHeadID);
 
     //Power System
+    public static Block endoCable = new endoCable(IDHandler.powerGrid.wireID, null);
+    
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
     public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null,
             false, ContectedTexture);
     public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
     public static Block plug = new plug(configHandler.plugID, null);
-    */public static Block generator = new generator(configHandler.generatorID, null);
-    public static Block matterGen = new matterGen(configHandler.matterGenID, null);/*
+    */public static Block generator = new generator(configHandler.generatorID, null, 0);
+    public static Block matterGen = new matterGen(configHandler.matterGenID, null, 3);/*
     public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
     public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
     public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
@@ -245,6 +248,9 @@ public class electrolysmCore
     public static Item advancedCPU = new advancedCPU(IDHandler.craftingItems.advancedCPUID);
     public static Item graphiteRod = new graphiteRod(IDHandler.craftingItems.graphiteRodID);
 
+    //Fuels
+    public static Item antiMatter = new antiMatter(IDHandler.fuels.antiMatterID);
+    
     /*
     //Robots
     //Parts
@@ -305,11 +311,13 @@ public class electrolysmCore
         GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+
         NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
         
         long duration = (System.currentTimeMillis() - startTime);
         float secs = ((duration / 1000) * 100);
         LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
+        //LoggerHandler.info(this.getClass());
     }
 
     @SideOnly(Side.CLIENT)

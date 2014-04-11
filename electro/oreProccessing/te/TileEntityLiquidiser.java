@@ -168,7 +168,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     	ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
         ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(inStack);
-        ItemStack result2 = result;
 
         if(connectedLiquids > 0)
         {
@@ -190,7 +189,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
                     	{
                     		time = 0;
                     		this.decrStackSize(0, 1);
-	                        this.setInventorySlotContents(1, result2);
+	                        this.setInventorySlotContents(1, result);
 	                        this.onInventoryChanged();
                     	}
                     	else

@@ -160,7 +160,11 @@ public class IDHandler
 	{
 		public static int drillCasingID = 1000;
     	public static int plasmaDrillID = 1001;
-    	public static int drillHeadID = 1002;
+	}
+	
+	public static class fuels
+	{
+		public static int antiMatterID = 1500;
 	}
 
 	

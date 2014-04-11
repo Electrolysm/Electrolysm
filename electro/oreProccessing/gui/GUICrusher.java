@@ -35,11 +35,27 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
         
-        int progress = entity.getScaledProgress(46);
-
-        if (progress != 0)
+        int progress = ((int)((entity.time * 46) / entity.crushTime));
+        int coord = 0;
+        
+        if(!entity.active)
         {
-            this.drawTexturedModalRect(x + 64, y + 20, 176, 0, progress + 1, 46);
+        	if(entity.getStackInSlot(2) != null)
+        	{
+        		int grindMeta = entity.getStackInSlot(2).getItemDamage();
+        		int[] yCoord = {0, 46, 92};
+        		coord = yCoord[grindMeta];
+        	}
+        	else
+        	{
+        		coord = 0;
+        	}
+        }
+        
+        if (progress > 0)
+        {//grinder = 2
+        	
+            this.drawTexturedModalRect(x + 64, y + 20, 176, coord, progress + 1, 46);
         }
 
         //this.drawTexturedModalRect(x + 150, y + 25, 176, 14, 24, progress);
@@ -48,7 +64,7 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-    	String RotationString = "Rotations: " + entity.getRotations()  + "RPM";
+    	String RotationString = "Rotations: " + entity.rotations  + "RPM";
     	String EnergyString = "Energy: " + this.getEnergyStat(entity.currentEnergy, entity);
         
     	fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);

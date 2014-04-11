@@ -7,6 +7,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import assets.electrolysm.api.LoggerHandler;
+
 public class NewsCheck
 {
     private static String line;

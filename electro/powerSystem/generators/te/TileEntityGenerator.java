@@ -1,29 +1,31 @@
 package assets.electrolysm.electro.powerSystem.generators.te;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import assets.electrolysm.api.specialFuel.FuelData;
+import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
 import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TileEntityGenerator extends TileEntity implements IInventory, ISidedInventory
+public class TileEntityGenerator extends TileEntityProducer implements IInventory, ISidedInventory
 {
-    private ItemStack[] inventory = new ItemStack[1];
-    private int[] generatorPower = {100, 1000, 10000, 100000};
+	private ItemStack[] inventory = new ItemStack[1];
+    private static int[] generatorPower = {10, 100, 5000, 100000};
     private int[] generatorIDs = {electrolysmCore.generator.blockID, 1, 1, electrolysmCore.matterGen.blockID,};
     private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"};
-
+    private static int genID;
+    
+    public TileEntityGenerator(int ID) 
+    {
+		super(generatorPower[ID]);
+		this.genID = ID;
+	}
+    
     /*
     public boolean isWorking(World world, int x, int y, int z)
     {
@@ -151,32 +153,49 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
         }
     }
 
+    int burnTime = 10;
+    int time = 0;
+    
     @Override
     public void updateEntity()
     {
-        /*
-                   int burnTime = 0;
-                   int time = 0;
-
-                   if(this.getStackInSlot(0) != null)
-                   {
-                           burnTime = this.getItemBurnTime(this.getStackInSlot(0));
-                   }
-                   if(this.getStackInSlot(0) != null)
-                   {
-                           if(time >= burnTime)
-                           {
-                                   time = 0;
-                                   this.decrStackSize(0, 1);
-                                   this.onInventoryChanged();
-                           }
-                           else
-                           {
-                                   time++;
-                           }
-                   }*/
+    	//System.out.println(SpecialFuelHandler.getFuelData(this.getStackInSlot(0)).toString());
+    	
+    	FuelData data = SpecialFuelHandler.getFuelData(this.getStackInSlot(0));
+    	if(data != null && data.getExplosive())
+    	{
+    		//worldObj.getClosestPlayer();
+    		worldObj.createExplosion(null, xCoord, yCoord, zCoord, data.getExplosiveRadius(), false);
+    		data = null;
+    		this.setInventorySlotContents(0, null);
+    	}
+    	
+    	if((this.energy.getEnergy() + 101) >= this.energy.getEnergyCapacity())
+    	{
+    		return;
+    	}
+        if(this.getStackInSlot(0) != null)
+        {
+        	burnTime = this.getItemBurnTime(this.getStackInSlot(0));
+            this.energy.receiveEnergy((this.generatorPower[genID] + 1), true);
+            produce(this.generatorPower[genID]);
+        }
+        
+        if(this.getStackInSlot(0) != null)
+        {
+        	if(time == burnTime)
+        	{
+        		time = 0;
+        		this.decrStackSize(0, 1);
+        		this.onInventoryChanged();
+        	}
+        	else
+        	{
+        		time = time + 1;
+        	}
+        }
     }
-
+   
     @Override
     public int getSizeInventory()
     {
@@ -189,23 +208,25 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
         return inventory[slot];
     }
 
-    @SuppressWarnings("null")
     @Override
     public ItemStack decrStackSize(int slot, int amount)
     {
-        ItemStack stack = getStackInSlot(slot);
+    	ItemStack stack = getStackInSlot(slot);
 
         if (stack != null)
         {
-            setInventorySlotContents(slot, null);
-        }
-        else
-        {
-            stack = stack.splitStack(amount);
-
-            if (stack.stackSize == 0)
+            if (stack.stackSize <= amount)
             {
                 setInventorySlotContents(slot, null);
+            }
+            else
+            {
+                stack = stack.splitStack(amount);
+
+                if (stack.stackSize == 0)
+                {
+                    setInventorySlotContents(slot, null);
+                }
             }
         }
 
@@ -351,42 +372,18 @@ public class TileEntityGenerator extends TileEntity implements IInventory, ISide
         {
             return 0;
         }
+        else if(GameRegistry.getFuelValue(itemStack) > 0 && ((genID + 1) < 2))
+        {
+            return GameRegistry.getFuelValue(itemStack);
+        }
+        else if (SpecialFuelHandler.getFuelData(itemStack) != null && 
+        		((genID + 1) > SpecialFuelHandler.getFuelData(itemStack).getTier()))
+        {
+        	return SpecialFuelHandler.getFuelData(itemStack).getBurnTime();
+        }
         else
         {
-            int i = itemStack.getItem().itemID;
-            Item item = itemStack.getItem();
-
-            if (itemStack.getItem() instanceof ItemBlock && Block.blocksList[i] != null)
-            {
-                Block block = Block.blocksList[i];
-
-                if (block == Block.woodSingleSlab)
-                {
-                    return 150;
-                }
-
-                if (block.blockMaterial == Material.wood)
-                {
-                    return 300;
-                }
-            }
-
-            if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD"))
-            {
-                return 200;
-            }
-
-            if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD"))
-            {
-                return 200;
-            }
-
-            if (i == Item.bucketLava.itemID)
-            {
-                return 1000;
-            }
-
-            return GameRegistry.getFuelValue(itemStack);
+        	return 0;
         }
     }
 

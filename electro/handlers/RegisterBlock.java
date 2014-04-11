@@ -45,6 +45,8 @@ public class RegisterBlock
         GameRegistry.registerBlock(electrolysmCore.nettedBlock);
         GameRegistry.registerBlock(electrolysmCore.crusherActive);
         GameRegistry.registerBlock(electrolysmCore.smeltoryActive);
+        GameRegistry.registerBlock(electrolysmCore.endoCable);
+        GameRegistry.registerBlock(electrolysmCore.generator);
         
         //Fluids
         /*

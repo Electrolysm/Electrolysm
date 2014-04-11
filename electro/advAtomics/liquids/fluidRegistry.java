@@ -2,8 +2,6 @@ package assets.electrolysm.electro.advAtomics.liquids;
 
 import java.util.List;
 
-import org.apache.commons.lang3.text.WordUtils;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,9 +12,11 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+
+import org.apache.commons.lang3.text.WordUtils;
+
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.common.CommonProxy;
-import assets.electrolysm.electro.handlers.LoggerHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

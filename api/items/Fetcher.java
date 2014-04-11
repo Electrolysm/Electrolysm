@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.electro.handlers.LoggerHandler;
+import assets.electrolysm.api.LoggerHandler;
 
 public class Fetcher
 {
@@ -17,7 +17,7 @@ public class Fetcher
     	{
     		if(core == null)
     		{
-    			core = Class.forName("");
+    			core = Class.forName("assets.electrolysm.electro.electrolysmCore");
     		}
     		Object ret = core.getField(id).get(null);
     		

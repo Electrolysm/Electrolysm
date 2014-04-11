@@ -38,8 +38,9 @@ public class generator extends BlockContainer
 
     private Random furnaceRand = new Random();
     private Map name = new HashMap();
+    protected int genID;
 
-    public generator(int id, Material mat)
+    public generator(int id, Material mat, int genID)
     {
         super(id, Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -47,6 +48,7 @@ public class generator extends BlockContainer
         this.setHardness(5.2165F);
         GameRegistry.registerBlock(this);
         LanguageRegistry.addName(this, "Coal Generator");
+        this.genID = genID;
     }
 
     @Override
@@ -61,8 +63,6 @@ public class generator extends BlockContainer
     @Override
     public Icon getIcon(int side, int meta)
     {
-        TileEntityGenerator te = new TileEntityGenerator();
-
         if (side == meta)
         {
             /*if(te.isWorking(te.worldObj, te.xCoord, te.yCoord, te.zCoord))
@@ -84,7 +84,7 @@ public class generator extends BlockContainer
     public TileEntity createNewTileEntity(World world)
     {
         // TODO Auto-generated method stub
-        return new TileEntityGenerator();
+        return new TileEntityGenerator(this.genID);
     }
 
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)

@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
+import assets.electrolysm.api.LoggerHandler;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.handlers.LoggerHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

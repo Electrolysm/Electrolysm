@@ -296,12 +296,6 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
     	return this.rotations;
     }
 	
-    public int getScaledProgress(int scale)
-    {
-    	//46
-    	return ((int)((this.time * scale) / this.crushTime));
-    }
-
 	private int getExtraDust(ItemStack grindStone)
 	{
 		if(grindStone == null)

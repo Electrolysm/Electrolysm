@@ -35,14 +35,15 @@ public class matterGen extends generator
     private Random furnaceRand = new Random();
     private Map name = new HashMap();
 
-    public matterGen(int id, Material mat)
+    public matterGen(int id, Material mat, int genID)
     {
-        super(id, Material.iron);
+        super(id, Material.iron, genID);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("matterGenerator");
         this.setHardness(5.2165F);
         GameRegistry.registerBlock(this);
         LanguageRegistry.addName(this, "Matter-Antimatter Reactor");
+        this.genID = genID;
     }
 
     @Override
@@ -57,8 +58,6 @@ public class matterGen extends generator
     @Override
     public Icon getIcon(int side, int meta)
     {
-        TileEntityGenerator te = new TileEntityGenerator();
-
         if (side == meta)
         {
             /*if(te.isWorking(te.worldObj, te.xCoord, te.yCoord, te.zCoord))
@@ -80,7 +79,7 @@ public class matterGen extends generator
     public TileEntity createNewTileEntity(World world)
     {
         // TODO Auto-generated method stub
-        return new TileEntityGenerator();
+        return new TileEntityGenerator(this.genID);
     }
 
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)

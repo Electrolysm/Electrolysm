@@ -1,9 +1,9 @@
 package assets.electrolysm.electro.handlers;
 
-import codechicken.microblock.BlockMicroMaterial;
-import net.minecraft.block.Block;
+import assets.electrolysm.api.LoggerHandler;
 import assets.electrolysm.electro.configHandler;
 import assets.electrolysm.electro.electrolysmCore;
+import codechicken.microblock.BlockMicroMaterial;
 
 public class MultipartHandler
 {

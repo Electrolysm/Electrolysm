@@ -1,13 +1,14 @@
-package assets.electrolysm.electro.handlers;
+package assets.electrolysm.api;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import assets.electrolysm.electro.handlers.Referance;
 import cpw.mods.fml.common.FMLLog;
 
 public class LoggerHandler 
 {
-	private static Logger elLogger = Logger.getLogger(Referance.MOD_REF.MOD_ID);
+	private static Logger elLogger = Logger.getLogger("Electrolysm");
 	
 	static
 	{
