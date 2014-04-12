@@ -153,6 +153,7 @@ public class IDHandler
         public static int experimentalMicrochipID = 916;
         public static int advancedCPUID = 917;
         public static int graphiteRodID= 918;
+        public static int antiMatterCasingID = 919;
     }
 
 

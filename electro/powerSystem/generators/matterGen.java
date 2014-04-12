@@ -97,19 +97,11 @@ public class matterGen extends generator
     {
         if (player.isSneaking())
         {
-            if (player.getHeldItem() == null)
-            {
-                this.printChatMessage(world, x, y, z);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        	return false;
         }
         else
         {
-            //player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
             return true;
         }
     }

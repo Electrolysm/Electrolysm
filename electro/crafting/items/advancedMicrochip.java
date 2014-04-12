@@ -11,10 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.common.ServerTickHandler;
 import assets.electrolysm.electro.handlers.TickHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -73,6 +72,10 @@ public class advancedMicrochip extends Item
         {
         	if(!(target instanceof EntityHorse))
         	{
+        		ServerTickHandler.canRun = true;
+            	ServerTickHandler.entity = player;
+            	ServerTickHandler.target = target;
+        		
             	TickHandler.canRun = true;
             	TickHandler.entity = player;
             	TickHandler.target = target;

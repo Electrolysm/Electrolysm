@@ -4,126 +4,34 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import assets.electrolysm.api.specialFuel.FuelData;
 import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.common.CommonProxy;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.server.FMLServerHandler;
 
 public class TileEntityGenerator extends TileEntityProducer implements IInventory, ISidedInventory
 {
-	private ItemStack[] inventory = new ItemStack[1];
+	private ItemStack[] inventory;
     private static int[] generatorPower = {10, 100, 5000, 100000};
     private int[] generatorIDs = {electrolysmCore.generator.blockID, 1, 1, electrolysmCore.matterGen.blockID,};
     private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"};
-    private static int genID;
+    public static int genID;
     
     public TileEntityGenerator(int ID) 
     {
 		super(generatorPower[ID]);
 		this.genID = ID;
+		inventory = new ItemStack[ID + 1];
 	}
-    
-    /*
-    public boolean isWorking(World world, int x, int y, int z)
-    {
-        //int electrolysmCore.ironFrames.blockID = electrolysmCore.ironFrames.blockID;
-        //int electrolysmCore.teslaTowerCore.blockID = electrolysmCore.teslaTowerCore.blockID;
-        //x + 1
-        int i = world.getBlockId(x, y, z);
-
-        if (this.getStackInSlot(0) != null)
-        {
-            if (world.getBlockId(x + 1, y, z) == electrolysmCore.ironFrames.blockID)
-            {
-                if (world.getBlockId(x + 1, y + 5, z) == electrolysmCore.teslaTowerCore.blockID)
-                {
-                    TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x + 1, y + 5, z);
-
-                    if (te instanceof TileEntityTeslaTower)
-                    {
-                        if (te.isTowerFormed(world, x + 1, y + 5, z))
-                        {
-                            if (this.getStackInSlot(0) != null)
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-            //x - 1
-            else if (world.getBlockId(x - 1, y, z) == electrolysmCore.ironFrames.blockID &&
-                     world.getBlockId(x - 1, y + 5, z) == electrolysmCore.teslaTowerCore.blockID)
-            {
-                TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x - 1, y + 5, z);
-
-                if (te instanceof TileEntityTeslaTower)
-                {
-                    if (te.isTowerFormed(world, x - 1, y + 5, z))
-                    {
-                        if (this.getStackInSlot(0) != null)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            //z + 1
-            else if (world.getBlockId(x, y, z + 1) == electrolysmCore.ironFrames.blockID &&
-                     world.getBlockId(x, y + 5, z + 1) == electrolysmCore.teslaTowerCore.blockID)
-            {
-                TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x, y + 5, z + 1);
-
-                if (te instanceof TileEntityTeslaTower)
-                {
-                    if (te.isTowerFormed(world, x, y + 5, z + 1))
-                    {
-                        if (this.getStackInSlot(0) != null)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            //z - 1
-            else if (world.getBlockId(x, y, z - 1) == electrolysmCore.ironFrames.blockID &&
-                     world.getBlockId(x, y + 5, z - 1) == electrolysmCore.teslaTowerCore.blockID)
-            {
-                TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x, y + 5, z - 1);
-
-                if (te instanceof TileEntityTeslaTower)
-                {
-                    if (te.isTowerFormed(world, x, y + 5, z - 1))
-                    {
-                        if (this.getStackInSlot(0) != null)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public int getSendTeU(World world, int x, int y, int z)
-    {
-        int blockID = world.getBlockId(x, y, z);
-
-        for (int i = 0; i < this.generatorIDs.length; i++)
-        {
-            if (this.isWorking(world, x, y, z))
-            {
-                return this.generatorPower[i];
-            }
-        }
-
-        return 0;
-    }*/
 
     @Override
     public void readFromNBT(NBTTagCompound tag)
@@ -153,49 +61,92 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
         }
     }
 
-    int burnTime = 10;
-    int time = 0;
+    public int burnTime = 10;
+    public int time = 0;
     
     @Override
     public void updateEntity()
     {
-    	//System.out.println(SpecialFuelHandler.getFuelData(this.getStackInSlot(0)).toString());
-    	
-    	FuelData data = SpecialFuelHandler.getFuelData(this.getStackInSlot(0));
-    	if(data != null && data.getExplosive())
-    	{
-    		//worldObj.getClosestPlayer();
-    		worldObj.createExplosion(null, xCoord, yCoord, zCoord, data.getExplosiveRadius(), false);
-    		data = null;
-    		this.setInventorySlotContents(0, null);
-    	}
-    	
-    	if((this.energy.getEnergy() + 101) >= this.energy.getEnergyCapacity())
-    	{
-    		return;
-    	}
-        if(this.getStackInSlot(0) != null)
+        if(this.genID == 0)
+        {
+        	this.updateCoal();
+        }
+        else if(this.genID == 1)
+        {
+        	
+        }
+        else if(this.genID == 2)
+        {
+        	
+        }
+        else if (this.genID == 3)
+        {
+        	this.updateAntiMatter();
+        }
+        	
+    }
+   
+    private void updateCoal()
+    {
+    	if(this.getItemBurnTime(this.getStackInSlot(0)) != 0)
         {
         	burnTime = this.getItemBurnTime(this.getStackInSlot(0));
-            this.energy.receiveEnergy((this.generatorPower[genID] + 1), true);
+            this.energy.setEnergy((this.generatorPower[genID]));
             produce(this.generatorPower[genID]);
         }
         
-        if(this.getStackInSlot(0) != null)
+        if(this.getStackInSlot(0) != null || time != 0)
         {
+        	this.time = burnTime;
         	if(time == burnTime)
         	{
-        		time = 0;
         		this.decrStackSize(0, 1);
         		this.onInventoryChanged();
+        		time = time - 1;
         	}
-        	else
+        	else if(time != 0)
         	{
-        		time = time + 1;
+        		time = time - 1;
         	}
         }
     }
-   
+    
+    private void updateAntiMatter()
+    {
+    	if(!this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord))
+    	{
+    		return;
+    	}
+    	
+    	ItemStack nuggetGold = new ItemStack(Item.goldNugget);
+    	ItemStack antiMatter = new ItemStack(electrolysmCore.antiMatter);
+    	
+    	if((this.getItemBurnTime(this.getStackInSlot(0)) != 0 && this.getStackInSlot(1) != null) && time == 0)
+        {
+        	burnTime = this.getItemBurnTime(this.getStackInSlot(0));
+        }
+        if((this.getStackInSlot(0) != null && this.getStackInSlot(1) != null) && time == 0)
+        {
+	        if((this.getStackInSlot(0).isItemEqual(antiMatter) && this.getStackInSlot(1).isItemEqual(nuggetGold)))
+	        {
+	        	this.time = burnTime;
+	        	if(time == burnTime)
+	        	{
+	        		this.decrStackSize(0, 1);
+	        		this.decrStackSize(1, 1);
+	        		this.onInventoryChanged();
+	        		time = time - 1;
+	        	}
+	        }
+        }
+    	if(time != 0)
+    	{
+    		time = time - 1;
+            this.energy.setEnergy((this.generatorPower[genID]));
+            produce(this.generatorPower[genID]);
+    	}
+    }
+    
     @Override
     public int getSizeInventory()
     {
@@ -260,69 +211,26 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     @Override
     public String getInvName()
     {
-        return this.getNameTag(worldObj, xCoord, yCoord, zCoord);
+        return this.getNameTag(this.genID);
     }
 
-    @SuppressWarnings("unused")
-    public String getNameTag(World world, int x, int y, int z)
+    public String getNameTag(int ID)
     {
-        int lengh = this.generatorIDs.length;
-
-        for (int i = 0; i < generatorIDs.length; i++)
-        {
-            int id = generatorIDs[i];
-
-            if (world.getBlockId(x, y, z) == id)
-            {
-                String names = generatorNames[i];
-
-                if (names.contains("Antimatter") || names.contains("Fusion"))
-                {
-                    return names + " Reactor";
-                }
-                else
-                {
-                    return names + " Generator";
-                }
-            }
-            else
-            {
-                return "UNKNOWN BLOCK";
-            }
-        }
-
-        return "UNKNOWN BLOCK";
-    }
-
-    @SuppressWarnings("unused")
-    public String getNameTag(int blockID)
-    {
-        int lengh = this.generatorIDs.length;
-
-        for (int i = 0; i < generatorIDs.length; i++)
-        {
-            int id = generatorIDs[i];
-
-            if (blockID == id)
-            {
-                String names = generatorNames[i];
-
-                if (names.contains("Antimatter") || names.contains("Fusion"))
-                {
-                    return names + " Reactor";
-                }
-                else
-                {
-                    return names + " Generator";
-                }
-            }
-            else
-            {
-                return "UNKNOWN BLOCK";
-            }
-        }
-
-        return "UNKNOWN BLOCK";
+    	if(generatorNames[ID] != null)
+    	{
+    		if(generatorNames[ID].toLowerCase().contains("fusion") || generatorNames[ID].toLowerCase().contains("matter"))
+    		{
+    			return generatorNames[ID] + " Reactor";
+    		}
+    		else
+    		{
+    			return generatorNames[ID] + "Generator";
+    		}
+    	}
+    	else
+    	{
+    		return "UNKNOWN BLOCK";
+    	}
     }
 
     @Override
@@ -356,8 +264,32 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     }
 
     @Override
-    public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
+    public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
+    	ItemStack antiMatter = new ItemStack(electrolysmCore.antiMatter);
+    	ItemStack nuggetGold = new ItemStack(Item.goldNugget);
+    	
+    	if(stack != null)
+    	{
+	    	if(this.genID == 0)
+	    	{
+	    		if(this.getItemBurnTime(stack) != 0)
+	    		{
+	    			return true;
+	    		}
+	    	}
+	    	else if(this.genID == 3)
+	    	{
+	    		if(slot == 0 && stack.isItemEqual(antiMatter))
+	    		{
+	    			return true;
+	    		}
+	    		else if(slot == 1 && stack.isItemEqual(nuggetGold))
+	    		{
+	    			return true;
+	    		}
+	    	}
+    	}
         return true;
     }
 
@@ -376,8 +308,7 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
         {
             return GameRegistry.getFuelValue(itemStack);
         }
-        else if (SpecialFuelHandler.getFuelData(itemStack) != null && 
-        		((genID + 1) > SpecialFuelHandler.getFuelData(itemStack).getTier()))
+        else if (SpecialFuelHandler.getFuelData(itemStack) != null)
         {
         	return SpecialFuelHandler.getFuelData(itemStack).getBurnTime();
         }
@@ -387,11 +318,32 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
         }
     }
 
+    int[] genID0 = {0};
+    int[] genID1 = {0};
+    int[] genID2 = {0};
+    int[] genID3 = {0, 1};
+    
     @Override
-    public int[] getAccessibleSlotsFromSide(int var1)
+    public int[] getAccessibleSlotsFromSide(int side)
     {
-        int[] slots = new int[] {0};
-        return slots;
+    	if(this.genID == 0)
+    	{
+    		return this.genID0;
+    	}
+    	else if(this.genID == 1)
+    	{
+    		return genID1;
+    	}
+    	else if(this.genID == 2)
+    	{
+    		return genID2;
+    	}
+    	else if(this.genID == 3)
+    	{
+    		return genID2;
+    	}
+    	
+    	return null;
     }
 
     @Override
@@ -403,11 +355,149 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j)
     {
-        // TODO Auto-generated method stub
         return false;
     }
 
     public void setGuiDisplayName(String displayName)
     {
     }
+
+	public boolean doesRequireBuild(int ID) 
+	{
+		if(ID == 3)
+		{
+			 return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public boolean isBuilt(int id, World world, int x, int y, int z) 
+	{
+		if(this.doesRequireBuild(id))
+		{
+			if(id == 3)
+			{
+				 return this.isAntiMatterBuilt(world, x, y, z);
+			}
+			return true;
+		}
+		return false;
+	}
+
+	private boolean isAntiMatterBuilt(World world, int x, int y, int z) 
+	{
+		boolean[] overall = new boolean[4];
+		for(int i = -1; i < 3; i++)
+		{
+			overall[i+1] = checkCircle(world, x, y + i, z);
+		}
+		
+		if(overall[0] && overall[1] && overall[2] && overall[3])
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private boolean checkCircle(World world, int x, int y, int z) 
+	{
+		int casingID = electrolysmCore.antiMatterCasing.blockID;
+		
+		if(getBlock(world, x + 5, y, z) == casingID)
+		{
+			if(getBlock(world, x + 5, y, z + 1) == casingID)
+			{
+				if(getBlock(world, x + 4, y, z + 2) == casingID)
+				{
+					if(getBlock(world, x + 4, y, z + 3) == casingID)
+					{
+						if(getBlock(world, x + 3, y, z + 4) == casingID)
+						{
+							if(getBlock(world, x + 2, y, z + 4) == casingID)
+							{
+								if(getBlock(world, x + 1, y, z + 5) == casingID)
+								{
+									if(getBlock(world, x, y, z + 5) == casingID)
+									{
+										if(getBlock(world, x - 1, y, z + 5) == casingID)
+										{
+											if(getBlock(world, x - 2, y, z + 4) == casingID)
+											{
+												if(getBlock(world, x - 3, y, z + 4) == casingID)
+												{
+													if(getBlock(world, x - 4, y, z + 3) == casingID)
+													{
+														if(getBlock(world, x - 4, y, z + 2) == casingID)
+														{
+															if(getBlock(world, x - 5, y, z + 1) == casingID)
+															{
+																if(getBlock(world, x - 5, y, z) == casingID)
+																{
+																	if(getBlock(world, x - 5, y, z - 1) == casingID)
+																	{
+																		if(getBlock(world, x - 4, y, z - 2) == casingID)
+																		{
+																			if(getBlock(world, x - 4, y, z - 3) == casingID)
+																			{
+																				if(getBlock(world, x - 3, y, z - 4) == casingID)
+																				{
+		if(getBlock(world, x - 2, y, z - 4) == casingID)
+		{
+			if(getBlock(world, x - 1, y, z - 5) == casingID)
+			{
+				if(getBlock(world, x, y, z - 5) == casingID)
+				{
+					if(getBlock(world, x + 1, y, z - 5) == casingID)
+					{
+						if(getBlock(world, x + 2, y, z - 4) == casingID)
+						{
+							if(getBlock(world, x + 2, y, z - 4) == casingID)
+							{
+								if(getBlock(world, x + 3, y, z - 3) == casingID)
+								{
+									if(getBlock(world, x + 4, y, z - 2) == casingID)
+									{ 
+										if(getBlock(world, x + 5, y, z - 1) == casingID)
+										{
+											return true;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	private int getBlock(World world, int x, int y, int z) 
+	{
+		world.setBlock(x, y, z, electrolysmCore.antiMatterCasing.blockID, 0, 0);
+		return world.getBlockId(x, y, z);
+	}
 }

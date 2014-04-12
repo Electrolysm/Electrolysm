@@ -47,6 +47,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(electrolysmCore.smeltoryActive);
         GameRegistry.registerBlock(electrolysmCore.endoCable);
         GameRegistry.registerBlock(electrolysmCore.generator);
+        GameRegistry.registerBlock(electrolysmCore.antiMatterCasing);
         
         //Fluids
         /*

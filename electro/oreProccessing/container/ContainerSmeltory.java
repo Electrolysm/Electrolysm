@@ -1,8 +1,11 @@
 package assets.electrolysm.electro.oreProccessing.container;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -49,6 +52,72 @@ public class ContainerSmeltory extends Container
 
     public void onContainerClosed(EntityPlayer par1EntityPlayer)
     {
+    }
+    
+    //GUI Progress Bar Stuff
+    private int lastTime;
+    private int lastSmeltTime;
+    private int lastEnergy;
+    
+    
+    @Override
+    public void addCraftingToCrafters(ICrafting par1ICrafting)
+    {
+        super.addCraftingToCrafters(par1ICrafting);
+        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.time);
+        par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.smeltTime);
+        par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.energyInt);
+    }
+
+    /**
+     * Looks for changes made in the container, sends them to every listener.
+     */
+    public void detectAndSendChanges()
+    {
+        super.detectAndSendChanges();
+
+        for (int i = 0; i < this.crafters.size(); ++i)
+        {
+            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+
+            if (this.lastTime != this.furnace.time)
+            {
+                icrafting.sendProgressBarUpdate(this, 0, this.furnace.time);
+            }
+
+            if (this.lastSmeltTime != this.furnace.smeltTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 1, this.furnace.smeltTime);
+            }
+            
+            if (this.lastEnergy != this.furnace.energyInt)
+            {
+                icrafting.sendProgressBarUpdate(this, 2, this.furnace.energyInt);
+            }
+        }
+
+        this.lastTime = this.furnace.time;
+        this.lastSmeltTime = this.furnace.smeltTime;
+        this.lastEnergy = this.furnace.energyInt;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void updateProgressBar(int par1, int par2)
+    {
+        if (par1 == 0)
+        {
+            this.furnace.time = par2;
+        }
+
+        if (par1 == 1)
+        {
+            this.furnace.smeltTime = par2;
+        }
         
+        if(par1 == 2)
+        {
+        	this.furnace.energyInt = par2;
+        }
     }
 }

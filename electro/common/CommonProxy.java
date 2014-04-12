@@ -35,7 +35,7 @@ public class CommonProxy
     public static ResourceLocation GENERATOR_BASIC_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/generatorGUI.png");
     public static ResourceLocation GENERATOR_GEO_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/geoGenGUI.png");
     public static ResourceLocation GENERATOR_FUSION_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/fusionGenGUI.png");
-    public static ResourceLocation GENERATOR_MATTER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/matterGenGUI");
+    public static ResourceLocation GENERATOR_MATTER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/matterGenGUI.png");
     public static ResourceLocation WORK_BENCH_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/workBenchGUI.png");
     public static ResourceLocation CRUSHER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/crusherGUI.png");
     public static ResourceLocation LIQUIDISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/liquidiserGUI.png");

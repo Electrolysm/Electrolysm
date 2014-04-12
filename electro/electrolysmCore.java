@@ -46,6 +46,7 @@ import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.common.CommandDate;
 import assets.electrolysm.electro.common.CommandStardate;
+import assets.electrolysm.electro.common.ServerTickHandler;
 import assets.electrolysm.electro.common.UpdateResearch;
 import assets.electrolysm.electro.powerSystem.endoCable;
 import assets.electrolysm.electro.crafting.items.BasicMicrochip;
@@ -53,6 +54,7 @@ import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.CPU;
 import assets.electrolysm.electro.crafting.items.advancedCPU;
 import assets.electrolysm.electro.crafting.items.advancedMicrochip;
+import assets.electrolysm.electro.crafting.items.antiMatterCasing;
 import assets.electrolysm.electro.crafting.items.ballOfPlastic;
 import assets.electrolysm.electro.crafting.items.crystalBase;
 import assets.electrolysm.electro.crafting.items.diamondShard;
@@ -248,6 +250,8 @@ public class electrolysmCore
     public static Item advancedCPU = new advancedCPU(IDHandler.craftingItems.advancedCPUID);
     public static Item graphiteRod = new graphiteRod(IDHandler.craftingItems.graphiteRodID);
 
+    
+    public static Block antiMatterCasing = new antiMatterCasing(IDHandler.craftingItems.antiMatterCasingID, null);
     //Fuels
     public static Item antiMatter = new antiMatter(IDHandler.fuels.antiMatterID);
     
@@ -311,6 +315,7 @@ public class electrolysmCore
         GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+        TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 
         NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
         

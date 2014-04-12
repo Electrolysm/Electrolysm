@@ -170,6 +170,7 @@ public class TileEntitySmeltory extends TileEntityElectrical implements IInvento
     boolean redstonePower;
     public boolean active = false;
     
+    public int energyInt;
     public int requiredEnergy = 500;
     
     @Override
@@ -192,6 +193,7 @@ public class TileEntitySmeltory extends TileEntityElectrical implements IInvento
     	
     	if(this.energy.getEnergy() > this.requiredEnergy)
     	{
+    		this.energyInt = (int) this.energy.getEnergy();
 	    	this.onInventoryChanged();
 	
 	    	ItemStack inStack = this.getStackInSlot(0);

@@ -69,7 +69,7 @@ public class GUIHandler implements IGuiHandler
 
         if (entity instanceof TileEntityGenerator)
         {
-            return new ContainerGenerator((TileEntityGenerator)entity, player.inventory);
+            return new ContainerGenerator((TileEntityGenerator)entity, player.inventory, ((TileEntityGenerator)entity).genID);
         }
 
         if (entity instanceof TileEntityWorkBench)
