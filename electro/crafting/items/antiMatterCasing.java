@@ -14,6 +14,9 @@ public class antiMatterCasing extends Block {
 
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName("antiMatterCasing");
+        this.setResistance(75F);
+        this.setHardness(5.125F);
+        this.stepSound = this.soundGlassFootstep;
 	}
 	
     @SideOnly(Side.CLIENT)

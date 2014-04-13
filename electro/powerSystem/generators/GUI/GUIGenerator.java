@@ -59,7 +59,7 @@ public class GUIGenerator extends GuiContainer
         if (entity.burnTime != 0)
         {
             int burnTime = (entity.time * 14) / entity.burnTime; 
-        	System.out.println(entity.time + " : " + entity.burnTime + " : " + burnTime);
+        	//System.out.println(entity.time + " : " + entity.burnTime + " : " + burnTime);
             //gen ids		 0   1   2    3
             int[] xCoords = {80, 0 , 0 , 81};
             int[] yCoords = {33, 0 , 0 , 61};

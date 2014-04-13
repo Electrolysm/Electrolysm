@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.world.Scandium;
 import assets.electrolysm.electro.world.WorldGenOres;
 import assets.electrolysm.electro.world.WorldGenStructures;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -48,6 +49,10 @@ public class RegisterBlock
         GameRegistry.registerBlock(electrolysmCore.endoCable);
         GameRegistry.registerBlock(electrolysmCore.generator);
         GameRegistry.registerBlock(electrolysmCore.antiMatterCasing);
+        GameRegistry.registerBlock(electrolysmCore.magnet);
+        GameRegistry.registerBlock(electrolysmCore.Scandium);
+        GameRegistry.registerBlock(electrolysmCore.Yttrium);
+
         
         //Fluids
         /*

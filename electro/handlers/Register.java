@@ -1,7 +1,9 @@
 package assets.electrolysm.electro.handlers;
 
-import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Register
@@ -26,5 +28,19 @@ public class Register
     {
         OreDictionary.registerOre("oreCopper", electrolysmCore.copperOre);
         OreDictionary.registerOre("ingotCopper", electrolysmCore.copperIngot);
+        //ingots
+        OreDictionary.registerOre("ingotTin", new ItemStack(electrolysmCore.ingots, 1, 0));
+        OreDictionary.registerOre("ingotSilver", new ItemStack(electrolysmCore.ingots, 1, 1));
+        OreDictionary.registerOre("ingotLead", new ItemStack(electrolysmCore.ingots, 1, 2));
+        OreDictionary.registerOre("sulphur", new ItemStack(electrolysmCore.sulphur));
+        OreDictionary.registerOre("sulphure", new ItemStack(electrolysmCore.sulphur));
+        OreDictionary.registerOre("crystalSulphure", new ItemStack(electrolysmCore.sulphur));
+        OreDictionary.registerOre("crystalSulphur", new ItemStack(electrolysmCore.sulphur));
+        
+        for(int i = 0; i < CommonProxy.DUSTS.length; i++)
+        {
+            OreDictionary.registerOre("dust" + CommonProxy.DUSTS[i], new ItemStack(electrolysmCore.dusts, 1, i));
+        }
+
     }
 }

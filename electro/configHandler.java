@@ -72,9 +72,17 @@ public class configHandler
     public static int sulphuricAcidID;
     public static int lumRedBlockID;
     public static int oilID;
-
+    public static int idifierID;
+    
     //IDs - Items
     public static int ballOfPlasticID;
+    public static int injectionArmID;
+    public static int cardID;
+    public static int researchPaperID;
+    public static int knowledgeID;
+    public static int chunkGraphiteID;
+    public static int copperIngotID;
+    
     //etc. Do them in order so you dont get confused
 
     public static void init(File file)
@@ -115,9 +123,18 @@ public class configHandler
         sulphuricAcidID = config.getBlock("sulphuricAcidID", IDHandler.oreProccessing.sulphuricAcidID).getInt(IDHandler.oreProccessing.sulphuricAcidID);
         lumRedBlockID = config.getBlock("lumRedBlockID", IDHandler.craftingItems.BlockLumRedID).getInt(IDHandler.craftingItems.BlockLumRedID);
         oilID = config.getBlock("oilID", IDHandler.advAtomics.fluid.oilID).getInt(IDHandler.advAtomics.fluid.oilID);
+        idifierID = config.getBlock("id-ifierID", IDHandler.research.idifierID).getInt();
         
         //Items
         ballOfPlasticID = config.getItem("ballOfPlasticID", IDHandler.craftingItems.ballOfPlasticID).getInt(IDHandler.craftingItems.ballOfPlasticID);
+        injectionArmID = config.getItem("injectionArnID", IDHandler.advMachines.injectionArmID).getInt();
+        cardID = config.getItem("cardID", IDHandler.research.cardID).getInt();
+        researchPaperID = config.getItem("researchPaperID", IDHandler.research.paperID).getInt();
+        knowledgeID = config.getItem("knowledgeID", IDHandler.research.knowledgeID).getInt();
+        chunkGraphiteID = config.getItem("chunkGraphiteID", IDHandler.worldGenOres.chuckGraphiteID).getInt();
+        copperIngotID = config.getItem("copperIngotID", IDHandler.worldGenOres.copperIngotID).getInt();
+        
+        
         
         //Multiparts
         multipart = config.get("MULTIPART", "addMultiparts", true).getBoolean(true);

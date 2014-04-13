@@ -52,6 +52,7 @@ import assets.electrolysm.electro.powerSystem.endoCable;
 import assets.electrolysm.electro.crafting.items.BasicMicrochip;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.CPU;
+import assets.electrolysm.electro.crafting.items.ItemCrafting;
 import assets.electrolysm.electro.crafting.items.advancedCPU;
 import assets.electrolysm.electro.crafting.items.advancedMicrochip;
 import assets.electrolysm.electro.crafting.items.antiMatterCasing;
@@ -64,6 +65,7 @@ import assets.electrolysm.electro.crafting.items.graphiteRod;
 import assets.electrolysm.electro.crafting.items.grindStone;
 import assets.electrolysm.electro.crafting.items.inkAndQuill;
 import assets.electrolysm.electro.crafting.items.luminousRedstone;
+import assets.electrolysm.electro.crafting.items.magnet;
 import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
 import assets.electrolysm.electro.item.basic.drillCasing;
@@ -91,6 +93,8 @@ import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
+import assets.electrolysm.electro.world.Scandium;
+import assets.electrolysm.electro.world.Yttrium;
 import assets.electrolysm.electro.world.chunkGraphite;
 import assets.electrolysm.electro.world.copperIngot;
 import assets.electrolysm.electro.world.copperOre;
@@ -132,7 +136,7 @@ public class electrolysmCore
     public static Block desk = new desk(configHandler.deskID, null);
     //Advanced Machines
     public static Block injector = new injector(configHandler.injectorID, null);
-    public static Item injectionArm = new injectionArm(IDHandler.advMachines.injectionArmID);
+    public static Item injectionArm = new injectionArm(configHandler.injectionArmID);
 
     //Research System
     public static Block idifier = new idifier(IDHandler.research.idifierID, null);
@@ -140,7 +144,7 @@ public class electrolysmCore
     public static card card = new card(IDHandler.research.cardID);
     public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
     public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
-    public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
+    //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 
     //World Generation
     public static Block graphite = new graphite(configHandler.graphiteID, null);
@@ -150,6 +154,9 @@ public class electrolysmCore
     public static Block sulphurOre = new sulpherOre(configHandler.sulphurOreID, null);
     public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
     public static Item ingots = new ingots(IDHandler.worldGenOres.modIngotID);
+    public static Block Scandium = new Scandium(IDHandler.worldGenOres.ScandiumID, null);
+    public static Block Yttrium = new Yttrium(IDHandler.worldGenOres.YttriumID, null);
+
     //Biome
     public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
     public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
@@ -249,9 +256,10 @@ public class electrolysmCore
     public static Item experimentalMicrochip = new experimentalMicrochip(IDHandler.craftingItems.experimentalMicrochipID);
     public static Item advancedCPU = new advancedCPU(IDHandler.craftingItems.advancedCPUID);
     public static Item graphiteRod = new graphiteRod(IDHandler.craftingItems.graphiteRodID);
-
+    public static Item electroMagnet = new ItemCrafting(IDHandler.craftingItems.electroMagnetID).setUnlocalizedName("electMag");
     
     public static Block antiMatterCasing = new antiMatterCasing(IDHandler.craftingItems.antiMatterCasingID, null);
+    public static Block magnet = new magnet(IDHandler.craftingItems.magnetID, null);
     //Fuels
     public static Item antiMatter = new antiMatter(IDHandler.fuels.antiMatterID);
     

@@ -1,5 +1,6 @@
 package assets.electrolysm.electro.client;
 
+import net.minecraftforge.common.MinecraftForge;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityQuantumComp;
 import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
@@ -7,6 +8,7 @@ import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
 import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.handlers.SoundHandler;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import assets.electrolysm.electro.robotics.tile.TileEntitySoldering;
@@ -17,6 +19,8 @@ public class ClientProxy extends CommonProxy
 {
     public static void registerRenderThings()
     {
+    	MinecraftForge.EVENT_BUS.register(new SoundHandler());
+    	
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWorkBench.class, new RenderTileWorkBench());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoldering.class, new RenderTileSoldering());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDesk.class, new RenderTileDesk());

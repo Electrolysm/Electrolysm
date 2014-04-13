@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
-public class grindStone extends Item {
+public class grindStone extends Item{
 
 	@SideOnly(Side.CLIENT)
     private Icon[] grindStoneIcon;

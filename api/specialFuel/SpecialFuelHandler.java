@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public class SpecialFuelHandler {
 
-	public static FuelData antiMatter = new FuelData(120, 0, 0, 4, true, 500);
+	public static FuelData antiMatter = new FuelData(1000, 0, 0, 4, true, 500);
 	
 	
 	public static FuelData getFuelData(ItemStack itemStack) 

@@ -178,7 +178,7 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
     {
     	this.onInventoryChanged();
     	this.currentEnergy = this.energy.getEnergy();
-    	System.out.println(this.energy.getEnergy());
+    	//System.out.println(this.energy.getEnergy());
     	
     	if(!worldObj.isRemote && currentEnergy >= this.requiredEnergy)
     	{

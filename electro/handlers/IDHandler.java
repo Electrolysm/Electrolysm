@@ -87,6 +87,8 @@ public class IDHandler
         public static int sulphurOreID = 784;
         public static int sulphurID = 785;
         public static int modIngotID = 786;
+        public static int ScandiumID = 787;
+        public static int YttriumID = 788;
     }
 
     public static class powerGrid
@@ -154,6 +156,8 @@ public class IDHandler
         public static int advancedCPUID = 917;
         public static int graphiteRodID= 918;
         public static int antiMatterCasingID = 919;
+        public static int magnetID = 920;
+        public static int electroMagnetID = 921;
     }
 
 

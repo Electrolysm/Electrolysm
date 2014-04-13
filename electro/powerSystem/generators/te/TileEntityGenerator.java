@@ -1,22 +1,17 @@
 package assets.electrolysm.electro.powerSystem.generators.te;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatMessageComponent;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import assets.electrolysm.api.specialFuel.FuelData;
 import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.server.FMLServerHandler;
 
 public class TileEntityGenerator extends TileEntityProducer implements IInventory, ISidedInventory
 {
@@ -34,31 +29,37 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
 	}
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
-    {
-        super.readFromNBT(tag);
-        int itemID = tag.getInteger("itemID");
-        int stackSize = tag.getInteger("stackSize");
-        int itemDamage = tag.getInteger("itemMeta");
-        ItemStack stack = new ItemStack(itemID, stackSize, itemDamage);
-        this.setInventorySlotContents(0, stack);
-        this.onInventoryChanged();
+    public void readFromNBT(NBTTagCompound tagCompound) {
+            super.readFromNBT(tagCompound);
+            
+            NBTTagList tagList = tagCompound.getTagList("Inventory");
+            for (int i = 0; i < tagList.tagCount(); i++) {
+                    NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                    byte slot = tag.getByte("Slot");
+                    if (slot >= 0 && slot < inventory.length) {
+                            inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
+                    }
+            }
+            
+            time = tagCompound.getInteger("time");
     }
 
-    /**
-     * Writes a tile entity to NBT.
-     */
     @Override
-    public void writeToNBT(NBTTagCompound tag)
-    {
-        super.writeToNBT(tag);
-
-        if (this.getStackInSlot(0) != null)
-        {
-            tag.setInteger("itemID", this.getStackInSlot(0).itemID);
-            tag.setInteger("stackSize", this.getStackInSlot(0).stackSize);
-            tag.setInteger("itemMeta", this.getStackInSlot(0).getItemDamage());
-        }
+    public void writeToNBT(NBTTagCompound tagCompound) {
+            super.writeToNBT(tagCompound);
+                            
+            NBTTagList itemList = new NBTTagList();
+            for (int i = 0; i < inventory.length; i++) {
+                    ItemStack stack = inventory[i];
+                    if (stack != null) {
+                            NBTTagCompound tag = new NBTTagCompound();
+                            tag.setByte("Slot", (byte) i);
+                            stack.writeToNBT(tag);
+                            itemList.appendTag(tag);
+                    }
+            }
+            tagCompound.setTag("Inventory", itemList);
+            tagCompound.setInteger("time", time);
     }
 
     public int burnTime = 10;
@@ -113,7 +114,7 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     
     private void updateAntiMatter()
     {
-    	if(!this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord))
+    	if(!(this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord)))
     	{
     		return;
     	}
@@ -144,6 +145,9 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     		time = time - 1;
             this.energy.setEnergy((this.generatorPower[genID]));
             produce(this.generatorPower[genID]);
+            this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
+            //worldObj.playSoundAtEntity(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50), 
+            //		"electrolysm:sound_antimatter", 1F, 1F);
     	}
     }
     
@@ -284,7 +288,7 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
 	    		{
 	    			return true;
 	    		}
-	    		else if(slot == 1 && stack.isItemEqual(nuggetGold))
+	    		else if(slot == 1)
 	    		{
 	    			return true;
 	    		}
@@ -392,19 +396,43 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
 		boolean[] overall = new boolean[4];
 		for(int i = -1; i < 3; i++)
 		{
-			overall[i+1] = checkCircle(world, x, y + i, z);
+			overall[i+1] = checkCircle(world, x, y + i, z, electrolysmCore.antiMatterCasing.blockID);
 		}
 		
 		if(overall[0] && overall[1] && overall[2] && overall[3])
 		{
-			return true;
+			if(this.getBlock(world, x, y + 2, z) == Block.waterStill.blockID)
+			{
+				if(this.getBlock(world, x, y + 1, z) == electrolysmCore.magnet.blockID)
+				{
+					if(this.getBlock(world, x, y - 1, z) == electrolysmCore.magnet.blockID)
+					{
+						if(checkCircle(world, x, y + 3, z, electrolysmCore.blastProof.blockID))
+						{
+							if(this.getBlock(world, x + 4, y + 2, z) == Block.waterStill.blockID)
+							{
+								if(this.getBlock(world, x - 4, y + 2, z) == Block.waterStill.blockID)
+								{
+									if(this.getBlock(world, x, y + 2, z + 4) == Block.waterStill.blockID)
+									{
+										if(this.getBlock(world, x, y + 2, z - 4) == Block.waterStill.blockID)
+										{
+											return true;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		return false;
 	}
 
-	private boolean checkCircle(World world, int x, int y, int z) 
+	private boolean checkCircle(World world, int x, int y, int z, int ID) 
 	{
-		int casingID = electrolysmCore.antiMatterCasing.blockID;
+		int casingID = ID;
 		
 		if(getBlock(world, x + 5, y, z) == casingID)
 		{
@@ -450,19 +478,22 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
 			{
 				if(getBlock(world, x, y, z - 5) == casingID)
 				{
-					if(getBlock(world, x + 1, y, z - 5) == casingID)
+					if(getBlock(world, x + 1, y, z - 5) == casingID)/**/
 					{
-						if(getBlock(world, x + 2, y, z - 4) == casingID)
+						if(getBlock(world, x + 2, y, z - 4) == casingID)//
 						{
-							if(getBlock(world, x + 2, y, z - 4) == casingID)
+							if(getBlock(world, x + 2, y, z - 4) == casingID)//
 							{
-								if(getBlock(world, x + 3, y, z - 3) == casingID)
+								if(getBlock(world, x + 4, y, z - 2) == casingID)//
 								{
-									if(getBlock(world, x + 4, y, z - 2) == casingID)
+									if(getBlock(world, x + 4, y, z - 3) == casingID)//
 									{ 
 										if(getBlock(world, x + 5, y, z - 1) == casingID)
 										{
-											return true;
+											if(getBlock(world, x + 3, y, z - 4) == casingID)
+											{
+												return true;
+											}
 										}
 									}
 								}
@@ -497,7 +528,7 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
 
 	private int getBlock(World world, int x, int y, int z) 
 	{
-		world.setBlock(x, y, z, electrolysmCore.antiMatterCasing.blockID, 0, 0);
+		//world.setBlock(x, y, z, electrolysmCore.antiMatterCasing.blockID, 0, 0);
 		return world.getBlockId(x, y, z);
 	}
 }

@@ -44,6 +44,7 @@ public class matterGen extends generator
         GameRegistry.registerBlock(this);
         LanguageRegistry.addName(this, "Matter-Antimatter Reactor");
         this.genID = genID;
+        this.setResistance(100F);
     }
 
     @Override
