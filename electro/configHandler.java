@@ -133,7 +133,7 @@ public class configHandler
         knowledgeID = config.getItem("knowledgeID", IDHandler.research.knowledgeID).getInt();
         chunkGraphiteID = config.getItem("chunkGraphiteID", IDHandler.worldGenOres.chuckGraphiteID).getInt();
         copperIngotID = config.getItem("copperIngotID", IDHandler.worldGenOres.copperIngotID).getInt();
-        
+        //Add scandium - redstone ore + displacement
         
         
         //Multiparts
