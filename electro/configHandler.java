@@ -153,7 +153,7 @@ public class configHandler
         graphiteID = config.getBlock("graphiteID", IDHandler.worldGenOres.graphiteID).getInt(IDHandler.worldGenOres.graphiteID);
         copperOreID = config.getBlock("coppweOreID", IDHandler.worldGenOres.copperOreID).getInt(IDHandler.worldGenOres.copperOreID);
         sulphurOreID = config.getBlock("sulphurOreID", IDHandler.worldGenOres.sulphurOreID).getInt(IDHandler.worldGenOres.sulphurOreID);
-        diseaseGrassID = config.getBlock("diseaseGrassID", IDHandler.basic.diseasedGrassID).getInt(IDHandler.basic.diseasedGrassID);
+        diseaseGrassID = config.get(config.CATEGORY_BLOCK, "diseaseGrassID", IDHandler.basic.diseasedGrassID).getInt(IDHandler.basic.diseasedGrassID);
         blastProofID = config.getBlock("blastProofID", IDHandler.basic.blastProofID).getInt(IDHandler.basic.blastProofID);
         blastDoorID = config.getBlock("balstDoorID", IDHandler.basic.blastDoorID).getInt(IDHandler.basic.blastDoorID);
         blastGlassID = config.getBlock("blastGlassID", IDHandler.basic.blastGlassID).getInt(IDHandler.basic.blastGlassID);
@@ -232,8 +232,8 @@ public class configHandler
         energisingRodID = config.getItem("energisingRodID", IDHandler.advMachines.energisingRodID).getInt();
         
         //Other
-        multipart = config.get(OTHER_CAT, "addMultiparts", true).getBoolean(true);
-        biomeID = config.get(OTHER_CAT, "biomeID", IDHandler.basic.biomeID).getInt();
+        multipart = config.get("OTHER", "addMultiparts", true).getBoolean(true);
+        biomeID = config.get("OTHER", "biomeID", IDHandler.basic.biomeID).getInt();
         
         config.save();
     }
