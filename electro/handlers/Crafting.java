@@ -297,10 +297,12 @@ public class Crafting
         		 Character.valueOf('B'), electrolysmCore.blastProof,
         		 Character.valueOf('S'), electrolysmCore.diamondShard);
          	
-         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.magnet),
-         		new ItemStack(electrolysmCore.Scandium),
-         		new ItemStack(electrolysmCore.Yttrium));
-         
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.magnet),
+        		 "III", "IBI", "III",
+        		 Character.valueOf('I'), new ItemStack(electrolysmCore.Scandium, 1, 1),
+        		 Character.valueOf('B'), electrolysmCore.Yttrium);
+        		 
+        		 
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.crusher, 1, 3),
         		"IMI", "PGP", "ICI",
         		Character.valueOf('I'), Item.ingotIron,
@@ -366,6 +368,8 @@ public class Crafting
 		FurnaceRecipes.smelting().addSmelting(pureID, 5, leadIngot, pureXP);
 	    
 		GameRegistry.addSmelting(electrolysmCore.copperOre.blockID, new ItemStack(electrolysmCore.copperIngot, 1), 2F);
+		FurnaceRecipes.smelting().addSmelting(electrolysmCore.Scandium.itemID, 0, 
+				new ItemStack(electrolysmCore.Scandium, 1, 1), pureXP);
 		
 		//GameRegistry.addSmelting(pureID, goldIngot, pureXP);
 

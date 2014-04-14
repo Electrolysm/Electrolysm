@@ -11,10 +11,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.powerSystem.generators.matterGen;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityGenerator extends TileEntityProducer implements IInventory, ISidedInventory
 {
+	private ItemStack antiMatter = new ItemStack(electrolysmCore.electroContain, 1, 
+				Integer.parseInt((String.valueOf(SpecialFuelHandler.getFuelListRev().get(SpecialFuelHandler.antiMatter)))));
 	private ItemStack[] inventory;
     private static int[] generatorPower = {10, 100, 5000, 100000};
     private int[] generatorIDs = {electrolysmCore.generator.blockID, 1, 1, electrolysmCore.matterGen.blockID,};
@@ -114,21 +117,22 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     
     private void updateAntiMatter()
     {
+    	boolean canProduce = true;
+    	
     	if(!(this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord)))
     	{
-    		return;
+    		canProduce = false;
     	}
     	
     	ItemStack nuggetGold = new ItemStack(Item.goldNugget);
-    	ItemStack antiMatter = new ItemStack(electrolysmCore.antiMatter);
     	
-    	if((this.getItemBurnTime(this.getStackInSlot(0)) != 0 && this.getStackInSlot(1) != null) && time == 0)
+    	if((this.getItemBurnTime(this.getStackInSlot(0)) != 0 && this.getStackInSlot(1) != null) && time == 0 && canProduce)
         {
         	burnTime = this.getItemBurnTime(this.getStackInSlot(0));
         }
-        if((this.getStackInSlot(0) != null && this.getStackInSlot(1) != null) && time == 0)
+        if((this.getStackInSlot(0) != null && this.getStackInSlot(1) != null) && time == 0 && canProduce)
         {
-	        if((this.getStackInSlot(0).isItemEqual(antiMatter) && this.getStackInSlot(1).isItemEqual(nuggetGold)))
+	        if((this.getStackInSlot(0).isItemEqual(antiMatter) && this.getStackInSlot(1).isItemEqual(nuggetGold)) && canProduce)
 	        {
 	        	this.time = burnTime;
 	        	if(time == burnTime)
@@ -143,12 +147,17 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     	if(time != 0)
     	{
     		time = time - 1;
-            this.energy.setEnergy((this.generatorPower[genID]));
-            produce(this.generatorPower[genID]);
-            this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
-            //worldObj.playSoundAtEntity(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50), 
-            //		"electrolysm:sound_antimatter", 1F, 1F);
+    		
+    		if(canProduce)
+    		{
+    			this.energy.setEnergy((this.generatorPower[genID]));
+    			produce(this.generatorPower[genID]);
+    			//worldObj.playSoundAtEntity(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50), 
+    			//		"electrolysm:sound_antimatter", 1F, 1F);
+    			//this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
+    		}
     	}
+    	matterGen.updateFurnaceBlockState(time != 0, worldObj, xCoord, yCoord, zCoord);
     }
     
     @Override
@@ -258,19 +267,16 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     @Override
     public void openChest()
     {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void closeChest()
     {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
-    	ItemStack antiMatter = new ItemStack(electrolysmCore.antiMatter);
     	ItemStack nuggetGold = new ItemStack(Item.goldNugget);
     	
     	if(stack != null)

@@ -136,8 +136,8 @@ public class WorldGenStructures implements IWorldGenerator
                     createBlock(world, xCoord + 9, yCoord + 4, zCoord - 12, stoneSlabHalf, 0);
                     createBlock(world, xCoord + 9, yCoord + 4, zCoord - 9, stoneSlabHalf, 0);
                     createBlock(world, xCoord + 9, yCoord + 4, zCoord - 8, stoneSlabHalf, 0);
-                    createBlock(world, xCoord + 8, yCoord + 4, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 7, yCoord + 4, zCoord - 6, cobble, 0);
+                    createBlock(world, xCoord + 8, yCoord + 4, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 7, yCoord + 4, zCoord - 6, randomCobble(random), 0);
 
                     //Layer 3 Wood
                     for (int WH = 1; WH <= 4 ; WH++)
@@ -168,78 +168,78 @@ public class WorldGenStructures implements IWorldGenerator
                     for (int CH = 1; CH <= 4; CH++)
                     {
                         //Wall 1
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 3, cobble, 0);
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 4, cobble, 0);
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 5, cobble, 0);
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 6, cobble, 0);
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 7, cobble, 0);
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 8, cobble, 0);
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 9, cobble, 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 3, randomCobble(random), 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 4, randomCobble(random), 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 5, randomCobble(random), 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 6, randomCobble(random), 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 7, randomCobble(random), 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 8, randomCobble(random), 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 9, randomCobble(random), 0);
                         //Wall 2
-                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 2, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 3, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 4, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 6, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 7, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 8, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 9, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 11, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 12, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 13, yCoord + CH, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 2, cobble, 0);
+                        createBlock(world, xCoord + 1, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 2, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 3, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 4, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 6, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 7, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 8, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 9, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 11, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 12, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 13, yCoord + CH, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 2, randomCobble(random), 0);
                         //Wall 3
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 3, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 4, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 5, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 6, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 7, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 8, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 9, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 10, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 11, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 12, cobble, 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 3, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 4, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 5, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 6, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 7, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 8, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 9, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 10, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 11, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + CH, zCoord - 12, randomCobble(random), 0);
                         //Wall 3/4
-                        createBlock(world, xCoord + 13, yCoord + CH, zCoord - 12, cobble, 0);
-                        createBlock(world, xCoord + 12, yCoord + CH, zCoord - 12, cobble, 0);
-                        createBlock(world, xCoord + 11, yCoord + CH, zCoord - 12, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 12, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 11, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 10, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 9, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 8, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 7, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 6, cobble, 0);
-                        createBlock(world, xCoord + 9, yCoord + CH, zCoord - 6, cobble, 0);
-                        createBlock(world, xCoord + 6, yCoord + CH, zCoord - 6, cobble, 0);
-                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 6, cobble, 0);
-                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 7, cobble, 0);
-                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 8, cobble, 0);
-                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 9, cobble, 0);
-                        createBlock(world, xCoord + 4, yCoord + CH, zCoord - 9, cobble, 0);
-                        createBlock(world, xCoord + 3, yCoord + CH, zCoord - 9, cobble, 0);
-                        createBlock(world, xCoord + 2, yCoord + CH, zCoord - 9, cobble, 0);
+                        createBlock(world, xCoord + 13, yCoord + CH, zCoord - 12, randomCobble(random), 0);
+                        createBlock(world, xCoord + 12, yCoord + CH, zCoord - 12, randomCobble(random), 0);
+                        createBlock(world, xCoord + 11, yCoord + CH, zCoord - 12, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 12, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 11, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 10, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 9, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 8, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 7, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + CH, zCoord - 6, randomCobble(random), 0);
+                        createBlock(world, xCoord + 9, yCoord + CH, zCoord - 6, randomCobble(random), 0);
+                        createBlock(world, xCoord + 6, yCoord + CH, zCoord - 6, randomCobble(random), 0);
+                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 6, randomCobble(random), 0);
+                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 7, randomCobble(random), 0);
+                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 8, randomCobble(random), 0);
+                        createBlock(world, xCoord + 5, yCoord + CH, zCoord - 9, randomCobble(random), 0);
+                        createBlock(world, xCoord + 4, yCoord + CH, zCoord - 9, randomCobble(random), 0);
+                        createBlock(world, xCoord + 3, yCoord + CH, zCoord - 9, randomCobble(random), 0);
+                        createBlock(world, xCoord + 2, yCoord + CH, zCoord - 9, randomCobble(random), 0);
                     }
 
                     for (int W2H = 5; W2H <= 8; W2H++)
                     {
                         //Wall 2
-                        createBlock(world, xCoord + 2, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 3, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 4, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 5, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 6, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 7, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 8, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 9, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 10, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 11, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 12, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 13, yCoord + W2H, zCoord - 2, cobble, 0);
-                        createBlock(world, xCoord + 14, yCoord + W2H, zCoord - 2, cobble, 0);
+                        createBlock(world, xCoord + 2, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 3, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 4, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 5, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 6, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 7, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 8, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 9, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 10, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 11, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 12, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 13, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
+                        createBlock(world, xCoord + 14, yCoord + W2H, zCoord - 2, randomCobble(random), 0);
                     }
 
                     for (int C1 = 0; C1 <= 4; C1++)
@@ -250,7 +250,7 @@ public class WorldGenStructures implements IWorldGenerator
 
                             for (int Length = 0; Length <= 2; Length++)
                             {
-                                createBlock(world, xCoord + 1 + Width, yCoord + 9, zCoord - 4 + Length, cobble, 0);
+                                createBlock(world, xCoord + 1 + Width, yCoord + 9, zCoord - 4 + Length, randomCobble(random), 0);
                             }
                         }
                     }
@@ -271,146 +271,146 @@ public class WorldGenStructures implements IWorldGenerator
 
                             for (int Length = 0; Length < 6; Length++)
                             {
-                                createBlock(world, xCoord + 10 + Width, yCoord + 9, zCoord - 7 + Length, cobble, 0);
+                                createBlock(world, xCoord + 10 + Width, yCoord + 9, zCoord - 7 + Length, randomCobble(random), 0);
                             }
                         }
                     }
 
                     //Wall 1 layer 1
-                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 2, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 3, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 8, cobble, 0);
+                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 2, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 3, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 5, zCoord - 8, randomCobble(random), 0);
                     //Wall Layer 2
-                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 2, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 3, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 7, cobble, 0);
+                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 2, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 3, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 6, zCoord - 7, randomCobble(random), 0);
                     //Wall Layer 3
-                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 2, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 3, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 6, cobble, 0);
+                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 2, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 3, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 7, zCoord - 6, randomCobble(random), 0);
                     //Wall Layer 4
-                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 2, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 3, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 5, cobble, 0);
+                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 2, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 3, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 1, yCoord + 8, zCoord - 5, randomCobble(random), 0);
                     /**
                      * ===============================================================
                      */
                     //Wall 2 Layer 1
-                    createBlock(world, xCoord + 5, yCoord + 4, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 4, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 4, zCoord - 7, cobble, 0);
+                    createBlock(world, xCoord + 5, yCoord + 4, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 4, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 4, zCoord - 7, randomCobble(random), 0);
                     //Wall 2 Layer 2
-                    createBlock(world, xCoord + 5, yCoord + 5, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 5, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 5, zCoord - 6, cobble, 0);
+                    createBlock(world, xCoord + 5, yCoord + 5, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 5, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 5, zCoord - 6, randomCobble(random), 0);
                     //Wall 2 Layer 3
-                    createBlock(world, xCoord + 5, yCoord + 6, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 6, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 6, zCoord - 5, cobble, 0);
+                    createBlock(world, xCoord + 5, yCoord + 6, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 6, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 6, zCoord - 5, randomCobble(random), 0);
                     //Wall 2 Layer 4
-                    createBlock(world, xCoord + 5, yCoord + 7, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 7, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 7, zCoord - 4, cobble, 0);
+                    createBlock(world, xCoord + 5, yCoord + 7, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 7, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 7, zCoord - 4, randomCobble(random), 0);
                     //Wall 2 Layer 5
-                    createBlock(world, xCoord + 5, yCoord + 8, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 8, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 5, yCoord + 8, zCoord - 3, cobble, 0);
+                    createBlock(world, xCoord + 5, yCoord + 8, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 8, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 5, yCoord + 8, zCoord - 3, randomCobble(random), 0);
                     /**
                      * ===============================================================
                      */
                     //Wall 3 Layer 1
-                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 12, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 11, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 10, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 7, cobble, 0);
+                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 12, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 11, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 10, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 4, zCoord - 7, randomCobble(random), 0);
                     //Wall 3 Layer 2
-                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 11, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 10, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 6, cobble, 0);
+                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 11, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 10, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 5, zCoord - 6, randomCobble(random), 0);
                     //Wall 3 Layer 3
-                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 10, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 5, cobble, 0);
+                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 10, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 6, zCoord - 5, randomCobble(random), 0);
                     //Wall 3 Layer 4
-                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 4, cobble, 0);
+                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 7, zCoord - 4, randomCobble(random), 0);
                     //Wall 3 Layer 5
-                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 3, cobble, 0);
+                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 10, yCoord + 8, zCoord - 3, randomCobble(random), 0);
                     /**
                      * ===============================================================
                      */
                     //Wall 4 layer 1
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 12, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 11, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 10, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 3, cobble, 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 12, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 11, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 10, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 4, zCoord - 3, randomCobble(random), 0);
                     //Wall 4 Layer 2
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 11, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 10, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 3, cobble, 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 11, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 10, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 5, zCoord - 3, randomCobble(random), 0);
                     //Wall 4 Layer 3
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 10, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 3, cobble, 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 10, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 6, zCoord - 3, randomCobble(random), 0);
                     //Wall 4 Layer 4
-                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 9, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 3, cobble, 0);
+                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 9, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 7, zCoord - 3, randomCobble(random), 0);
                     //Wall 4 Layer 5
-                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 8, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 7, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 6, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 5, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 4, cobble, 0);
-                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 3, cobble, 0);
+                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 8, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 7, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 6, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 5, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 4, randomCobble(random), 0);
+                    createBlock(world, xCoord + 14, yCoord + 8, zCoord - 3, randomCobble(random), 0);
                     /**
                      * ===============================================================
                      *					Decorations!!
@@ -439,8 +439,8 @@ public class WorldGenStructures implements IWorldGenerator
                     createBlock(world, xCoord + 6, yCoord + 5, zCoord - 10, stoneSlabHalf, 0);
                     createBlock(world, xCoord + 6, yCoord + 5, zCoord - 7, stoneSlabHalf, 0);
                     //Other
-                    createBlock(world, xCoord, yCoord, zCoord, cobble, 0);
-                    createBlock(world, xCoord, yCoord, zCoord, cobble, 0);
+                    createBlock(world, xCoord, yCoord, zCoord, randomCobble(random), 0);
+                    createBlock(world, xCoord, yCoord, zCoord, randomCobble(random), 0);
                     //IronBars
                     createBlock(world, xCoord, yCoord + 1, zCoord - 11, ironBar, 0);
                     createBlock(world, xCoord, yCoord + 1, zCoord - 12, ironBar, 0);
@@ -547,14 +547,18 @@ public class WorldGenStructures implements IWorldGenerator
 
                     for (int slot = 0; slot < tileEntityChest.getSizeInventory(); slot++)
                     {
-                        int item = random.nextInt(250);
+                        int rand = random.nextInt(250);
                         int stackSize;
 
-                        if (item == 1 || item == 2 || item == 3)
+                        if (rand <= 250)
                         {
-                            stackSize = random.nextInt(2) + 1;
-                            tileEntityChest.setInventorySlotContents(slot,
-                                    new ItemStack(electrolysmCore.knowledge, stackSize));
+                        	stackSize = random.nextInt(5);
+                            tileEntityChest.setInventorySlotContents(slot, new ItemStack(electrolysmCore.knowledge, stackSize));
+                        }
+                        else if(rand > 200)
+                        {
+                        	tileEntityChest.setInventorySlotContents(slot + 10, 
+                            		new ItemStack(electrolysmCore.electroContain, 1, 1));
                         }
                     }
 
@@ -563,7 +567,19 @@ public class WorldGenStructures implements IWorldGenerator
             }
         }
     }
-    private static void createBlock(World world, int xCoord, int yCoord, int zCoord, int blockID, int metadata)
+    private static int randomCobble(Random random) 
+    {
+    	if(random.nextInt(10) == 1)
+    	{
+    		return Block.cobblestoneMossy.blockID;
+    	}
+    	else
+    	{
+    		return Block.cobblestone.blockID;
+    	}
+	}
+
+	private static void createBlock(World world, int xCoord, int yCoord, int zCoord, int blockID, int metadata)
     {
         world.setBlock(xCoord, yCoord, zCoord, blockID, metadata, 2);
     }

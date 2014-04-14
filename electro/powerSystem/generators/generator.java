@@ -274,6 +274,6 @@ public class generator extends BlockContainer
     @Override
     public void getSubBlocks(int id, CreativeTabs tab, List list)
     {
-        list.add(new ItemStack(this.blockID, 1, 3));
+   		list.add(new ItemStack(this.blockID, 1, 3));
     }
 }

@@ -2,7 +2,7 @@ package assets.electrolysm.api.specialFuel;
 
 public class FuelData implements Comparable<FuelData>
 {
-	
+	private String name;
 	private int burnTime;
 	private int pollution;
 	private int flamability;
@@ -10,8 +10,9 @@ public class FuelData implements Comparable<FuelData>
 	private boolean explosive;
 	private int explosiveRadius;
 
-	public FuelData(int burnTime1, int pollution1, int flamabilty1, int tier1, boolean explosive1)
+	public FuelData(String name1, int burnTime1, int pollution1, int flamabilty1, int tier1, boolean explosive1)
 	{
+		this.name = name1;
 		this.burnTime = burnTime1;
 		this.pollution = pollution1;
 		this.flamability = flamabilty1;
@@ -20,14 +21,20 @@ public class FuelData implements Comparable<FuelData>
 		this.explosiveRadius = ((flamability * (burnTime / 100)) * tier);
 	}
 	
-	public FuelData(int burnTime1, int pollution1, int flamabilty1, int tier1, boolean explosive1, int radius)
+	public FuelData(String name1, int burnTime1, int pollution1, int flamabilty1, int tier1, boolean explosive1, int radius)
 	{
+		this.name = name1;
 		this.burnTime = burnTime1;
 		this.pollution = pollution1;
 		this.flamability = flamabilty1;
 		this.tier = tier1;
 		this.explosive = explosive1;
 		this.explosiveRadius = radius;
+	}
+	
+	public String getName()
+	{
+		return this.name;
 	}
 	
 	public int getBurnTime()
@@ -65,6 +72,11 @@ public class FuelData implements Comparable<FuelData>
 		{
 			return 0;
 		}
+	}
+	
+	public void setName(String name1)
+	{
+		this.name = name1;
 	}
 	
 	public void setBurnTime(int time)
@@ -119,7 +131,7 @@ public class FuelData implements Comparable<FuelData>
 	@Override
 	public String toString()
 	{
-		return "Fuel Data Report:" + "Burn Time - " + this.burnTime + ": Pollution - " + this.pollution 
+		return "Fuel Data Report:" + "Name - " + this.name + ": Burn Time - " + this.burnTime + ": Pollution - " + this.pollution 
 				+ ": Flamability - " + this.flamability + ": Tier - " + this.tier 
 				+ ": Explosive - " + this.explosive;
 	}

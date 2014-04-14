@@ -1,6 +1,7 @@
 package assets.electrolysm.electro.handlers;
 
 import net.minecraft.item.ItemStack;
+import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.advAtomics.liquids.Fluids;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
@@ -63,7 +64,7 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.smeltoryActive, "Smeltory");
         LanguageRegistry.addName(electrolysmCore.crusherActive, "Crusher");
         LanguageRegistry.addName(electrolysmCore.net, "Ore Net");
-        LanguageRegistry.addName(electrolysmCore.endoInsulator, "Endothermic Insulator");
+        LanguageRegistry.addName(electrolysmCore.endoInsulator, "Endothermite Insulator");
         LanguageRegistry.addName(electrolysmCore.microchipBoard, "Chip Board");
         LanguageRegistry.addName(electrolysmCore.CPU, "CPU");
         LanguageRegistry.addName(electrolysmCore.advancedCPU, "Advanced CPU");
@@ -72,7 +73,22 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.experimentalMicrochip, "Experimental Microchip");
         LanguageRegistry.addName(electrolysmCore.transistor, "Transistor");
         LanguageRegistry.addName(electrolysmCore.graphiteRod, "Graphite Rod");
+        LanguageRegistry.addName(electrolysmCore.idifier, "Identifier");
+        LanguageRegistry.addName(electrolysmCore.charger, "Electrostatic Energetic Charger");
+        LanguageRegistry.addName(electrolysmCore.Yttrium, "Yttrium Block");
+        LanguageRegistry.addName(electrolysmCore.magnet, "Rare Earth Magnet");
+        LanguageRegistry.addName(electrolysmCore.antiMatterCasing, "Antimatter Proof Glass");
+        LanguageRegistry.addName(electrolysmCore.BasicMicrochip, "Basic Microchip");
+        LanguageRegistry.addName(electrolysmCore.inkAndQuill, "Ink and Quill");
+        LanguageRegistry.addName(electrolysmCore.electroMagnet, "ElectroMagnetic Suspension Unit");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.Scandium, 1, 0), "Scandium Dust");
+        LanguageRegistry.addName(new ItemStack(electrolysmCore.Scandium, 1, 1), "Scandium Ingot");
         
+        
+        for(int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)
+        {
+            LanguageRegistry.addName(new ItemStack(electrolysmCore.electroContain, 1, i), "Electromagenetic Containment Unit");
+        }
         
         //Items
         for (int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)

@@ -132,52 +132,52 @@ public class electrolysmCore
     @Instance("Electrolysm")
     public static electrolysmCore GUIInstance;
     //Basic Machines
-    public static Block workBench = new workBench(configHandler.workBenchID, null);
+    public static Block workBench = new workBench(IDHandler.machines.basic.workBenchID, null);
     public static Block desk = new desk(configHandler.deskID, null);
     //Advanced Machines
     public static Block injector = new injector(configHandler.injectorID, null);
     public static Item injectionArm = new injectionArm(configHandler.injectionArmID);
 
     //Research System
-    public static Block idifier = new idifier(IDHandler.research.idifierID, null);
+    public static Block idifier = new idifier(configHandler.idifierID, null);
     public static Block researchDesk = new researchDesk(configHandler.researchDeskID, null);
-    public static card card = new card(IDHandler.research.cardID);
-    public static Item researchPaper = new researchPaper(IDHandler.research.paperID);
-    public static Item knowledge = new knowledge(IDHandler.research.knowledgeID);
+    public static card card = new card(configHandler.cardID);
+    public static Item researchPaper = new researchPaper(configHandler.researchPaperID);
+    public static Item knowledge = new knowledge(configHandler.knowledgeID);
     //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 
     //World Generation
     public static Block graphite = new graphite(configHandler.graphiteID, null);
-    public static Item chunkGraphite = new chunkGraphite(IDHandler.worldGenOres.chuckGraphiteID);
-    public static Item copperIngot = new copperIngot(IDHandler.worldGenOres.copperIngotID);
+    public static Item chunkGraphite = new chunkGraphite(configHandler.chunkGraphiteID);
+    public static Item copperIngot = new copperIngot(configHandler.copperIngotID);
     public static Block copperOre = new copperOre(configHandler.copperOreID, null);
     public static Block sulphurOre = new sulpherOre(configHandler.sulphurOreID, null);
-    public static Item sulphur = new sulphur(IDHandler.worldGenOres.sulphurID);
-    public static Item ingots = new ingots(IDHandler.worldGenOres.modIngotID);
-    public static Block Scandium = new Scandium(IDHandler.worldGenOres.ScandiumID, null);
-    public static Block Yttrium = new Yttrium(IDHandler.worldGenOres.YttriumID, null);
+    public static Item sulphur = new sulphur(configHandler.sulfurID);
+    public static Item ingots = new ingots(configHandler.ingotsID);
+    public static Item Scandium = new Scandium(configHandler.ScandiumID);
+    public static Block Yttrium = new Yttrium(configHandler.YttriumID, null);
 
     //Biome
-    public static Item spawnZS = new spawnZS(IDHandler.basic.spawnZSID);
+    public static Item spawnZS = new spawnZS(configHandler.spawnZSID);
     public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
-    public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(IDHandler.basic.biomeID);
+    public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(configHandler.biomeID);
     public BiomeGenBase diseasedBiome = diseasedBiomeObj;
 
     //Security
     public static Block blastProof = new blastProof(configHandler.blastProofID, null);
-    public static Block blastBrick = new blastBrick(IDHandler.craftingItems.blastBrickID, null);
+    public static Block blastBrick = new blastBrick(configHandler.blastBrickID, null);
     public static Block blastDoor = new blastDoor(configHandler.blastDoorID, null);
     public static Block blastGlass = new blastGlass(configHandler.blastGlassID, null, false, ContectedTexture);
     public static Block modBlastGlass = new modBlastGlass(configHandler.modBlastGlassID, null, false, ContectedTexture);
-    public static Item glassModifire = new glassModifier(IDHandler.basic.glassModifierID);
+    public static Item glassModifire = new glassModifier(configHandler.glassModifierID);
     public static Block stoneObsidian = new stoneObsidian(configHandler.stoneObsidianID, null);
     //Tools
-    public static Item hammer = new hammer(IDHandler.basic.hammerID);
+    public static Item hammer = new hammer(configHandler.hammerID);
     
     //Advanced atomics
     //Liquids
     public static Block plasma = new plasma(configHandler.plasmaID);
-    public static Item fluidStorage = new fluidStorage(IDHandler.advAtomics.fluid.fluidStorageID);
+    public static Item fluidStorage = new fluidStorage(configHandler.fluidStorageID);
     public static Item fluidRegistry/* = new fluidRegistry(IDHandler.advAtomics.fluid.fluidRegistryID)*/;
     public static Block oil = new oil(configHandler.oilID);
     //Atomics
@@ -186,15 +186,15 @@ public class electrolysmCore
     //Machines
     //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
     public static Block energiser = new energiser(configHandler.energiserID, null);
-    public static Item energisingRod = new energisingRod(IDHandler.advMachines.energisingRodID);
-    public static Block charger = new charger(IDHandler.advMachines.chargerID, null);
+    public static Item energisingRod = new energisingRod(configHandler.energisingRodID);
+    public static Block charger = new charger(configHandler.chargerID, null);
     //Items
     //Tools
-    public static Item plasmaDrill = new plasmaDrill(IDHandler.tools.plasmaDrillID, 0, null, null);
-    public static Item drillCasing = new drillCasing(IDHandler.tools.drillCasingID);
+    public static Item plasmaDrill = new plasmaDrill(configHandler.plasmaDrillID, 0, null, null);
+    public static Item drillCasing = new drillCasing(configHandler.drillCasingID);
 
     //Power System
-    public static Block endoCable = new endoCable(IDHandler.powerGrid.wireID, null);
+    public static Block endoCable = new endoCable(configHandler.endoCableID, null);
     
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
@@ -212,7 +212,7 @@ public class electrolysmCore
     public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
     public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
     */
-    public static Item energyMeter = new energyMeter(IDHandler.powerGrid.energyMeterID);
+    public static Item energyMeter = new energyMeter(configHandler.energyMeterID);
 
     //Random Blocks
     public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
@@ -226,42 +226,42 @@ public class electrolysmCore
     public static Block electrolChamber = new electrolChamber(configHandler.electrolChamberID,
             null, false, ContectedTexture);
     public static BlockContainer seperator = new seporator(configHandler.seperatorID, null, false);
-    public static BlockContainer smeltery = new smeltory(configHandler.smelteryID, null, false);
-    public static Item impureDusts = new impureDusts(IDHandler.oreProccessing.impureDustsID);
-    public static Item dusts = new dusts(IDHandler.oreProccessing.dustsID);
-    public static Item node = new node(IDHandler.oreProccessing.nodeID);
+    public static BlockContainer smeltery = (BlockContainer) new smeltory(configHandler.smelteryID, null, false).setCreativeTab(TabElectrolysm);
+    public static Item impureDusts = new impureDusts(configHandler.impureDustsID);
+    public static Item dusts = new dusts(configHandler.dustsID);
+    public static Item node = new node(configHandler.nodeID);
     public static Block sulpuricAcid = new sulphuricAcid(configHandler.sulphuricAcidID);
-    public static Block nettedBlock = new nettedBlock(IDHandler.oreProccessing.nettedBlockID, null);
-    public static Item net = new net(IDHandler.oreProccessing.netID);
-    public static Item crystal = new crystalOre(IDHandler.oreProccessing.crystalID);
+    public static Block nettedBlock = new nettedBlock(configHandler.nettedBlockID, null);
+    public static Item net = new net(configHandler.netID);
+    public static Item crystal = new crystalOre(configHandler.oreCrystalsID);
     
-    public static BlockContainer crusherActive = new crusher(IDHandler.oreProccessing.crusherActiveID, null, true);
-    public static BlockContainer smeltoryActive = new smeltory(IDHandler.oreProccessing.smeltoryActiveID, null, true);
+    public static BlockContainer crusherActive = new crusher(configHandler.crusherActiveID, null, true);
+    public static BlockContainer smeltoryActive = new smeltory(configHandler.smeltoryActiveID, null, true);
 
     // items for crafting
-    public static Item diamondShard = new diamondShard(IDHandler.craftingItems.diamondShardID);
-    public static Item luminousRedstone = new luminousRedstone(IDHandler.craftingItems.luminousRedstoneID);
+    public static Item diamondShard = new diamondShard(configHandler.diamondShardID);
+    public static Item luminousRedstone = new luminousRedstone(configHandler.luminousRedID);
     public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
-    public static Item crystalBase = new crystalBase(IDHandler.craftingItems.crystalBaseID);
+    public static Item crystalBase = new crystalBase(configHandler.crystalBaseID);
     public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
-    public static Item endoInsulator = new endoInsulator(IDHandler.craftingItems.endoInsulatorID);
-    public static Block lightSource = new lightSource(IDHandler.craftingItems.lightSourceID, null);
-    public static Item microchipBoard = new microchipBoard(IDHandler.craftingItems.microchipBoardID);
-    public static Item transistor = new transistor(IDHandler.craftingItems.transistorID);
-    public static Item CPU = new CPU(IDHandler.craftingItems.CPUID);
-    public static Item BasicMicrochip = new BasicMicrochip(IDHandler.craftingItems.BasicMicrochipID);
-    public static Item advancedMicrochip = new advancedMicrochip(IDHandler.craftingItems.advancedMicrochipID);
-    public static Item grindStone = new grindStone(IDHandler.craftingItems.grindStoneID);
-    public static Item inkAndQuill = new inkAndQuill(IDHandler.craftingItems.inkAndQuillID);
-    public static Item experimentalMicrochip = new experimentalMicrochip(IDHandler.craftingItems.experimentalMicrochipID);
-    public static Item advancedCPU = new advancedCPU(IDHandler.craftingItems.advancedCPUID);
-    public static Item graphiteRod = new graphiteRod(IDHandler.craftingItems.graphiteRodID);
-    public static Item electroMagnet = new ItemCrafting(IDHandler.craftingItems.electroMagnetID).setUnlocalizedName("electMag");
+    public static Item endoInsulator = new endoInsulator(configHandler.endoInsulatorID);
+    public static Block lightSource = new lightSource(configHandler.lightSourceID, null);
+    public static Item microchipBoard = new microchipBoard(configHandler.microBoardID);
+    public static Item transistor = new transistor(configHandler.transistorID);
+    public static Item CPU = new CPU(configHandler.CPUID);
+    public static Item BasicMicrochip = new BasicMicrochip(configHandler.basicMicroChipID);
+    public static Item advancedMicrochip = new advancedMicrochip(configHandler.advMicrochipID);
+    public static Item grindStone = new grindStone(configHandler.grindStoneID);
+    public static Item inkAndQuill = new inkAndQuill(configHandler.inkQuillID);
+    public static Item experimentalMicrochip = new experimentalMicrochip(configHandler.expMicrochipID);
+    public static Item advancedCPU = new advancedCPU(configHandler.advCPUID);
+    public static Item graphiteRod = new graphiteRod(configHandler.graphiteRodID);
+    public static Item electroMagnet = new ItemCrafting(configHandler.electroMagnetID).setUnlocalizedName("electMag");
     
-    public static Block antiMatterCasing = new antiMatterCasing(IDHandler.craftingItems.antiMatterCasingID, null);
-    public static Block magnet = new magnet(IDHandler.craftingItems.magnetID, null);
+    public static Block antiMatterCasing = new antiMatterCasing(configHandler.antiMatterCasingID, null);
+    public static Block magnet = new magnet(configHandler.magnetID, null);
     //Fuels
-    public static Item antiMatter = new antiMatter(IDHandler.fuels.antiMatterID);
+    public static Item electroContain = new electroContain(configHandler.electroContainID);
     
     /*
     //Robots

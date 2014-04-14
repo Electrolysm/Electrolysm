@@ -35,6 +35,8 @@ public class LiquidiserRecipes
             this.addLiquidising(electrolysmCore.impureDusts.itemID, i, 
             		new ItemStack(electrolysmCore.crystal, 1, i));
         }
+        
+        this.addLiquidising(Block.oreRedstone.blockID, 0, new ItemStack(electrolysmCore.Scandium, 1, 0));
     }
 
     public void addLiquidising(int itemID, int metadata, ItemStack itemstack)

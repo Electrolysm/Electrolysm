@@ -60,13 +60,10 @@ public class IDHandler
 
     public static class advAtomics
     {
-        public static class fluid
-        {
             public static int plasmaID = 743;
             public static int fluidStorageID = 744;
             public static int oilID = 745;
             public static int fluidRegistryID = 746;
-        }
     }
     public static class advMachines
     {
@@ -169,7 +166,7 @@ public class IDHandler
 	
 	public static class fuels
 	{
-		public static int antiMatterID = 1500;
+		public static int electroContainID = 1500;
 	}
 
 	

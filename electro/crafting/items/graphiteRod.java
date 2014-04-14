@@ -19,6 +19,6 @@ public class graphiteRod extends Item
         @SideOnly(Side.CLIENT)
         public void registerIcons(IconRegister reg)
         {
-        	this.itemIcon = reg.registerIcon("electrolysm:" + this.getUnlocalizedName().replace(".item", ""));
+        	this.itemIcon = reg.registerIcon("electrolysm:" + this.getUnlocalizedName().replace("item.", ""));
         }
 }

@@ -1,12 +1,15 @@
 package assets.electrolysm.electro.powerSystem.generators;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +34,8 @@ public class matterGen extends generator
     private Icon frontActive;
     @SideOnly(Side.CLIENT)
     private Icon front;
+    
+    private static boolean keepInventory;
 
     private Random furnaceRand = new Random();
     private Map name = new HashMap();
@@ -51,28 +56,52 @@ public class matterGen extends generator
     public void registerIcons(IconRegister reg)
     {
         String modID = "electrolysm:";
-        this.blockIcon = reg.registerIcon(modID + "matterReactor");
-        this.front = reg.registerIcon(modID + "matterReactorFront");
-        this.frontActive = reg.registerIcon(modID + "");
+        this.blockIcon = reg.registerIcon(modID + "blastProof");
+        this.front = reg.registerIcon(modID + "matterReactor");
+        this.frontActive = reg.registerIcon(modID + "matterReactorActive");
     }
 
     @Override
     public Icon getIcon(int side, int meta)
     {
-        if (side == meta)
+    	if(side == 0 || side == 1)
+    	{
+    		return this.blockIcon;
+    	}
+    	else if(side != 0 && side != 1)
+    	{
+    		if(meta == 1)
+    		{
+    			return this.frontActive;
+    		}
+    		else
+    		{
+    			return this.front;
+    		}
+    	}
+    	return null;
+    }
+    
+    public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
+    {
+        TileEntity tileentity = par1World.getBlockTileEntity(par2, par3, par4);
+        keepInventory = true;
+
+        if (par0)
         {
-            /*if(te.isWorking(te.worldObj, te.xCoord, te.yCoord, te.zCoord))
-            {
-            	return frontActive;
-            }
-            else
-            {*/
-            return front;
-            //}
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
         }
         else
         {
-            return blockIcon;
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 2);
+        }
+
+        keepInventory = false;
+
+        if (tileentity != null)
+        {
+            tileentity.validate();
+            par1World.setBlockTileEntity(par2, par3, par4, tileentity);
         }
     }
 
@@ -121,82 +150,12 @@ public class matterGen extends generator
         }
     }
 
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
-        }
-
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
-        }
-
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
-        }
-
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-        }
-
-        if (par6ItemStack.hasDisplayName())
-        {
-            ((TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
-        }
-    }
-
     @Override
-    public void onBlockAdded(World par1World, int par2, int par3, int par4)
-    {
-        super.onBlockAdded(par1World, par2, par3, par4);
-        this.setDefaultDirection(par1World, par2, par3, par4);
-    }
-
-    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
-    {
-        if (!par1World.isRemote)
-        {
-            int l = par1World.getBlockId(par2, par3, par4 - 1);
-            int i1 = par1World.getBlockId(par2, par3, par4 + 1);
-            int j1 = par1World.getBlockId(par2 - 1, par3, par4);
-            int k1 = par1World.getBlockId(par2 + 1, par3, par4);
-            byte b0 = 3;
-
-            if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1])
-            {
-                b0 = 3;
-            }
-
-            if (Block.opaqueCubeLookup[i1] && !Block.opaqueCubeLookup[l])
-            {
-                b0 = 2;
-            }
-
-            if (Block.opaqueCubeLookup[j1] && !Block.opaqueCubeLookup[k1])
-            {
-                b0 = 5;
-            }
-
-            if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1])
-            {
-                b0 = 4;
-            }
-
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 2);
-        }
-    }
-
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         TileEntityGenerator tileentityfurnace = (TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4);
 
-        if (tileentityfurnace != null)
+        if (tileentityfurnace != null && !(keepInventory))
         {
             for (int j1 = 0; j1 < tileentityfurnace.getSizeInventory(); ++j1)
             {
@@ -238,5 +197,26 @@ public class matterGen extends generator
         }
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
+    }
+    
+    @Override
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+    {
+    }
+
+    @Override
+    public void onBlockAdded(World par1World, int par2, int par3, int par4)
+    {
+        super.onBlockAdded(par1World, par2, par3, par4);
+    }
+
+    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
+    {
+    }
+    
+    @Override
+    public void getSubBlocks(int id, CreativeTabs tab, List list)
+    {
+   		list.add(new ItemStack(this.blockID, 1, 0));
     }
 }

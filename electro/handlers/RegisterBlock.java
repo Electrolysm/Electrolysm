@@ -50,7 +50,6 @@ public class RegisterBlock
         GameRegistry.registerBlock(electrolysmCore.generator);
         GameRegistry.registerBlock(electrolysmCore.antiMatterCasing);
         GameRegistry.registerBlock(electrolysmCore.magnet);
-        GameRegistry.registerBlock(electrolysmCore.Scandium);
         GameRegistry.registerBlock(electrolysmCore.Yttrium);
 
         
