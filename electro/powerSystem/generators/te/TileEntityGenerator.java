@@ -71,35 +71,38 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     @Override
     public void updateEntity()
     {
-        if(this.genID == 0)
-        {
-        	this.updateCoal();
-        }
-        else if(this.genID == 1)
-        {
-        	
-        }
-        else if(this.genID == 2)
-        {
-        	
-        }
-        else if (this.genID == 3)
-        {
-        	this.updateAntiMatter();
-        }
+    	if(!(worldObj.isRemote))
+	        if(this.genID == 0)
+	        {
+	        	this.updateCoal();
+	        }
+	        else if(this.genID == 1)
+	        {
+	        	
+	        }
+	        else if(this.genID == 2)
+	        {
+	        	
+	        }
+	        else if (this.genID == 3)
+	        {
+	        	this.updateAntiMatter();
+	        }
         	
     }
    
     private void updateCoal()
     {
-    	if(this.getItemBurnTime(this.getStackInSlot(0)) != 0)
+    	if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
         {
         	burnTime = this.getItemBurnTime(this.getStackInSlot(0));
-            this.energy.setEnergy((this.generatorPower[genID]));
-            produce(this.generatorPower[genID]);
         }
+    	else
+    	{
+    		burnTime = 400;
+    	}
         
-        if(this.getStackInSlot(0) != null || time != 0)
+        if(this.getStackInSlot(0) != null && time == 0 && burnTime != 0)
         {
         	this.time = burnTime;
         	if(time == burnTime)
@@ -108,11 +111,13 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
         		this.onInventoryChanged();
         		time = time - 1;
         	}
-        	else if(time != 0)
-        	{
-        		time = time - 1;
-        	}
         }
+        if(time != 0)
+    	{
+    		time = time - 1;
+            this.energy.setEnergy((this.generatorPower[genID]));
+            produce(this.generatorPower[genID]);
+    	}
     }
     
     private void updateAntiMatter()
@@ -121,7 +126,8 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     	
     	if(!(this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord)))
     	{
-    		canProduce = false;
+    		time = 0;
+    		return;
     	}
     	
     	ItemStack nuggetGold = new ItemStack(Item.goldNugget);
@@ -154,10 +160,10 @@ public class TileEntityGenerator extends TileEntityProducer implements IInventor
     			produce(this.generatorPower[genID]);
     			//worldObj.playSoundAtEntity(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 50), 
     			//		"electrolysm:sound_antimatter", 1F, 1F);
-    			//this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
+    			this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
     		}
     	}
-    	matterGen.updateFurnaceBlockState(time != 0, worldObj, xCoord, yCoord, zCoord);
+    	//matterGen.updateFurnaceBlockState(time != 0, worldObj, xCoord, yCoord, zCoord);
     }
     
     @Override

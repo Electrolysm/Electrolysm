@@ -14,7 +14,14 @@ public class ballOfPlastic extends Item
         // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("ballPlasic");
+            this.setUnlocalizedName("ballPlastic");
         }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "ballPlastic");
     }
 }

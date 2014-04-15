@@ -1,5 +1,6 @@
 package assets.electrolysm.electro.powerSystem.te;
 
+import universalelectricity.api.UniversalClass;
 import universalelectricity.api.net.IConnectable;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;

@@ -17,4 +17,12 @@ public class inkAndQuill extends Item
             this.setUnlocalizedName("Ink And Quill");
         }
     }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister reg)
+    {
+    	this.itemIcon = reg.registerIcon("electrolysm:" + "inkQuill");
+    }
+
 }

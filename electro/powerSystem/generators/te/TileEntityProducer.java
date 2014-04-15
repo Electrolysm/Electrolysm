@@ -15,13 +15,17 @@ import universalelectricity.api.UniversalClass;
 import universalelectricity.api.energy.EnergyStorageHandler;
 import universalelectricity.api.energy.IEnergyContainer;
 import universalelectricity.api.energy.IEnergyInterface;
+import universalelectricity.api.energy.IEnergyNetwork;
+import universalelectricity.api.net.INetworkProvider;
+import universalelectricity.api.net.NetworkEvent;
 import universalelectricity.api.vector.Vector3;
 
 @UniversalClass
-public class TileEntityProducer extends TileEntity implements IEnergyInterface, IEnergyContainer
+public class TileEntityProducer extends TileEntity implements IEnergyInterface, IEnergyContainer, INetworkProvider
 {
   public EnergyStorageHandler energy;
-
+  protected IEnergyNetwork network;
+  
   public TileEntityProducer(long producing)
   {
     super();
@@ -123,6 +127,7 @@ public class TileEntityProducer extends TileEntity implements IEnergyInterface, 
         }
       }
     }
+    new NetworkEvent.EnergyProduceEvent(network, this, usedEnergy, true);
 
     return usedEnergy;
   }
@@ -171,5 +176,17 @@ public class TileEntityProducer extends TileEntity implements IEnergyInterface, 
     }
 
     return dirs;
+  }
+
+  @Override
+  public Object getNetwork() 
+  {
+	  return network;
+  }
+
+  @Override
+  public void setNetwork(Object network) 
+  {
+	  this.network = (IEnergyNetwork) network;
   }
 }

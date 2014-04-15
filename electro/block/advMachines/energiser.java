@@ -55,7 +55,7 @@ public class energiser extends BlockContainer
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.machineSide = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_side");
-        this.machineFront = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_front");
+        //this.machineFront = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_front");
         this.machineTop = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_top");
     }
 

@@ -49,7 +49,7 @@ public class LiquidiserRecipes
         if (item == null)
         {
             return null;
-        }
+        }/*
 	    for(int i = 0; i < CommonProxy.DUSTS.length; i++)
 	    { 
 	    	ItemStack impureDust = new ItemStack(electrolysmCore.impureDusts, 1, i);
@@ -57,9 +57,11 @@ public class LiquidiserRecipes
 	        {
 	        	return (new ItemStack(electrolysmCore.crystal, 1, i));
 	        }
-	    }
+	    }*/
+        int itemID = item.itemID;
+        int metadata = item.getItemDamage();
 	    
-        return (ItemStack)metaSmeltingList.get(Integer.valueOf(item.itemID));
+        return (ItemStack)metaSmeltingList.get(Arrays.asList(itemID, metadata));
     }
 
 	public Map getLiquidsMap() 

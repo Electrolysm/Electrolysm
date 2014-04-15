@@ -3,7 +3,6 @@ package assets.electrolysm.electro.oreProccessing.te;
 import java.util.Random;
 
 import universalelectricity.api.UniversalClass;
-
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.packetHandler;
 import assets.electrolysm.electro.oreProccessing.crusher;
@@ -19,7 +19,6 @@ import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@UniversalClass
 public class TileEntityCrusher extends TileEntityElectrical implements IInventory, ISidedInventory
 {
     private ItemStack[] inventory;
@@ -217,8 +216,8 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
 	        {
 	            if (result != null)
 	            {
-	            	if(rotations == maxRotations)
-	            	{
+	            	/*if(rotations == maxRotations)
+	            	{*/
 		                if (output == null)
 		                {
 		                    int outputSize = 0;
@@ -263,12 +262,12 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
 		                    	}
 		                    }
 		                }
-	            	}
+	            	/*}
 	            	else
 	            	{
 	            		rotations = rotations + 1;
 	            		active = true;
-	            	}
+	            	}*/
 	           	}
 	            else
 	            {
@@ -284,10 +283,12 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
 	        	active = false;
 	        }
 	        
-    		if(this.rotations > 0)
+    		if(this.rotations > 0 || time != 0)
     		{
     			this.energy.setEnergy(this.energy.getEnergy() - this.requiredEnergy);
     		}
+			crusher.updateFurnaceBlockState(time != 0 || rotations != 0, worldObj, xCoord, yCoord, zCoord);
+
     	}
     }    	
     

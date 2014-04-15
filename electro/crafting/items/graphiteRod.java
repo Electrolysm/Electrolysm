@@ -12,7 +12,7 @@ public class graphiteRod extends Item
     {
         super(par1);
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
-            this.setUnlocalizedName("Graphite Rod");
+            this.setUnlocalizedName("graphiteRod");
     }
     
         @Override

@@ -46,9 +46,10 @@ public class SpecialFuelHandler {
 		}
 		else if(itemStack != null && itemStack.getItem() instanceof IFuelStorage)
 		{
-			if(((IFuelStorage)itemStack.getItem()).isFull())
+			if(((IFuelStorage)itemStack.getItem()).isFull(itemStack.getItemDamage()) && 
+					((IFuelStorage)itemStack.getItem()).isUsingNegativeMeta())
 			{
-				return ((IFuelStorage)itemStack.getItem()).getFuelData();
+				return (FuelData)(fuelList.get(itemStack.getItemDamage() - 1));
 			}
 		}
 			

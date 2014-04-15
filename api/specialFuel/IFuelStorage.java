@@ -1,6 +1,8 @@
 package assets.electrolysm.api.specialFuel;
 
-public interface IFuelStorage extends ISpecialFuel
+public interface IFuelStorage
 {
-	public boolean isFull();
+	public boolean isFull(int meta);
+	
+	public boolean isUsingNegativeMeta();
 }

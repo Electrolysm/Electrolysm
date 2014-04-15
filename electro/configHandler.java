@@ -74,7 +74,6 @@ public class configHandler
     public static int oilID;
     public static int idifierID;
     public static int YttriumID;
-    
     public static int blastBrickID;
     public static int chargerID;
     public static int endoCableID;

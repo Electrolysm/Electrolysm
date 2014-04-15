@@ -11,6 +11,7 @@ import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
+import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -31,5 +32,6 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityWorkBench.class, "TileEntityWorkBench");
         GameRegistry.registerTileEntity(TileEntityLiquidiser.class, "TileEntityLiquidiser");
         GameRegistry.registerTileEntity(TileEntitySmeltory.class, "TileEntitySmeltory");
+        GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
     }
 }
