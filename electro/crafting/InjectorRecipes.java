@@ -29,15 +29,21 @@ public class InjectorRecipes
     {
         this.addDoubleSmelting(new ItemStack(electrolysmCore.drillCasing), new ItemStack(electrolysmCore.fluidStorage, 16, 1),
                                new ItemStack(electrolysmCore.plasmaDrill));
+        
+        this.addDoubleSmelting(new ItemStack(Item.bucketWater), new ItemStack(electrolysmCore.fluidStorage, 1, 0),
+                new ItemStack(electrolysmCore.fluidStorage, 1, 9));
+        
+        this.addDoubleSmelting(new ItemStack(electrolysmCore.sulphur, 16), new ItemStack(electrolysmCore.fluidStorage, 1, 9),
+                new ItemStack(electrolysmCore.fluidStorage, 1, 2));
     }
 
-    public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output)
+    public void addDoubleSmelting(ItemStack bottom, ItemStack top, ItemStack output)
     {
-        this.metaSmeltingList1.put(Arrays.asList(input1.itemID, input2.itemID), output);
-        this.metaSmeltingList2.put(Arrays.asList(input1.getItemDamage(), input2.getItemDamage()), output);
+        this.metaSmeltingList1.put(Arrays.asList(bottom.itemID, top.itemID), output);
+        this.metaSmeltingList2.put(Arrays.asList(bottom.getItemDamage(), top.getItemDamage()), output);
         
-        this.metaSmeltingCheckList1.put(Arrays.asList(input1.itemID, input1.getItemDamage()), input1);
-        this.metaSmeltingCheckList2.put(Arrays.asList(input2.itemID, input2.getItemDamage()), input2);
+        this.metaSmeltingCheckList1.put(Arrays.asList(bottom.itemID, bottom.getItemDamage()), bottom);
+        this.metaSmeltingCheckList2.put(Arrays.asList(top.itemID, top.getItemDamage()), top);
     }
     
     public Map getInjectorMap()

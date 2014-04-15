@@ -1,18 +1,10 @@
 package assets.electrolysm.electro.block.machines.container;
 
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.handlers.IDHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
+import net.minecraftforge.oredict.OreDictionary;
+import assets.electrolysm.electro.electrolysmCore;
 
 public class SlotFluidStorage extends Slot
 {
@@ -26,12 +18,36 @@ public class SlotFluidStorage extends Slot
         if (isStackFluidStorage(stack))
         {
             return true;
-        }
+        }/*
+        else if(isStackSulphur(stack))
+        {
+        	return true;
+        }*/
 
         return false;
     }
 
-    public static boolean isStackFluidStorage(ItemStack stack)
+    private boolean isStackSulphur(ItemStack stack) 
+    {
+    	if (stack == null)
+        {
+            return false;
+        }
+
+        if (stack.itemID == electrolysmCore.sulphur.itemID)
+        {
+            return true;
+        }
+        else if(OreDictionary.getOreName(stack.itemID).contains("sulphur") || 
+        		OreDictionary.getOreName(stack.itemID).contains("sulfur"))
+        {
+        	return true;
+        }
+        
+        return false;
+    }
+
+	public static boolean isStackFluidStorage(ItemStack stack)
     {
         if (stack == null)
         {

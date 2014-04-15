@@ -46,8 +46,8 @@ public class CommonProxy
     public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
     public static String[] FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",
                            //METAs	  	0			1			2					3
-                           "Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate", "Silver Sulphate"};
-    //METAs   						 4				5				6				7				8
+                           "Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate", "Silver Sulphate", "Water"};
+    //METAs   						 4				5				6				7				8				9
     
     public static int[] FLUID_IDS = {0, electrolysmCore.plasma.blockID, electrolysmCore.sulpuricAcid.blockID, 
 		0, 0, 0, 0, 0, 0};

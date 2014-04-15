@@ -194,7 +194,7 @@ public class TileEntityInjector extends TileEntity implements IInventory
                 }
             }
 
-            if (this.isBurning() && this.canDoubleSmelt())
+            if (/*this.isBurning() && */this.canDoubleSmelt())
             {
                 ++this.furnaceCookTime;
 
