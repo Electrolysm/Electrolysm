@@ -5,12 +5,19 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.advAtomics.liquids.ModFluidPlasma;
 import assets.electrolysm.electro.advAtomics.liquids.ModFluidSulphuricAcid;
+import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -171,4 +178,16 @@ public class sulphuricAcid extends BlockFluidClassic
             }
         }
     }
+    
+    @Override
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) 
+    {
+    	Random rand = new Random();
+    	
+    	if(rand.nextInt(50) == 1)
+    	{
+    		entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
+    	}
+    }
+
 }

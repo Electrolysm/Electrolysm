@@ -32,11 +32,11 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 		API.registerRecipeHandler(new ElectrolysisRecipeHander());
 		API.registerRecipeHandler(new ElectrolysisRecipeHander());
 		API.setGuiOffset(GUIElectrolysisCore.class, 0, 0);
+		
 		//Injector
-		/*
 		API.registerRecipeHandler(new InjectorRecipeHandler());
 		API.registerUsageHandler(new InjectorRecipeHandler());
-		API.setGuiOffset(GUIInjector.class, 0, 0);*/
+		API.setGuiOffset(GUIInjector.class, 0, 0);
 	}
 	
 	@Override

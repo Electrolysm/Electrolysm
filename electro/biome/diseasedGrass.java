@@ -3,13 +3,13 @@ package assets.electrolysm.electro.biome;
 import java.util.Random;
 
 import assets.electrolysm.electro.electrolysmCore;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
@@ -68,10 +68,13 @@ public class diseasedGrass extends BlockDirt
             }
             else
             {
-                //entity.setFire(10);
                 ((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200));
             }
         }
+    	else if(entity instanceof EntityPlayer)
+    	{
+            ((EntityPlayer)entity).addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 200));
+    	}
     }
 
     public int idDropped(int par1, Random par2Random, int par3)

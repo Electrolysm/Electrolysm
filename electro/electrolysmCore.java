@@ -330,7 +330,6 @@ public class electrolysmCore
         long duration = (System.currentTimeMillis() - startTime);
         float secs = ((duration / 1000) * 100);
         LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
-        //LoggerHandler.info(this.getClass());
     }
 
     @SideOnly(Side.CLIENT)

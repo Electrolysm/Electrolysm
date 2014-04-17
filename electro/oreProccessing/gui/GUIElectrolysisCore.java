@@ -40,8 +40,10 @@ public class GUIElectrolysisCore extends GuiContainer
          * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
          */
         this.drawTexturedModalRect(x + 27, y + 33, 176, 16, 26 + 6, 37 - progress1);
-        this.drawTexturedModalRect(x + 82, y + 23, 226, 19, 16, 29 - progress2);
-        //this.drawTexturedModalRect(x + 82, y + 23, 176, 14, 80, progress - 50);
+        
+        this.drawTexturedModalRect(x + 78, y + 36, 226, 19, 16, 29 - progress2);
+        
+        this.drawTexturedModalRect(x + 113, y + 33, 176, 57, 32, 37 - progress1);
     }
 
     @Override

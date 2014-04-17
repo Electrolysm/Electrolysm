@@ -28,7 +28,7 @@ public class InjectorRecipes
     private InjectorRecipes()
     {
         this.addDoubleSmelting(new ItemStack(electrolysmCore.drillCasing), new ItemStack(electrolysmCore.fluidStorage, 16, 1),
-                               new ItemStack(electrolysmCore.plasmaDrill));
+                               new ItemStack(electrolysmCore.plasmaDrill, 1, 1));
         
         this.addDoubleSmelting(new ItemStack(Item.bucketWater), new ItemStack(electrolysmCore.fluidStorage, 1, 0),
                 new ItemStack(electrolysmCore.fluidStorage, 1, 9));
@@ -49,6 +49,11 @@ public class InjectorRecipes
     public Map getInjectorMap()
     {
     	return this.metaSmeltingList1;
+    }
+    
+    public Map getInjectorMapMeta()
+    {
+    	return this.metaSmeltingList2;
     }
 
     public ItemStack getDoubleSmeltingResult(ItemStack item1, ItemStack item2)

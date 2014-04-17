@@ -18,10 +18,10 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler {
 
 	public class SmeltingPair extends CachedRecipe
     {
-        public SmeltingPair(ItemStack ingred, ItemStack result)
+        public SmeltingPair(ItemStack inStack, ItemStack result)
         {
-        	ingred.stackSize = 1;
-            this.ingred = new PositionedStack(ingred, 46 - 7, 17 + 16 - 9);
+        	inStack.stackSize = 1;
+            this.ingred = new PositionedStack(inStack, 46 + 3 + 2, 17 + 16 - 9);
             this.result = new PositionedStack(result, 111, 24);
         }
         

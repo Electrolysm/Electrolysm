@@ -1,16 +1,15 @@
 package assets.electrolysm.electro.handlers.nei;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import assets.electrolysm.electro.block.advMachines.gui.GUIInjector;
 import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.crafting.InjectorRecipes;
-import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -20,35 +19,45 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
 
 	public class SmeltingPair extends CachedRecipe
     {
-        private PositionedStack ingredStack;
-        
-		public SmeltingPair(ItemStack ingred, ItemStack ingred2, ItemStack result)
+        public SmeltingPair(ItemStack inStack, ItemStack input2, ItemStack result)
         {
-            ingred.stackSize = 1;
-            ingred2.stackSize = 1;
-            this.ingred = new PositionedStack(ingred, 46 - 7, 17 + 16 - 9);
-            //this.ingredStack = new PositionedStack(ingred2, 20, 20);
+        	inStack.stackSize = 1;
+        	input2.stackSize = 1;
+            this.inStack = new PositionedStack(inStack, 49 + 2, 24 - 16 - 2);
+            this.input2 = new PositionedStack(input2, 46 + 3 + 2, 17 - 10 + 16 + 16 + 2);// - +
             this.result = new PositionedStack(result, 111, 24);
         }
         
-        public PositionedStack getIngredient()
+        @Override
+        public List<PositionedStack> getIngredients()
         {
             int cycle = cycleticks / 48;
-            if(ingred.item.getItemDamage() == 0)
+            if(inStack.item.getItemDamage() == -1 || input2.item.getItemDamage() == -1)
             {
-                PositionedStack stack = ingred.copy();
+                PositionedStack stack = inStack.copy();
+                PositionedStack stack2 = input2.copy();
                 int maxDamage = 0;
                 do
                 {
                     maxDamage++;
                     stack.item.setItemDamage(maxDamage);
+                    stack2.item.setItemDamage(maxDamage);
                 }
                 while(NEIClientUtils.isValidItem(stack.item));
-                
-                stack.item.setItemDamage(cycle % maxDamage);
-                return stack;
+                {
+                	stack.item.setItemDamage(cycle % maxDamage);
+                	stack2.item.setItemDamage(cycle % maxDamage);
+
+                	List<PositionedStack> list = new ArrayList<PositionedStack>();
+                	list.add(0, stack);
+                	list.add(1, stack2);
+                	return list;
+                }
             }
-            return ingred;
+        	List<PositionedStack> list = new ArrayList<PositionedStack>();
+        	list.add(0, inStack);
+        	list.add(1, input2);
+            return list;
         }
         
         public PositionedStack getResult()
@@ -57,8 +66,8 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
         }
         
         
-        PositionedStack ingred;
-        PositionedStack ingredStack2;
+        PositionedStack inStack;
+        PositionedStack input2;
         PositionedStack result;
     }
     
@@ -70,7 +79,7 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadTransferRects()
     {
-        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "injecting"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "Injecting"));
     }
     
     @Override
@@ -82,7 +91,7 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public String getRecipeName()
     {
-        return "injecting";
+        return "Injecting";
     }
     
     @Override
@@ -94,14 +103,24 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
-        if(outputId.equals("injecting") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
+        if(outputId.equals("Injecting") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
         {
         	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
-            
-            for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
+        	HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
+
+            for(int i = 0; i < recipes.size(); i++)
             {
-                ItemStack item = recipe.getValue();
-                arecipes.add(new SmeltingPair(new ItemStack(recipe.getKey().indexOf(0), 1, 0), new ItemStack(recipe.getKey().indexOf(1), 1, 0), item));
+            	Object recipe = recipes.keySet().toArray()[i];
+            	Object recipeMeta = recipesMeta.keySet().toArray()[i];
+
+                ItemStack item = recipes.get(recipe);
+                int meta1 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(0))));
+                int meta2 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(1))));
+                
+                System.out.println("ElectrolysmCore: " + recipe + " : " + item);
+                
+                arecipes.add(new SmeltingPair(new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(0)))), 1, meta1), 
+                		new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(1)))), 1, meta2), item));
             }
         }
         else
@@ -113,14 +132,24 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
-        
-        for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
+    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+    	HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
+
+        for(int i = 0; i < recipes.size(); i++)
         {
-            ItemStack item = recipe.getValue();
+        	Object recipe = recipes.keySet().toArray()[i];
+        	Object recipeMeta = recipesMeta.keySet().toArray()[i];
+
+            ItemStack item = recipes.get(recipe);
+            int meta1 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(0))));
+            int meta2 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(1))));
+            
+            System.out.println("ElectrolysmCore: " + recipe + " : " + item);
+            
             if(NEIServerUtils.areStacksSameType(item, result))
             {
-                arecipes.add(new SmeltingPair(new ItemStack(recipe.getKey().indexOf(0), 1, 0), new ItemStack(recipe.getKey().indexOf(1), 1, 0), item));
+            	arecipes.add(new SmeltingPair(new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(0)))), 1, meta1), 
+            			new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(1)))), 1, meta2), item));
             }
         }
     }
@@ -130,7 +159,7 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     {
         if(inputId.equals("fuel") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
         {
-            loadCraftingRecipes("injecting");
+            loadCraftingRecipes("Injecting");
         }
         else
         {
@@ -141,14 +170,24 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
-        
-        for(Entry<List<Integer>, ItemStack> recipe : recipes.entrySet())
+    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+    	HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
+
+        for(int i = 0; i < recipes.size(); i++)
         {
-            ItemStack item = recipe.getValue();
+        	Object recipe = recipes.keySet().toArray()[i];
+        	Object recipeMeta = recipesMeta.keySet().toArray()[i];
+
+            ItemStack item = recipes.get(recipe);
+            int meta1 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(0))));
+            int meta2 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(1))));
+            
+            System.out.println("ElectrolysmCore: " + recipe + " : " + item);
+            
             if(NEIServerUtils.areStacksSameType(item, ingredient))
             {
-                arecipes.add(new SmeltingPair(new ItemStack(recipe.getKey().indexOf(0), 1, 0), new ItemStack(recipe.getKey().indexOf(1), 1, 0), item));
+            	arecipes.add(new SmeltingPair(new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(0)))), 1, meta1), 
+            			new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(1)))), 1, meta2), item));
             }
         }
     }
