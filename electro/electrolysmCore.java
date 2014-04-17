@@ -48,6 +48,7 @@ import assets.electrolysm.electro.common.CommandDate;
 import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.ServerTickHandler;
 import assets.electrolysm.electro.common.UpdateResearch;
+import assets.electrolysm.electro.powerSystem.ItemWire;
 import assets.electrolysm.electro.powerSystem.endoCable;
 import assets.electrolysm.electro.crafting.items.BasicMicrochip;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
@@ -195,6 +196,7 @@ public class electrolysmCore
 
     //Power System
     public static Block endoCable = new endoCable(configHandler.endoCableID, null);
+    public static Item ItemWire = new ItemWire(configHandler.ItemWireID);
     
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);

@@ -126,6 +126,7 @@ public class configHandler
     public static int plasmaDrillID;
     public static int drillCasingID;
     public static int energisingRodID;
+    public static int ItemWireID;
     
     public static int biomeID;
     
@@ -229,7 +230,7 @@ public class configHandler
         plasmaDrillID = config.getItem("plasmaDrillID", IDHandler.tools.plasmaDrillID).getInt();
         drillCasingID = config.getItem("drillCasingID", IDHandler.tools.drillCasingID).getInt();
         energisingRodID = config.getItem("energisingRodID", IDHandler.advMachines.energisingRodID).getInt();
-        
+        ItemWireID = config.getItem("ItemWireID", IDHandler.powerGrid.ItemWireID).getInt();
         //Other
         multipart = config.get("OTHER", "addMultiparts", true).getBoolean(true);
         biomeID = config.get("OTHER", "biomeID", IDHandler.basic.biomeID).getInt();

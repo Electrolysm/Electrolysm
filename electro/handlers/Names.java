@@ -83,6 +83,9 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.electroMagnet, "ElectroMagnetic Suspension Unit");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.Scandium, 1, 0), "Scandium Dust");
         LanguageRegistry.addName(new ItemStack(electrolysmCore.Scandium, 1, 1), "Scandium Ingot");
+        LanguageRegistry.addName(electrolysmCore.ballOfPlastic, "Ball of Plastic");
+        LanguageRegistry.addName(electrolysmCore.ItemWire, "Endothermite Cable");
+
         
         
         for(int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)

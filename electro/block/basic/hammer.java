@@ -97,6 +97,8 @@ public class hammer extends ItemTool
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
+    	list.add("For smashing all the things! - Nearly");
+    	
 		String sectionSign = "\u00a7";
 		
     	if(this.isShiftKeyDown())
