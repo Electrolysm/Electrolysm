@@ -78,11 +78,11 @@ public class endoCable extends BlockContainer
             this.maxZ = te.getAdjacentConnections()[3] != null ? 1F : 0.7F;
         }
     }
-/*
+
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return electrolysmCore.ItemWire.itemID;
-    }*/
+    }
 /*
     public int damageDropped(int par1)
     {

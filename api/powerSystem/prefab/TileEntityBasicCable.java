@@ -1,12 +1,11 @@
 package assets.electrolysm.api.powerSystem.prefab;
 
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import universalelectricity.api.energy.EnergyNetworkLoader;
-import universalelectricity.api.energy.EnergyStorageHandler;
 import universalelectricity.api.energy.IConductor;
-import universalelectricity.api.energy.IEnergyContainer;
-import universalelectricity.api.energy.IEnergyInterface;
 import universalelectricity.api.energy.IEnergyNetwork;
 import universalelectricity.api.net.IConnector;
 
@@ -60,18 +59,18 @@ public class TileEntityBasicCable extends TileEntity implements IConductor/*, IE
 	@Override
 	public long onExtractEnergy(ForgeDirection from, long extract, boolean doExtract) 
 	{
-	    return 0L;
+	    return 0L;//this.getNetwork().extract(this, from.getOpposite(), extract, doExtract);
 	}
 
 	@Override
 	public float getResistance() 
 	{
-		return (float) 1.25;
+		return (float) 0;
 	}
 
 	@Override
 	public long getCurrentCapacity() 
 	{
-		return 10000;
+		return (long)Integer.MAX_VALUE;
 	}
 }
