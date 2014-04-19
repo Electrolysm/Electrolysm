@@ -84,6 +84,9 @@ public class configHandler
     public static int lightSourceID;
     public static int antiMatterCasingID;
     public static int magnetID;
+    public static int coolerProccesserID;
+    public static int coolerPortID;
+    public static int coolerFanID;
     
     //IDs - Items
     public static int ballOfPlasticID;
@@ -129,6 +132,7 @@ public class configHandler
     public static int ItemWireID;
     
     public static int biomeID;
+	public static int acidBurnsID;
     
     //etc. Do them in order so you dont get confused
     
@@ -188,6 +192,9 @@ public class configHandler
         lightSourceID = config.getBlock("lightSourceID", IDHandler.craftingItems.lightSourceID).getInt();
         antiMatterCasingID = config.getBlock("antiMatterCasingID", IDHandler.craftingItems.antiMatterCasingID).getInt();
         magnetID = config.getBlock("magnetID", IDHandler.craftingItems.magnetID).getInt();
+        coolerPortID = config.getBlock("coolerPortID", IDHandler.powerGrid.extra.coolerPortID).getInt();
+        coolerProccesserID = config.getBlock("coolerProccesserID", IDHandler.powerGrid.extra.coolerProccesserID).getInt();
+        coolerFanID = config.getBlock("coolerFanID", IDHandler.powerGrid.extra.coolerFanID).getInt();
         
         //Items
         ballOfPlasticID = config.getItem("ballOfPlasticID", IDHandler.craftingItems.ballOfPlasticID).getInt(IDHandler.craftingItems.ballOfPlasticID);
@@ -234,6 +241,7 @@ public class configHandler
         //Other
         multipart = config.get("OTHER", "addMultiparts", true).getBoolean(true);
         biomeID = config.get("OTHER", "biomeID", IDHandler.basic.biomeID).getInt();
+        acidBurnsID = config.get("OTHER", "acidBurnsID", 31).getInt();
         
         config.save();
     }

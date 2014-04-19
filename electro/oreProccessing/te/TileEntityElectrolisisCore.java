@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.oreProccessing.electrolisisCore;
 import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
 
 public class TileEntityElectrolisisCore extends TileEntityElectrical implements IInventory, /*IPullEnergy,
@@ -147,7 +148,7 @@ public class TileEntityElectrolisisCore extends TileEntityElectrical implements 
         	active = true;
         }
         
-        if (this.energy.getEnergy() > this.requiredEnergy)
+        if (this.energy.getEnergy() > this.requiredEnergy && electrolisisCore.isFormed(xCoord, yCoord, zCoord, worldObj, 0, 0))
         {
             ItemStack input1 = getStackInSlot(0);
             ItemStack input2 = getStackInSlot(1);

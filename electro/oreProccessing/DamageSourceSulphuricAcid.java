@@ -11,7 +11,7 @@ import net.minecraft.util.EntityDamageSource;
 public class DamageSourceSulphuricAcid extends DamageSource 
 {
 
-	protected DamageSourceSulphuricAcid(String string) 
+	public DamageSourceSulphuricAcid(String string) 
 	{
 		super(string);
 	}

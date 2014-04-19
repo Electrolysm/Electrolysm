@@ -186,7 +186,15 @@ public class sulphuricAcid extends BlockFluidClassic
     	
     	if(rand.nextInt(50) == 1)
     	{
-    		entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
+    		//entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
+    		if(entity instanceof EntityPlayer)
+    		{
+    			((EntityPlayer)entity).addPotionEffect(new PotionEffect(electrolysmCore.acidBurns.id, 200, 1));
+    		}
+    		else
+    		{
+        		entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
+    		}
     	}
     }
 

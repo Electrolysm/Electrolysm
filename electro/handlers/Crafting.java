@@ -278,12 +278,17 @@ public class Crafting
         		 'I', Item.ingotIron,
         		 'R', Item.redstone);
          
-         GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterGen, 1, 3),
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterGen, 1),
         		 "AAA", "BEB", "BMB",
         		 'A', electrolysmCore.antiMatterCasing,
         		 'M', electrolysmCore.experimentalMicrochip,
         		 'B', electrolysmCore.blastProof,
         		 'E', electrolysmCore.electroMagnet);
+         
+         GameRegistry.addRecipe(new ItemStack(electrolysmCore.ItemWire, 8),
+        		 "III", "GGG", "III",
+        		 Character.valueOf('I'), electrolysmCore.endoInsulator,
+        		 Character.valueOf('G'), electrolysmCore.chunkGraphite);
          
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.electroMagnet),
         		 "C C", "DMD", "MDM",

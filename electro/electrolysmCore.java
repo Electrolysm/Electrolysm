@@ -7,16 +7,13 @@ package assets.electrolysm.electro;
 
 import java.io.File;
 
-import assets.electrolysm.api.LoggerHandler;
-import assets.electrolysm.electro.handlers.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
-import assets.electrolysm.electro.advAtomics.elements.elementProof;
-import assets.electrolysm.electro.advAtomics.liquids.Fluids;
-import assets.electrolysm.electro.advAtomics.liquids.fluidRegistry;
+import assets.electrolysm.api.LoggerHandler;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.oil;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
@@ -34,7 +31,6 @@ import assets.electrolysm.electro.block.basic.blastBrick;
 import assets.electrolysm.electro.block.basic.blastDoor;
 import assets.electrolysm.electro.block.basic.blastGlass;
 import assets.electrolysm.electro.block.basic.blastProof;
-import assets.electrolysm.electro.block.basic.floodLight;
 import assets.electrolysm.electro.block.basic.glassModifier;
 import assets.electrolysm.electro.block.basic.hammer;
 import assets.electrolysm.electro.block.basic.lightSource;
@@ -44,12 +40,9 @@ import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
-import assets.electrolysm.electro.common.CommandDate;
 import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.ServerTickHandler;
-import assets.electrolysm.electro.common.UpdateResearch;
-import assets.electrolysm.electro.powerSystem.ItemWire;
-import assets.electrolysm.electro.powerSystem.endoCable;
+import assets.electrolysm.electro.crafting.acidBurns;
 import assets.electrolysm.electro.crafting.items.BasicMicrochip;
 import assets.electrolysm.electro.crafting.items.BlockLumRed;
 import assets.electrolysm.electro.crafting.items.CPU;
@@ -69,8 +62,23 @@ import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.crafting.items.magnet;
 import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
+import assets.electrolysm.electro.handlers.BetaHandler;
+import assets.electrolysm.electro.handlers.Crafting;
+import assets.electrolysm.electro.handlers.ElectroylsmLoot;
+import assets.electrolysm.electro.handlers.GUIHandler;
+import assets.electrolysm.electro.handlers.IDHandler;
+import assets.electrolysm.electro.handlers.MultipartHandler;
+import assets.electrolysm.electro.handlers.Names;
+import assets.electrolysm.electro.handlers.NewsCheck;
+import assets.electrolysm.electro.handlers.PlayerHandler;
+import assets.electrolysm.electro.handlers.Referance;
+import assets.electrolysm.electro.handlers.Register;
+import assets.electrolysm.electro.handlers.RegisterBlock;
+import assets.electrolysm.electro.handlers.ResearchHandler;
+import assets.electrolysm.electro.handlers.TickHandler;
+import assets.electrolysm.electro.handlers.TileEntityMappingHandler;
+import assets.electrolysm.electro.handlers.VersionCheck;
 import assets.electrolysm.electro.item.basic.drillCasing;
-import assets.electrolysm.electro.item.basic.drillHead;
 import assets.electrolysm.electro.item.basic.plasmaDrill;
 import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.crystalOre;
@@ -86,14 +94,32 @@ import assets.electrolysm.electro.oreProccessing.node;
 import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
+import assets.electrolysm.electro.powerSystem.ItemWire;
+import assets.electrolysm.electro.powerSystem.endoCable;
 import assets.electrolysm.electro.powerSystem.energyMeter;
 import assets.electrolysm.electro.powerSystem.generators.generator;
 import assets.electrolysm.electro.powerSystem.generators.matterGen;
-import assets.electrolysm.electro.block.machines.autoDesk;
+import assets.electrolysm.electro.powerSystem.generators.extra.coolerProccesser;
 import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
+import assets.electrolysm.electro.robotics.ExoPlate;
+import assets.electrolysm.electro.robotics.artMuscle;
+import assets.electrolysm.electro.robotics.bionicArm;
+import assets.electrolysm.electro.robotics.bionicChest;
+import assets.electrolysm.electro.robotics.bionicHead;
+import assets.electrolysm.electro.robotics.bionicLeg;
+import assets.electrolysm.electro.robotics.carbonBone;
+import assets.electrolysm.electro.robotics.chipDup;
+import assets.electrolysm.electro.robotics.metalSheet;
+import assets.electrolysm.electro.robotics.microCont;
+import assets.electrolysm.electro.robotics.partAssemb;
+import assets.electrolysm.electro.robotics.servo;
+import assets.electrolysm.electro.robotics.silChip;
+import assets.electrolysm.electro.robotics.soldering;
+import assets.electrolysm.electro.robotics.upgrade;
+import assets.electrolysm.electro.robotics.wire;
 import assets.electrolysm.electro.world.Scandium;
 import assets.electrolysm.electro.world.Yttrium;
 import assets.electrolysm.electro.world.chunkGraphite;
@@ -205,7 +231,12 @@ public class electrolysmCore
     public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
     public static Block plug = new plug(configHandler.plugID, null);
     */public static Block generator = new generator(configHandler.generatorID, null, 0);
-    public static Block matterGen = new matterGen(configHandler.matterGenID, null, 3);/*
+    public static Block matterGen = new matterGen(configHandler.matterGenID, null, 3);
+    public static Block coolerProccesser = new coolerProccesser(configHandler.coolerProccesserID, null);
+   // public static Block coolerPort = new coolerPort(configHandler.coolerPortID, null);
+   // public static Block coolerFan = new coolerFan(configHandler.coolerFanID, null);
+
+    /*
     public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
     public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
     public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
@@ -215,7 +246,6 @@ public class electrolysmCore
     public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
     */
     public static Item energyMeter = new energyMeter(configHandler.energyMeterID);
-
     //Random Blocks
     public static Block ironFrames = new ironFrames(configHandler.ironFrameID, null);
 
@@ -259,7 +289,8 @@ public class electrolysmCore
     public static Item advancedCPU = new advancedCPU(configHandler.advCPUID);
     public static Item graphiteRod = new graphiteRod(configHandler.graphiteRodID);
     public static Item electroMagnet = new ItemCrafting(configHandler.electroMagnetID).setUnlocalizedName("electMag");
-    
+    public static Potion acidBurns = new acidBurns(configHandler.acidBurnsID, true, 0);
+
     public static Block antiMatterCasing = new antiMatterCasing(configHandler.antiMatterCasingID, null);
     public static Block magnet = new magnet(configHandler.magnetID, null);
     //Fuels
@@ -279,6 +310,7 @@ public class electrolysmCore
     public static Item silChip = new silChip(IDHandler.robotics.silChipID);
     public static Item ChipDup = new chipDup(IDHandler.robotics.chipDub);
     //===============================================================
+    public static Item exoPlate = new ExoPlate(IDHandler.robotics.exoPlateID);
     public static Item bionicArm = new bionicArm(IDHandler.robotics.bionicArmID);
     public static Item bionicChest = new bionicChest(IDHandler.robotics.bionicChestID);
     public static Item bionicHead = new bionicHead(IDHandler.robotics.bionicHeadID);
@@ -319,6 +351,8 @@ public class electrolysmCore
         Crafting.addFurnaceRecipes();
         RegisterBlock.register();
         new MultipartHandler();
+        new PlayerHandler();
+        new ElectroylsmLoot();
         Names.addName();
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();
@@ -332,6 +366,7 @@ public class electrolysmCore
         long duration = (System.currentTimeMillis() - startTime);
         float secs = ((duration / 1000) * 100);
         LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
+
     }
 
     @SideOnly(Side.CLIENT)

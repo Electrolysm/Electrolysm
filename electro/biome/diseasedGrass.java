@@ -2,6 +2,8 @@ package assets.electrolysm.electro.biome;
 
 import java.util.Random;
 
+import assets.electrolysm.api.LoggerHandler;
+import assets.electrolysm.electro.configHandler;
 import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
@@ -23,7 +25,8 @@ public class diseasedGrass extends BlockDirt
 
     public diseasedGrass(int par1, Material par2Material)
     {
-        super(par1);
+    	
+        super(checkID(par1));
         // TODO Auto-generated constructor stub
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setHardness(1);
@@ -31,7 +34,35 @@ public class diseasedGrass extends BlockDirt
         this.setUnlocalizedName("diseasedGrass");
     }
 
-    @SideOnly(Side.CLIENT)
+    private static int checkID(int par1) 
+    {
+    	String unlocalizedName1 = "tile.diseasedGrass";
+
+        if(par1 > 255)
+        {
+			String message = ("Block '" + unlocalizedName1  + 
+        			"' has a ID bigger than 255! Please change the blockID in the config file.");
+        	for(int i = 0; i < 10; i++)
+        	{
+        		LoggerHandler.severe(message);
+        	}
+        	LoggerHandler.severe("Attempting to set '" + unlocalizedName1 + "' to ID 200.");
+        	if(blocksList[200] == null)
+        	{
+        		LoggerHandler.info("Successfully set block ID to 200.");
+        		configHandler.diseaseGrassID = 200;
+        		return 200;
+        	}
+        	else
+        	{
+        		LoggerHandler.severe("Failed to set block ID to 200! Closing Minecraft!");
+        		System.exit(0);
+        	}
+        }
+        return par1;
+	}
+
+	@SideOnly(Side.CLIENT)
     private Icon iconGrassTop;
 
     @SideOnly(Side.CLIENT)

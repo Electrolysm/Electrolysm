@@ -69,7 +69,7 @@ public class spawnZS extends Item
             return true;
         }
         else
-        {
+        {/*
             if (world.isRemote)
             {
             }
@@ -96,7 +96,7 @@ public class spawnZS extends Item
                         ((EntityLiving) VillagerScientist).setCustomNameTag(stack.getDisplayName());
                     }
                 }
-            }
+            }*/
         }
 
         return false;

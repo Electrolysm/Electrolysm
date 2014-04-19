@@ -1,6 +1,7 @@
 package assets.electrolysm.electro.client;
 
 import net.minecraftforge.common.MinecraftForge;
+import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityQuantumComp;
 import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
@@ -31,7 +32,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCharger.class, new RenderTileCharger());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
-        //RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
-        //		new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
+        		new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
     }
 }

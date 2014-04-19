@@ -17,6 +17,7 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 		//Item Hiding
 		API.hideItem(electrolysmCore.crusherActive.blockID);
 		API.hideItem(electrolysmCore.smeltoryActive.blockID);
+		API.hideItem(electrolysmCore.endoCable.blockID);
 		
 		//Crusher
 		API.registerRecipeHandler(new CrusherRecipeHandler());

@@ -23,11 +23,6 @@ public class RenderZombie_Scientist extends RenderLiving
         return CommonProxy.ZOMBIE_SCIENTIST_TEXTURE;
     }
 
-    protected ResourceLocation func_110775_a(Entity par1Entity)
-    {
-        return this.getEntityTexture1((EntityZombie_Scientist)par1Entity);
-    }
-
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {

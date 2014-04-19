@@ -51,7 +51,8 @@ public class RegisterBlock
         GameRegistry.registerBlock(electrolysmCore.antiMatterCasing);
         GameRegistry.registerBlock(electrolysmCore.magnet);
         GameRegistry.registerBlock(electrolysmCore.Yttrium);
-
+        GameRegistry.registerBlock(electrolysmCore.coolerProccesser);
+        GameRegistry.registerFuelHandler(new FuelHandler());
         
         //Fluids
         /*
@@ -63,10 +64,7 @@ public class RegisterBlock
         		)
         	);*/
         //Adding knowledge to dungeon chests
-        WeightedRandomChestContent itemChest = new WeightedRandomChestContent(electrolysmCore.knowledge.itemID,
-                0, 1, 2, 0);
-        ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, itemChest);
-        GameRegistry.registerFuelHandler(new FuelHandler());
+       
         //End
     }
 }

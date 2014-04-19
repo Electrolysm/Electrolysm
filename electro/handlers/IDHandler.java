@@ -12,7 +12,7 @@ public class IDHandler
         }
     }
 
-    public static class robotics4
+    public static class robotics
     {
         public static int metalSheetID = 700;
         public static int wireID = 701;
@@ -27,6 +27,8 @@ public class IDHandler
         public static int upgradeID = 710;
         public static int silChipID = 711;
         public static int chipDub = 712;
+		public static int exoPlateID = 713;
+		
         public static class machines
         {
             public static int solderingID = 714;
@@ -104,6 +106,15 @@ public class IDHandler
         public static int advWireID = 811;
         public static int keyTransCoppierID = 812;
         public static int ItemWireID = 813;
+        
+		public static class extra
+		{
+			//starts 970;
+			public static int coolerPortID = 970;
+			public static int coolerProccesserID = 971;
+			public static int coolerFanID = 972;
+			
+		}
     }
 
     public static class oreProccessing

@@ -54,7 +54,7 @@ public class electrolisisCore extends BlockContainer
         }
     }
 
-    public boolean isFormed(int x, int y, int z, World world, int chamberID, int waterID)
+    public static boolean isFormed(int x, int y, int z, World world, int chamberID, int waterID)
     {
         int chamber = electrolysmCore.electrolChamber.blockID;
         int water = Block.waterStill.blockID;
