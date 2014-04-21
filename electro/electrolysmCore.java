@@ -10,13 +10,16 @@ import java.io.File;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.EnumHelper;
 import assets.electrolysm.api.LoggerHandler;
 import assets.electrolysm.electro.advAtomics.liquids.fluidStorage;
 import assets.electrolysm.electro.advAtomics.liquids.oil;
 import assets.electrolysm.electro.advAtomics.liquids.plasma;
+import assets.electrolysm.electro.advAtomics.tools.HazMap;
 import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.biome.diseasedBiome;
 import assets.electrolysm.electro.biome.diseasedGrass;
@@ -64,7 +67,7 @@ import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
-import assets.electrolysm.electro.handlers.ElectroylsmLoot;
+import assets.electrolysm.electro.handlers.ElectrolysmLootHandler;
 import assets.electrolysm.electro.handlers.GUIHandler;
 import assets.electrolysm.electro.handlers.IDHandler;
 import assets.electrolysm.electro.handlers.MultipartHandler;
@@ -104,22 +107,6 @@ import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
-import assets.electrolysm.electro.robotics.ExoPlate;
-import assets.electrolysm.electro.robotics.artMuscle;
-import assets.electrolysm.electro.robotics.bionicArm;
-import assets.electrolysm.electro.robotics.bionicChest;
-import assets.electrolysm.electro.robotics.bionicHead;
-import assets.electrolysm.electro.robotics.bionicLeg;
-import assets.electrolysm.electro.robotics.carbonBone;
-import assets.electrolysm.electro.robotics.chipDup;
-import assets.electrolysm.electro.robotics.metalSheet;
-import assets.electrolysm.electro.robotics.microCont;
-import assets.electrolysm.electro.robotics.partAssemb;
-import assets.electrolysm.electro.robotics.servo;
-import assets.electrolysm.electro.robotics.silChip;
-import assets.electrolysm.electro.robotics.soldering;
-import assets.electrolysm.electro.robotics.upgrade;
-import assets.electrolysm.electro.robotics.wire;
 import assets.electrolysm.electro.world.Scandium;
 import assets.electrolysm.electro.world.Yttrium;
 import assets.electrolysm.electro.world.chunkGraphite;
@@ -200,6 +187,12 @@ public class electrolysmCore
     public static Block stoneObsidian = new stoneObsidian(configHandler.stoneObsidianID, null);
     //Tools
     public static Item hammer = new hammer(configHandler.hammerID);
+    
+    public static EnumArmorMaterial PLASTIC = EnumHelper.addArmorMaterial("PLASTIC", 10, new int[]{1, 3, 2, 1}, 5);
+    public static Item hazMatHat = new HazMap(configHandler.hazMat1ID, 0);
+    public static Item hazMatChest = new HazMap(configHandler.hazMat2ID, 1);
+    public static Item hazMatLegs = new HazMap(configHandler.hazMat3ID, 2);
+    public static Item hazMatShoes = new HazMap(configHandler.hazMat4ID, 3);
     
     //Advanced atomics
     //Liquids
@@ -352,7 +345,7 @@ public class electrolysmCore
         RegisterBlock.register();
         new MultipartHandler();
         new PlayerHandler();
-        new ElectroylsmLoot();
+        new ElectrolysmLootHandler();
         Names.addName();
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();

@@ -173,6 +173,11 @@ public class IDHandler
 	{
 		public static int drillCasingID = 1000;
     	public static int plasmaDrillID = 1001;
+    	public static int hazMat1ID = 1002;
+    	public static int hazMat2ID = 1003;
+    	public static int hazMat3ID = 1004;
+    	public static int hazMat4ID = 1005;
+
 	}
 	
 	public static class fuels

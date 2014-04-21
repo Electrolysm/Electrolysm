@@ -16,7 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityElectrical extends TileEntity implements IEnergyInterface, IEnergyContainer, 
 				IStrictEnergyAcceptor{
 
-	@SideOnly(Side.CLIENT)
 	public EnergyStorageHandler energy;
 	public long currentEnergy;
 	public boolean active = false;
