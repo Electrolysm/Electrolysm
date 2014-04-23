@@ -51,7 +51,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(electrolysmCore.antiMatterCasing);
         GameRegistry.registerBlock(electrolysmCore.magnet);
         GameRegistry.registerBlock(electrolysmCore.Yttrium);
-        GameRegistry.registerBlock(electrolysmCore.coolerProccesser);
+        //GameRegistry.registerBlock(electrolysmCore.coolerProccesser);
         GameRegistry.registerFuelHandler(new FuelHandler());
         
         //Fluids

@@ -189,10 +189,10 @@ public class electrolysmCore
     public static Item hammer = new hammer(configHandler.hammerID);
     
     public static EnumArmorMaterial PLASTIC = EnumHelper.addArmorMaterial("PLASTIC", 10, new int[]{1, 3, 2, 1}, 5);
-    public static Item hazMatHat = new HazMap(configHandler.hazMat1ID, 0);
+    /*public static Item hazMatHat = new HazMap(configHandler.hazMat1ID, 0);
     public static Item hazMatChest = new HazMap(configHandler.hazMat2ID, 1);
     public static Item hazMatLegs = new HazMap(configHandler.hazMat3ID, 2);
-    public static Item hazMatShoes = new HazMap(configHandler.hazMat4ID, 3);
+    public static Item hazMatShoes = new HazMap(configHandler.hazMat4ID, 3);*/
     
     //Advanced atomics
     //Liquids
@@ -225,7 +225,7 @@ public class electrolysmCore
     public static Block plug = new plug(configHandler.plugID, null);
     */public static Block generator = new generator(configHandler.generatorID, null, 0);
     public static Block matterGen = new matterGen(configHandler.matterGenID, null, 3);
-    public static Block coolerProccesser = new coolerProccesser(configHandler.coolerProccesserID, null);
+    public static Block coolerProccesser ;//= new coolerProccesser(configHandler.coolerProccesserID, null);
    // public static Block coolerPort = new coolerPort(configHandler.coolerPortID, null);
    // public static Block coolerFan = new coolerFan(configHandler.coolerFanID, null);
 
