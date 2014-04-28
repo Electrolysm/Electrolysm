@@ -57,7 +57,6 @@ public class ContainerSmeltory extends Container
     //GUI Progress Bar Stuff
     private int lastTime;
     private int lastSmeltTime;
-    private int lastEnergy;
     
     
     @Override
@@ -66,7 +65,6 @@ public class ContainerSmeltory extends Container
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.time);
         par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.smeltTime);
-        par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.energyInt);
     }
 
     /**
@@ -89,16 +87,10 @@ public class ContainerSmeltory extends Container
             {
                 icrafting.sendProgressBarUpdate(this, 1, this.furnace.smeltTime);
             }
-            
-            if (this.lastEnergy != this.furnace.energyInt)
-            {
-                icrafting.sendProgressBarUpdate(this, 2, this.furnace.energyInt);
-            }
         }
 
         this.lastTime = this.furnace.time;
         this.lastSmeltTime = this.furnace.smeltTime;
-        this.lastEnergy = this.furnace.energyInt;
     }
 
     @SideOnly(Side.CLIENT)
@@ -113,11 +105,6 @@ public class ContainerSmeltory extends Container
         if (par1 == 1)
         {
             this.furnace.smeltTime = par2;
-        }
-        
-        if(par1 == 2)
-        {
-        	this.furnace.energyInt = par2;
         }
     }
 }

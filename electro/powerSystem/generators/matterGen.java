@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -17,18 +16,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
-import cpw.mods.fml.client.FMLClientHandler;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class matterGen extends generator
+public class matterGen extends BlockContainer
 {
     @SideOnly(Side.CLIENT)
     private Icon frontActive;
@@ -42,13 +39,12 @@ public class matterGen extends generator
 
     public matterGen(int id, Material mat, int genID)
     {
-        super(id, Material.iron, genID);
+        super(id, Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("matterGenerator");
         this.setHardness(5.2165F);
         GameRegistry.registerBlock(this);
         LanguageRegistry.addName(this, "Matter-Antimatter Reactor");
-        this.genID = genID;
         this.setResistance(100F);
     }
 
@@ -108,20 +104,10 @@ public class matterGen extends generator
     @Override
     public TileEntity createNewTileEntity(World world)
     {
-        // TODO Auto-generated method stub
-        return new TileEntityGenerator(this.genID);
+        return new TileEntityGeneratorAntimatter();
     }
 
-    public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5)
-    {
-        //TeslaTransmittingServer.clearAll();
-    }
-
-    public void onBlockDestroyedByExplosion(World par1World, int par2, int par3, int par4, Explosion par5Explosion)
-    {
-        //TeslaTransmittingServer.clearAll();
-    }
-
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player,
                                     int par6, float par7, float par8, float par9)
     {
@@ -136,24 +122,10 @@ public class matterGen extends generator
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    private void printChatMessage(World world, int x, int y, int z)
-    {
-        if (world.isRemote)
-        {/*
-            TileEntityGenerator te = (TileEntityGenerator)world.getBlockTileEntity(x, y, z);
-            String message = "This generator is producing " + String.valueOf(te.getSendTeU(world, x, y, z)) + " TeU";
-            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);*/
-        }
-        else
-        {
-        }
-    }
-
     @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
-        TileEntityGenerator tileentityfurnace = (TileEntityGenerator)par1World.getBlockTileEntity(par2, par3, par4);
+        TileEntityGeneratorAntimatter tileentityfurnace = (TileEntityGeneratorAntimatter)par1World.getBlockTileEntity(par2, par3, par4);
 
         if (tileentityfurnace != null && !(keepInventory))
         {
@@ -197,21 +169,6 @@ public class matterGen extends generator
         }
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
-    }
-    
-    @Override
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {
-    }
-
-    @Override
-    public void onBlockAdded(World par1World, int par2, int par3, int par4)
-    {
-        super.onBlockAdded(par1World, par2, par3, par4);
-    }
-
-    private void setDefaultDirection(World par1World, int par2, int par3, int par4)
-    {
     }
     
     @Override

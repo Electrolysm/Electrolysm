@@ -106,6 +106,10 @@ public class IDHandler
         public static int advWireID = 811;
         public static int keyTransCoppierID = 812;
         public static int ItemWireID = 813;
+        public static int battery1ID = 814;
+        public static int battery2ID = 815;
+        public static int battery3ID = 816;
+        public static int battery4ID = 817;
         
 		public static class extra
 		{

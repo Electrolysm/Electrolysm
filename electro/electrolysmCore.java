@@ -65,6 +65,7 @@ import assets.electrolysm.electro.crafting.items.luminousRedstone;
 import assets.electrolysm.electro.crafting.items.magnet;
 import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
+import assets.electrolysm.electro.fuels.electroContain;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
 import assets.electrolysm.electro.handlers.ElectrolysmLootHandler;
@@ -98,6 +99,11 @@ import assets.electrolysm.electro.oreProccessing.seporator;
 import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.sulphuricAcid;
 import assets.electrolysm.electro.powerSystem.ItemWire;
+import assets.electrolysm.electro.powerSystem.battery;
+import assets.electrolysm.electro.powerSystem.battery1;
+import assets.electrolysm.electro.powerSystem.battery2;
+import assets.electrolysm.electro.powerSystem.battery3;
+import assets.electrolysm.electro.powerSystem.battery4;
 import assets.electrolysm.electro.powerSystem.endoCable;
 import assets.electrolysm.electro.powerSystem.energyMeter;
 import assets.electrolysm.electro.powerSystem.generators.generator;
@@ -216,7 +222,11 @@ public class electrolysmCore
     //Power System
     public static Block endoCable = new endoCable(configHandler.endoCableID, null);
     public static Item ItemWire = new ItemWire(configHandler.ItemWireID);
-    
+    public static Item battery1 = new battery1(configHandler.battery1ID, 1000, 1).setUnlocalizedName("battery1");
+    public static Item battery2 = new battery2(configHandler.battery2ID, 8000, 2).setUnlocalizedName("battery2");
+    public static Item battery3 = new battery3(configHandler.battery3ID, 64000, 3).setUnlocalizedName("battery3");
+    public static Item battery4 = new battery4(configHandler.battery4ID, 512000, 4).setUnlocalizedName("battery4");
+
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
     public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null,
@@ -251,7 +261,7 @@ public class electrolysmCore
     public static Block electrolChamber = new electrolChamber(configHandler.electrolChamberID,
             null, false, ContectedTexture);
     public static BlockContainer seperator = new seporator(configHandler.seperatorID, null, false);
-    public static BlockContainer smeltery = (BlockContainer) new smeltory(configHandler.smelteryID, null, false).setCreativeTab(TabElectrolysm);
+    public static BlockContainer smeltory = (BlockContainer) new smeltory(configHandler.smelteryID, null, false).setCreativeTab(TabElectrolysm);
     public static Item impureDusts = new impureDusts(configHandler.impureDustsID);
     public static Item dusts = new dusts(configHandler.dustsID);
     public static Item node = new node(configHandler.nodeID);

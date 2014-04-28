@@ -60,7 +60,7 @@ public class Names
         LanguageRegistry.addName(electrolysmCore.crusher, "Crusher");
         LanguageRegistry.addName(electrolysmCore.electrolisisCore, "Electrolysis Chamber");
         LanguageRegistry.addName(electrolysmCore.electrolChamber, "Electrolysis Wall");
-        LanguageRegistry.addName(electrolysmCore.smeltery, "Smeltery");
+        LanguageRegistry.addName(electrolysmCore.smeltory, "Smeltery");
         LanguageRegistry.addName(electrolysmCore.smeltoryActive, "Smeltory");
         LanguageRegistry.addName(electrolysmCore.crusherActive, "Crusher");
         LanguageRegistry.addName(electrolysmCore.net, "Ore Net");

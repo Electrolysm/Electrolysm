@@ -10,18 +10,18 @@ import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
- * Created by Ben on 26/01/14.
+ * Created by Clarky158 on 26/01/14.
  */
 public class TileEntityMappingHandler
 {
     public static void addMappings()
     {
-        GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
         GameRegistry.registerTileEntity(TileEntityBlastDoor.class, "TileEntityBlastDoor");
         GameRegistry.registerTileEntity(TileEntityCrusher.class, "TileEntityCrusher");
         GameRegistry.registerTileEntity(TileEntityElectrolisisCore.class, "TileEntityElectrolysisCore");
@@ -33,5 +33,7 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityLiquidiser.class, "TileEntityLiquidiser");
         GameRegistry.registerTileEntity(TileEntitySmeltory.class, "TileEntitySmeltory");
         GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
+        GameRegistry.registerTileEntity(TileEntityGeneratorCoal.class, "TileEntityGeneratorCoal");
+        GameRegistry.registerTileEntity(TileEntityGeneratorAntimatter.class, "TileEntityGeneratorAntimatter");
     }
 }

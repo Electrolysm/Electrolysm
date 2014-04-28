@@ -1,16 +1,15 @@
 package assets.electrolysm.electro.powerSystem;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
+import assets.electrolysm.api.powerSystem.PowerUsage;
+import assets.electrolysm.api.powerSystem.meter.IMeterable;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.block.te.TileEntityIronFrame;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrical;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -41,21 +40,13 @@ public class energyMeter extends Item
             {
                 TileEntity worldTE = world.getBlockTileEntity(x, y, z);
 
-                if (worldTE instanceof TileEntityGenerator)
+                if(worldTE instanceof IMeterable)
                 {
-                    TileEntityGenerator te = (TileEntityGenerator)worldTE;
-                    //this.printGeneratorMessage(world, String.valueOf(te.getSendTeU(world, x, y, z)));
-                    return true;
-                }
-                else if (worldTE instanceof TileEntityElectrical)
-                {
-                	TileEntityElectrical te = (TileEntityElectrical)worldTE;
-                    this.printMachineMessage(world, x, y, z, te);
-                    return true;
-                }
-                else
-                {
-                    return false;
+                	//TileEntity for Ore Proccessing
+                	IMeterable te = (IMeterable)worldTE;
+                	
+                	this.printOreMessage(world, x, y, z, te);
+                	return true;
                 }
             }
         }
@@ -63,32 +54,12 @@ public class energyMeter extends Item
         return false;
     }
 
-    @SideOnly(Side.CLIENT)
-    private void printMachineMessage(World world, int x, int y, int z, TileEntityElectrical te)
-    {
-        if (world.isRemote)
-        {
-            if(te.isActive())
-            {
-            	String message = "Current Energy Level is: " + te.energy.getEnergy();
-                FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
-            }
-        }
-        else
-        {
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void printGeneratorMessage(World world, String powerSend)
-    {
-        if (world.isRemote)
-        {
-            String message = "This generator is producing " + powerSend + " TeU";
-            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
-        }
-        else
-        {
-        }
-    }
+	private void printOreMessage(World world, int x, int y, int z, IMeterable te) 
+	{
+		Block block = te.getBlock();
+		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block) + "TeU";
+		
+		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
+	}
+	
 }

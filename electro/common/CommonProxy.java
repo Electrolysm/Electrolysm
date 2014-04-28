@@ -36,9 +36,12 @@ public class CommonProxy
     public static ResourceLocation GENERATOR_GEO_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/geoGenGUI.png");
     public static ResourceLocation GENERATOR_FUSION_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/fusionGenGUI.png");
     public static ResourceLocation GENERATOR_MATTER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/matterGenGUI.png");
+    public static ResourceLocation GENERATOR_MATTER_INC_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/matterGenIncGUI.png");
     public static ResourceLocation WORK_BENCH_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/workBenchGUI.png");
     public static ResourceLocation CRUSHER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/crusherGUI.png");
     public static ResourceLocation LIQUIDISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/liquidiserGUI.png");
+	public static ResourceLocation SLOT_ICON = new ResourceLocation(MOD_ID_LOWER, "textures/gui/slotIcon.png");;
+
     //NEI GUIs
     public static ResourceLocation NEI_ELECTROL_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/nei/neiElectrolysisGUI.png");
     

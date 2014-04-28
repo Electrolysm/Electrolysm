@@ -168,13 +168,14 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     	ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
         ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(inStack);
+        ItemStack result2 = result;
 
         if(connectedLiquids > 0)
         {
         	crushTime = maxCrushTime / connectedLiquids;
         }
         
-        if (inStack != null && connectedLiquids > 0)
+        if (inStack != null)
         {
             if (result != null)
             {
@@ -189,7 +190,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
                     	{
                     		time = 0;
                     		this.decrStackSize(0, 1);
-	                        this.setInventorySlotContents(1, result);
+	                        this.setInventorySlotContents(1, result2);
 	                        this.onInventoryChanged();
                     	}
                     	else
@@ -236,7 +237,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 		int id2 = world.getBlockId(x - 1, y, z);
 		int id3 = world.getBlockId(x, y, z + 1);
 		int id4 = world.getBlockId(x, y, z - 1);
-		int idBottom = world.getBlockId(x, y - 1, z);
 		
 		int overall = 0;
 		
@@ -253,10 +253,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 			overall = overall + 1;
 		}
 		if(id4 == electrolysmCore.sulpuricAcid.blockID)
-		{
-			overall = overall + 1;
-		}
-		if(idBottom == electrolysmCore.sulpuricAcid.blockID)
 		{
 			overall = overall + 1;
 		}

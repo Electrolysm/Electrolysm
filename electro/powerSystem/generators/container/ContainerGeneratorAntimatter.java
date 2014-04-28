@@ -1,45 +1,28 @@
 package assets.electrolysm.electro.powerSystem.generators.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.electro.block.machines.container.SlotFuel;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
+import assets.electrolysm.api.powerSystem.SlotBattery;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerGenerator extends Container
+public class ContainerGeneratorAntimatter extends Container
 {
-    private TileEntityGenerator entity;
-    private int GenID;
+    private TileEntityGeneratorAntimatter entity;
 
-    public ContainerGenerator(TileEntityGenerator entity, InventoryPlayer inventory, int GeneratorID)
+    public ContainerGeneratorAntimatter(TileEntityGeneratorAntimatter entity, InventoryPlayer inventory)
     {
         this.entity = entity;
-        this.GenID = GeneratorID;
+
+        this.addSlotToContainer(new Slot(entity, 0, 26, 60));
+        this.addSlotToContainer(new Slot(entity, 1, 134, 60));
         
-        if(this.GenID == 0)
-        {
-        	this.addSlotToContainer(new Slot(entity, 0, 80, 49)); //top left
-        }
-        else if(this.GenID == 1)
-        {
-        	
-        }
-        else if(this.GenID == 2)
-        {
-        	
-        }
-        else if(this.GenID == 3)
-        {
-        	this.addSlotToContainer(new Slot(entity, 0, 26, 60));
-        	this.addSlotToContainer(new Slot(entity, 1, 134, 60));
-        }
-        	
-        
+        this.addSlotToContainer(new SlotBattery(entity, 2, 15, 15));
         
         int var3;
 

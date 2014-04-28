@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

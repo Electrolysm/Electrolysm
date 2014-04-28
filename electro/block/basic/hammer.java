@@ -134,9 +134,9 @@ public class hammer extends ItemTool
     	if(id == electrolysmCore.nettedBlock.blockID)
     	{
     		ItemStack drop = new ItemStack(electrolysmCore.impureDusts, this.getDustRandomAmount(1, 2), meta);
-        	ItemStack net = new ItemStack(electrolysmCore.net, 1, 0);
-    		livingBase.entityDropItem(drop, 0);
-        	livingBase.entityDropItem(net, 0);
+        	//ItemStack net = new ItemStack(electrolysmCore.net, 1, 0);
+    		((EntityPlayer)livingBase).entityDropItem(drop, 0);
+        	//livingBase.entityDropItem(net, 0);
     	}
     	
     	return true;

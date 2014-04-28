@@ -8,6 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
+import assets.electrolysm.api.powerSystem.SlotBattery;
 import assets.electrolysm.electro.block.machines.container.SlotOutput;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
 import cpw.mods.fml.relauncher.Side;
@@ -24,6 +25,8 @@ public class ContainerCrusher extends Container
         this.addSlotToContainer(new Slot(tileFurnace, 0, 44, 17 + 18));
         this.addSlotToContainer(new SlotGrinder(tileFurnace, 2, 79, 17 + 18));
         this.addSlotToContainer(new SlotOutput(tileFurnace, 1, 132 + 2 - 18, 35));
+        this.addSlotToContainer(new SlotBattery(tileFurnace, 3, 15, 15));
+
 
         for (int invRow = 0; invRow < 3; ++invRow)
         {
@@ -127,17 +130,14 @@ public class ContainerCrusher extends Container
     private int lastTime;
     private int lastRotations;
     private int lastCrushTime;
-    private int lastEnergy;
     
     
     @Override
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.rotations);
         par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.time);
         par1ICrafting.sendProgressBarUpdate(this, 3, this.furnace.crushTime);
-        par1ICrafting.sendProgressBarUpdate(this, 2, (int)(this.furnace.currentEnergy));
     }
 
     /**
@@ -156,16 +156,6 @@ public class ContainerCrusher extends Container
                 icrafting.sendProgressBarUpdate(this, 0, this.furnace.time);
             }
 
-            if (this.lastRotations != this.furnace.rotations)
-            {
-                icrafting.sendProgressBarUpdate(this, 1, this.furnace.rotations);
-            }
-            
-            if (this.lastEnergy != this.furnace.currentEnergy)
-            {
-                icrafting.sendProgressBarUpdate(this, 2, (int)(this.furnace.currentEnergy));
-            }
-            
             if (this.lastCrushTime != this.furnace.crushTime)
             {
                 icrafting.sendProgressBarUpdate(this, 3, (this.furnace.crushTime));
@@ -175,8 +165,6 @@ public class ContainerCrusher extends Container
 
         this.lastTime = this.furnace.time;
         this.lastCrushTime = this.furnace.crushTime;
-        this.lastRotations = this.furnace.rotations;
-        this.lastEnergy = (int)(this.furnace.currentEnergy);
     }
 
     @SideOnly(Side.CLIENT)
@@ -188,16 +176,6 @@ public class ContainerCrusher extends Container
             this.furnace.time = par2;
         }
 
-        if (par1 == 1)
-        {
-            this.furnace.rotations = par2;
-        }
-        
-        if(par1 == 2)
-        {
-        	this.furnace.currentEnergy = par2;
-        }
-        
         if(par1 == 3)
         {
         	this.furnace.crushTime = par2;

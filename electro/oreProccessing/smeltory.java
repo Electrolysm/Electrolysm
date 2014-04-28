@@ -103,7 +103,7 @@ public class smeltory extends oreProcessMachineBase
         }
         else
         {
-            world.setBlock(x, y, z, electrolysmCore.smeltery.blockID);
+            world.setBlock(x, y, z, electrolysmCore.smeltory.blockID);
         }
 
         keepInventory = false;

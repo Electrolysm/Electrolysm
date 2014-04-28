@@ -1,4 +1,4 @@
-package assets.electrolysm.electro;
+package assets.electrolysm.electro.fuels;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import assets.electrolysm.api.specialFuel.FuelData;
 import assets.electrolysm.api.specialFuel.IFuelStorage;
 import assets.electrolysm.api.specialFuel.ISpecialFuel;
 import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
+import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

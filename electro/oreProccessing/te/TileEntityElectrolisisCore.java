@@ -1,24 +1,29 @@
 package assets.electrolysm.electro.oreProccessing.te;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import assets.electrolysm.api.powerSystem.meter.IMeterable;
+import assets.electrolysm.api.powerSystem.usageMachine.IPullEnergy;
+import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.electrolisisCore;
 import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
+import cpw.mods.fml.common.Loader;
 
-public class TileEntityElectrolisisCore extends TileEntityElectrical implements IInventory, /*IPullEnergy,
-																				IMeterable, */ISidedInventory
+public class TileEntityElectrolisisCore extends TileEntity implements IInventory, /*IPullEnergy,
+																				IMeterable, */ISidedInventory, IMeterable
 {
     //GUI STUFF
     private ItemStack[] inventory;
 
     public TileEntityElectrolisisCore()
     {
-    	super(50000000);
         this.inventory = new ItemStack[5];
     }
 
@@ -132,7 +137,6 @@ public class TileEntityElectrolisisCore extends TileEntityElectrical implements 
     public int MaxElectroTime = 100;
     public int electroTime = 100;
     public boolean active = false;
-    private int requiredEnergy = 5000;
     
     @Override
     public void updateEntity()
@@ -148,7 +152,7 @@ public class TileEntityElectrolisisCore extends TileEntityElectrical implements 
         	active = true;
         }
         
-        if (this.energy.getEnergy() > this.requiredEnergy && electrolisisCore.isFormed(xCoord, yCoord, zCoord, worldObj, 0, 0))
+        if (true)
         {
             ItemStack input1 = getStackInSlot(0);
             ItemStack input2 = getStackInSlot(1);
@@ -239,11 +243,6 @@ public class TileEntityElectrolisisCore extends TileEntityElectrical implements 
             	time = 0;
             }
 
-        }
-        
-        if(time > 0)
-        {
-        	this.energy.setEnergy(this.energy.getEnergy() - this.requiredEnergy);
         }
     }
 
@@ -349,4 +348,10 @@ public class TileEntityElectrolisisCore extends TileEntityElectrical implements 
         return side != 0 || slot != 1 || slot != 3 || slot != 4 || item.getItem() == electrolysmCore.dusts
         		|| active != false; 
     }
+	
+	@Override
+	public Block getBlock() 
+	{
+		return electrolysmCore.electrolisisCore;
+	}
 }

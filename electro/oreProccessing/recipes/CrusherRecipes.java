@@ -29,11 +29,11 @@ public class CrusherRecipes
     }
 
     private CrusherRecipes()
-    {
+    {/*
     	if(ModLoader.isModLoaded("IC2"))
     	{
     	}
-    	
+    	*/
     	
         //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
         //METAs		0		   1	  2		  3			4		5

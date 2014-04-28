@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

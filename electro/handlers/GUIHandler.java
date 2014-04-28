@@ -30,9 +30,12 @@ import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
 import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
-import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGenerator;
-import assets.electrolysm.electro.powerSystem.generators.container.ContainerGenerator;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
+import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGeneratorAntimatter;
+import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGeneratorCoal;
+import assets.electrolysm.electro.powerSystem.generators.container.ContainerGeneratorAntimatter;
+import assets.electrolysm.electro.powerSystem.generators.container.ContainerGeneratorCoal;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
+import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler
@@ -67,11 +70,6 @@ public class GUIHandler implements IGuiHandler
             return new ContainerPort((TileEntityPort)entity, player.inventory);
         }
 
-        if (entity instanceof TileEntityGenerator)
-        {
-            return new ContainerGenerator((TileEntityGenerator)entity, player.inventory, ((TileEntityGenerator)entity).genID);
-        }
-
         if (entity instanceof TileEntityWorkBench)
         {
             return new ContainerWorkBench((TileEntityWorkBench)entity, player.inventory);
@@ -90,6 +88,16 @@ public class GUIHandler implements IGuiHandler
         	return new ContainerSmeltory(player.inventory, (TileEntitySmeltory)entity);
         }
 
+        if(entity instanceof TileEntityGeneratorCoal)
+        {
+        	return new ContainerGeneratorCoal((TileEntityGeneratorCoal)entity, player.inventory);
+        }
+        
+        if(entity instanceof TileEntityGeneratorAntimatter)
+        {
+        	return new ContainerGeneratorAntimatter((TileEntityGeneratorAntimatter)entity, player.inventory);
+        }
+        
         return null;
     }
 
@@ -123,11 +131,6 @@ public class GUIHandler implements IGuiHandler
             return new GUIPort((TileEntityPort)entity, player.inventory);
         }
 
-        if (entity instanceof TileEntityGenerator)
-        {
-            return new GUIGenerator((TileEntityGenerator)entity, player.inventory);
-        }
-
         if (entity instanceof TileEntityWorkBench)
         {
             return new GUIWorkBench((TileEntityWorkBench)entity, player.inventory);
@@ -145,7 +148,15 @@ public class GUIHandler implements IGuiHandler
         {
         	return new GUISmeltory((TileEntitySmeltory)entity, player.inventory);
         }
+        if(entity instanceof TileEntityGeneratorCoal)
+        {
+        	return new GUIGeneratorCoal((TileEntityGeneratorCoal)entity, player.inventory);
+        }
 
+        if(entity instanceof TileEntityGeneratorAntimatter)
+        {
+        	return new GUIGeneratorAntimatter((TileEntityGeneratorAntimatter)entity, player.inventory);
+        }
         return null;
     }
 }

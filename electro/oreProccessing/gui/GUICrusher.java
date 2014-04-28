@@ -1,20 +1,15 @@
 package assets.electrolysm.electro.oreProccessing.gui;
 
-import java.util.List;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 import org.lwjgl.opengl.GL11;
 
-import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.oreProccessing.container.ContainerCrusher;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
-import codechicken.nei.VisiblityData;
-import codechicken.nei.api.INEIGuiHandler;
-import codechicken.nei.api.TaggedInventoryArea;
 
 public class GUICrusher extends GuiContainer //implements INEIGuiHandler
 {
@@ -38,7 +33,7 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         int progress = ((int)((entity.time * 46) / entity.crushTime));
         int coord = 0;
         
-        if(!entity.active)
+        if(entity.time > 0)
         {
         	if(entity.getStackInSlot(2) != null)
         	{
@@ -59,13 +54,13 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         }
 
         //this.drawTexturedModalRect(x + 150, y + 25, 176, 14, 24, progress);
+        //this.drawTexturedModelRectFromIcon()
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-    	String RotationString = "Rotations: " + entity.rotations  + "RPM";
-    	String EnergyString = "Energy: " + this.getEnergyStat(entity.currentEnergy, entity);
+    	//String RotationString = "Rotations: " + entity.rotations  + "RPM";
         
     	fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
         //fontRenderer.drawString(EnergyString, 13, 6 + 60 + 6 + 10, 4210752);
@@ -73,25 +68,4 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         
     }
 
-    private String lastOutput;
-    
-	private String getEnergyStat(long currentEnergy, TileEntityCrusher te) 
-	{
-		String empty = "Empty";
-		String part = "Part Filled";
-		String full = "Full";
-		
-		if(currentEnergy <= (te.energy.getEnergyCapacity() * 0.1))
-		{
-			return empty;
-		}
-		else if(currentEnergy <= (te.energy.getEnergyCapacity() * 0.75))
-		{
-			return part;
-		}
-		else
-		{
-			return full;
-		}
-	}
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import assets.electrolysm.api.powerSystem.IBatteryCharger;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -21,172 +22,32 @@ import universalelectricity.api.net.NetworkEvent;
 import universalelectricity.api.vector.Vector3;
 
 @UniversalClass
-public class TileEntityProducer extends TileEntity implements IEnergyInterface, IEnergyContainer, INetworkProvider
+public class TileEntityProducer extends TileEntity implements IBatteryCharger
 {
-  public EnergyStorageHandler energy;
-  protected IEnergyNetwork network;
-  
-  public TileEntityProducer(long producing)
-  {
-    super();
-    energy = new EnergyStorageHandler(producing * 1000);
-  }
-
-  public boolean canConnect(ForgeDirection direction, Object obj)
-  {
-    if (CompatibilityModule.isHandler(obj))
-    {
-      if ((direction == null) || (direction.equals(ForgeDirection.UNKNOWN)))
-      {
-        return false;
-      }
-
-      return (getInputDirections().contains(direction)) || (getOutputDirections().contains(direction));
-    }
-
-    return false;
-  }
-
-  public void readFromNBT(NBTTagCompound nbt)
-  {
-    super.readFromNBT(nbt);
-    if (this.energy != null)
-    {
-      this.energy.readFromNBT(nbt);
-    }
-  }
-
-  public void writeToNBT(NBTTagCompound nbt)
-  {
-    super.writeToNBT(nbt);
-    if (this.energy != null)
-    {
-      this.energy.writeToNBT(nbt);
-    }
-  }
-
-  public long getEnergy(ForgeDirection from)
-  {
-    if (this.energy != null)
-    {
-      return this.energy.getEnergy();
-    }
-
-    return 0L;
-  }
-
-  public long getEnergyCapacity(ForgeDirection from)
-  {
-    if (this.energy != null)
-    {
-      return this.energy.getEnergyCapacity();
-    }
-
-    return 0L;
-  }
-
-  public long onReceiveEnergy(ForgeDirection from, long receive, boolean doReceive)
-  {
-    if ((this.energy != null) && ((from == ForgeDirection.UNKNOWN) || (getInputDirections().contains(from))))
-    {
-      return this.energy.receiveEnergy(receive, doReceive);
-    }
-
-    return 0L;
-  }
-
-  public long onExtractEnergy(ForgeDirection from, long extract, boolean doExtract)
-  {
-    if ((this.energy != null))
-    {
-      return this.energy.extractEnergy(extract, doExtract);
-    }
-
-    return 0L;
-  }
-
-  public void setEnergy(ForgeDirection from, long energy)
-  {
-    if (this.energy != null)
-      this.energy.setEnergy(energy);
-  }
-
-  protected long produce(long outputEnergy)
-  {
-    long usedEnergy = 0L;
-
-    for (ForgeDirection direction : getOutputDirections())
-    {
-      if (outputEnergy > 0L)
-      {
-        TileEntity tileEntity = new Vector3(this).translate(direction).getTileEntity(this.worldObj);
-
-        if (tileEntity != null)
-        {
-          usedEnergy += CompatibilityModule.receiveEnergy(tileEntity, direction.getOpposite(), outputEnergy, true);
-        }
-      }
-    }
-    new NetworkEvent.EnergyProduceEvent(network, this, usedEnergy, true);
-
-    return usedEnergy;
-  }
-
-  protected long produce()
-  {
-    long totalUsed = 0L;
-
-    for (ForgeDirection direction : getOutputDirections())
-    {
-      if (this.energy.getEnergy() > 0L)
-      {
-        TileEntity tileEntity = new Vector3(this).translate(direction).getTileEntity(this.worldObj);
-
-        if (tileEntity != null)
-        {
-          long used = CompatibilityModule.receiveEnergy(tileEntity, direction.getOpposite(), this.energy.extractEnergy(this.energy.getEnergy(), false), true);
-          totalUsed += this.energy.extractEnergy(used, true);
-        }
-      }
-    }
-
-    return totalUsed;
-  }
-  
-  
-  public List<ForgeDirection> getInputDirections()
-  {
-	  List<ForgeDirection> dirs = new ArrayList<ForgeDirection>();
-
-    for (int i = 0; i < 6; i++)
-    {
-    	dirs.add(i, ForgeDirection.VALID_DIRECTIONS[i]);
-    }
-
-    return dirs;
-  }
-
-  public List<ForgeDirection> getOutputDirections()
-  {
-	  List<ForgeDirection> dirs = new ArrayList<ForgeDirection>();
-
-    for (int i = 0; i < 6; i++)
-    {
-    	dirs.add(i, ForgeDirection.VALID_DIRECTIONS[i]);
-    }
-
-    return dirs;
-  }
-
-  @Override
-  public Object getNetwork() 
-  {
-	  return network;
-  }
-
-  @Override
-  public void setNetwork(Object network) 
-  {
-	  this.network = (IEnergyNetwork) network;
-  }
+	public static int capacity;
+	
+	public TileEntityProducer(int capacity)
+	{
+		this.capacity = capacity;
+	}
+	
+	@Override
+	public ItemStack chargedBattery(ItemStack stack, int maxCharge)
+	{
+		return this.chargedBatteryWithAmount(1, stack, maxCharge);
+	}
+	
+	@Override
+	public ItemStack chargedBatteryWithAmount(int amount, ItemStack stack, int maxCharge)
+	{
+		if(stack.getMaxDamage() == maxCharge)
+		{
+			if(maxCharge >= (stack.getItemDamage() + amount))
+			{
+				return new ItemStack(stack.getItem(), stack.stackSize, stack.getItemDamage() + amount);
+			}
+		}
+		
+		return stack;
+	}
 }

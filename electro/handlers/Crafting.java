@@ -324,7 +324,7 @@ public class Crafting
         		Character.valueOf('M'), electrolysmCore.advancedMicrochip,
         		Character.valueOf('F'), Block.furnaceIdle);
 
-        GameRegistry.addRecipe(new ItemStack(electrolysmCore.smeltery, 1, 3),
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.smeltory, 1, 3),
         		"IRI", "IMI", "FFF",
         		Character.valueOf('I'), Item.ingotIron,
         		Character.valueOf('R'), Item.redstone,

@@ -4,7 +4,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGenerator;
 
 public class TileEntityIronFrame extends TileEntity
 {/*

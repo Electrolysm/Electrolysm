@@ -2,6 +2,7 @@ package assets.electrolysm.electro.oreProccessing.te;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -10,19 +11,17 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import assets.electrolysm.api.powerSystem.meter.IMeterable;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.crusher;
-import assets.electrolysm.electro.oreProccessing.smeltory;
 import assets.electrolysm.electro.oreProccessing.recipes.SmeltoryRecipes;
 
-public class TileEntitySmeltory extends TileEntityElectrical implements IInventory, ISidedInventory
+public class TileEntitySmeltory extends TileEntity implements IInventory, ISidedInventory, IMeterable
 {
     private ItemStack[] inventory;
     public boolean isOpen;
 
     public TileEntitySmeltory()
     {
-    	super(500000);
         this.inventory = new ItemStack[2];
     }
 
@@ -168,167 +167,135 @@ public class TileEntitySmeltory extends TileEntityElectrical implements IInvento
     public int maxTemp = 100;
     public int maxMaxTemp = 100;
     boolean redstonePower;
-    public boolean active = false;
-    
-    public int energyInt;
-    public int requiredEnergy = 500;
     
     @Override
     public void updateEntity()
     {
-    	if(active)
-    	{
-    		if(worldObj.getBlockId(xCoord, yCoord, zCoord) == electrolysmCore.smeltery.blockID)
-    		{
-    			smeltory.updateFurnaceBlockState(true, worldObj, xCoord, yCoord, zCoord);
-    		}
-    	}
-    	else
-    	{
-    		if(worldObj.getBlockId(xCoord, yCoord, zCoord) == electrolysmCore.smeltoryActive.blockID)
-    		{
-    			smeltory.updateFurnaceBlockState(false, worldObj, xCoord, yCoord, zCoord);
-    		}
-    	}
+    	this.onInventoryChanged();
+
+    	ItemStack inStack = getStackInSlot(0);
+        ItemStack output = getStackInSlot(1);
+        ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
+        ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
+        Random rand = new Random();
+    	int inputPersent = this.getInputPersent(inStack);
+    	redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
     	
-    	if(this.energy.getEnergy() > this.requiredEnergy)
+    	/*
+    	if(redstonePower && ((temp + 1) <= maxTemp))
     	{
-    		this.energyInt = (int) this.energy.getEnergy();
-	    	this.onInventoryChanged();
-	
-	    	ItemStack inStack = this.getStackInSlot(0);
-	        ItemStack output = this.getStackInSlot(1);
-	        ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
-	        ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
-	        Random rand = new Random();
-	
-	    	redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
-	    	
-	    	/*
-	    	if(redstonePower && ((temp + 1) <= maxTemp))
-	    	{
-	    		if(rand.nextInt(15) == 1)
-	    		{
-	    			temp = temp + 1;
-	    		}
-	    	}*/
-	    	
-	        if (inStack != null)
-	        {
-	            if (result != null)
-	            {
-	            	//if(temp == maxTemp)
-	            	//{
-		                if (output == null)
-		                {
-		                    int outputSize = 0;
-		                    int resultSize = result.stackSize;
-		
-		                    if (((resultSize + outputSize) <= 64))
-		                    {
-		                    	if(time == smeltTime)
-		                    	{
-		                    		time = 0;
-		                    		active = false;
-		                    		this.decrStackSize(0, 1);
-			                        this.setInventorySlotContents(1, result);
-			                        this.onInventoryChanged();
-		                    	}
-		                    	else
-		                    	{
-		                    		time = time + 1;
-		                    		active = true;
-		                    	}
-		                    }
-		                }
-		                else
-		                {
-		                    int outputSize = output.stackSize;
-		                    int resultSize = result.stackSize;
-		
-		                    if (((resultSize + outputSize) < 64) && output.isItemEqual(result))
-		                    {
-		                    	if(time == smeltTime)
-		                    	{
-		                    		time = 0;
-		                    		active = false;
-			                        this.decrStackSize(0, 1);
-			                        this.setInventorySlotContents(1, new ItemStack(result.getItem(), 
-			                        		(result.stackSize + output.stackSize), result.getItemDamage()));
-			                        this.onInventoryChanged();
-		                    	}
-		                    	else
-		                    	{
-		                    		time = time + 1;
-		                    		active = true;
-		                    	}
-		                    }
-		                }
-		                
-	                }
-	            	else
-	                {
-	            		if(rand.nextInt(5) == 1)
-	            		{
-	            			temp = temp + 1;
-	            		}
-	            		active = true;
-	                }
-	                //}
-	            	//else
-	                //{
-	            		//if(rand.nextInt(5) == 1)
-	            		//{
-	            	//		temp = temp + 1;
-	            	//	}
-	                //}
-	           	}
-	            else
-	            {
-	            	time = 0;
-	            	if((temp - 1) >= 0 && rand.nextInt(10) == 1)
-	            	{
-	            		if(!(redstonePower))
-	            		{
-	            			temp = temp - 1;
-	            		}
-	            	}
-	            	if(temp == 0 && time == 0)
-	        		{
-	        			active = false;
-	        		}
-	        		else
-	        		{
-	        			active = true;
-	        		}
-	            }
+    		if(rand.nextInt(15) == 1)
+    		{
+    			temp = temp + 1;
     		}
-       /* }
+    	}*/
+    	
+        if (inStack != null)
+        {
+            if (result != null)
+            {
+            	if(temp == maxTemp)
+            	{
+	                if (output == null)
+	                {
+	                    int outputSize = 0;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) <= 64))
+	                    {
+	                    	if(time == smeltTime)
+	                    	{
+	                    		time = 0;
+	                    		this.decrStackSize(0, 1);
+		                        this.setInventorySlotContents(1, result);
+		                        this.onInventoryChanged();
+	                    	}
+	                    	else
+	                    	{
+	                    		time = time + 1;
+	                    	}
+	                    }
+	                }
+	                else
+	                {
+	                    int outputSize = output.stackSize;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) < 64))
+	                    {
+	                    	if(time == smeltTime)
+	                    	{
+	                    		time = 0;
+		                        this.decrStackSize(0, 1);
+		                        this.setInventorySlotContents(1, new ItemStack(result.getItem(), 
+		                        		(result.stackSize + output.stackSize), result.getItemDamage()));
+		                        this.onInventoryChanged();
+	                    	}
+	                    	else
+	                    	{
+	                    		time = time + 1;
+	                    	}
+	                    }
+	                }
+	                
+                }
+            	else
+                {
+            		if(rand.nextInt(5) == 1)
+            		{
+            			temp = temp + 1;
+            		}
+                }
+           	}
+            else
+            {
+            	time = 0;
+            	if((temp - 1) > 0 && rand.nextInt(10) == 1)
+            	{
+            		if(!(redstonePower))
+            		{
+            			temp = temp - 1;
+            		}
+            	}
+            }
+        }
         else
         {
         	time = 0;
-        	if((temp - 1) >= 0 && rand.nextInt(10) == 1)
+        	if((temp - 1) > 0 && rand.nextInt(10) == 1)
         	{
         		if(!(redstonePower))
         		{
         			temp = temp - 1;
         		}        	
         	}
-        	if(temp == 0 && time == 0)
-    		{
-    			active = false;
-    		}
-    		else
-    		{
-    			active = true;
-    		}
-        }*/
-    	
-    	if(time > 0 || temp > 0)
-    	{
-    		this.energy.setEnergy(this.energy.getEnergy() - this.requiredEnergy);
-    	}
+        }
     }
+
+	private int getInputPersent(ItemStack input) 
+	{
+		if(input != null)
+		{
+			String unlocalName = input.getUnlocalizedName();
+			
+			if(unlocalName.contains("dust"))
+			{
+				return 75;
+			}
+			else if(unlocalName.contains("ingot"))
+			{
+				return 139;
+			}
+			else
+			{
+				return 100;
+			}
+		}
+		else
+		{
+			return 100;
+		}
+	}
 
 	int[] slots_bottom = {1, 1};
 	int[] slots_top = {0, 0};
@@ -399,6 +366,12 @@ public class TileEntitySmeltory extends TileEntityElectrical implements IInvento
 	public void setGuiDisplayName(String displayName) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Block getBlock() 
+	{
+		return electrolysmCore.smeltory;
 	}
 
 }

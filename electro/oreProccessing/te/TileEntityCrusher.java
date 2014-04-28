@@ -2,39 +2,32 @@ package assets.electrolysm.electro.oreProccessing.te;
 
 import java.util.Random;
 
-import universalelectricity.api.UniversalClass;
-import net.minecraft.block.BlockFurnace;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.world.World;
+import net.minecraft.tileentity.TileEntity;
+import assets.electrolysm.api.powerSystem.PowerUsage;
+import assets.electrolysm.api.powerSystem.meter.IMeterable;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.packetHandler;
-import assets.electrolysm.electro.oreProccessing.crusher;
 import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityCrusher extends TileEntityElectrical implements IInventory, ISidedInventory
+public class TileEntityCrusher extends TileEntity implements IInventory, ISidedInventory, IMeterable
 {
     private ItemStack[] inventory;
     public boolean isOpen;
 
     public TileEntityCrusher()
     {
-    	super(500000);
-        this.inventory = new ItemStack[3];
-        //this.energy.setCapacity(5000);
+        this.inventory = new ItemStack[4];
     }
 
     @Override
     public int getSizeInventory()
     {
-    	//Sets Inventory Size
         return inventory.length;
     }
 
@@ -163,140 +156,132 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
     }
 
     public int time = 0;
-    private int maxCrushTime = 400;
+    public int maxCrushTime = 400;
     public int crushTime = 400;
-    
-    public int rotations = 0;
-    private int maxRotations = 100;
-    private int maxRotaionsFinal = 100;
-    
-	private long requiredEnergy = 500;
+    public int requiredEnergy = PowerUsage.getTeUFromMap(this.getBlock()).getValue();
     
     @Override
     public void updateEntity()
     {
     	this.onInventoryChanged();
-    	this.currentEnergy = this.energy.getEnergy();
-    	//System.out.println(this.energy.getEnergy());
     	
-    	if(!worldObj.isRemote && currentEnergy >= this.requiredEnergy)
-    	{
-    		
-	        ItemStack inStack = getStackInSlot(0);
-	        ItemStack output = getStackInSlot(1);
-	        ItemStack grindStone = getStackInSlot(2);
-	        ItemStack result = CrusherRecipes.smelting().getCrushingResult(inStack);
-	        Random rand = new Random();
-	
-	        if(grindStone != null)
-	        {
-	        	//extraDust = this.getExtraDust(grindStone);
-	        	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
-	        	{
-	        		if(active == false)
-	        		{
-	        			crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 1));
-	        			if(this.getExtraDust(grindStone) != 0)
-	        			{
-	        				//maxRotations = (int)(maxRotaionsFinal * (this.getExtraDust(grindStone)));
-	        			}
-	        		}
-	        	}
-	        	else
-	        	{
-	        		crushTime = maxCrushTime;
-	        	}
-	        }
-	        else
-	        {
-	        	crushTime = maxCrushTime;
-	        }
+    	ItemStack battery = getStackInSlot(3);
+        ItemStack inStack = getStackInSlot(0);
+        ItemStack output = getStackInSlot(1);
+        ItemStack grindStone = getStackInSlot(2);
+        ItemStack result = CrusherRecipes.smelting().getCrushingResult(inStack);
+        int extraDust = 0;
+        ItemStack result2 = result;
+        Random rand = new Random();
 
+        if(grindStone != null)
+        {
+        	//extraDust = this.getExtraDust(grindStone);
+        	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
+        	{
+        		crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 1));
+        	}
+        	else
+        	{
+        		crushTime = maxCrushTime;
+        	}
+        }
+        else
+        {
+        	crushTime = maxCrushTime;
+        }
+        if(result != null)
+        {
+        	result2 = new ItemStack(result.getItem(), result.stackSize + extraDust, result.getItemDamage());
+        }
+        
+        if(battery != null && battery.getItemDamage() > 0)
+        {
 	        if (inStack != null)
 	        {
 	            if (result != null)
 	            {
-	            	/*if(rotations == maxRotations)
-	            	{*/
-		                if (output == null)
-		                {
-		                    int outputSize = 0;
-		                    int resultSize = result.stackSize;
-		
-		                    if (((resultSize + outputSize) <= 64))
-		                    {
-		                    	if(time == crushTime)
-		                    	{
-		                    		time = 0;
-		                    		active = false;
-		                    		this.decrStackSize(0, 1);
-			                        this.setInventorySlotContents(1, result);
-			                    	this.onInventoryChanged();
-		                    	}
-		                    	else
-		                    	{
-		                    		time = time + 1;
-		                    		active = true;
-		                    	}
-		                    }
-		                }
-		                else
-		                {
-		                    int outputSize = output.stackSize;
-		                    int resultSize = result.stackSize;
-		
-		                    if (((resultSize + outputSize) < 64))
-		                    {
-		                    	if(time == crushTime)
-		                    	{
-		                    		time = 0;
-		                    		active = false;
-			                        this.decrStackSize(0, 1);
-			                        output.stackSize = (output.stackSize + result.stackSize);
-			                    	this.onInventoryChanged();
-		                    	}
-		                    	else
-		                    	{
-		                    		time = time + 1;
-		                    		active = true;
-		                    	}
-		                    }
-		                }
-	            	/*}
-	            	else
-	            	{
-	            		rotations = rotations + 1;
-	            		active = true;
-	            	}*/
+	                if (output == null)
+	                {
+	                    int outputSize = 0;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) <= 64))
+	                    {
+	                    	if(time == crushTime)
+	                    	{
+	                    		time = 0;
+	                    		this.decrStackSize(0, 1);
+		                        this.setInventorySlotContents(1, result2);
+		                        this.onInventoryChanged();
+		                		battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
+	                    	}
+	                    	else
+	                    	{
+	                    		if((battery.getItemDamage() - this.requiredEnergy) > 0)
+	                    		{
+	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
+	                    		}
+	                    		else
+	                    		{
+	                    			battery.setItemDamage(0);
+	                    		}
+	                    		time = time + 1;
+	                    	}
+	                    }
+	                }
+	                else
+	                {
+	                    int outputSize = output.stackSize;
+	                    int resultSize = result.stackSize;
+	
+	                    if (((resultSize + outputSize) < 64))
+	                    {
+	                    	if(time == crushTime)
+	                    	{
+	                    		time = 0;
+		                        this.decrStackSize(0, 1);
+		                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
+		                        this.onInventoryChanged();
+	                    		if((battery.getItemDamage() - this.requiredEnergy) > 0)
+	                    		{
+	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
+	                    		}
+	                    		else
+	                    		{
+	                    			battery.setItemDamage(0);
+	                    		}	                    	}
+	                    	else
+	                    	{
+	                    		if((battery.getItemDamage() - this.requiredEnergy) > 0)
+	                    		{
+	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
+	                    		}
+	                    		else
+	                    		{
+	                    			battery.setItemDamage(0);
+	                    		}
+	                    		time = time + 1;
+	                    	}
+	                    }
+	                }
 	           	}
 	            else
 	            {
 	            	time = 0;
-	            	rotations = 0;
-	            	active = false;
 	            }
 	        }
 	        else
 	        {
 	        	time = 0;
-	        	rotations = 0;
-	        	active = false;
 	        }
-	        
-    		if(this.rotations > 0 || time != 0)
-    		{
-    			this.energy.setEnergy(this.energy.getEnergy() - this.requiredEnergy);
-    		}
-			crusher.updateFurnaceBlockState(time != 0 || rotations != 0, worldObj, xCoord, yCoord, zCoord);
-
     	}
-    }    	
-    
-    public int getRotations()
-    {
-    	return this.rotations;
+        else
+        {
+        	return;
+        }
     }
-	
+
 	private int getExtraDust(ItemStack grindStone)
 	{
 		if(grindStone == null)
@@ -372,6 +357,11 @@ public class TileEntityCrusher extends TileEntityElectrical implements IInventor
             tagCompound.setInteger("time", time);
     }
     
-    //Energy 
     
+	@Override
+	public Block getBlock() 
+	{
+		return electrolysmCore.crusher;
+	}
+
 }

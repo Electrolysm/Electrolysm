@@ -134,6 +134,11 @@ public class configHandler
     public static int hazMat2ID;
     public static int hazMat3ID;
     public static int hazMat4ID;
+    
+    public static int battery1ID;
+    public static int battery2ID;
+    public static int battery3ID;
+    public static int battery4ID;
 
     
     public static int biomeID;
@@ -247,7 +252,11 @@ public class configHandler
         hazMat2ID = config.getItem("hazMatID", IDHandler.tools.hazMat2ID).getInt();
         hazMat3ID = config.getItem("hazMatID", IDHandler.tools.hazMat3ID).getInt();
         hazMat4ID = config.getItem("hazMatID", IDHandler.tools.hazMat4ID).getInt();
-
+        battery1ID = config.getItem("battery1ID", IDHandler.powerGrid.battery1ID).getInt();
+        battery2ID = config.getItem("battery2ID", IDHandler.powerGrid.battery2ID).getInt();
+        battery3ID = config.getItem("battery3ID", IDHandler.powerGrid.battery3ID).getInt();
+        battery4ID = config.getItem("battery4ID", IDHandler.powerGrid.battery4ID).getInt();
+        
         //Other
         multipart = config.get("OTHER", "addMultiparts", true).getBoolean(true);
         biomeID = config.get("OTHER", "biomeID", IDHandler.basic.biomeID).getInt();
