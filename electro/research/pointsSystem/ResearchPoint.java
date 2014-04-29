@@ -15,9 +15,22 @@ public class ResearchPoint
 {
     Item stack;
 
-    static
-    {
-        Object x;
-        CraftingManager.getInstance().getRecipeList();
-    }
+    private static void RemoveRecipe(ItemStack resultItem)
+{
+         List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+         for (int i = 0; i < recipes.size(); i++)
+         {
+                         IRecipe tmpRecipe = recipes.get(i);
+                         {
+                         if (tmpRecipe instanceof ShapedRecipes) {
+                                         ShapedRecipes recipe = (ShapedRecipes)tmpRecipe;
+                                         ItemStack recipeResult = recipe.getRecipeOutput();
+                        
+                                         if (ItemStack.areItemStacksEqual(resultItem, recipeResult)) {
+                                                         recipes.remove(i--);
+                                         }
+                         }
+         }
+}
+
 }
