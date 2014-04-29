@@ -15,7 +15,7 @@ public class ResearchPoint
 {
     Item stack;
 
-    private static void RemoveRecipe(ItemStack resultItem)
+    private static HashMap<EngPoint, SciPoint> getResearchPoint(ItemStack resultItem)
 {
          List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
          for (int i = 0; i < recipes.size(); i++)
