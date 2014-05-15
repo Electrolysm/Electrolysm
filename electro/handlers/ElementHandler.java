@@ -3,6 +3,7 @@ package assets.electrolysm.electro.handlers;
 public class ElementHandler
 {
     public static String[] elements = new String[119];
+    public static HashMap<int, int[]> elementStructure = new HashMap<int, int[]>();
     public static int startingElements = 5;
 
     static
@@ -127,4 +128,39 @@ public class ElementHandler
         elements[117] = "Ununseptium";
         elements[118] = "Ununoctium";
     }
+    
+    public static int[] getElectronicStructure(String elementName)
+    {
+        for(int i = 0; i < elements.length; i++)
+        {
+            if(elements[i].contains(elementName))
+            {
+                return electronStructure.get(i)
+            }
+        }
+    }
+    
+    public static int getOuterShell(int[] electronicStructure)
+    {
+        int length = electronicStructure.length;
+        
+        return electronicStructure[length - 1];
+    }
+    
+    public static getProductFromReactants(ElementValue[] reactants)
+    {
+        int[] reactantOuterShell;
+        
+        for(int i = 0; i < reactants.length; i++)
+        {
+            reactantOuterShell[i] = this.getOuterShell(this.getElectronicStructure(reactants[i]));
+        }
+        
+        for(int i = 0; i < reactantOuterShell.length; i++)
+        {
+            if(reactantOutherShell)
+        }
+    }
+    
+    
 }
