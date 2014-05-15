@@ -35,5 +35,6 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
         GameRegistry.registerTileEntity(TileEntityGeneratorCoal.class, "TileEntityGeneratorCoal");
         GameRegistry.registerTileEntity(TileEntityGeneratorAntimatter.class, "TileEntityGeneratorAntimatter");
+GameRegistry.registerTileEntity(TileEntityDesk.class, "TileEntityDesk");
     }
 }
