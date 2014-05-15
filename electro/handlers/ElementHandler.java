@@ -147,20 +147,90 @@ public class ElementHandler
         return electronicStructure[length - 1];
     }
     
-    public static getProductFromReactants(ElementValue[] reactants)
+    public static AtomValue[] getProductFromReactants(AtomValue[] atom, Kelvin temp)
     {
-        int[] reactantOuterShell;
-        
-        for(int i = 0; i < reactants.length; i++)
+        if(atom.length == 1 && canDecompose(atom, temp))
         {
-            reactantOuterShell[i] = this.getOuterShell(this.getElectronicStructure(reactants[i]));
+            return getDecompAtoms((AtomCompound)atom[0], temp)
         }
-        
-        for(int i = 0; i < reactantOuterShell.length; i++)
+        else if(atom.length > 1 && canSynthise(atom, temp)
         {
-            if(reactantOutherShell)
+            return (AtomValue)(getSynAtoms(atom, temp));
         }
     }
     
+    public static CompoundValue[] getSynAtoms(AtomValue[] atoms, Kelvin temp)
+    {
+        if(atoms.length == 2)
+        {
+            if((ElementValue)atoms[0]).canBondWith((ElementValue)atom[1]))
+            {
+                return bondElements((ElementValue[])atoms, temp);
+            }
+        }
+    }
     
+    public static CompoundValue[] bondElements(ElementValue[] element, Kelvin temp)
+    {
+        return new CompoundValue(element[0], element[1]);
+    }
+    
+    public static AtomValue[] getDecompAtoms(AtomCompound compAtom, Kelvin temp)
+    {
+        AtomValue[] atom = compAtom.getContainingAtoms()
+
+        return atom;
+    }
+    
+    public static boolean canSynthise(AtomValue[] atoms, Kelvin temp)
+    {
+        boolean[] isElement = new boolean[atoms.length];
+        
+        for(int i = 0; i < atoms.length; i++)
+        {
+            if(atoms[i] instanceof ElementValue)
+            {
+                isElement[i] = true;
+            }
+            else
+            {
+                isElement[i] = false;
+            }
+        }
+        boolean isFalse;
+        for(int i = 0; i < isElement.length; i++)
+        {
+            if(isElement[i] == false)
+            {
+                isFalse = true;
+            }
+        }
+        if(isFalse)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
+    }
+    
+    public static boolean canDecompose(AtomValue atom, Kelvin temp)
+    {
+        if(atom instanceof IDecomposable)
+        {
+            IDecomposable decomp = (IDecomposable)atom;
+            return decomp.canDecompose(temp);
+        }
+        else if(atom instanceof AtomCompound)
+        {
+            AtomCompound compAtom = (AtomCompound)atom;
+            return compAtom.canDecompose(temp);
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
