@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import assets.electrolysm.electro.electrolysmCore;
+import assets.electrolysm.electro.world.biome.WorldGenDiseasedTree;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGenStructures implements IWorldGenerator
@@ -19,10 +20,22 @@ public class WorldGenStructures implements IWorldGenerator
         if (world.provider.dimensionId != 1 && world.provider.dimensionId != -1)
         {
             generateSurface(world, random, x * 16, z * 16);
+            generateTreeSurface(world, random, x * 16, z * 16);
         }
     }
 
-    public static void generateSurface(World world, Random random, int x, int z)
+    private void generateTreeSurface(World world, Random random, int x, int z) 
+    {
+    	if (world.getBiomeGenForCoords(x, z) == electrolysmCore.diseasedBiomeObj)
+        {
+            if (random.nextInt(75) == 1)
+            {
+            	new WorldGenDiseasedTree(true, 6).generate(world, new Random(), x, getSurface(world, x, z), z);
+            }
+        }
+	}
+
+	public static void generateSurface(World world, Random random, int x, int z)
     {
         //Science Lab Generation Code:
         if (world.getBiomeGenForCoords(x, z) == electrolysmCore.diseasedBiomeObj)

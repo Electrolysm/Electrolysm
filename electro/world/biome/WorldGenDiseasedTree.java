@@ -136,6 +136,7 @@ public class WorldGenDiseasedTree extends WorldGenerator
                         if (block == null || block.isAirBlock(par1World, par3, par4 + j1, par5) || block.isLeaves(par1World, par3, par4 + j1, par5))
                         {
                             this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, this.log.blockID, 0);
+                            this.setBlockAndMetadata(par1World, par3, par4, par5, this.log.blockID, 0);
                         }
                     }
 
