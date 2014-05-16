@@ -1,7 +1,6 @@
 package assets.electrolysm.electro.client;
 
 import net.minecraftforge.common.MinecraftForge;
-import assets.electrolysm.electro.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityQuantumComp;
 import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
@@ -12,7 +11,8 @@ import assets.electrolysm.electro.common.CommonProxy;
 import assets.electrolysm.electro.handlers.SoundHandler;
 import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
 import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
-import assets.electrolysm.electro.robotics.tile.TileEntitySoldering;
+import assets.electrolysm.electro.sciences.robotics.tile.TileEntitySoldering;
+import assets.electrolysm.electro.world.biome.EntityZombie_Scientist;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

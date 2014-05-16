@@ -6,6 +6,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.oreProccessing.DamageSourceSulphuricAcid;
+import assets.electrolysm.electro.sciences.ItemArmorLab;
 
 public class PlayerHandler 
 {
@@ -19,5 +20,11 @@ public class PlayerHandler
 				event.entityLiving.attackEntityFrom(new DamageSourceSulphuricAcid("DSAcidBurns"), 2);
 			}
 		}
+	}
+	
+	public static boolean isPlayerWearingLabCoat(EntityPlayer player)
+	{
+		ItemStack labCoat = player.getCurrentArmor(2);
+	    return (labCoat != null) && ((labCoat.getItem() instanceof ItemArmorLab));
 	}
 }

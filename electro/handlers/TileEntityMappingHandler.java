@@ -3,6 +3,7 @@ package assets.electrolysm.electro.handlers;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityEnergiser;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityInjector;
 import assets.electrolysm.electro.block.basic.te.TileEntityBlastDoor;
+import assets.electrolysm.electro.block.machines.tile.TileEntityDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
 import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
 import assets.electrolysm.electro.block.te.TileEntityIronFrame;
@@ -35,6 +36,6 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityWire.class, "TileEntityWire");
         GameRegistry.registerTileEntity(TileEntityGeneratorCoal.class, "TileEntityGeneratorCoal");
         GameRegistry.registerTileEntity(TileEntityGeneratorAntimatter.class, "TileEntityGeneratorAntimatter");
-GameRegistry.registerTileEntity(TileEntityDesk.class, "TileEntityDesk");
+        GameRegistry.registerTileEntity(TileEntityDesk.class, "TileEntityDesk");
     }
 }

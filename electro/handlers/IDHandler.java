@@ -38,7 +38,9 @@ public class IDHandler
 
     public static class basic
     {
-        public static int labCoatID = 725;
+    	public static int treeSaplingID = 724;
+    	public static int treeLogID = 725;
+    	public static int treeLeavesID = 726;
         public static int diseasedGrassID = 200;
         public static int biomeID = 69;
         public static int spawnZSID = 727;
@@ -58,6 +60,8 @@ public class IDHandler
         public static int knowledgeID = 738;
         public static int idifierID = 739;
         public static int autoDeskID = 740;
+        public static int labCoatID = 741;
+        public static int labGogglesID = 742;
     }
 
     public static class advAtomics

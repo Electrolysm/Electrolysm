@@ -1,14 +1,10 @@
 package assets.electrolysm.electro.client;
 
-import assets.electrolysm.electro.biome.EntityZombie_Scientist;
-import assets.electrolysm.electro.common.CommonProxy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.util.ResourceLocation;
+import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.world.biome.EntityZombie_Scientist;
 
 public class RenderZombie_Scientist extends RenderLiving
 {

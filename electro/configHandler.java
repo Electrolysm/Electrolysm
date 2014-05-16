@@ -87,6 +87,9 @@ public class configHandler
     public static int coolerProccesserID;
     public static int coolerPortID;
     public static int coolerFanID;
+    public static int treeLogID;
+    public static int treeLeavesID;
+    public static int treeSaplingID;
     
     //IDs - Items
     public static int ballOfPlasticID;
@@ -140,6 +143,8 @@ public class configHandler
     public static int battery3ID;
     public static int battery4ID;
 
+    public static int labCoatID;
+    public static int labGogglesID;
     
     public static int biomeID;
 	public static int acidBurnsID;
@@ -205,6 +210,9 @@ public class configHandler
         coolerPortID = config.getBlock("coolerPortID", IDHandler.powerGrid.extra.coolerPortID).getInt();
         coolerProccesserID = config.getBlock("coolerProccesserID", IDHandler.powerGrid.extra.coolerProccesserID).getInt();
         coolerFanID = config.getBlock("coolerFanID", IDHandler.powerGrid.extra.coolerFanID).getInt();
+        treeLogID = config.getBlock("treeLogID", IDHandler.basic.treeLogID).getInt();
+        treeLeavesID = config.getBlock("treeLeavesID", IDHandler.basic.treeLeavesID).getInt();
+        treeSaplingID = config.getBlock("treeSaplingID", IDHandler.basic.treeSaplingID).getInt();
         
         //Items
         ballOfPlasticID = config.getItem("ballOfPlasticID", IDHandler.craftingItems.ballOfPlasticID).getInt(IDHandler.craftingItems.ballOfPlasticID);
@@ -256,6 +264,8 @@ public class configHandler
         battery2ID = config.getItem("battery2ID", IDHandler.powerGrid.battery2ID).getInt();
         battery3ID = config.getItem("battery3ID", IDHandler.powerGrid.battery3ID).getInt();
         battery4ID = config.getItem("battery4ID", IDHandler.powerGrid.battery4ID).getInt();
+        labCoatID = config.getItem("labCoatID", IDHandler.research.labCoatID).getInt();
+        labGogglesID = config.getItem("labGogglesID", IDHandler.research.labGogglesID).getInt();
         
         //Other
         multipart = config.get("OTHER", "addMultiparts", true).getBoolean(true);
