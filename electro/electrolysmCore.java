@@ -9,12 +9,14 @@ import java.io.File;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.common.MinecraftForge;
 import assets.electrolysm.api.LoggerHandler;
 import assets.electrolysm.electro.block.ironFrames;
 import assets.electrolysm.electro.block.advMachines.charger;
@@ -38,7 +40,6 @@ import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
-import assets.electrolysm.electro.client.RenderPlayerLab;
 import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.ServerTickHandler;
 import assets.electrolysm.electro.crafting.acidBurns;
@@ -338,6 +339,7 @@ public class electrolysmCore
     {
     	startTime = System.currentTimeMillis();
     	
+    	//ResearchHandler.downloadLabSkin();
         File configFile = new File("config/Electrolysm/Electrolysm.cfg");
         configHandler.init(configFile);
         VersionCheck.check();

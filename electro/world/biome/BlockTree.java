@@ -23,6 +23,7 @@ public class BlockTree extends Block {
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setUnlocalizedName(unlocalName);
 		this.setStepSound(getStepSound(type1));
+		//this.setHardness(if(Block.wood.blockHardness>0) : 1);
 		this.type = type1;
 		name = unlocalName;
 	}

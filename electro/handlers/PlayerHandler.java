@@ -1,5 +1,7 @@
 package assets.electrolysm.electro.handlers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +12,7 @@ import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.oreProccessing.DamageSourceSulphuricAcid;
 import assets.electrolysm.electro.sciences.ItemArmorLab;
+import cpw.mods.fml.server.FMLServerHandler;
 
 public class PlayerHandler 
 {
@@ -52,4 +55,19 @@ public class PlayerHandler
 	
 	public static boolean trollEllio98 = false;;
 	public static Random rand = new Random();
+
+	@ForgeSubscribe
+	public void onUpdateEvent(LivingUpdateEvent event) throws IOException
+	{
+		if(event.entity instanceof EntityPlayer)
+		{
+			String worldName = FMLServerHandler.instance().getServer().getWorldName();
+			File dataSaveFile = new File(worldName + "/Electrolysm/Research/");
+			dataSaveFile.createNewFile();
+			File playerData = new File(dataSaveFile, ((EntityPlayer)event.entity).username + ".txt");
+			playerData.createNewFile();
+		}
+	}
+	
+	
 }

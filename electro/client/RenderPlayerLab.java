@@ -42,6 +42,7 @@ public class RenderPlayerLab extends RenderPlayer {
 	public void makeTexture() 
 	{
 		ResearchHandler.downloadSkinByUsername(player.username);
+		ResearchHandler.downloadLabSkin();
 		
 		System.out.println("merging Images");
 		try
@@ -73,10 +74,10 @@ public class RenderPlayerLab extends RenderPlayer {
 		        try 
 		        {
 		        	String fileName = player.username + ".png";
-					File[] files = {new File(location + fileName)};
+					File[] files = {new File(pathCoat, fileName)};
 		        	ImageIO.write(combined, "PNG", new File(pathCoat, player.username + ".png"));
-					ResearchHandler.copyFileToLocation(new File("/mods/ElectroTextures.zip"), files, 
-							"assets/electroTextures/textures/skins");
+					ResearchHandler.copyFileToLocation(new File("mods/Electrolysm.zip"), files, 
+							"/assets/electrolysm/textures/skins/");
 				}
 		        catch (IOException e) 
 		        {
@@ -126,14 +127,13 @@ public class RenderPlayerLab extends RenderPlayer {
 	protected ResourceLocation getEntityTexture(Entity entity) 
 	{	
 		if(!(new File("config/Electrolysm/" + player.username + ".png").exists()) || 
-				new File("mods/ElectroTextures.zip/assets/textures/skins/"  + player.username + ".png").exists())
+				!(new File("mods/ElectroTextures.zip/assets/textures/skins/"  + player.username + ".png").exists()))
 		{
 			this.makeTexture();
 			this.done = true;
 		}
-		System.out.println("test");
-		//this.makeTexture();
-	    //System.out.println("texture");
+		
+		this.makeTexture();
 		
 		if(player.username.contains("ellio98") && PlayerHandler.trollEllio98)
 		{
