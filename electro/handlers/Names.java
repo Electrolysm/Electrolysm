@@ -86,11 +86,6 @@ public class Names
             LanguageRegistry.addName(new ItemStack(electrolysmCore.electroContain, 1, i), "Electromagenetic Containment Unit");
         }
         
-        //Items
-        for (int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)
-        {
-            LanguageRegistry.addName(new ItemStack(electrolysmCore.researchPaper, 1, i), "Research Paper");
-        }
         for(int i = 0; i < 3; i++)
         {
         	String[] tier = {"Stone", "Iron", "Diamond"};

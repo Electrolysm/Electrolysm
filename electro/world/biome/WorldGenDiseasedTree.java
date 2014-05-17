@@ -2,6 +2,7 @@ package assets.electrolysm.electro.world.biome;
 
 import java.util.Random;
 
+import assets.electrolysm.electro.configHandler;
 import assets.electrolysm.electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -14,9 +15,13 @@ public class WorldGenDiseasedTree extends WorldGenerator
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
 
-	private Block log = electrolysmCore.treeLog;
-	private Block leaves = electrolysmCore.treeLeaves;
-
+	private int log;
+	private int leaves;
+	private Block sapling;
+	public static Block treeLog = new BlockTree(configHandler.treeLogID, 0, "treeLog");
+    public static Block treeLeaves = new BlockTree(configHandler.treeLeavesID, 1, "treeLeaf");
+    public static Block treeSapling = new treeSapling(configHandler.treeSaplingID);
+    
     public WorldGenDiseasedTree(boolean par1)
     {
         this(par1, 4);
@@ -26,6 +31,12 @@ public class WorldGenDiseasedTree extends WorldGenerator
     {
         super(par1);
         this.minTreeHeight = par2;
+        /*treeLog = new BlockTree(configHandler.treeLogID, 0, "treeLog");
+        treeLeaves = new BlockTree(configHandler.treeLeavesID, 1, "treeLeaf");
+        treeSapling = new treeSapling(configHandler.treeSaplingID);*/
+        log = treeLog.blockID;
+    	leaves = treeLeaves.blockID;
+    	sapling = treeSapling;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -89,8 +100,8 @@ public class WorldGenDiseasedTree extends WorldGenerator
             {
                 i1 = par1World.getBlockId(par3, par4 - 1, par5);
                 Block soil = Block.blocksList[i1];
-                boolean isSoil = (soil != null && soil.canSustainPlant(par1World, par3, par4 - 1, par5, ForgeDirection.UP, (BlockSapling)Block.sapling));
-
+                boolean isSoil;// = (soil != null && soil.canSustainPlant(par1World, par3, par4 - 1, par5, ForgeDirection.UP, (BlockSapling)sapling));
+                isSoil = true;
                 if (isSoil && par4 < 256 - l - 1)
                 {
                     soil.onPlantGrow(par1World, par3, par4 - 1, par5, par3, par4, par5);
@@ -120,7 +131,7 @@ public class WorldGenDiseasedTree extends WorldGenerator
 
                                     if (block == null || block.canBeReplacedByLeaves(par1World, j2, j1, l2))
                                     {
-                                        this.setBlockAndMetadata(par1World, j2, j1, l2, this.leaves.blockID,0);
+                                        this.setBlockAndMetadata(par1World, j2, j1, l2, this.leaves,0);
                                     }
                                 }
                             }
@@ -135,8 +146,8 @@ public class WorldGenDiseasedTree extends WorldGenerator
 
                         if (block == null || block.isAirBlock(par1World, par3, par4 + j1, par5) || block.isLeaves(par1World, par3, par4 + j1, par5))
                         {
-                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, this.log.blockID, 0);
-                            this.setBlockAndMetadata(par1World, par3, par4, par5, this.log.blockID, 0);
+                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, this.log, 0);
+                            this.setBlockAndMetadata(par1World, par3, par4, par5, this.log, 0);
                         }
                     }
 

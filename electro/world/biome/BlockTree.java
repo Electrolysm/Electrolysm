@@ -25,7 +25,6 @@ public class BlockTree extends Block {
 		this.setStepSound(getStepSound(type1));
 		this.type = type1;
 		name = unlocalName;
-		GameRegistry.registerBlock(this);
 	}
 
 	private StepSound getStepSound(int type1) 

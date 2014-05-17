@@ -58,26 +58,6 @@ public class researchPaper extends Item
 
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        for (int i = 0; i < ResearchHandler.getAmountOfStoredNames(); i++)
-        {
-            if (stack.getItemDamage() == i)
-            {
-                if (ResearchHandler.getStoredNames(i) != null)
-                {
-                    list.add("Research: " + ResearchHandler.getStoredNames(i));
-                }
-                else
-                {
-                    list.add("ERROR");
-                    list.add("This is a bug! Please report it to the MOD author!");
-                }
-            }
-        }
-
-        if ((ResearchHandler.getAmountOfStoredNames() - 1) < stack.getItemDamage())
-        {
-            list.add("Unknown Methodology");
-        }
     }
 
     @Override

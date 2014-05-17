@@ -1,5 +1,10 @@
 package assets.electrolysm.electro.client;
 
+import java.util.HashMap;
+
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
 import assets.electrolysm.electro.block.advMachines.te.TileEntityQuantumComp;
@@ -34,5 +39,15 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
         RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
         		new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
+        
+		RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderPlayerLab());
+
+    }
+    
+    public static HashMap<EntityPlayer, Boolean> playerCoat = new HashMap<EntityPlayer, Boolean>();
+    
+    public static void putData(EntityPlayer player, boolean isWearing)
+    {
+    	playerCoat.put(player, isWearing);
     }
 }

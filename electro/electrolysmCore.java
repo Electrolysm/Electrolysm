@@ -38,6 +38,7 @@ import assets.electrolysm.electro.block.machines.desk;
 import assets.electrolysm.electro.block.machines.researchDesk;
 import assets.electrolysm.electro.block.machines.workBench;
 import assets.electrolysm.electro.client.ClientProxy;
+import assets.electrolysm.electro.client.RenderPlayerLab;
 import assets.electrolysm.electro.common.CommandStardate;
 import assets.electrolysm.electro.common.ServerTickHandler;
 import assets.electrolysm.electro.crafting.acidBurns;
@@ -72,7 +73,6 @@ import assets.electrolysm.electro.handlers.PlayerHandler;
 import assets.electrolysm.electro.handlers.Referance;
 import assets.electrolysm.electro.handlers.Register;
 import assets.electrolysm.electro.handlers.RegisterBlock;
-import assets.electrolysm.electro.handlers.ResearchHandler;
 import assets.electrolysm.electro.handlers.TickHandler;
 import assets.electrolysm.electro.handlers.TileEntityMappingHandler;
 import assets.electrolysm.electro.handlers.VersionCheck;
@@ -115,12 +115,10 @@ import assets.electrolysm.electro.world.copperOre;
 import assets.electrolysm.electro.world.graphite;
 import assets.electrolysm.electro.world.sulpherOre;
 import assets.electrolysm.electro.world.sulphur;
-import assets.electrolysm.electro.world.biome.BlockTree;
 import assets.electrolysm.electro.world.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.world.biome.diseasedBiome;
 import assets.electrolysm.electro.world.biome.diseasedGrass;
 import assets.electrolysm.electro.world.biome.spawnZS;
-import assets.electrolysm.electro.world.biome.treeSapling;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -184,10 +182,8 @@ public class electrolysmCore
     public static Block diseaseGrass = new diseasedGrass(configHandler.diseaseGrassID, null);
     public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(configHandler.biomeID);
     public BiomeGenBase diseasedBiome = diseasedBiomeObj;
-    public static Block treeLog = new BlockTree(configHandler.treeLogID, 0, "treeLog");
-    public static Block treeLeaves = new BlockTree(configHandler.treeLeavesID, 1, "treeLeaf");
-    public static Block treeSapling = new treeSapling(configHandler.treeSaplingID);
-
+    //See WorldGenDiseasedTree.java for tree blocks
+    
     //Security
     public static Block blastProof = new blastProof(configHandler.blastProofID, null);
     public static Block blastBrick = new blastBrick(configHandler.blastBrickID, null);
@@ -374,7 +370,6 @@ public class electrolysmCore
         long duration = (System.currentTimeMillis() - startTime);
         float secs = ((duration / 1000) * 100);
         LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
-
     }
 
     @SideOnly(Side.CLIENT)
@@ -389,7 +384,5 @@ public class electrolysmCore
     public void serverLoad(FMLServerStartingEvent event)
     {
         event.registerServerCommand(new CommandStardate());
-        ResearchHandler.downloadOnlineData();
-        ResearchHandler.getStoredResearch();
     }
 }

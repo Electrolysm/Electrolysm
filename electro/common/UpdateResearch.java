@@ -44,8 +44,6 @@ public class UpdateResearch implements ICommand
     {
         EntityPlayer player;
         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Updating research...").setColor(EnumChatFormatting.GREEN));
-        ResearchHandler.downloadOnlineData();
-        ResearchHandler.getStoredResearch();
         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText("Research has been updated").setColor(EnumChatFormatting.GREEN));
     }
 

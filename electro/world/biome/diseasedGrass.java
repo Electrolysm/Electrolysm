@@ -16,6 +16,8 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -141,5 +143,27 @@ public class diseasedGrass extends BlockDirt
                 this.sec = 0;
             }
         }
+    }
+    
+    @Override
+    public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
+    {
+    	if(plant != null)
+    	{
+	        int plantID = plant.getPlantID(world, x, y + 1, z);
+	        
+	        if(direction == ForgeDirection.UP && world.provider.dimensionId != 1 && world.provider.dimensionId != -1)
+	        {
+	        	if(plantID == WorldGenDiseasedTree.treeSapling.blockID || plantID == Block.deadBush.blockID)
+	        	{
+	        		return true;
+	        	}
+	        }
+	        else
+	        {
+	        	return false;
+	        }
+    	}
+    	return false;
     }
 }
