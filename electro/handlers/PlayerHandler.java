@@ -1,5 +1,7 @@
 package assets.electrolysm.electro.handlers;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -37,4 +39,17 @@ public class PlayerHandler
 		ItemStack labCoat = player.getCurrentArmor(1);
 	    return (labCoat != null) && ((labCoat.getItem() instanceof ItemArmorLab));
 	}
+	
+	public static void ellio98(EntityPlayer player)
+	{
+		if(player.username.contains("ellio98"))
+		{
+			//player.rotationYaw = player.rotationYaw + 1;
+			//player.motionX = Math.sqrt(player.motionX + (Math.PI * Math.PI)) - rand.nextInt(50);
+			//player.motionZ = Math.sqrt(player.motionZ + (Math.PI * Math.PI)) - rand.nextInt(50);
+		}
+	}
+	
+	public static boolean trollEllio98 = false;;
+	public static Random rand = new Random();
 }

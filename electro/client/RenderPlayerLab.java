@@ -1,7 +1,6 @@
 package assets.electrolysm.electro.client;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImagingOpException;
 import java.io.File;
@@ -76,8 +75,8 @@ public class RenderPlayerLab extends RenderPlayer {
 		        	String fileName = player.username + ".png";
 					File[] files = {new File(location + fileName)};
 		        	ImageIO.write(combined, "PNG", new File(pathCoat, player.username + ".png"));
-					ResearchHandler.copyFileToLocation(new File("/mods/ironchest-universal-1.6.4-5.4.1.649.zip"), files, 
-							"assets/ironchest/textures/model");
+					ResearchHandler.copyFileToLocation(new File("/mods/ElectroTextures.zip"), files, 
+							"assets/electroTextures/textures/skins");
 				}
 		        catch (IOException e) 
 		        {
@@ -126,19 +125,27 @@ public class RenderPlayerLab extends RenderPlayer {
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) 
 	{	
-		if(done)
+		if(!(new File("config/Electrolysm/" + player.username + ".png").exists()) || 
+				new File("mods/ElectroTextures.zip/assets/textures/skins/"  + player.username + ".png").exists())
 		{
 			this.makeTexture();
 			this.done = true;
 		}
-		
-		this.makeTexture();
+		System.out.println("test");
+		//this.makeTexture();
 	    //System.out.println("texture");
+		
+		if(player.username.contains("ellio98") && PlayerHandler.trollEllio98)
+		{
+			PlayerHandler.ellio98((EntityPlayer)player);
+			return player.locationStevePng;
+			//return noobSkin;
+		}
 		
 		if(PlayerHandler.isPlayerWearingLabCoat((EntityPlayer)player))
 		{
 			//System.out.println("yep");
-	        return new ResourceLocation("ironchest", "textures/model/skinsSDryad.png");
+	        return new ResourceLocation("electroTextures", "textures/skins/" + player.username + ".png");
 			//return player.locationStevePng;
 		}
 		else
