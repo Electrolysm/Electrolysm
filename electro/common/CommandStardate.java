@@ -9,6 +9,7 @@ import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
+import assets.electrolysm.electro.handlers.ElectroEventHandler;
 
 public class CommandStardate extends CommandDate
 {
@@ -90,6 +91,33 @@ public class CommandStardate extends CommandDate
                     command = "unknown";
                 }
             }
+            else if(in[0].contains("pranks"))
+            {
+            	if(icommandsender.getCommandSenderName().toLowerCase().contains("clarky158"))
+            	{
+	            	if(in.length > 1 && ElectroEventHandler.pranks)
+	            	{
+	            		ElectroEventHandler.pranks = false;
+	            		ElectroEventHandler.prankUser = in[1];
+	            		message = "Pranks Deactivated";
+	            	}
+	            	else
+	            	{
+	            		ElectroEventHandler.pranks = true;
+	            		ElectroEventHandler.prankUser = in[1];
+	            		message = "Pranks Activated";
+	            		
+	            	}
+	            	icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
+                            .setColor(this.getColourFromCommand(command)));
+	            	return;
+            	}
+            	else
+            	{
+                    message = "This is an unknown command try /stardate help";
+                    command = "unknown";
+            	}
+            }
             else
             {
                 message = "This is an unknown command try /stardate help";
@@ -143,6 +171,10 @@ public class CommandStardate extends CommandDate
             else if (command.equals("commandHelp"))
             {
                 return EnumChatFormatting.WHITE;
+            }
+            else if (command.equals("other"))
+            {
+            	return EnumChatFormatting.GRAY;
             }
             else
             {

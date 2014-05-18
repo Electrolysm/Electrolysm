@@ -9,7 +9,6 @@ import java.io.File;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
@@ -64,13 +63,14 @@ import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
+import assets.electrolysm.electro.handlers.CraftingHandler;
+import assets.electrolysm.electro.handlers.ElectroEventHandler;
 import assets.electrolysm.electro.handlers.ElectrolysmLootHandler;
 import assets.electrolysm.electro.handlers.GUIHandler;
 import assets.electrolysm.electro.handlers.IDHandler;
 import assets.electrolysm.electro.handlers.MultipartHandler;
 import assets.electrolysm.electro.handlers.Names;
 import assets.electrolysm.electro.handlers.NewsCheck;
-import assets.electrolysm.electro.handlers.PlayerHandler;
 import assets.electrolysm.electro.handlers.Referance;
 import assets.electrolysm.electro.handlers.Register;
 import assets.electrolysm.electro.handlers.RegisterBlock;
@@ -357,18 +357,19 @@ public class electrolysmCore
         Crafting.addFurnaceRecipes();
         RegisterBlock.register();
         new MultipartHandler();
-        new PlayerHandler();
         new ElectrolysmLootHandler();
         Names.addName();
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();
+        GameRegistry.registerCraftingHandler(new CraftingHandler());
         GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
         TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 
         NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
-        
+        MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());
+
         long duration = (System.currentTimeMillis() - startTime);
         float secs = ((duration / 1000) * 100);
         LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");

@@ -6,15 +6,18 @@ import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 import assets.electrolysm.electro.electrolysmCore;
 import assets.electrolysm.electro.client.ClientProxy;
 import assets.electrolysm.electro.oreProccessing.DamageSourceSulphuricAcid;
 import assets.electrolysm.electro.sciences.ItemArmorLab;
+import assets.electrolysm.electro.world.biome.WorldGenDiseasedTree;
 import cpw.mods.fml.server.FMLServerHandler;
 
-public class PlayerHandler 
+public class ElectroEventHandler 
 {
 	@ForgeSubscribe
 	public void onEntityUpdate(LivingUpdateEvent event) 
@@ -26,14 +29,12 @@ public class PlayerHandler
 				event.entityLiving.attackEntityFrom(new DamageSourceSulphuricAcid("DSAcidBurns"), 2);
 			}
 		}
-		
-		if(event.entityLiving instanceof EntityPlayer && this.isPlayerWearingLabCoat((EntityPlayer)event.entityLiving))
+		if(event.entityLiving instanceof EntityPlayer)
 		{
-			ClientProxy.putData((EntityPlayer)event.entityLiving, true);
-		}
-		else
-		{
-			ClientProxy.putData((EntityPlayer)event.entityLiving, false);
+			if(pranks)
+			{
+				this.ellio98((EntityPlayer)event.entityLiving);
+			}
 		}
 	}
 	
@@ -45,7 +46,7 @@ public class PlayerHandler
 	
 	public static void ellio98(EntityPlayer player)
 	{
-		if(player.username.contains("ellio98"))
+		if(player.username.contains(prankUser))
 		{
 			//player.rotationYaw = player.rotationYaw + 1;
 			//player.motionX = Math.sqrt(player.motionX + (Math.PI * Math.PI)) - rand.nextInt(50);
@@ -53,12 +54,13 @@ public class PlayerHandler
 		}
 	}
 	
-	public static boolean trollEllio98 = false;;
+	public static boolean pranks = false;
+	public static String prankUser = "";
 	public static Random rand = new Random();
 
 	@ForgeSubscribe
 	public void onUpdateEvent(LivingUpdateEvent event) throws IOException
-	{
+	{/*
 		if(event.entity instanceof EntityPlayer)
 		{
 			String worldName = FMLServerHandler.instance().getServer().getWorldName();
@@ -66,6 +68,17 @@ public class PlayerHandler
 			dataSaveFile.createNewFile();
 			File playerData = new File(dataSaveFile, ((EntityPlayer)event.entity).username + ".txt");
 			playerData.createNewFile();
+		}*/
+	}
+	
+	@ForgeSubscribe
+	public void bonemealEvent(BonemealEvent event)
+	{
+		if(event.ID == WorldGenDiseasedTree.treeSapling.blockID)
+		{
+			event.world.setBlockToAir(event.X, event.Y, event.Z);
+			new WorldGenDiseasedTree(true, 6).generate(event.world, rand, event.X, event.Y - 1, event.Z);
+			event.setResult(Result.ALLOW);
 		}
 	}
 	

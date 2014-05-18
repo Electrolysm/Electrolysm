@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import assets.electrolysm.electro.handlers.PlayerHandler;
+import assets.electrolysm.electro.handlers.ElectroEventHandler;
 import assets.electrolysm.electro.handlers.ResearchHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -135,14 +135,14 @@ public class RenderPlayerLab extends RenderPlayer {
 		
 		this.makeTexture();
 		
-		if(player.username.contains("ellio98") && PlayerHandler.trollEllio98)
+		if(player.username.contains("ellio98") && ElectroEventHandler.pranks)
 		{
-			PlayerHandler.ellio98((EntityPlayer)player);
+			ElectroEventHandler.ellio98((EntityPlayer)player);
 			return player.locationStevePng;
 			//return noobSkin;
 		}
 		
-		if(PlayerHandler.isPlayerWearingLabCoat((EntityPlayer)player))
+		if(ElectroEventHandler.isPlayerWearingLabCoat((EntityPlayer)player))
 		{
 			//System.out.println("yep");
 	        return new ResourceLocation("electroTextures", "textures/skins/" + player.username + ".png");
