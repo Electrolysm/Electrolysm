@@ -373,7 +373,7 @@ public class electrolysmCore
         MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());
 
         long duration = (System.currentTimeMillis() - startTime);
-        float secs = ((duration / 1000) * 100);
+        float secs = ((duration / 100) * 100);
         LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
     } 
 
