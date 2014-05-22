@@ -15,8 +15,9 @@ public class BlockTreeLeaves extends BlockLeaves {
 
 	public static int type;
 	public String name;
+	
 	@SideOnly(Side.CLIENT)
-	private static Icon[] icon = new Icon[3];
+	private Icon[] icon;
 	
 	public BlockTreeLeaves(int par1, int type1, String unlocalName) {
 		super(par1);
@@ -57,6 +58,8 @@ public class BlockTreeLeaves extends BlockLeaves {
 	@SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister reg)
     {
+		icon = new Icon[3];
+		
 		String MOD_ID = "electrolysm:";
 		icon[0] = reg.registerIcon(MOD_ID + "treeLeaves");
 		icon[1] = reg.registerIcon(MOD_ID + "treeLog1");
