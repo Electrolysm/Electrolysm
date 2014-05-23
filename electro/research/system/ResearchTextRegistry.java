@@ -22,6 +22,11 @@ public class ResearchTextRegistry
 		addResearchText(research, new LinedString(getTextInFile(file).get(0)), new LinedString(getTextInFile(file).get(1)));
 	}
 	
+	public static void addResearchTextFromFolder(Research research, File folder)
+	{
+		addResearchTextFromFile(research, new File(folder, "dataResearch_" + research.getName() + ".txt"));
+	}
+	
 	public static List<String[]> getTextInFile(File file)
 	{
 		try 

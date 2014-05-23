@@ -14,6 +14,12 @@ public class Point
 		this.sciPoint = sciPoint1;
 	}
 	
+	public Point(int engPoint1, int sciPoint1)
+	{
+		this.engPoint = new EngPoint(engPoint1);
+		this.sciPoint = new SciPoint(sciPoint1);
+	}
+	
 	public static EngPoint getEngPoint()
 	{
 		return engPoint;
