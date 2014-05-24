@@ -2,9 +2,9 @@ package assets.electrolysm.electro.research.system;
 
 public enum EnumResearchType 
 {
-	CHEMISTRY("chemistry"),
-	PHYSICS("physics"),
-	BIOLOGY("biology"),
+	POWER("power"),
+	SCIENCE("science"),
+	RESEARCH("research"),
 	ROBOTICS("robotics"),
 	OTHER("other");
 

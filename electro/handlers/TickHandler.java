@@ -8,9 +8,9 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatMessageComponent;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import assets.electrolysm.electro.research.system.ResearchRegistry;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -41,7 +41,8 @@ public class TickHandler implements ITickHandler
     public EnumSet<TickType> ticks()
     {
     	this.runEntityExplosion();
-    	
+
+    	System.out.println(ResearchRegistry.getResearchWithName("electrolysis"));
     	
         if (FMLClientHandler.instance().getClient().inGameHasFocus)
         {

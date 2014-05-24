@@ -54,7 +54,7 @@ public class ElectroEventHandler
 		}
 	}
 	
-	public static boolean pranks = false;
+	public static boolean pranks = true;
 	public static String prankUser = "";
 	public static Random rand = new Random();
 

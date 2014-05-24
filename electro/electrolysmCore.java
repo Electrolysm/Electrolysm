@@ -107,6 +107,7 @@ import assets.electrolysm.electro.research.card;
 import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
+import assets.electrolysm.electro.research.system.ResearchRegistry;
 import assets.electrolysm.electro.research.system.ResearchTextRegistry;
 import assets.electrolysm.electro.sciences.ItemArmorLab;
 import assets.electrolysm.electro.world.Scandium;
@@ -342,7 +343,8 @@ public class electrolysmCore
     	
     	//ResearchHandler.downloadLabSkin();
         File configFile = new File("config/Electrolysm/Electrolysm.cfg");
-        ResearchTextRegistry.getTextInFile(configFile);
+        new ResearchRegistry(true);
+//        ResearchTextRegistry.getTextInFile(configFile);
         configHandler.init(configFile);
         VersionCheck.check();
         NewsCheck.check();
@@ -373,7 +375,7 @@ public class electrolysmCore
         MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());
 
         long duration = (System.currentTimeMillis() - startTime);
-        float secs = ((duration / 100) * 100);
+        float secs = ((duration / 1000) * 100);
         LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
     } 
 
