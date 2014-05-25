@@ -36,11 +36,14 @@ import assets.electrolysm.electro.powerSystem.generators.container.ContainerGene
 import assets.electrolysm.electro.powerSystem.generators.container.ContainerGeneratorCoal;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
 import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorCoal;
+import assets.electrolysm.electro.research.client.GUIIDCardInfo;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler
 {
-    @Override
+    public static int id_bookIDCard = 42;
+
+	@Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity entity = world.getBlockTileEntity(x, y, z);
@@ -157,6 +160,11 @@ public class GUIHandler implements IGuiHandler
         {
         	return new GUIGeneratorAntimatter((TileEntityGeneratorAntimatter)entity, player.inventory);
         }
+        if(ID == this.id_bookIDCard )
+        {
+        	return new GUIIDCardInfo(player.inventory);
+        }
+        
         return null;
     }
 }

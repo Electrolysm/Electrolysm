@@ -42,9 +42,9 @@ public class TickHandler implements ITickHandler
     {
     	this.runEntityExplosion();
 
-    	System.out.println(ResearchRegistry.getResearchWithName("electrolysis"));
-    	
-        if (FMLClientHandler.instance().getClient().inGameHasFocus)
+    	//System.out.println(ResearchRegistry.getResearchWithName("electrolysis"));
+
+    	if (FMLClientHandler.instance().getClient().inGameHasFocus)
         {
             if (times <= 0)
             {

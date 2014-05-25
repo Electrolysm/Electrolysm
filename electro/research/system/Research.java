@@ -55,4 +55,11 @@ public class Research
 		String string = "research_" + this.researchName;
 		return string;
 	}
+	
+	public String toAdvString()
+	{
+		String string = this.researchName + ":" + this.researchType.getName() + ":" + this.researchPoint.toString() + ":" + 
+				this.researchTier + ":" + this.researchReliant;
+		return string;
+	}
 }

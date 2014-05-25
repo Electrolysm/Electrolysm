@@ -20,99 +20,233 @@ public class ResearchRegistry
 		}
 	}
 	
+	EnumResearchType POWER = new EnumResearchType("power");
+	EnumResearchType SCIENCE = new EnumResearchType("science");
+	EnumResearchType RESEARCH = new EnumResearchType("research");
+	EnumResearchType ROBOTICS = new EnumResearchType("robotics");
+	EnumResearchType OTHER = new EnumResearchType("other");
+	
 	public void doRegister()
 	{
 		long time = System.currentTimeMillis();
 		File folder = new File("config/Electrolysm/");
 		
 		//OTHER
-		this.registerResearch(new Research("electrolysis", EnumResearchType.OTHER, new Point(13, 43), 4));
-		this.registerResearch(new Research("smeltery", EnumResearchType.OTHER, new Point(7, 23), 2));
-		this.registerResearch(new Research("crusher", EnumResearchType.OTHER, new Point(7, 12), 2));
+		this.registerResearch(new Research("electrolysis", this.OTHER, new Point(13, 43), 4));
+		this.registerResearch(new Research("smeltery", this.OTHER, new Point(7, 23), 2));
+		this.registerResearch(new Research("crusher", this.OTHER, new Point(7, 12), 2));
 		//ROBOTICS
-		this.registerResearch(new Research("bionics", EnumResearchType.ROBOTICS, new Point(38, 90), 4));
-		this.registerResearch(new Research("robotic_arm", EnumResearchType.ROBOTICS, new Point(38, 56), 3));
-		this.registerResearch(new Research("hydrolics", EnumResearchType.ROBOTICS, new Point(35, 50), 3));
-		this.registerResearch(new Research("AIs", EnumResearchType.ROBOTICS, new Point(13, 43), 4));
-		this.registerResearch(new Research("upgrade", EnumResearchType.ROBOTICS, new Point(26, 34), 2));
+		this.registerResearch(new Research("bionics", this.ROBOTICS, new Point(38, 90), 4));
+		this.registerResearch(new Research("robotic_arm", this.ROBOTICS, new Point(38, 56), 3));
+		this.registerResearch(new Research("hydrolics", this.ROBOTICS, new Point(35, 50), 3));
+		this.registerResearch(new Research("AIs", this.ROBOTICS, new Point(13, 43), 4));
+		this.registerResearch(new Research("upgrade", this.ROBOTICS, new Point(26, 34), 2));
 		//UPGRADE - SUB - START
-		this.registerResearch(new Research("upgrade_speed", EnumResearchType.ROBOTICS, new Point(12, 12), 2, this.getResearchWithName("upgrade")));
-		this.registerResearch(new Research("upgrade_AI", EnumResearchType.ROBOTICS, new Point(24, 24), 3, this.getResearchWithName("upgrade")));
-		this.registerResearch(new Research("upgrade_stack", EnumResearchType.ROBOTICS, new Point(12, 12), 2, this.getResearchWithName("upgrade")));
+		this.registerResearch(new Research("upgrade_speed", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
+		this.registerResearch(new Research("upgrade_AI", this.ROBOTICS, new Point(24, 24), 3, this.getResearch("upgrade")));
+		this.registerResearch(new Research("upgrade_stack", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
 		//UPGRADE - SUB - END
-		this.registerResearch(new Research("computing", EnumResearchType.ROBOTICS, new Point(13, 63), 2));
+		this.registerResearch(new Research("computing", this.ROBOTICS, new Point(13, 63), 2));
 		//RESEARCH
-		this.registerResearch(new Research("mass_spec", EnumResearchType.RESEARCH, new Point(6, 49), 3));
-		this.registerResearch(new Research("chromography", EnumResearchType.RESEARCH, new Point(2, 13), 1));
-		this.registerResearch(new Research("point_gen", EnumResearchType.RESEARCH, new Point(39, 63), 4));
+		this.registerResearch(new Research("mass_spec", this.RESEARCH, new Point(6, 49), 3));
+		this.registerResearch(new Research("chromography", this.RESEARCH, new Point(2, 13), 1));
+		this.registerResearch(new Research("point_gen", this.RESEARCH, new Point(39, 63), 4));
 		//SCIENCE
-		this.registerResearch(new Research("holograms", EnumResearchType.SCIENCE, new Point(13, 63), 3));
-		this.registerResearch(new Research("genetics", EnumResearchType.SCIENCE, new Point(13, 86), 3));
-		this.registerResearch(new Research("LHC", EnumResearchType.SCIENCE, new Point(86, 142), 4));
-		this.registerResearch(new Research("elements", EnumResearchType.SCIENCE, new Point(3, 13), 2));
+		this.registerResearch(new Research("holograms", this.SCIENCE, new Point(13, 63), 3));
+		this.registerResearch(new Research("genetics", this.SCIENCE, new Point(13, 86), 3));
+		this.registerResearch(new Research("LHC", this.SCIENCE, new Point(86, 142), 4));
+		this.registerResearch(new Research("elements", this.SCIENCE, new Point(3, 13), 2));
 		//ELEMENT - SUB - START
-		this.registerResearch(new Research("elements_carbon_comp", EnumResearchType.SCIENCE, new Point(63, 113), 4, this.getResearchWithName("elements")));
-		this.registerResearch(new Research("elements_bonds", EnumResearchType.SCIENCE, new Point(6, 23), 2, this.getResearchWithName("elements")));
-		this.registerResearch(new Research("elements_alloys", EnumResearchType.SCIENCE, new Point(12, 25), 2, this.getResearchWithName("elements")));
+		this.registerResearch(new Research("elements_carbon_comp", this.SCIENCE, new Point(63, 113), 4, this.getResearch("elements")));
+		this.registerResearch(new Research("elements_bonds", this.SCIENCE, new Point(6, 23), 2, this.getResearch("elements")));
+		this.registerResearch(new Research("elements_alloys", this.SCIENCE, new Point(12, 25), 2, this.getResearch("elements")));
 		//ELEMENT - SUB - END
-		this.registerResearch(new Research("phytomining", EnumResearchType.SCIENCE, new Point(3, 16), 2));
+		this.registerResearch(new Research("phytomining", this.SCIENCE, new Point(3, 16), 2));
 		//POWER
-		this.registerResearch(new Research("starage", EnumResearchType.POWER, new Point(23, 24), 2));
-		this.registerResearch(new Research("tesla_tower", EnumResearchType.POWER, new Point(36, 65), 3));
-		this.registerResearch(new Research("antimatter_gen", EnumResearchType.POWER, new Point(93, 149), 4));
+		this.registerResearch("storage", new Research("storage", this.POWER, new Point(23, 24), 2));
+		this.registerResearch(new Research("tesla_tower", this.POWER, new Point(36, 65), 3));
+		this.registerResearch("antimatter_gen", new Research("antimatter_gen", this.POWER, new Point(93, 149), 4));
 
-		/*
-		for(int i = 0; i < this.getResearchMap().size(); i++)
-		{
-			if(this.getResearchMap().get(i) != null)
-			{
-				this.bindResearchToText(this.getResearchMap().get(i), folder);
-			}
-		}*/
+		//Binding of text and research still has to be done!
 		
-		this.linkScanRequirementToResearch(new Requirement(new Material[]{Material.iron}), this.getResearchWithName("mass_spec"));
+		this.linkScanRequirementToResearch(new Requirement(new Material[]{Material.iron}), this.getResearch("mass_spec"));
 		
 		long duration = (System.currentTimeMillis() - time);
         LoggerHandler.info("Research registry completed in " + duration + "ms");
 	}
 	
-	private static Research[] researchMap = new Research[100];
-	private static HashMap<Requirement, Research> requireMap = new HashMap<Requirement, Research>();
-	private static HashMap<Research, Requirement> requireMapRev = new HashMap<Research, Requirement>();
-
-	public static void registerResearch(Research research)
+	private HashMap<String, String> researchMap = new HashMap<String, String>();
+	private List<String> nameMap = new ArrayList<String>();
+		
+	private HashMap<Requirement, Research> requireMap = new HashMap<Requirement, Research>();
+	private HashMap<Research, Requirement> requireMapRev = new HashMap<Research, Requirement>();
+	
+	public void registerResearch(Research research)
 	{
-		researchMap[researchMap.length] = research;
+		researchMap.put(research.getName(), research.toAdvString());
+		nameMap.add(research.getName());
 	}
 	
-	public static void linkScanRequirementToResearch(Requirement require, Research research)
+    private void registerResearch(String string, Research research) 
+    {
+		researchMap.put(string, research.toAdvString());
+		nameMap.add(string);
+	}
+	
+	public Research getResearch(String name)
+	{
+		Research research  = this.getResearchFromString(researchMap.get(name));
+		return research;
+	}
+
+	//@SuppressWarnings("unused")
+	private Research getResearchFromString(String string) 
+	{
+		if(string == null)
+		{
+			return null;
+		}
+		String[] details = string.split(":");
+		if(details.length != 5)
+		{
+			return null;
+		}
+		
+		String name = details[0];
+		String type = details[1];
+		int engPoint = Integer.parseInt(String.valueOf(details[2].split("--")[0]));
+		int sciPoint = Integer.parseInt(String.valueOf(details[2].split("--")[1]));
+		int tier = Integer.parseInt(String.valueOf(details[3]));
+		String reliant = String.valueOf(details[4]);
+		Research reliantR;
+		EnumResearchType typeE = this.getEnumFromString(type);
+		
+		if(details[4].contains(":null") || details[4] == null)
+		{
+			return new Research(name, typeE, new Point(engPoint, sciPoint), tier);
+		}
+		else
+		{
+			reliantR = this.getResearchFromString(reliant);
+			return new Research(name, typeE, new Point(engPoint, sciPoint), tier, reliantR);
+		}
+	}
+
+	private EnumResearchType getEnumFromString(String type)
+	{
+		HashMap<String, EnumResearchType> hashMap = EnumResearchType.getHashMap();
+		
+		for(int i = 0; i < hashMap.size(); i++)
+		{
+			if(hashMap.get(type) != null)
+			{
+				return hashMap.get(type);
+			}
+		}
+		return null;
+	}
+
+	public void linkScanRequirementToResearch(Requirement require, Research research)
 	{
 		requireMap.put(require, research);
 		requireMapRev.put(research, require);
 	}
 	
-	public static Research getResearchWithName(String name)
-	{/*
-		Research research = null;
-		
-		for(int i = 0; i < getResearchMap().size(); i++)
+	public boolean doesResearchHaveRequirement(Research research)
+	{
+		if(requireMapRev.get(research) != null)
 		{
-			if(getResearchMap().get(i).getName() == name)
-			{
-				research = getResearchMap().get(10);
-			}
-		}*/
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean doesNameHaveRequirement(String name)
+	{
+		if(name != null && this.getResearch(name) != null)
+		{
+			return this.getRequirementForName(name) != null;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	
+	public Requirement getRequirementForResearch(Research research)
+	{
+		if(requireMapRev.get(research) != null)
+		{
+			return requireMapRev.get(research);
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public Requirement getRequirementForName(String name)
+	{
+		if(name != null && this.getResearch(name) != null)
+		{
+			return this.getRequirementForResearch(this.getResearch(name));
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public boolean doesNameSubResearch(String name)
+	{
+		Research research = this.getResearch(name);
 		
-		return getResearchMap()[10];
+		if(research.getReliant() != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	public static Research[] getResearchMap()
+	public Research getSubResearchForName(String name)
 	{
-		return (Research[]) researchMap;
+		if(doesNameSubResearch(name))
+		{
+			Research research = this.getResearch(name);
+			
+			if(research.getReliant() != null)
+			{
+				return research.getReliant();
+			}
+			else
+			{
+				return null;
+			}
+		}
+		
+		return null;
 	}
 	
-	public static void bindResearchToText(Research research, File folder)
+	
+	public HashMap<String, String> getResearchMap()
 	{
-		ResearchTextRegistry.addResearchTextFromFolder(research, folder);
+		return this.researchMap;
+	}
+	
+	public void bindResearchToText(String name, File folder)
+	{
+		if(this.getResearch(name) != null)
+		{
+			ResearchTextRegistry.addResearchTextFromFolder(this.getResearch(name), folder);
+			System.out.println("binded");
+		}
+		else
+		{
+			
+		}
 	}
 }

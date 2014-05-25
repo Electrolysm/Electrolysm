@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
+import assets.electrolysm.electro.handlers.GUIHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,8 +33,26 @@ public class card extends Item
         {
             FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
         }
+        else
+        {
+        }
 
         return stack;
+    }
+    
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, 
+    		float par9, float par10)
+    {
+    	if (!player.isSneaking())
+        {
+        }
+        else
+        {
+        	player.openGui(electrolysmCore.GUIInstance, GUIHandler.id_bookIDCard, world, x, y, z);
+        	return true;
+        }
+    	
+    	return false;
     }
 
     @SideOnly(Side.CLIENT)

@@ -72,4 +72,10 @@ public class Point
 		}
 		return this;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.engPoint.getValue() + "--" + this.engPoint.getValue();
+	}
 }

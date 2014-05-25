@@ -108,7 +108,6 @@ import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
 import assets.electrolysm.electro.research.system.ResearchRegistry;
-import assets.electrolysm.electro.research.system.ResearchTextRegistry;
 import assets.electrolysm.electro.sciences.ItemArmorLab;
 import assets.electrolysm.electro.world.Scandium;
 import assets.electrolysm.electro.world.Yttrium;
@@ -122,6 +121,7 @@ import assets.electrolysm.electro.world.biome.EntityZombie_Scientist;
 import assets.electrolysm.electro.world.biome.diseasedBiome;
 import assets.electrolysm.electro.world.biome.diseasedGrass;
 import assets.electrolysm.electro.world.biome.spawnZS;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -147,7 +147,7 @@ public class electrolysmCore
 
     public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(), "Electrolysm");
     //public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
-
+    
     public static GUIHandler guiHandler = new GUIHandler();
 
     @Instance("Electrolysm")
@@ -375,8 +375,7 @@ public class electrolysmCore
         MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());
 
         long duration = (System.currentTimeMillis() - startTime);
-        float secs = ((duration / 1000) * 100);
-        LoggerHandler.info("Electrolysm Started in " + duration + "ms" + " (" + (secs / 100) + " secs)");
+        LoggerHandler.info("Electrolysm Started in " + duration + "ms");
     } 
 
     @SideOnly(Side.CLIENT)

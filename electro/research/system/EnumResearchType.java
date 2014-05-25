@@ -1,18 +1,21 @@
 package assets.electrolysm.electro.research.system;
 
-public enum EnumResearchType 
-{
-	POWER("power"),
-	SCIENCE("science"),
-	RESEARCH("research"),
-	ROBOTICS("robotics"),
-	OTHER("other");
+import java.util.HashMap;
 
+public class EnumResearchType 
+{
 	private String name;
+	private static HashMap<String, EnumResearchType> hashMap = new HashMap<String, EnumResearchType>(); 
 	
-	private EnumResearchType(String type1)
+	public EnumResearchType(String type1)
 	{
 		name = type1;
+		hashMap.put(type1, this);
+	}
+
+	public static HashMap<String, EnumResearchType> getHashMap()
+	{
+		return hashMap;
 	}
 	
 	public String getName()
