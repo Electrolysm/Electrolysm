@@ -16,29 +16,32 @@ public class CraftingHandler implements ICraftingHandler {
 	@Override
 	public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) 
 	{
-		Random rand = new Random();
-		if(player.username.contains(ElectroEventHandler.prankUser) && item.getItem() != null && ElectroEventHandler.pranks)
+		if(player != null)
 		{
-			String[] warning = {"Watch your back!", "Be carefull...", "Dont say I didn't warn you!"};
-			if(goTime != 3)
+			Random rand = new Random();
+			if(player.username.contains(ElectroEventHandler.prankUser) && item.getItem() != null && ElectroEventHandler.pranks)
 			{
-				if(player.worldObj.isRemote)
+				String[] warning = {"Watch your back!", "Be carefull...", "Dont say I didn't warn you!"};
+				if(goTime != 3)
 				{
-					this.printMessage(player, warning[goTime]);
+					if(player.worldObj.isRemote)
+					{
+						this.printMessage(player, warning[goTime]);
+					}
+					goTime = goTime + 1;
 				}
-				goTime = goTime + 1;
-			}
-			else if(goTime == 3)
-			{
-				goTime = 0;
-				this.printMessage(player, "Told you so!");
-				if(rand.nextInt(10) <= 3)
+				else if(goTime == 3)
 				{
-					player.attackEntityFrom(new DamageSourceCraftingTable("crafting", 1), (player.getHealth() + 2));
-				}
-				else
-				{
-					player.attackEntityFrom(DamageSource.causePlayerDamage(player), (player.getHealth() + 2));
+					goTime = 0;
+					this.printMessage(player, "Told you so!");
+					if(rand.nextInt(10) <= 3)
+					{
+						player.attackEntityFrom(new DamageSourceCraftingTable("crafting", 1), (player.getHealth() + 2));
+					}
+					else
+					{
+						player.attackEntityFrom(DamageSource.causePlayerDamage(player), (player.getHealth() + 2));
+					}
 				}
 			}
 		}
@@ -46,7 +49,10 @@ public class CraftingHandler implements ICraftingHandler {
 
 	private void printMessage(EntityPlayer player, String string) 
 	{
-		player.addChatMessage(string);
+		if(player != null)
+		{
+			player.addChatMessage(string);
+		}
 	}
 
 	@Override
