@@ -63,7 +63,7 @@ import assets.electrolysm.electro.crafting.items.microchipBoard;
 import assets.electrolysm.electro.crafting.items.transistor;
 import assets.electrolysm.electro.handlers.BetaHandler;
 import assets.electrolysm.electro.handlers.Crafting;
-import assets.electrolysm.electro.handlers.CraftingHandler;
+//import assets.electrolysm.electro.handlers.CraftingHandler;
 import assets.electrolysm.electro.handlers.ElectroEventHandler;
 import assets.electrolysm.electro.handlers.ElectrolysmLootHandler;
 import assets.electrolysm.electro.handlers.GUIHandler;
@@ -365,7 +365,7 @@ public class electrolysmCore
         Names.addName();
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();
-        GameRegistry.registerCraftingHandler(new CraftingHandler());
+        //GameRegistry.registerCraftingHandler(new CraftingHandler());
         GameRegistry.addBiome(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
         TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
