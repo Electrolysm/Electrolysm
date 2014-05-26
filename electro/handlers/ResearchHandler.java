@@ -35,6 +35,23 @@ public class ResearchHandler
         }
     }
 	
+	public static void downloadTechTree()
+    {
+		down_file = "config/electrolysm/techTree.png";
+		downloadLabSkin();
+        try
+        {
+            URL website = new URL("https://raw.githubusercontent.com/Electrolysm/Electrolysm/master/electro/research/system/Tech%20Tree.png");
+            ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+            FileOutputStream fos = new FileOutputStream(down_file);
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+	
 	public static void downloadLabSkin()
 	{
 		try
