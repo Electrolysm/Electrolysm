@@ -41,8 +41,13 @@ public class CommonProxy
     public static ResourceLocation CRUSHER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/crusherGUI.png");
     public static ResourceLocation LIQUIDISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/liquidiserGUI.png");
 	public static ResourceLocation SLOT_ICON = new ResourceLocation(MOD_ID_LOWER, "textures/gui/slotIcon.png");
+	
+	//Research
 	public static ResourceLocation IMAGE_TECH_TREE = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/image_techTree.png");
+	public static ResourceLocation RESEARCH_BACKGROUND = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/backGround.png");
+	public static ResourceLocation RESEARCH_BACKING = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/bookBackingPage.png");
 
+	
     //NEI GUIs
     public static ResourceLocation NEI_ELECTROL_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/nei/neiElectrolysisGUI.png");
     

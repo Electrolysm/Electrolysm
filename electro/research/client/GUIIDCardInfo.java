@@ -33,21 +33,46 @@ public class GUIIDCardInfo extends GuiScreen
     public void drawScreen(int par1, int par2, float par3)
     {
 		this.drawDefaultBackground();
-
-		this.renderTechTree();
-		this.renderNotWorkingText();
-		this.renderBlankBookPage();
+		
+		//this.renderTechTree();
+		this.renderBlankBookPageBorder();
+		//this.renderBlankBookPageBackground();
 		
 		if(isBookAdv)
 		{
 			//this.renderWithCircuit();
 		}
 		
+		this.renderNotWorkingText();
+		
     }
 
-	private void renderBlankBookPage() 
+	private void renderBlankBookPageBackground() 
 	{
+		int xSize1 = 670 / 2 + 100 - 50 - 100 - 30;//670
+		int ySize1 = 450 / 2 + 50 - 20;//450
 		
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glScalef(1.35F, 1.0F, 1.0F);
+
+        this.mc.renderEngine.bindTexture(CommonProxy.RESEARCH_BACKGROUND);
+        int xStart = (width - xSize1) / 2;
+        int yStart = (height - ySize1) / 2;
+        this.drawTexturedModalRect(xStart - 100 + 10 + 5, yStart, 0, 0, xSize1, ySize1);
+	}
+
+	private void renderBlankBookPageBorder() 
+	{
+		xSize = 670 / 2 - 100 + 50 - 25 - 2 - 2 - 2;
+		ySize = 450 / 2 + 50 - 20;
+		
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glScalef(2.2F, 1.0F, 1.0F);
+
+        this.mc.renderEngine.bindTexture(CommonProxy.RESEARCH_BACKING);
+        int xStart = (width - xSize) / 2;
+        int yStart = (height - ySize) / 2;
+        this.drawTexturedModalRect(xStart - 100 - 50 - 50 + 60, yStart, 0, 0, xSize, ySize);
 	}
 
 	private void renderNotWorkingText() 
