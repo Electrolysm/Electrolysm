@@ -32,6 +32,8 @@ public class GUIIDCardInfo extends GuiScreen
 	@Override
     public void drawScreen(int par1, int par2, float par3)
     {
+	  	GL11.glPushMatrix();
+
 		this.drawDefaultBackground();
 		
 		//this.renderTechTree();
