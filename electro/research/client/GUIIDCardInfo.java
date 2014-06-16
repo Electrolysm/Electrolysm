@@ -65,16 +65,17 @@ public class GUIIDCardInfo extends GuiScreen
 
 	private void renderBlankBookPageBorder() 
 	{
-		xSize = 670 / 2 - 100 + 50 - 25 - 2 - 2 - 2;
-		ySize = 450 / 2 + 50 - 20;
+		xSize = 512 / 2;
+		ySize = 512 / 2;
 		
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glScalef(2.2F, 1.0F, 1.0F);
+        GL11.glTranslatef(1.0F, -10.0F, 1.0F);
+        GL11.glScalef(1.0F, 1.0F, 1.0F);
 
         this.mc.renderEngine.bindTexture(CommonProxy.RESEARCH_BACKING);
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;
-        this.drawTexturedModalRect(xStart - 100 - 50 - 50 + 60, yStart, 0, 0, xSize, ySize);
+        this.drawTexturedModalRect(xStart/* - 100 - 50 - 50 + 60*/, yStart, 0, 0, xSize, ySize);
 	}
 
 	private void renderNotWorkingText() 

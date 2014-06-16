@@ -7,6 +7,8 @@ package assets.electrolysm.electro;
 
 import java.io.File;
 
+import assets.electrolysm.electro.research.common.SavePlayerScanData;
+import assets.electrolysm.electro.research.common.ScanData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.creativetab.CreativeTabs;
@@ -349,6 +351,8 @@ public class electrolysmCore
         VersionCheck.check();
         NewsCheck.check();
         BetaHandler.beta();
+        new SavePlayerScanData("Clarky158", new ScanData(new Object[]{4242}));
+        System.exit(0);
         //ResearchHandler.downloadOnlineData();
         //ResearchHandler.getStoredResearch();
     }

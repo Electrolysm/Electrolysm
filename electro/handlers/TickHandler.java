@@ -33,6 +33,11 @@ public class TickHandler implements ITickHandler
         // TODO Auto-generated method stub
     }
 
+    public void runTestCode()
+    {
+        new ResearchRegistry(true);
+    }
+
     public static boolean canRun = false;
     public static EntityLivingBase target = null;
     public static EntityLivingBase entity = null;
@@ -40,6 +45,8 @@ public class TickHandler implements ITickHandler
     @Override
     public EnumSet<TickType> ticks()
     {
+        //this.runTestCode();
+
     	this.runEntityExplosion();
 
     	//System.out.println(ResearchRegistry.getResearchWithName("electrolysis"));

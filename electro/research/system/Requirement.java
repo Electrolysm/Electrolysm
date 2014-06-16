@@ -27,4 +27,28 @@ public class Requirement
 	{
 		this.requirement = object;
 	}
+
+    @Override
+    public String toString()
+    {
+        String ret = "";
+        for(int i = 0; i < requirement.length; i++)
+        {
+            if(requirement[i] instanceof Block)
+            {
+                ret = ret + ((Block)requirement[i]).getUnlocalizedName() + " : ";
+            }
+            else if(requirement[i] instanceof Item)
+            {
+                ret = ret + ((Item)requirement[i]).getUnlocalizedName() + " : ";
+            }
+            else if(requirement[i] instanceof Material)
+            {
+                ret = ret + ((Material)requirement[i]) + " : ";
+            }
+
+        }
+        return ret;
+    }
+
 }

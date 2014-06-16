@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import assets.electrolysm.api.LoggerHandler;
 import assets.electrolysm.electro.research.pointsSystem.Point;
 
-public class ResearchRegistry 
+public class ResearchRegistry
 {
 	public ResearchRegistry(boolean doRegister)
 	{
@@ -19,88 +20,91 @@ public class ResearchRegistry
 			this.doRegister();
 		}
 	}
-	
+
 	EnumResearchType POWER = new EnumResearchType("power");
 	EnumResearchType SCIENCE = new EnumResearchType("science");
 	EnumResearchType RESEARCH = new EnumResearchType("research");
 	EnumResearchType ROBOTICS = new EnumResearchType("robotics");
 	EnumResearchType OTHER = new EnumResearchType("other");
-	
+
 	public void doRegister()
 	{
 		long time = System.currentTimeMillis();
 		File folder = new File("config/Electrolysm/");
-		
-		//OTHER
-		this.registerResearch(new Research("electrolysis", this.OTHER, new Point(13, 43), 4));
-		this.registerResearch(new Research("smeltery", this.OTHER, new Point(7, 23), 2));
-		this.registerResearch(new Research("crusher", this.OTHER, new Point(7, 12), 2));
-		//ROBOTICS
-		this.registerResearch(new Research("bionics", this.ROBOTICS, new Point(38, 90), 4));
-		this.registerResearch(new Research("robotic_arm", this.ROBOTICS, new Point(38, 56), 3));
-		this.registerResearch(new Research("hydrolics", this.ROBOTICS, new Point(35, 50), 3));
-		this.registerResearch(new Research("AIs", this.ROBOTICS, new Point(13, 43), 4));
-		this.registerResearch(new Research("upgrade", this.ROBOTICS, new Point(26, 34), 2));
-		//UPGRADE - SUB - START
-		this.registerResearch(new Research("upgrade_speed", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
-		this.registerResearch(new Research("upgrade_AI", this.ROBOTICS, new Point(24, 24), 3, this.getResearch("upgrade")));
-		this.registerResearch(new Research("upgrade_stack", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
-		//UPGRADE - SUB - END
-		this.registerResearch(new Research("computing", this.ROBOTICS, new Point(13, 63), 2));
-		//RESEARCH
-		this.registerResearch(new Research("mass_spec", this.RESEARCH, new Point(6, 49), 3));
-		this.registerResearch(new Research("chromography", this.RESEARCH, new Point(2, 13), 1));
-		this.registerResearch(new Research("point_gen", this.RESEARCH, new Point(39, 63), 4));
-		//SCIENCE
-		this.registerResearch(new Research("holograms", this.SCIENCE, new Point(13, 63), 3));
-		this.registerResearch(new Research("genetics", this.SCIENCE, new Point(13, 86), 3));
-		this.registerResearch(new Research("LHC", this.SCIENCE, new Point(86, 142), 4));
-		this.registerResearch(new Research("elements", this.SCIENCE, new Point(3, 13), 2));
-		//ELEMENT - SUB - START
-		this.registerResearch(new Research("elements_carbon_comp", this.SCIENCE, new Point(63, 113), 4, this.getResearch("elements")));
-		this.registerResearch(new Research("elements_bonds", this.SCIENCE, new Point(6, 23), 2, this.getResearch("elements")));
-		this.registerResearch(new Research("elements_alloys", this.SCIENCE, new Point(12, 25), 2, this.getResearch("elements")));
-		//ELEMENT - SUB - END
-		this.registerResearch(new Research("phytomining", this.SCIENCE, new Point(3, 16), 2));
-		//POWER
-		this.registerResearch("storage", new Research("storage", this.POWER, new Point(23, 24), 2));
-		this.registerResearch(new Research("tesla_tower", this.POWER, new Point(36, 65), 3));
-		this.registerResearch("antimatter_gen", new Research("antimatter_gen", this.POWER, new Point(93, 149), 4));
+
+        //OTHER
+        this.registerResearch(new Research("electrolysis", this.OTHER, new Point(13, 43), 4));
+        this.registerResearch(new Research("smeltery", this.OTHER, new Point(7, 23), 2));
+        this.registerResearch(new Research("crusher", this.OTHER, new Point(7, 12), 2));
+        //ROBOTICS
+        this.registerResearch(new Research("bionics", this.ROBOTICS, new Point(38, 90), 4));
+        this.registerResearch(new Research("robotic_arm", this.ROBOTICS, new Point(38, 56), 3));
+        this.registerResearch(new Research("hydrolics", this.ROBOTICS, new Point(35, 50), 3));
+        this.registerResearch(new Research("AIs", this.ROBOTICS, new Point(13, 43), 4));
+        this.registerResearch(new Research("upgrade", this.ROBOTICS, new Point(26, 34), 2));
+        //UPGRADE - SUB - START
+        this.registerResearch(new Research("upgrade_speed", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
+        this.registerResearch(new Research("upgrade_AI", this.ROBOTICS, new Point(24, 24), 3, this.getResearch("upgrade")));
+        this.registerResearch(new Research("upgrade_stack", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
+        //UPGRADE - SUB - END
+        this.registerResearch(new Research("computing", this.ROBOTICS, new Point(13, 63), 2));
+        //RESEARCH
+        this.registerResearch(new Research("mass_spec", this.RESEARCH, new Point(6, 49), 3));
+        this.registerResearch(new Research("chromography", this.RESEARCH, new Point(2, 13), 1));
+        this.registerResearch(new Research("point_gen", this.RESEARCH, new Point(39, 63), 4));
+        //SCIENCE
+        this.registerResearch(new Research("holograms", this.SCIENCE, new Point(13, 63), 3));
+        this.registerResearch(new Research("genetics", this.SCIENCE, new Point(13, 86), 3));
+        this.registerResearch(new Research("LHC", this.SCIENCE, new Point(86, 142), 4));
+        this.registerResearch(new Research("elements", this.SCIENCE, new Point(3, 13), 2));
+        //ELEMENT - SUB - START
+        this.registerResearch(new Research("elements_carbon_comp", this.SCIENCE, new Point(63, 113), 4, this.getResearch("elements")));
+        this.registerResearch(new Research("elements_bonds", this.SCIENCE, new Point(6, 23), 2, this.getResearch("elements")));
+        this.registerResearch(new Research("elements_alloys", this.SCIENCE, new Point(12, 25), 2, this.getResearch("elements")));
+        //ELEMENT - SUB - END
+        this.registerResearch(new Research("phytomining", this.SCIENCE, new Point(3, 16), 2));
+        //POWER
+        this.registerResearch("storage", new Research("storage", this.POWER, new Point(23, 24), 2));
+        this.registerResearch(new Research("tesla_tower", this.POWER, new Point(36, 65), 3));
+        this.registerResearch("antimatter_gen", new Research("antimatter_gen", this.POWER, new Point(93, 149), 4));
 
 		//Binding of text and research still has to be done!
-		
-		this.linkScanRequirementToResearch(new Requirement(new Material[]{Material.iron}), this.getResearch("mass_spec"));
-		
+
+		this.bindRequirementToResearch(new Requirement(new Block[]{Block.dirt}), this.getResearch("mass_spec"));
+
 		long duration = (System.currentTimeMillis() - time);
         LoggerHandler.info("Research registry completed in " + duration + "ms");
+        System.out.println(requireMap.get((this.getResearch("mass_spec")).toAdvString()));
+        //System.exit(0);
 	}
-	
+
 	private HashMap<String, String> researchMap = new HashMap<String, String>();
-	private List<String> nameMap = new ArrayList<String>();
-		
-	private HashMap<Requirement, Research> requireMap = new HashMap<Requirement, Research>();
-	private HashMap<Research, Requirement> requireMapRev = new HashMap<Research, Requirement>();
-	
+	private HashMap<String, String> requireMap = new HashMap<String, String>();
+    private HashMap<String, String> requireMapRev = new HashMap<String, String>();
+
+    public void bindRequirementToResearch(Requirement req, Research research)
+    {
+        this.requireMap.put(research.toAdvString(), req.toString());
+        this.requireMapRev.put(req.toString(), research.toAdvString());
+    }
+
 	public void registerResearch(Research research)
 	{
 		researchMap.put(research.getName(), research.toAdvString());
-		nameMap.add(research.getName());
 	}
-	
-    private void registerResearch(String string, Research research) 
+
+    private void registerResearch(String string, Research research)
     {
 		researchMap.put(string, research.toAdvString());
-		nameMap.add(string);
 	}
-	
+
 	public Research getResearch(String name)
 	{
 		Research research  = this.getResearchFromString(researchMap.get(name));
 		return research;
 	}
 
-	//@SuppressWarnings("unused")
-	private Research getResearchFromString(String string) 
+	private Research getResearchFromString(String string)
 	{
 		if(string == null)
 		{
@@ -111,7 +115,7 @@ public class ResearchRegistry
 		{
 			return null;
 		}
-		
+
 		String name = details[0];
 		String type = details[1];
 		int engPoint = Integer.parseInt(String.valueOf(details[2].split("--")[0]));
@@ -120,7 +124,7 @@ public class ResearchRegistry
 		String reliant = String.valueOf(details[4]);
 		Research reliantR;
 		EnumResearchType typeE = this.getEnumFromString(type);
-		
+
 		if(details[4].contains(":null") || details[4] == null)
 		{
 			return new Research(name, typeE, new Point(engPoint, sciPoint), tier);
@@ -135,7 +139,7 @@ public class ResearchRegistry
 	private EnumResearchType getEnumFromString(String type)
 	{
 		HashMap<String, EnumResearchType> hashMap = EnumResearchType.getHashMap();
-		
+
 		for(int i = 0; i < hashMap.size(); i++)
 		{
 			if(hashMap.get(type) != null)
@@ -146,58 +150,6 @@ public class ResearchRegistry
 		return null;
 	}
 
-	public void linkScanRequirementToResearch(Requirement require, Research research)
-	{
-		requireMap.put(require, research);
-		requireMapRev.put(research, require);
-	}
-	
-	public boolean doesResearchHaveRequirement(Research research)
-	{
-		if(requireMapRev.get(research) != null)
-		{
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean doesNameHaveRequirement(String name)
-	{
-		if(name != null && this.getResearch(name) != null)
-		{
-			return this.getRequirementForName(name) != null;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	
-	public Requirement getRequirementForResearch(Research research)
-	{
-		if(requireMapRev.get(research) != null)
-		{
-			return requireMapRev.get(research);
-		}
-		else
-		{
-			return null;
-		}
-	}
-	
-	public Requirement getRequirementForName(String name)
-	{
-		if(name != null && this.getResearch(name) != null)
-		{
-			return this.getRequirementForResearch(this.getResearch(name));
-		}
-		else
-		{
-			return null;
-		}
-	}
-	
 	public boolean doesNameSubResearch(String name)
 	{
 		Research research = this.getResearch(name);
