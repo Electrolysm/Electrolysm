@@ -351,7 +351,7 @@ public class electrolysmCore
         VersionCheck.check();
         NewsCheck.check();
         BetaHandler.beta();
-        new SavePlayerScanData("Clarky158", new ScanData(new Object[]{4242}));
+        new SavePlayerScanData("Clarky158", "ygcfg");
         System.exit(0);
         //ResearchHandler.downloadOnlineData();
         //ResearchHandler.getStoredResearch();
