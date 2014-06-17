@@ -12,11 +12,11 @@ import electro.block.machines.tile.TileEntityDesk;
 import electro.block.machines.tile.TileEntityResearchDesk;
 import electro.block.machines.tile.TileEntityWorkBench;
 import electro.block.te.TileEntityIronFrame;
-import assets.electrolysm.electro.common.CommonProxy;
-import assets.electrolysm.electro.handlers.SoundHandler;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
-import assets.electrolysm.electro.sciences.robotics.tile.TileEntitySoldering;
+import electro.common.CommonProxy;
+import electro.handlers.SoundHandler;
+import electro.oreProccessing.te.TileEntityElectrolisisCore;
+import electro.powerSystem.te.TileEntityWire;
+import electro.sciences.robotics.tile.TileEntitySoldering;
 import electro.world.biome.EntityZombie_Scientist;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -35,7 +35,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectrolisisCore.class, new RenderTileElectrolysisCore());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIronFrame.class, new RenderTileIronFrame());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCharger.class, new RenderTileCharger());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
         RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
         		new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));

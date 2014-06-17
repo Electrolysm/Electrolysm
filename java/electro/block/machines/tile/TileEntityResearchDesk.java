@@ -2,13 +2,15 @@ package electro.block.machines.tile;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.research.Research;
+import electro.electrolysmCore;
+import electro.research.Research;
 
 public class TileEntityResearchDesk extends TileEntity implements IInventory
 {
@@ -83,20 +85,6 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     }
 
     @Override
-    public String getInvName()
-    {
-        // TODO Auto-generated method stub
-        return "Research Desk";
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         // TODO Auto-generated method stub
@@ -111,18 +99,6 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     }
 
     @Override
-    public void openChest()
-    {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void closeChest()
-    {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
         // TODO Auto-generated method stub
@@ -132,7 +108,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     @Override
     public void updateEntity()
     {
-        int deskID = electrolysmCore.desk.blockID;
+        Block desk = electrolysmCore.desk;
         int desksClose = 0;
         ItemStack inStack = getStackInSlot(0);
         ItemStack card = getStackInSlot(2);
@@ -146,7 +122,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
             {
                 for (int y = 0; y <= 1; y++)
                 {
-                    if (worldObj.getBlockId(xCoord + x, yCoord + y, zCoord + z) == deskID)
+                    if (worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z) == desk)
                     {
                         desksClose = desksClose + 1;
                     }
@@ -173,7 +149,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
                                     setInventorySlotContents(1, result);
                                 }
 
-                                onInventoryChanged();
+                                this.markDirty();
                             }
                         }
                     }
@@ -183,30 +159,53 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
-        super.readFromNBT(tag);
-        int itemID = tag.getInteger("itemID");
-        int stackSize = tag.getInteger("stackSize");
-        int itemDamage = tag.getInteger("itemMeta");
-        ItemStack stack = new ItemStack(itemID, stackSize, itemDamage);
-        this.setInventorySlotContents(2, stack);
-        this.onInventoryChanged();
-    }
+        super.readFromNBT(nbtTagCompound);
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 0);
+        this.inventory = new ItemStack[this.getSizeInventory()];
 
-    /**
-     * Writes a tile entity to NBT.
-     */
-    @Override
-    public void writeToNBT(NBTTagCompound tag)
-    {
-        super.writeToNBT(tag);
-
-        if (this.getStackInSlot(2) != null)
+        for (int i = 0; i < tagList.tagCount(); ++i)
         {
-            tag.setInteger("itemID", this.getStackInSlot(2).itemID);
-            tag.setInteger("stackSize", this.getStackInSlot(2).stackSize);
-            tag.setInteger("itemMeta", this.getStackInSlot(2).getItemDamage());
+            NBTTagCompound tagCompound = (NBTTagCompound) tagList.getCompoundTagAt(i);
+            byte slot = tagCompound.getByte("Slot");
+
+            if (slot >= 0 && slot < inventory.length)
+            {
+                this.inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+            }
         }
     }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+        NBTTagList tagList = new NBTTagList();
+
+        for (int currentIndex = 0; currentIndex < this.inventory.length; ++currentIndex)
+        {
+            if (this.inventory[currentIndex] != null)
+            {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) currentIndex);
+                this.inventory[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
+            }
+        }
+
+        nbtTagCompound.setTag("Items", tagList);
+    }
+
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Injector"; }
+
+    @Override
+    public void openInventory() { }
 }

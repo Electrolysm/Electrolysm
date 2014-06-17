@@ -3,28 +3,29 @@ package electro.block.liquids;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import assets.electrolysm.api.LoggerHandler;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
+import api.LoggerHandler;
+import electro.electrolysmCore;
+import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerItem*/
 {
     @SideOnly(Side.CLIENT)
-    private Icon[] fluidIcons;
+    private IIcon[] fluidIcons;
 
-    public fluidStorage(int ID)
+    public fluidStorage()
     {
-        super(ID);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.hasSubtypes = true;
     }
@@ -38,9 +39,9 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
-        fluidIcons = new Icon[CommonProxy.FLUIDS.length];
+        fluidIcons = new IIcon[CommonProxy.FLUIDS.length];
 
         for (int i = 0; i < CommonProxy.FLUIDS.length; i ++)
         {
@@ -51,7 +52,7 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return fluidIcons[dmg];
     }
@@ -93,46 +94,46 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
     	int yCoord = getYBasedSide(side);
     	int zCoord = getZBasedSide(side);
     	
-    	if(world.getBlockId(x + xCoord, y + yCoord, z + zCoord) == 0)
+    	if(world.getBlock(x + xCoord, y + yCoord, z + zCoord) == null)
     	{
-	        if (this.getBlockIDBasedOnItemStack(item) != 0)
+	        if (this.getBlockBasedOnItemStack(item) != null)
 	        {
 	            if (side == 0)
 	            {
 	                //Bottom
-	                world.setBlock(x, y - 1, z, this.getBlockIDBasedOnItemStack(item));
+	                world.setBlock(x, y - 1, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
 	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
 	            }
 	            else if (side == 1)
 	            {
 	                //Top
-	                world.setBlock(x, y + 1, z, this.getBlockIDBasedOnItemStack(item));
+	                world.setBlock(x, y + 1, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
 	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
 	            }
 	            else if (side == 2)
 	            {
 	                //Right
-	                world.setBlock(x, y, z - 1, this.getBlockIDBasedOnItemStack(item));
+	                world.setBlock(x, y, z - 1, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
 	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
 	            }
 	            else if (side == 3)
 	            {
-	                world.setBlock(x, y, z + 1, this.getBlockIDBasedOnItemStack(item));
+	                world.setBlock(x, y, z + 1, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
 	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
 	            }
 	            else if (side == 4)
 	            {
-	                world.setBlock(x - 1, y, z, this.getBlockIDBasedOnItemStack(item));
+	                world.setBlock(x - 1, y, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
 	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
 	            }
 	            else if (side == 5)
 	            {
-	                world.setBlock(x + 1, y, z, this.getBlockIDBasedOnItemStack(item));
+	                world.setBlock(x + 1, y, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
 	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
 	            }
@@ -153,9 +154,9 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
     	}
     	else if(item.getItemDamage() == 0)
     	{
-    		if(this.getMetaFromID(world.getBlockId(x + xCoord, y + yCoord, z + zCoord)) != 0);
+    		if(this.getMetaFromBlock(world.getBlock(x + xCoord, y + yCoord, z + zCoord)) != 0);
     		{
-    			int meta = this.getMetaFromID(world.getBlockId(x + xCoord, y + yCoord, z + zCoord));
+    			int meta = this.getMetaFromBlock(world.getBlock(x + xCoord, y + yCoord, z + zCoord));
     			if(item.stackSize > 1)
     			{
     				item = new ItemStack(electrolysmCore.fluidStorage, 1, meta);
@@ -213,17 +214,17 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 		return 0;
 	}
 
-	private int getMetaFromID(int blockID) 
+	private int getMetaFromBlock(Block block)
 	{
-		if(blockID == electrolysmCore.plasma.blockID)
+		if(block == electrolysmCore.plasma)
 		{
 			return 1;
 		}
-		else if(blockID == electrolysmCore.sulpuricAcid.blockID)
+		else if(block == electrolysmCore.sulpuricAcid)
 		{
 			return 2;
 		}
-		else if(blockID == Block.waterStill.blockID)
+		else if(block == Blocks.water)
 		{
 			return 9;
 		}
@@ -252,28 +253,27 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
     			}
     		}
     	}
-    	
-    	player.dropPlayerItem(itemStack);
+    	player.entityDropItem(itemStack, 0);
     	return;
 	}
 
-	private int getBlockIDBasedOnItemStack(ItemStack item)
+	private Block getBlockBasedOnItemStack(ItemStack item)
     {
         String displayName = CommonProxy.FLUIDS[item.getItemDamage()];
 
         if (displayName.toLowerCase().contains("plasma"))
         {
-            return electrolysmCore.plasma.blockID;
+            return electrolysmCore.plasma;
         }
         else if (displayName.toLowerCase().contains("sulphuric"))
         {
-            return electrolysmCore.sulpuricAcid.blockID;
+            return electrolysmCore.sulpuricAcid;
         }
         else if (displayName.toLowerCase().contains("water"))
         {
-            return Block.waterStill.blockID;
+            return Blocks.water;
         }
 
-        return 0;
+        return null;
     }
 }

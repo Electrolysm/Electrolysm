@@ -1,32 +1,30 @@
 package electro.block.basic;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.basic.te.TileEntityBlastDoor;
-import assets.electrolysm.electro.client.ClientProxy;
+import electro.client.ClientProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class blastDoor extends blastProof
 {
     @SideOnly(Side.CLIENT)
-    private Icon closed;
+    private IIcon closed;
     @SideOnly(Side.CLIENT)
-    private Icon open;
+    private IIcon open;
 
     private boolean opened;
     public boolean firstTime;
 
-    public blastDoor(int id, Material mat)
+    public blastDoor()
     {
-        super(id, mat);
-        // TODO Auto-generated constructor stub
-        this.setUnlocalizedName("blastDoor");
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setResistance(6000000.0F);
         this.setHardness(9000);
@@ -46,13 +44,13 @@ public class blastDoor extends blastProof
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister register)
+    public void registerBlockIcons(IIconRegister register)
     {
         this.blockIcon = register.registerIcon("electrolysm:" + this.getUnlocalizedName().replace("tile.", ""));
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return new TileEntityBlastDoor();
     }

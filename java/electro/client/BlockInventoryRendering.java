@@ -2,15 +2,15 @@ package electro.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.world.IBlockAccess;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.advMachines.te.TileEntityCharger;
 import electro.block.machines.tile.TileEntityDesk;
 import electro.block.machines.tile.TileEntityResearchDesk;
 import electro.block.machines.tile.TileEntityWorkBench;
 import electro.block.te.TileEntityIronFrame;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
+import electro.oreProccessing.te.TileEntityElectrolisisCore;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
@@ -25,7 +25,7 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
     {
-        TileEntityRenderer entityRenderer = TileEntityRenderer.instance;
+        TileEntitySpecialRenderer entityRenderer = TileEntitySpecialRenderer.class;
 
         if (block == electrolysmCore.researchDesk)
         {
@@ -57,7 +57,7 @@ public class BlockInventoryRendering implements ISimpleBlockRenderingHandler
     }
 
     @Override
-    public boolean shouldRender3DInInventory()
+    public boolean shouldRender3DInInventory(int i)
     {
         return true;
     }

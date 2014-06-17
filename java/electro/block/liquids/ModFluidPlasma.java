@@ -1,8 +1,8 @@
 package electro.block.liquids;
 
-import assets.electrolysm.electro.handlers.IDHandler;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import electro.handlers.IDHandler;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 

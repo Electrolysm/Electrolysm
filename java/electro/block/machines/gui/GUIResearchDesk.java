@@ -7,9 +7,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 
 import org.lwjgl.opengl.GL11;
 
-import assets.electrolysm.electro.block.machines.container.ContainerResearchDesk;
-import assets.electrolysm.electro.block.machines.tile.TileEntityResearchDesk;
-import assets.electrolysm.electro.common.CommonProxy;
+import electro.block.machines.container.ContainerResearchDesk;
+import electro.block.machines.tile.TileEntityResearchDesk;
+import electro.common.CommonProxy;
 
 public class GUIResearchDesk extends GuiContainer
 {
@@ -42,7 +42,7 @@ public class GUIResearchDesk extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-        fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(entity.getInventoryName(), 40, 6, 4210752);
         /*
         fontRenderer.drawString(matrix(), 10, 40, 4210752);
         fontRenderer.drawString(matrix(), 10, 48, 4210752);

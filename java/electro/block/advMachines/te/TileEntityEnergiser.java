@@ -1,9 +1,10 @@
 package electro.block.advMachines.te;
 
-import assets.electrolysm.electro.crafting.EnergiserRecipes;
+import electro.crafting.EnergiserRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -34,18 +35,6 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
     public int getSizeInventory()
     {
         return this.inventory.length;
-    }
-
-    @Override
-    public String getInvName()
-    {
-        return "Fluid Energiser";
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        return false;
     }
 
     @Override
@@ -117,12 +106,12 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
-        NBTTagList tagList = nbtTagCompound.getTagList("Items");
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 0);
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < tagList.tagCount(); ++i)
         {
-            NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
+            NBTTagCompound tagCompound = (NBTTagCompound) tagList.getCompoundTagAt(i);
             byte slot = tagCompound.getByte("Slot");
 
             if (slot >= 0 && slot < inventory.length)
@@ -187,7 +176,7 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
 
                             if (this.inventory[2].stackSize == 0)
                             {
-                                this.inventory[2] = this.inventory[2].getItem().getContainerItemStack(inventory[2]);
+                                this.inventory[2] = this.inventory[2].getItem().getContainerItem(inventory[2]);
                             }
                         }
                     }
@@ -217,7 +206,7 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
 
             if (flag1)
             {
-                this.onInventoryChanged();
+                this.markDirty();
                 //platFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
@@ -326,22 +315,11 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
         }
         else
         {
-            int i = itemStack.getItem().itemID;
             Item item = itemStack.getItem();
 
-            if (itemStack.getItem() instanceof ItemBlock && Block.blocksList[i] != null)
+            if (itemStack.getItem() instanceof ItemBlock)
             {
-                Block block = Block.blocksList[i];
-
-                if (block == Block.woodSingleSlab)
-                {
-                    return 150;
-                }
-
-                if (block.blockMaterial == Material.wood)
-                {
-                    return 300;
-                }
+                return 156;
             }
 
             if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD"))
@@ -354,7 +332,7 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
                 return 200;
             }
 
-            if (i == Item.bucketLava.itemID)
+            if (item == Items.lava_bucket)
             {
                 return 1000;
             }
@@ -382,12 +360,14 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
     }
 
     @Override
-    public void openChest()
-    {
-    }
+    public void closeInventory() { }
 
     @Override
-    public void closeChest()
-    {
-    }
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Energiser"; }
+
+    @Override
+    public void openInventory() { }
 }

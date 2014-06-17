@@ -1,15 +1,14 @@
 package electro.block.basic;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public class floodLight extends Block
 {
-    public floodLight(int id, Material mat)
+    public floodLight()
     {
-        super(id, Material.iron);
-        this.setUnlocalizedName("floodLight");
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setHardness(2.35685F);
     }

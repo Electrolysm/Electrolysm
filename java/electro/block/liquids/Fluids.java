@@ -6,7 +6,7 @@ import java.util.Set;
 
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import assets.electrolysm.electro.common.CommonProxy;
+import electro.common.CommonProxy;
 
 public class Fluids
 {/*

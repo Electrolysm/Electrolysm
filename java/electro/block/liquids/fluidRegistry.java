@@ -3,36 +3,36 @@ package electro.block.liquids;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
+import electro.electrolysmCore;
+import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class fluidRegistry extends Item /*implements IFluidContainerItem*/
 {
     @SideOnly(Side.CLIENT)
-    private Icon[] fluidIcons;
+    private IIcon[] fluidIcons;
 
 	Fluid[] fluid = new Fluid[100];
 
-    public fluidRegistry(int ID)
+    public fluidRegistry()
     {
-        super(ID);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.hasSubtypes = true;
-        
+        /*
         System.out.println(Integer.MAX_VALUE);
     	
         for(int b = 0; b < Block.blocksList.length; b++)
@@ -45,7 +45,7 @@ public class fluidRegistry extends Item /*implements IFluidContainerItem*/
    					fluid[i] = FluidRegistry.lookupFluidForBlock(Block.blocksList[b]);
     			}
     		}
-    	}
+    	}*/
     }
 
     @Override
@@ -57,9 +57,9 @@ public class fluidRegistry extends Item /*implements IFluidContainerItem*/
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
-        fluidIcons = new Icon[fluid.length];
+        fluidIcons = new IIcon[fluid.length];
         
         for(int i = 0; i < fluidIcons.length; i++)
         {
@@ -70,7 +70,7 @@ public class fluidRegistry extends Item /*implements IFluidContainerItem*/
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return fluidIcons[dmg];
     }
@@ -146,19 +146,19 @@ public class fluidRegistry extends Item /*implements IFluidContainerItem*/
         return false;
     }
 
-    private int getBlockIDBasedOnItemStack(ItemStack item)
+    private Block getBlockBasedOnItemStack(ItemStack item)
     {
         String displayName = CommonProxy.FLUIDS[item.getItemDamage()];
 
         if (displayName.toLowerCase().contains("plasma"))
         {
-            return electrolysmCore.plasma.blockID;
+            return electrolysmCore.plasma;
         }
         else if (displayName.toLowerCase().contains("sulphuric"))
         {
-            return electrolysmCore.sulpuricAcid.blockID;
+            return electrolysmCore.sulpuricAcid;
         }
 
-        return 0;
+        return null;
     }
 }

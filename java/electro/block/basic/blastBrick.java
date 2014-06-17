@@ -4,20 +4,18 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class blastBrick extends blastProof
 {
-    public blastBrick(int id, Material mat)
+    public blastBrick()
     {
-        super(id, Material.iron);
-        
-        this.setUnlocalizedName("blastBrick");
+        super();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         return this.iconBrick;
     }

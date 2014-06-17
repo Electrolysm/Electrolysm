@@ -2,8 +2,7 @@ package electro.block.te;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 public class TileEntityIronFrame extends TileEntity
 {/*

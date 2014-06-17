@@ -1,76 +1,58 @@
 package electro.block.basic;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 import org.lwjgl.input.Keyboard;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class hammer extends ItemTool
 {
-    public static final Block[] blocksEffectiveAgainst = new Block[] {electrolysmCore.nettedBlock};
-	
+    public static final Block[] block = new Block[] {electrolysmCore.nettedBlock};
+    private static Set<Block> blocksEffectiveAgainst = new HashSet<Block>(Arrays.asList(block));
+
     public hammer(int id)
     {
-        super(id, 10F, EnumToolMaterial.IRON, blocksEffectiveAgainst);
+        super(10F, ToolMaterial.IRON, blocksEffectiveAgainst);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("Hammer");
-        this.damageVsEntity = 2.5F;
         this.maxStackSize = 1;
         this.efficiencyOnProperMaterial = 10;
-        this.toolMaterial = EnumToolMaterial.IRON;
+        this.toolMaterial = ToolMaterial.IRON;
     }
-    
+
     @Override
-    public float getStrVsBlock(ItemStack stack, Block block)
+    public float getDigSpeed(ItemStack stack, Block block, int meta)
     {
    		if(block == electrolysmCore.nettedBlock)
    		{
    			return 10F;
-   		}
-   		else if(block.blockMaterial == Material.rock)
-   		{
-   			if(block.blockHardness < Block.blockDiamond.blockHardness)
-   			{
-   				return 3.5F;
-   			}
-   			else
-   			{
-   				return 1F;
-   			}
    		}
    		else
    		{
    			return 1F;
    		}
     }
-	
-	@Override
-    public boolean canHarvestBlock(Block block)
-    {
-		return true;
-    }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("electrolysm:" + "Hammer");
     }
@@ -103,7 +85,7 @@ public class hammer extends ItemTool
 		
     	if(this.isShiftKeyDown())
     	{
-    		String hammer = ChatMessageComponent.createFromText("This hammer breaks:").setColor(EnumChatFormatting.GREEN) + "";
+    		String hammer = ("This hammer breaks:");
     		list.add(sectionSign + "l" + sectionSign + "a" + hammer);
     		list.add("Iron");
     		list.add("Gold");
@@ -113,7 +95,7 @@ public class hammer extends ItemTool
     	}
     	else
     	{
-    		String shift = ChatMessageComponent.createFromText("<Shift>").setColor(EnumChatFormatting.GOLD) + "";
+    		String shift = "<Shift>";
     		list.add("Press " + sectionSign + "e" + shift + sectionSign + "7" + " for more info");
     	}
     }
@@ -128,10 +110,10 @@ public class hammer extends ItemTool
     {
     	stack.setItemDamage(stack.getItemDamage() + 1);
     	
-    	int id = world.getBlockId(x, y, z);
+    	Block block = world.getBlock(x, y, z);
     	int meta = world.getBlockMetadata(x, y, z);
     	
-    	if(id == electrolysmCore.nettedBlock.blockID)
+    	if(block == electrolysmCore.nettedBlock)
     	{
     		ItemStack drop = new ItemStack(electrolysmCore.impureDusts, this.getDustRandomAmount(1, 2), meta);
         	//ItemStack net = new ItemStack(electrolysmCore.net, 1, 0);
@@ -159,7 +141,7 @@ public class hammer extends ItemTool
 	@Override
     public boolean getIsRepairable(ItemStack hammer, ItemStack repairStuff)
 	{
-		if(repairStuff == (new ItemStack(Item.ingotIron)) || repairStuff == (new ItemStack(Item.ingotGold)))
+		if(repairStuff == (new ItemStack(Items.iron_ingot)) || repairStuff == (new ItemStack(Items.gold_ingot)))
 		{
 			return true;
 		}

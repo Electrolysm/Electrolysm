@@ -63,13 +63,13 @@ public class ContainerWorkBench extends Container
 
         if (inventoryplayer.getItemStack() != null)
         {
-            player.dropPlayerItem(inventoryplayer.getItemStack());
+            player.entityDropItem(inventoryplayer.getItemStack(), 0);
             inventoryplayer.setItemStack((ItemStack)null);
         }
 
         if (this.entity.getStackInSlot(9) != null)
         {
-            player.dropPlayerItem(this.entity.getStackInSlot(9));
+            player.entityDropItem(this.entity.getStackInSlot(9), 0);
         }
     }
 }

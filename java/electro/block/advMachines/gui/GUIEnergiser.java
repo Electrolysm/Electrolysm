@@ -9,9 +9,9 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import assets.electrolysm.electro.block.advMachines.container.ContainerEnergiser;
+import electro.block.advMachines.container.ContainerEnergiser;
 import electro.block.advMachines.te.TileEntityEnergiser;
-import assets.electrolysm.electro.common.CommonProxy;
+import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -31,9 +31,9 @@ public class GUIEnergiser extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y)
     {
-        String containerName = inventoryFurnace.isInvNameLocalized() ? inventoryFurnace.getInvName() : StatCollector.translateToLocal(inventoryFurnace.getInvName());
-        fontRenderer.drawString(containerName, xSize / 2 - fontRenderer.getStringWidth(containerName) / 2, 5, 4210752);
-        fontRenderer.drawString("Inventory", 8, ySize - 93, 4210752);
+        String containerName = inventoryFurnace.hasCustomInventoryName() ? inventoryFurnace.getInventoryName() : StatCollector.translateToLocal(inventoryFurnace.getInventoryName());
+        fontRendererObj.drawString(containerName, xSize / 2 - fontRendererObj.getStringWidth(containerName) / 2, 5, 4210752);
+        fontRendererObj.drawString("Inventory", 8, ySize - 93, 4210752);
     }
 
     @Override

@@ -6,14 +6,13 @@ import net.minecraft.world.World;
 
 public class autoDesk extends workBench
 {
-    public autoDesk(int id, Material mat)
+    public autoDesk()
     {
-        super(id, Material.iron);
-        this.setUnlocalizedName("autoBench");
+        super();
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return null/*new TileEntityAutoDesk()*/;
     }

@@ -7,8 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-import assets.electrolysm.electro.common.CommonProxy;
-import assets.electrolysm.electro.handlers.Referance;
+import electro.common.CommonProxy;
+import electro.handlers.Referance;
 
 public class ItemRenderResearchDesk implements IItemRenderer
 {

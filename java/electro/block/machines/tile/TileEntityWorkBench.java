@@ -7,9 +7,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.research.Research;
-import assets.electrolysm.electro.research.ResearchRecipes;
+import electro.electrolysmCore;
+import electro.research.Research;
+import electro.research.ResearchRecipes;
 
 public class TileEntityWorkBench extends TileEntity implements IInventory
 {
@@ -84,20 +84,6 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
     }
 
     @Override
-    public String getInvName()
-    {
-        // TODO Auto-generated method stub
-        return "Research Desk";
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         // TODO Auto-generated method stub
@@ -109,18 +95,6 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
     {
         // TODO Auto-generated method stub
         return true;
-    }
-
-    @Override
-    public void openChest()
-    {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void closeChest()
-    {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -163,7 +137,7 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
             {
                 if ((stack.stackSize - 1) > 1)
                 {
-                    ItemStack replace = new ItemStack(stack.itemID, stack.stackSize, stack.getItemDamage());
+                    ItemStack replace = new ItemStack(stack.getItem(), stack.stackSize, stack.getItemDamage());
                     this.setInventorySlotContents(i, null);
                 }
             }
@@ -190,7 +164,7 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
 
                     if (this.getStackInSlot(i) != null)
                     {
-                        InStack = new ItemStack(this.getStackInSlot(i).itemID, this.getStackInSlot(i).stackSize - 1,
+                        InStack = new ItemStack(this.getStackInSlot(i).getItem(), this.getStackInSlot(i).stackSize - 1,
                                                 this.getStackInSlot(i).getItemDamage());
                     }
                     else
@@ -233,10 +207,22 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
                 {
                     //System.out.println("SettingInventory");
                     this.setInventorySlotContents(9, ResearchRecipes.getResultBasedOnDamage(dmg));
-                    this.onInventoryChanged();
+                    this.markDirty();
                     this.clearInventory();
                 }
             }
         }
     }
+
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Injector"; }
+
+    @Override
+    public void openInventory() { }
 }

@@ -1,11 +1,11 @@
 package electro.block.basic;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import electro.block.basic.te.TileEntityBlastDesk;
 import cpw.mods.fml.relauncher.Side;
@@ -14,12 +14,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class blastDesk extends blastProof
 {
     @SideOnly(Side.CLIENT)
-    Icon icon;
+    IIcon icon;
 
-    public blastDesk(int id, Material mat)
+    public blastDesk()
     {
-        super(id, Material.iron);
-        this.setUnlocalizedName("blastDesk");
+        super();
     }
 
     //You don't want the normal render type, or it wont render properly.
@@ -42,7 +41,7 @@ public class blastDesk extends blastProof
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return new TileEntityBlastDesk();
     }
@@ -63,7 +62,7 @@ public class blastDesk extends blastProof
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = icon;
     }

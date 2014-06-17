@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.machines.tile.TileEntityDesk;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,16 +17,15 @@ public class desk extends BlockContainer
 {
     public TileEntityDesk tileEntity = new TileEntityDesk();
 
-    public desk(int id, Material mat)
+    public desk()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("desk");
         this.setHardness(4);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return new TileEntityDesk();

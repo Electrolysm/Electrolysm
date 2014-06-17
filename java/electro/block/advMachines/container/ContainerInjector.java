@@ -10,7 +10,7 @@ import electro.block.advMachines.te.TileEntityInjector;
 import electro.block.machines.container.SlotFluidStorage;
 import electro.block.machines.container.Slot_Adv_Machine_Fuel;
 import electro.block.machines.container.SlotOutput;
-import assets.electrolysm.electro.crafting.InjectorRecipes;
+import electro.crafting.InjectorRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

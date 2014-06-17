@@ -7,9 +7,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import assets.electrolysm.electro.block.machines.container.ContainerWorkBench;
-import assets.electrolysm.electro.block.machines.tile.TileEntityWorkBench;
-import assets.electrolysm.electro.common.CommonProxy;
+import electro.block.machines.container.ContainerWorkBench;
+import electro.block.machines.tile.TileEntityWorkBench;
+import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,8 +28,8 @@ public class GUIWorkBench extends GuiContainer
     */
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Crafting", 28, 6, 4210752);
-        this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj.drawString("Crafting", 28, 6, 4210752);
+        this.fontRendererObj.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
     }
     /**
      * Draw the background layer for the GuiContainer (everything behind the items)

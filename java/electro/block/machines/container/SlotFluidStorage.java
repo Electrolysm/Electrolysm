@@ -4,7 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 public class SlotFluidStorage extends Slot
 {
@@ -34,12 +34,12 @@ public class SlotFluidStorage extends Slot
             return false;
         }
 
-        if (stack.itemID == electrolysmCore.sulphur.itemID)
+        if (stack.getItem() == electrolysmCore.sulphur)
         {
             return true;
         }
-        else if(OreDictionary.getOreName(stack.itemID).contains("sulphur") || 
-        		OreDictionary.getOreName(stack.itemID).contains("sulfur"))
+        else if(stack.getItem().getUnlocalizedName().contains("sulphur") ||
+                stack.getItem().getUnlocalizedName().contains("sulfur"))
         {
         	return true;
         }
@@ -54,7 +54,7 @@ public class SlotFluidStorage extends Slot
             return false;
         }
 
-        if (stack.itemID == electrolysmCore.fluidStorage.itemID)
+        if (stack.getItem() == electrolysmCore.fluidStorage)
         {
             return true;
         }

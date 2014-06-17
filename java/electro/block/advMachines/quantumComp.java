@@ -2,14 +2,14 @@ package electro.block.advMachines;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.advMachines.te.TileEntityQuantumComp;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -22,30 +22,30 @@ public class quantumComp extends BlockContainer
     public static String displayName = "Quantum Computer";
 
     @SideOnly(Side.CLIENT)
-    public Icon machineFront;
+    public IIcon machineFront;
     @SideOnly(Side.CLIENT)
-    public Icon machineSide;
+    public IIcon machineSide;
     @SideOnly(Side.CLIENT)
-    public Icon machineTop;
+    public IIcon machineTop;
 
-    public quantumComp(int id, Material mat)
+    public quantumComp()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName(this.unlocalName);
+        //this.setUnlocalizedName(this.unlocalName);
         this.setHardness(5.0F);
         this.setBlockBounds(0, 0, 0, 1, 3, 1);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return new TileEntityQuantumComp();
     }
 
     @SideOnly(Side.CLIENT)
 
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
         this.machineFront = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Front");
     }

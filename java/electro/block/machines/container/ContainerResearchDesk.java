@@ -54,7 +54,7 @@ public class ContainerResearchDesk extends Container
 
         if (inventoryplayer.getItemStack() != null)
         {
-            par1EntityPlayer.dropPlayerItem(inventoryplayer.getItemStack());
+            par1EntityPlayer.entityDropItem(inventoryplayer.getItemStack(), 0);
             inventoryplayer.setItemStack((ItemStack)null);
         }
 

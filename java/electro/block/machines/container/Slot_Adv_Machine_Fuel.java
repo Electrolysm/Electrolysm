@@ -3,6 +3,8 @@ package electro.block.machines.container;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
@@ -37,22 +39,11 @@ public class Slot_Adv_Machine_Fuel extends Slot
         }
         else
         {
-            int var1 = par0ItemStack.getItem().itemID;
             Item var2 = par0ItemStack.getItem();
 
-            if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[var1] != null)
+            if (par0ItemStack.getItem() instanceof ItemBlock)
             {
-                Block var3 = Block.blocksList[var1];
-
-                if (var3 == Block.woodSingleSlab)
-                {
-                    return 150;
-                }
-
-                if (var3.blockMaterial == Material.wood)
-                {
-                    return 300;
-                }
+                return  134;
             }
 
             if (var2 instanceof ItemTool && ((ItemTool) var2).getToolMaterialName().equals("WOOD"))
@@ -62,12 +53,7 @@ public class Slot_Adv_Machine_Fuel extends Slot
 
             //if (var2 instanceof ItemSword && ((ItemSword) var2).getToolMaterialName().equals("WOOD")) return 200;
             //if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 200;
-            if (var1 == Item.bucketLava.itemID)
-            {
-                return 1000;
-            }
-
-            if (var1 == Block.glowStone.blockID)
+            if (var2 == Items.lava_bucket)
             {
                 return 1000;
             }

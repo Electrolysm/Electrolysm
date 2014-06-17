@@ -4,17 +4,17 @@ import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.block.GlassBlockConnectedMeta;
+import electro.electrolysmCore;
+import electro.block.GlassBlockConnectedMeta;
 
 public class blastGlass extends GlassBlockConnectedMeta
 {
     public blastGlass(int par1, String location, boolean hasAlpha,
                       String[] textures)
     {
-        super(par1, location, hasAlpha, textures);
-        this.setUnlocalizedName("blastGlass");
+        super(location, hasAlpha, textures);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setHardness(9000);
         this.setBlockUnbreakable();
@@ -33,9 +33,5 @@ public class blastGlass extends GlassBlockConnectedMeta
         return false;
     }
 
-    @Override
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return electrolysmCore.blastGlass.blockID;
-    }
+    public TileEntity createNewTileEntity(World world, int i) { return null; }
 }

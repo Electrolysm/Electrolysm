@@ -1,7 +1,7 @@
 package electro.block.advMachines.te;
 
 import cpw.mods.fml.common.Loader;
-import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
+import api.powerSystem.usageMachine.TileEntityEnergyMachine;
 
 public class TileEntityCharger extends TileEntityEnergyMachine
 {

@@ -2,23 +2,22 @@ package electro.block.basic;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class blastProof extends BlockContainer 
 {
     @SideOnly(Side.CLIENT)
-    public Icon iconBrick;
+    public IIcon iconBrick;
 
-    public blastProof(int par1, Material par2Material)
-    {
-        super(par1, Material.iron);
-        this.setUnlocalizedName("blastProof");
+    public blastProof()
+   {
+        super(Material.iron);
         this.setBlockUnbreakable();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setResistance(6000000.0F);
@@ -27,7 +26,7 @@ public class blastProof extends BlockContainer
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
         if (!(this.getUnlocalizedName().contains("Glass")))
         {
@@ -37,9 +36,8 @@ public class blastProof extends BlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return null;
     }
 }

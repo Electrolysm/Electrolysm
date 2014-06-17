@@ -8,15 +8,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import mekanism.api.EnumColor;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import assets.electrolysm.electro.handlers.ElectroEventHandler;
-import assets.electrolysm.electro.handlers.ResearchHandler;
+import electro.handlers.ElectroEventHandler;
+import electro.handlers.ResearchHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,7 +31,7 @@ public class RenderPlayerLab extends RenderPlayer {
 		{
 			player = (AbstractClientPlayer)entity;
 		}
-        this.func_130009_a((AbstractClientPlayer)entity, d0, d1, d2, f, f1);
+        this.doRender((AbstractClientPlayer)entity, d0, d1, d2, f, f1);
 	}
 
     private ModelBiped playerModel = new ModelBiped();
@@ -41,7 +40,7 @@ public class RenderPlayerLab extends RenderPlayer {
     
 	public void makeTexture() 
 	{
-		ResearchHandler.downloadSkinByUsername(player.username);
+		ResearchHandler.downloadSkinByUsername(player.getDisplayName());
 		ResearchHandler.downloadLabSkin();
 		
 		System.out.println("merging Images");
@@ -55,7 +54,7 @@ public class RenderPlayerLab extends RenderPlayer {
 	        
 	        System.out.println(pathSkin + ":" + pathCoat);
 	        
-	        BufferedImage skin = ImageIO.read(new File(pathSkin, player.username + ".png"));
+	        BufferedImage skin = ImageIO.read(new File(pathSkin, player.getDisplayName() + ".png"));
 	        BufferedImage coat = ImageIO.read(new File(pathCoat, "labCoat.png"));
 	/*
 	        if(skin.getHeight() == 32 && skin.getWidth() == 64)
@@ -73,9 +72,9 @@ public class RenderPlayerLab extends RenderPlayer {
 		        // Save as new image
 		        try 
 		        {
-		        	String fileName = player.username + ".png";
+		        	String fileName = player.getDisplayName() + ".png";
 					File[] files = {new File(pathCoat, fileName)};
-		        	ImageIO.write(combined, "PNG", new File(pathCoat, player.username + ".png"));
+		        	ImageIO.write(combined, "PNG", new File(pathCoat, player.getDisplayName() + ".png"));
 					ResearchHandler.copyFileToLocation(new File("mods/Electrolysm.zip"), files, 
 							"/assets/electrolysm/textures/skins/");
 				}
@@ -106,11 +105,11 @@ public class RenderPlayerLab extends RenderPlayer {
 	@SideOnly(Side.CLIENT)
 	private void printWarningMessage() 
 	{
-		String redColour = EnumColor.DARK_RED.toString();
-		String message = redColour + "Client renderer failed to create texture due to skin out of bounds exception.";
-		String message1 = redColour + "Please change you skin size or report this to the mod author";
-		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
-		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message1);
+		//String redColour = EnumColor.DARK_RED.toString();
+		String message = /*redColour + */"Client renderer failed to create texture due to skin out of bounds exception.";
+		String message1 = /*redColour +*/ "Please change you skin size or report this to the mod author";
+		//FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
+		//FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message1);
 
 	}
 
@@ -126,8 +125,8 @@ public class RenderPlayerLab extends RenderPlayer {
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) 
 	{	
-		if(!(new File("config/Electrolysm/" + player.username + ".png").exists()) || 
-				!(new File("mods/ElectroTextures.zip/assets/textures/skins/"  + player.username + ".png").exists()))
+		if(!(new File("config/Electrolysm/" + player.getDisplayName() + ".png").exists()) ||
+				!(new File("mods/ElectroTextures.zip/assets/textures/skins/"  + player.getDisplayName() + ".png").exists()))
 		{
 			this.makeTexture();
 			this.done = true;
@@ -135,7 +134,7 @@ public class RenderPlayerLab extends RenderPlayer {
 		
 		this.makeTexture();
 		
-		if(player.username.contains("ellio98") && ElectroEventHandler.pranks)
+		if(player.getDisplayName().contains("ellio98") && ElectroEventHandler.pranks)
 		{
 			ElectroEventHandler.ellio98((EntityPlayer)player);
 			return player.locationStevePng;
@@ -145,13 +144,13 @@ public class RenderPlayerLab extends RenderPlayer {
 		if(ElectroEventHandler.isPlayerWearingLabCoat((EntityPlayer)player))
 		{
 			//System.out.println("yep");
-	        return new ResourceLocation("electroTextures", "textures/skins/" + player.username + ".png");
+	        return new ResourceLocation("electroTextures", "textures/skins/" + player.getDisplayName() + ".png");
 			//return player.locationStevePng;
 		}
 		else
 		{
 			//System.out.println("normal");
-			return this.func_110817_a((AbstractClientPlayer)entity);
+			return this.getEntityTexture((AbstractClientPlayer)entity);
 		}
 		
 	}

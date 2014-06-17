@@ -2,29 +2,28 @@ package electro.block.machines;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class workBench extends BlockContainer
 {
-    public workBench(int id, Material mat)
+    public workBench()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         // TODO Auto-generated constructor stub
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("workBench");
         this.setHardness(4);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + "ItemWorkBench");
     }
@@ -59,7 +58,7 @@ public class workBench extends BlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return new TileEntityWorkBench();

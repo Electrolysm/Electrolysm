@@ -2,6 +2,8 @@ package electro.block.machines.gui;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
@@ -65,50 +67,33 @@ public class SlotWorkBench extends Slot
         par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amountCrafted);
         this.amountCrafted = 0;
 
-        if (par1ItemStack.itemID == Block.workbench.blockID)
-        {
-            this.thePlayer.addStat(AchievementList.buildWorkBench, 1);
-        }
-        else if (par1ItemStack.itemID == Item.pickaxeWood.itemID)
+        if (par1ItemStack.getItem() == Items.wooden_pickaxe)
         {
             this.thePlayer.addStat(AchievementList.buildPickaxe, 1);
         }
-        else if (par1ItemStack.itemID == Block.furnaceIdle.blockID)
-        {
-            this.thePlayer.addStat(AchievementList.buildFurnace, 1);
-        }
-        else if (par1ItemStack.itemID == Item.hoeWood.itemID)
+        else if (par1ItemStack.getItem() == Items.wooden_hoe)
         {
             this.thePlayer.addStat(AchievementList.buildHoe, 1);
         }
-        else if (par1ItemStack.itemID == Item.bread.itemID)
+        else if (par1ItemStack.getItem() == Items.bread)
         {
             this.thePlayer.addStat(AchievementList.makeBread, 1);
         }
-        else if (par1ItemStack.itemID == Item.cake.itemID)
+        else if (par1ItemStack.getItem() == Items.cake)
         {
             this.thePlayer.addStat(AchievementList.bakeCake, 1);
         }
-        else if (par1ItemStack.itemID == Item.pickaxeStone.itemID)
+        else if (par1ItemStack.getItem() == Items.stone_pickaxe)
         {
             this.thePlayer.addStat(AchievementList.buildBetterPickaxe, 1);
         }
-        else if (par1ItemStack.itemID == Item.swordWood.itemID)
+        else if (par1ItemStack.getItem() == Items.wooden_sword)
         {
             this.thePlayer.addStat(AchievementList.buildSword, 1);
-        }
-        else if (par1ItemStack.itemID == Block.enchantmentTable.blockID)
-        {
-            this.thePlayer.addStat(AchievementList.enchantments, 1);
-        }
-        else if (par1ItemStack.itemID == Block.bookShelf.blockID)
-        {
-            this.thePlayer.addStat(AchievementList.bookcase, 1);
         }
     }
     public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
     {
-        GameRegistry.onItemCrafted(par1EntityPlayer, par2ItemStack, craftMatrix);
         this.onCrafting(par2ItemStack);
 
         for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i)
@@ -121,7 +106,7 @@ public class SlotWorkBench extends Slot
 
                 if (itemstack1.getItem().hasContainerItem())
                 {
-                    ItemStack itemstack2 = itemstack1.getItem().getContainerItemStack(itemstack1);
+                    ItemStack itemstack2 = itemstack1.getItem().getContainerItem(itemstack1);
 
                     if (itemstack2.isItemStackDamageable() && itemstack2.getItemDamage() > itemstack2.getMaxDamage())
                     {
@@ -137,7 +122,7 @@ public class SlotWorkBench extends Slot
                         }
                         else
                         {
-                            this.thePlayer.dropPlayerItem(itemstack2);
+                            this.thePlayer.entityDropItem(itemstack2, 0);
                         }
                     }
                 }

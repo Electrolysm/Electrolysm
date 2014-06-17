@@ -2,12 +2,14 @@ package electro.block;
 
 import java.util.List;
 
-import assets.electrolysm.electro.configHandler;
+import electro.configHandler;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -20,18 +22,18 @@ import net.minecraft.world.World;
 public class GlassBlockConnectedMeta extends GlassBlockConnected
 {
     public String[] textures;
-    public Icon[][] icons;
+    public IIcon[][] icons;
     boolean ignoreMetaForConnectedGlass = configHandler.connectedTexturesMode == 2;
 
-    public GlassBlockConnectedMeta(int par1, String location, boolean hasAlpha, String... textures)
+    public GlassBlockConnectedMeta(String location, boolean hasAlpha, String... textures)
     {
-        super(par1, location, hasAlpha);
+        super(location, hasAlpha);
         this.textures = textures;
-        this.icons = new Icon[textures.length][16];
+        this.icons = new IIcon[textures.length][16];
     }
 
     @Override
-    public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public IIcon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
 
@@ -46,25 +48,25 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     }
 
     @Override
-    public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, int par6)
+    public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block block, int par6)
     {
-        return par5 == this.blockID && (par6 == par1IBlockAccess.getBlockMetadata(par2, par3, par4) || ignoreMetaForConnectedGlass);
+        return block instanceof GlassBlockConnectedMeta && (par6 == par1IBlockAccess.getBlockMetadata(par2, par3, par4) || ignoreMetaForConnectedGlass);
     }
 
     @Override
-    public Icon getIcon(int par1, int par2)
+    public IIcon getIcon(int par1, int par2)
     {
         return icons[par2][0];
     }
 
     @Override
-    public void getSubBlocks(int id, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks(Item block, CreativeTabs par2CreativeTabs, List list)
     {
-        list.add(new ItemStack(this.blockID, 1, 0));
+        list.add(new ItemStack(this, 1, 0));
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         for (int i = 0; i < textures.length; i++)
         {

@@ -1,7 +1,7 @@
 package electro.block.basic;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.AxisAlignedBB;
@@ -11,11 +11,10 @@ public class lightSource extends Block
 {
     public lightSource(int par1, Material par2Material)
     {
-        super(par1, Material.air);
-        this.setUnlocalizedName("lightSource");
+        super(Material.air);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setHardness(0F);
-        this.setLightValue(1.0F);
+        this.setLightLevel(1.0F);
         LanguageRegistry.addName(this, "lightSource");
     }
 

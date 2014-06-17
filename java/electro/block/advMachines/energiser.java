@@ -2,15 +2,15 @@ package electro.block.advMachines;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.advMachines.te.TileEntityEnergiser;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -24,27 +24,26 @@ public class energiser extends BlockContainer
     public static TileEntity te;
 
     @SideOnly(Side.CLIENT)
-    public Icon machineFront;
+    public IIcon machineFront;
     @SideOnly(Side.CLIENT)
-    public Icon machineSide;
+    public IIcon machineSide;
     @SideOnly(Side.CLIENT)
-    public Icon machineTop;
+    public IIcon machineTop;
 
-    public energiser(int id, Material mat)
+    public energiser()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName(this.unlocalName);
         this.setHardness(5.0F);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return new TileEntityEnergiser();
     }
 
-    public Icon getIcon(int par1, int par2)
+    public IIcon getIcon(int par1, int par2)
     {
         return par1 == 1 ? this.machineTop : (par1 == 0 ? this.machineTop :
                                               (par1 != par2 ? this.machineSide : this.machineFront));
@@ -52,7 +51,7 @@ public class energiser extends BlockContainer
 
     @SideOnly(Side.CLIENT)
 
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
         this.machineSide = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_side");
         //this.machineFront = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_front");

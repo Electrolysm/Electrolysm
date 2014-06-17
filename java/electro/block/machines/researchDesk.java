@@ -10,24 +10,22 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.machines.tile.TileEntityResearchDesk;
-import assets.electrolysm.electro.client.ModelResearchDesk;
+import electro.client.ModelResearchDesk;
 
 public class researchDesk extends BlockContainer
 {
-    public researchDesk(int id, Material mat)
+    public researchDesk()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("researchDesk");
         this.setHardness(4);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntityResearchDesk();
     }
 
