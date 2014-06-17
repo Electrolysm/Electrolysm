@@ -145,6 +145,7 @@ public class configHandler
 
     public static int labCoatID;
     public static int labGogglesID;
+    public static int itemScannerID;
     
     public static int biomeID;
 	public static int acidBurnsID;
@@ -266,7 +267,8 @@ public class configHandler
         battery4ID = config.getItem("battery4ID", IDHandler.powerGrid.battery4ID).getInt();
         labCoatID = config.getItem("labCoatID", IDHandler.research.labCoatID).getInt();
         labGogglesID = config.getItem("labGogglesID", IDHandler.research.labGogglesID).getInt();
-        
+        itemScannerID = config.getItem("itemScannerID", IDHandler.research.itemScannerID).getInt();
+
         //Other
         multipart = config.get("OTHER", "addMultiparts", true).getBoolean(true);
         biomeID = config.get("OTHER", "biomeID", IDHandler.basic.biomeID).getInt();

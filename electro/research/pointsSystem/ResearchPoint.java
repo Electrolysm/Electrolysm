@@ -23,19 +23,24 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 
 public class ResearchPoint
 {
-    private static Point[] vanillaMap = new Point[100000000];
+    private static Point[] vanillaMap = new Point[50000 + Block.blocksList.length];
     
     //private static Point[] modMap = new Point[100000000];
 
     static 
     {
-        addPoints(new ItemStack(1, 1, 0), new EngPoint(10), new SciPoint(3));
+        addPoints(new ItemStack(Block.coalBlock), new EngPoint(10), new SciPoint(3));
+        addPoints(new ItemStack(Block.stone), new EngPoint(1), new SciPoint(1));
     }
     
     public static void addPoints(ItemStack stack, EngPoint engPoint, SciPoint sciPoint)
     {
         vanillaMap[stack.itemID] = (new Point(engPoint, sciPoint));
-    }    
+    }
+    public static void addPoints(ItemStack stack, int engPoint, int sciPoint)
+    {
+        vanillaMap[stack.itemID] = (new Point(new EngPoint(engPoint), new SciPoint(sciPoint)));
+    }
     /*
     public static void addModPoints(ItemStack stack, EngPoint engPoint, SciPoint sciPoint)
     {
@@ -56,7 +61,7 @@ public class ResearchPoint
             {
                 ShapedRecipes shapeRecipe = (ShapedRecipes)iRecipe;
                 result = shapeRecipe.getRecipeOutput();
-                
+
                 if(result.isItemEqual(stack))
                 {
                     point = getRecipePoints(shapeRecipe);
@@ -87,10 +92,18 @@ public class ResearchPoint
                 //return getFurnacePoints(keyStack);
             }
         }
-        return point.divideByProducedSize(result);
+        return divideByProducedSize(point, stack.stackSize);
     }
 
-    private static Point getFurnacePoints(ItemStack input) 
+    private static Point divideByProducedSize(Point point, int stackSize)
+    {
+        int newEng = ((point.getEngPoint().getValue()) / stackSize);
+        int newSci = ((point.getSciPoint().getValue()) / stackSize);
+
+        return new Point(newEng, newSci);
+    }
+
+    private static Point getFurnacePoints(ItemStack input)
     {
         Point pointStack;
         
@@ -116,7 +129,7 @@ public class ResearchPoint
         }
     }
 
-    private static Point getRecipePoints(ShapelessRecipes shapelessRecipe) 
+    private static Point getRecipePoints(ShapelessRecipes shapelessRecipe)
     {
         ItemStack[] stack = new ItemStack[shapelessRecipe.getRecipeSize()];
         Point[] pointStack = new Point[stack.length];
@@ -148,7 +161,7 @@ public class ResearchPoint
         return new Point(new EngPoint(engValue), new SciPoint(sciValue));
     }
 
-    private static Point getRecipePoints(ShapedRecipes shapeRecipe) 
+    private static Point getRecipePoints(ShapedRecipes shapeRecipe)
     {
         ItemStack[] stack = new ItemStack[shapeRecipe.getRecipeSize()];
         Point[] pointStack = new Point[stack.length];
@@ -157,7 +170,7 @@ public class ResearchPoint
         {
             stack[i] = shapeRecipe.recipeItems[i];
             
-            if(isVanilla(stack[i]))
+            if(getVanillaValue(stack[i]) != null)
             {
                 pointStack[i] = getVanillaValue(stack[i]);
             }
@@ -181,18 +194,6 @@ public class ResearchPoint
         return new Point(new EngPoint(engValue), new SciPoint(sciValue));
     }
 
-    private static boolean isVanilla(ItemStack stack) 
-    {
-        if(getVanillaValue(stack) != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     private static Point getVanillaValue(ItemStack stack) 
     {
         return vanillaMap[stack.itemID];
@@ -204,7 +205,7 @@ public class ResearchPoint
         return null;
     }
 
-    public static String getPointString(ItemStack itemStack) 
+    public static String getPointString(ItemStack itemStack)
     {
         Point map = getPoints(itemStack);
         String pointMessage;

@@ -39,39 +39,6 @@ public class Point
 	{
 		return sciPoint;
 	}
-
-	public Point divideByProducedSize(ItemStack stack) 
-	{
-		if(stack != null)
-		{
-			int stackSize = stack.stackSize;
-			System.out.println(stackSize);
-			
-			if(stackSize > 0)
-			{
-				int engValue = this.getEngPoint().getValue();
-				int sciValue = this.getSciPoint().getValue();
-				
-				int engDivide = (int)(engValue / stackSize);
-				int sciDivide = (int)(sciValue / stackSize);
-				
-				EngPoint engPoint1 = new EngPoint(engDivide);
-				SciPoint sciPoint1 = (new SciPoint(sciDivide));
-				
-				this.setEngPoint(engPoint1);
-				this.setSciPoint(sciPoint1);
-		
-				return new Point(engPoint1, sciPoint1);
-			}
-			else
-			{
-				String message = "Cannot divide point by stackSize Specified";
-				LoggerHandler.severe(message);
-				return this;
-			}
-		}
-		return this;
-	}
 	
 	@Override
 	public String toString()

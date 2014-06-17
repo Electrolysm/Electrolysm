@@ -55,6 +55,7 @@ public class IDHandler
 
     public static class research
     {
+        public static int itemScannerID = 735;
         public static int cardID = 736;
         public static int paperID = 737;
         public static int knowledgeID = 738;

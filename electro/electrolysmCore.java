@@ -110,6 +110,7 @@ import assets.electrolysm.electro.research.idifier;
 import assets.electrolysm.electro.research.knowledge;
 import assets.electrolysm.electro.research.researchPaper;
 import assets.electrolysm.electro.research.system.ResearchRegistry;
+import assets.electrolysm.electro.research.itemScanner;
 import assets.electrolysm.electro.sciences.ItemArmorLab;
 import assets.electrolysm.electro.world.Scandium;
 import assets.electrolysm.electro.world.Yttrium;
@@ -169,6 +170,7 @@ public class electrolysmCore
     public static Item knowledge = new knowledge(configHandler.knowledgeID);
     public static Item labCoat = new ItemArmorLab(configHandler.labCoatID, 2, "labCoat");
     public static Item labGoggles = new ItemArmorLab(configHandler.labGogglesID, 0, "labGoggles");
+    public static Item itemScanner = new itemScanner(configHandler.itemScannerID);
     //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 
     //World Generation
@@ -351,8 +353,8 @@ public class electrolysmCore
         VersionCheck.check();
         NewsCheck.check();
         BetaHandler.beta();
-        new SavePlayerScanData("Clarky158", "ygcfg");
-        System.exit(0);
+        //new SavePlayerScanData("Clarky158", "ygcfg");
+        //System.exit(0);
         //ResearchHandler.downloadOnlineData();
         //ResearchHandler.getStoredResearch();
     }

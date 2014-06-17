@@ -1,5 +1,6 @@
 package assets.electrolysm.electro.research.common;
 
+import assets.electrolysm.api.LoggerHandler;
 import cpw.mods.fml.common.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -13,17 +14,19 @@ import java.util.*;
  */
 public class SavePlayerScanData
 {
-    String fileLocation = "config/Electrolysm/Research/";
+    static String fileLocation = "config/Electrolysm/Research/";
 
     public SavePlayerScanData(String username, String newData)
     {
         try
         {
-            if(this.getUserData(username) != null) {
-                if (!this.dataAlreadyExists(newData + ",", this.getUserData(username))) {
+            if(this.getUserData(username) != null)
+            {
+                if (!this.dataAlreadyExists(newData + ",", this.getUserData(username)))
+                {
                     HashMap<String, List<String>> map = new HashMap<String, List<String>>();
                     List<String> list = this.getUserData(username);
-                    list.add(newData + ",");
+                    if(newData.contains(",")) { list.add(newData); }else{ list.add(newData + ","); }
                     map.put(username, list);
                     this.saveData(map, username);
                     //this.getPlayerData("Clarky158");
@@ -37,12 +40,13 @@ public class SavePlayerScanData
         }
         catch(FileNotFoundException e)
         {
-            e.printStackTrace();
+            LoggerHandler.severe("Failed to find file with name: " + username + ".txt");
         }
     }
 
     public void reRun(String username, String newData)
     {
+        System.out.println("reRun");
         new SavePlayerScanData(username, newData);
     }
 
@@ -54,27 +58,29 @@ public class SavePlayerScanData
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            LoggerHandler.severe("Failed to create file with name: " + username + ".txt");
         }
     }
 
-    public boolean hasPlayerScanned(String username, String unlocalName)
+    public static boolean hasPlayerScanned(String username, String unlocalName)
     {
-        List<String> list = this.getPlayerData(username).get(username);
-        return this.dataAlreadyExists(unlocalName, list);
+        List<String> list = getPlayerData(username).get(username);
+        return dataAlreadyExists(unlocalName, list);
     }
 
-    public boolean dataAlreadyExists(String newData, List<String> list)
+    public static boolean dataAlreadyExists(String newData, List<String> list)
     {
-        System.out.println(newData + "." + newData.replace(" ", "") + "." + list.get(0));
-        if(list.contains(newData.replace(" ", "")))
+        System.out.println(newData + "." + newData.replace(" ", ""));
+        Object[] arrayList = list.toArray();
+        for (int i = 0; i < arrayList.length; i++)
         {
-            return true;
+            if (list.contains(newData.replace(" ", "")) || ((String)arrayList[i]).contains(newData))
+            {
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public List<String> getUserData(String username)
@@ -87,7 +93,7 @@ public class SavePlayerScanData
         return null;
     }
 
-    public HashMap<String, List<String>> getPlayerData(String username)
+    public static HashMap<String, List<String>> getPlayerData(String username)
     {
         try
         {
@@ -116,7 +122,8 @@ public class SavePlayerScanData
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
+            LoggerHandler.severe("Failed to find file with name: " + username + ".txt");
         }
 
         return null;
