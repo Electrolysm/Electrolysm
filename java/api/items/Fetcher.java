@@ -1,10 +1,10 @@
-package assets.electrolysm.api.items;
+package api.items;
 
+import api.LoggerHandler;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.api.LoggerHandler;
 
 public class Fetcher
 {
@@ -36,7 +36,7 @@ public class Fetcher
     	}
     	catch(Exception e)
     	{
-    		LoggerHandler.severe("Error fetching - " + id + " - form class");
+    		api.LoggerHandler.severe("Error fetching - " + id + " - form class");
     		return null;
     	}
     }

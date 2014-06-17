@@ -1,4 +1,4 @@
-package assets.electrolysm.api.specialFuel;
+package api.specialFuel;
 
 public interface IFuelStorage
 {

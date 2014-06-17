@@ -1,10 +1,10 @@
-package assets.electrolysm.api.powerSystem.usageMachine;
+package api.powerSystem.usageMachine;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.api.items.Fetcher;
-import assets.electrolysm.api.powerSystem.meter.IMeterable;
-import assets.electrolysm.electro.electrolysmCore;
+import api.items.Fetcher;
+import api.powerSystem.meter.IMeterable;
+import electro.electrolysmCore;
 import cpw.mods.fml.common.Loader;
 /**
  * @author Clarky158

@@ -1,4 +1,4 @@
-package assets.electrolysm.api.powerSystem.usageMachine;
+package api.powerSystem.usageMachine;
 
 import net.minecraft.world.World;
 

@@ -1,4 +1,4 @@
-package assets.electrolysm.api.specialFuel;
+package api.specialFuel;
 
 import java.util.HashMap;
 import java.util.Map;

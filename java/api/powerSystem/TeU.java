@@ -1,4 +1,4 @@
-package assets.electrolysm.api.powerSystem;
+package api.powerSystem;
 
 public class TeU 
 {

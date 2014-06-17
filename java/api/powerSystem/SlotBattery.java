@@ -1,9 +1,9 @@
-package assets.electrolysm.api.powerSystem;
+package api.powerSystem;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
+import electro.electrolysmCore;
+import electro.common.CommonProxy;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

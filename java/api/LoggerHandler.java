@@ -1,23 +1,23 @@
-package assets.electrolysm.api;
+package api;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import assets.electrolysm.electro.handlers.Referance;
+import electro.handlers.Referance;
+import org.apache.logging.log4j.Logger;
 import cpw.mods.fml.common.FMLLog;
 
 public class LoggerHandler 
 {
-	private static Logger elLogger = Logger.getLogger("Electrolysm");
+	private static Logger elLogger;/* = new Logger();*/
 	
 	static
 	{
-		elLogger.setParent(FMLLog.getLogger());
+		//elLogger.marker.setParent(FMLLog.getLogger());
 	}
 	
     public static void log(Level logLevel, Object object)
     {
-        elLogger.log(logLevel, String.valueOf(object));
+       // elLogger.log(logLevel, (String)object);
     }
 
     public static void severe(Object object)

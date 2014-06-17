@@ -1,4 +1,4 @@
-package assets.electrolysm.api.powerSystem;
+package api.powerSystem;
 
 import net.minecraft.item.ItemStack;
 

@@ -1,48 +1,50 @@
-package assets.electrolysm.api;
+package api;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class MachineBaseClass extends BlockContainer
+public class MachineBaseClass extends BlockContainer implements ITileEntityProvider
 {
     public static String unlocalName;
     public static String displayName;
     public static TileEntity te;
 
     @SideOnly(Side.CLIENT)
-    public Icon machineFront;
+    public IIcon machineFront;
     @SideOnly(Side.CLIENT)
-    public Icon machineSide;
+    public IIcon machineSide;
     @SideOnly(Side.CLIENT)
-    public Icon machineTop;
+    public IIcon machineTop;
 
-    public MachineBaseClass(int id, Material mat)
+    public MachineBaseClass()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName(this.unlocalName);
+        //this.setUnlocalizedName(this.unlocalName);
         this.setHardness(5.0F);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return te;
     }
 
-    public Icon getIcon(int par1, int par2)
+    public IIcon getIIcon(int par1, int par2)
     {
         return par1 == 1 ? this.machineTop : (par1 == 0 ? this.machineTop :
                                               (par1 != par2 ? this.machineSide : this.machineFront));
@@ -50,11 +52,11 @@ public class MachineBaseClass extends BlockContainer
 
     @SideOnly(Side.CLIENT)
 
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIIcons(IIconRegister par1IIconRegister)
     {
-        this.machineSide = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_side");
-        this.machineFront = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Front");
-        this.machineTop = par1IconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Top");
+        this.machineSide = par1IIconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_side");
+        this.machineFront = par1IIconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Front");
+        this.machineTop = par1IIconRegister.registerIcon("Electrolysm:" + this.unlocalName + "_Top");
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving living, ItemStack stack)

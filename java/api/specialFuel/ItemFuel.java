@@ -1,4 +1,4 @@
-package assets.electrolysm.api.specialFuel;
+package api.specialFuel;
 
 import net.minecraft.item.Item;
 
@@ -8,7 +8,7 @@ public class ItemFuel extends Item implements ISpecialFuel{
 	
 	public ItemFuel(int id) 
 	{
-		super(id);
+		super();
 	}
 
 	@Override

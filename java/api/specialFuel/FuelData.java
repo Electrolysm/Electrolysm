@@ -1,4 +1,4 @@
-package assets.electrolysm.api.specialFuel;
+package api.specialFuel;
 
 public class FuelData implements Comparable<FuelData>
 {
@@ -110,7 +110,7 @@ public class FuelData implements Comparable<FuelData>
 	}
 	
 	/**
-	 *  @param FuelData to compare to
+	 *  @param data to compare to
 	 *  @return will return 0 if the 2 fuels are the same else will return -1
 	 */
 	@Override

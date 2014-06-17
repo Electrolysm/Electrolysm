@@ -1,10 +1,10 @@
-package assets.electrolysm.api.powerSystem;
+package api.powerSystem;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
 
 public class PowerUsage 
