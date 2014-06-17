@@ -1,0 +1,35 @@
+//OTHER
+		this.registerResearch(new Research("electrolysis", this.OTHER, new Point(13, 43), 4));
+		this.registerResearch(new Research("smeltery", this.OTHER, new Point(7, 23), 2));
+		this.registerResearch(new Research("crusher", this.OTHER, new Point(7, 12), 2));
+		//ROBOTICS
+		this.registerResearch(new Research("bionics", this.ROBOTICS, new Point(38, 90), 4));
+		this.registerResearch(new Research("robotic_arm", this.ROBOTICS, new Point(38, 56), 3));
+		this.registerResearch(new Research("hydrolics", this.ROBOTICS, new Point(35, 50), 3));
+		this.registerResearch(new Research("AIs", this.ROBOTICS, new Point(13, 43), 4));
+		this.registerResearch(new Research("upgrade", this.ROBOTICS, new Point(26, 34), 2));
+		//UPGRADE - SUB - START
+		this.registerResearch(new Research("upgrade_speed", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
+		this.registerResearch(new Research("upgrade_AI", this.ROBOTICS, new Point(24, 24), 3, this.getResearch("upgrade")));
+		this.registerResearch(new Research("upgrade_stack", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
+		//UPGRADE - SUB - END
+		this.registerResearch(new Research("computing", this.ROBOTICS, new Point(13, 63), 2));
+		//RESEARCH
+		this.registerResearch(new Research("mass_spec", this.RESEARCH, new Point(6, 49), 3));
+		this.registerResearch(new Research("chromography", this.RESEARCH, new Point(2, 13), 1));
+		this.registerResearch(new Research("point_gen", this.RESEARCH, new Point(39, 63), 4));
+		//SCIENCE
+		this.registerResearch(new Research("holograms", this.SCIENCE, new Point(13, 63), 3));
+		this.registerResearch(new Research("genetics", this.SCIENCE, new Point(13, 86), 3));
+		this.registerResearch(new Research("LHC", this.SCIENCE, new Point(86, 142), 4));
+		this.registerResearch(new Research("elements", this.SCIENCE, new Point(3, 13), 2));
+		//ELEMENT - SUB - START
+		this.registerResearch(new Research("elements_carbon_comp", this.SCIENCE, new Point(63, 113), 4, this.getResearch("elements")));
+		this.registerResearch(new Research("elements_bonds", this.SCIENCE, new Point(6, 23), 2, this.getResearch("elements")));
+		this.registerResearch(new Research("elements_alloys", this.SCIENCE, new Point(12, 25), 2, this.getResearch("elements")));
+		//ELEMENT - SUB - END
+		this.registerResearch(new Research("phytomining", this.SCIENCE, new Point(3, 16), 2));
+		//POWER
+		this.registerResearch("storage", new Research("storage", this.POWER, new Point(23, 24), 2));
+		this.registerResearch(new Research("tesla_tower", this.POWER, new Point(36, 65), 3));
+		this.registerResearch("antimatter_gen", new Research("antimatter_gen", this.POWER, new Point(93, 149), 4));
