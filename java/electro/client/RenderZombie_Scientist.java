@@ -3,7 +3,7 @@ package electro.client;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import assets.electrolysm.electro.common.CommonProxy;
+import electro.common.CommonProxy;
 import electro.world.biome.EntityZombie_Scientist;
 
 public class RenderZombie_Scientist extends RenderLiving

@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import assets.electrolysm.electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
+import electro.common.CommonProxy;
+import electro.oreProccessing.te.TileEntityElectrolisisCore;
 
 public class RenderTileElectrolysisCore extends TileEntitySpecialRenderer
 {
@@ -49,7 +49,7 @@ public class RenderTileElectrolysisCore extends TileEntitySpecialRenderer
     private void adjustLightFixture(World world, int i, int j, int k, Block block)
     {
         Tessellator tess = Tessellator.instance;
-        float brightness = block.getBlockBrightness(world, i, j, k);
+        float brightness = block.getMixedBrightnessForBlock(world, i, j, k);
         int skyLight = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
         int modulousModifier = skyLight % 65536;
         int divModifier = skyLight / 65536;

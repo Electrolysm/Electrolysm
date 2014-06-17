@@ -1,14 +1,15 @@
 package electro.client;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
+import electro.electrolysmCore;
+import electro.common.CommonProxy;
+import electro.powerSystem.te.TileEntityWire;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,10 +21,10 @@ public class RenderWire extends TileEntitySpecialRenderer
 
     public void renderAModelAt(TileEntity t, double x, double y, double z, float f)
     {
-        int blockID = t.worldObj.getBlockId(t.xCoord, t.yCoord, t.zCoord);
-        int metadata = t.worldObj.getBlockMetadata(t.xCoord, t.yCoord, t.zCoord);
-        TileEntityWire tileEntity = (TileEntityWire) t;
-        boolean[] connectedSides = tileEntity.getVisualConnections();
+        Block block = t.getWorldObj().getBlock(t.xCoord, t.yCoord, t.zCoord);
+        int metadata = t.getWorldObj().getBlockMetadata(t.xCoord, t.yCoord, t.zCoord);
+        //TileEntityWire tileEntity = ((TileEntityWire)(t));
+        boolean[] connectedSides = ((TileEntityWire)t).getVisualConnections();
 
         /*if (blockID == electrolysmCore.advWire.blockID)
         {

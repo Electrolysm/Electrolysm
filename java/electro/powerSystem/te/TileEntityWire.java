@@ -1,12 +1,9 @@
 package electro.powerSystem.te;
 
-import universalelectricity.api.UniversalClass;
-import universalelectricity.api.net.IConnectable;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
-import assets.electrolysm.api.powerSystem.prefab.TileEntityBasicCable;
-import assets.electrolysm.electro.electrolysmCore;
+import api.powerSystem.prefab.TileEntityBasicCable;
+import electro.electrolysmCore;
 import electro.block.te.TileEntityIronFrame;
 import electro.crafting.items.te.TileEntityLumRed;
 
@@ -19,8 +16,8 @@ public class TileEntityWire extends TileEntityBasicCable
     {
         for (byte i = 0; i < 6; i++)
         {
-            ForgeDirection dir = ForgeDirection.getOrientation(i);
-            this.updateConnection(this.worldObj.getBlockTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
+            //ForgeDirection dir = ForgeDirection.getOrientation(i);
+            this.updateConnection(this.worldObj.getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
                                   this.zCoord + dir.offsetZ), dir);
         }
     }
