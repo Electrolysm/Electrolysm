@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<head>
+	<research>
+		<input>1</input>
+		<output>2</output>
+		<cardID>2</cardID>
+	</research>
+	<research></research>
+</head>
