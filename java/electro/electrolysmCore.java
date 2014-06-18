@@ -1,12 +1,13 @@
 /**
  *
  * @author Ben
- *
+ * TODO Fix NBT data saving in tile entity machines.
  */
 package electro;
 
 import java.io.File;
 
+import electro.research.*;
 import electro.research.common.SavePlayerScanData;
 import electro.research.common.ScanData;
 import electro.world.biome.*;
@@ -101,10 +102,6 @@ import electro.powerSystem.endoCable;
 import electro.powerSystem.energyMeter;
 import electro.powerSystem.generators.generator;
 import electro.powerSystem.generators.matterGen;
-import electro.research.card;
-import electro.research.idifier;
-import electro.research.knowledge;
-import electro.research.researchPaper;
 import electro.research.system.ResearchRegistry;
 import electro.sciences.ItemArmorLab;
 import electro.world.Scandium;
@@ -157,6 +154,7 @@ public class electrolysmCore
     public static Item knowledge = new knowledge();
     public static Item labCoat = new ItemArmorLab(2, "labCoat");
     public static Item labGoggles = new ItemArmorLab(0, "labGoggles");
+    public static Item itemScanner = new scanner();
     //public static Item itemScanner = new itemScanner();
     //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 

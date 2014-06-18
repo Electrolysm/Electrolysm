@@ -122,17 +122,6 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.graphiteRod, "graphiteRod");
         GameRegistry.registerItem(elec.electroMagnet, "electroMagnet");
         GameRegistry.registerItem(elec.electroContain, "electroContain");
-
-
-
-
-
-
-
-
-
-
-
-
+        GameRegistry.registerItem(elec.itemScanner, "itemScanner");
     }
 }

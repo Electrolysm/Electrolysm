@@ -49,7 +49,9 @@ public class impureDusts extends Item
         return dustIcon[dmg];
     }
 
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+
+    @Override
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
