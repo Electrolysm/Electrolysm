@@ -1,5 +1,6 @@
 package electro.handlers;
 
+import electro.block.advMachines.te.TileEntityCharger;
 import electro.block.advMachines.te.TileEntityEnergiser;
 import electro.block.advMachines.te.TileEntityInjector;
 import electro.block.basic.te.TileEntityBlastDoor;
@@ -37,5 +38,6 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityGeneratorCoal.class, "TileEntityGeneratorCoal");
         GameRegistry.registerTileEntity(TileEntityGeneratorAntimatter.class, "TileEntityGeneratorAntimatter");
         GameRegistry.registerTileEntity(TileEntityDesk.class, "TileEntityDesk");
+        GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharge");
     }
 }

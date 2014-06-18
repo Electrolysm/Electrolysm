@@ -1,7 +1,7 @@
 package electro.world.biome;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Facing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,16 +18,16 @@ public class spawnZS extends Item
     public static String mode;
     public static String message = "Setting mode to - ";
 
-    public spawnZS(int id)
+    public spawnZS()
     {
-        super(id);
+        super();
         this.setUnlocalizedName("zombieScientistEgg");
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
         itemIcon = iconRegister.registerIcon("Electrolysm" + ":" + "zombieScientistEgg");
     }
@@ -43,14 +43,14 @@ public class spawnZS extends Item
             }
             else
             {
-                int i1 = world.getBlockId(x, y, z);
+                Block i1 = world.getBlock(x, y, z);
                 x += Facing.offsetsXForSide[par7];
                 y += Facing.offsetsYForSide[par7];
                 z += Facing.offsetsZForSide[par7];
                 double d0 = 0.0D;
 
-                if (par7 == 1 && Block.blocksList[i1] != null
-                        && Block.blocksList[i1].getRenderType() == 11)
+                if (par7 == 1 && i1 != null
+                        && i1.getRenderType() == 11)
                 {
                     d0 = 0.5D;
                 }

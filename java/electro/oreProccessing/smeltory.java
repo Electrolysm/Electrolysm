@@ -35,7 +35,7 @@ public class smeltory extends oreProcessMachineBase
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
         this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "smeltory_Front");
         this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "smeltory_Front_Active");

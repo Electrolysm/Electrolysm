@@ -25,7 +25,7 @@ public class sulphuricAcid extends BlockFluidClassic
     @SideOnly(Side.CLIENT)
     public IIcon still;
 
-    public sulphuricAcid(int id)
+    public sulphuricAcid()
     {
         super(new ModFluidSulphuricAcid(), Material.water);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

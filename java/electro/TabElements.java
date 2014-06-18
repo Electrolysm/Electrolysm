@@ -1,4 +1,4 @@
-package electro;
+/*package electro;
 
 import electro.handlers.IDHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,4 +22,4 @@ public class TabElements extends CreativeTabs
     {
         return "Electrolysm|Elements & Wizardy"; //The name of the tab ingame
     }
-}
+}*/

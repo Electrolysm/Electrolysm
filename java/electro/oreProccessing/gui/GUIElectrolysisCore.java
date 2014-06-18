@@ -49,6 +49,6 @@ public class GUIElectrolysisCore extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-        fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(entity.getInventoryName(), 40, 6, 4210752);
     }
 }

@@ -62,7 +62,7 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
     {
     	//String RotationString = "Rotations: " + entity.rotations  + "RPM";
         
-    	fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
+    	fontRendererObj.drawString(entity.getInventoryName(), 40, 6, 4210752);
         //fontRenderer.drawString(EnergyString, 13, 6 + 60 + 6 + 10, 4210752);
         //fontRenderer.drawString(RotationString, 13, 6 + 60 + 6, 4210752);
         

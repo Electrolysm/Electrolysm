@@ -39,7 +39,7 @@ public class matterGen extends BlockContainer
     private Random furnaceRand = new Random();
     private Map name = new HashMap();
 
-    public matterGen(int id, Material mat, int genID)
+    public matterGen()
     {
         super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

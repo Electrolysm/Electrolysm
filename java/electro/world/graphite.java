@@ -2,21 +2,21 @@ package electro.world;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import electro.electrolysmCore;
 
 public class graphite extends Block
 {
-    public graphite(int id, Material mat)
+    public graphite()
     {
-        super(id, Material.rock);
+        super(Material.rock);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("graphite");
         this.setHardness(5.0F);
         this.setResistance(10.0F);
     }
 
-    public void registerIcons(IconRegister reg)
+    @Override
+    public void registerBlockIcons(IIconRegister reg)
     {
         this.blockIcon = reg.registerIcon("electrolysm:" + "graphite");
     }

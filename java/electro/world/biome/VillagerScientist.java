@@ -1,6 +1,5 @@
 package electro.world.biome;
 
-import assets.electrolysm.electro.electrolysmCore;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -9,6 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
+
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
@@ -17,7 +18,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EntityLivingData;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.INpc;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -39,6 +39,8 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -119,12 +121,6 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
-    protected void func_110147_ax()
-    {
-        super.func_110142_aN();
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(0.5D);
-    }
-
     /**
      * Returns true if the newer Entity AI code should be run
      */
@@ -156,7 +152,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                 if (this.field_82190_bM)
                 {
                     this.field_82190_bM = false;
-                    this.villageObj.func_82683_b(5);
+                    this.villageObj.tick(5);
                 }
             }
         }
@@ -177,7 +173,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                         {
                             MerchantRecipe merchantrecipe = (MerchantRecipe)iterator.next();
 
-                            if (merchantrecipe.func_82784_g())
+                            if (merchantrecipe.hasSecondItemToBuy())
                             {
                                 merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
                             }
@@ -207,7 +203,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
     public boolean interact(EntityPlayer par1EntityPlayer)
     {
         ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
-        boolean flag = itemstack != null && itemstack.itemID == Item.monsterPlacer.itemID;
+        boolean flag = itemstack != null && itemstack.getItem() == Items.spawn_egg;
 
         if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild())
         {
@@ -229,6 +225,8 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
     {
         super.entityInit();
         this.dataWatcher.addObject(16, Integer.valueOf(0));
+        super.func_110142_aN();
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.5D);
     }
 
     /**
@@ -242,7 +240,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
         if (this.buyingList != null)
         {
-            par1NBTTagCompound.setCompoundTag("Offers", this.buyingList.getRecipiesAsTags());
+            par1NBTTagCompound.setTag("Offers", this.buyingList.getRecipiesAsTags());
         }
     }
 
@@ -421,7 +419,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
             }
         }
 
-        if (par1MerchantRecipe.getItemToBuy().itemID == Item.emerald.itemID)
+        if (par1MerchantRecipe.getItemToBuy().getItem() == Items.emerald)
         {
             this.wealth += par1MerchantRecipe.getItemToBuy().stackSize;
         }
@@ -484,33 +482,33 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
         switch (this.getProfession())
         {
             case 0:
-                addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
 
                 if (this.rand.nextFloat() < this.func_82188_j(0.5F))
                 {
-                    merchantrecipelist.add(new MerchantRecipe(new ItemStack(Block.gravel, 10), new ItemStack(Item.emerald), new ItemStack(Item.flint.itemID, 4 + this.rand.nextInt(2), 0)));
+                    merchantrecipelist.add(new MerchantRecipe(new ItemStack(Blocks.gravel, 10), new ItemStack(Items.emerald), new ItemStack(Items.flint, 4 + this.rand.nextInt(2), 0)));
                 }
 
                 break;
 
             case 1:
-                addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
 
                 if (this.rand.nextFloat() < this.func_82188_j(0.07F))
                 {
                     Enchantment enchantment = Enchantment.enchantmentsBookList[this.rand.nextInt(Enchantment.enchantmentsBookList.length)];
                     int k = MathHelper.getRandomIntegerInRange(this.rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
-                    ItemStack itemstack = Item.enchantedBook.getEnchantedItemStack(new EnchantmentData(enchantment, k));
+                    ItemStack itemstack = Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(enchantment, k));
                     j = 2 + this.rand.nextInt(5 + k * 10) + 3 * k;
-                    merchantrecipelist.add(new MerchantRecipe(new ItemStack(Item.book), new ItemStack(Item.emerald, j), itemstack));
+                    merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.book), new ItemStack(Items.emerald, j), itemstack));
                 }
 
                 break;
 
             case 2:
-                addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
-                int[] aint = new int[] {Item.swordIron.itemID, Item.swordDiamond.itemID, Item.plateIron.itemID, Item.plateDiamond.itemID, Item.axeIron.itemID, Item.axeDiamond.itemID, Item.pickaxeIron.itemID, Item.pickaxeDiamond.itemID};
-                int[] aint1 = aint;
+                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
+                Item[] aint = new Item[] {Items.iron_sword, Items.diamond_sword, Items.iron_chestplate, Items.diamond_chestplate, Items.iron_axe, Items.diamond_axe, Items.iron_pickaxe, Items.diamond_pickaxe};
+                Item[] aint1 = aint;
                 int l = aint.length;
                 j = 0;
 
@@ -521,27 +519,27 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                         break label50;
                     }
 
-                    int i1 = aint1[j];
+                    Item i1 = aint1[j];
 
                     if (this.rand.nextFloat() < this.func_82188_j(0.05F))
                     {
-                        merchantrecipelist.add(new MerchantRecipe(new ItemStack(i1, 1, 0), new ItemStack(Item.emerald, 2 + this.rand.nextInt(3), 0), EnchantmentHelper.addRandomEnchantment(this.rand, new ItemStack(i1, 1, 0), 5 + this.rand.nextInt(15))));
+                        merchantrecipelist.add(new MerchantRecipe(new ItemStack(i1, 1, 0), new ItemStack(Items.emerald, 2 + this.rand.nextInt(3), 0), EnchantmentHelper.addRandomEnchantment(this.rand, new ItemStack(i1, 1, 0), 5 + this.rand.nextInt(15))));
                     }
 
                     ++j;
                 }
 
             case 3:
-                addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
                 break;
 
             case 4:
-                addBlacksmithItem(merchantrecipelist, electrolysmCore.knowledge.itemID, this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
         }
 
         if (merchantrecipelist.isEmpty())
         {
-            addMerchantItem(merchantrecipelist, Item.ingotGold.itemID, this.rand, 1.0F);
+            addMerchantItem(merchantrecipelist, (Items.gold_ingot), this.rand, 1.0F);
         }
 
         Collections.shuffle(merchantrecipelist);
@@ -563,17 +561,17 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
     /**
      * each recipie takes a random stack from villagerStockList and offers it for 1 emerald
      */
-    public static void addMerchantItem(MerchantRecipeList par0MerchantRecipeList, int par1, Random par2Random, float par3)
+    public static void addMerchantItem(MerchantRecipeList par0MerchantRecipeList, Item par1, Random par2Random, float par3)
     {
         if (par2Random.nextFloat() < par3)
         {
-            par0MerchantRecipeList.add(new MerchantRecipe(getRandomSizedStack(par1, par2Random), Item.emerald));
+            par0MerchantRecipeList.add(new MerchantRecipe(getRandomSizedStack(par1, par2Random), Items.emerald));
         }
     }
 
-    private static ItemStack getRandomSizedStack(int par0, Random par1Random)
+    private static ItemStack getRandomSizedStack(Item par0, Random par1Random)
     {
-        return new ItemStack(par0, getRandomCountForItem(par0, par1Random), 0);
+        return new ItemStack(par0, getRandomCountForItem(1, par1Random), 0);
     }
 
     /**
@@ -585,7 +583,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
         return tuple == null ? 1 : (((Integer)tuple.getFirst()).intValue() >= ((Integer)tuple.getSecond()).intValue() ? ((Integer)tuple.getFirst()).intValue() : ((Integer)tuple.getFirst()).intValue() + par1Random.nextInt(((Integer)tuple.getSecond()).intValue() - ((Integer)tuple.getFirst()).intValue()));
     }
 
-    public static void addBlacksmithItem(MerchantRecipeList par0MerchantRecipeList, int par1, Random par2Random, float par3)
+    public static void addBlacksmithItem(MerchantRecipeList par0MerchantRecipeList, Item par1, Random par2Random, float par3)
     {
         if (par2Random.nextFloat() < par3)
         {
@@ -595,12 +593,12 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
             if (j < 0)
             {
-                itemstack = new ItemStack(Item.emerald.itemID, 1, 0);
+                itemstack = new ItemStack(Items.emerald, 1, 0);
                 itemstack1 = new ItemStack(par1, -j, 0);
             }
             else
             {
-                itemstack = new ItemStack(Item.emerald.itemID, j, 0);
+                itemstack = new ItemStack(Items.emerald, j, 0);
                 itemstack1 = new ItemStack(par1, 1, 0);
             }
 
@@ -608,9 +606,9 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
         }
     }
 
-    private static int getRandomCountForBlacksmithItem(int par0, Random par1Random)
+    private static int getRandomCountForBlacksmithItem(Item par0, Random par1Random)
     {
-        Tuple tuple = (Tuple)blacksmithSellingList.get(Integer.valueOf(par0));
+        Tuple tuple = (Tuple)blacksmithSellingList.get((par0));
         return tuple == null ? 1 : (((Integer)tuple.getFirst()).intValue() >= ((Integer)tuple.getSecond()).intValue() ? ((Integer)tuple.getFirst()).intValue() : ((Integer)tuple.getFirst()).intValue() + par1Random.nextInt(((Integer)tuple.getSecond()).intValue() - ((Integer)tuple.getFirst()).intValue()));
     }
 
@@ -634,13 +632,13 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
             super.handleHealthUpdate(par1);
         }
     }
-
+/*
     public EntityLivingData func_110161_a(EntityLivingData par1EntityLivingData)
     {
         par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
         VillagerRegistry.applyRandomTrade(EntityVillager, worldObj.rand);
         return par1EntityLivingData;
-    }
+    }*/
 
     @SideOnly(Side.CLIENT)
 
@@ -666,7 +664,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
     public VillagerScientist func_90012_b(EntityAgeable par1EntityAgeable)
     {
         VillagerScientist entityvillager = new VillagerScientist(this.worldObj);
-        entityvillager.func_110161_a((EntityLivingData)null);
+       // entityvillager.func_110161_a((EntityLivingData)null);
         return entityvillager;
     }
 
@@ -682,6 +680,6 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
     static
     {
-        villagerStockList.put(Integer.valueOf(electrolysmCore.knowledge.itemID), new Tuple(Integer.valueOf(14), Integer.valueOf(18)));
+        villagerStockList.put((electrolysmCore.knowledge), new Tuple(Integer.valueOf(14), Integer.valueOf(18)));
     }
 }

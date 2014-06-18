@@ -13,7 +13,7 @@ public class seporator extends oreProcessMachineBase
     public String unlocalName = className.replace("assets.electrolysm.electro", "");
     public String textureName = unlocalName.replace(".", "/");
 
-    public seporator(int par1, Material par2Material, boolean isActive)
+    public seporator(boolean isActive)
     {
         super(isActive);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

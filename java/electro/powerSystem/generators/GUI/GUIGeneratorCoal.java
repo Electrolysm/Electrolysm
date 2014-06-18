@@ -71,6 +71,6 @@ public class GUIGeneratorCoal extends GuiContainer
     		}
     	}
     	
-        fontRendererObj.drawString(ColourEnumHelper.WHITE + entity.getInvName(), 25, 6, 0x404040);
+        fontRendererObj.drawString(ColourEnumHelper.WHITE + entity.getInventoryName(), 25, 6, 0x404040);
     }
 }

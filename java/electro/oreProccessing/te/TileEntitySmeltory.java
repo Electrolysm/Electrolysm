@@ -145,104 +145,86 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     @Override
     public void updateEntity()
     {
-    	this.markDirty();
+        if(getStackInSlot(0) != null) {
+            this.markDirty();
 
-    	ItemStack inStack = getStackInSlot(0);
-        ItemStack output = getStackInSlot(1);
-        ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
-        ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
-        Random rand = new Random();
-    	int inputPersent = this.getInputPersent(inStack);
-    	redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
-    	
-    	/*
-    	if(redstonePower && ((temp + 1) <= maxTemp))
-    	{
-    		if(rand.nextInt(15) == 1)
-    		{
-    			temp = temp + 1;
-    		}
-    	}*/
-    	
-        if (inStack != null)
-        {
-            if (result != null)
+            ItemStack inStack = getStackInSlot(0);
+            ItemStack output = getStackInSlot(1);
+            ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inStack);
+            ItemStack result2 = SmeltoryRecipes.smelting().getSmeltingResult(inStack);
+            Random rand = new Random();
+            int inputPersent = this.getInputPersent(inStack);
+            redstonePower = (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord));
+
+            /*
+            if(redstonePower && ((temp + 1) <= maxTemp))
             {
-            	if(temp == maxTemp)
-            	{
-	                if (output == null)
-	                {
-	                    int outputSize = 0;
-	                    int resultSize = result.stackSize;
-	
-	                    if (((resultSize + outputSize) <= 64))
-	                    {
-	                    	if(time == smeltTime)
-	                    	{
-	                    		time = 0;
-	                    		this.decrStackSize(0, 1);
-		                        this.setInventorySlotContents(1, result);
-		                        this.markDirty();
-	                    	}
-	                    	else
-	                    	{
-	                    		time = time + 1;
-	                    	}
-	                    }
-	                }
-	                else
-	                {
-	                    int outputSize = output.stackSize;
-	                    int resultSize = result.stackSize;
-	
-	                    if (((resultSize + outputSize) < 64))
-	                    {
-	                    	if(time == smeltTime)
-	                    	{
-	                    		time = 0;
-		                        this.decrStackSize(0, 1);
-		                        this.setInventorySlotContents(1, new ItemStack(result.getItem(), 
-		                        		(result.stackSize + output.stackSize), result.getItemDamage()));
-		                        this.markDirty();
-	                    	}
-	                    	else
-	                    	{
-	                    		time = time + 1;
-	                    	}
-	                    }
-	                }
-	                
-                }
-            	else
+                if(rand.nextInt(15) == 1)
                 {
-            		if(rand.nextInt(5) == 1)
-            		{
-            			temp = temp + 1;
-            		}
+                    temp = temp + 1;
                 }
-           	}
-            else
-            {
-            	time = 0;
-            	if((temp - 1) > 0 && rand.nextInt(10) == 1)
-            	{
-            		if(!(redstonePower))
-            		{
-            			temp = temp - 1;
-            		}
-            	}
+            }*/
+
+            if (inStack != null) {
+                if (result != null) {
+                    if (temp == maxTemp) {
+                        if (output == null) {
+                            int outputSize = 0;
+                            int resultSize = result.stackSize;
+
+                            if (((resultSize + outputSize) <= 64)) {
+                                if (time == smeltTime) {
+                                    time = 0;
+                                    this.decrStackSize(0, 1);
+                                    this.setInventorySlotContents(1, result);
+                                    this.markDirty();
+                                } else {
+                                    time = time + 1;
+                                }
+                            }
+                        } else {
+                            int outputSize = output.stackSize;
+                            int resultSize = result.stackSize;
+
+                            if (((resultSize + outputSize) < 64)) {
+                                if (time == smeltTime) {
+                                    time = 0;
+                                    this.decrStackSize(0, 1);
+                                    this.setInventorySlotContents(1, new ItemStack(result.getItem(),
+                                            (result.stackSize + output.stackSize), result.getItemDamage()));
+                                    this.markDirty();
+                                } else {
+                                    time = time + 1;
+                                }
+                            }
+                        }
+
+                    } else {
+                        if (rand.nextInt(5) == 1) {
+                            temp = temp + 1;
+                        }
+                    }
+                } else {
+                    time = 0;
+                    if ((temp - 1) > 0 && rand.nextInt(10) == 1) {
+                        if (!(redstonePower)) {
+                            temp = temp - 1;
+                        }
+                    }
+                }
+            } else {
+                time = 0;
+                if ((temp - 1) > 0 && rand.nextInt(10) == 1) {
+                    if (!(redstonePower)) {
+                        temp = temp - 1;
+                    }
+                }
             }
         }
         else
         {
-        	time = 0;
-        	if((temp - 1) > 0 && rand.nextInt(10) == 1)
-        	{
-        		if(!(redstonePower))
-        		{
-        			temp = temp - 1;
-        		}        	
-        	}
+            temp = 0;
+            time = 0;
         }
     }
 

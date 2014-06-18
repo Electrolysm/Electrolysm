@@ -33,7 +33,7 @@ public class GUIPort extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-        fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(entity.getInventoryName(), 40, 6, 4210752);
         fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 }

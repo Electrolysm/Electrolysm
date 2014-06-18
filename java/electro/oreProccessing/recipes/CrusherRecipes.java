@@ -16,8 +16,8 @@ public class CrusherRecipes
 {
     private static final CrusherRecipes smeltBase = new CrusherRecipes();
 
-    private Map crushing1 = new HashMap();
-    private Map crushing2 = new HashMap();
+    private HashMap<ItemStack, Integer> crushing1 = new HashMap<ItemStack, Integer>();
+    private HashMap<ItemStack, ItemStack> crushing2 = new HashMap<ItemStack, ItemStack>();
 
     public static final CrusherRecipes smelting()
     {
@@ -95,7 +95,7 @@ public class CrusherRecipes
         this.crushing2.put((input), output);
     }
 
-    public Map getCrushingMap()
+    public HashMap<ItemStack, ItemStack> getCrushingMap()
     {
     	return this.crushing2;
     }
@@ -135,6 +135,6 @@ public class CrusherRecipes
 
     public ItemStack getSlot1ReduceAmount(ItemStack input)
     {
-        return (ItemStack) this.crushing1.get(input);
+        return (ItemStack) this.crushing2.get(input);
     }
 }

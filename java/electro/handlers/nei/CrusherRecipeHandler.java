@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
+import electro.oreProccessing.gui.GUICrusher;
+import electro.oreProccessing.recipes.CrusherRecipes;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.gui.GUICrusher;
-import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -18,6 +20,8 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class CrusherRecipeHandler extends TemplateRecipeHandler
 {
+    private EntityPlayer player;
+
     public class SmeltingPair extends CachedRecipe
     {
         public SmeltingPair(ItemStack ingred, ItemStack result)
@@ -39,7 +43,7 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
                     maxDamage++;
                     stack.item.setItemDamage(maxDamage);
                 }
-                while(NEIClientUtils.isValidItem(stack.item));
+                while(NEIClientUtils.canItemFitInInventory(player, stack.item));
                 
                 stack.item.setItemDamage(cycle % maxDamage);
                 return stack;
@@ -91,12 +95,12 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     {
         if(outputId.equals("crushing") && getClass() == CrusherRecipeHandler.class)//don't want subclasses getting a hold of this
         {
-            HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
+            HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
             
-            for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
+            for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
             {
                 ItemStack item = recipe.getValue();
-                arecipes.add(new SmeltingPair(new ItemStack(recipe.getKey(), 1, -1), item));
+                arecipes.add(new SmeltingPair(recipe.getKey(), item));
             }
         }
         else
@@ -108,14 +112,14 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-        HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
+        HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
         
-        for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
+        for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
         {
             ItemStack item = recipe.getValue();
             if(NEIServerUtils.areStacksSameType(item, result))
             {
-                arecipes.add(new SmeltingPair(new ItemStack(recipe.getKey(), 1, -1), item));
+                arecipes.add(new SmeltingPair(recipe.getKey(), item));
             }
         }
     }
@@ -136,12 +140,12 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-        HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
+        HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
         
-        for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
+        for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
         {
             ItemStack item = recipe.getValue();
-            if(ingredient.itemID == recipe.getKey())
+            if(ingredient == recipe.getKey())
             {
                 arecipes.add(new SmeltingPair(ingredient, item));
             }

@@ -50,7 +50,7 @@ public class GUISmeltory extends GuiContainer //implements INEIGuiHandler
     	String DEGREE  = "\u00b0";
     	String tempString = ("Temperature: " + (entity.temp + 50)+ DEGREE + "C");
     	
-        fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(entity.getInventoryName(), 40, 6, 4210752);
         fontRendererObj.drawString(tempString, 13, 6 + 60 + 6, 4210752);
     }
 }

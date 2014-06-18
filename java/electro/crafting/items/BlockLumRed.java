@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLumRed extends BlockContainer
 {
-    public BlockLumRed(int id, Material mat)
+    public BlockLumRed()
     {
         super(Material.glass);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

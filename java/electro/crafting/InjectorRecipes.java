@@ -41,18 +41,18 @@ public class InjectorRecipes
     public void addDoubleSmelting(ItemStack bottom, ItemStack top, ItemStack output)
     {
         this.metaSmeltingList1.put(Arrays.asList(bottom, top), output);
-        this.metaSmeltingList2.put(Arrays.asList(bottom.getItemDamage(), top.getItemDamage()), output);
+        //this.metaSmeltingList2.put(Arrays.asList(bottom.getItemDamage(), top.getItemDamage()), output);
         
         this.metaSmeltingCheckList1.put(Arrays.asList(bottom), bottom);
         this.metaSmeltingCheckList2.put(Arrays.asList(top), top);
     }
     
-    public Map getInjectorMap()
+    public HashMap<List<ItemStack>, ItemStack> getInjectorMap()
     {
     	return this.metaSmeltingList1;
     }
     
-    public Map getInjectorMapMeta()
+    public HashMap<List<Integer>, ItemStack> getInjectorMapMeta()
     {
     	return this.metaSmeltingList2;
     }

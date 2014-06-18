@@ -2,23 +2,23 @@ package electro.world;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.common.CommonProxy;
+import net.minecraft.util.IIcon;
+import electro.electrolysmCore;
+import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class Scandium extends Item {
 
 	@SideOnly(Side.CLIENT)
-	private Icon iconIngot;
+	private IIcon iconIngot;
 	
-	public Scandium(int id) {
-		super(id);
+	public Scandium() {
+		super();
 
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.hasSubtypes = true;
@@ -26,7 +26,7 @@ public class Scandium extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
         this.itemIcon = reg.registerIcon("electrolysm:" + "ScandiumDust");
         this.iconIngot = reg.registerIcon("electrolysm:" + "ScandiumIngot");
@@ -41,7 +41,7 @@ public class Scandium extends Item {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
     	if(dmg == 0)
     	{
@@ -54,7 +54,7 @@ public class Scandium extends Item {
     }
     
     @Override
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
     	list.add(new ItemStack(this, 1, 0));
     	list.add(new ItemStack(this, 1, 1));

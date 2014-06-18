@@ -18,7 +18,7 @@ public class plasma extends BlockFluidClassic
     @SideOnly(Side.CLIENT)
     public IIcon still;
 
-    public plasma(int id)
+    public plasma()
     {
         super(new ModFluidPlasma(), Material.water);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

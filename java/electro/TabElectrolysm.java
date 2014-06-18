@@ -1,6 +1,5 @@
 package electro;
 
-import electro.handlers.IDHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,6 +21,9 @@ public class TabElectrolysm extends CreativeTabs
     {
         return new ItemStack(electrolysmCore.plasmaDrill, 1, 1);
     }
+
+    @Override
+    public Item getTabIconItem() { return electrolysmCore.plasmaDrill; }
 
 
     public String getTranslatedTabLabel()

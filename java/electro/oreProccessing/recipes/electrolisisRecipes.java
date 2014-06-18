@@ -14,7 +14,7 @@ public class electrolisisRecipes
     private static final electrolisisRecipes smeltingBase = new electrolisisRecipes();
 
     /** The list of smelting results. */
-    private Map electrolysisMap = new HashMap();
+    private HashMap<ItemStack, ItemStack> electrolysisMap = new HashMap<ItemStack, ItemStack>();
 
     /**
      * Used to call methods addSmelting and getSmeltingResult.
@@ -66,14 +66,14 @@ public class electrolisisRecipes
      */
     public void addElectrolisis(ItemStack input, ItemStack output)
     {
-        this.electrolysisMap.put(Arrays.asList(input), output);
+        this.electrolysisMap.put(input, output);
     }
 
     public ItemStack getSmeltingResult(ItemStack item)
     {
         if (item != null)
         {
-            ItemStack result = (ItemStack)this.electrolysisMap.get(Arrays.asList(item));
+            ItemStack result = (ItemStack)this.electrolysisMap.get((item));
 
             if (result != null)
             {

@@ -11,8 +11,7 @@ import electro.block.GlassBlockConnectedMeta;
 
 public class blastGlass extends GlassBlockConnectedMeta
 {
-    public blastGlass(int par1, String location, boolean hasAlpha,
-                      String[] textures)
+    public blastGlass(String location, boolean hasAlpha, String[] textures)
     {
         super(location, hasAlpha, textures);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

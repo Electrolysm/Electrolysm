@@ -5,21 +5,19 @@ import java.util.Random;
 
 import net.minecraft.block.BlockSapling;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class treeSapling extends BlockSapling {
 
-	public treeSapling(int id) {
-		super(id);
+	public treeSapling() {
+		super();
 
-		this.setUnlocalizedName("treeSapling");
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.setTickRandomly(true);
-		
-		GameRegistry.registerBlock(this);
 	}
 	
     public void updateTick(World world, int x, int y, int z, Random random)
@@ -28,7 +26,7 @@ public class treeSapling extends BlockSapling {
 	}
 	
 	@Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
     }

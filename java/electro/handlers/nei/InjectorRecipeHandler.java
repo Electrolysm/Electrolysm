@@ -1,11 +1,10 @@
 package electro.handlers.nei;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import electro.block.advMachines.gui.GUIInjector;
 import electro.common.CommonProxy;
@@ -16,6 +15,8 @@ import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class InjectorRecipeHandler extends TemplateRecipeHandler {
+
+    private EntityPlayer player;
 
 	public class SmeltingPair extends CachedRecipe
     {
@@ -43,7 +44,7 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
                     stack.item.setItemDamage(maxDamage);
                     stack2.item.setItemDamage(maxDamage);
                 }
-                while(NEIClientUtils.isValidItem(stack.item));
+                while(NEIClientUtils.canItemFitInInventory(player, stack.item));
                 {
                 	stack.item.setItemDamage(cycle % maxDamage);
                 	stack2.item.setItemDamage(cycle % maxDamage);
@@ -105,22 +106,15 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     {
         if(outputId.equals("Injecting") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
         {
-        	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
-        	HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
+        	HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+        	//HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
 
-            for(int i = 0; i < recipes.size(); i++)
+            for(Map.Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet())
             {
-            	Object recipe = recipes.keySet().toArray()[i];
-            	Object recipeMeta = recipesMeta.keySet().toArray()[i];
-
-                ItemStack item = recipes.get(recipe);
-                int meta1 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(0))));
-                int meta2 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(1))));
-                
-                System.out.println("ElectrolysmCore: " + recipe + " : " + item);
-                
-                arecipes.add(new SmeltingPair(new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(0)))), 1, meta1), 
-                		new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(1)))), 1, meta2), item));
+                ItemStack bottom = recipe.getKey().get(0);
+                ItemStack top = recipe.getKey().get(1);
+                ItemStack result = recipes.get(Arrays.asList(bottom, top));
+                arecipes.add(new SmeltingPair(bottom, top, result));
             }
         }
         else
@@ -132,24 +126,16 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
-    	HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
+        HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+        //HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
 
-        for(int i = 0; i < recipes.size(); i++)
-        {
-        	Object recipe = recipes.keySet().toArray()[i];
-        	Object recipeMeta = recipesMeta.keySet().toArray()[i];
+        for(Map.Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet()) {
+            ItemStack bottom = recipe.getKey().get(0);
+            ItemStack top = recipe.getKey().get(1);
+            ItemStack output = recipes.get(Arrays.asList(bottom, top));
 
-            ItemStack item = recipes.get(recipe);
-            int meta1 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(0))));
-            int meta2 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(1))));
-            
-            System.out.println("ElectrolysmCore: " + recipe + " : " + item);
-            
-            if(NEIServerUtils.areStacksSameType(item, result))
-            {
-            	arecipes.add(new SmeltingPair(new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(0)))), 1, meta1), 
-            			new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(1)))), 1, meta2), item));
+            if (NEIServerUtils.areStacksSameType(output, result)) {
+                arecipes.add(new SmeltingPair(bottom, top, output));
             }
         }
     }
@@ -170,25 +156,17 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-    	HashMap<List<Integer>, ItemStack> recipes = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
-    	HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
+        HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+        //HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
 
-        for(int i = 0; i < recipes.size(); i++)
+        for(Map.Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet())
         {
-        	Object recipe = recipes.keySet().toArray()[i];
-        	Object recipeMeta = recipesMeta.keySet().toArray()[i];
+            ItemStack bottom = recipe.getKey().get(0);
+            ItemStack top = recipe.getKey().get(1);
+            ItemStack output = recipes.get(Arrays.asList(bottom, top));
 
-            ItemStack item = recipes.get(recipe);
-            int meta1 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(0))));
-            int meta2 = Integer.parseInt((String.valueOf(((List)(recipeMeta)).get(1))));
-            
-            System.out.println("ElectrolysmCore: " + recipe + " : " + item);
-            
-            if(NEIServerUtils.areStacksSameType(item, ingredient))
-            {
-            	arecipes.add(new SmeltingPair(new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(0)))), 1, meta1), 
-            			new ItemStack(Integer.parseInt((String.valueOf(((List)(recipe)).get(1)))), 1, meta2), item));
-            }
+            if(NEIServerUtils.areStacksSameType(bottom, ingredient) || NEIServerUtils.areStacksSameType(top, ingredient))
+            arecipes.add(new SmeltingPair(bottom, top, output));
         }
     }
     

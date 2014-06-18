@@ -18,6 +18,7 @@ import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.Ev
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -39,24 +40,23 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 public class DiseasedBiomeDecorator extends BiomeDecorator{
 
     public WorldGenerator treeGen;
+    private BiomeGenBase biome;
 	
-	public DiseasedBiomeDecorator(BiomeGenBase par1BiomeGenBase) 
+	public DiseasedBiomeDecorator(BiomeGenBase base)
 	{
-		super(par1BiomeGenBase);
-		this.sandGen = new WorldGenSand(7, Block.sand.blockID);
-        this.gravelAsSandGen = new WorldGenSand(6, Block.gravel.blockID);
-        this.dirtGen = new WorldGenMinable(Block.dirt.blockID, 32);
-        this.gravelGen = new WorldGenMinable(Block.gravel.blockID, 32);
-        this.coalGen = new WorldGenMinable(Block.oreCoal.blockID, 16);
-        this.ironGen = new WorldGenMinable(Block.oreIron.blockID, 8);
-        this.goldGen = new WorldGenMinable(Block.oreGold.blockID, 8);
-        this.redstoneGen = new WorldGenMinable(Block.oreRedstone.blockID, 7);
-        this.diamondGen = new WorldGenMinable(Block.oreDiamond.blockID, 7);
-        this.lapisGen = new WorldGenMinable(Block.oreLapis.blockID, 6);
-        this.plantYellowGen = new WorldGenFlowers(Block.plantYellow.blockID);
-        this.plantRedGen = new WorldGenFlowers(Block.plantRed.blockID);
-        this.mushroomBrownGen = new WorldGenFlowers(Block.mushroomBrown.blockID);
-        this.mushroomRedGen = new WorldGenFlowers(Block.mushroomRed.blockID);
+		super();
+		this.sandGen = new WorldGenSand(Blocks.sand, 7);
+        this.gravelAsSandGen = new WorldGenSand(Blocks.gravel, 6);
+        this.dirtGen = new WorldGenMinable(Blocks.dirt, 32);
+        this.gravelGen = new WorldGenMinable(Blocks.gravel, 32);
+        this.coalGen = new WorldGenMinable(Blocks.coal_ore, 16);
+        this.ironGen = new WorldGenMinable(Blocks.iron_ore, 8);
+        this.goldGen = new WorldGenMinable(Blocks.gold_ore, 8);
+        this.redstoneGen = new WorldGenMinable(Blocks.redstone_ore, 7);
+        this.diamondGen = new WorldGenMinable(Blocks.diamond_block, 7);
+        this.lapisGen = new WorldGenMinable(Blocks.lapis_ore, 6);
+        this.mushroomBrownGen = new WorldGenFlowers(Blocks.brown_mushroom);
+        this.mushroomRedGen = new WorldGenFlowers(Blocks.red_mushroom);
         this.treeGen = new WorldGenDiseasedTree(true);
         this.bigMushroomGen = new WorldGenBigMushroom();
         this.reedGen = new WorldGenReed();
@@ -68,7 +68,7 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
         this.sandPerChunk2 = 3;
         this.clayPerChunk = 1;
         this.generateLakes = true;
-        this.biome = par1BiomeGenBase;
+        this.biome = base;
 	}
 	
 	public void decorate(World par1World, Random par2Random, int par3, int par4)
@@ -142,16 +142,16 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
         }
 
         int l;
-
+/*
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, TREE);
         for (j = 0; doGen && j < i; ++j)
         {
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            WorldGenerator worldgenerator = this.biome.getRandomWorldGenForTrees(this.randomGenerator);
+            WorldGenerator worldgenerator = this.getRa(this.randomGenerator);
             worldgenerator.setScale(1.0D, 1.0D, 1.0D);
             worldgenerator.generate(this.currentWorld, this.randomGenerator, k, this.currentWorld.getHeightValue(k, l), l);
-        }
+        }*/
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, BIG_SHROOM);
         for (j = 0; doGen && j < this.bigMushroomsPerChunk; ++j)
@@ -162,23 +162,6 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
         }
 
         int i1;
-
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, FLOWERS);
-        for (j = 0; doGen && j < this.flowersPerChunk; ++j)
-        {
-            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            l = this.randomGenerator.nextInt(128);
-            i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.plantYellowGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
-
-            if (this.randomGenerator.nextInt(4) == 0)
-            {
-                k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-                l = this.randomGenerator.nextInt(128);
-                i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                this.plantRedGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
-            }
-        }
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, GRASS);
         for (j = 0; doGen && j < this.grassPerChunk; ++j)
@@ -196,7 +179,7 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            (new WorldGenDeadBush(Block.deadBush.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+            (new WorldGenDeadBush(Blocks.deadbush)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
         }
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, LILYPAD);
@@ -205,7 +188,7 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
 
-            for (i1 = this.randomGenerator.nextInt(128); i1 > 0 && this.currentWorld.getBlockId(k, i1 - 1, l) == 0; --i1)
+            for (i1 = this.randomGenerator.nextInt(128); i1 > 0 && this.currentWorld.getBlock(k, i1 - 1, l) == null; --i1)
             {
                 ;
             }
@@ -292,7 +275,7 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
                 k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
                 l = this.randomGenerator.nextInt(this.randomGenerator.nextInt(120) + 8);
                 i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                (new WorldGenLiquids(Block.waterMoving.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+                (new WorldGenLiquids(Blocks.water)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
             }
 
             for (j = 0; j < 20; ++j)
@@ -300,7 +283,7 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
                 k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
                 l = this.randomGenerator.nextInt(this.randomGenerator.nextInt(this.randomGenerator.nextInt(112) + 8) + 8);
                 i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                (new WorldGenLiquids(Block.lavaMoving.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+                (new WorldGenLiquids(Blocks.lava)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
             }
         }
 

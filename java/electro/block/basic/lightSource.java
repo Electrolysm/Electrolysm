@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class lightSource extends Block
 {
-    public lightSource(int par1, Material par2Material)
+    public lightSource()
     {
         super(Material.air);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

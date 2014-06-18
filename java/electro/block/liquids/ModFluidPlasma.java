@@ -1,6 +1,5 @@
 package electro.block.liquids;
 
-import electro.handlers.IDHandler;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;

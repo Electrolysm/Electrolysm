@@ -22,7 +22,7 @@ public class electrolisisCore extends BlockContainer
     public String unlocalName = className.replace("assets.electrolysm.electro", "");
     public String textureName = unlocalName.replace(".", "/");
 
-    public electrolisisCore(int par1, Material par2Material)
+    public electrolisisCore()
     {
         super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

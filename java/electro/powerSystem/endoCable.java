@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class endoCable extends BlockContainer
 {
-    public endoCable(int par1, Material par2Material)
+    public endoCable()
     {
         super(Material.cloth);
         //this.setCreativeTab(electrolysmCore.TabElectrolysm);

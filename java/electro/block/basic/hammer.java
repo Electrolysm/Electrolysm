@@ -28,7 +28,7 @@ public class hammer extends ItemTool
     public static final Block[] block = new Block[] {electrolysmCore.nettedBlock};
     private static Set<Block> blocksEffectiveAgainst = new HashSet<Block>(Arrays.asList(block));
 
-    public hammer(int id)
+    public hammer()
     {
         super(10F, ToolMaterial.IRON, blocksEffectiveAgainst);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

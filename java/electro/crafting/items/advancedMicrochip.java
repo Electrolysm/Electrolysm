@@ -27,7 +27,7 @@ public class advancedMicrochip extends Item
 	
 	public static Block[] breakingBlock = null;
 	
-    public advancedMicrochip(int par1)
+    public advancedMicrochip()
     {
         super();
         {

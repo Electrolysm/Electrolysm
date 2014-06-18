@@ -4,20 +4,21 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import electro.electrolysmCore;
+import net.minecraft.item.Item;
 
 public class sulpherOre extends Block
 {
-    public sulpherOre(int id, Material mat)
+    public sulpherOre()
     {
-        super(id, Material.rock);
+        super(Material.rock);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("sulphurOre");
         this.setHardness(1F);
     }
 
-    public void registerIcons(IconRegister reg)
+    @Override
+    public void registerBlockIcons(IIconRegister reg)
     {
         this.blockIcon = reg.registerIcon("electrolysm:" + "sulphureOre");
     }
@@ -38,8 +39,8 @@ public class sulpherOre extends Block
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3)
+    public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return electrolysmCore.sulphur.itemID;
+        return electrolysmCore.sulphur;
     }
 }

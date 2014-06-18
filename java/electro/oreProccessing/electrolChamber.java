@@ -20,7 +20,7 @@ public class electrolChamber extends GlassBlockConnectedMeta
     public String unlocalName = className.replace("assets.electrolysm.electro", "");
     public String textureName = unlocalName.replace(".", "/");
 
-    public electrolChamber(int par1, String location, boolean hasAlpha,
+    public electrolChamber(String location, boolean hasAlpha,
                            String[] textures)
     {
         super(location, hasAlpha, textures);

@@ -62,7 +62,7 @@ public class LiquidiserRecipes
         return (ItemStack)metaSmeltingList.get(Arrays.asList(item));
     }
 
-	public Map getLiquidsMap() 
+	public HashMap<List<ItemStack>, ItemStack> getLiquidsMap()
 	{
 		return this.metaSmeltingList;
 	}

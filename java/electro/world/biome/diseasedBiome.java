@@ -2,11 +2,11 @@ package electro.world.biome;
 
 import java.util.Random;
 
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.SpawnListEntry;
-import assets.electrolysm.electro.electrolysmCore;
 
 public class diseasedBiome extends BiomeGenBase
 {
@@ -15,8 +15,9 @@ public class diseasedBiome extends BiomeGenBase
         super(par1);
         this.theBiomeDecorator = new DiseasedBiomeDecorator(this);
         this.setBiomeName("Diseased Grassland");
-        this.topBlock = (byte)electrolysmCore.diseaseGrass.blockID;
-        this.fillerBlock = (byte)Block.dirt.blockID;
+
+        this.topBlock = electrolysmCore.diseaseGrass;
+        this.fillerBlock = Blocks.dirt;
         this.spawnableMonsterList.removeAll(spawnableMonsterList);
         this.spawnableMonsterList.add(new SpawnListEntry(EntityZombie_Scientist.class, 5, 10, 50));
         this.setDisableRain();

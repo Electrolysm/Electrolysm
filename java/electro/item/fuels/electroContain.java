@@ -9,6 +9,7 @@ import electro.electrolysmCore;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -56,13 +57,16 @@ public class electroContain extends Item implements IFuelStorage {
         						((FuelData)(SpecialFuelHandler.getFuelList().get(i - 1))).getName());
         	}
         }
+        //Items.ghast_tear
+        //this.itemIcon = reg.registerIcon()
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int dmg)
     {
-        return containIcon[dmg];
+        //return containIcon[dmg];
+        return Items.gold_ingot.getIconFromDamage(0);
     }
 
     @Override

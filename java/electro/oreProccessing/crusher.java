@@ -39,11 +39,13 @@ public class crusher extends oreProcessMachineBase
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
-        this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front");
-        this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "crusher_Front_Active");
-        this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
+        String modID = "electrolysm:";
+
+        this.frontIcon = reg.registerIcon(modID + "oreProcessMachines/" + "crusher_Front");
+        this.frontActive = reg.registerIcon(modID + "oreProcessMachines/" + "crusher_Front_Active");
+        this.blockIcon = reg.registerIcon(modID + "oreProcessMachines/" + "sidePanels");
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)

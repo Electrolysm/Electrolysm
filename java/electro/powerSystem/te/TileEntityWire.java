@@ -79,12 +79,12 @@ public class TileEntityWire extends TileEntityBasicCable
     {
         return true;
     }
-
+*/
     public boolean[] getVisualConnections()
     {
         return this.visuallyConnected;
     }
-
+/*
     public TileEntity[] getAdjacentConnections()
     {
         return adjacentConnections;

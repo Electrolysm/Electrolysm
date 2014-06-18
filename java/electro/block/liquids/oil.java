@@ -19,7 +19,7 @@ public class oil extends BlockFluidClassic
     @SideOnly(Side.CLIENT)
     public IIcon still;
 
-    public oil(int id)
+    public oil()
     {
         super(new ModFluidOil(), Material.water);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);

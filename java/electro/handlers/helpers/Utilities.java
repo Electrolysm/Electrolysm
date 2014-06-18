@@ -21,6 +21,10 @@ public class Utilities
         public static Material getBlockMaterial(World world, int x, int y, int z) {
             return (getBlock(world, x, y, z).getMaterial());
         }
+
+        public static void setBlockAndMetadata(World world, int x, int y, int z, net.minecraft.block.Block block, int meta){
+            world.setBlock(x, y, z, block, meta, 0);
+        }
     }
 
     public static class Math {

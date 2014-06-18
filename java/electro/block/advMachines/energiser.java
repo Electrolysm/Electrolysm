@@ -43,6 +43,7 @@ public class energiser extends BlockContainer
         return new TileEntityEnergiser();
     }
 
+    @Override
     public IIcon getIcon(int par1, int par2)
     {
         return par1 == 1 ? this.machineTop : (par1 == 0 ? this.machineTop :
@@ -50,8 +51,8 @@ public class energiser extends BlockContainer
     }
 
     @SideOnly(Side.CLIENT)
-
-    public void registerIcons(IIconRegister par1IconRegister)
+    @Override
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.machineSide = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_side");
         //this.machineFront = par1IconRegister.registerIcon("electrolysm:" + this.unlocalName + "_front");

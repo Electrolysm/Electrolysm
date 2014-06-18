@@ -4,9 +4,9 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
-import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+import electro.electrolysmCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,25 +17,25 @@ public class BlockTreeLeaves extends BlockLeaves {
 	public String name;
 	
 	@SideOnly(Side.CLIENT)
-	private Icon[] icon;
+	private IIcon[] icon;
 	
-	public BlockTreeLeaves(int par1, int type1, String unlocalName) {
-		super(par1);
+	public BlockTreeLeaves(int type1) {
+		super();
 		
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
-		this.setUnlocalizedName(unlocalName);
-		this.setStepSound(soundGrassFootstep);
+		this.setStepSound(Block.soundTypeGrass);
 		this.setTickRandomly(true);
 		this.setHardness(0.2F);
 		this.setLightOpacity(1);
 		this.type = type1;
-		name = unlocalName;
-		GameRegistry.registerBlock(this);
 	}
+
+    @Override
+    public String[] func_150125_e() { return null; }
 
 	@Override
 	@SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
 		if(type == 0 || name == "treeLog")
 		{
@@ -56,9 +56,9 @@ public class BlockTreeLeaves extends BlockLeaves {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
-		icon = new Icon[3];
+		icon = new IIcon[3];
 		
 		String MOD_ID = "electrolysm:";
 		icon[0] = reg.registerIcon(MOD_ID + "treeLeaves");

@@ -22,7 +22,7 @@ public class nettedBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	private IIcon[] nettedIcon;
 	
-	public nettedBlock(int id, Material mat) {
+	public nettedBlock() {
 		super(Material.rock);
 
 		this.setHardness((float) (1.5 + 0.8));

@@ -40,7 +40,8 @@ public class oreProcessMachineBase extends BlockContainer
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
+    @Override
+    public void registerBlockIcons(IIconRegister reg)
     {
         this.blockIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "sidePanels");
     }

@@ -104,14 +104,17 @@ public class injector extends BlockContainer
             world.setTileEntity(x, y, z, tile);
         }
     }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int par1, int par2)
     {
         return par1 == 1 ? this.furnaceIconTop : (par1 == 0 ? this.furnaceIconTop : (par1 != par2 ? this.furnaceIconFront : this.furnaceIconFront));
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("electrolysm:" + "injector_side");
         this.furnaceIconFront = par1IconRegister.registerIcon("Electrolysm:" + "injector_Front");

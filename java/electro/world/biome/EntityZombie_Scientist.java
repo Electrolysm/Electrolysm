@@ -6,8 +6,10 @@ import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
@@ -45,7 +47,7 @@ public class EntityZombie_Scientist extends EntityMob
         return "mob.zombie.death";
     }
 
-    @Override
+    //@Override
     protected void playStepSound(int par1, int par2, int par3, int par4)
     {
         this.worldObj.playSoundAtEntity(this, null, 0.15F, 1.0F);
@@ -76,17 +78,17 @@ public class EntityZombie_Scientist extends EntityMob
      * These will be bacteria items once they have been added
      */
 
-    protected int getDropItemId()
+    protected Item getDropItemId()
     {
         switch (this.rand.nextInt(3))
         {
             case 0:
-                return (Item.potato.itemID);
+                return (Items.potato);
 
             case 1:
-                return (Item.rottenFlesh.itemID);
+                return (Items.rotten_flesh);
         }
 
-        return Item.rottenFlesh.itemID;
+        return Items.rotten_flesh;
     }
 }

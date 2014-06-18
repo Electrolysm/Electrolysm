@@ -2,25 +2,45 @@ package electro.world.biome;
 
 import java.util.Random;
 
-import assets.electrolysm.electro.configHandler;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
+import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
 
 public class WorldGenDiseasedTree extends WorldGenerator
 {
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
 
-	private int log;
-	private int leaves;
+	private Block log;
+	private Block leaves;
 	private Block sapling;
-	public static Block treeLog = new BlockTreeLog(configHandler.treeLogID, 0, "treeLog");
-    public static Block treeLeaves = new BlockTreeLeaves(configHandler.treeLeavesID, 1, "treeLeaf");
-    public static Block treeSapling = new treeSapling(configHandler.treeSaplingID);
+	public static Block treeLog = new BlockTreeLog(0, "treeLog").setBlockName("diseasedLog");
+    public static Block treeLeaves = new BlockTreeLeaves(1).setBlockName("diseaseLeaves");
+    public static Block treeSapling = new treeSapling().setBlockName("diseasedSapling");
+
+    public static Block initialiseTree(String id)
+    {
+        if(id.contains("log"))
+        {
+            return (treeLog = new BlockTreeLog(0, "treeLog"));
+        }
+        else if(id.contains("leaves"))
+        {
+            return (treeLeaves = new BlockTreeLeaves(1));
+        }
+        else if(id.contains("sapling"))
+        {
+            return (treeSapling = new treeSapling());
+        }
+        else
+        {
+            return null;
+        }
+    }
     
     public WorldGenDiseasedTree(boolean par1)
     {
@@ -34,8 +54,8 @@ public class WorldGenDiseasedTree extends WorldGenerator
         /*treeLog = new BlockTree(configHandler.treeLogID, 0, "treeLog");
         treeLeaves = new BlockTree(configHandler.treeLeavesID, 1, "treeLeaf");
         treeSapling = new treeSapling(configHandler.treeSaplingID);*/
-        log = treeLog.blockID;
-    	leaves = treeLeaves.blockID;
+        log = treeLog;
+    	leaves = treeLeaves;
     	sapling = treeSapling;
     }
 
@@ -71,15 +91,13 @@ public class WorldGenDiseasedTree extends WorldGenerator
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            k1 = par1World.getBlockId(l1, i1, j1);
-
-                            Block block = Block.blocksList[k1];
+                            Block block = par1World.getBlock(l1, i1, j1);
 
                             if (!par1World.isAirBlock(l1, i1, j1) &&
                                 !block.isLeaves(par1World, l1, i1, j1) &&
-                                 k1 != Block.grass.blockID &&
-                                 k1 != Block.dirt.blockID &&
-                                 k1 != electrolysmCore.diseaseGrass.blockID &&
+                                 block != Blocks.grass &&
+                                 block != Blocks.dirt &&
+                                 block != electrolysmCore.diseaseGrass &&
                                 !block.isWood(par1World, l1, i1, j1))
                             {
                                 flag = false;
@@ -99,8 +117,8 @@ public class WorldGenDiseasedTree extends WorldGenerator
             }
             else
             {
-                i1 = par1World.getBlockId(par3, par4 - 1, par5);
-                Block soil = Block.blocksList[i1];
+                //i1 = par1World.getBlock(par3, par4 - 1, par5);
+                Block soil = par1World.getBlock(par3, par4 - 1, par5);
                 boolean isSoil = true;//(soil != null && soil.canSustainPlant(par1World, par3, par4 - 1, par5, ForgeDirection.UP, (BlockSapling)sapling) || soil.blockID == this.log);
 
                 if (isSoil && par4 < 256 - l - 1)
@@ -127,12 +145,12 @@ public class WorldGenDiseasedTree extends WorldGenerator
 
                                 if (Math.abs(k2) != i2 || Math.abs(i3) != i2 || par2Random.nextInt(2) != 0 && k1 != 0)
                                 {
-                                    int j3 = par1World.getBlockId(j2, j1, l2);
-                                    Block block = Block.blocksList[j3];
+                                    //int j3 = par1World.getBlockId(j2, j1, l2);
+                                    Block block = par1World.getBlock(j2, j1, l2);
 
                                     if (block == null || block.canBeReplacedByLeaves(par1World, j2, j1, l2))
                                     {
-                                        this.setBlockAndMetadata(par1World, j2, j1, l2, this.leaves,0);
+                                        Utilities.Block.setBlockAndMetadata(par1World, j2, j1, l2, this.leaves, 0);
                                     }
                                 }
                             }
@@ -141,13 +159,11 @@ public class WorldGenDiseasedTree extends WorldGenerator
 
                     for (j1 = 0; j1 < l; ++j1)
                     {
-                        k1 = par1World.getBlockId(par3, par4 + j1, par5);
+                        Block block =  par1World.getBlock(par3, par4 + j1, par5);
 
-                        Block block = Block.blocksList[k1];
-
-                        if (block == null || block.isAirBlock(par1World, par3, par4 + j1, par5) || block.isLeaves(par1World, par3, par4 + j1, par5))
+                        if (block == null || block.isAir(par1World, par3, par4, par5) || block.isLeaves(par1World, par3, par4 + j1, par5))
                         {
-                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, this.log, 0);
+                            Utilities.Block.setBlockAndMetadata(par1World, par3, par4 + j1, par5, this.log, 0);
                             par1World.setBlock(par3, par4 + 1, par5, this.log, 0, 0);
                         }
                     }
@@ -198,15 +214,13 @@ public class WorldGenDiseasedTree extends WorldGenerator
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            k1 = par1World.getBlockId(l1, i1, j1);
-
-                            Block block = Block.blocksList[k1];
+                            Block block = par1World.getBlock(l1, i1, j1);
 
                             if (!par1World.isAirBlock(l1, i1, j1) &&
                                 !block.isLeaves(par1World, l1, i1, j1) &&
-                                 k1 != Block.grass.blockID &&
-                                 k1 != Block.dirt.blockID &&
-                                 k1 != electrolysmCore.diseaseGrass.blockID &&
+                                 block != Blocks.grass &&
+                                 block != Blocks.dirt &&
+                                 block != electrolysmCore.diseaseGrass &&
                                 !block.isWood(par1World, l1, i1, j1))
                             {
                                 flag = false;

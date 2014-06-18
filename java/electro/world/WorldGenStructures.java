@@ -3,11 +3,12 @@ package electro.world;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.world.biome.WorldGenDiseasedTree;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -47,22 +48,22 @@ public class WorldGenStructures implements IWorldGenerator
                     int xCoord = ((x + random.nextInt(16)));
                     int zCoord = z + random.nextInt(16);
                     int yCoord = getSurface(world, xCoord, zCoord);
-                    int mossyStone = Block.cobblestoneMossy.blockID;
-                    int cobble = Block.cobblestone.blockID;
-                    int glow = Block.glowStone.blockID;
-                    int ironBar = Block.fenceIron.blockID;
-                    int wood = Block.wood.blockID;
-                    int grass = electrolysmCore.diseaseGrass.blockID;
-                    int stairs = Block.stairsCobblestone.blockID;
-                    int pressure = Block.pressurePlateStone.blockID;
-                    int dispenser = Block.tnt.blockID;
-                    int redstone = Block.redstoneWire.blockID;
-                    int stoneSlabHalf = 44;
-                    int stoneSlabFull = Block.stoneDoubleSlab.blockID;
-                    int desk = electrolysmCore.desk.blockID;
-                    int books = Block.bookShelf.blockID;
-                    int dirt = Block.dirt.blockID;
-                    int chest = Block.chest.blockID;
+                    Block mossyStone = Blocks.mossy_cobblestone;
+                    Block cobble = Blocks.cobblestone;
+                    Block glow = Blocks.glowstone;
+                    Block ironBar = Blocks.iron_bars;
+                    Block wood = Blocks.log;
+                    Block grass = electrolysmCore.diseaseGrass;
+                    Block stairs = Blocks.stone_stairs;
+                    Block pressure = Blocks.stone_pressure_plate;
+                    Block dispenser = Blocks.tnt;
+                    Block redstone = Blocks.redstone_wire;
+                    Block stoneSlabHalf = Blocks.stone_slab;
+                    Block stoneSlabFull = Blocks.double_stone_slab;
+                    Block desk = electrolysmCore.desk;
+                    Block books = Blocks.bookshelf;
+                    Block dirt = Blocks.dirt;
+                    Block chest = Blocks.chest;
 
                     //Layer 2
                     for (int gx = 0; gx < 16; gx++)
@@ -556,7 +557,7 @@ public class WorldGenStructures implements IWorldGenerator
                     createBlock(world, xCoord + 11, yCoord + 1, zCoord - 11, chest, 0);
                     //Chest Inventory
                     TileEntityChest tileEntityChest = new TileEntityChest();
-                    world.setBlockTileEntity(xCoord + 11, yCoord + 1, zCoord - 11, tileEntityChest);
+                    world.setTileEntity(xCoord + 11, yCoord + 1, zCoord - 11, tileEntityChest);
 
                     for (int slot = 0; slot < tileEntityChest.getSizeInventory(); slot++)
                     {
@@ -580,19 +581,19 @@ public class WorldGenStructures implements IWorldGenerator
             }
         }
     }
-    private static int randomCobble(Random random) 
+    private static Block randomCobble(Random random)
     {
     	if(random.nextInt(10) == 1)
     	{
-    		return Block.cobblestoneMossy.blockID;
+    		return Blocks.mossy_cobblestone;
     	}
     	else
     	{
-    		return Block.cobblestone.blockID;
+    		return Blocks.cobblestone;
     	}
 	}
 
-	private static void createBlock(World world, int xCoord, int yCoord, int zCoord, int blockID, int metadata)
+	private static void createBlock(World world, int xCoord, int yCoord, int zCoord, Block blockID, int metadata)
     {
         world.setBlock(xCoord, yCoord, zCoord, blockID, metadata, 2);
     }
