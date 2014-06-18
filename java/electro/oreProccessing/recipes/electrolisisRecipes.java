@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.common.CommonProxy;
 
 public class electrolisisRecipes
@@ -66,16 +66,14 @@ public class electrolisisRecipes
      */
     public void addElectrolisis(ItemStack input, ItemStack output)
     {
-    	Object[] inputList = {input.itemID, input.getItemDamage()};
-        this.electrolysisMap.put(Arrays.asList(inputList), output);
+        this.electrolysisMap.put(Arrays.asList(input), output);
     }
 
     public ItemStack getSmeltingResult(ItemStack item)
     {
         if (item != null)
         {
-        	Object[] itemList = {item.itemID, item.getItemDamage()};
-            ItemStack result = (ItemStack)this.electrolysisMap.get(Arrays.asList(itemList));
+            ItemStack result = (ItemStack)this.electrolysisMap.get(Arrays.asList(item));
 
             if (result != null)
             {

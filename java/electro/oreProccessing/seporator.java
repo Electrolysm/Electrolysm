@@ -1,6 +1,6 @@
 package electro.oreProccessing;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,15 +15,14 @@ public class seporator extends oreProcessMachineBase
 
     public seporator(int par1, Material par2Material, boolean isActive)
     {
-        super(par1, Material.iron, isActive);
+        super(isActive);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName(unlocalName);
         this.setHardness(6.0F);
         this.active = isActive;
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return null;

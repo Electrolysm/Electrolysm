@@ -25,8 +25,8 @@ public class SmeltoryRecipes
     
     public void addSmelting(ItemStack input, ItemStack output)
     {
-        this.crushing1.put(Integer.valueOf(input.itemID), Integer.valueOf(output.getItemDamage()));
-        this.crushing2.put(Integer.valueOf(input.itemID), output);
+        this.crushing1.put(input, Integer.valueOf(output.getItemDamage()));
+        this.crushing2.put(input, output);
     }
 
     public Map getSmeltingMap()
@@ -41,8 +41,8 @@ public class SmeltoryRecipes
             return null;
         }
 
-        ItemStack output1 = (ItemStack)this.crushing2.get(Integer.valueOf(input.itemID));
-        ItemStack output2 = FurnaceRecipes.smelting().getSmeltingResult(input.itemID);
+        ItemStack output1 = (ItemStack)this.crushing2.get((input));
+        ItemStack output2 = FurnaceRecipes.smelting().getSmeltingResult(input);
 
         if (output1 != null)
         {

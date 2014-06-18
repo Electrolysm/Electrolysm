@@ -2,6 +2,8 @@ package electro.oreProccessing.te;
 
 import java.util.Random;
 
+import electro.oreProccessing.recipes.LiquidiserRecipes;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -10,9 +12,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
-import assets.electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
+import electro.electrolysmCore;
+import electro.oreProccessing.recipes.CrusherRecipes;
 
 public class TileEntityLiquidiser extends TileEntity implements IInventory, ISidedInventory
 {
@@ -87,20 +88,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     }
 
     @Override
-    public String getInvName()
-    {
-        // TODO Auto-generated method stub
-        return "Displasment Chamber";
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         // TODO Auto-generated method stub
@@ -112,18 +99,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     {
         // TODO Auto-generated method stub
         return true;
-    }
-
-    @Override
-    public void openChest()
-    {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void closeChest()
-    {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -161,7 +136,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     @Override
     public void updateEntity()
     {
-    	this.onInventoryChanged();
+    	this.markDirty();
 
     	int connectedLiquids = this.getConnectedLiquids(worldObj, xCoord, yCoord, zCoord);
         
@@ -191,7 +166,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
                     		time = 0;
                     		this.decrStackSize(0, 1);
 	                        this.setInventorySlotContents(1, result2);
-	                        this.onInventoryChanged();
+	                        this.markDirty();
                     	}
                     	else
                     	{
@@ -211,7 +186,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
                     		time = 0;
 	                        this.decrStackSize(0, 1);
 	                        output.stackSize = (output.stackSize + result.stackSize);
-	                        this.onInventoryChanged();
+	                        this.markDirty();
                     	}
                     	else
                     	{
@@ -233,26 +208,26 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 
 	private int getConnectedLiquids(World world, int x, int y, int z) 
 	{
-		int id1 = world.getBlockId(x + 1, y, z);
-		int id2 = world.getBlockId(x - 1, y, z);
-		int id3 = world.getBlockId(x, y, z + 1);
-		int id4 = world.getBlockId(x, y, z - 1);
+		Block id1 = world.getBlock(x + 1, y, z);
+        Block id2 = world.getBlock(x - 1, y, z);
+        Block id3 = world.getBlock(x, y, z + 1);
+        Block id4 = world.getBlock(x, y, z - 1);
 		
 		int overall = 0;
 		
-		if(id1 == electrolysmCore.sulpuricAcid.blockID)
+		if(id1 == electrolysmCore.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
-		if(id2 == electrolysmCore.sulpuricAcid.blockID)
+		if(id2 == electrolysmCore.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
-		if(id3 == electrolysmCore.sulpuricAcid.blockID)
+		if(id3 == electrolysmCore.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
-		if(id4 == electrolysmCore.sulpuricAcid.blockID)
+		if(id4 == electrolysmCore.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
@@ -294,9 +269,9 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     public void readFromNBT(NBTTagCompound tagCompound) {
             super.readFromNBT(tagCompound);
             
-            NBTTagList tagList = tagCompound.getTagList("Inventory");
+            NBTTagList tagList = tagCompound.getTagList("Inventory", 0);
             for (int i = 0; i < tagList.tagCount(); i++) {
-                    NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                    NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
                     byte slot = tag.getByte("Slot");
                     if (slot >= 0 && slot < inventory.length) {
                             inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
@@ -328,5 +303,17 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 		// TODO Auto-generated method stub
 		
 	}
+
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Displacement Chamber"; }
+
+    @Override
+    public void openInventory() { }
 
 }

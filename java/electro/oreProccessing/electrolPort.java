@@ -1,6 +1,6 @@
 package electro.oreProccessing;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.oreProccessing.te.TileEntityPort;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -11,16 +11,15 @@ import net.minecraft.world.World;
 
 public class electrolPort extends BlockContainer
 {
-    public electrolPort(int id, Material mat)
+    public electrolPort()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("electrolPort");
         this.setHardness(4F);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return new TileEntityPort();

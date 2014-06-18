@@ -1,6 +1,6 @@
 package electro.powerSystem.generators.GUI;
 
-import mekanism.api.EnumColor;
+import electro.handlers.helpers.ColourEnumHelper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import electro.common.CommonProxy;
-import assets.electrolysm.electro.powerSystem.generators.container.ContainerGeneratorCoal;
+import electro.powerSystem.generators.container.ContainerGeneratorCoal;
 import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -63,14 +63,14 @@ public class GUIGeneratorCoal extends GuiContainer
     	{
     		if(isComplete)
     		{
-    	        fontRenderer.drawString(EnumColor.BRIGHT_GREEN + "Reactor is Comlete", 42, 20, 0x404040);
+    	        fontRendererObj.drawString(ColourEnumHelper.BRIGHT_GREEN + "Reactor is Comlete", 42, 20, 0x404040);
     		}
     		else
     		{
-    	        fontRenderer.drawString(EnumColor.DARK_RED + "Reactor Structure is Incomplete", 9, 20, 0x404040);
+    	        fontRendererObj.drawString(ColourEnumHelper.DARK_RED + "Reactor Structure is Incomplete", 9, 20, 0x404040);
     		}
     	}
     	
-        fontRenderer.drawString(EnumColor.WHITE + entity.getInvName(), 25, 6, 0x404040);
+        fontRendererObj.drawString(ColourEnumHelper.WHITE + entity.getInvName(), 25, 6, 0x404040);
     }
 }

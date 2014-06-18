@@ -10,7 +10,7 @@ import electro.crafting.items.te.TileEntityLumRed;
 public class TileEntityWire extends TileEntityBasicCable
 {
     protected boolean[] visuallyConnected = new boolean[6];
-
+/*
     @Override
     public void updateEntity()
     {
@@ -98,5 +98,5 @@ public class TileEntityWire extends TileEntityBasicCable
     public int getBlockMetadata()
     {
         return 0;
-    }
+    }*/
 }

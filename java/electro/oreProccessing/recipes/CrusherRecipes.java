@@ -1,9 +1,5 @@
 package electro.oreProccessing.recipes;
 
-import ic2.api.recipe.IRecipeInput;
-import ic2.api.recipe.RecipeOutput;
-import ic2.api.recipe.Recipes;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,10 +7,10 @@ import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.ModLoader;
 import net.minecraftforge.oredict.OreDictionary;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 public class CrusherRecipes
 {
@@ -42,8 +38,8 @@ public class CrusherRecipes
         ArrayList<ItemStack> tinOre = OreDictionary.getOres("oreTin");
         ArrayList<ItemStack> silverOre = OreDictionary.getOres("oreSilver");
         ArrayList<ItemStack> leadOre = OreDictionary.getOres("oreLead");
-        ItemStack ironOre = new ItemStack(Block.oreIron);
-        ItemStack goldOre = new ItemStack(Block.oreGold);
+        ItemStack ironOre = new ItemStack(Blocks.iron_ore);
+        ItemStack goldOre = new ItemStack(Blocks.gold_ore);
 
         //Ore
         this.addCrushing(ironOre, new ItemStack(electrolysmCore.impureDusts, 2, 2));
@@ -95,8 +91,8 @@ public class CrusherRecipes
 
     public void addCrushing(ItemStack input, ItemStack output)
     {
-        this.crushing1.put(Integer.valueOf(input.itemID), Integer.valueOf(output.getItemDamage()));
-        this.crushing2.put(Integer.valueOf(input.itemID), output);
+        this.crushing1.put((input), Integer.valueOf(output.getItemDamage()));
+        this.crushing2.put((input), output);
     }
 
     public Map getCrushingMap()
@@ -111,13 +107,13 @@ public class CrusherRecipes
             return null;
         }
 
-        if (this.crushing1.get(Integer.valueOf(input.itemID)) == null)
+        if (this.crushing1.get((input)) == null)
         {
             return null;
         }
 
-        int meta = Integer.valueOf((String.valueOf(this.crushing1.get(Integer.valueOf(input.itemID)))));
-        ItemStack output2 = (ItemStack)this.crushing2.get(Integer.valueOf(input.itemID));
+        int meta = Integer.valueOf((String.valueOf(this.crushing1.get((input)))));
+        ItemStack output2 = (ItemStack)this.crushing2.get((input));
         ItemStack output = new ItemStack(electrolysmCore.impureDusts, 2, meta);
 
         if (output2 != null)

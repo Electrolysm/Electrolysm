@@ -3,20 +3,21 @@ package electro.oreProccessing;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class net extends Item {
 
-	public net(int id) {
-		super(id);
+	public net() {
+		super();
 		
 		this.setUnlocalizedName("net");
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -26,7 +27,7 @@ public class net extends Item {
 	//net
 	
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("electrolysm:" + "net");
     }
@@ -41,14 +42,14 @@ public class net extends Item {
     		float par8, float par9, float par10)
 	{
     	System.out.println("test");
-    	int id = world.getBlockId(x, y, z);
+    	Block id = world.getBlock(x, y, z);
 
-    	if(id == Block.oreIron.blockID)
+    	if(id == Blocks.iron_ore)
     	{
     		this.setBlockWithServerUpdate(world, x, y, z, "ironOre");
         	return true;
     	}
-    	if(id == Block.oreGold.blockID)
+    	if(id == Blocks.gold_ore)
     	{
     		this.setBlockWithServerUpdate(world, x, y, z, "goldOre");
         	return true;
@@ -56,7 +57,7 @@ public class net extends Item {
     	
     	for (int i = 0; i < copperOre.size(); i++)
         {
-            if(id == copperOre.get(i).itemID)
+            if(id == Block.getBlockFromItem(copperOre.get(i).getItem()))
             {
             	this.setBlockWithServerUpdate(world, x, y, z, "copperOre");
             	return true;
@@ -64,7 +65,7 @@ public class net extends Item {
         }
         for (int i = 0; i < tinOre.size(); i++)
         {
-            if(id == tinOre.get(i).itemID)
+            if(id == Block.getBlockFromItem(tinOre.get(i).getItem()))
             {
             	this.setBlockWithServerUpdate(world, x, y, z, "tinOre");
             	return true;
@@ -72,7 +73,7 @@ public class net extends Item {
         }
         for (int i = 0; i < silverOre.size(); i++)
         {
-            if(id == silverOre.get(i).itemID)
+            if(id == Block.getBlockFromItem(silverOre.get(i).getItem()))
             {
             	this.setBlockWithServerUpdate(world, x, y, z, "silverOre");
             	return true;
@@ -80,7 +81,7 @@ public class net extends Item {
         }
         for (int i = 0; i < leadOre.size(); i++)
         {
-            if(id == leadOre.get(i).itemID)
+            if(id == Block.getBlockFromItem(leadOre.get(i).getItem()))
             {
             	this.setBlockWithServerUpdate(world, x, y, z, "leadOre");
             	return true;
@@ -94,7 +95,7 @@ public class net extends Item {
     
     private void setBlockWithServerUpdate(World world, int x, int y, int z, String blockName)
     {
-    	int id = electrolysmCore.nettedBlock.blockID;
+    	Block id = electrolysmCore.nettedBlock;
     	int flag = 1;
     	
     	if(blockName.contains("copperOre"))
@@ -122,15 +123,15 @@ public class net extends Item {
     		world.setBlock(x, y, z, id, 5, flag);
     	}
     	
-    	world.markBlockForRenderUpdate(x, y, z);
+    	world.markBlockForUpdate(x, y, z);
     	this.update(Side.SERVER, world, x, y, z, id);
     	this.update(Side.CLIENT, world, x, y, z, id);
     }
-	private void update(Side side, World world, int x, int y, int z, int blockID) 
+	private void update(Side side, World world, int x, int y, int z, Block blockID)
 	{
 		if(side == Side.CLIENT)
 		{
-			world.markBlockForRenderUpdate(x, y, z);
+			world.scheduleBlockUpdateWithPriority(x, y, z, blockID, 0, 0);
 			world.notifyBlockChange(x, y, z, blockID);
 		}
 		else

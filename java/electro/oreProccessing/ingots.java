@@ -4,14 +4,14 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.common.CommonProxy;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class ingots extends Item {
 
@@ -20,10 +20,10 @@ public class ingots extends Item {
 	//lead = 2
 	
 	@SideOnly(Side.CLIENT)
-	private Icon[] ingotIcon;
+	private IIcon[] ingotIcon;
 	
-	public ingots(int id) {
-		super(id);
+	public ingots() {
+		super();
 
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.hasSubtypes = true;
@@ -38,9 +38,9 @@ public class ingots extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
-        ingotIcon = new Icon[3];
+        ingotIcon = new IIcon[3];
 
         for (int i = 0; i < 3; i ++)
         {
@@ -50,7 +50,7 @@ public class ingots extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return ingotIcon[dmg];
     }

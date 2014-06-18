@@ -6,8 +6,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import org.lwjgl.opengl.GL11;
 
 import electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.container.ContainerCrusher;
-import assets.electrolysm.electro.oreProccessing.container.ContainerSmeltory;
+import electro.oreProccessing.container.ContainerCrusher;
+import electro.oreProccessing.container.ContainerSmeltory;
 import electro.oreProccessing.te.TileEntityCrusher;
 import electro.oreProccessing.te.TileEntitySmeltory;
 
@@ -50,7 +50,7 @@ public class GUISmeltory extends GuiContainer //implements INEIGuiHandler
     	String DEGREE  = "\u00b0";
     	String tempString = ("Temperature: " + (entity.temp + 50)+ DEGREE + "C");
     	
-        fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
-        fontRenderer.drawString(tempString, 13, 6 + 60 + 6, 4210752);
+        fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(tempString, 13, 6 + 60 + 6, 4210752);
     }
 }

@@ -1,24 +1,27 @@
 package electro.powerSystem;
 
+import api.powerSystem.meter.IMeterable;
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
-import assets.electrolysm.api.powerSystem.PowerUsage;
-import assets.electrolysm.api.powerSystem.meter.IMeterable;
-import assets.electrolysm.electro.electrolysmCore;
+import api.powerSystem.PowerUsage;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import java.awt.color.ICC_ColorSpace;
+
 public class energyMeter extends Item
 {
-    public energyMeter(int par1)
+    public energyMeter()
     {
-        super(par1);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("energyMeter");
         this.setMaxStackSize(1);
@@ -26,7 +29,7 @@ public class energyMeter extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
         this.itemIcon = reg.registerIcon("electrolysm:" + "energyMeter");
     }
@@ -38,7 +41,7 @@ public class energyMeter extends Item
         {
             if (player.isSneaking())
             {
-                TileEntity worldTE = world.getBlockTileEntity(x, y, z);
+                TileEntity worldTE = world.getTileEntity(x, y, z);
 
                 if(worldTE instanceof IMeterable)
                 {
@@ -59,7 +62,8 @@ public class energyMeter extends Item
 		Block block = te.getBlock();
 		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block) + "TeU";
 		
-		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
+		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                IChatComponent.Serializer.func_150699_a(message));
 	}
 	
 }

@@ -1,15 +1,14 @@
 package electro.sciences;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 public class ItemArmorLab extends ItemArmor {
 
-	public ItemArmorLab(int par1, int piece, String unlocalName) {
-		super(par1, EnumArmorMaterial.CLOTH, 0, piece);
+	public ItemArmorLab(int piece, String unlocalName) {
+		super(ArmorMaterial.CLOTH, 0, piece);
 		
 		this.setMaxStackSize(1);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);

@@ -2,21 +2,20 @@ package electro.research;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 
 public class idifier extends Block
 {
     @SideOnly(Side.CLIENT)
-    private Icon blockTop;
+    private IIcon blockTop;
 
-    public idifier(int id, Material mat)
+    public idifier()
     {
-        super(id, Material.iron);
-        this.setUnlocalizedName("idifier");
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setHardness((float)Math.PI);
     }
@@ -25,7 +24,7 @@ public class idifier extends Block
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
         this.blockIcon = reg.registerIcon("electrolysm:" + "idifierSide");
         this.blockTop = reg.registerIcon("electrolysm:" + "idifierTop");
@@ -33,7 +32,7 @@ public class idifier extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         if (side == 1 || side == 0)
         {

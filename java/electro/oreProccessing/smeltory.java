@@ -4,12 +4,13 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.oreProccessing.te.TileEntityCrusher;
 import electro.oreProccessing.te.TileEntitySmeltory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,18 +25,17 @@ public class smeltory extends oreProcessMachineBase
     public String unlocalName = className.replace("assets.electrolysm.electro", "");
     public String textureName = unlocalName.replace(".", "/");
 
-    public smeltory(int par1, Material par2Material, boolean isActive)
+    public smeltory(boolean isActive)
     {
-        super(par1, Material.iron, isActive);
+        super(isActive);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("smeltory");
         this.setHardness(6.0F);
         this.active = isActive;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
         this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "smeltory_Front");
         this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "smeltory_Front_Active");
@@ -49,7 +49,7 @@ public class smeltory extends oreProcessMachineBase
     }
     
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return new TileEntitySmeltory();
@@ -69,9 +69,9 @@ public class smeltory extends oreProcessMachineBase
     }
     
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int block)
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
-        TileEntitySmeltory te = (TileEntitySmeltory)world.getBlockTileEntity(x, y, z);
+        TileEntitySmeltory te = (TileEntitySmeltory)world.getTileEntity(x, y, z);
 
         if (this.isRecievingRedstonePower(world, x, y, z))
         {
@@ -94,16 +94,16 @@ public class smeltory extends oreProcessMachineBase
     public static void updateFurnaceBlockState(boolean active, World world, int x, int y, int z)
     {
         int l = world.getBlockMetadata(x, y, z);
-        TileEntity tileentity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileentity = world.getTileEntity(x, y, z);
         keepInventory = true;
 
         if (active)
         {
-            world.setBlock(x, y, z, electrolysmCore.smeltoryActive.blockID);
+            world.setBlock(x, y, z, electrolysmCore.smeltoryActive);
         }
         else
         {
-            world.setBlock(x, y, z, electrolysmCore.smeltory.blockID);
+            world.setBlock(x, y, z, electrolysmCore.smeltory);
         }
 
         keepInventory = false;
@@ -112,7 +112,7 @@ public class smeltory extends oreProcessMachineBase
         if (tileentity != null)
         {
             tileentity.validate();
-            world.setBlockTileEntity(x, y, z, tileentity);
+            world.setTileEntity(x, y, z, tileentity);
 
         }
     }
@@ -120,9 +120,9 @@ public class smeltory extends oreProcessMachineBase
 Random furnaceRand = new Random();
     
     @Override
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
+    public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)
     {
-        TileEntitySmeltory tileentityfurnace = (TileEntitySmeltory)par1World.getBlockTileEntity(par2, par3, par4);
+        TileEntitySmeltory tileentityfurnace = (TileEntitySmeltory)par1World.getTileEntity(par2, par3, par4);
 
         if (tileentityfurnace != null && !(keepInventory))
         {
@@ -146,7 +146,7 @@ Random furnaceRand = new Random();
                         }
 
                         itemstack.stackSize -= k1;
-                        EntityItem entityitem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), new ItemStack(itemstack.itemID, k1, itemstack.getItemDamage()));
+                        EntityItem entityitem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
 
                         if (itemstack.hasTagCompound())
                         {
@@ -162,7 +162,7 @@ Random furnaceRand = new Random();
                 }
             }
 
-            par1World.func_96440_m(par2, par3, par4, par5);
+            par1World.scheduleBlockUpdate(par2, par3, par4, par5, 0);
         }
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);

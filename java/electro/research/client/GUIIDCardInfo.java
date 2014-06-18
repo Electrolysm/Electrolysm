@@ -6,10 +6,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import electro.handlers.helpers.ColourEnumHelper;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import mekanism.api.EnumColor;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -82,8 +82,8 @@ public class GUIIDCardInfo extends GuiScreen
 	{
         int xStart = (width) / 2;
         int yStart = (height) / 2;
-        fontRenderer.drawString(EnumColor.WHITE + "This is currently unavailable!", xStart - 80 + 10 - 5, yStart - 20, 4210752);
-        fontRenderer.drawString(EnumColor.WHITE + "Sorry!", xStart - 20 + 5, yStart + 10, 4210752);
+        fontRendererObj.drawString(ColourEnumHelper.WHITE + "This is currently unavailable!", xStart - 80 + 10 - 5, yStart - 20, 4210752);
+        fontRendererObj.drawString(ColourEnumHelper.WHITE + "Sorry!", xStart - 20 + 5, yStart + 10, 4210752);
 	}
 
 	private void renderTechTree() 

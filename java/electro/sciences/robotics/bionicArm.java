@@ -2,22 +2,22 @@ package electro.sciences.robotics;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
-import net.minecraft.client.renderer.texture.IconRegister;
+import electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
 public class bionicArm extends Item
 {
-    public bionicArm(int id)
+    public bionicArm()
     {
-        super(id);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("bionicArm");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("Electrolysm:" + this.getUnlocalizedName().replace("item.", ""));
     }

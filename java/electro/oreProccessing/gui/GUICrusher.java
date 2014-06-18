@@ -1,14 +1,14 @@
 package electro.oreProccessing.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 import org.lwjgl.opengl.GL11;
 
 import electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.container.ContainerCrusher;
+import electro.oreProccessing.container.ContainerCrusher;
 import electro.oreProccessing.te.TileEntityCrusher;
 
 public class GUICrusher extends GuiContainer //implements INEIGuiHandler
@@ -62,7 +62,7 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
     {
     	//String RotationString = "Rotations: " + entity.rotations  + "RPM";
         
-    	fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
+    	fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
         //fontRenderer.drawString(EnergyString, 13, 6 + 60 + 6 + 10, 4210752);
         //fontRenderer.drawString(RotationString, 13, 6 + 60 + 6, 4210752);
         

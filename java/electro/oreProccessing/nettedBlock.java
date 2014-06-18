@@ -5,24 +5,25 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import assets.electrolysm.api.LoggerHandler;
-import assets.electrolysm.electro.electrolysmCore;
+import api.LoggerHandler;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class nettedBlock extends Block {
 
 	@SideOnly(Side.CLIENT)
-	private Icon[] nettedIcon;
+	private IIcon[] nettedIcon;
 	
 	public nettedBlock(int id, Material mat) {
-		super(id, Material.rock);
+		super(Material.rock);
 
 		this.setHardness((float) (1.5 + 0.8));
 		//this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -54,9 +55,9 @@ public class nettedBlock extends Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
-        nettedIcon = new Icon[6];
+        nettedIcon = new IIcon[6];
 
         nettedIcon[0] = reg.registerIcon("electrolysm:netted/" + "netted" + "CopperOre");
         nettedIcon[1] = reg.registerIcon("electrolysm:netted/" + "netted" + "TinOre");
@@ -79,7 +80,7 @@ public class nettedBlock extends Block {
     	{
     		if(player.getHeldItem() == null)
     		{
-    			if(world.getBlockId(x, y, z) == this.blockID)
+    			if(world.getBlock(x, y, z) == electrolysmCore.nettedBlock)
     			{
     				if(this.getNameFromMeta(world.getBlockMetadata(x, y, z)) != null)
     				{
@@ -98,27 +99,27 @@ public class nettedBlock extends Block {
     	
 		if(oreName.contains("oreIron"))
 		{
-			world.setBlock(x, y, z, Block.oreIron.blockID);
+			world.setBlock(x, y, z, Blocks.iron_ore);
 		}
 		else if(oreName.contains("oreGold"))
 		{
-			world.setBlock(x, y, z, Block.oreGold.blockID);
+			world.setBlock(x, y, z, Blocks.gold_ore);
 		}
 		else if(oreName.contains("Copper"))
 		{
-			world.setBlock(x, y, z, copperOre.get(0).itemID);
+			world.setBlock(x, y, z, Block.getBlockFromItem(copperOre.get(0).getItem()));
 		}
 		else if(oreName.contains("Tin"))
 		{
-			world.setBlock(x, y, z, tinOre.get(0).itemID);
+			world.setBlock(x, y, z, Block.getBlockFromItem(tinOre.get(0).getItem()));
 		}
 		else if(oreName.contains("Lead"))
 		{
-			world.setBlock(x, y, z, leadOre.get(0).itemID);
+			world.setBlock(x, y, z, Block.getBlockFromItem(leadOre.get(0).getItem()));
 		}
 		else if(oreName.contains("Silver"))
 		{
-			world.setBlock(x, y, z, silverOre.get(0).itemID);
+			world.setBlock(x, y, z, Block.getBlockFromItem(silverOre.get(0).getItem()));
 		}
 		else
 		{
@@ -129,8 +130,8 @@ public class nettedBlock extends Block {
 			LoggerHandler.severe(message2);
 		}
 		
-		int id = world.getBlockId(x, y, z);
-		if(id == electrolysmCore.nettedBlock.blockID)
+		Block id = world.getBlock(x, y, z);
+		if(id == electrolysmCore.nettedBlock)
 		{
 			player.entityDropItem(net, 0);
 		}
@@ -175,7 +176,7 @@ public class nettedBlock extends Block {
 
 	@Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         return nettedIcon[meta];
     }

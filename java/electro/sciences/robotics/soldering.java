@@ -2,31 +2,30 @@ package electro.sciences.robotics;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.sciences.robotics.tile.TileEntitySoldering;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class soldering extends BlockContainer
 {
-    public soldering(int id, Material mat)
+    public soldering()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         // TODO Auto-generated constructor stub
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("soldering");
     }
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("Electrolysm:" + this.getUnlocalizedName().replace("item.", ""));
     }
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return new TileEntitySoldering();

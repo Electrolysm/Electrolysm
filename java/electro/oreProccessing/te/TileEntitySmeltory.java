@@ -11,9 +11,9 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import assets.electrolysm.api.powerSystem.meter.IMeterable;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.recipes.SmeltoryRecipes;
+import api.powerSystem.meter.IMeterable;
+import electro.electrolysmCore;
+import electro.oreProccessing.recipes.SmeltoryRecipes;
 
 public class TileEntitySmeltory extends TileEntity implements IInventory, ISidedInventory, IMeterable
 {
@@ -88,20 +88,6 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     }
 
     @Override
-    public String getInvName()
-    {
-        // TODO Auto-generated method stub
-        return "Smeltory";
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         // TODO Auto-generated method stub
@@ -112,18 +98,6 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
         return true;
-    }
-
-    @Override
-    public void openChest()
-    {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void closeChest()
-    {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -171,7 +145,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     @Override
     public void updateEntity()
     {
-    	this.onInventoryChanged();
+    	this.markDirty();
 
     	ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
@@ -208,7 +182,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 	                    		time = 0;
 	                    		this.decrStackSize(0, 1);
 		                        this.setInventorySlotContents(1, result);
-		                        this.onInventoryChanged();
+		                        this.markDirty();
 	                    	}
 	                    	else
 	                    	{
@@ -229,7 +203,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 		                        this.decrStackSize(0, 1);
 		                        this.setInventorySlotContents(1, new ItemStack(result.getItem(), 
 		                        		(result.stackSize + output.stackSize), result.getItemDamage()));
-		                        this.onInventoryChanged();
+		                        this.markDirty();
 	                    	}
 	                    	else
 	                    	{
@@ -331,9 +305,9 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     public void readFromNBT(NBTTagCompound tagCompound) {
             super.readFromNBT(tagCompound);
             
-            NBTTagList tagList = tagCompound.getTagList("Inventory");
+            NBTTagList tagList = tagCompound.getTagList("Inventory", 0);
             for (int i = 0; i < tagList.tagCount(); i++) {
-                    NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                    NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
                     byte slot = tag.getByte("Slot");
                     if (slot >= 0 && slot < inventory.length) {
                             inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
@@ -373,5 +347,18 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 	{
 		return electrolysmCore.smeltory;
 	}
+
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Smeltory"; }
+
+    @Override
+    public void openInventory() { }
+
 
 }

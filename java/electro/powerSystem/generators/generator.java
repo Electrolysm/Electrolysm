@@ -5,18 +5,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -26,28 +28,26 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class generator extends BlockContainer
 {
     @SideOnly(Side.CLIENT)
-    private Icon frontActive;
+    private IIcon frontActive;
     @SideOnly(Side.CLIENT)
-    private Icon front;
+    private IIcon front;
     
     private static boolean keepInventory;
 
     private Random furnaceRand = new Random();
     private Map name = new HashMap();
 
-    public generator(int id, Material mat, int genID)
+    public generator()
     {
-        super(id, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("coalGenerator");
         this.setHardness(5.2165F);
-        GameRegistry.registerBlock(this);
         LanguageRegistry.addName(this, "Coal Generator");
         this.setResistance(100F);
     }
 
     @Override
-    public void registerIcons(IconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
         String modID = "electrolysm:";
         this.blockIcon = reg.registerIcon(modID + "generatorSide");
@@ -56,7 +56,7 @@ public class generator extends BlockContainer
     }
 
     @Override
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
     	if(side == 0 || side == 1)
     	{
@@ -78,7 +78,7 @@ public class generator extends BlockContainer
     
     public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
     {
-        TileEntity tileentity = par1World.getBlockTileEntity(par2, par3, par4);
+        TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
         keepInventory = true;
 
         if (par0)
@@ -95,12 +95,12 @@ public class generator extends BlockContainer
         if (tileentity != null)
         {
             tileentity.validate();
-            par1World.setBlockTileEntity(par2, par3, par4, tileentity);
+            par1World.setTileEntity(par2, par3, par4, tileentity);
         }
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return new TileEntityGeneratorCoal();
     }
@@ -121,11 +121,11 @@ public class generator extends BlockContainer
     }
 
     @Override
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
+    public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)
     {
-    	if(par1World.getBlockTileEntity(par2, par3, par4) instanceof TileEntityGeneratorCoal)
+    	if(par1World.getTileEntity(par2, par3, par4) instanceof TileEntityGeneratorCoal)
     	{
-	        TileEntityGeneratorCoal tileentityfurnace = (TileEntityGeneratorCoal)par1World.getBlockTileEntity(par2, par3, par4);
+	        TileEntityGeneratorCoal tileentityfurnace = (TileEntityGeneratorCoal)par1World.getTileEntity(par2, par3, par4);
 	
 	        if (tileentityfurnace != null && !(keepInventory))
 	        {
@@ -149,7 +149,7 @@ public class generator extends BlockContainer
 	                        }
 	
 	                        itemstack.stackSize -= k1;
-	                        EntityItem entityitem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), new ItemStack(itemstack.itemID, k1, itemstack.getItemDamage()));
+	                        EntityItem entityitem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
 	
 	                        if (itemstack.hasTagCompound())
 	                        {
@@ -165,15 +165,15 @@ public class generator extends BlockContainer
 	                }
 	            }
 	
-	            par1World.func_96440_m(par2, par3, par4, par5);
+	            par1World.scheduleBlockUpdate(par2, par3, par4, par5, 0);
 	        }
     	}
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
     
     @Override
-    public void getSubBlocks(int id, CreativeTabs tab, List list)
+    public void getSubBlocks(Item id, CreativeTabs tab, List list)
     {
-   		list.add(new ItemStack(this.blockID, 1, 0));
+   		list.add(new ItemStack(this, 1, 0));
     }
 }

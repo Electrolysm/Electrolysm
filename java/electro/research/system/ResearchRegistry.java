@@ -7,8 +7,8 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import assets.electrolysm.api.LoggerHandler;
-import assets.electrolysm.electro.research.pointsSystem.Point;
+import electro.research.pointsSystem.Point;
+import net.minecraft.init.Blocks;
 
 public class ResearchRegistry
 {
@@ -16,7 +16,7 @@ public class ResearchRegistry
 	{
 		if(doRegister)
 		{
-			LoggerHandler.info("Registering research.");
+			//LoggerHandler.info("Registering research.");
 			this.doRegister();
 		}
 	}
@@ -70,10 +70,10 @@ public class ResearchRegistry
 
 		//Binding of text and research still has to be done!
 
-		this.bindRequirementToResearch(new Requirement(new Block[]{Block.dirt}), this.getResearch("mass_spec"));
+		this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.dirt}), this.getResearch("mass_spec"));
 
 		long duration = (System.currentTimeMillis() - time);
-        LoggerHandler.info("Research registry completed in " + duration + "ms");
+        //LoggerHandler.info("Research registry completed in " + duration + "ms");
         System.out.println(requireMap.get((this.getResearch("mass_spec")).toAdvString()));
         //System.exit(0);
 	}

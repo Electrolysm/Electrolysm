@@ -1,6 +1,5 @@
 package electro.research.common;
 
-import assets.electrolysm.api.LoggerHandler;
 import cpw.mods.fml.common.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -40,7 +39,7 @@ public class SavePlayerScanData
         }
         catch(FileNotFoundException e)
         {
-            LoggerHandler.severe("Failed to find file with name: " + username + ".txt");
+            //LoggerHandler.severe("Failed to find file with name: " + username + ".txt");
         }
     }
 
@@ -58,7 +57,7 @@ public class SavePlayerScanData
         }
         catch(IOException e)
         {
-            LoggerHandler.severe("Failed to create file with name: " + username + ".txt");
+            //LoggerHandler.severe("Failed to create file with name: " + username + ".txt");
         }
     }
 
@@ -123,7 +122,7 @@ public class SavePlayerScanData
         catch(IOException e)
         {
             //e.printStackTrace();
-            LoggerHandler.severe("Failed to find file with name: " + username + ".txt");
+            //LoggerHandler.severe("Failed to find file with name: " + username + ".txt");
         }
 
         return null;

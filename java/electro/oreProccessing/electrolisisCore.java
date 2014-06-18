@@ -1,12 +1,14 @@
 package electro.oreProccessing;
 
+import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.oreProccessing.te.TileEntityElectrolisisCore;
 /**
  *
@@ -22,22 +24,21 @@ public class electrolisisCore extends BlockContainer
 
     public electrolisisCore(int par1, Material par2Material)
     {
-        super(par1, Material.iron);
+        super(Material.iron);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName(unlocalName);
         this.setHardness(6.0F);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         return new TileEntityElectrolisisCore();
     }
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        int chamberID = electrolysmCore.electrolisisCore.blockID;
-        int waterID = Block.waterStill.blockID;
+        Block chamberID = electrolysmCore.electrolisisCore;
+        Block waterID = Blocks.water;
 
         if (player.isSneaking() && !this.isFormed(x, y, z, world, chamberID, waterID))
         {
@@ -54,57 +55,57 @@ public class electrolisisCore extends BlockContainer
         }
     }
 
-    public static boolean isFormed(int x, int y, int z, World world, int chamberID, int waterID)
+    public static boolean isFormed(int x, int y, int z, World world, Block chamberID, Block waterID)
     {
-        int chamber = electrolysmCore.electrolChamber.blockID;
-        int water = Block.waterStill.blockID;
-        int air = 0;
+        Block chamber = electrolysmCore.electrolChamber;
+        Block water = Blocks.water;
+        Block air = null;
         boolean isFormed = false;
 
         //Top row
-        if (world.getBlockId(x, y + 1, z) != chamber)
+        if (Utilities.Block.getBlock(world, x, y + 1, z) != chamber)
         {
-            if (world.getBlockId(x + 1, y + 1, z) == chamber)
+            if (Utilities.Block.getBlock(world, x + 1, y + 1, z) == chamber)
             {
-                if (world.getBlockId(x + 1, y + 1, z + 1) == chamber)
+                if (Utilities.Block.getBlock(world, x + 1, y + 1, z + 1) == chamber)
                 {
-                    if (world.getBlockId(x + 1, y + 1, z - 1) == chamber)
+                    if (Utilities.Block.getBlock(world, x + 1, y + 1, z - 1) == chamber)
                     {
-                        if (world.getBlockId(x - 1, y + 1, z) == chamber)
+                        if (Utilities.Block.getBlock(world, x - 1, y + 1, z) == chamber)
                         {
-                            if (world.getBlockId(x - 1, y + 1, z + 1) == chamber)
+                            if (Utilities.Block.getBlock(world, x - 1, y + 1, z + 1) == chamber)
                             {
-                                if (world.getBlockId(x - 1, y + 1, z - 1) == chamber)
+                                if (Utilities.Block.getBlock(world, x - 1, y + 1, z - 1) == chamber)
                                 {
-                                    if (world.getBlockId(x, y + 1, z + 1) == chamber)
+                                    if (Utilities.Block.getBlock(world, x, y + 1, z + 1) == chamber)
                                     {
-                                        if (world.getBlockId(x, y + 1, z - 1) == chamber)
+                                        if (Utilities.Block.getBlock(world, x, y + 1, z - 1) == chamber)
                                         {
                                             //Bottom Row
-                                            if (world.getBlockId(x + 1, y - 1, z) == chamber)
+                                            if (Utilities.Block.getBlock(world, x + 1, y - 1, z) == chamber)
                                             {
-                                                if (world.getBlockId(x + 1, y - 1, z + 1) == chamber)
+                                                if (Utilities.Block.getBlock(world, x + 1, y - 1, z + 1) == chamber)
                                                 {
-                                                    if (world.getBlockId(x + 1, y - 1, z - 1) == chamber)
+                                                    if (Utilities.Block.getBlock(world, x + 1, y - 1, z - 1) == chamber)
                                                     {
-                                                        if (world.getBlockId(x - 1, y - 1, z) == chamber)
+                                                        if (Utilities.Block.getBlock(world, x - 1, y - 1, z) == chamber)
                                                         {
-                                                            if (world.getBlockId(x - 1, y - 1, z + 1) == chamber)
+                                                            if (Utilities.Block.getBlock(world, x - 1, y - 1, z + 1) == chamber)
                                                             {
-                                                                if (world.getBlockId(x - 1, y - 1, z - 1) == chamber)
+                                                                if (Utilities.Block.getBlock(world, x - 1, y - 1, z - 1) == chamber)
                                                                 {
-                                                                    if (world.getBlockId(x, y - 1, z + 1) == chamber)
+                                                                    if (Utilities.Block.getBlock(world, x, y - 1, z + 1) == chamber)
                                                                     {
-                                                                        if (world.getBlockId(x, y - 1, z - 1) == chamber)
+                                                                        if (Utilities.Block.getBlock(world, x, y - 1, z - 1) == chamber)
                                                                         {
                                                                             //Middle Row
-                                                                            if (world.getBlockId(x + 1, y, z + 1) == chamber)
+                                                                            if (Utilities.Block.getBlock(world, x + 1, y, z + 1) == chamber)
                                                                             {
-                                                                                if (world.getBlockId(x - 1, y, z + 1) == chamber)
+                                                                                if (Utilities.Block.getBlock(world, x - 1, y, z + 1) == chamber)
                                                                                 {
-                                                                                    if (world.getBlockId(x + 1, y, z - 1) == chamber)
+                                                                                    if (Utilities.Block.getBlock(world, x + 1, y, z - 1) == chamber)
                                                                                     {
-                                                                                        if (world.getBlockId(x - 1, y, z - 1) == chamber)
+                                                                                        if (Utilities.Block.getBlock(world, x - 1, y, z - 1) == chamber)
                                                                                         {
                                                                                             return true;
                                                                                         }

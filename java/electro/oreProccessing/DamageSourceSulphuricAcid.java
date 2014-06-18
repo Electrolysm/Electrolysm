@@ -4,9 +4,9 @@ import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.IChatComponent;
 
 public class DamageSourceSulphuricAcid extends DamageSource 
 {
@@ -27,7 +27,7 @@ public class DamageSourceSulphuricAcid extends DamageSource
     }
 
 	@Override
-	public ChatMessageComponent getDeathMessage(EntityLivingBase entity)
+	public IChatComponent func_151519_b(EntityLivingBase entity)
     {
 		Random rand = new Random();
 		String message1 = " was burned to death by sulphuric acid!";
@@ -37,11 +37,11 @@ public class DamageSourceSulphuricAcid extends DamageSource
 		
 		if(entity instanceof EntityPlayer)
 		{
-			return ChatMessageComponent.createFromText(((EntityPlayer)entity).username + message[rand.nextInt(2)]);
+			return IChatComponent.Serializer.func_150699_a(((EntityPlayer)entity).getDisplayName() + message[rand.nextInt(2)]);
 		}
 		else
 		{
-			return ChatMessageComponent.createFromText("Someone died due to acidic burns! But who was it?");
+			return IChatComponent.Serializer.func_150699_a("Someone died due to acidic burns! But who was it?");
 		}
     }
 }

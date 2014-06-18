@@ -10,10 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import assets.electrolysm.api.powerSystem.PowerUsage;
-import assets.electrolysm.api.powerSystem.meter.IMeterable;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.recipes.CrusherRecipes;
+import api.powerSystem.PowerUsage;
+import api.powerSystem.meter.IMeterable;
+import electro.electrolysmCore;
+import electro.oreProccessing.recipes.CrusherRecipes;
 
 public class TileEntityCrusher extends TileEntity implements IInventory, ISidedInventory, IMeterable
 {
@@ -76,29 +76,13 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     }
 
     @Override
-    public void setInventorySlotContents(int slot, ItemStack stack)
-    {
+    public void setInventorySlotContents(int slot, ItemStack stack) {
         // TODO Auto-generated method stub
         inventory[slot] = stack;
 
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-        {
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
             stack.stackSize = this.getInventoryStackLimit();
         }
-    }
-
-    @Override
-    public String getInvName()
-    {
-        // TODO Auto-generated method stub
-        return "Crusher";
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        // TODO Auto-generated method stub
-        return false;
     }
 
     @Override
@@ -113,18 +97,6 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     {
         // TODO Auto-generated method stub
         return true;
-    }
-
-    @Override
-    public void openChest()
-    {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void closeChest()
-    {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -163,7 +135,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     @Override
     public void updateEntity()
     {
-    	this.onInventoryChanged();
+    	this.markDirty();
     	
     	ItemStack battery = getStackInSlot(3);
         ItemStack inStack = getStackInSlot(0);
@@ -213,7 +185,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	                    		time = 0;
 	                    		this.decrStackSize(0, 1);
 		                        this.setInventorySlotContents(1, result2);
-		                        this.onInventoryChanged();
+		                        this.markDirty();
 		                		battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
 	                    	}
 	                    	else
@@ -242,7 +214,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	                    		time = 0;
 		                        this.decrStackSize(0, 1);
 		                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
-		                        this.onInventoryChanged();
+		                        this.markDirty();
 	                    		if((battery.getItemDamage() - this.requiredEnergy) > 0)
 	                    		{
 	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
@@ -327,9 +299,9 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     public void readFromNBT(NBTTagCompound tagCompound) {
             super.readFromNBT(tagCompound);
             
-            NBTTagList tagList = tagCompound.getTagList("Inventory");
+            NBTTagList tagList = tagCompound.getTagList("Inventory", 0);
             for (int i = 0; i < tagList.tagCount(); i++) {
-                    NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                    NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
                     byte slot = tag.getByte("Slot");
                     if (slot >= 0 && slot < inventory.length) {
                             inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
@@ -364,4 +336,15 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 		return electrolysmCore.crusher;
 	}
 
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Crusher"; }
+
+    @Override
+    public void openInventory() { }
 }

@@ -4,22 +4,22 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.common.CommonProxy;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class impureDusts extends Item
 {
     @SideOnly(Side.CLIENT)
-    private Icon[] dustIcon;
+    private IIcon[] dustIcon;
 
-    public impureDusts(int par1)
+    public impureDusts()
     {
-        super(par1);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.hasSubtypes = true;
     }
@@ -32,9 +32,9 @@ public class impureDusts extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
-        dustIcon = new Icon[CommonProxy.DUSTS.length];
+        dustIcon = new IIcon[CommonProxy.DUSTS.length];
 
         for (int i = 0; i < CommonProxy.DUSTS.length; i ++)
         {
@@ -44,7 +44,7 @@ public class impureDusts extends Item
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return dustIcon[dmg];
     }

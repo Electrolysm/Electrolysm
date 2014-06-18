@@ -2,8 +2,9 @@ package electro.research;
 
 import java.lang.reflect.Method;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -73,15 +74,15 @@ public class ResearchRecipes
 
     public static ItemStack[] blastProofRecipe()
     {
-        recipe[0] = new ItemStack(Item.ingotIron);
+        recipe[0] = new ItemStack(Items.iron_ingot);
         recipe[1] = new ItemStack(electrolysmCore.stoneObsidian);
-        recipe[2] = new ItemStack(Item.ingotIron);
+        recipe[2] = new ItemStack(Items.iron_ingot);
         recipe[3] = new ItemStack(electrolysmCore.stoneObsidian);
         recipe[4] = null;
         recipe[5] = new ItemStack(electrolysmCore.stoneObsidian);
-        recipe[6] = new ItemStack(Item.ingotIron);
+        recipe[6] = new ItemStack(Items.iron_ingot);
         recipe[7] = new ItemStack(electrolysmCore.stoneObsidian);
-        recipe[8] = new ItemStack(Item.ingotIron);
+        recipe[8] = new ItemStack(Items.iron_ingot);
         return recipe;
     }
 }

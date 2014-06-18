@@ -7,7 +7,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.container.ContainerPort;
+import electro.oreProccessing.container.ContainerPort;
 import electro.oreProccessing.te.TileEntityPort;
 
 public class GUIPort extends GuiContainer
@@ -33,7 +33,7 @@ public class GUIPort extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-        fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
-        fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 }

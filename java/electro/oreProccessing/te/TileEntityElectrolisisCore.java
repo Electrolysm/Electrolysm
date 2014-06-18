@@ -1,5 +1,7 @@
 package electro.oreProccessing.te;
 
+import electro.electrolysmCore;
+import electro.oreProccessing.recipes.electrolisisRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -9,11 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import assets.electrolysm.api.powerSystem.meter.IMeterable;
-import assets.electrolysm.api.powerSystem.usageMachine.IPullEnergy;
-import assets.electrolysm.api.powerSystem.usageMachine.TileEntityEnergyMachine;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
+import api.powerSystem.meter.IMeterable;
 import cpw.mods.fml.common.Loader;
 
 public class TileEntityElectrolisisCore extends TileEntity implements IInventory, /*IPullEnergy,
@@ -89,12 +87,6 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     }
 
     @Override
-    public String getInvName()
-    {
-        return "Electrolisis Chamber";
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         return 64;
@@ -103,7 +95,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        if(this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this)
+        if(this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this)
         {
         	return true;
         }
@@ -123,16 +115,6 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     }
     
 
-    @Override
-    public void openChest()
-    {
-    }
-
-    @Override
-    public void closeChest()
-    {
-    }
-
     public int time = 0;
     public int MaxElectroTime = 100;
     public int electroTime = 100;
@@ -141,7 +123,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     @Override
     public void updateEntity()
     {
-    	this.onInventoryChanged();
+    	this.markDirty();
     	
         if(time == 0)
         {
@@ -192,7 +174,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
                                 		this.decrStackSize(1, 1);
                                 		this.setInventorySlotContents(2, new ItemStack(result1.getItem(), 
                                 				result1.stackSize, result1.getItemDamage()));
-                                		this.onInventoryChanged();
+                                		this.markDirty();
                                 	}
                                 	else
                                 	{
@@ -214,7 +196,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
                                 		this.decrStackSize(1, 1);
                                 		this.setInventorySlotContents(2, new ItemStack(result1.getItem(), 
                                 				result1.stackSize + outputSize, result1.getItemDamage()));
-                                		this.onInventoryChanged();
+                                		this.markDirty();
                                 	}
                                 	else
                                 	{
@@ -244,12 +226,6 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
             }
 
         }
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        return false;
     }
 
     @Override
@@ -287,9 +263,9 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
         
-        NBTTagList tagList = tagCompound.getTagList("Inventory");
+        NBTTagList tagList = tagCompound.getTagList("Inventory", 0);
         for (int i = 0; i < tagList.tagCount(); i++) {
-                NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
                 byte slot = tag.getByte("Slot");
                 if (slot >= 0 && slot < inventory.length) {
                         inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
@@ -354,4 +330,16 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 	{
 		return electrolysmCore.electrolisisCore;
 	}
+
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Electrolysis Chamber"; }
+
+    @Override
+    public void openInventory() { }
 }

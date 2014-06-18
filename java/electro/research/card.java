@@ -2,13 +2,14 @@ package electro.research;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.handlers.GUIHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -16,9 +17,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class card extends Item
 {
-    public card(int id)
+    public card()
     {
-        super(id);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("IDcard");
         this.setMaxStackSize(1);
@@ -31,7 +32,7 @@ public class card extends Item
 
         if (!player.isSneaking())
         {
-            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(message);
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(IChatComponent.Serializer.func_150699_a(message));
         }
         else
         {
@@ -56,7 +57,7 @@ public class card extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons(IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("electrolysm:" + "ID_card");
     }
@@ -76,7 +77,7 @@ public class card extends Item
 
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        String playerName = player.username;
+        String playerName = player.getDisplayName();
         int cardLevel = stack.getItemDamage();
         list.add(playerName + "'s current level is: " + cardLevel);
         list.add("You require " + Research.cardToDesk(stack.getItemDamage()) + "Desks to complete " +
@@ -84,7 +85,7 @@ public class card extends Item
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
         list.add(new ItemStack(electrolysmCore.card, 1, 1));
     }

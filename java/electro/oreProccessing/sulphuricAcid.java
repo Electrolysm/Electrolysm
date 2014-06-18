@@ -2,16 +2,18 @@ package electro.oreProccessing;
 
 import java.util.Random;
 
+import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.liquids.ModFluidSulphuricAcid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,19 +21,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class sulphuricAcid extends BlockFluidClassic
 {
     @SideOnly(Side.CLIENT)
-    public Icon flowing;
+    public IIcon flowing;
     @SideOnly(Side.CLIENT)
-    public Icon still;
+    public IIcon still;
 
     public sulphuricAcid(int id)
     {
-        super(id, new ModFluidSulphuricAcid(), Material.water);
+        super(new ModFluidSulphuricAcid(), Material.water);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("fluidSulpuricAcid");
     }
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         if (side <= 1)
         {
@@ -44,7 +45,7 @@ public class sulphuricAcid extends BlockFluidClassic
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister register)
+    public void registerBlockIcons(IIconRegister register)
     {
         this.flowing = register.registerIcon("electrolysm:" + "sulpur_flow");
         this.still = register.registerIcon("electrolysm:" + "sulpur_still");
@@ -52,26 +53,26 @@ public class sulphuricAcid extends BlockFluidClassic
 
     private void erodeWorld(World world, int x, int y, int z, Random rand)
     {
-        world.scheduleBlockUpdate(x, y, z, blockID, tickRate);
+        world.scheduleBlockUpdate(x, y, z, electrolysmCore.sulpuricAcid, tickRate);
 
         if (rand.nextInt(50) == 1)
         {
-            if (world.getBlockId(x, y - 1, z) == Block.dirt.blockID ||
-                    world.getBlockId(x, y - 1, z) == Block.stone.blockID ||
-                    world.getBlockId(x, y - 1, z) == Block.grass.blockID ||
-                    world.getBlockMaterial(x, y - 1, z) == Material.ground ||
-                    world.getBlockMaterial(x, y - 1, z) == Material.rock ||
-                    world.getBlockMaterial(x, y - 1, z) == Material.wood ||
-                    world.getBlockId(x, y - 1, z) == Block.sand.blockID ||
-                    world.getBlockId(x, y - 1, z) == Block.sandStone.blockID)
+            if (Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.dirt ||
+                    Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.stone ||
+                    Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.grass ||
+                    Utilities.Block.getBlockMaterial(world, x, y - 1, z) == Material.ground ||
+                    Utilities.Block.getBlockMaterial(world, x, y - 1, z) == Material.rock ||
+                    Utilities.Block.getBlockMaterial(world, x, y - 1, z) == Material.wood ||
+                    Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.sand ||
+                    Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.sandstone)
             {
-                if (world.getBlockId(x, y - 1, z) == Block.bedrock.blockID ||
-                        world.getBlockId(x, y - 1, z) == Block.obsidian.blockID)
+                if (Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.bedrock ||
+                        Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.obsidian)
                 {
                 }
                 else
                 {
-                    world.setBlock(x, y - 1, z, this.blockID);
+                    Utilities.Block.setBlock(world, x, y - 1, z, electrolysmCore.sulpuricAcid);
                 }
             }
         }
@@ -88,11 +89,11 @@ public class sulphuricAcid extends BlockFluidClassic
         {
             int y2 = y - densityDir;
 
-            if (world.getBlockId(x,     y2, z) == blockID ||
-                    world.getBlockId(x - 1, y2, z) == blockID ||
-                    world.getBlockId(x + 1, y2, z) == blockID ||
-                    world.getBlockId(x,     y2, z - 1) == blockID ||
-                    world.getBlockId(x,     y2, z + 1) == blockID)
+            if (Utilities.Block.getBlock(world, x,     y2, z) == electrolysmCore.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x - 1, y2, z) == electrolysmCore.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x + 1, y2, z) == electrolysmCore.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x,     y2, z - 1) == electrolysmCore.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x,     y2, z + 1) == electrolysmCore.sulpuricAcid)
             {
                 expQuanta = quantaPerBlock - 1;
             }
@@ -118,8 +119,8 @@ public class sulphuricAcid extends BlockFluidClassic
                 else
                 {
                     world.setBlockMetadataWithNotify(x, y, z, quantaPerBlock - expQuanta, 3);
-                    world.scheduleBlockUpdate(x, y, z, blockID, tickRate);
-                    world.notifyBlocksOfNeighborChange(x, y, z, blockID);
+                    world.scheduleBlockUpdate(x, y, z, electrolysmCore.sulpuricAcid, tickRate);
+                    world.notifyBlocksOfNeighborChange(x, y, z, electrolysmCore.sulpuricAcid);
                 }
             }
         }
@@ -145,7 +146,7 @@ public class sulphuricAcid extends BlockFluidClassic
 
         if (isSourceBlock(world, x, y, z) || !isFlowingVertically(world, x, y, z))
         {
-            if (world.getBlockId(x, y - densityDir, z) == blockID)
+            if (Utilities.Block.getBlock(world, x, y - densityDir, z) == electrolysmCore.sulpuricAcid)
             {
                 flowMeta = 1;
             }

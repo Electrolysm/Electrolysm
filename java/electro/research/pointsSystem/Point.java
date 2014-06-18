@@ -1,7 +1,6 @@
 package electro.research.pointsSystem;
 
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.api.LoggerHandler;
 
 public class Point 
 {

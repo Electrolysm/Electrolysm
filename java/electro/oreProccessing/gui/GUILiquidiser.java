@@ -6,7 +6,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import org.lwjgl.opengl.GL11;
 
 import electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.container.ContainerLiquidiser;
+import electro.oreProccessing.container.ContainerLiquidiser;
 import electro.oreProccessing.te.TileEntityLiquidiser;
 
 public class GUILiquidiser extends GuiContainer
@@ -41,7 +41,7 @@ public class GUILiquidiser extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-        fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
     }
     
 }

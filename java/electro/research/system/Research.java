@@ -1,6 +1,6 @@
 package electro.research.system;
 
-import assets.electrolysm.electro.research.pointsSystem.Point;
+import electro.research.pointsSystem.Point;
 
 public class Research 
 {

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,31 +13,30 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.oreProccessing.te.TileEntityLiquidiser;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class liquidiser extends oreProcessMachineBase
 {
-    public liquidiser(int par1, Material par2Material, boolean isActive)
+    public liquidiser(boolean isActive)
     {
-        super(par1, Material.iron, isActive);
+        super(isActive);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName("liquidizer");
         this.setHardness(6.0F);
         this.active = isActive;
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return new TileEntityLiquidiser();
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
         this.frontIcon = reg.registerIcon("electrolysm:oreProcessMachines/" + "liquidizerFront");
         this.frontActive = reg.registerIcon("electrolysm:oreProcessMachines/" + "liquidizerFront");
@@ -83,7 +82,7 @@ public class liquidiser extends oreProcessMachineBase
 
         if (par6ItemStack.hasDisplayName())
         {
-            ((TileEntityLiquidiser)par1World.getBlockTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
+            ((TileEntityLiquidiser)par1World.getTileEntity(par2, par3, par4)).setGuiDisplayName(par6ItemStack.getDisplayName());
         }
     }
 
@@ -98,28 +97,28 @@ public class liquidiser extends oreProcessMachineBase
     {
         if (!par1World.isRemote)
         {
-            int l = par1World.getBlockId(par2, par3, par4 - 1);
-            int i1 = par1World.getBlockId(par2, par3, par4 + 1);
-            int j1 = par1World.getBlockId(par2 - 1, par3, par4);
-            int k1 = par1World.getBlockId(par2 + 1, par3, par4);
+            Block l = par1World.getBlock(par2, par3, par4 - 1);
+            Block i1 = par1World.getBlock(par2, par3, par4 + 1);
+            Block j1 = par1World.getBlock(par2 - 1, par3, par4);
+            Block k1 = par1World.getBlock(par2 + 1, par3, par4);
             byte b0 = 3;
 
-            if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[i1])
+            if (l.isOpaqueCube() && !i1.isOpaqueCube())
             {
                 b0 = 3;
             }
 
-            if (Block.opaqueCubeLookup[i1] && !Block.opaqueCubeLookup[l])
+            if (i1.isOpaqueCube() && !l.isOpaqueCube())
             {
                 b0 = 2;
             }
 
-            if (Block.opaqueCubeLookup[j1] && !Block.opaqueCubeLookup[k1])
+            if (j1.isOpaqueCube() && !k1.isOpaqueCube())
             {
                 b0 = 5;
             }
 
-            if (Block.opaqueCubeLookup[k1] && !Block.opaqueCubeLookup[j1])
+            if (k1.isOpaqueCube() && !j1.isOpaqueCube())
             {
                 b0 = 4;
             }
@@ -131,9 +130,9 @@ public class liquidiser extends oreProcessMachineBase
     Random furnaceRand = new Random();
     
     @Override
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
+    public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)
     {
-        TileEntityLiquidiser tileentityfurnace = (TileEntityLiquidiser)par1World.getBlockTileEntity(par2, par3, par4);
+        TileEntityLiquidiser tileentityfurnace = (TileEntityLiquidiser)par1World.getTileEntity(par2, par3, par4);
 
         if (tileentityfurnace != null)
         {
@@ -157,7 +156,7 @@ public class liquidiser extends oreProcessMachineBase
                         }
 
                         itemstack.stackSize -= k1;
-                        EntityItem entityitem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), new ItemStack(itemstack.itemID, k1, itemstack.getItemDamage()));
+                        EntityItem entityitem = new EntityItem(par1World, (double)((float)par2 + f), (double)((float)par3 + f1), (double)((float)par4 + f2), new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
 
                         if (itemstack.hasTagCompound())
                         {
@@ -173,7 +172,7 @@ public class liquidiser extends oreProcessMachineBase
                 }
             }
 
-            par1World.func_96440_m(par2, par3, par4, par5);
+            par1World.scheduleBlockUpdate(par2, par3, par4, par5, 0);
         }
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);

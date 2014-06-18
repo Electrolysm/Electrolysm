@@ -4,21 +4,21 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.common.CommonProxy;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class crystalOre extends Item {
 	
 	@SideOnly(Side.CLIENT)
-	private Icon[] crystalIcon;
+	private IIcon[] crystalIcon;
 	
-	public crystalOre(int id) {
-		super(id);
+	public crystalOre() {
+		super();
 		
 		this.setUnlocalizedName("crystalOre");
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -33,9 +33,9 @@ public class crystalOre extends Item {
 	
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
-    {
-    	crystalIcon = new Icon[CommonProxy.DUSTS.length];
+    public void registerIcons(IIconRegister reg)
+        {
+            crystalIcon = new IIcon[CommonProxy.DUSTS.length];
 
         for (int i = 0; i < CommonProxy.DUSTS.length; i ++)
         {
@@ -45,7 +45,7 @@ public class crystalOre extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return crystalIcon[dmg];
     }

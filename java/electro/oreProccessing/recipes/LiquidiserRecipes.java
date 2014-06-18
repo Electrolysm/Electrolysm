@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.common.CommonProxy;
 
 public class LiquidiserRecipes
@@ -20,8 +21,8 @@ public class LiquidiserRecipes
     /** The list of smelting results. */
     private Map smeltingList = new HashMap();
     private Map experienceList = new HashMap();
-    private HashMap<List<Integer>, ItemStack> metaSmeltingList = new HashMap<List<Integer>, ItemStack>();
-    private HashMap<List<Integer>, Float> metaExperience = new HashMap<List<Integer>, Float>();
+    private HashMap<List<ItemStack>, ItemStack> metaSmeltingList = new HashMap<List<ItemStack>, ItemStack>();
+    private HashMap<List<ItemStack>, Float> metaExperience = new HashMap<List<ItemStack>, Float>();
 
     public static final LiquidiserRecipes liquidising()
     {
@@ -32,16 +33,16 @@ public class LiquidiserRecipes
     {
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
-            this.addLiquidising(electrolysmCore.impureDusts.itemID, i, 
+            this.addLiquidising(new ItemStack(electrolysmCore.impureDusts, 1, i),
             		new ItemStack(electrolysmCore.crystal, 1, i));
         }
         
-        this.addLiquidising(Block.oreRedstone.blockID, 0, new ItemStack(electrolysmCore.Scandium, 1, 0));
+        this.addLiquidising(new ItemStack(Blocks.redstone_ore), new ItemStack(electrolysmCore.Scandium, 1, 0));
     }
 
-    public void addLiquidising(int itemID, int metadata, ItemStack itemstack)
+    public void addLiquidising(ItemStack stack, ItemStack itemstack)
     {
-        metaSmeltingList.put(Arrays.asList(itemID, metadata), itemstack);
+        metaSmeltingList.put(Arrays.asList(stack), itemstack);
     }
     
     public ItemStack getLiquidisingResult(ItemStack item)
@@ -58,10 +59,7 @@ public class LiquidiserRecipes
 	        	return (new ItemStack(electrolysmCore.crystal, 1, i));
 	        }
 	    }*/
-        int itemID = item.itemID;
-        int metadata = item.getItemDamage();
-	    
-        return (ItemStack)metaSmeltingList.get(Arrays.asList(itemID, metadata));
+        return (ItemStack)metaSmeltingList.get(Arrays.asList(item));
     }
 
 	public Map getLiquidsMap() 

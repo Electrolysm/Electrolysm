@@ -1,7 +1,6 @@
 package electro.research.pointsSystem;
 
-import org.bouncycastle.asn1.cms.RecipientIdentifier;
-import org.bouncycastle.asn1.cms.RecipientInfo;
+import net.minecraft.init.Blocks;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -23,23 +22,23 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 
 public class ResearchPoint
 {
-    private static Point[] vanillaMap = new Point[50000 + Block.blocksList.length];
+    private static HashMap<ItemStack, Point> vanillaMap = new HashMap<ItemStack, Point>();
     
     //private static Point[] modMap = new Point[100000000];
 
     static 
     {
-        addPoints(new ItemStack(Block.coalBlock), new EngPoint(10), new SciPoint(3));
-        addPoints(new ItemStack(Block.stone), new EngPoint(1), new SciPoint(1));
+        addPoints(new ItemStack(Blocks.coal_block), new EngPoint(10), new SciPoint(3));
+        addPoints(new ItemStack(Blocks.stone), new EngPoint(1), new SciPoint(1));
     }
     
     public static void addPoints(ItemStack stack, EngPoint engPoint, SciPoint sciPoint)
     {
-        vanillaMap[stack.itemID] = (new Point(engPoint, sciPoint));
+        vanillaMap.put(stack, (new Point(engPoint, sciPoint)));
     }
     public static void addPoints(ItemStack stack, int engPoint, int sciPoint)
     {
-        vanillaMap[stack.itemID] = (new Point(new EngPoint(engPoint), new SciPoint(sciPoint)));
+        vanillaMap.put(stack, (new Point(new EngPoint(engPoint), new SciPoint(sciPoint))));
     }
     /*
     public static void addModPoints(ItemStack stack, EngPoint engPoint, SciPoint sciPoint)
@@ -78,7 +77,7 @@ public class ResearchPoint
                 }
             }
         }
-        
+        /*
         HashMap<List<Integer>, ItemStack> map = (HashMap<List<Integer>, ItemStack>) FurnaceRecipes.smelting().
                 getSmeltingList();
         Set<List<Integer>> keySet = map.keySet();
@@ -91,7 +90,7 @@ public class ResearchPoint
             {
                 //return getFurnacePoints(keyStack);
             }
-        }
+        }*/
         return divideByProducedSize(point, stack.stackSize);
     }
 
@@ -196,7 +195,7 @@ public class ResearchPoint
 
     private static Point getVanillaValue(ItemStack stack) 
     {
-        return vanillaMap[stack.itemID];
+        return vanillaMap.get(stack);
     }
     
     private static Point getElectroValue(ItemStack stack) 

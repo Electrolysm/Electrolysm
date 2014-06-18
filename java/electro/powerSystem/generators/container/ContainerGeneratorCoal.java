@@ -6,7 +6,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.api.powerSystem.SlotBattery;
+import api.powerSystem.SlotBattery;
 import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

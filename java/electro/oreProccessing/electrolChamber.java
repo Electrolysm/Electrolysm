@@ -2,13 +2,13 @@ package electro.oreProccessing;
 
 import java.util.List;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.GlassBlockConnectedMeta;
 import electro.common.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -23,15 +23,14 @@ public class electrolChamber extends GlassBlockConnectedMeta
     public electrolChamber(int par1, String location, boolean hasAlpha,
                            String[] textures)
     {
-        super(par1, location, hasAlpha, textures);
+        super(location, hasAlpha, textures);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setUnlocalizedName(unlocalName);
         this.setHardness(6.0F);
-        this.setStepSound(Block.soundMetalFootstep);
+        this.setStepSound(Block.soundTypeMetal);
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         for (int i = 0; i < textures.length; i++)
         {

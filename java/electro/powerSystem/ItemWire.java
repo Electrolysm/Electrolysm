@@ -2,15 +2,16 @@ package electro.powerSystem;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import assets.electrolysm.api.LoggerHandler;
-import assets.electrolysm.electro.electrolysmCore;
+import api.LoggerHandler;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,25 +19,25 @@ public class ItemWire extends Item
 {
     String[] name = {"wire", "advWire"};
     @SideOnly(Side.CLIENT)
-    private Icon[] wireIcon;
+    private IIcon[] wireIcon;
 
-    public ItemWire(int par1)
+    public ItemWire()
     {
-        super(par1);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
-        wireIcon = new Icon[1];
+        wireIcon = new IIcon[1];
         wireIcon[0] = reg.registerIcon("electrolysm:" + "basicWire");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return wireIcon[dmg];
     }
@@ -66,12 +67,12 @@ public class ItemWire extends Item
     		deductAmount = 1;
     	}
     	
-        if (this.getBlockIDBasedOnItemStack(item) != 0)
+        if (this.getBlockIDBasedOnItemStack(item) != null)
         {
             if (side == 0)
             {
                 //Bottom
-                if (world.getBlockId(x, y - 1, z) == 0)
+                if (world.getBlock(x, y - 1, z) == null)
                 {
                     world.setBlock(x, y - 1, z, this.getBlockIDBasedOnItemStack(item));
                     item.stackSize = item.stackSize - deductAmount;
@@ -81,7 +82,7 @@ public class ItemWire extends Item
             else if (side == 1)
             {
                 //Top
-                if (world.getBlockId(x, y + 1, z) == 0)
+                if (world.getBlock(x, y + 1, z) == null)
                 {
                     world.setBlock(x, y + 1, z, this.getBlockIDBasedOnItemStack(item));
                     item.stackSize = item.stackSize - deductAmount;
@@ -91,7 +92,7 @@ public class ItemWire extends Item
             else if (side == 2)
             {
                 //Right
-                if (world.getBlockId(x, y, z - 1) == 0)
+                if (world.getBlock(x, y, z - 1) == null)
                 {
                     world.setBlock(x, y, z - 1, this.getBlockIDBasedOnItemStack(item));
                     item.stackSize = item.stackSize - deductAmount;
@@ -100,7 +101,7 @@ public class ItemWire extends Item
             }
             else if (side == 3)
             {
-                if (world.getBlockId(x, y, z + 1) == 0)
+                if (world.getBlock(x, y, z + 1) == null)
                 {
                     world.setBlock(x, y, z + 1, this.getBlockIDBasedOnItemStack(item));
                     item.stackSize = item.stackSize - deductAmount;
@@ -109,7 +110,7 @@ public class ItemWire extends Item
             }
             else if (side == 4)
             {
-                if (world.getBlockId(x - 1, y, z) == 0)
+                if (world.getBlock(x - 1, y, z) == null)
                 {
                     world.setBlock(x - 1, y, z, this.getBlockIDBasedOnItemStack(item));
                     item.stackSize = item.stackSize - deductAmount;
@@ -118,7 +119,7 @@ public class ItemWire extends Item
             }
             else if (side == 5)
             {
-                if (world.getBlockId(x + 1, y, z) == 0)
+                if (world.getBlock(x + 1, y, z) == null)
                 {
                     world.setBlock(x + 1, y, z, this.getBlockIDBasedOnItemStack(item));
                     item.stackSize = item.stackSize - deductAmount;
@@ -143,14 +144,14 @@ public class ItemWire extends Item
         return false;
     }
 
-    private int getBlockIDBasedOnItemStack(ItemStack item)
+    private Block getBlockIDBasedOnItemStack(ItemStack item)
     {
         int meta = item.getItemDamage();
 
         if (meta == 0)
         {
-            return electrolysmCore.endoCable.blockID;
+            return electrolysmCore.endoCable;
         }
-            return 0;
+        return null;
     }
 }

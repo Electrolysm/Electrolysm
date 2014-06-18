@@ -9,16 +9,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.powerSystem.generators.matterGen;
+import api.specialFuel.SpecialFuelHandler;
+import electro.electrolysmCore;
+import electro.powerSystem.generators.matterGen;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityGeneratorCoal extends TileEntityProducer implements IInventory, ISidedInventory
 {
 	private ItemStack[] inventory;
     private static int[] generatorPower = {260, 700, 5000, 100000};
-    private int[] generatorIDs = {electrolysmCore.generator.blockID, 1, 1, electrolysmCore.matterGen.blockID,};
+    private Block[] generatorIDs = {electrolysmCore.generator, null, null, electrolysmCore.matterGen,};
     private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"};
     
     public TileEntityGeneratorCoal() 
@@ -31,9 +31,9 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     public void readFromNBT(NBTTagCompound tagCompound) {
             super.readFromNBT(tagCompound);
             
-            NBTTagList tagList = tagCompound.getTagList("Inventory");
+            NBTTagList tagList = tagCompound.getTagList("Inventory", 0);
             for (int i = 0; i < tagList.tagCount(); i++) {
-                    NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+                    NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
                     byte slot = tag.getByte("Slot");
                     if (slot >= 0 && slot < inventory.length) {
                             inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
@@ -170,37 +170,6 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     }
 
     @Override
-    public String getInvName()
-    {
-        return this.getNameTag(0);
-    }
-
-    public String getNameTag(int ID)
-    {
-    	if(generatorNames[ID] != null)
-    	{
-    		if(generatorNames[ID].toLowerCase().contains("fusion") || generatorNames[ID].toLowerCase().contains("matter"))
-    		{
-    			return generatorNames[ID] + " Reactor";
-    		}
-    		else
-    		{
-    			return generatorNames[ID] + "Generator";
-    		}
-    	}
-    	else
-    	{
-    		return "UNKNOWN BLOCK";
-    	}
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        return false;
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         return 64;
@@ -210,16 +179,6 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
         return true;
-    }
-
-    @Override
-    public void openChest()
-    {
-    }
-
-    @Override
-    public void closeChest()
-    {
     }
 
     @Override
@@ -293,14 +252,26 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
 		return false;
 	}
 
-	private int getBlock(World world, int x, int y, int z) 
+	private Block getBlock(World world, int x, int y, int z)
 	{
 		//world.setBlock(x, y, z, electrolysmCore.antiMatterCasing.blockID, 0, 0);
-		return world.getBlockId(x, y, z);
+		return world.getBlock(x, y, z);
 	}
 
 	@Override
 	public int getSizeInventory() {
 		return (this.inventory.length);
 	}
+
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Injector"; }
+
+    @Override
+    public void openInventory() { }
 }

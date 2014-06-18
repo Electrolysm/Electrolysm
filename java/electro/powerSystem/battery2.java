@@ -2,7 +2,7 @@ package electro.powerSystem;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -13,15 +13,15 @@ import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 public class battery2 extends Item {
 
 	public static int capacity;
 	public static int tier;
 	
-	public battery2(int id, int cap, int tier1) {
-		super(id);
+	public battery2(int cap, int tier1) {
+		super();
 
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.capacity = cap;
@@ -33,13 +33,13 @@ public class battery2 extends Item {
 	
 	@Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
     	itemIcon = reg.registerIcon("electrolysm:" + "batteryTier" + tier);
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
     	list.add(new ItemStack(electrolysmCore.battery2, 1, (capacity - capacity)));
     	list.add(new ItemStack(electrolysmCore.battery2, 1, capacity));

@@ -7,7 +7,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.container.ContainerElectrolysis;
+import electro.oreProccessing.container.ContainerElectrolysis;
 import electro.oreProccessing.te.TileEntityElectrolisisCore;
 
 public class GUIElectrolysisCore extends GuiContainer
@@ -49,6 +49,6 @@ public class GUIElectrolysisCore extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
-        fontRenderer.drawString(entity.getInvName(), 40, 6, 4210752);
+        fontRendererObj.drawString(entity.getInvName(), 40, 6, 4210752);
     }
 }

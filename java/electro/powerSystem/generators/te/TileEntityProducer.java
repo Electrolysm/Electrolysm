@@ -6,22 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import assets.electrolysm.api.powerSystem.IBatteryCharger;
+import api.powerSystem.IBatteryCharger;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
-import universalelectricity.api.CompatibilityModule;
-import universalelectricity.api.UniversalClass;
-import universalelectricity.api.energy.EnergyStorageHandler;
-import universalelectricity.api.energy.IEnergyContainer;
-import universalelectricity.api.energy.IEnergyInterface;
-import universalelectricity.api.energy.IEnergyNetwork;
-import universalelectricity.api.net.INetworkProvider;
-import universalelectricity.api.net.NetworkEvent;
-import universalelectricity.api.vector.Vector3;
 
-@UniversalClass
+
 public class TileEntityProducer extends TileEntity implements IBatteryCharger
 {
 	public static int capacity;

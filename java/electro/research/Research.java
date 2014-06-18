@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -20,8 +22,8 @@ public class Research
     private static final Research researchBase = new Research();
 
     /** The list of smelting results. */
-    private Map researchList = new HashMap();
-    private Map cardIDList = new HashMap();
+    private HashMap<ItemStack, ItemStack> researchList = new HashMap<ItemStack, ItemStack>();
+    private HashMap<ItemStack, Integer> cardIDList = new HashMap<ItemStack, Integer>();
 
     private static Map onlineCardIDList = new HashMap();
     private static Map onlineResearchList = new HashMap();
@@ -36,17 +38,17 @@ public class Research
 
     private Research()
     {
-        this.addResearch(Block.blockIron.blockID, new ItemStack(electrolysmCore.researchPaper, 1, 0), 1);
-        this.addResearch(Item.fishRaw.itemID, new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
-        this.addResearch(Item.fishCooked.itemID, new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
+        this.addResearch(new ItemStack(Blocks.iron_block), new ItemStack(electrolysmCore.researchPaper, 1, 0), 1);
+        this.addResearch(new ItemStack(Items.fish), new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
+        this.addResearch(new ItemStack(Items.cooked_fished), new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
     }
 
     /**
      * Adds a smelting recipe.
      */
-    public void addResearch(int inputID, ItemStack output, int cardIDRequired)
+    public void addResearch(ItemStack stack, ItemStack output, int cardIDRequired)
     {
-        this.researchList.put(Integer.valueOf(inputID), output);
+        this.researchList.put(stack, output);
         this.cardIDList.put(output, Integer.valueOf(cardIDRequired));
     }
 
@@ -62,7 +64,7 @@ public class Research
             return null;
         }
 
-        ItemStack output1 = (ItemStack)this.researchList.get(Integer.valueOf(item.itemID));
+        ItemStack output1 = (ItemStack)this.researchList.get(item);
 
         if (output1 != null)
         {
@@ -73,7 +75,7 @@ public class Research
                 return output1;
             }
             else
-            {
+            {/*
                 ItemStack outputOnline = (ItemStack)this.onlineResearchList.get(Integer.valueOf(item.itemID));
 
                 if (outputOnline != null)
@@ -92,11 +94,11 @@ public class Research
                 else
                 {
                     return null;
-                }
+                }*/
             }
         }
         else
-        {
+        {/*
             ItemStack outputOnline = (ItemStack)this.onlineResearchList.get(Integer.valueOf(item.itemID));
 
             if (outputOnline != null)
@@ -115,8 +117,9 @@ public class Research
             else
             {
                 return null;
-            }
+            }*/
         }
+        return null;
     }
 
     public static int cardToDesk(int itemDamage)
@@ -131,9 +134,9 @@ public class Research
         return (int)result;
     }
 
-    public static void onlineResearch(int inputID, ItemStack output, int cardID)
+    public static void onlineResearch(ItemStack stack, ItemStack output, int cardID)
     {
-        onlineResearchList.put(Integer.valueOf(inputID), output);
+        onlineResearchList.put(stack, output);
         onlineCardIDList.put(output, Integer.valueOf(cardID));
     }
 }
