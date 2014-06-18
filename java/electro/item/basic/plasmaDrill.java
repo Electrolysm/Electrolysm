@@ -3,42 +3,39 @@ package electro.item.basic;
 import java.util.List;
 import java.util.Random;
 
+import electro.block.advMachines.te.TileEntityCharger;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.block.advMachines.te.TileEntityCharger;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class plasmaDrill extends ItemTool
 {
-    public static final Block[] blocksEffectiveAgainst = new Block[] {Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.stone, Block.sandStone, Block.cobblestoneMossy, Block.oreIron, Block.blockIron, Block.oreCoal, Block.blockGold, Block.oreGold, Block.oreDiamond, Block.blockDiamond, Block.ice, Block.netherrack, Block.oreLapis, Block.blockLapis, Block.oreRedstone, Block.oreRedstoneGlowing, Block.rail, Block.railDetector, Block.railPowered, Block.railActivator, Block.obsidian};
-
     @SideOnly(Side.CLIENT)
-    public Icon itemIconBroken;
+    public IIcon itemIconBroken;
     public int breakingPoint = 1555;
 
-    public plasmaDrill(int id, float par2, EnumToolMaterial toolMaterial, Block[] block)
+    public plasmaDrill()
     {
-        super(id, par2, EnumToolMaterial.EMERALD, block);
+        super(25f, ToolMaterial.EMERALD, Block.blockRegistry.getKeys());
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("plasmaDrill");
-        this.toolMaterial = EnumToolMaterial.EMERALD;
+        this.toolMaterial = ToolMaterial.EMERALD;
         this.maxStackSize = 1;
-        this.damageVsEntity = 15;
         this.efficiencyOnProperMaterial = 20;
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
         this.itemIcon = reg.registerIcon("electrolysm:" + "plasmaDrill");
         this.itemIconBroken = reg.registerIcon("electrolysm:" + "brokenDrill");
@@ -46,7 +43,7 @@ public class plasmaDrill extends ItemTool
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         if (dmg == 0)
         {
@@ -59,7 +56,7 @@ public class plasmaDrill extends ItemTool
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, Block block)
+    public float getDigSpeed(ItemStack stack, Block block, int meta)
     {
         if (stack.getItemDamage() == 0)
         {
@@ -69,25 +66,6 @@ public class plasmaDrill extends ItemTool
         {
             return 20F;
         }
-    }
-
-    @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta)
-    {
-        if (stack.getItemDamage() == 0)
-        {
-            return 0.0F;
-        }
-        else
-        {
-            return 20F;
-        }
-    }
-
-    @Override
-    public boolean canHarvestBlock(Block par1Block)
-    {
-        return true;
     }
 
     public int getItemEnchantability()
@@ -102,35 +80,35 @@ public class plasmaDrill extends ItemTool
 
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
     {
-        if (world.getBlockId(x, y, z) == electrolysmCore.blastProof.blockID)
+        if (world.getBlock(x, y, z) == electrolysmCore.blastProof)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.stone4", 1, 1);
             return true;
         }
 
-        if (world.getBlockId(x, y, z) == electrolysmCore.blastDoor.blockID)
+        if (world.getBlock(x, y, z) == electrolysmCore.blastDoor)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.stone4", 1, 1);
             return true;
         }
 
-        if (world.getBlockId(x, y, z) == electrolysmCore.blastGlass.blockID)
+        if (world.getBlock(x, y, z) == electrolysmCore.blastGlass)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.glass1", 1, 1);
             return true;
         }
 
-        if (world.getBlockId(x, y, z) == electrolysmCore.modBlastGlass.blockID)
+        if (world.getBlock(x, y, z) == electrolysmCore.modBlastGlass)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.glass1", 1, 1);
             return true;
         }
 
-        TileEntity worldTE = world.getBlockTileEntity(x, y, z);
+        TileEntity worldTE = world.getTileEntity(x, y, z);
         Random rand = new Random();
 
         if (worldTE instanceof TileEntityCharger)
@@ -175,12 +153,13 @@ public class plasmaDrill extends ItemTool
         return false;
     }
 
-    public boolean onBlockDestroyed(ItemStack stack, World world, int par3, int par4, int par5, int par6,
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World world, Block par3, int par4, int par5, int par6,
                                     EntityLivingBase livingBase)
     {
         if (stack.getItemDamage() != 0)
         {
-            if ((double)Block.blocksList[par3].getBlockHardness(world, par4, par5, par6) != 0.0D)
+            if ((double)par3.getBlockHardness(world, par4, par5, par6) != 0.0D)
             {
                 stack.damageItem(1, livingBase);
             }
@@ -195,6 +174,7 @@ public class plasmaDrill extends ItemTool
         return true;
     }
 
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         int dmg = stack.getItemDamage();

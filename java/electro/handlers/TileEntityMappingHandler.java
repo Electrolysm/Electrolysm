@@ -7,14 +7,14 @@ import electro.block.machines.tile.TileEntityDesk;
 import electro.block.machines.tile.TileEntityResearchDesk;
 import electro.block.machines.tile.TileEntityWorkBench;
 import electro.block.te.TileEntityIronFrame;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
-import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorCoal;
-import assets.electrolysm.electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.common.registry.GameRegistry;
+import electro.oreProccessing.te.TileEntityCrusher;
+import electro.oreProccessing.te.TileEntityElectrolisisCore;
+import electro.oreProccessing.te.TileEntityLiquidiser;
+import electro.oreProccessing.te.TileEntitySmeltory;
+import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
+import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
+import electro.powerSystem.te.TileEntityWire;
 
 /**
  * Created by Clarky158 on 26/01/14.

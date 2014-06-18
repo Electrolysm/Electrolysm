@@ -1,16 +1,16 @@
 package electro.crafting.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class transistor extends Item
 {
-    public transistor(int par1)
+    public transistor()
     {
-        super(par1);
+        super();
         // TODO Auto-generated constructor stub
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
             this.setUnlocalizedName("transistor");
@@ -19,7 +19,7 @@ public class transistor extends Item
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
     	this.itemIcon = reg.registerIcon("electrolysm:" + "transistor");
     }

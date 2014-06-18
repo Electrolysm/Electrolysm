@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.potion.Potion;
-import assets.electrolysm.electro.oreProccessing.DamageSourceSulphuricAcid;
+import electro.oreProccessing.DamageSourceSulphuricAcid;
 
 public class acidBurns extends Potion {
 

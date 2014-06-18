@@ -1,29 +1,30 @@
 package electro.item.tools;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class HazMap extends ItemArmor {
 
 	@SideOnly(Side.CLIENT)
-	public Icon iconHelmat;
+	public IIcon iconHelmat;
 	@SideOnly(Side.CLIENT)
-	public Icon iconChest;
+	public IIcon iconChest;
 	@SideOnly(Side.CLIENT)
-	public Icon iconLegs;
+	public IIcon iconLegs;
 	@SideOnly(Side.CLIENT)
-	public Icon iconBoots;
+	public IIcon iconBoots;
 	
 	public int damageReduceAmount;
 	
-	public HazMap(int id, int armorType)
+	public HazMap(int armorType)
 	{
-		super(id, electrolysmCore.PLASTIC, 1, armorType);
+		super(electrolysmCore.PLASTIC, 1, armorType);
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.hasSubtypes = true;
 	}
@@ -32,13 +33,13 @@ public class HazMap extends ItemArmor {
     public String getUnlocalizedName(ItemStack stack)
     {
         int dmg = stack.getItemDamage();
-        int id = stack.itemID;
+        Item id = stack.getItem();
         return "HazMap" + dmg + ":" + id;
     }
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
 		String modID = "electrolysm:";
 		iconHelmat = reg.registerIcon(modID + "mazMatHelmat");

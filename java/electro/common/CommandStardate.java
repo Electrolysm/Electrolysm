@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
-import assets.electrolysm.electro.handlers.ElectroEventHandler;
+import electro.handlers.ElectroEventHandler;
 
 public class CommandStardate extends CommandDate
 {
@@ -108,8 +108,7 @@ public class CommandStardate extends CommandDate
 	            		message = "Pranks Activated";
 	            		
 	            	}
-	            	icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
-                            .setColor(this.getColourFromCommand(command)));
+	            	//icommandsender.addChatMessage(new I);
 	            	return;
             	}
             	else
@@ -129,7 +128,7 @@ public class CommandStardate extends CommandDate
             message = "Stardate: " + this.getStarDate(worldinfo.getWorldTotalTime());
             command = "stardate";
         }
-
+/*
         icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
                                         .setColor(this.getColourFromCommand(command)));
 
@@ -148,7 +147,7 @@ public class CommandStardate extends CommandDate
                                             .setColor(this.getColourFromCommand(command)));
             icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(line6)
                                             .setColor(this.getColourFromCommand(command)));
-        }
+        }*/
     }
 
     private EnumChatFormatting getColourFromCommand(String command)

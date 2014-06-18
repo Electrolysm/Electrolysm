@@ -2,15 +2,15 @@ package electro.crafting.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
-import net.minecraft.client.renderer.texture.IconRegister;
+import electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
 public class advancedCPU extends Item
 {
-    public advancedCPU(int par1)
+    public advancedCPU()
     {
-        super(par1);
+        super();
         // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -20,7 +20,7 @@ public class advancedCPU extends Item
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
     	this.itemIcon = reg.registerIcon("electrolysm:" + "advCPU");
     }

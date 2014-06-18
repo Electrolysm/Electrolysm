@@ -3,13 +3,13 @@ package electro.handlers;
 import java.awt.List;
 import java.util.ArrayList;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Crafting
@@ -22,18 +22,18 @@ public class Crafting
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.researchDesk),
                                " X ", "YZY", "BMB",
                                'X', electrolysmCore.inkAndQuill,
-                               'Y', Item.ingotIron,
-                               'Z', Item.paper,
-                               'B', Block.bookShelf,
-                               'M', Block.workbench);
+                               'Y', Items.iron_ingot,
+                               'Z', Items.paper,
+                               'B', Blocks.bookshelf,
+                               'M', Blocks.crafting_table);
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.workBench),
                                "YXY", "Y Y", "Y Y",
-                               'X', Block.workbench,
-                               'Y', Item.ingotIron);
+                               'X', Blocks.crafting_table,
+                               'Y', Items.iron_ingot);
         GameRegistry.addShapedRecipe(new ItemStack(electrolysmCore.card, 1, 1),
                                      "XYX",
-                                     'Y', new ItemStack(Item.paper),
-                                     'X', new ItemStack(Item.stick));
+                                     'Y', new ItemStack(Items.paper),
+                                     'X', new ItemStack(Items.stick));
 
         for (int i = 1; i <= 9; i++)
         {
@@ -52,12 +52,12 @@ public class Crafting
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastGlass, 4),
                                "XYX", "Y Y", "XYX",
                                'X', electrolysmCore.blastProof,
-                               'Y', Block.glass);
+                               'Y', Blocks.glass);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.drillCasing),
                                " YY", "XZY", "XX ",
-                               'X', Item.ingotIron,
-                               'Y', Item.diamond,
+                               'X', Items.iron_ingot,
+                               'Y', Items.diamond,
                                'Z', electrolysmCore.experimentalMicrochip);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.fluidStorage, 4),
@@ -69,7 +69,7 @@ public class Crafting
                                "XMX", "BYN", "XMX",
                                'X', electrolysmCore.blastProof,
                                'Y', electrolysmCore.advancedMicrochip,
-                               'B', Item.diamond,
+                               'B', Items.diamond,
                                'N', electrolysmCore.injectionArm,
                                'M', electrolysmCore.fluidStorage);
         
@@ -85,12 +85,12 @@ public class Crafting
                                " IB", "III", "CI ",
                                'B', electrolysmCore.fluidStorage,
                                'C', electrolysmCore.BasicMicrochip,
-                               'I', Item.ingotIron);
+                               'I', Items.iron_ingot);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.energisingRod),
                                "XYX", " Z ", " Z ",
-                               'X', Item.ingotGold,
-                               'Y', Item.redstone,
+                               'X', Items.gold_ingot,
+                               'Y', Items.redstone,
                                'Z', electrolysmCore.graphiteRod);
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.chunkGraphite, 9),
@@ -102,63 +102,63 @@ public class Crafting
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.blastProof, 2),
                                "XYX", "Y Y", "XYX",
-                               'X', Item.ingotIron,
+                               'X', Items.iron_ingot,
                                'Y', electrolysmCore.stoneObsidian);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.stoneObsidian, 8),
                                "XXX", "XYX", "XXX",
-                               'X', Block.stone,
-                               'Y', Block.obsidian);
+                               'X', Blocks.stone,
+                               'Y', Blocks.obsidian);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.glassModifire),
                                "XGX", " Y ", "Y",
-                               Character.valueOf('X'), Item.ingotIron,
-                               Character.valueOf('G'), Item.ingotGold,
-                               Character.valueOf('Y'), Item.stick);
+                               Character.valueOf('X'), Items.iron_ingot,
+                               Character.valueOf('G'), Items.gold_ingot,
+                               Character.valueOf('Y'), Items.stick);
 
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.electrolChamber, 4),
                                "XYX", "YYY", "XYX",
                                'X', electrolysmCore.blastProof,
-                               'Y', Item.ingotIron);
+                               'Y', Items.iron_ingot);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.electrolisisCore),
                                "YIY", "RXR", "YIY",
-                               'i', Item.ingotIron,
+                               'i', Items.iron_ingot,
                                'Y', electrolysmCore.electrolChamber,
                                'X', electrolysmCore.advancedMicrochip,
-                               'R', Item.redstone);
+                               'R', Items.redstone);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.node),
                                " Y ", " Y ", "ICI",
-                               'I', Item.ingotIron,
+                               'I', Items.iron_ingot,
                                'Y', electrolysmCore.graphiteRod,
                                'C', electrolysmCore.copperIngot);
         
-        GameRegistry.addRecipe(new ItemStack(Block.tnt),
+        GameRegistry.addRecipe(new ItemStack(Blocks.tnt),
                                "XYX", "XXX", "XYX",
                                'X', electrolysmCore.sulphur,
-                               'Y', Block.sand);
+                               'Y', Blocks.sand);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.luminousRedstone),
         		               " R ", "RGR", " R ",
-        		               'R', Item.redstone,
-        		               'G', Item.glowstone);
+        		               'R', Items.redstone,
+        		               'G', Items.glowstone_dust);
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.diamondShard, 4),
         		//new ItemStack(electrolysmCore.hammer),
-        		new ItemStack(Item.diamond));
+        		new ItemStack(Items.diamond));
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.hammer),
                                "XYX", " Z ", " Z ",
-                               'X', Item.ingotIron,
-                               'Y', Block.cobblestone,
-                               'Z', Item.stick);
+                               'X', Items.iron_ingot,
+                               'Y', Blocks.cobblestone,
+                               'Z', Items.stick);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.crystalBase),
                                "XYX", "YGY", "XYX",
                                'X', electrolysmCore.diamondShard,
                                'Y', electrolysmCore.BlockLumRed,
-                               'G', Item.diamond);
+                               'G', Items.diamond);
 
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed),
                                         new ItemStack(electrolysmCore.luminousRedstone),
@@ -168,30 +168,30 @@ public class Crafting
 
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.generator, 1, 3),
         		"III", "RBR", "IFI",
-        		'F', Block.furnaceIdle,
-        		'R', Item.redstone,
-        		'I', Item.ingotIron,
-        		'B', Item.bucketEmpty);
+        		'F', Blocks.furnace,
+        		'R', Items.redstone,
+        		'I', Items.iron_ingot,
+        		'B', Items.water_bucket);
 
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.luminousRedstone, 4),
         		new ItemStack(electrolysmCore.BlockLumRed));
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed),
-        		new ItemStack(Block.blockRedstone),
-        		new ItemStack(Block.glowStone),
+        		new ItemStack(Blocks.redstone_block),
+        		new ItemStack(Blocks.glowstone),
         		new ItemStack(electrolysmCore.sulphur));
 
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.endoInsulator, 6),
         		new ItemStack(electrolysmCore.ballOfPlastic),
         		new ItemStack(electrolysmCore.ballOfPlastic),
-        		new ItemStack(Item.enderPearl));
+        		new ItemStack(Items.ender_pearl));
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.idifier),
         		"IGI", "RMR", "ICI",
-        		'I', Item.ingotIron,
-        		'G', Block.glass,
-        		'C', Block.chest,
-        		'R', Item.redstone,
+        		'I', Items.iron_ingot,
+        		'G', Blocks.glass,
+        		'C', Blocks.chest,
+        		'R', Items.redstone,
         		'M', electrolysmCore.advancedMicrochip);
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.blastBrick),
@@ -210,20 +210,20 @@ public class Crafting
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.transistor),
         		" I ", " R ", "C C",
-        		'I', Item.ingotIron,
-        		'R', Item.redstone,
+        		'I', Items.iron_ingot,
+        		'R', Items.redstone,
         		'C', electrolysmCore.copperIngot);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.CPU),
         		"CTC", "TRT", "CTC",
         		'C', electrolysmCore.copperIngot,
         		'T', electrolysmCore.transistor,
-        		'R', Item.redstone);
+        		'R', Items.redstone);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.BasicMicrochip),
         		"   ", "RTR", "CMC",
         		'T', electrolysmCore.transistor,
-        		'R', Item.redstone,
+        		'R', Items.redstone,
         		'C', electrolysmCore.copperIngot,
         		'M', electrolysmCore.microchipBoard);
         
@@ -232,39 +232,39 @@ public class Crafting
         		'C', electrolysmCore.copperIngot,
         		'P', electrolysmCore.CPU,
         		'B', electrolysmCore.BasicMicrochip,
-        		'R', Item.redstone);
+        		'R', Items.redstone);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.grindStone, 1, 0),
         		"CCC", "CSC", "CCC",
-        		Character.valueOf('C'), Block.cobblestone,
-        		Character.valueOf('S'), Item.stick);
+        		Character.valueOf('C'), Blocks.cobblestone,
+        		Character.valueOf('S'), Items.stick);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.grindStone, 1, 1),
         		"III", "ISI", "III",
-        		Character.valueOf('I'), Item.ingotIron,
+        		Character.valueOf('I'), Items.iron_ingot,
         		Character.valueOf('S'), new ItemStack(electrolysmCore.grindStone, 1, 0));
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.grindStone, 1, 2),
         		"III", "ISI", "III",
-        		Character.valueOf('I'), Item.diamond,
+        		Character.valueOf('I'), Items.diamond,
         		Character.valueOf('S'), new ItemStack(electrolysmCore.grindStone, 1, 1));
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.inkAndQuill),
-        		new ItemStack(Item.dyePowder, 2, 0),
-        		new ItemStack(Item.potion, 0),
-        		new ItemStack(Item.feather));
+        		new ItemStack(Items.dye, 2, 0),
+        		new ItemStack(Items.potionitem, 0),
+        		new ItemStack(Items.feather));
         	
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.advancedCPU),
         		"RCR", "PDP", "RCR",
-        		'R', Item.redstone,
+        		'R', Items.redstone,
         		'C', electrolysmCore.copperIngot,
         		'P', electrolysmCore.CPU,
-        		'D', Item.diamond);
+        		'D', Items.diamond);
         	
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.experimentalMicrochip),
         		"   ", "ADA", "MCM",
         		'A', electrolysmCore.advancedCPU,
-        		'D', Item.diamond,
+        		'D', Items.diamond,
         		'M', electrolysmCore.advancedMicrochip,
         		'C', electrolysmCore.copperIngot);
         
@@ -275,8 +275,8 @@ public class Crafting
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.charger),
         		 "CCC", "IRI", "IMI",
         		 'C', electrolysmCore.copperIngot,
-        		 'I', Item.ingotIron,
-        		 'R', Item.redstone);
+        		 'I', Items.iron_ingot,
+        		 'R', Items.redstone);
          
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.matterGen, 1),
         		 "AAA", "BEB", "BMB",
@@ -293,12 +293,12 @@ public class Crafting
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.electroMagnet),
         		 "C C", "DMD", "MDM",
         		 Character.valueOf('C'), electrolysmCore.advancedCPU,
-        		 Character.valueOf('D'), Item.diamond,
+        		 Character.valueOf('D'), Items.diamond,
         		 Character.valueOf('M'), electrolysmCore.magnet);
          
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.antiMatterCasing),
         		 "GBG", "BSB", "GBG",
-        		 Character.valueOf('G'), Block.glass,
+        		 Character.valueOf('G'), Blocks.glass,
         		 Character.valueOf('B'), electrolysmCore.blastProof,
         		 Character.valueOf('S'), electrolysmCore.diamondShard);
          	
@@ -310,71 +310,71 @@ public class Crafting
         		 
          GameRegistry.addRecipe(new ItemStack(electrolysmCore.crusher, 1, 3),
         		"IMI", "PGP", "ICI",
-        		Character.valueOf('I'), Item.ingotIron,
+        		Character.valueOf('I'), Items.iron_ingot,
         		Character.valueOf('M'), electrolysmCore.BasicMicrochip,
-        		Character.valueOf('P'), Block.cobblestone,
+        		Character.valueOf('P'), Blocks.cobblestone,
         		Character.valueOf('G'), electrolysmCore.grindStone,
         		Character.valueOf('C'), electrolysmCore.copperIngot);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.liquidiser, 1, 3),
         		"ILI", "RLM", "IFI",
-        		Character.valueOf('I'), Item.ingotIron,
+        		Character.valueOf('I'), Items.iron_ingot,
         		Character.valueOf('L'), electrolysmCore.fluidStorage,
-        		Character.valueOf('R'), Item.redstone,
+        		Character.valueOf('R'), Items.redstone,
         		Character.valueOf('M'), electrolysmCore.advancedMicrochip,
-        		Character.valueOf('F'), Block.furnaceIdle);
+        		Character.valueOf('F'), Blocks.furnace);
 
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.smeltory, 1, 3),
         		"IRI", "IMI", "FFF",
-        		Character.valueOf('I'), Item.ingotIron,
-        		Character.valueOf('R'), Item.redstone,
+        		Character.valueOf('I'), Items.iron_ingot,
+        		Character.valueOf('R'), Items.redstone,
         		Character.valueOf('M'), electrolysmCore.advancedMicrochip,
-        		Character.valueOf('F'), Block.furnaceIdle);
+        		Character.valueOf('F'), Blocks.furnace);
        
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.net),
         		"   S", " WS", "W  ",
-        		'S', Item.silk,
-        		'W', Item.stick);
+        		'S', Items.string,
+        		'W', Items.stick);
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.ballOfPlastic, 8),
-        		new ItemStack(Block.sand),
-        		new ItemStack(Item.slimeBall),
+        		new ItemStack(Blocks.sand),
+        		new ItemStack(Items.slime_ball),
         		new ItemStack(electrolysmCore.sulphur),
-        		new ItemStack(Item.bucketWater));
+        		new ItemStack(Items.water_bucket));
         
     }	
 
     public static void addFurnaceRecipes() 
 	{
-		int impureID = electrolysmCore.impureDusts.itemID;
-		int pureID = electrolysmCore.dusts.itemID;
+		Item impureID = electrolysmCore.impureDusts;
+		Item pureID = electrolysmCore.dusts;
 		ItemStack copperIngot = new ItemStack(electrolysmCore.copperIngot, 1);
 		ItemStack tinIngot = new ItemStack(electrolysmCore.ingots, 1, 0);
 		ItemStack silverIngot = new ItemStack(electrolysmCore.ingots, 1, 1);
 		ItemStack leadIngot = new ItemStack(electrolysmCore.ingots, 1, 2);
 
-		ItemStack ironIngot = new ItemStack(Item.ingotIron, 1, 0);
-        ItemStack goldIngot = new ItemStack(Item.ingotGold, 1, 0);
+		ItemStack ironIngot = new ItemStack(Items.iron_ingot, 1, 0);
+        ItemStack goldIngot = new ItemStack(Items.gold_ingot, 1, 0);
         float impureXP = 1.23456789F;
         float pureXP = 5.789F;
         
-		FurnaceRecipes.smelting().addSmelting(impureID, 0, copperIngot, impureXP);
-		FurnaceRecipes.smelting().addSmelting(impureID, 1, tinIngot, impureXP);
-		FurnaceRecipes.smelting().addSmelting(impureID, 2, ironIngot, impureXP);
-		FurnaceRecipes.smelting().addSmelting(impureID, 3, goldIngot, impureXP);
-		FurnaceRecipes.smelting().addSmelting(impureID, 4, silverIngot, impureXP);
-		FurnaceRecipes.smelting().addSmelting(impureID, 5, leadIngot, impureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 0), copperIngot, impureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 1), tinIngot, impureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 2), ironIngot, impureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 3), goldIngot, impureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 4), silverIngot, impureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 5), leadIngot, impureXP);
 		
-		FurnaceRecipes.smelting().addSmelting(pureID, 0, copperIngot, pureXP);
-		FurnaceRecipes.smelting().addSmelting(pureID, 1, tinIngot, pureXP);
-		FurnaceRecipes.smelting().addSmelting(pureID, 2, ironIngot, pureXP);
-		FurnaceRecipes.smelting().addSmelting(pureID, 3, goldIngot, pureXP);
-		FurnaceRecipes.smelting().addSmelting(pureID, 4, silverIngot, pureXP);
-		FurnaceRecipes.smelting().addSmelting(pureID, 5, leadIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), copperIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), tinIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), ironIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), goldIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), silverIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), leadIngot, pureXP);
 	    
-		GameRegistry.addSmelting(electrolysmCore.copperOre.blockID, new ItemStack(electrolysmCore.copperIngot, 1), 2F);
-		FurnaceRecipes.smelting().addSmelting(electrolysmCore.Scandium.itemID, 0, 
-				new ItemStack(electrolysmCore.Scandium, 1, 1), pureXP);
+		GameRegistry.addSmelting(electrolysmCore.copperOre, new ItemStack(electrolysmCore.copperIngot, 1), 2F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(electrolysmCore.Scandium),
+                new ItemStack(electrolysmCore.Scandium, 1, 1), pureXP);
 		
 		//GameRegistry.addSmelting(pureID, goldIngot, pureXP);
 

@@ -1,7 +1,7 @@
 package electro.handlers;
 
 import java.util.Random;
-import assets.electrolysm.electro.configHandler;
+import electro.configHandler;
 import electro.client.ClientProxy;
 
 public class BetaHandler

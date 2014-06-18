@@ -2,15 +2,15 @@ package electro.item.basic;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
-import net.minecraft.client.renderer.texture.IconRegister;
+import electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
 public class drillHead extends Item
 {
-  public drillHead(int par1)
+  public drillHead()
     {
-        super(par1);
+        super();
         // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(electrolysmCore.TabElectrolysm);

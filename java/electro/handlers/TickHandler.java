@@ -1,4 +1,4 @@
-package electro.handlers;
+/*package electro.handlers;
 
 import java.util.EnumSet;
 import java.util.Random;
@@ -65,7 +65,7 @@ public class TickHandler implements ITickHandler
                 {
                     this.printChatMessage("Electrolysm News: " + NewsCheck.chatMessage);
                     times = 100;
-                }*/
+                }*//*
             }
         }
 
@@ -149,4 +149,4 @@ public class TickHandler implements ITickHandler
         // TODO Auto-generated method stub5
         return null;
     }
-}
+}*/

@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -173,9 +173,9 @@ public class WorkBenchCraftingManager
             }
         }
 
-        if (i == 2 && itemstack.itemID == itemstack1.itemID && itemstack.stackSize == 1 && itemstack1.stackSize == 1 && Item.itemsList[itemstack.itemID].isRepairable())
+        if (i == 2 && itemstack.getItem() == itemstack1.getItem() && itemstack.stackSize == 1 && itemstack1.stackSize == 1 && itemstack.getItem().isRepairable())
         {
-            Item item = Item.itemsList[itemstack.itemID];
+            Item item = itemstack.getItem();
             int k = item.getMaxDamage() - itemstack.getItemDamageForDisplay();
             int l = item.getMaxDamage() - itemstack1.getItemDamageForDisplay();
             int i1 = k + l + item.getMaxDamage() * 5 / 100;
@@ -186,7 +186,7 @@ public class WorkBenchCraftingManager
                 j1 = 0;
             }
 
-            return new ItemStack(itemstack.itemID, 1, j1);
+            return new ItemStack(itemstack.getItem(), 1, j1);
         }
         else
         {

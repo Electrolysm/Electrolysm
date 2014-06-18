@@ -1,5 +1,15 @@
 package electro.handlers;
 
+import electro.oreProccessing.container.*;
+import electro.oreProccessing.gui.*;
+import electro.oreProccessing.te.*;
+import electro.powerSystem.generators.GUI.GUIGeneratorAntimatter;
+import electro.powerSystem.generators.GUI.GUIGeneratorCoal;
+import electro.powerSystem.generators.container.ContainerGeneratorAntimatter;
+import electro.powerSystem.generators.container.ContainerGeneratorCoal;
+import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
+import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
+import electro.research.client.GUIIDCardInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -15,28 +25,6 @@ import electro.block.machines.gui.GUIResearchDesk;
 import electro.block.machines.gui.GUIWorkBench;
 import electro.block.machines.tile.TileEntityResearchDesk;
 import electro.block.machines.tile.TileEntityWorkBench;
-import assets.electrolysm.electro.oreProccessing.container.ContainerCrusher;
-import assets.electrolysm.electro.oreProccessing.container.ContainerElectrolysis;
-import assets.electrolysm.electro.oreProccessing.container.ContainerLiquidiser;
-import assets.electrolysm.electro.oreProccessing.container.ContainerPort;
-import assets.electrolysm.electro.oreProccessing.container.ContainerSmeltory;
-import assets.electrolysm.electro.oreProccessing.gui.GUICrusher;
-import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
-import assets.electrolysm.electro.oreProccessing.gui.GUILiquidiser;
-import assets.electrolysm.electro.oreProccessing.gui.GUIPort;
-import assets.electrolysm.electro.oreProccessing.gui.GUISmeltory;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityCrusher;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityElectrolisisCore;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityLiquidiser;
-import assets.electrolysm.electro.oreProccessing.te.TileEntityPort;
-import assets.electrolysm.electro.oreProccessing.te.TileEntitySmeltory;
-import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGeneratorAntimatter;
-import assets.electrolysm.electro.powerSystem.generators.GUI.GUIGeneratorCoal;
-import assets.electrolysm.electro.powerSystem.generators.container.ContainerGeneratorAntimatter;
-import assets.electrolysm.electro.powerSystem.generators.container.ContainerGeneratorCoal;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
-import assets.electrolysm.electro.powerSystem.generators.te.TileEntityGeneratorCoal;
-import assets.electrolysm.electro.research.client.GUIIDCardInfo;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler
@@ -46,7 +34,7 @@ public class GUIHandler implements IGuiHandler
 	@Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        TileEntity entity = world.getBlockTileEntity(x, y, z);
+        TileEntity entity = world.getTileEntity(x, y, z);
 
         if (entity instanceof TileEntityResearchDesk)
         {
@@ -107,7 +95,7 @@ public class GUIHandler implements IGuiHandler
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        TileEntity entity = world.getBlockTileEntity(x, y, z);
+        TileEntity entity = world.getTileEntity(x, y, z);
 
         if (entity instanceof TileEntityResearchDesk)
         {

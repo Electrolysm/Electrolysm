@@ -1,4 +1,4 @@
-package electro.common;
+/*package electro.common;
 
 import java.util.EnumSet;
 import java.util.Random;
@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
@@ -122,4 +121,4 @@ public class ServerTickHandler implements ITickHandler
         // TODO Auto-generated method stub5
         return null;
     }
-}
+}*/

@@ -2,26 +2,26 @@ package electro.item.fuels;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import api.specialFuel.FuelData;
+import api.specialFuel.IFuelStorage;
+import api.specialFuel.SpecialFuelHandler;
+import electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import assets.electrolysm.api.specialFuel.FuelData;
-import assets.electrolysm.api.specialFuel.IFuelStorage;
-import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
-import assets.electrolysm.electro.electrolysmCore;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class electroContain extends Item implements IFuelStorage {
 
 	@SideOnly(Side.CLIENT)
-	private Icon[] containIcon;
+	private IIcon[] containIcon;
 	
-	public electroContain(int id) {
-		super(id);
+	public electroContain() {
+		super();
 		
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
 		this.hasSubtypes = true;
@@ -40,9 +40,9 @@ public class electroContain extends Item implements IFuelStorage {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
-    	containIcon = new Icon[SpecialFuelHandler.getFuelList().size() + 1];
+    	containIcon = new IIcon[SpecialFuelHandler.getFuelList().size() + 1];
 
         for (int i = 0; i < SpecialFuelHandler.getFuelList().size() + 1; i ++)
         {
@@ -60,12 +60,13 @@ public class electroContain extends Item implements IFuelStorage {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return containIcon[dmg];
     }
 
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    @Override
+    public void getSubItems(Item item, CreativeTabs creativeTab, List list)
     {
         for (int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)
         {

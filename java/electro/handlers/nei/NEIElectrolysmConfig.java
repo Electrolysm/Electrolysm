@@ -1,13 +1,14 @@
 package electro.handlers.nei;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.block.advMachines.gui.GUIInjector;
-import assets.electrolysm.electro.handlers.Referance;
-import assets.electrolysm.electro.oreProccessing.gui.GUICrusher;
-import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
-import assets.electrolysm.electro.oreProccessing.gui.GUILiquidiser;
+import electro.handlers.Referance;
+import electro.oreProccessing.gui.GUICrusher;
+import electro.oreProccessing.gui.GUIElectrolysisCore;
+import electro.oreProccessing.gui.GUILiquidiser;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
+import net.minecraft.item.ItemStack;
 
 public class NEIElectrolysmConfig implements IConfigureNEI{
 
@@ -15,10 +16,10 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 	public void loadConfig() 
 	{
 		//Item Hiding
-		API.hideItem(electrolysmCore.crusherActive.blockID);
-		API.hideItem(electrolysmCore.smeltoryActive.blockID);
-		API.hideItem(electrolysmCore.endoCable.blockID);
-		
+		API.hideItem(new ItemStack(electrolysmCore.crusherActive));
+		API.hideItem(new ItemStack(electrolysmCore.smeltoryActive));
+		API.hideItem(new ItemStack(electrolysmCore.endoCable));
+
 		//Crusher
 		API.registerRecipeHandler(new CrusherRecipeHandler());
 		API.registerUsageHandler(new CrusherRecipeHandler());

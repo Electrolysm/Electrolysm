@@ -2,11 +2,11 @@ package electro.crafting.items;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.crafting.items.te.TileEntityLumRed;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -17,18 +17,16 @@ public class BlockLumRed extends BlockContainer
 {
     public BlockLumRed(int id, Material mat)
     {
-        super(id, Material.glass);
-        this.setUnlocalizedName("BlockLumRed");
+        super(Material.glass);
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
-        this.setLightValue(1.0F);
-        GameRegistry.registerBlock(this);
+        this.setLightLevel(1.0F);
         LanguageRegistry.addName(this, "Luminous Redstone Block");
         this.setHardness(2F);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister reg)
+    public void registerBlockIcons(IIconRegister reg)
     {
         this.blockIcon = reg.registerIcon("electrolysm:" + "blockLumRed");
     }
@@ -52,7 +50,7 @@ public class BlockLumRed extends BlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    public TileEntity createNewTileEntity(World world, int i)
     {
         // TODO Auto-generated method stub
         return new TileEntityLumRed();

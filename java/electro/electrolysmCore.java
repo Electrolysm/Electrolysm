@@ -12,13 +12,11 @@ import electro.research.common.ScanData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
-import assets.electrolysm.api.LoggerHandler;
 import electro.block.ironFrames;
 import electro.block.advMachines.charger;
 import electro.block.advMachines.energiser;
@@ -42,7 +40,6 @@ import electro.block.machines.researchDesk;
 import electro.block.machines.workBench;
 import electro.client.ClientProxy;
 import electro.common.CommandStardate;
-import electro.common.ServerTickHandler;
 import electro.crafting.acidBurns;
 import electro.crafting.items.BasicMicrochip;
 import electro.crafting.items.BlockLumRed;
@@ -69,14 +66,12 @@ import electro.handlers.Crafting;
 import electro.handlers.ElectroEventHandler;
 import electro.handlers.ElectrolysmLootHandler;
 import electro.handlers.GUIHandler;
-import electro.handlers.IDHandler;
 import electro.handlers.MultipartHandler;
 import electro.handlers.Names;
 import electro.handlers.NewsCheck;
 import electro.handlers.Referance;
 import electro.handlers.Register;
 import electro.handlers.RegisterBlock;
-import electro.handlers.TickHandler;
 import electro.handlers.TileEntityMappingHandler;
 import electro.handlers.VersionCheck;
 import electro.item.basic.drillCasing;
@@ -110,7 +105,6 @@ import electro.research.idifier;
 import electro.research.knowledge;
 import electro.research.researchPaper;
 import electro.research.system.ResearchRegistry;
-import assets.electrolysm.electro.research.itemScanner;
 import electro.sciences.ItemArmorLab;
 import electro.world.Scandium;
 import electro.world.Yttrium;
@@ -128,17 +122,15 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.ServerStarting;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.util.EnumHelper;
 
 @Mod(modid = Referance.MOD_REF.MOD_ID, name = Referance.MOD_REF.MOD_ID, version = Referance.MOD_REF.VERSION)
 
@@ -202,7 +194,7 @@ public class electrolysmCore
     //Tools
     public static Item hammer = new hammer(configHandler.hammerID);
     
-    public static EnumArmorMaterial PLASTIC = EnumHelper.addArmorMaterial("PLASTIC", 10, new int[]{1, 3, 2, 1}, 5);
+    public static ItemArmor.ArmorMaterial PLASTIC = EnumHelper.addArmorMaterial("PLASTIC", 10, new int[]{1, 3, 2, 1}, 5);
     /*public static Item hazMatHat = new HazMap(configHandler.hazMat1ID, 0);
     public static Item hazMatChest = new HazMap(configHandler.hazMat2ID, 1);
     public static Item hazMatLegs = new HazMap(configHandler.hazMat3ID, 2);
@@ -229,7 +221,7 @@ public class electrolysmCore
 
     //Power System
     public static Block endoCable = new endoCable(configHandler.endoCableID, null);
-    public static Item ItemWire = new ItemWire(configHandler.ItemWireID);
+    public static Item ItemWire = new ItemWire();
     public static Item battery1 = new battery1(configHandler.battery1ID, 1000, 1).setUnlocalizedName("battery1");
     public static Item battery2 = new battery2(configHandler.battery2ID, 8000, 2).setUnlocalizedName("battery2");
     public static Item battery3 = new battery3(configHandler.battery3ID, 64000, 3).setUnlocalizedName("battery3");
@@ -284,7 +276,7 @@ public class electrolysmCore
     // items for crafting
     public static Item diamondShard = new diamondShard(configHandler.diamondShardID);
     public static Item luminousRedstone = new luminousRedstone(configHandler.luminousRedID);
-    public static Block BlockLumRed = new BlockLumRed(configHandler.lumRedBlockID, null);
+    public static Block BlockLumRed = new BlockLumRed();
     public static Item crystalBase = new crystalBase(configHandler.crystalBaseID);
     public static Item ballOfPlastic = new ballOfPlastic(configHandler.ballOfPlasticID);
     public static Item endoInsulator = new endoInsulator(configHandler.endoInsulatorID);

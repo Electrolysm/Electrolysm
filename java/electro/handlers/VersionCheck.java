@@ -7,8 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import assets.electrolysm.api.LoggerHandler;
-
 public class VersionCheck
 {
     private static String line;
@@ -18,7 +16,7 @@ public class VersionCheck
 
     public static void check()
     {
-        LoggerHandler.info("Starting Version Check");
+        //LoggerHandler.info("Starting Version Check");
         URL url = null;
         String inputLine = "";
 
@@ -76,7 +74,7 @@ public class VersionCheck
         }
 
         //System.out.println("[Electrolysm]" + version);
-        LoggerHandler.info("Ended Version Check");
+        //LoggerHandler.info("Ended Version Check");
         checkDone = true;
     }
 }

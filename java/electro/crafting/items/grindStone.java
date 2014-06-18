@@ -4,21 +4,21 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import electro.common.CommonProxy;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 public class grindStone extends Item{
 
 	@SideOnly(Side.CLIENT)
-    private Icon[] grindStoneIcon;
+    private IIcon[] grindStoneIcon;
 	
-	public grindStone(int id) {
-		super(id);
+	public grindStone() {
+		super();
 		
 		this.hasSubtypes = true;
 		this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -32,9 +32,9 @@ public class grindStone extends Item{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
-        grindStoneIcon = new Icon[3];
+        grindStoneIcon = new IIcon[3];
     	
         for (int i = 0; i < grindStoneIcon.length; i ++)
         {
@@ -44,7 +44,7 @@ public class grindStone extends Item{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int dmg)
+    public IIcon getIconFromDamage(int dmg)
     {
         return grindStoneIcon[dmg];
     }

@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -15,10 +16,10 @@ public class InjectorRecipes
 {
     private static final InjectorRecipes smeltBase = new InjectorRecipes();
 
-    private HashMap<List<Integer>, ItemStack> metaSmeltingList1 = new HashMap<List<Integer>, ItemStack>();
+    private HashMap<List<ItemStack>, ItemStack> metaSmeltingList1 = new HashMap<List<ItemStack>, ItemStack>();
     private HashMap<List<Integer>, ItemStack> metaSmeltingList2 = new HashMap<List<Integer>, ItemStack>();
-    private HashMap<List<Integer>, ItemStack> metaSmeltingCheckList1 = new HashMap<List<Integer>, ItemStack>();
-    private HashMap<List<Integer>, ItemStack> metaSmeltingCheckList2 = new HashMap<List<Integer>, ItemStack>();
+    private HashMap<List<ItemStack>, ItemStack> metaSmeltingCheckList1 = new HashMap<List<ItemStack>, ItemStack>();
+    private HashMap<List<ItemStack>, ItemStack> metaSmeltingCheckList2 = new HashMap<List<ItemStack>, ItemStack>();
 
     public static final InjectorRecipes smelting()
     {
@@ -30,7 +31,7 @@ public class InjectorRecipes
         this.addDoubleSmelting(new ItemStack(electrolysmCore.drillCasing), new ItemStack(electrolysmCore.fluidStorage, 16, 1),
                                new ItemStack(electrolysmCore.plasmaDrill, 1, 1));
         
-        this.addDoubleSmelting(new ItemStack(Item.bucketWater), new ItemStack(electrolysmCore.fluidStorage, 1, 0),
+        this.addDoubleSmelting(new ItemStack(Items.water_bucket), new ItemStack(electrolysmCore.fluidStorage, 1, 0),
                 new ItemStack(electrolysmCore.fluidStorage, 1, 9));
         
         this.addDoubleSmelting(new ItemStack(electrolysmCore.sulphur, 16), new ItemStack(electrolysmCore.fluidStorage, 1, 9),
@@ -39,11 +40,11 @@ public class InjectorRecipes
 
     public void addDoubleSmelting(ItemStack bottom, ItemStack top, ItemStack output)
     {
-        this.metaSmeltingList1.put(Arrays.asList(bottom.itemID, top.itemID), output);
+        this.metaSmeltingList1.put(Arrays.asList(bottom, top), output);
         this.metaSmeltingList2.put(Arrays.asList(bottom.getItemDamage(), top.getItemDamage()), output);
         
-        this.metaSmeltingCheckList1.put(Arrays.asList(bottom.itemID, bottom.getItemDamage()), bottom);
-        this.metaSmeltingCheckList2.put(Arrays.asList(top.itemID, top.getItemDamage()), top);
+        this.metaSmeltingCheckList1.put(Arrays.asList(bottom), bottom);
+        this.metaSmeltingCheckList2.put(Arrays.asList(top), top);
     }
     
     public Map getInjectorMap()
@@ -68,7 +69,7 @@ public class InjectorRecipes
             return null;
         }
 
-        ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1.itemID, item2.itemID));
+        ItemStack outputItem1 = this.metaSmeltingList1.get(Arrays.asList(item1, item2));
         ItemStack outputItem2 = this.metaSmeltingList2.get(Arrays.asList(item1.getItemDamage(), item2.getItemDamage()));
 
         if (outputItem1 == outputItem2)
@@ -90,11 +91,11 @@ public class InjectorRecipes
 
     public ItemStack getSlot1ReduceAmount(ItemStack input)
     {
-        return (ItemStack) this.metaSmeltingCheckList1.get(Arrays.asList(input.itemID, input.getItemDamage()));
+        return (ItemStack) this.metaSmeltingCheckList1.get(Arrays.asList(input));
     }
 
     public ItemStack getSlot2ReduceAmount(ItemStack input)
     {
-        return (ItemStack) this.metaSmeltingCheckList2.get(Arrays.asList(input.itemID, input.getItemDamage()));
+        return (ItemStack) this.metaSmeltingCheckList2.get(Arrays.asList(input));
     }
 }

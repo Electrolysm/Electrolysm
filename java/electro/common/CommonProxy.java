@@ -2,10 +2,11 @@ package electro.common;
 
 import java.util.Map;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
-import assets.electrolysm.electro.electrolysmCore;
-import assets.electrolysm.electro.handlers.Referance;
+import electro.electrolysmCore;
+import electro.handlers.Referance;
 
 public class CommonProxy
 {
@@ -58,8 +59,8 @@ public class CommonProxy
                            "Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate", "Silver Sulphate", "Water"};
     //METAs   						 4				5				6				7				8				9
     
-    public static int[] FLUID_IDS = {0, electrolysmCore.plasma.blockID, electrolysmCore.sulpuricAcid.blockID, 
-		0, 0, 0, 0, 0, 0};
+    public static Block[] FLUID_IDS = {null, electrolysmCore.plasma, electrolysmCore.sulpuricAcid,
+		null, null, null, null, null, null};
     
     public static final String[] DUSTS = {"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs									0		   1	  2		  3			4		5

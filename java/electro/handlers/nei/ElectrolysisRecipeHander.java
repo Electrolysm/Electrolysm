@@ -4,15 +4,16 @@ import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.item.ItemStack;
-import electro.common.CommonProxy;
-import assets.electrolysm.electro.oreProccessing.gui.GUIElectrolysisCore;
-import assets.electrolysm.electro.oreProccessing.recipes.electrolisisRecipes;
+
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.ItemStack;
+import electro.common.CommonProxy;
+import electro.oreProccessing.gui.GUIElectrolysisCore;
+import electro.oreProccessing.recipes.electrolisisRecipes;
 
 public class ElectrolysisRecipeHander extends TemplateRecipeHandler {
 

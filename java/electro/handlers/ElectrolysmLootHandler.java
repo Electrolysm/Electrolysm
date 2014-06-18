@@ -3,7 +3,7 @@ package electro.handlers;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 
 public class ElectrolysmLootHandler 
 {

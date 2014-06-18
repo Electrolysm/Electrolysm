@@ -1,6 +1,6 @@
 package electro.handlers;
 
-import assets.electrolysm.electro.electrolysmCore;
+import electro.electrolysmCore;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
@@ -9,9 +9,7 @@ public class FuelHandler implements IFuelHandler
     @Override
     public int getBurnTime(ItemStack fuel)
     {
-        int id = fuel.itemID;
-
-        if (id == electrolysmCore.sulphur.itemID)
+        if (fuel.getItem() == electrolysmCore.sulphur)
         {
             return 200;
         }

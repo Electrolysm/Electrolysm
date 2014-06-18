@@ -2,22 +2,22 @@ package electro.crafting.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
-import net.minecraft.client.renderer.texture.IconRegister;
+import electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
 public class diamondShard extends Item
 {
-    public diamondShard(int par1)
+    public diamondShard()
     {
-        super(par1);
+        super();
         this.setCreativeTab(electrolysmCore.TabElectrolysm);
         this.setUnlocalizedName("diamondShard");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
         this.itemIcon = reg.registerIcon("electrolysm:" + "diamondShard");
     }

@@ -2,15 +2,15 @@ package electro.crafting.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import assets.electrolysm.electro.electrolysmCore;
-import net.minecraft.client.renderer.texture.IconRegister;
+import electro.electrolysmCore;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
 public class inkAndQuill extends Item
 {
-    public inkAndQuill(int par1)
+    public inkAndQuill()
     {
-        super(par1);
+        super();
         // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(electrolysmCore.TabElectrolysm);
@@ -20,7 +20,7 @@ public class inkAndQuill extends Item
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister reg)
+    public void registerIcons(IIconRegister reg)
     {
     	this.itemIcon = reg.registerIcon("electrolysm:" + "inkQuill");
     }

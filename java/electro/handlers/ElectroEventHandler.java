@@ -4,25 +4,25 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import electro.electrolysmCore;
+import electro.oreProccessing.DamageSourceSulphuricAcid;
+import electro.sciences.ItemArmorLab;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import assets.electrolysm.electro.electrolysmCore;
 import electro.client.ClientProxy;
-import assets.electrolysm.electro.oreProccessing.DamageSourceSulphuricAcid;
-import assets.electrolysm.electro.sciences.ItemArmorLab;
 import electro.world.biome.WorldGenDiseasedTree;
 import cpw.mods.fml.server.FMLServerHandler;
 
 public class ElectroEventHandler 
 {
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event) 
 	{
-		if (event.entityLiving.isPotionActive(electrolysmCore.acidBurns)) 
+		if (event.entityLiving.isPotionActive(electrolysmCore.acidBurns))
 		{
 			if (event.entityLiving.worldObj.rand.nextInt(20) == 0) 
 			{
@@ -46,7 +46,7 @@ public class ElectroEventHandler
 	
 	public static void ellio98(EntityPlayer player)
 	{
-		if(player.username.contains(prankUser))
+		if(player.getDisplayName().contains(prankUser))
 		{
 			//player.rotationYaw = player.rotationYaw + 1;
 			//player.motionX = Math.sqrt(player.motionX + (Math.PI * Math.PI)) - rand.nextInt(50);
@@ -58,7 +58,7 @@ public class ElectroEventHandler
 	public static String prankUser = "";
 	public static Random rand = new Random();
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onUpdateEvent(LivingUpdateEvent event) throws IOException
 	{/*
 		if(event.entity instanceof EntityPlayer)
@@ -71,14 +71,14 @@ public class ElectroEventHandler
 		}*/
 	}
 	
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void bonemealEvent(BonemealEvent event)
 	{
-		if(event.ID == WorldGenDiseasedTree.treeSapling.blockID)
+		if(event.block == WorldGenDiseasedTree.treeSapling)
 		{
-			event.world.setBlockToAir(event.X, event.Y, event.Z);
-			new WorldGenDiseasedTree(true, 6).generate(event.world, rand, event.X, event.Y - 1, event.Z);
-			event.setResult(Result.ALLOW);
+			event.world.setBlockToAir(event.x, event.y, event.z);
+			new WorldGenDiseasedTree(true, 6).generate(event.world, rand, event.x, event.y - 1, event.z);
+			event.setResult(Event.Result.ALLOW);
 		}
 	}
 	

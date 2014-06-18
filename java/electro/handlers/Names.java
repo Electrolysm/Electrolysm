@@ -1,8 +1,8 @@
 package electro.handlers;
 
 import net.minecraft.item.ItemStack;
-import assets.electrolysm.api.specialFuel.SpecialFuelHandler;
-import assets.electrolysm.electro.electrolysmCore;
+import api.specialFuel.SpecialFuelHandler;
+import electro.electrolysmCore;
 import electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
