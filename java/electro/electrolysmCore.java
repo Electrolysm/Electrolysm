@@ -9,9 +9,7 @@ import java.io.File;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import electro.research.*;
-import electro.research.client.GuiTickHandler;
-import electro.research.common.SavePlayerScanData;
-import electro.research.common.ScanData;
+import electro.handlers.TickHandler;
 import electro.world.biome.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -114,7 +112,6 @@ import electro.world.copperOre;
 import electro.world.graphite;
 import electro.world.sulpherOre;
 import electro.world.sulphur;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -123,7 +120,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.EnumHelper;
@@ -367,7 +363,7 @@ public class electrolysmCore
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
         MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());
 
-        FMLCommonHandler.instance().bus().register(new GuiTickHandler());
+        FMLCommonHandler.instance().bus().register(new TickHandler());
 
         long duration = (System.currentTimeMillis() - startTime);
         //LoggerHandler.info("Electrolysm Started in " + duration + "ms");

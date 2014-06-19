@@ -1,5 +1,7 @@
 package electro.handlers;
 
+import api.LoggerHandler;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,7 +18,7 @@ public class VersionCheck
 
     public static void check()
     {
-        //LoggerHandler.info("Starting Version Check");
+        LoggerHandler.info("Starting Version Check");
         URL url = null;
         String inputLine = "";
 
@@ -74,7 +76,7 @@ public class VersionCheck
         }
 
         //System.out.println("[Electrolysm]" + version);
-        //LoggerHandler.info("Ended Version Check");
+        LoggerHandler.info("Ended Version Check");
         checkDone = true;
     }
 }

@@ -63,11 +63,14 @@ public class ResearchRegistry
 		
 		//Binding of text and research still has to be done!
 
-		this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("mass_spec"));
+        try {
+            this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("plastic"));
+        }
+        catch (Exception e) { e.printStackTrace(); }
 
 		long duration = (System.currentTimeMillis() - time);
         //LoggerHandler.info("Research registry completed in " + duration + "ms");
-        System.out.println(requireMap.get((this.getResearch("mass_spec")).toAdvString()));
+//        System.out.println(requireMap.get((this.getResearch("mass_spec")).toAdvString()));
         //System.exit(0);
 	}
 
@@ -75,10 +78,22 @@ public class ResearchRegistry
 	private static HashMap<String, String> requireMap = new HashMap<String, String>();
     private static HashMap<String, String> requireMapRev = new HashMap<String, String>();
 
-    public void bindRequirementToResearch(Requirement req, Research research)
+    public void bindRequirementToResearch(Requirement req, Research research) throws Exception
     {
-        this.requireMap.put(research.toAdvString(), req.toString());
-        this.requireMapRev.put(req.toString(), research.toAdvString());
+        if(research != null && req != null) {
+            this.requireMap.put(research.toAdvString(), req.toString());
+            this.requireMapRev.put(req.toString(), research.toAdvString());
+        }
+        else
+        {
+            if(research == null) {
+                throw new Exception("Research, when binding requirement equals 'null'...");
+            }
+            else
+            {
+                throw new Exception("Requirement, when binding requirement equals 'null'...");
+            }
+        }
     }
 
     public static HashMap<String, String> getRequireMap() { return requireMap; }

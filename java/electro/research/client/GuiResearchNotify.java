@@ -19,7 +19,7 @@ import java.util.Iterator;
 /**
  * Created by Clarky158 on 19/06/2014.
  */
-public class GuiResearchNotify extends Gui
+public class GuiResearchNotify extends GuiScreen
 {
     private int windowWidth;
     private int windowHeight;
@@ -60,21 +60,38 @@ public class GuiResearchNotify extends Gui
         GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
     }
 
-    public void updateResearchWindow()
+    @Override
+    public void drawScreen(int i, int j, float f)
     {
-        //this.updateResearchWindowScale();
+        this.updateResearchWindow();
+    }
 
-        xSize = 512 / 2;
-        ySize = 512 / 2;
+    public void updateResearchWindow()
+    {/*
+        xSize = (741 / 2) - 100 - 20 + 5;
+        ySize = (646 / 2) - 100 + 50 - 20;
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glTranslatef(1.0F, -10.0F, 1.0F);
-        GL11.glScalef(1.0F, 1.0F, 1.0F);
-        int xStart = (windowWidth - xSize) / 2;
-        int yStart = (windowHeight - ySize) / 2;
-        //System.out.println("rendering");
+        this.mc.renderEngine.bindTexture(CommonProxy.IMAGE_TECH_TREE);
+        int xStart = (width - xSize) / 2;
+        int yStart = (height - ySize) / 2;
+        this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);*/
 
-        this.theGame.renderEngine.bindTexture(CommonProxy.RESEARCH_BACKING);
-        this.drawTexturedModalRect(xStart/* - 100 - 50 - 50 + 60*/, yStart, 0, 0, xSize, ySize);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glEnable(3553);
+        this.bindTexture("/achievement/bg.png");
+        this.drawString("/achievement/bg.png");
+        this.drawTexturedModalRect(200, 200, 0, 0, 10000, 10000);
+        GL11.glDisable(2896);
+    }
+
+    public static void drawString(String texture)
+    {
+        Minecraft.getMinecraft().ingameGUI.func_110326_a(texture, true);
+    }
+
+    public static void bindTexture(String texture)
+    {
+        Minecraft.getMinecraft().renderEngine.bindTexture(CommonProxy.RESEARCH_DESK_GUI);
     }
 }

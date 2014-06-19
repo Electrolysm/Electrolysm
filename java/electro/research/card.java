@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 import electro.electrolysmCore;
@@ -32,7 +33,7 @@ public class card extends Item
 
         if (!player.isSneaking())
         {
-            //FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(IChatComponent.Serializer.func_150699_a(message));
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentTranslation(message));
         }
         else
         {
