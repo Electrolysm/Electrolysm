@@ -1,6 +1,7 @@
 package electro.research.common;
 
 import cpw.mods.fml.common.Mod;
+import electro.handlers.helpers.EncryptionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import org.lwjgl.Sys;
@@ -18,6 +19,7 @@ import java.util.*;
  */
 public class SavePlayerScanData
 {
+    static String fileLocation1 = "config/Electrolysm/Research";
     static String fileLocation = "config/Electrolysm/Research/";
 
     public static class ScanData {
@@ -53,6 +55,8 @@ public class SavePlayerScanData
         public void makeFile(String username) {
             try {
                 File file = new File(fileLocation + username + ".txt");
+                File fileDIR = new File(fileLocation1);
+                fileDIR.mkdir();
                 file.createNewFile();
             } catch (IOException e) {
                 //LoggerHandler.severe("Failed to create file with name: " + username + ".txt");
@@ -155,6 +159,7 @@ public class SavePlayerScanData
         {
             String username = user + "_active";
             String researchName = this.encryptString(name);
+
             try {
                 if (this.getUserData(username) != null) {
                     if (!this.dataAlreadyExists(researchName + ",", this.getUserData(username))) {
@@ -180,18 +185,17 @@ public class SavePlayerScanData
 
         public static String encryptString(String data)
         {
-            return data;
+            //System.out.println("encrypt");
+            String result = EncryptionHelper.encode(data);
+            //System.out.println(result);
+            return result;
         }
 
-        private static final String ENCRYPTION_ALGORITHM = "AES/ECB/PKCS5Padding";
-        private static final SecureRandom RANDOM = new SecureRandom();
-
-        private static Cipher getCipher(final Key key, final int mode) throws GeneralSecurityException {
-            final Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
-            cipher.init(mode, key, RANDOM);
-            return cipher;
+        public static String decryptString(String data)
+        {
+            String result = EncryptionHelper.decode(data);
+            return result;
         }
-
 
         public void reRun(String username, String newData) {
             System.out.println("reRun");
@@ -209,14 +213,18 @@ public class SavePlayerScanData
 
         public static boolean hasPlayerUnlocked(String username, String unlocalName) {
             List<String> list = getPlayerData(username).get(username);
-            return dataAlreadyExists(unlocalName, list);
+            return dataAlreadyExists(encryptString(unlocalName), list);
         }
 
         public static boolean dataAlreadyExists(String newData, List<String> list) {
             System.out.println(newData + "." + newData.replace(" ", ""));
             Object[] arrayList = list.toArray();
-            for (int i = 0; i < arrayList.length; i++) {
-                if (list.contains(newData.replace(" ", "")) || ((String) arrayList[i]).contains(newData)) {
+            for (int i = 0; i < arrayList.length; i++)
+            {
+                System.out.println((encryptString(newData)));
+                if (list.contains((newData.replace(" ", ""))) ||
+                        ((String) arrayList[i]).contains((newData)))
+                {
                     return true;
                 }
             }
@@ -224,7 +232,7 @@ public class SavePlayerScanData
             return false;
         }
 
-        public static List<String> getUserData(String username) {
+        public List<String> getUserData(String username) {
             if (getPlayerData(username) != null) {
                 HashMap<String, List<String>> hashMap = getPlayerData(username);
                 List<String> listData = hashMap.get(username);
