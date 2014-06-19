@@ -36,15 +36,15 @@ public class Requirement
         {
             if(requirement[i] instanceof Block)
             {
-                ret = ret + ((Block)requirement[i]).getUnlocalizedName() + " : ";
+                ret = ret + ((Block)requirement[i]).getUnlocalizedName() + ":";
             }
             else if(requirement[i] instanceof Item)
             {
-                ret = ret + ((Item)requirement[i]).getUnlocalizedName() + " : ";
+                ret = ret + ((Item)requirement[i]).getUnlocalizedName() + ":";
             }
             else if(requirement[i] instanceof Material)
             {
-                ret = ret + ((Material)requirement[i]) + " : ";
+                ret = ret + ((Material)requirement[i]) + ":";
             }
 
         }

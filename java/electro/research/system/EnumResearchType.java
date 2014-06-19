@@ -2,7 +2,7 @@ package electro.research.system;
 
 import java.util.HashMap;
 
-public class EnumResearchType 
+public class EnumResearchType
 {
 	private String name;
 	private static HashMap<String, EnumResearchType> hashMap = new HashMap<String, EnumResearchType>(); 

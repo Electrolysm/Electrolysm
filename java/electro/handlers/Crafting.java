@@ -94,7 +94,7 @@ public class Crafting
                                'Z', electrolysmCore.graphiteRod);
         
         GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.chunkGraphite, 9),
-                                        new ItemStack(electrolysmCore.graphite));
+                                        new ItemStack(electrolysmCore.graphite, 1, 0));
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.graphite),
                                "XXX", "XXX", "XXX",
@@ -111,7 +111,7 @@ public class Crafting
                                'Y', Blocks.obsidian);
         
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.glassModifire),
-                               "XGX", " Y ", "Y",
+                               "XGX", " Y ", " Y ",
                                Character.valueOf('X'), Items.iron_ingot,
                                Character.valueOf('G'), Items.gold_ingot,
                                Character.valueOf('Y'), Items.stick);
@@ -157,10 +157,10 @@ public class Crafting
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.crystalBase),
                                "XYX", "YGY", "XYX",
                                'X', electrolysmCore.diamondShard,
-                               'Y', electrolysmCore.BlockLumRed,
+                               Character.valueOf('Y'), new ItemStack(electrolysmCore.BlockLumRed, 1, 0),
                                'G', Items.diamond);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed),
+        GameRegistry.addShapelessRecipe(new ItemStack(electrolysmCore.BlockLumRed, 1, 0),
                                         new ItemStack(electrolysmCore.luminousRedstone),
                                         new ItemStack(electrolysmCore.luminousRedstone),
                                         new ItemStack(electrolysmCore.luminousRedstone),

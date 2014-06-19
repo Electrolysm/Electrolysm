@@ -1,28 +1,23 @@
 package api;
 
-import java.util.logging.Level;
-
 import electro.handlers.Referance;
-import org.apache.logging.log4j.Logger;
 import cpw.mods.fml.common.FMLLog;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Level;
 
 public class LoggerHandler 
 {
-	private static Logger elLogger;/* = new Logger();*/
-	
-	static
-	{
-		//elLogger.marker.setParent(FMLLog.getLogger());
-	}
-	
+	private static Logger elLogger = LogManager.getLogger("Electrolysm");
+
     public static void log(Level logLevel, Object object)
     {
-       // elLogger.log(logLevel, (String)object);
+        elLogger.log(logLevel, object);
     }
 
     public static void severe(Object object)
     {
-        log(Level.SEVERE, object);
+        log(Level.FATAL, object);
     }
 
     public static void debug(Object object)
@@ -32,7 +27,7 @@ public class LoggerHandler
 
     public static void warning(Object object)
     {
-        log(Level.WARNING, object);
+        log(Level.WARN, object);
     }
 
     public static void info(Object object)
@@ -40,24 +35,9 @@ public class LoggerHandler
         log(Level.INFO, object);
     }
 
-    public static void config(Object object)
-    {
-        log(Level.CONFIG, object);
-    }
-
     public static void fine(Object object)
     {
-        log(Level.FINE, object);
-    }
-
-    public static void finer(Object object)
-    {
-        log(Level.FINER, object);
-    }
-
-    public static void finest(Object object)
-    {
-        log(Level.FINEST, object);
+        log(Level.ALL, object);
     }
 }
 

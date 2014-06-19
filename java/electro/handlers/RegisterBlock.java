@@ -123,5 +123,7 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.electroMagnet, "electroMagnet");
         GameRegistry.registerItem(elec.electroContain, "electroContain");
         GameRegistry.registerItem(elec.itemScanner, "itemScanner");
+        GameRegistry.registerItem(elec.labCoat, "labCoat");
+        GameRegistry.registerItem(elec.labGoggles, "labGoggles");
     }
 }

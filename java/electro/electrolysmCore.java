@@ -330,7 +330,7 @@ public class electrolysmCore
     public void preInit(FMLPreInitializationEvent event)
     {
     	startTime = System.currentTimeMillis();
-    	
+
     	//ResearchHandler.downloadLabSkin();
         File configFile = new File("config/Electrolysm/Electrolysm.cfg");
         new ResearchRegistry(true);

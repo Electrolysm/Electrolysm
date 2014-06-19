@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import api.LoggerHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import electro.research.pointsSystem.Point;
@@ -16,7 +17,7 @@ public class ResearchRegistry
 	{
 		if(doRegister)
 		{
-			//LoggerHandler.info("Registering research.");
+			LoggerHandler.info("Registering research.");
 			this.doRegister();
 		}
 	}
@@ -70,7 +71,7 @@ public class ResearchRegistry
 
 		//Binding of text and research still has to be done!
 
-		this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.dirt}), this.getResearch("mass_spec"));
+		this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("mass_spec"));
 
 		long duration = (System.currentTimeMillis() - time);
         //LoggerHandler.info("Research registry completed in " + duration + "ms");
@@ -78,9 +79,9 @@ public class ResearchRegistry
         //System.exit(0);
 	}
 
-	private HashMap<String, String> researchMap = new HashMap<String, String>();
-	private HashMap<String, String> requireMap = new HashMap<String, String>();
-    private HashMap<String, String> requireMapRev = new HashMap<String, String>();
+	private static HashMap<String, String> researchMap = new HashMap<String, String>();
+	private static HashMap<String, String> requireMap = new HashMap<String, String>();
+    private static HashMap<String, String> requireMapRev = new HashMap<String, String>();
 
     public void bindRequirementToResearch(Requirement req, Research research)
     {
@@ -88,7 +89,9 @@ public class ResearchRegistry
         this.requireMapRev.put(req.toString(), research.toAdvString());
     }
 
-	public void registerResearch(Research research)
+    public static HashMap<String, String> getRequireMap() { return requireMap; }
+
+    public void registerResearch(Research research)
 	{
 		researchMap.put(research.getName(), research.toAdvString());
 	}
@@ -98,13 +101,13 @@ public class ResearchRegistry
 		researchMap.put(string, research.toAdvString());
 	}
 
-	public Research getResearch(String name)
+	public static Research getResearch(String name)
 	{
-		Research research  = this.getResearchFromString(researchMap.get(name));
+		Research research  = getResearchFromString(researchMap.get(name));
 		return research;
 	}
 
-	private Research getResearchFromString(String string)
+	private static Research getResearchFromString(String string)
 	{
 		if(string == null)
 		{
@@ -123,7 +126,7 @@ public class ResearchRegistry
 		int tier = Integer.parseInt(String.valueOf(details[3]));
 		String reliant = String.valueOf(details[4]);
 		Research reliantR;
-		EnumResearchType typeE = this.getEnumFromString(type);
+		EnumResearchType typeE = getEnumFromString(type);
 
 		if(details[4].contains(":null") || details[4] == null)
 		{
@@ -131,12 +134,12 @@ public class ResearchRegistry
 		}
 		else
 		{
-			reliantR = this.getResearchFromString(reliant);
+			reliantR = getResearchFromString(reliant);
 			return new Research(name, typeE, new Point(engPoint, sciPoint), tier, reliantR);
 		}
 	}
 
-	private EnumResearchType getEnumFromString(String type)
+	private static EnumResearchType getEnumFromString(String type)
 	{
 		HashMap<String, EnumResearchType> hashMap = EnumResearchType.getHashMap();
 
@@ -184,9 +187,9 @@ public class ResearchRegistry
 	}
 	
 	
-	public HashMap<String, String> getResearchMap()
+	public static HashMap<String, String> getResearchMap()
 	{
-		return this.researchMap;
+		return researchMap;
 	}
 	
 	public void bindResearchToText(String name, File folder)
@@ -201,4 +204,12 @@ public class ResearchRegistry
 			
 		}
 	}
+
+    public static String[] getRequirementsFromStringAsArray(String requireString)
+    {
+        String[] array = requireString.split(":");
+
+        return array;
+    }
+
 }

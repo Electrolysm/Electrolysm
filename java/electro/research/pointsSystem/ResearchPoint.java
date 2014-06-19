@@ -1,11 +1,13 @@
 package electro.research.pointsSystem;
 
+import electro.electrolysmCore;
 import net.minecraft.init.Blocks;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -22,23 +24,26 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 
 public class ResearchPoint
 {
-    private static HashMap<ItemStack, Point> vanillaMap = new HashMap<ItemStack, Point>();
+    private static HashMap<String, String> vanillaMap = new HashMap<String, String>();
     
     //private static Point[] modMap = new Point[100000000];
 
     static 
     {
-        addPoints(new ItemStack(Blocks.coal_block), new EngPoint(10), new SciPoint(3));
+        //addPoints(new ItemStack(Blocks.coal_block), new EngPoint(10), new SciPoint(3));
+        addPoints(new ItemStack(Items.coal), 20, 10);
         addPoints(new ItemStack(Blocks.stone), new EngPoint(1), new SciPoint(1));
+        addPoints(new ItemStack(electrolysmCore.chunkGraphite), 15, 80);
+        addPoints(new ItemStack(Blocks.log, 1, 0), 12, 3);
     }
     
     public static void addPoints(ItemStack stack, EngPoint engPoint, SciPoint sciPoint)
     {
-        vanillaMap.put(stack, (new Point(engPoint, sciPoint)));
+        vanillaMap.put(stack.getUnlocalizedName(), (new Point(engPoint, sciPoint)).toString());
     }
     public static void addPoints(ItemStack stack, int engPoint, int sciPoint)
     {
-        vanillaMap.put(stack, (new Point(new EngPoint(engPoint), new SciPoint(sciPoint))));
+        vanillaMap.put(stack.getUnlocalizedName(), (new Point(new EngPoint(engPoint), new SciPoint(sciPoint))).toString());
     }
     /*
     public static void addModPoints(ItemStack stack, EngPoint engPoint, SciPoint sciPoint)
@@ -47,33 +52,36 @@ public class ResearchPoint
     }    */
 
     public static Point getPoints(ItemStack stack)
-    {     
+    {
         Point point = null;
         ItemStack result = null;
-        
+        System.out.println(stack.getDisplayName() + " : " + vanillaMap.get(stack.getUnlocalizedName()) + " : " + stack.getUnlocalizedName());
         List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
-        for(int i = 0; i < recipes.size(); i++)
-        {
-            IRecipe iRecipe = recipes.get(i);
-            
-            if(iRecipe instanceof ShapedRecipes)
-            {
-                ShapedRecipes shapeRecipe = (ShapedRecipes)iRecipe;
-                result = shapeRecipe.getRecipeOutput();
 
-                if(result.isItemEqual(stack))
-                {
-                    point = getRecipePoints(shapeRecipe);
-                }
-            }
-            else if(iRecipe instanceof ShapelessRecipes)
-            {
-                ShapelessRecipes shapelessRecipe = (ShapelessRecipes)iRecipe;
-                result = shapelessRecipe.getRecipeOutput();
-                
-                if(result.isItemEqual(stack))
-                {
-                    point = getRecipePoints(shapelessRecipe);
+        if(getVanillaValue(stack) != null)
+        {
+            System.out.println("trueStack");
+            return getVanillaValue(stack);
+        }
+        else {
+            System.out.println("elseStack");
+            for (int i = 0; i < recipes.size(); i++) {
+                IRecipe iRecipe = recipes.get(i);
+
+                if (iRecipe instanceof ShapedRecipes) {
+                    ShapedRecipes shapeRecipe = (ShapedRecipes) iRecipe;
+                    result = shapeRecipe.getRecipeOutput();
+
+                    if (result.isItemEqual(stack)) {
+                        point = getRecipePoints(shapeRecipe);
+                    }
+                } else if (iRecipe instanceof ShapelessRecipes) {
+                    ShapelessRecipes shapelessRecipe = (ShapelessRecipes) iRecipe;
+                    result = shapelessRecipe.getRecipeOutput();
+
+                    if (result.isItemEqual(stack)) {
+                        point = getRecipePoints(shapelessRecipe);
+                    }
                 }
             }
         }
@@ -195,9 +203,24 @@ public class ResearchPoint
 
     private static Point getVanillaValue(ItemStack stack) 
     {
-        return vanillaMap.get(stack);
+        return stringToPoint(vanillaMap.get(stack.getUnlocalizedName()));
     }
-    
+
+    private static Point stringToPoint(String pointString)
+    {
+        if(pointString != null) {
+            String[] array = (String[]) pointString.split("--");
+            int engPoint = Integer.parseInt(array[0]);
+            int sciPoint = Integer.parseInt(array[1]);
+
+            return new Point(engPoint, sciPoint);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     private static Point getElectroValue(ItemStack stack) 
     {
         //return modMap[stack.itemID];
