@@ -23,52 +23,44 @@ public class ResearchRegistry
 	}
 
 	EnumResearchType POWER = new EnumResearchType("power");
-	EnumResearchType SCIENCE = new EnumResearchType("science");
+	EnumResearchType METALS_AND_ELEMENTS = new EnumResearchType("metals and elements ");
 	EnumResearchType RESEARCH = new EnumResearchType("research");
 	EnumResearchType ROBOTICS = new EnumResearchType("robotics");
-	EnumResearchType OTHER = new EnumResearchType("other");
+	EnumResearchType MACHINES = new EnumResearchType("machines");
 
 	public void doRegister()
 	{
 		long time = System.currentTimeMillis();
 		File folder = new File("config/Electrolysm/");
 
-        //OTHER
-        this.registerResearch(new Research("electrolysis", this.OTHER, new Point(13, 43), 4));
-        this.registerResearch(new Research("smeltery", this.OTHER, new Point(7, 23), 2));
-        this.registerResearch(new Research("crusher", this.OTHER, new Point(7, 12), 2));
-        //ROBOTICS
-        this.registerResearch(new Research("bionics", this.ROBOTICS, new Point(38, 90), 4));
-        this.registerResearch(new Research("robotic_arm", this.ROBOTICS, new Point(38, 56), 3));
-        this.registerResearch(new Research("hydrolics", this.ROBOTICS, new Point(35, 50), 3));
-        this.registerResearch(new Research("AIs", this.ROBOTICS, new Point(13, 43), 4));
-        this.registerResearch(new Research("upgrade", this.ROBOTICS, new Point(26, 34), 2));
-        //UPGRADE - SUB - START
-        this.registerResearch(new Research("upgrade_speed", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
-        this.registerResearch(new Research("upgrade_AI", this.ROBOTICS, new Point(24, 24), 3, this.getResearch("upgrade")));
-        this.registerResearch(new Research("upgrade_stack", this.ROBOTICS, new Point(12, 12), 2, this.getResearch("upgrade")));
-        //UPGRADE - SUB - END
-        this.registerResearch(new Research("computing", this.ROBOTICS, new Point(13, 63), 2));
-        //RESEARCH
-        this.registerResearch(new Research("mass_spec", this.RESEARCH, new Point(6, 49), 3));
-        this.registerResearch(new Research("chromography", this.RESEARCH, new Point(2, 13), 1));
-        this.registerResearch(new Research("point_gen", this.RESEARCH, new Point(39, 63), 4));
-        //SCIENCE
-        this.registerResearch(new Research("holograms", this.SCIENCE, new Point(13, 63), 3));
-        this.registerResearch(new Research("genetics", this.SCIENCE, new Point(13, 86), 3));
-        this.registerResearch(new Research("LHC", this.SCIENCE, new Point(86, 142), 4));
-        this.registerResearch(new Research("elements", this.SCIENCE, new Point(3, 13), 2));
-        //ELEMENT - SUB - START
-        this.registerResearch(new Research("elements_carbon_comp", this.SCIENCE, new Point(63, 113), 4, this.getResearch("elements")));
-        this.registerResearch(new Research("elements_bonds", this.SCIENCE, new Point(6, 23), 2, this.getResearch("elements")));
-        this.registerResearch(new Research("elements_alloys", this.SCIENCE, new Point(12, 25), 2, this.getResearch("elements")));
-        //ELEMENT - SUB - END
-        this.registerResearch(new Research("phytomining", this.SCIENCE, new Point(3, 16), 2));
-        //POWER
-        this.registerResearch("storage", new Research("storage", this.POWER, new Point(23, 24), 2));
-        this.registerResearch(new Research("tesla_tower", this.POWER, new Point(36, 65), 3));
-        this.registerResearch("antimatter_gen", new Research("antimatter_gen", this.POWER, new Point(93, 149), 4));
-
+		//Power
+        this.registerResearch(new Research("basic_storage", this.POWER, new Point(10,7 ), 1));
+        this.registerResearch(new Research("advanced_storage", this.POWER, new Point (25,18), 2, this.getResearch("basic_storage")));
+        this.registerResearch(new Research("experimental_stoage", this.POWER, new Point (40, 32), 3, this.getResearch("advanced_storage")));
+        this.registerResearch(new Research("tesla_tower", this.POWER, new Point(60,52 ), 4, this.getResearch("experimental_storage")));
+        this.registerResearch(new Research("battery", this.POWER, new Point(15,11), 2, this.getResearch("basic_storage")));
+        this.registerResearch(new Research("advanced_battery", this.POWER, new Point(27, 20), 3, this.getResearch("battery")));
+        this.registerResearch(new Research("improved_coal", this.POWER, new Point(16,24), 2));
+        this.registerResearch(new Research("improved_coal_generator", this.POWER, new Point(20, 11), 2));
+        this.registerResearch(new Research("experimental_coal_generator", this.POWER, new Point(32, 20), 3, this.getResearch("improved_coal_generator")));
+        this.registerResearch(new Research("antimatter_generator", this.POWER, new Point(90, 82), 4));
+        this.registerResearch(new Research("thermal_generator", this.POWER, new Point(34, 24), 3, this.getResearch("improved_coal_generator")));
+		this.registerResearch(new Research("improved_thermal_generator", this.POWER, new Point(45, 34), 4, this.getResearch("thermal_generator")));
+		this.registerResearch(new Research("bio_generator", this.POWER, new Point (32, 26), 3, this.getResearch("improved_coal_generator")));
+		this.registerResearch(new Research("improved_bio_generator", this.POWER, new Point (42, 37), 4, this.getResearch("bio_generator")));
+		this.registerResearch(new Research("solar_panel", this.POWER, new Point(34, 37), 3, this.getResearch("improved_coal_generator")));
+		this.registerResearch(new Research("improved_solar_panel", this.POWER, new Point(47, 53), 4, this.getResearch("solar_panel")));
+		this.registerResearch(new Research("turbine", this.POWER, new Point(38,30), 3, this.getResearch("improved_coal_generator"))); 
+		this.registerResearch(new Research("improved_turbine", this.POWER, new Point(54, 45), 4, this.getResearch("turbine")));
+		this.registerResearch(new Research("advanced_cable", this.POWER, new Point(28, 19), 2));
+		this.registerResearch(new Research("experimental_cable", this.POWER, new Point(42,37), 3, this.getResearch("advanced_cable")));
+		//Metals And Elements
+		this.registerResearch(new Research("fractional_distillation", this.METALS_AND_ELEMENTS, new Point(10, 15), 1));
+		this.registerResearch(new Research("plastic", this.METALS_AND_ELEMENTS, new Point(19,15), 2, this.getResearch("fractional_distillation")));
+		this.registerResearch(new Research("bio_fuel", this.METALS_AND_ELEMENTS, new Point(25,32), 2, this.getResearch("fractional_distillation")));
+		this.registerResearch(new Research("improved_coal", this.METALS_AND_ELEMENTS, new Point(16,24), 2));
+		
+		
 		//Binding of text and research still has to be done!
 
 		this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("mass_spec"));
