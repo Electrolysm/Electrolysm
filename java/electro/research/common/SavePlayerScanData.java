@@ -8,10 +8,9 @@ import org.lwjgl.Sys;
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 import java.io.*;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 import java.util.*;
 
 /**
@@ -181,37 +180,16 @@ public class SavePlayerScanData
 
         public static String encryptString(String data)
         {
-            try {
-                System.out.println("encrypt");
+            return data;
+        }
 
-                //Keys must be 8 bytes long!!
-                byte[] input = data.getBytes();
-                byte[] keyBytes = ("12345678").getBytes();//ResearchDataHelper.getKey();
-                byte[] ivBytes = ("87654321").getBytes();//ResearchDataHelper.getIV();
+        private static final String ENCRYPTION_ALGORITHM = "AES/ECB/PKCS5Padding";
+        private static final SecureRandom RANDOM = new SecureRandom();
 
-                SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
-                IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
-                Cipher cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
-
-                cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
-                byte[] encrypted = new byte[cipher.getOutputSize(input.length)];
-                int enc_len = cipher.update(input, 0, input.length, encrypted, 0);
-                enc_len += cipher.doFinal(encrypted, enc_len);
-
-                System.out.println(String.valueOf(encrypted));
-                //return String.valueOf(encrypted);
-                return data;
-            }
-            //Lists need to be decoded before checks are made...
-            catch(ShortBufferException e) { e.printStackTrace(); System.exit(0); }
-            catch(IllegalBlockSizeException e) { e.printStackTrace(); System.exit(0); }
-            catch(BadPaddingException e) { e.printStackTrace(); System.exit(0); }
-            catch(NoSuchPaddingException e){ e.printStackTrace(); System.exit(0); }
-            catch(NoSuchAlgorithmException e) { e.printStackTrace(); System.exit(0); }
-            catch(InvalidKeyException e) { e.printStackTrace(); System.exit(0); }
-            catch(InvalidAlgorithmParameterException e) { e.printStackTrace(); System.exit(0); }
-
-            return null;
+        private static Cipher getCipher(final Key key, final int mode) throws GeneralSecurityException {
+            final Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
+            cipher.init(mode, key, RANDOM);
+            return cipher;
         }
 
 
