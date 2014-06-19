@@ -1,7 +1,11 @@
 package electro.research.system;
 
+import electro.electrolysmCore;
+import electro.handlers.GUIHandler;
 import electro.research.common.SavePlayerScanData;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +17,7 @@ import java.util.Set;
  */
 public class PlayerResearchEvent
 {
-    public static void callScanEvent(String username)
+    public static void callScanEvent(EntityPlayer player, String username)
     {
         Research research = null;
         if((research = onScanEvent(username)) != null)
@@ -22,9 +26,19 @@ public class PlayerResearchEvent
             if(!(SavePlayerScanData.ResearchData.hasPlayerUnlocked(username, research.getName())))
             {
                 new SavePlayerScanData.ResearchData(username, research.getName());
-                System.out.println(research.getName());
+                notifyPlayer(player);
+                //System.out.println(research.getName());
             }
         }
+    }
+
+    private static void notifyPlayer(EntityPlayer player)
+    {
+        World world = player.getEntityWorld();
+        int x = player.serverPosX;
+        int y = player.serverPosY;
+        int z = player.serverPosZ;
+       // player.openGui(electrolysmCore.GUIInstance, GUIHandler.id_research, world, x, y, z);
     }
 
     public static Research onScanEvent(String username)

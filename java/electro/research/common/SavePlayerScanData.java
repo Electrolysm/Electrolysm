@@ -48,7 +48,7 @@ public class SavePlayerScanData
         }
 
         public void reRun(String username, String newData) {
-            System.out.println("reRun");
+            //System.out.println("reRun");
             new ScanData(username, newData);
         }
 
@@ -69,7 +69,7 @@ public class SavePlayerScanData
         }
 
         public boolean dataAlreadyExists(String newData, List<String> list) {
-            System.out.println(newData + "." + newData.replace(" ", ""));
+            //System.out.println(newData + "." + newData.replace(" ", ""));
             Object[] arrayList = list.toArray();
             for (int i = 0; i < arrayList.length; i++) {
                 if (list.contains(newData.replace(" ", "")) || ((String) arrayList[i]).contains(newData)) {
@@ -198,7 +198,7 @@ public class SavePlayerScanData
         }
 
         public void reRun(String username, String newData) {
-            System.out.println("reRun");
+            //System.out.println("reRun");
             new ScanData(username, newData);
         }
 
@@ -217,11 +217,11 @@ public class SavePlayerScanData
         }
 
         public static boolean dataAlreadyExists(String newData, List<String> list) {
-            System.out.println(newData + "." + newData.replace(" ", ""));
+            //System.out.println(newData + "." + newData.replace(" ", ""));
             Object[] arrayList = list.toArray();
             for (int i = 0; i < arrayList.length; i++)
             {
-                System.out.println((encryptString(newData)));
+                //System.out.println((encryptString(newData)));
                 if (list.contains((newData.replace(" ", ""))) ||
                         ((String) arrayList[i]).contains((newData)))
                 {

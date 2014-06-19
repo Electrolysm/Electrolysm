@@ -25,7 +25,7 @@ public class scanner extends Item
     {
         //System.out.println(ResearchPoint.getPoints(new ItemStack(world.getBlock(x, y, z), 1, world.getBlockMetadata(x, y, z))));
         new SavePlayerScanData.ScanData(player.getDisplayName(), (new ItemStack(world.getBlock(x, y, z))).getUnlocalizedName());
-        PlayerResearchEvent.callScanEvent(player.getDisplayName());
+        PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
         return false;
     }
 

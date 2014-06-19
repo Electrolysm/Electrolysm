@@ -7,7 +7,9 @@ package electro;
 
 import java.io.File;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import electro.research.*;
+import electro.research.client.GuiTickHandler;
 import electro.research.common.SavePlayerScanData;
 import electro.research.common.ScanData;
 import electro.world.biome.*;
@@ -364,6 +366,8 @@ public class electrolysmCore
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
         MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());
+
+        FMLCommonHandler.instance().bus().register(new GuiTickHandler());
 
         long duration = (System.currentTimeMillis() - startTime);
         //LoggerHandler.info("Electrolysm Started in " + duration + "ms");

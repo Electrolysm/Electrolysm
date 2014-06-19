@@ -10,6 +10,8 @@ import electro.powerSystem.generators.container.ContainerGeneratorCoal;
 import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
 import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import electro.research.client.GUIIDCardInfo;
+import electro.research.client.GuiResearchNotify;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -30,6 +32,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 public class GUIHandler implements IGuiHandler
 {
     public static int id_bookIDCard = 42;
+    public static int id_research = 43;
 
 	@Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
@@ -151,6 +154,11 @@ public class GUIHandler implements IGuiHandler
         if(ID == this.id_bookIDCard )
         {
         	return new GUIIDCardInfo(player.inventory);
+        }
+
+        if(ID == this.id_research)
+        {
+            return new GuiResearchNotify(Minecraft.getMinecraft());
         }
         
         return null;

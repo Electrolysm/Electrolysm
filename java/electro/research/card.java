@@ -32,7 +32,7 @@ public class card extends Item
 
         if (!player.isSneaking())
         {
-            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(IChatComponent.Serializer.func_150699_a(message));
+            //FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(IChatComponent.Serializer.func_150699_a(message));
         }
         else
         {
