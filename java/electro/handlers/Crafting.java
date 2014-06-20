@@ -18,7 +18,13 @@ public class Crafting
     public static void addCrafting()
     {
     	ItemStack ingotCopper = new ItemStack(electrolysmCore.copperIngot);
-    	
+/*
+        GameRegistry.addRecipe(new ItemStack(electrolysmCore.itemScanner, 1, 0),
+                "C C", "IGI", "C C",
+                Character.valueOf('C'), "ingotCopper",
+                Character.valueOf('I'), Items.iron_ingot,
+                Character.valueOf('G'), Blocks.glass);*/
+
         GameRegistry.addRecipe(new ItemStack(electrolysmCore.researchDesk),
                                " X ", "YZY", "BMB",
                                'X', electrolysmCore.inkAndQuill,
@@ -366,11 +372,11 @@ public class Crafting
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 5), leadIngot, impureXP);
 		
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), copperIngot, pureXP);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), tinIngot, pureXP);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), ironIngot, pureXP);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), goldIngot, pureXP);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), silverIngot, pureXP);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 0), leadIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 1), tinIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 2), ironIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 3), goldIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 4), silverIngot, pureXP);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(pureID, 1, 5), leadIngot, pureXP);
 	    
 		GameRegistry.addSmelting(electrolysmCore.copperOre, new ItemStack(electrolysmCore.copperIngot, 1), 2F);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(electrolysmCore.Scandium),

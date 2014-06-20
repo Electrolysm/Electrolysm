@@ -52,7 +52,7 @@ public class SavePlayerScanData
             new ScanData(username, newData);
         }
 
-        public void makeFile(String username) {
+        public static void makeFile(String username) {
             try {
                 File file = new File(fileLocation + username + ".txt");
                 File fileDIR = new File(fileLocation1);
@@ -68,12 +68,14 @@ public class SavePlayerScanData
             return dataAlreadyExists(unlocalName, list);
         }
 
-        public boolean dataAlreadyExists(String newData, List<String> list) {
+        public static boolean dataAlreadyExists(String newData, List<String> list) {
             //System.out.println(newData + "." + newData.replace(" ", ""));
-            Object[] arrayList = list.toArray();
-            for (int i = 0; i < arrayList.length; i++) {
-                if (list.contains(newData.replace(" ", "")) || ((String) arrayList[i]).contains(newData)) {
-                    return true;
+            if(list != null) {
+                Object[] arrayList = list.toArray();
+                for (int i = 0; i < arrayList.length; i++) {
+                    if (list.contains(newData.replace(" ", "")) || ((String) arrayList[i]).contains(newData)) {
+                        return true;
+                    }
                 }
             }
 
@@ -81,12 +83,17 @@ public class SavePlayerScanData
         }
 
         public static List<String> getUserData(String username) {
-            if (getPlayerData(username) != null) {
+            if (getPlayerData(username) != null && getPlayerData(username).get(username) != null)
+            {
                 HashMap<String, List<String>> hashMap = getPlayerData(username);
                 List<String> listData = hashMap.get(username);
                 return listData;
             }
-            return null;
+            else
+            {
+                makeFile(username);
+                return null;
+            }
         }
 
         public static HashMap<String, List<String>> getPlayerData(String username) {
@@ -188,7 +195,7 @@ public class SavePlayerScanData
             //System.out.println("encrypt");
             String result = EncryptionHelper.encode(data);
             //System.out.println(result);
-            return result;
+            return data;
         }
 
         public static String decryptString(String data)
@@ -202,7 +209,7 @@ public class SavePlayerScanData
             new ScanData(username, newData);
         }
 
-        public void makeFile(String username) {
+        public static void makeFile(String username) {
             try {
                 File file = new File(fileLocation + username + ".txt");
                 file.createNewFile();
@@ -211,10 +218,31 @@ public class SavePlayerScanData
             }
         }
 
-        public static boolean hasPlayerUnlocked(String username, String unlocalName) {
-            List<String> list = getPlayerData(username).get(username);
-            return dataAlreadyExists(encryptString(unlocalName), list);
+        public static boolean hasPlayerUnlocked(String username, String unlocalName)
+        {
+            if(getPlayerData(username) != null && getPlayerData(username).get(username) != null) {
+                List<String> list = getPlayerData(username).get(username);
+                return dataAlreadyExists(encryptString(unlocalName), list);
+            }
+            else {
+                makeFile(username);
+                return false;
+            }
         }
+
+        public static boolean hasPlayerGotTier(String username, int requiredLevel)
+        {
+            List<String> list = getPlayerData(username).get(username);
+
+            if(list.contains(encryptString(requiredLevel + ",")) || list.contains(encryptString(requiredLevel + ",,")))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
 
         public static boolean dataAlreadyExists(String newData, List<String> list) {
             //System.out.println(newData + "." + newData.replace(" ", ""));
@@ -232,7 +260,7 @@ public class SavePlayerScanData
             return false;
         }
 
-        public List<String> getUserData(String username) {
+        public static List<String> getUserData(String username) {
             if (getPlayerData(username) != null) {
                 HashMap<String, List<String>> hashMap = getPlayerData(username);
                 List<String> listData = hashMap.get(username);

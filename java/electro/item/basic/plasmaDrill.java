@@ -6,9 +6,11 @@ import java.util.Random;
 import electro.block.advMachines.te.TileEntityCharger;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.tileentity.TileEntity;
@@ -172,6 +174,14 @@ public class plasmaDrill extends ItemTool
         }
 
         return true;
+    }
+
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, List list)
+    {
+        list.add(new ItemStack(this, 1, 0));
+        list.add(new ItemStack(this, 1, 1));
+        list.add(new ItemStack(this, 1, 1554));
     }
 
     @Override

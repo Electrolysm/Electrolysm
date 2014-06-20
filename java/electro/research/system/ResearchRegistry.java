@@ -2,10 +2,12 @@ package electro.research.system;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import api.LoggerHandler;
+import electro.research.common.SavePlayerScanData;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import electro.research.pointsSystem.Point;
@@ -16,17 +18,22 @@ public class ResearchRegistry
 	public ResearchRegistry(boolean doRegister)
 	{
 		if(doRegister)
-		{
+		{/*
+            researchMap.clear();
+            requireMap.clear();
+            requireMapRev.clear();*/
+
 			LoggerHandler.info("Registering research.");
 			this.doRegister();
 		}
 	}
 
 	EnumResearchType POWER = new EnumResearchType("power");
-	EnumResearchType METALS_AND_ELEMENTS = new EnumResearchType("metals and elements ");
+	EnumResearchType METALS_AND_ELEMENTS = new EnumResearchType("metals_and_elements");
 	EnumResearchType RESEARCH = new EnumResearchType("research");
 	EnumResearchType ROBOTICS = new EnumResearchType("robotics");
 	EnumResearchType MACHINES = new EnumResearchType("machines");
+    EnumResearchType HIDDEN = new EnumResearchType("hidden");//needs better name
 
 	public void doRegister()
 	{
@@ -35,30 +42,35 @@ public class ResearchRegistry
 
 		//Power
         this.registerResearch(new Research("basic_storage", this.POWER, new Point(10,7 ), 1));
-        this.registerResearch(new Research("advanced_storage", this.POWER, new Point (25,18), 2, this.getResearch("basic_storage")));
-        this.registerResearch(new Research("experimental_stoage", this.POWER, new Point (40, 32), 3, this.getResearch("advanced_storage")));
-        this.registerResearch(new Research("tesla_tower", this.POWER, new Point(60,52 ), 4, this.getResearch("experimental_storage")));
-        this.registerResearch(new Research("battery", this.POWER, new Point(15,11), 2, this.getResearch("basic_storage")));
-        this.registerResearch(new Research("advanced_battery", this.POWER, new Point(27, 20), 3, this.getResearch("battery")));
+        this.registerResearch(new Research("advanced_storage", this.POWER, new Point (25,18), 2));
+        this.registerResearch(new Research("experimental_stoage", this.POWER, new Point (40, 32), 3));
+        this.registerResearch(new Research("tesla_tower", this.POWER, new Point(60,52 ), 4));
+        this.registerResearch(new Research("battery", this.POWER, new Point(15,11), 2));
+        this.registerResearch(new Research("advanced_battery", this.POWER, new Point(27, 20), 3));
         this.registerResearch(new Research("improved_coal", this.POWER, new Point(16,24), 2));
         this.registerResearch(new Research("improved_coal_generator", this.POWER, new Point(20, 11), 2));
-        this.registerResearch(new Research("experimental_coal_generator", this.POWER, new Point(32, 20), 3, this.getResearch("improved_coal_generator")));
+        this.registerResearch(new Research("experimental_coal_generator", this.POWER, new Point(32, 20), 3));
         this.registerResearch(new Research("antimatter_generator", this.POWER, new Point(90, 82), 4));
-        this.registerResearch(new Research("thermal_generator", this.POWER, new Point(34, 24), 3, this.getResearch("improved_coal_generator")));
-		this.registerResearch(new Research("improved_thermal_generator", this.POWER, new Point(45, 34), 4, this.getResearch("thermal_generator")));
-		this.registerResearch(new Research("bio_generator", this.POWER, new Point (32, 26), 3, this.getResearch("improved_coal_generator")));
-		this.registerResearch(new Research("improved_bio_generator", this.POWER, new Point (42, 37), 4, this.getResearch("bio_generator")));
-		this.registerResearch(new Research("solar_panel", this.POWER, new Point(34, 37), 3, this.getResearch("improved_coal_generator")));
-		this.registerResearch(new Research("improved_solar_panel", this.POWER, new Point(47, 53), 4, this.getResearch("solar_panel")));
-		this.registerResearch(new Research("turbine", this.POWER, new Point(38,30), 3, this.getResearch("improved_coal_generator"))); 
-		this.registerResearch(new Research("improved_turbine", this.POWER, new Point(54, 45), 4, this.getResearch("turbine")));
+        this.registerResearch(new Research("thermal_generator", this.POWER, new Point(34, 24), 3));
+		this.registerResearch(new Research("improved_thermal_generator", this.POWER, new Point(45, 34), 4));
+		this.registerResearch(new Research("bio_generator", this.POWER, new Point (32, 26), 3));
+		this.registerResearch(new Research("improved_bio_generator", this.POWER, new Point (42, 37), 3));
+		this.registerResearch(new Research("solar_panel", this.POWER, new Point(34, 37), 3));
+		this.registerResearch(new Research("improved_solar_panel", this.POWER, new Point(47, 53), 4));
+		this.registerResearch(new Research("turbine", this.POWER, new Point(38,30), 3));
+		this.registerResearch(new Research("improved_turbine", this.POWER, new Point(54, 45), 4));
 		this.registerResearch(new Research("advanced_cable", this.POWER, new Point(28, 19), 2));
-		this.registerResearch(new Research("experimental_cable", this.POWER, new Point(42,37), 3, this.getResearch("advanced_cable")));
+		this.registerResearch(new Research("experimental_cable", this.POWER, new Point(42,37), 3));
 		//Metals And Elements
 		this.registerResearch(new Research("fractional_distillation", this.METALS_AND_ELEMENTS, new Point(10, 15), 1));
-		this.registerResearch(new Research("plastic", this.METALS_AND_ELEMENTS, new Point(19,15), 2, this.getResearch("fractional_distillation")));
-		this.registerResearch(new Research("bio_fuel", this.METALS_AND_ELEMENTS, new Point(25,32), 2, this.getResearch("fractional_distillation")));
+		this.registerResearch(new Research("plastic", this.METALS_AND_ELEMENTS, new Point(19,15), 2));
+		this.registerResearch(new Research("bio_fuel", this.METALS_AND_ELEMENTS, new Point(25,32), 2));
 		this.registerResearch(new Research("improved_coal", this.METALS_AND_ELEMENTS, new Point(16,24), 2));
+
+
+        //Elliott DON'T remove this, trust me...
+        this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
+        //this.registerResearch(new Research("wrong_cold_fusion", this.HIDDEN, new Point(0, 0), 3, this.getResearch("cold_fusion")));
 		
 		
 		//Binding of text and research still has to be done!
@@ -69,7 +81,7 @@ public class ResearchRegistry
         catch (Exception e) { e.printStackTrace(); }
 
 		long duration = (System.currentTimeMillis() - time);
-        //LoggerHandler.info("Research registry completed in " + duration + "ms");
+        LoggerHandler.info("Research registry completed in " + duration + "ms");
 //        System.out.println(requireMap.get((this.getResearch("mass_spec")).toAdvString()));
         //System.exit(0);
 	}
@@ -77,6 +89,18 @@ public class ResearchRegistry
 	private static HashMap<String, String> researchMap = new HashMap<String, String>();
 	private static HashMap<String, String> requireMap = new HashMap<String, String>();
     private static HashMap<String, String> requireMapRev = new HashMap<String, String>();
+    private static HashMap<String, List<String>> reliantMap = new HashMap<String, List<String>>();
+
+    public void linkResearch(Research research, List<Research> reliants)
+    {
+        List<String> stringList = new ArrayList<String>();
+        for(int i = 0; i < reliants.size(); i++)
+        {
+            stringList.add(reliants.get(i).toAdvString());
+        }
+
+        reliantMap.put(research.toAdvString(), stringList);
+    }
 
     public void bindRequirementToResearch(Requirement req, Research research) throws Exception
     {
@@ -121,7 +145,7 @@ public class ResearchRegistry
 			return null;
 		}
 		String[] details = string.split(":");
-		if(details.length != 5)
+		if(details.length != 4)
 		{
 			return null;
 		}
@@ -131,19 +155,9 @@ public class ResearchRegistry
 		int engPoint = Integer.parseInt(String.valueOf(details[2].split("--")[0]));
 		int sciPoint = Integer.parseInt(String.valueOf(details[2].split("--")[1]));
 		int tier = Integer.parseInt(String.valueOf(details[3]));
-		String reliant = String.valueOf(details[4]);
-		Research reliantR;
 		EnumResearchType typeE = getEnumFromString(type);
 
-		if(details[4].contains(":null") || details[4] == null)
-		{
-			return new Research(name, typeE, new Point(engPoint, sciPoint), tier);
-		}
-		else
-		{
-			reliantR = getResearchFromString(reliant);
-			return new Research(name, typeE, new Point(engPoint, sciPoint), tier, reliantR);
-		}
+    	return new Research(name, typeE, new Point(engPoint, sciPoint), tier);
 	}
 
 	private static EnumResearchType getEnumFromString(String type)
@@ -164,7 +178,7 @@ public class ResearchRegistry
 	{
 		Research research = this.getResearch(name);
 		
-		if(research.getReliant() != null)
+		if(this.reliantMap.get(research.toAdvString()) != null)
 		{
 			return true;
 		}
@@ -174,16 +188,23 @@ public class ResearchRegistry
 		}
 	}
 	
-	public Research getSubResearchForName(String name)
+	public List<Research> getSubResearchForName(String name)
 	{
 		if(doesNameSubResearch(name))
 		{
 			Research research = this.getResearch(name);
 			
-			if(research.getReliant() != null)
+			if(this.reliantMap.get(research.toAdvString()) != null)
 			{
-				return research.getReliant();
-			}
+                List<Research> researchList = new ArrayList<Research>();
+                for(int i =0; i < this.reliantMap.get(research.toAdvString()).size(); i++)
+                {
+                    researchList.add(i, this.getResearchFromString(this.reliantMap.get(research.toAdvString()).get(i)));
+                }
+
+                return researchList;
+
+            }
 			else
 			{
 				return null;
@@ -217,6 +238,38 @@ public class ResearchRegistry
         String[] array = requireString.split(":");
 
         return array;
+    }
+
+    public static boolean unlockedReliants(String username, Research research)
+    {
+        List<String> reliants = reliantMap.get(research.toAdvString());
+
+        if(reliants == null)
+        {
+            return true;
+        }
+
+        Research[] array = new Research[reliants.size()];
+        boolean[] booleanArray = new boolean[reliants.size()];
+        for(int i = 0; i < reliants.size(); i++)
+        {
+            booleanArray[i] = SavePlayerScanData.ResearchData.hasPlayerUnlocked(username,
+                    getResearchFromString(reliants.get(i)).getName());
+        }
+        String check= "";
+        for(int i = 0; i < booleanArray.length; i++)
+        {
+            check = check + String.valueOf(booleanArray[i]);
+        }
+
+        if(check.contains("false"))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
 }

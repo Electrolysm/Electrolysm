@@ -8,6 +8,7 @@ package electro;
 import java.io.File;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import electro.research.*;
 import electro.handlers.TickHandler;
 import electro.world.biome.*;
@@ -341,14 +342,8 @@ public class electrolysmCore
         //System.exit(0);
         //ResearchHandler.downloadOnlineData();
         //ResearchHandler.getStoredResearch();
-    }
 
-    @EventHandler
-    public void loadConfiguration(FMLPreInitializationEvent evt)
-    {
     	//Fluids.registerStuff();
-        Crafting.addCrafting();
-        Crafting.addFurnaceRecipes();
         RegisterBlock.register();
         RegisterBlock.registerItems();
         new MultipartHandler();
@@ -367,7 +362,14 @@ public class electrolysmCore
 
         long duration = (System.currentTimeMillis() - startTime);
         //LoggerHandler.info("Electrolysm Started in " + duration + "ms");
-    } 
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        Crafting.addCrafting();
+        Crafting.addFurnaceRecipes();
+    }
 
     @SideOnly(Side.CLIENT)
     @EventHandler

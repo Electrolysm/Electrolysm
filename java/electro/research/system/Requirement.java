@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 public class Requirement 
 {
 	public Object[] requirement;
+    public Object requirementSingle;
 	
 	public Requirement(Item[] item)
 	{
@@ -28,27 +29,27 @@ public class Requirement
 		this.requirement = object;
 	}
 
+    public Requirement(String string) { requirementSingle = string; requirement = null; }
+
     @Override
     public String toString()
     {
         String ret = "";
-        for(int i = 0; i < requirement.length; i++)
-        {
-            if(requirement[i] instanceof Block)
-            {
-                ret = ret + ((Block)requirement[i]).getUnlocalizedName() + ":";
+        if(requirement != null && requirementSingle == null) {
+            for (int i = 0; i < requirement.length; i++) {
+                if (requirement[i] instanceof Block) {
+                    ret = ret + ((Block) requirement[i]).getUnlocalizedName() + ":";
+                } else if (requirement[i] instanceof Item) {
+                    ret = ret + ((Item) requirement[i]).getUnlocalizedName() + ":";
+                } else if (requirement[i] instanceof Material) {
+                    ret = ret + ((Material) requirement[i]) + ":";
+                }
             }
-            else if(requirement[i] instanceof Item)
-            {
-                ret = ret + ((Item)requirement[i]).getUnlocalizedName() + ":";
-            }
-            else if(requirement[i] instanceof Material)
-            {
-                ret = ret + ((Material)requirement[i]) + ":";
-            }
-
+            return ret;
         }
-        return ret;
+        else {
+            return String.valueOf(requirementSingle);
+        }
     }
 
 }
