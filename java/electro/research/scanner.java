@@ -1,10 +1,13 @@
 package electro.research;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import electro.research.common.SavePlayerScanData;
 import electro.research.pointsSystem.ResearchPoint;
 import electro.research.system.PlayerResearchEvent;
 import electro.research.system.ResearchRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -141,6 +144,14 @@ public class scanner extends Item
             entityCheck = entity;
             return true;
         }
+    }
+
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister reg)
+    {
+        this.itemIcon = reg.registerIcon("electrolysm:" + "scannerAnimation");
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import api.LoggerHandler;
+import electro.electrolysmCore;
 import electro.research.common.SavePlayerScanData;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -121,9 +122,15 @@ public class ResearchRegistry
 		//Binding of text and research still has to be done!
 
         try {
-            this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("plastic"));
+            //this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("plastic"));
+            this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.iron_ore, electrolysmCore.copperOre}),
+                    this.getResearch("basic_storage"));
+            /*this.bindRequirementToResearch(new Requirement(new Block[]{electrolysmCore.blastProof}),
+                    this.getResearch("advanced_storage"));*/
+
         }
         catch (Exception e) { e.printStackTrace(); }
+
 
 		long duration = (System.currentTimeMillis() - time);
         LoggerHandler.info("Research registry completed in " + duration + "ms");

@@ -195,7 +195,7 @@ public class SavePlayerScanData
             //System.out.println("encrypt");
             String result = EncryptionHelper.encode(data);
             //System.out.println(result);
-            return data;
+            return result;
         }
 
         public static String decryptString(String data)
