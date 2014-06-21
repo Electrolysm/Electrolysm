@@ -16,6 +16,7 @@ import electro.oreProccessing.te.TileEntitySmeltory;
 import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
 import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import electro.powerSystem.te.TileEntityWire;
+import electro.research.te.TileEntityCollector;
 
 /**
  * Created by Clarky158 on 26/01/14.
@@ -39,5 +40,6 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityGeneratorAntimatter.class, "TileEntityGeneratorAntimatter");
         GameRegistry.registerTileEntity(TileEntityDesk.class, "TileEntityDesk");
         GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharge");
+        GameRegistry.registerTileEntity(TileEntityCollector.class, "TileEntityCollector");
     }
 }

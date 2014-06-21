@@ -154,6 +154,7 @@ public class Electrolysm
     public static Item labGoggles = new ItemArmorLab(0, "labGoggles");
     public static Item itemScanner = new scanner();
     public static Item researchDevice = new researchDevice();
+    public static Block collector = new collector();
     //public static Item itemScanner = new itemScanner();
     //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 

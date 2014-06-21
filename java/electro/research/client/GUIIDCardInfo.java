@@ -100,13 +100,16 @@ public class GUIIDCardInfo extends GuiScreen {
         GL11.glColor4f(1F, 1F, 1F, 1F);
         mc.renderEngine.bindTexture(texture);
         drawTexturedModalRect(left + 15, top, 0, 0, guiWidth, guiHeight);
+
+        drawTexturedModalRect(left + 18, top + 22 + 19, 0, 475 + (38 / 2), 38 / 2, 38 / 2);
+        drawTexturedModalRect(left + 18 + 203, top + 22 + 19, 0 + (38 / 2), 475 + (38 / 2), 38 / 2, 38 / 2);
+        drawTexturedModalRect(left + 18 + 202, top + 48 + (32 / 2), 0 + 38, 475 + (38 / 2), 38 / 2, 38 / 2);
+
         drawBookmark(left + guiWidth / 2, top - getTitleHeight(), title, true);
         String subtitle = null;
-        if(subtitle != null) {
-            GL11.glScalef(0.5F, 0.5F, 1F);
-            drawCenteredString(fontRendererObj, subtitle, left * 2 + guiWidth, (top - getTitleHeight() + 11) * 2, 0x00FF00);
-            GL11.glScalef(2F, 2F, 1F);
-        }
+
+
+
 
         super.drawScreen(par1, par2, par3);
     }

@@ -55,6 +55,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.diseasedLeaves, "diseasedLeaves");
         GameRegistry.registerBlock(Electrolysm.diseasedLog, "diseasedLog");
         GameRegistry.registerBlock(Electrolysm.matterGen, "antiMatterGen");
+        GameRegistry.registerBlock(Electrolysm.collector, "evironmentalCollector");
 
 
         //Fluids
