@@ -235,7 +235,7 @@ public class GUIIDCardInfo extends GuiScreen {
             int x = 0;
             int size; if(list.size() >= buttonList.size()) { size = buttonList.size(); } else { size = list.size(); }
 
-            if(nextPage) { x = 12; value = 12; nextPage = false; } else { x = 0; value = 0; }
+            if(nextPage && list.size() >= itemsPerPage) { x = 12; value = 12; nextPage = false; } else { x = 0; value = 0; }
 
             for(int i = x; i < size + x; i++)
             {
@@ -252,10 +252,10 @@ public class GUIIDCardInfo extends GuiScreen {
                 }
                 else
                 {
-                    GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i);
+                    GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
 
                     button.displayString = (ColourEnumHelper.BLACK + WordUtils.capitalize(String.valueOf(
-                            (/*EncryptionHelper.encodeWithKey*/(researchName/*, "bus"*/)).replace("_", " "))));
+                            (EncryptionHelper.encodeWithKey(researchName, "bus")).replace("_", " "))));
                 }
             }
         }
