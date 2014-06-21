@@ -2,6 +2,7 @@ package electro.block.liquids;
 
 import java.util.List;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import api.LoggerHandler;
-import electro.electrolysmCore;
 import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +26,7 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
     public fluidStorage()
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.hasSubtypes = true;
     }
 
@@ -72,7 +72,7 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
     {
         for (int i = 0; i < CommonProxy.FLUIDS.length; i++)
         {
-            list.add(new ItemStack(electrolysmCore.fluidStorage, 1, i));
+            list.add(new ItemStack(Electrolysm.fluidStorage, 1, i));
         }
     }
 
@@ -103,39 +103,39 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 	                //Bottom
 	                world.setBlock(x, y - 1, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
-	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
+	                this.setInventory(player, player.inventory, new ItemStack(Electrolysm.fluidStorage, 1, 0));
 	            }
 	            else if (side == 1)
 	            {
 	                //Top
 	                world.setBlock(x, y + 1, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
-	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
+	                this.setInventory(player, player.inventory, new ItemStack(Electrolysm.fluidStorage, 1, 0));
 	            }
 	            else if (side == 2)
 	            {
 	                //Right
 	                world.setBlock(x, y, z - 1, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
-	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
+	                this.setInventory(player, player.inventory, new ItemStack(Electrolysm.fluidStorage, 1, 0));
 	            }
 	            else if (side == 3)
 	            {
 	                world.setBlock(x, y, z + 1, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
-	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
+	                this.setInventory(player, player.inventory, new ItemStack(Electrolysm.fluidStorage, 1, 0));
 	            }
 	            else if (side == 4)
 	            {
 	                world.setBlock(x - 1, y, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
-	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
+	                this.setInventory(player, player.inventory, new ItemStack(Electrolysm.fluidStorage, 1, 0));
 	            }
 	            else if (side == 5)
 	            {
 	                world.setBlock(x + 1, y, z, this.getBlockBasedOnItemStack(item));
 	                item.stackSize--;
-	                this.setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, 0));
+	                this.setInventory(player, player.inventory, new ItemStack(Electrolysm.fluidStorage, 1, 0));
 	            }
 	            else
 	            {
@@ -159,13 +159,13 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
     			int meta = this.getMetaFromBlock(world.getBlock(x + xCoord, y + yCoord, z + zCoord));
     			if(item.stackSize > 1)
     			{
-    				item = new ItemStack(electrolysmCore.fluidStorage, 1, meta);
+    				item = new ItemStack(Electrolysm.fluidStorage, 1, meta);
     				world.setBlockToAir(x + xCoord, y + yCoord, z + zCoord);
     			}
     			else
     			{
     				item.stackSize--;
-    				setInventory(player, player.inventory, new ItemStack(electrolysmCore.fluidStorage, 1, meta));
+    				setInventory(player, player.inventory, new ItemStack(Electrolysm.fluidStorage, 1, meta));
     				world.setBlockToAir(x + xCoord, y + yCoord, z + zCoord);
     			}
     		}
@@ -216,11 +216,11 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 
 	private int getMetaFromBlock(Block block)
 	{
-		if(block == electrolysmCore.plasma)
+		if(block == Electrolysm.plasma)
 		{
 			return 1;
 		}
-		else if(block == electrolysmCore.sulpuricAcid)
+		else if(block == Electrolysm.sulpuricAcid)
 		{
 			return 2;
 		}
@@ -263,11 +263,11 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 
         if (displayName.toLowerCase().contains("plasma"))
         {
-            return electrolysmCore.plasma;
+            return Electrolysm.plasma;
         }
         else if (displayName.toLowerCase().contains("sulphuric"))
         {
-            return electrolysmCore.sulpuricAcid;
+            return Electrolysm.sulpuricAcid;
         }
         else if (displayName.toLowerCase().contains("water"))
         {

@@ -1,8 +1,8 @@
 package electro.crafting.items;
 
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -12,7 +12,7 @@ public class transistor extends Item
     {
         super();
         // TODO Auto-generated constructor stub
-            this.setCreativeTab(electrolysmCore.TabElectrolysm);
+            this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("transistor");
         //transistor
     }

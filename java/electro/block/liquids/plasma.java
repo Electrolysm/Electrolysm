@@ -1,13 +1,10 @@
 package electro.block.liquids;
 
+import electro.Electrolysm;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import electro.electrolysmCore;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,7 +18,7 @@ public class plasma extends BlockFluidClassic
     public plasma()
     {
         super(new ModFluidPlasma(), Material.water);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
     @Override
     @SideOnly(Side.CLIENT)

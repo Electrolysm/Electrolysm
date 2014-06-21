@@ -1,14 +1,13 @@
 package electro.crafting.items;
 
+import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.crafting.items.te.TileEntityLumRed;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +17,7 @@ public class BlockLumRed extends BlockContainer
     public BlockLumRed()
     {
         super(Material.glass);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setLightLevel(1.0F);
         LanguageRegistry.addName(this, "Luminous Redstone Block");
         this.setHardness(2F);

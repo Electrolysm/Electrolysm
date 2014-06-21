@@ -3,20 +3,19 @@ package electro.item.basic;
 import java.util.List;
 import java.util.Random;
 
+import electro.Electrolysm;
 import electro.block.advMachines.te.TileEntityCharger;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -29,7 +28,7 @@ public class plasmaDrill extends ItemTool
     public plasmaDrill()
     {
         super(25f, ToolMaterial.EMERALD, Block.blockRegistry.getKeys());
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("plasmaDrill");
         this.toolMaterial = ToolMaterial.EMERALD;
         this.maxStackSize = 1;
@@ -82,28 +81,28 @@ public class plasmaDrill extends ItemTool
 
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
     {
-        if (world.getBlock(x, y, z) == electrolysmCore.blastProof)
+        if (world.getBlock(x, y, z) == Electrolysm.blastProof)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.stone4", 1, 1);
             return true;
         }
 
-        if (world.getBlock(x, y, z) == electrolysmCore.blastDoor)
+        if (world.getBlock(x, y, z) == Electrolysm.blastDoor)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.stone4", 1, 1);
             return true;
         }
 
-        if (world.getBlock(x, y, z) == electrolysmCore.blastGlass)
+        if (world.getBlock(x, y, z) == Electrolysm.blastGlass)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.glass1", 1, 1);
             return true;
         }
 
-        if (world.getBlock(x, y, z) == electrolysmCore.modBlastGlass)
+        if (world.getBlock(x, y, z) == Electrolysm.modBlastGlass)
         {
             world.setBlockToAir(x, y, z);
             world.playSoundAtEntity(player, "dig.glass1", 1, 1);

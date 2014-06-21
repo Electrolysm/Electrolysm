@@ -2,7 +2,7 @@ package electro.sciences.robotics;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,7 +13,7 @@ public class partAssemb extends Block
     {
         super(Material.iron);
         // TODO Auto-generated constructor stub
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
     @Override
     @SideOnly(Side.CLIENT)

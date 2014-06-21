@@ -5,7 +5,7 @@ import java.util.List;
 import api.specialFuel.FuelData;
 import api.specialFuel.IFuelStorage;
 import api.specialFuel.SpecialFuelHandler;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +24,7 @@ public class electroContain extends Item implements IFuelStorage {
 	public electroContain() {
 		super();
 		
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.hasSubtypes = true;
 	}
 
@@ -74,7 +74,7 @@ public class electroContain extends Item implements IFuelStorage {
     {
         for (int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)
         {
-            list.add(new ItemStack(electrolysmCore.electroContain, 1, i));
+            list.add(new ItemStack(Electrolysm.electroContain, 1, i));
         }
     }
     

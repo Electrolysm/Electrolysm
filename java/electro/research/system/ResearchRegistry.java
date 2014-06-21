@@ -7,10 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import api.LoggerHandler;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.research.common.SavePlayerScanData;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import electro.research.pointsSystem.Point;
 import net.minecraft.init.Blocks;
 
@@ -115,7 +114,7 @@ public class ResearchRegistry
 		
 		
         //Elliott DON'T remove this, trust me...
-        this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
+        //this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
         //this.registerResearch(new Research("wrong_cold_fusion", this.HIDDEN, new Point(0, 0), 3, this.getResearch("cold_fusion")));
 		
 		
@@ -123,7 +122,7 @@ public class ResearchRegistry
 
         try {
             //this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("plastic"));
-            this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.iron_ore, electrolysmCore.copperOre}),
+            this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.iron_ore, Electrolysm.copperOre}),
                     this.getResearch("basic_storage"));
             /*this.bindRequirementToResearch(new Requirement(new Block[]{electrolysmCore.blastProof}),
                     this.getResearch("advanced_storage"));*/
@@ -190,7 +189,7 @@ public class ResearchRegistry
 		return research;
 	}
 
-	private static Research getResearchFromString(String string)
+	public static Research getResearchFromString(String string)
 	{
 		if(string == null)
 		{
@@ -212,7 +211,7 @@ public class ResearchRegistry
     	return new Research(name, typeE, new Point(engPoint, sciPoint), tier);
 	}
 
-	private static EnumResearchType getEnumFromString(String type)
+	public static EnumResearchType getEnumFromString(String type)
 	{
 		HashMap<String, EnumResearchType> hashMap = EnumResearchType.getHashMap();
 

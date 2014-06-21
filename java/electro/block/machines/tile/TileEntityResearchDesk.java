@@ -2,6 +2,7 @@ package electro.block.machines.tile;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -9,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import electro.electrolysmCore;
 import electro.research.Research;
 
 public class TileEntityResearchDesk extends TileEntity implements IInventory
@@ -108,7 +108,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     @Override
     public void updateEntity()
     {
-        Block desk = electrolysmCore.desk;
+        Block desk = Electrolysm.desk;
         int desksClose = 0;
         ItemStack inStack = getStackInSlot(0);
         ItemStack card = getStackInSlot(2);

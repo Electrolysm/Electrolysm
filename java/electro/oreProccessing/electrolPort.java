@@ -1,8 +1,7 @@
 package electro.oreProccessing;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.oreProccessing.te.TileEntityPort;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +13,7 @@ public class electrolPort extends BlockContainer
     public electrolPort()
     {
         super(Material.iron);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(4F);
     }
 
@@ -33,7 +32,7 @@ public class electrolPort extends BlockContainer
         }
         else if (!player.isSneaking())
         {
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
         else

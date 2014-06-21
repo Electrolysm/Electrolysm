@@ -1,7 +1,6 @@
 package electro.oreProccessing.te;
 
-import java.util.Random;
-
+import electro.Electrolysm;
 import electro.oreProccessing.recipes.LiquidiserRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,8 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
-import electro.oreProccessing.recipes.CrusherRecipes;
 
 public class TileEntityLiquidiser extends TileEntity implements IInventory, ISidedInventory
 {
@@ -215,19 +212,19 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 		
 		int overall = 0;
 		
-		if(id1 == electrolysmCore.sulpuricAcid)
+		if(id1 == Electrolysm.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
-		if(id2 == electrolysmCore.sulpuricAcid)
+		if(id2 == Electrolysm.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
-		if(id3 == electrolysmCore.sulpuricAcid)
+		if(id3 == Electrolysm.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
-		if(id4 == electrolysmCore.sulpuricAcid)
+		if(id4 == Electrolysm.sulpuricAcid)
 		{
 			overall = overall + 1;
 		}
@@ -262,7 +259,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || item.getItem() == electrolysmCore.crystal;
+        return side != 0 || slot != 1 || item.getItem() == Electrolysm.crystal;
     }
     
     @Override

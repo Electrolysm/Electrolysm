@@ -2,17 +2,14 @@ package electro.research;
 
 import java.util.List;
 
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
-import electro.block.machines.tile.TileEntityWorkBench;
 import electro.common.CommonProxy;
-import electro.handlers.ResearchHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -27,7 +24,7 @@ public class researchPaper extends Item
     public researchPaper()
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("researchPaper");
         this.setMaxStackSize(1);
     }

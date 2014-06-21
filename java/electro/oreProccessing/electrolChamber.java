@@ -2,17 +2,12 @@ package electro.oreProccessing;
 
 import java.util.List;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.block.GlassBlockConnectedMeta;
-import electro.common.CommonProxy;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public class electrolChamber extends GlassBlockConnectedMeta
 {
@@ -24,7 +19,7 @@ public class electrolChamber extends GlassBlockConnectedMeta
                            String[] textures)
     {
         super(location, hasAlpha, textures);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(6.0F);
         this.setStepSound(Block.soundTypeMetal);
     }

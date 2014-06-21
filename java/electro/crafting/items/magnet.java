@@ -1,10 +1,10 @@
 package electro.crafting.items;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -16,7 +16,7 @@ public class magnet extends Block {
 	public magnet() {
 		super(Material.iron);
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setHardness(5F);
         this.setResistance(50F);
 	}

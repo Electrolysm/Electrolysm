@@ -10,7 +10,9 @@ public class EnumResearchType
 	public EnumResearchType(String type1)
 	{
 		name = type1;
-		hashMap.put(type1, this);
+        if(!(type1.toLowerCase().contains("hidden"))) {
+            hashMap.put(type1, this);
+        }
 	}
 
 	public static HashMap<String, EnumResearchType> getHashMap()

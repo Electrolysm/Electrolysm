@@ -153,7 +153,7 @@ public class GUIHandler implements IGuiHandler
         }
         if(ID == this.id_bookIDCard )
         {
-        	return new GUIIDCardInfo(player.inventory);
+        	return new GUIIDCardInfo(/*player.inventory*/);
         }
 
         if(ID == this.id_research)

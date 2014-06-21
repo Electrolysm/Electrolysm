@@ -2,7 +2,7 @@ package electro.world;
 
 import java.util.Random;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -39,7 +39,7 @@ public class WorldGenOres implements IWorldGenerator
             int xCoord = chunkX + random.nextInt(16);
             int yCoord = random.nextInt(11);
             int zCoord = chunkZ + random.nextInt(16);
-            (new WorldGenMinable(electrolysmCore.graphite, 6)).generate(world, random, xCoord, yCoord, zCoord);
+            (new WorldGenMinable(Electrolysm.graphite, 6)).generate(world, random, xCoord, yCoord, zCoord);
         }
 
         for (int i = 0; i < 10; i++)
@@ -47,7 +47,7 @@ public class WorldGenOres implements IWorldGenerator
             int xCoord = chunkX + random.nextInt(16);
             int yCoord = random.nextInt(65);
             int zCoord = chunkZ + random.nextInt(16);
-            (new WorldGenMinable(electrolysmCore.copperOre, 10)).generate(world, random, xCoord, yCoord, zCoord);
+            (new WorldGenMinable(Electrolysm.copperOre, 10)).generate(world, random, xCoord, yCoord, zCoord);
         }
 
         for (int i = 0; i < 10; i++)
@@ -55,7 +55,7 @@ public class WorldGenOres implements IWorldGenerator
             int xCoord = chunkX + random.nextInt(16);
             int yCoord = random.nextInt(20);
             int zCoord = chunkZ + random.nextInt(16);
-            (new WorldGenMinable(electrolysmCore.sulphurOre, 15)).generate(world, random, xCoord, yCoord, zCoord);
+            (new WorldGenMinable(Electrolysm.sulphurOre, 15)).generate(world, random, xCoord, yCoord, zCoord);
         }
         
         for (int i = 0; i < 4; i++)
@@ -63,7 +63,7 @@ public class WorldGenOres implements IWorldGenerator
             int xCoord = chunkX + random.nextInt(16);
             int yCoord = random.nextInt(10);
             int zCoord = chunkZ + random.nextInt(16);
-            (new WorldGenMinable(electrolysmCore.Yttrium, 5)).generate(world, random, xCoord, yCoord, zCoord);
+            (new WorldGenMinable(Electrolysm.Yttrium, 5)).generate(world, random, xCoord, yCoord, zCoord);
         }
     }
 }

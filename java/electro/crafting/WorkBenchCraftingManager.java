@@ -5,10 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import electro.electrolysmCore;
-
 import net.minecraft.block.Block;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +13,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class WorkBenchCraftingManager
 {

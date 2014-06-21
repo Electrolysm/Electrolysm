@@ -1,5 +1,6 @@
 package electro.block.machines;
 
+import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelRenderer;
@@ -10,7 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.block.machines.tile.TileEntityResearchDesk;
 import electro.client.ModelResearchDesk;
 
@@ -19,7 +19,7 @@ public class researchDesk extends BlockContainer
     public researchDesk()
     {
         super(Material.iron);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(4);
     }
 
@@ -59,7 +59,7 @@ public class researchDesk extends BlockContainer
         }
         else if (!player.isSneaking() && !te.isOpen)
         {
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             te.isOpen = true;
             return true;
         }

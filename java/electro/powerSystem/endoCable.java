@@ -2,6 +2,7 @@ package electro.powerSystem;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -10,7 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -82,7 +82,7 @@ public class endoCable extends BlockContainer
     @Override
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return electrolysmCore.ItemWire;
+        return Electrolysm.ItemWire;
     }
 /*
     public int damageDropped(int par1)

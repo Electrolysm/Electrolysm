@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import electro.electrolysmCore;
 import electro.common.CommonProxy;
 import electro.powerSystem.te.TileEntityWire;
 

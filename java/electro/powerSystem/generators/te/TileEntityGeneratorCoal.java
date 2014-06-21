@@ -1,24 +1,21 @@
 package electro.powerSystem.generators.te;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import api.specialFuel.SpecialFuelHandler;
-import electro.electrolysmCore;
-import electro.powerSystem.generators.matterGen;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityGeneratorCoal extends TileEntityProducer implements IInventory, ISidedInventory
 {
 	private ItemStack[] inventory;
     private static int[] generatorPower = {260, 700, 5000, 100000};
-    private Block[] generatorIDs = {electrolysmCore.generator, null, null, electrolysmCore.matterGen,};
+    private Block[] generatorIDs = {Electrolysm.generator, null, null, Electrolysm.matterGen,};
     private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"};
     
     public TileEntityGeneratorCoal() 

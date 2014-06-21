@@ -2,6 +2,7 @@ package electro.block.liquids;
 
 import java.util.List;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,11 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 
 import org.apache.commons.lang3.text.WordUtils;
 
-import electro.electrolysmCore;
 import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -30,7 +29,7 @@ public class fluidRegistry extends Item /*implements IFluidContainerItem*/
     public fluidRegistry()
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.hasSubtypes = true;
         /*
         System.out.println(Integer.MAX_VALUE);
@@ -90,7 +89,7 @@ public class fluidRegistry extends Item /*implements IFluidContainerItem*/
         {
         	if(fluid[i] != fluid[0] && stop == false)
         	{
-        		list.add(new ItemStack(electrolysmCore.fluidRegistry, 1, i));
+        		list.add(new ItemStack(Electrolysm.fluidRegistry, 1, i));
         		stop = true;
         	}
         }
@@ -152,11 +151,11 @@ public class fluidRegistry extends Item /*implements IFluidContainerItem*/
 
         if (displayName.toLowerCase().contains("plasma"))
         {
-            return electrolysmCore.plasma;
+            return Electrolysm.plasma;
         }
         else if (displayName.toLowerCase().contains("sulphuric"))
         {
-            return electrolysmCore.sulpuricAcid;
+            return Electrolysm.sulpuricAcid;
         }
 
         return null;

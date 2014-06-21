@@ -2,8 +2,8 @@ package electro.oreProccessing;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -13,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.oreProccessing.te.TileEntityLiquidiser;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,7 +22,7 @@ public class liquidiser extends oreProcessMachineBase
     public liquidiser(boolean isActive)
     {
         super(isActive);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(6.0F);
         this.active = isActive;
     }
@@ -52,7 +51,7 @@ public class liquidiser extends oreProcessMachineBase
         }
         else
         {
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
     }

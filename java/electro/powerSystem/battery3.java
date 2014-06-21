@@ -2,6 +2,7 @@ package electro.powerSystem;
 
 import java.util.List;
 
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +13,6 @@ import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
 
 public class battery3 extends Item {
 
@@ -22,7 +22,7 @@ public class battery3 extends Item {
 	public battery3(int cap, int tier1) {
 		super();
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.capacity = cap;
 		this.hasSubtypes = true;
 		this.setMaxDamage(cap);
@@ -39,8 +39,8 @@ public class battery3 extends Item {
     @Override
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-    	list.add(new ItemStack(electrolysmCore.battery3, 1, (capacity - capacity)));
-    	list.add(new ItemStack(electrolysmCore.battery3, 1, capacity));
+    	list.add(new ItemStack(Electrolysm.battery3, 1, (capacity - capacity)));
+    	list.add(new ItemStack(Electrolysm.battery3, 1, capacity));
     }
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)

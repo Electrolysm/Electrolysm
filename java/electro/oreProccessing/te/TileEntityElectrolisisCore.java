@@ -1,6 +1,6 @@
 package electro.oreProccessing.te;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.oreProccessing.recipes.electrolisisRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,9 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import api.powerSystem.meter.IMeterable;
-import cpw.mods.fml.common.Loader;
 
 public class TileEntityElectrolisisCore extends TileEntity implements IInventory, /*IPullEnergy,
 																				IMeterable, */ISidedInventory, IMeterable
@@ -143,7 +141,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
             ItemStack result2 = electrolisisRecipes.smelting().getSmeltingResult(input2);
             ItemStack node1 = getStackInSlot(3);
             ItemStack node2 = getStackInSlot(4);
-            ItemStack node = new ItemStack(electrolysmCore.node, 1);
+            ItemStack node = new ItemStack(Electrolysm.node, 1);
 
             if (node1 == null || node2 == null)
             {
@@ -244,7 +242,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     	}
     	else if(slot == 3 || slot == 4)
     	{
-    		if(itemstack.getItem() == electrolysmCore.node)
+    		if(itemstack.getItem() == Electrolysm.node)
     		{
     			return true;
     		}
@@ -321,14 +319,14 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 	@Override
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || slot != 3 || slot != 4 || item.getItem() == electrolysmCore.dusts
+        return side != 0 || slot != 1 || slot != 3 || slot != 4 || item.getItem() == Electrolysm.dusts
         		|| active != false; 
     }
 	
 	@Override
 	public Block getBlock() 
 	{
-		return electrolysmCore.electrolisisCore;
+		return Electrolysm.electrolisisCore;
 	}
 
     @Override

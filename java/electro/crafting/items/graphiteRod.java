@@ -1,8 +1,8 @@
 package electro.crafting.items;
 
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -11,7 +11,7 @@ public class graphiteRod extends Item
     public graphiteRod()
     {
         super();
-            this.setCreativeTab(electrolysmCore.TabElectrolysm);
+            this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("graphiteRod");
     }
     

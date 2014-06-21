@@ -1,5 +1,6 @@
 package electro.oreProccessing;
 
+import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -8,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.oreProccessing.te.TileEntityElectrolisisCore;
 /**
  *
@@ -25,7 +25,7 @@ public class electrolisisCore extends BlockContainer
     public electrolisisCore()
     {
         super(Material.iron);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(6.0F);
     }
 
@@ -37,7 +37,7 @@ public class electrolisisCore extends BlockContainer
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        Block chamberID = electrolysmCore.electrolisisCore;
+        Block chamberID = Electrolysm.electrolisisCore;
         Block waterID = Blocks.water;
 
         if (player.isSneaking() && !this.isFormed(x, y, z, world, chamberID, waterID))
@@ -46,7 +46,7 @@ public class electrolisisCore extends BlockContainer
         }
         else if (!player.isSneaking() && this.isFormed(x, y, z, world, chamberID, waterID))
         {
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
         else
@@ -57,7 +57,7 @@ public class electrolisisCore extends BlockContainer
 
     public static boolean isFormed(int x, int y, int z, World world, Block chamberID, Block waterID)
     {
-        Block chamber = electrolysmCore.electrolChamber;
+        Block chamber = Electrolysm.electrolChamber;
         Block water = Blocks.water;
         Block air = null;
         boolean isFormed = false;

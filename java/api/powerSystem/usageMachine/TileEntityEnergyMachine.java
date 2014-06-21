@@ -1,11 +1,7 @@
 package api.powerSystem.usageMachine;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import api.items.Fetcher;
-import api.powerSystem.meter.IMeterable;
-import electro.electrolysmCore;
-import cpw.mods.fml.common.Loader;
+
 /**
  * @author Clarky158
  * @Return Extend this file to allow usage of Tesla Energy Unit power. Remember to override the updateEntity() method

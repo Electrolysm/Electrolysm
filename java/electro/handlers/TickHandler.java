@@ -1,6 +1,7 @@
 package electro.handlers;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -10,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 /**
  * Created by Clarky158 19/06/2014.
@@ -18,10 +20,10 @@ public class TickHandler
 {
     public GuiResearchNotify guiNotify = null;
 
-    @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event)
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void onTickRender(RenderGameOverlayEvent event)
     {
-        //System.out.println("tick");
+        System.out.println("render");
 
         Minecraft mc = Minecraft.getMinecraft();
         EntityPlayer player;
@@ -45,6 +47,7 @@ public class TickHandler
     @SubscribeEvent
     public void checkUpdate(TickEvent.ClientTickEvent event)
     {
+        //System.out.println("tick");
         //VersionCheck.check();
 
         if (FMLClientHandler.instance().getClient().inGameHasFocus) {

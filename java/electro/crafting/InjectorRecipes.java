@@ -3,13 +3,9 @@ package electro.crafting;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import electro.electrolysmCore;
-import cpw.mods.fml.common.Loader;
-import net.minecraft.block.Block;
+import electro.Electrolysm;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class InjectorRecipes
@@ -28,14 +24,14 @@ public class InjectorRecipes
 
     private InjectorRecipes()
     {
-        this.addDoubleSmelting(new ItemStack(electrolysmCore.drillCasing), new ItemStack(electrolysmCore.fluidStorage, 16, 1),
-                               new ItemStack(electrolysmCore.plasmaDrill, 1, 1));
+        this.addDoubleSmelting(new ItemStack(Electrolysm.drillCasing), new ItemStack(Electrolysm.fluidStorage, 16, 1),
+                               new ItemStack(Electrolysm.plasmaDrill, 1, 1));
         
-        this.addDoubleSmelting(new ItemStack(Items.water_bucket), new ItemStack(electrolysmCore.fluidStorage, 1, 0),
-                new ItemStack(electrolysmCore.fluidStorage, 1, 9));
+        this.addDoubleSmelting(new ItemStack(Items.water_bucket), new ItemStack(Electrolysm.fluidStorage, 1, 0),
+                new ItemStack(Electrolysm.fluidStorage, 1, 9));
         
-        this.addDoubleSmelting(new ItemStack(electrolysmCore.sulphur, 16), new ItemStack(electrolysmCore.fluidStorage, 1, 9),
-                new ItemStack(electrolysmCore.fluidStorage, 1, 2));
+        this.addDoubleSmelting(new ItemStack(Electrolysm.sulphur, 16), new ItemStack(Electrolysm.fluidStorage, 1, 9),
+                new ItemStack(Electrolysm.fluidStorage, 1, 2));
     }
 
     public void addDoubleSmelting(ItemStack bottom, ItemStack top, ItemStack output)

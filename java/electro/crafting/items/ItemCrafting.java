@@ -1,6 +1,6 @@
 package electro.crafting.items;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
@@ -12,7 +12,7 @@ public class ItemCrafting extends Item
 	public ItemCrafting() {
 		super();
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 	}
 	
     @Override

@@ -1,17 +1,13 @@
 package electro.oreProccessing.recipes;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.block.Block;
+import electro.Electrolysm;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import electro.electrolysmCore;
 import electro.common.CommonProxy;
 
 public class LiquidiserRecipes
@@ -33,11 +29,11 @@ public class LiquidiserRecipes
     {
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
-            this.addLiquidising(new ItemStack(electrolysmCore.impureDusts, 1, i),
-            		new ItemStack(electrolysmCore.crystal, 1, i));
+            this.addLiquidising(new ItemStack(Electrolysm.impureDusts, 1, i),
+            		new ItemStack(Electrolysm.crystal, 1, i));
         }
         
-        this.addLiquidising(new ItemStack(Blocks.redstone_ore), new ItemStack(electrolysmCore.Scandium, 1, 0));
+        this.addLiquidising(new ItemStack(Blocks.redstone_ore), new ItemStack(Electrolysm.Scandium, 1, 0));
     }
 
     public void addLiquidising(ItemStack stack, ItemStack itemstack)

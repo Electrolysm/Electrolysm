@@ -2,12 +2,11 @@ package electro.world.biome;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
-import electro.electrolysmCore;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -22,7 +21,7 @@ public class BlockTreeLeaves extends BlockLeaves {
 	public BlockTreeLeaves(int type1) {
 		super();
 		
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setStepSound(Block.soundTypeGrass);
 		this.setTickRandomly(true);
 		this.setHardness(0.2F);

@@ -2,20 +2,16 @@ package electro.oreProccessing;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.oreProccessing.te.TileEntityCrusher;
-import electro.oreProccessing.te.TileEntityLiquidiser;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -26,7 +22,7 @@ public class crusher extends oreProcessMachineBase
     {
         super(isActive);
         this.setHardness(6.0F);
-    	this.setCreativeTab(electrolysmCore.TabElectrolysm);
+    	this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.active = isActive;
     }
 	
@@ -56,7 +52,7 @@ public class crusher extends oreProcessMachineBase
         }
         else
         {
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
     }
@@ -123,11 +119,11 @@ public class crusher extends oreProcessMachineBase
 
         if (par0)
         {
-            par1World.setBlock(par2, par3, par4, electrolysmCore.crusherActive);
+            par1World.setBlock(par2, par3, par4, Electrolysm.crusherActive);
         }
         else
         {
-            par1World.setBlock(par2, par3, par4, electrolysmCore.crusher);
+            par1World.setBlock(par2, par3, par4, Electrolysm.crusher);
         }
 
         keepInventory = false;

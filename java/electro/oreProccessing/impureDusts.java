@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.common.CommonProxy;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,7 +20,7 @@ public class impureDusts extends Item
     public impureDusts()
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.hasSubtypes = true;
     }
 
@@ -55,7 +55,7 @@ public class impureDusts extends Item
     {
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
-            list.add(new ItemStack(electrolysmCore.impureDusts, 1, i));
+            list.add(new ItemStack(Electrolysm.impureDusts, 1, i));
         }
     }
 }

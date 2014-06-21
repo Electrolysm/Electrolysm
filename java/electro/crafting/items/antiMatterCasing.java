@@ -2,7 +2,7 @@ package electro.crafting.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,7 +12,7 @@ public class antiMatterCasing extends Block {
 	public antiMatterCasing() {
 		super(Material.iron);
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setResistance(75F);
         this.setHardness(5.125F);
         this.stepSound = this.soundTypeGlass;

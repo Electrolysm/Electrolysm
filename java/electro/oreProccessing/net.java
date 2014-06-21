@@ -2,6 +2,7 @@ package electro.oreProccessing;
 
 import java.util.ArrayList;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +20,7 @@ public class net extends Item {
 		super();
 		
 		this.setUnlocalizedName("net");
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setHasSubtypes(true);
 		this.maxStackSize = 1;
 	}
@@ -95,7 +95,7 @@ public class net extends Item {
     
     private void setBlockWithServerUpdate(World world, int x, int y, int z, String blockName)
     {
-    	Block id = electrolysmCore.nettedBlock;
+    	Block id = Electrolysm.nettedBlock;
     	int flag = 1;
     	
     	if(blockName.contains("copperOre"))

@@ -2,7 +2,7 @@ package api.powerSystem;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.common.CommonProxy;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -29,19 +29,19 @@ public class SlotBattery extends Slot {
 
 	private boolean isStackBattery(ItemStack stack) 
 	{
-		if(stack.getItem() == electrolysmCore.battery1)
+		if(stack.getItem() == Electrolysm.battery1)
 		{
 			return true;
 		}
-		else if(stack.getItem() == electrolysmCore.battery2)
+		else if(stack.getItem() == Electrolysm.battery2)
 		{
 			return true;
 		}
-		else if(stack.getItem() == electrolysmCore.battery3)
+		else if(stack.getItem() == Electrolysm.battery3)
 		{
 			return true;
 		}
-		else if(stack.getItem() == electrolysmCore.battery4)
+		else if(stack.getItem() == Electrolysm.battery4)
 		{
 			return true;
 		}

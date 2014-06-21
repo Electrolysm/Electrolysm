@@ -1,8 +1,8 @@
 package electro.handlers;
 
+import electro.Electrolysm;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import electro.electrolysmCore;
 import electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -26,20 +26,20 @@ public class Register
 
     public static void addOreDictionary()
     {
-        OreDictionary.registerOre("oreCopper", electrolysmCore.copperOre);
-        OreDictionary.registerOre("ingotCopper", electrolysmCore.copperIngot);
+        OreDictionary.registerOre("oreCopper", Electrolysm.copperOre);
+        OreDictionary.registerOre("ingotCopper", Electrolysm.copperIngot);
         //ingots
-        OreDictionary.registerOre("ingotTin", new ItemStack(electrolysmCore.ingots, 1, 0));
-        OreDictionary.registerOre("ingotSilver", new ItemStack(electrolysmCore.ingots, 1, 1));
-        OreDictionary.registerOre("ingotLead", new ItemStack(electrolysmCore.ingots, 1, 2));
-        OreDictionary.registerOre("sulphur", new ItemStack(electrolysmCore.sulphur));
-        OreDictionary.registerOre("sulphure", new ItemStack(electrolysmCore.sulphur));
-        OreDictionary.registerOre("crystalSulphure", new ItemStack(electrolysmCore.sulphur));
-        OreDictionary.registerOre("crystalSulphur", new ItemStack(electrolysmCore.sulphur));
+        OreDictionary.registerOre("ingotTin", new ItemStack(Electrolysm.ingots, 1, 0));
+        OreDictionary.registerOre("ingotSilver", new ItemStack(Electrolysm.ingots, 1, 1));
+        OreDictionary.registerOre("ingotLead", new ItemStack(Electrolysm.ingots, 1, 2));
+        OreDictionary.registerOre("sulphur", new ItemStack(Electrolysm.sulphur));
+        OreDictionary.registerOre("sulphure", new ItemStack(Electrolysm.sulphur));
+        OreDictionary.registerOre("crystalSulphure", new ItemStack(Electrolysm.sulphur));
+        OreDictionary.registerOre("crystalSulphur", new ItemStack(Electrolysm.sulphur));
         
         for(int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
-            OreDictionary.registerOre("dust" + CommonProxy.DUSTS[i], new ItemStack(electrolysmCore.dusts, 1, i));
+            OreDictionary.registerOre("dust" + CommonProxy.DUSTS[i], new ItemStack(Electrolysm.dusts, 1, i));
         }
 
     }

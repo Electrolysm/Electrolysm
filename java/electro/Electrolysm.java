@@ -8,7 +8,6 @@ package electro;
 import java.io.File;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import electro.research.*;
 import electro.handlers.TickHandler;
 import electro.world.biome.*;
@@ -127,7 +126,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 @Mod(modid = Referance.MOD_REF.MOD_ID, name = Referance.MOD_REF.MOD_ID, version = Referance.MOD_REF.VERSION)
 
-public class electrolysmCore
+public class Electrolysm
 {
     private static String[] ContectedTexture = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
 
@@ -137,7 +136,7 @@ public class electrolysmCore
     public static GUIHandler guiHandler = new GUIHandler();
 
     @Instance("Electrolysm")
-    public static electrolysmCore GUIInstance;
+    public static Electrolysm GUIInstance;
     //Basic Machines
     public static Block workBench = new workBench().setBlockName("workBech");
     public static Block desk = new desk().setBlockName("desk");
@@ -154,6 +153,7 @@ public class electrolysmCore
     public static Item labCoat = new ItemArmorLab(2, "labCoat");
     public static Item labGoggles = new ItemArmorLab(0, "labGoggles");
     public static Item itemScanner = new scanner();
+    public static Item researchDevice = new researchDevice();
     //public static Item itemScanner = new itemScanner();
     //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 

@@ -2,7 +2,7 @@ package electro.sciences.robotics;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
@@ -11,7 +11,7 @@ public class microCont extends Item
     public microCont(int id)
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("microCont");
     }
 

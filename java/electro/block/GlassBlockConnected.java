@@ -1,8 +1,8 @@
 package electro.block;
 
-import electro.configHandler;
-import electro.electrolysmCore;
-import electro.block.basic.blastProof;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -27,57 +27,67 @@ public class GlassBlockConnected extends BlockContainer
     public GlassBlockConnected(String location, boolean hasAlpha)
     {
         super(Material.glass);
-        this.setStepSound(Block.soundTypeGlass);
+        this.stepSound = soundTypeGlass;
         folder = location;
         renderPass = hasAlpha ? 1 : 0;
         setHardness(0.3F);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
+    }
+
+    // For FMP support
+    public IIcon[] getIcons ()
+    {
+        return icons;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube ()
     {
         return false;
     }
 
     @Override
-    public boolean renderAsNormalBlock()
+    public boolean renderAsNormalBlock ()
     {
         return false;
     }
 
     @Override
-    public int getRenderBlockPass()
+    public int getRenderBlockPass ()
     {
         return renderPass;
     }
 
     /**
      * This is checked to see if the texture should connect to this block
-     * @param par2 x
-     * @param par3 y
-     * @param par4 z
-     * @param par5  this block is asking to connect to (may be 0 if there is no block)
-     * @param par6 Metadata of the block this block is trying to connect to
+     *
+     * @param par2
+     *            x
+     * @param par3
+     *            y
+     * @param par4
+     *            z
+     * @param par5
+     *            ID this block is asking to connect to (may be 0 if there is no
+     *            block)
+     * @param par6
+     *            Metadata of the block this block is trying to connect to
      * @return true if should connect
      */
-    public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block par5, int par6)
+    public boolean shouldConnectToBlock (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block par5, int par6)
     {
-        return par5 instanceof GlassBlockConnected;
+        return par5 == (Block) this;
     }
 
-    public IIcon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 15 ? icons[0] : getConnectedBlockTexture(par1IBlockAccess, par2, par3, par4, par5, icons);
     }
 
-    public IIcon getConnectedBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, IIcon[] icons)
+    public IIcon getConnectedBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5, IIcon[] icons)
     {
-        if (configHandler.connectedTexturesMode == 0)
-        {
-            return icons[0];
-        }
-
         boolean isOpenUp = false, isOpenDown = false, isOpenLeft = false, isOpenRight = false;
 
         switch (par5)
@@ -163,9 +173,7 @@ public class GlassBlockConnected extends BlockContainer
                 {
                     return icons[1];
                 }
-
                 break;
-
             case 1:
                 if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2 - 1, par3, par4), par1IBlockAccess.getBlockMetadata(par2 - 1, par3, par4)))
                 {
@@ -247,9 +255,7 @@ public class GlassBlockConnected extends BlockContainer
                 {
                     return icons[1];
                 }
-
                 break;
-
             case 2:
                 if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4)))
                 {
@@ -331,9 +337,7 @@ public class GlassBlockConnected extends BlockContainer
                 {
                     return icons[3];
                 }
-
                 break;
-
             case 3:
                 if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4)))
                 {
@@ -361,11 +365,11 @@ public class GlassBlockConnected extends BlockContainer
                 }
                 else if (isOpenUp && isOpenDown && isOpenLeft)
                 {
-                    return icons[14];
+                    return icons[13];
                 }
                 else if (isOpenUp && isOpenDown && isOpenRight)
                 {
-                    return icons[13];
+                    return icons[14];
                 }
                 else if (isOpenUp && isOpenLeft && isOpenRight)
                 {
@@ -385,19 +389,19 @@ public class GlassBlockConnected extends BlockContainer
                 }
                 else if (isOpenDown && isOpenLeft)
                 {
-                    return icons[10];
+                    return icons[9];
                 }
                 else if (isOpenDown && isOpenRight)
                 {
-                    return icons[9];
+                    return icons[10];
                 }
                 else if (isOpenUp && isOpenLeft)
                 {
-                    return icons[8];
+                    return icons[7];
                 }
                 else if (isOpenUp && isOpenRight)
                 {
-                    return icons[7];
+                    return icons[8];
                 }
                 else if (isOpenDown)
                 {
@@ -409,15 +413,13 @@ public class GlassBlockConnected extends BlockContainer
                 }
                 else if (isOpenLeft)
                 {
-                    return icons[3];
+                    return icons[4];
                 }
                 else if (isOpenRight)
                 {
-                    return icons[4];
+                    return icons[3];
                 }
-
                 break;
-
             case 4:
                 if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4)))
                 {
@@ -499,9 +501,7 @@ public class GlassBlockConnected extends BlockContainer
                 {
                     return icons[4];
                 }
-
                 break;
-
             case 5:
                 if (shouldConnectToBlock(par1IBlockAccess, par2, par3, par4, par1IBlockAccess.getBlock(par2, par3 - 1, par4), par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4)))
                 {
@@ -529,11 +529,11 @@ public class GlassBlockConnected extends BlockContainer
                 }
                 else if (isOpenUp && isOpenDown && isOpenLeft)
                 {
-                    return icons[13];
+                    return icons[14];
                 }
                 else if (isOpenUp && isOpenDown && isOpenRight)
                 {
-                    return icons[14];
+                    return icons[13];
                 }
                 else if (isOpenUp && isOpenLeft && isOpenRight)
                 {
@@ -553,19 +553,19 @@ public class GlassBlockConnected extends BlockContainer
                 }
                 else if (isOpenDown && isOpenLeft)
                 {
-                    return icons[9];
+                    return icons[10];
                 }
                 else if (isOpenDown && isOpenRight)
                 {
-                    return icons[10];
+                    return icons[9];
                 }
                 else if (isOpenUp && isOpenLeft)
                 {
-                    return icons[7];
+                    return icons[8];
                 }
                 else if (isOpenUp && isOpenRight)
                 {
-                    return icons[8];
+                    return icons[7];
                 }
                 else if (isOpenDown)
                 {
@@ -577,13 +577,12 @@ public class GlassBlockConnected extends BlockContainer
                 }
                 else if (isOpenLeft)
                 {
-                    return icons[4];
+                    return icons[3];
                 }
                 else if (isOpenRight)
                 {
-                    return icons[3];
+                    return icons[4];
                 }
-
                 break;
         }
 
@@ -591,20 +590,21 @@ public class GlassBlockConnected extends BlockContainer
     }
 
     @Override
-    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public boolean shouldSideBeRendered (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
-        Block i1 = par1IBlockAccess.getBlock(par2, par3, par4);
-        return i1 instanceof GlassBlockConnected ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+        Block b = par1IBlockAccess.getBlock(par2, par3, par4);
+        return b == (Block) this ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
     }
 
     @Override
-    public IIcon getIcon(int par1, int par2)
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon (int par1, int par2)
     {
         return icons[0];
     }
 
     @Override
-    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    public AxisAlignedBB getSelectedBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
     {
         if (shouldRenderSelectionBox)
         {
@@ -612,7 +612,7 @@ public class GlassBlockConnected extends BlockContainer
         }
         else
         {
-            return AxisAlignedBB.getAABBPool().getAABB(0D, 0D, 0D, 0D, 0D, 0D);
+            return AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 0D, 0D, 0D);
         }
     }
 
@@ -638,7 +638,7 @@ public class GlassBlockConnected extends BlockContainer
     }
 
     @Override
-    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+    public boolean canPlaceTorchOnTop (World world, int x, int y, int z)
     {
         return true;
     }

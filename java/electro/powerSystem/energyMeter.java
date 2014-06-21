@@ -1,7 +1,7 @@
 package electro.powerSystem;
 
 import api.powerSystem.meter.IMeterable;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,14 +15,12 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import java.awt.color.ICC_ColorSpace;
-
 public class energyMeter extends Item
 {
     public energyMeter()
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("energyMeter");
         this.setMaxStackSize(1);
     }

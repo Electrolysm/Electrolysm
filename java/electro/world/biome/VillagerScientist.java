@@ -9,8 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-import electro.electrolysmCore;
-import net.minecraft.block.Block;
+import electro.Electrolysm;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -482,7 +481,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
         switch (this.getProfession())
         {
             case 0:
-                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (Electrolysm.knowledge), this.rand, this.func_82188_j(0.5F));
 
                 if (this.rand.nextFloat() < this.func_82188_j(0.5F))
                 {
@@ -492,7 +491,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                 break;
 
             case 1:
-                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (Electrolysm.knowledge), this.rand, this.func_82188_j(0.5F));
 
                 if (this.rand.nextFloat() < this.func_82188_j(0.07F))
                 {
@@ -506,7 +505,7 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                 break;
 
             case 2:
-                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (Electrolysm.knowledge), this.rand, this.func_82188_j(0.5F));
                 Item[] aint = new Item[] {Items.iron_sword, Items.diamond_sword, Items.iron_chestplate, Items.diamond_chestplate, Items.iron_axe, Items.diamond_axe, Items.iron_pickaxe, Items.diamond_pickaxe};
                 Item[] aint1 = aint;
                 int l = aint.length;
@@ -530,11 +529,11 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
                 }
 
             case 3:
-                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (Electrolysm.knowledge), this.rand, this.func_82188_j(0.5F));
                 break;
 
             case 4:
-                addBlacksmithItem(merchantrecipelist, (electrolysmCore.knowledge), this.rand, this.func_82188_j(0.5F));
+                addBlacksmithItem(merchantrecipelist, (Electrolysm.knowledge), this.rand, this.func_82188_j(0.5F));
         }
 
         if (merchantrecipelist.isEmpty())
@@ -680,6 +679,6 @@ public class VillagerScientist extends EntityAgeable implements IMerchant, INpc
 
     static
     {
-        villagerStockList.put((electrolysmCore.knowledge), new Tuple(Integer.valueOf(14), Integer.valueOf(18)));
+        villagerStockList.put((Electrolysm.knowledge), new Tuple(Integer.valueOf(14), Integer.valueOf(18)));
     }
 }

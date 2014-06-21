@@ -1,8 +1,6 @@
 package electro.block.te;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import electro.electrolysmCore;
 
 public class TileEntityIronFrame extends TileEntity
 {/*

@@ -1,11 +1,7 @@
 package electro.research;
 
-import java.lang.reflect.Method;
-
-import electro.electrolysmCore;
-import net.minecraft.block.Block;
+import electro.Electrolysm;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ResearchRecipes
@@ -22,7 +18,7 @@ public class ResearchRecipes
     {
         if (damage == 0)
         {
-            return new ItemStack(electrolysmCore.blastProof, 8);
+            return new ItemStack(Electrolysm.blastProof, 8);
         }
         else if (damage == 1)
         {
@@ -75,13 +71,13 @@ public class ResearchRecipes
     public static ItemStack[] blastProofRecipe()
     {
         recipe[0] = new ItemStack(Items.iron_ingot);
-        recipe[1] = new ItemStack(electrolysmCore.stoneObsidian);
+        recipe[1] = new ItemStack(Electrolysm.stoneObsidian);
         recipe[2] = new ItemStack(Items.iron_ingot);
-        recipe[3] = new ItemStack(electrolysmCore.stoneObsidian);
+        recipe[3] = new ItemStack(Electrolysm.stoneObsidian);
         recipe[4] = null;
-        recipe[5] = new ItemStack(electrolysmCore.stoneObsidian);
+        recipe[5] = new ItemStack(Electrolysm.stoneObsidian);
         recipe[6] = new ItemStack(Items.iron_ingot);
-        recipe[7] = new ItemStack(electrolysmCore.stoneObsidian);
+        recipe[7] = new ItemStack(Electrolysm.stoneObsidian);
         recipe[8] = new ItemStack(Items.iron_ingot);
         return recipe;
     }

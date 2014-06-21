@@ -1,5 +1,6 @@
 package electro.powerSystem.generators.te;
 
+import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,23 +8,19 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import api.specialFuel.SpecialFuelHandler;
-import electro.electrolysmCore;
-import electro.powerSystem.generators.matterGen;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityGeneratorAntimatter extends TileEntityProducer implements IInventory, ISidedInventory
 {
-	private ItemStack antiMatter = new ItemStack(electrolysmCore.electroContain, 1, 
+	private ItemStack antiMatter = new ItemStack(Electrolysm.electroContain, 1,
 				Integer.parseInt((String.valueOf(SpecialFuelHandler.getFuelListRev().get(SpecialFuelHandler.antiMatter)))));
 	private ItemStack[] inventory;
     private static int[] generatorPower = {10, 100, 5000, 100000};
-    private Block[] generatorIDs = {electrolysmCore.generator, null, null, electrolysmCore.matterGen,};
+    private Block[] generatorIDs = {Electrolysm.generator, null, null, Electrolysm.matterGen,};
     private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"};
     
     public TileEntityGeneratorAntimatter() 
@@ -294,18 +291,18 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
 		boolean[] overall = new boolean[4];
 		for(int i = -1; i < 3; i++)
 		{
-			overall[i+1] = checkCircle(world, x, y + i, z, electrolysmCore.antiMatterCasing);
+			overall[i+1] = checkCircle(world, x, y + i, z, Electrolysm.antiMatterCasing);
 		}
 		
 		if(overall[0] && overall[1] && overall[2] && overall[3])
 		{
 			if(this.getBlock(world, x, y + 2, z) == Blocks.water)
 			{
-				if(this.getBlock(world, x, y + 1, z) == electrolysmCore.magnet)
+				if(this.getBlock(world, x, y + 1, z) == Electrolysm.magnet)
 				{
-					if(this.getBlock(world, x, y - 1, z) == electrolysmCore.magnet)
+					if(this.getBlock(world, x, y - 1, z) == Electrolysm.magnet)
 					{
-						if(checkCircle(world, x, y + 3, z, electrolysmCore.blastProof))
+						if(checkCircle(world, x, y + 3, z, Electrolysm.blastProof))
 						{
 							if(this.getBlock(world, x + 4, y + 2, z) == Blocks.water)
 							{

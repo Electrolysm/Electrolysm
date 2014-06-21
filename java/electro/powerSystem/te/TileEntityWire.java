@@ -1,11 +1,6 @@
 package electro.powerSystem.te;
 
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
 import api.powerSystem.prefab.TileEntityBasicCable;
-import electro.electrolysmCore;
-import electro.block.te.TileEntityIronFrame;
-import electro.crafting.items.te.TileEntityLumRed;
 
 public class TileEntityWire extends TileEntityBasicCable
 {

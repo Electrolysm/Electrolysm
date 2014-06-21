@@ -1,21 +1,15 @@
 package electro.research.system;
 
-import electro.electrolysmCore;
-import electro.handlers.GUIHandler;
 import electro.research.common.SavePlayerScanData;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**

@@ -1,10 +1,6 @@
 package electro.handlers;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.ChestGenHooks;
-import electro.electrolysmCore;
-import electro.world.Scandium;
+import electro.Electrolysm;
 import electro.world.WorldGenOres;
 import electro.world.WorldGenStructures;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -13,52 +9,52 @@ public class RegisterBlock
 {
     public static void register()
     {
-        GameRegistry.registerBlock(electrolysmCore.workBench, "workBench");
-        GameRegistry.registerBlock(electrolysmCore.desk, "desk");
-        GameRegistry.registerBlock(electrolysmCore.researchDesk, "researchDesk");
-        GameRegistry.registerBlock(electrolysmCore.diseaseGrass, "diseasedGrass");
-        GameRegistry.registerBlock(electrolysmCore.blastProof, "blastProof");
-        GameRegistry.registerBlock(electrolysmCore.blastDoor, "blastDoor");
-        GameRegistry.registerBlock(electrolysmCore.blastGlass, "blastGlass");
-        GameRegistry.registerBlock(electrolysmCore.plasma, "plasma");
-        GameRegistry.registerBlock(electrolysmCore.energiser, "energiser");
-        GameRegistry.registerBlock(electrolysmCore.injector, "injector");
+        GameRegistry.registerBlock(Electrolysm.workBench, "workBench");
+        GameRegistry.registerBlock(Electrolysm.desk, "desk");
+        GameRegistry.registerBlock(Electrolysm.researchDesk, "researchDesk");
+        GameRegistry.registerBlock(Electrolysm.diseaseGrass, "diseasedGrass");
+        GameRegistry.registerBlock(Electrolysm.blastProof, "blastProof");
+        GameRegistry.registerBlock(Electrolysm.blastDoor, "blastDoor");
+        GameRegistry.registerBlock(Electrolysm.blastGlass, "blastGlass");
+        GameRegistry.registerBlock(Electrolysm.plasma, "plasma");
+        GameRegistry.registerBlock(Electrolysm.energiser, "energiser");
+        GameRegistry.registerBlock(Electrolysm.injector, "injector");
         //GameRegistry.registerBlock(electrolysmCore.quantumComp, "quantumComp");
-        GameRegistry.registerBlock(electrolysmCore.graphite, "graphite");
-        GameRegistry.registerBlock(electrolysmCore.modBlastGlass, "modBlastGlass");
-        GameRegistry.registerBlock(electrolysmCore.sulphurOre, "sulphurOre");
-        GameRegistry.registerBlock(electrolysmCore.electrolChamber, "electrolChamber");
-        GameRegistry.registerBlock(electrolysmCore.electrolisisCore, "electrolCore");
-        GameRegistry.registerBlock(electrolysmCore.crusher, "crusher");
-        GameRegistry.registerBlock(electrolysmCore.liquidiser, "liquidiser");
+        GameRegistry.registerBlock(Electrolysm.graphite, "graphite");
+        GameRegistry.registerBlock(Electrolysm.modBlastGlass, "modBlastGlass");
+        GameRegistry.registerBlock(Electrolysm.sulphurOre, "sulphurOre");
+        GameRegistry.registerBlock(Electrolysm.electrolChamber, "electrolChamber");
+        GameRegistry.registerBlock(Electrolysm.electrolisisCore, "electrolCore");
+        GameRegistry.registerBlock(Electrolysm.crusher, "crusher");
+        GameRegistry.registerBlock(Electrolysm.liquidiser, "liquidiser");
         //GameRegistry.registerBlock(electrolysmCore.seperator);
-        GameRegistry.registerBlock(electrolysmCore.smeltory, "smeltory");
+        GameRegistry.registerBlock(Electrolysm.smeltory, "smeltory");
         //GameRegistry.registerBlock(electrolysmCore.electrolPort);
-        GameRegistry.registerBlock(electrolysmCore.sulpuricAcid, "sulphuricAcid");
-        GameRegistry.registerBlock(electrolysmCore.ironFrames, "ironFrame");
-        GameRegistry.registerBlock(electrolysmCore.copperOre, "copperOre");
-        GameRegistry.registerBlock(electrolysmCore.charger, "charger");
-        GameRegistry.registerBlock(electrolysmCore.idifier, "id-ifier");
-        GameRegistry.registerBlock(electrolysmCore.blastBrick, "blastBrick");
-        GameRegistry.registerBlock(electrolysmCore.lightSource, "lightSource");
+        GameRegistry.registerBlock(Electrolysm.sulpuricAcid, "sulphuricAcid");
+        GameRegistry.registerBlock(Electrolysm.ironFrames, "ironFrame");
+        GameRegistry.registerBlock(Electrolysm.copperOre, "copperOre");
+        GameRegistry.registerBlock(Electrolysm.charger, "charger");
+        GameRegistry.registerBlock(Electrolysm.idifier, "id-ifier");
+        GameRegistry.registerBlock(Electrolysm.blastBrick, "blastBrick");
+        GameRegistry.registerBlock(Electrolysm.lightSource, "lightSource");
         GameRegistry.registerWorldGenerator(new WorldGenStructures(), 20);
         GameRegistry.registerWorldGenerator(new WorldGenOres(), 20);
-        GameRegistry.registerBlock(electrolysmCore.nettedBlock, "nettedBlock");
-        GameRegistry.registerBlock(electrolysmCore.crusherActive, "crusherActive");
-        GameRegistry.registerBlock(electrolysmCore.smeltoryActive, "smeltoryActive");
-        GameRegistry.registerBlock(electrolysmCore.endoCable, "endoCable");
-        GameRegistry.registerBlock(electrolysmCore.generator, "generator");
-        GameRegistry.registerBlock(electrolysmCore.antiMatterCasing, "antiCasing");
-        GameRegistry.registerBlock(electrolysmCore.magnet, "magnet");
-        GameRegistry.registerBlock(electrolysmCore.Yttrium, "yttrium");
+        GameRegistry.registerBlock(Electrolysm.nettedBlock, "nettedBlock");
+        GameRegistry.registerBlock(Electrolysm.crusherActive, "crusherActive");
+        GameRegistry.registerBlock(Electrolysm.smeltoryActive, "smeltoryActive");
+        GameRegistry.registerBlock(Electrolysm.endoCable, "endoCable");
+        GameRegistry.registerBlock(Electrolysm.generator, "generator");
+        GameRegistry.registerBlock(Electrolysm.antiMatterCasing, "antiCasing");
+        GameRegistry.registerBlock(Electrolysm.magnet, "magnet");
+        GameRegistry.registerBlock(Electrolysm.Yttrium, "yttrium");
         //GameRegistry.registerBlock(electrolysmCore.coolerProccesser);
         GameRegistry.registerFuelHandler(new FuelHandler());
-        GameRegistry.registerBlock(electrolysmCore.stoneObsidian, "stoneObsidian");
-        GameRegistry.registerBlock(electrolysmCore.diseasedSapling, "diseasedSapling");
-        GameRegistry.registerBlock(electrolysmCore.BlockLumRed, "blockLumeRed");
-        GameRegistry.registerBlock(electrolysmCore.diseasedLeaves, "diseasedLeaves");
-        GameRegistry.registerBlock(electrolysmCore.diseasedLog, "diseasedLog");
-        GameRegistry.registerBlock(electrolysmCore.matterGen, "antiMatterGen");
+        GameRegistry.registerBlock(Electrolysm.stoneObsidian, "stoneObsidian");
+        GameRegistry.registerBlock(Electrolysm.diseasedSapling, "diseasedSapling");
+        GameRegistry.registerBlock(Electrolysm.BlockLumRed, "blockLumeRed");
+        GameRegistry.registerBlock(Electrolysm.diseasedLeaves, "diseasedLeaves");
+        GameRegistry.registerBlock(Electrolysm.diseasedLog, "diseasedLog");
+        GameRegistry.registerBlock(Electrolysm.matterGen, "antiMatterGen");
 
 
         //Fluids
@@ -77,7 +73,7 @@ public class RegisterBlock
 
     public static void registerItems()
     {
-        electrolysmCore elec = new electrolysmCore();
+        Electrolysm elec = new Electrolysm();
         GameRegistry.registerItem(elec.injectionArm, "injectionArm");
         GameRegistry.registerItem(elec.card, "IDcard");
         GameRegistry.registerItem(elec.researchPaper, "researchPaper");
@@ -125,5 +121,6 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.itemScanner, "itemScanner");
         GameRegistry.registerItem(elec.labCoat, "labCoat");
         GameRegistry.registerItem(elec.labGoggles, "labGoggles");
+        GameRegistry.registerItem(elec.researchDevice, "researchDevice");
     }
 }

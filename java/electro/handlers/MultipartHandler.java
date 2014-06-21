@@ -1,8 +1,5 @@
 package electro.handlers;
 
-import electro.electrolysmCore;
-import net.minecraft.item.ItemStack;
-
 public class MultipartHandler
 {
     private static MultipartHandler instance = null;

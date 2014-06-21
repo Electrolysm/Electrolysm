@@ -82,4 +82,39 @@ public class EncryptionHelper
 
         return result;
     }
+
+    public static String encodeWithKey(String data, String alternateKey)
+    {
+        String repeatingKey = "";
+        String[] encodedString = data.split("");
+        int stringCharactors = data.length() + 1;
+
+        for(int i = 0; i < (stringCharactors); i++)
+        {
+            repeatingKey = repeatingKey + alternateKey;
+        }
+
+        for(int l = 0; l < stringCharactors; l++)
+        {
+            for(int i = 0; i < alphabet.length; i++)
+            {
+                if(data.split("")[l].contains(alphabet[i]))
+                {
+                    int value = i + position[l];
+                    if(value >= alphabet.length)
+                    {
+                        value = value - alphabet.length;
+                    }
+                    encodedString[l] = alphabet[value];
+                }
+            }
+        }
+        String result= "";
+        for(int w = 0; w < stringCharactors; w++)
+        {
+            result = result + encodedString[w];
+        }
+
+        return result;
+    }
 }

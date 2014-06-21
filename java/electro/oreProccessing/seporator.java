@@ -1,8 +1,6 @@
 package electro.oreProccessing;
 
-import electro.electrolysmCore;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
+import electro.Electrolysm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -16,7 +14,7 @@ public class seporator extends oreProcessMachineBase
     public seporator(boolean isActive)
     {
         super(isActive);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(6.0F);
         this.active = isActive;
     }
@@ -36,7 +34,7 @@ public class seporator extends oreProcessMachineBase
         }
         else
         {
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
     }

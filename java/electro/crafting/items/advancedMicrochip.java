@@ -2,6 +2,7 @@ package electro.crafting.items;
 
 import java.util.List;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,7 +13,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import electro.electrolysmCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,7 +31,7 @@ public class advancedMicrochip extends Item
     {
         super();
         {
-            this.setCreativeTab(electrolysmCore.TabElectrolysm);
+            this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.hasSubtypes = true;
             //LanguageRegistry.addName(new ItemStack(this, 1, 0), "Advanced Microchip");
 
@@ -60,7 +60,7 @@ public class advancedMicrochip extends Item
     {
         for (int i = 0; i < 1; i++)
         {
-            list.add(new ItemStack(electrolysmCore.advancedMicrochip, 1, i));
+            list.add(new ItemStack(Electrolysm.advancedMicrochip, 1, i));
         }
     }
     

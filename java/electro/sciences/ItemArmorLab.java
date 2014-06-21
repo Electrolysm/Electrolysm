@@ -1,9 +1,9 @@
 package electro.sciences;
 
+import electro.Electrolysm;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import electro.electrolysmCore;
 
 public class ItemArmorLab extends ItemArmor {
 
@@ -11,7 +11,7 @@ public class ItemArmorLab extends ItemArmor {
 		super(ArmorMaterial.CLOTH, 0, piece);
 		
 		this.setMaxStackSize(1);
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setUnlocalizedName(unlocalName);
 	}
 	

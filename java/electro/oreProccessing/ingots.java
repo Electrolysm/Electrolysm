@@ -4,11 +4,9 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
-import electro.common.CommonProxy;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -25,7 +23,7 @@ public class ingots extends Item {
 	public ingots() {
 		super();
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.hasSubtypes = true;
 	}
 	
@@ -59,7 +57,7 @@ public class ingots extends Item {
     {
         for (int i = 0; i < 3; i++)
         {
-            list.add(new ItemStack(electrolysmCore.ingots, 1, i));
+            list.add(new ItemStack(Electrolysm.ingots, 1, i));
         }
     }
 

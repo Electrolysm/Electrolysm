@@ -1,28 +1,25 @@
 package electro.handlers;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.oreProccessing.DamageSourceSulphuricAcid;
 import electro.sciences.ItemArmorLab;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import electro.client.ClientProxy;
 import electro.world.biome.WorldGenDiseasedTree;
-import cpw.mods.fml.server.FMLServerHandler;
 
 public class ElectroEventHandler 
 {
 	@SubscribeEvent
 	public void onEntityUpdate(LivingUpdateEvent event) 
 	{
-		if (event.entityLiving.isPotionActive(electrolysmCore.acidBurns))
+		if (event.entityLiving.isPotionActive(Electrolysm.acidBurns))
 		{
 			if (event.entityLiving.worldObj.rand.nextInt(20) == 0) 
 			{

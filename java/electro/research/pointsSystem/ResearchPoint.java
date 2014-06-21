@@ -1,23 +1,14 @@
 package electro.research.pointsSystem;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.init.Blocks;
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.RecipesCrafting;
-import net.minecraft.item.crafting.RecipesIngots;
-import net.minecraft.item.crafting.RecipesMapCloning;
-import net.minecraft.item.crafting.RecipesWeapons;
-import net.minecraftforge.oredict.RecipeSorter;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
@@ -33,7 +24,7 @@ public class ResearchPoint
         //addPoints(new ItemStack(Blocks.coal_block), new EngPoint(10), new SciPoint(3));
         addPoints(new ItemStack(Items.coal), 20, 10);
         addPoints(new ItemStack(Blocks.stone), new EngPoint(1), new SciPoint(1));
-        addPoints(new ItemStack(electrolysmCore.chunkGraphite), 15, 80);
+        addPoints(new ItemStack(Electrolysm.chunkGraphite), 15, 80);
         addPoints(new ItemStack(Blocks.log, 1, 0), 12, 3);
     }
     

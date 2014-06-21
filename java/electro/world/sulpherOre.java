@@ -2,10 +2,10 @@ package electro.world;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import electro.electrolysmCore;
 import net.minecraft.item.Item;
 
 public class sulpherOre extends Block
@@ -13,7 +13,7 @@ public class sulpherOre extends Block
     public sulpherOre()
     {
         super(Material.rock);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(1F);
     }
 
@@ -41,6 +41,6 @@ public class sulpherOre extends Block
     @Override
     public Item getItemDropped(int par1, Random par2Random, int par3)
     {
-        return electrolysmCore.sulphur;
+        return Electrolysm.sulphur;
     }
 }

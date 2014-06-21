@@ -2,15 +2,14 @@ package electro.research;
 
 import java.util.List;
 
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.handlers.GUIHandler;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -21,7 +20,7 @@ public class card extends Item
     public card()
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("IDcard");
         this.setMaxStackSize(1);
     }
@@ -40,21 +39,6 @@ public class card extends Item
         }
 
         return stack;
-    }
-    
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, 
-    		float par9, float par10)
-    {
-    	if (!player.isSneaking())
-        {
-        }
-        else
-        {
-        	player.openGui(electrolysmCore.GUIInstance, GUIHandler.id_bookIDCard, world, x, y, z);
-        	return true;
-        }
-    	
-    	return false;
     }
 
     @SideOnly(Side.CLIENT)
@@ -88,6 +72,6 @@ public class card extends Item
     @Override
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-        list.add(new ItemStack(electrolysmCore.card, 1, 1));
+        list.add(new ItemStack(Electrolysm.card, 1, 1));
     }
 }

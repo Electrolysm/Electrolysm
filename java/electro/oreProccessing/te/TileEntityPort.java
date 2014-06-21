@@ -1,10 +1,7 @@
 package electro.oreProccessing.te;
 
-import electro.electrolysmCore;
-import electro.oreProccessing.recipes.electrolisisRecipes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 

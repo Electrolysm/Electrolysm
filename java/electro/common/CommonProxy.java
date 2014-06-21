@@ -1,11 +1,8 @@
 package electro.common;
 
-import java.util.Map;
-
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidRegistry;
-import electro.electrolysmCore;
 import electro.handlers.Referance;
 
 public class CommonProxy
@@ -47,8 +44,10 @@ public class CommonProxy
 	public static ResourceLocation IMAGE_TECH_TREE = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/image_techTree.png");
 	public static ResourceLocation RESEARCH_BACKGROUND = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/backGround.png");
 	public static ResourceLocation RESEARCH_BACKING = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/bookBackingPage.png");
+    public static ResourceLocation BOOK_LEFT = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/bookLeft.png");
+    public static ResourceLocation BOOK_RIGHT = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/bookRight.png");
+	public static ResourceLocation BOOK = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/newBookImage.png");
 
-	
     //NEI GUIs
     public static ResourceLocation NEI_ELECTROL_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/nei/neiElectrolysisGUI.png");
     
@@ -59,7 +58,7 @@ public class CommonProxy
                            "Iron Sulphate", "Gold Sulphate", "Tin Sulphate", "Lead Sulphate", "Silver Sulphate", "Water"};
     //METAs   						 4				5				6				7				8				9
     
-    public static Block[] FLUID_IDS = {null, electrolysmCore.plasma, electrolysmCore.sulpuricAcid,
+    public static Block[] FLUID_IDS = {null, Electrolysm.plasma, Electrolysm.sulpuricAcid,
 		null, null, null, null, null, null};
     
     public static final String[] DUSTS = {"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};

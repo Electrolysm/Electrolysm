@@ -2,6 +2,7 @@ package electro.research;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import electro.Electrolysm;
 import electro.research.common.SavePlayerScanData;
 import electro.research.pointsSystem.ResearchPoint;
 import electro.research.system.PlayerResearchEvent;
@@ -25,6 +26,7 @@ public class scanner extends Item
         super();
         this.setUnlocalizedName("scanner");
         this.setMaxStackSize(1);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
 
     int timer = 0;
@@ -57,10 +59,10 @@ public class scanner extends Item
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase entity)
     {
-        System.out.println("interaction");
+        //System.out.println("interaction");
         if(entity instanceof EntityLiving)
         {
-            System.out.println("living");
+            //System.out.println("living");
             EntityLiving entityLiving = (EntityLiving)entity;
             return this.doThingsEntity(stack, player, entityLiving);
         }
@@ -116,7 +118,7 @@ public class scanner extends Item
 
     public boolean doThingsEntity(ItemStack stack, EntityPlayer player, EntityLiving entity)
     {
-        System.out.println(entity.getCommandSenderName());
+        //System.out.println(entity.getCommandSenderName());
         if(this.hasBlockBeenScanned(player.getDisplayName(), entity.getCommandSenderName()))
         {
             return false;

@@ -2,8 +2,8 @@ package electro.oreProccessing;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -13,7 +13,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import electro.electrolysmCore;
 import electro.block.liquids.ModFluidSulphuricAcid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,7 +27,7 @@ public class sulphuricAcid extends BlockFluidClassic
     public sulphuricAcid()
     {
         super(new ModFluidSulphuricAcid(), Material.water);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
     @Override
     @SideOnly(Side.CLIENT)
@@ -53,7 +52,7 @@ public class sulphuricAcid extends BlockFluidClassic
 
     private void erodeWorld(World world, int x, int y, int z, Random rand)
     {
-        world.scheduleBlockUpdate(x, y, z, electrolysmCore.sulpuricAcid, tickRate);
+        world.scheduleBlockUpdate(x, y, z, Electrolysm.sulpuricAcid, tickRate);
 
         if (rand.nextInt(50) == 1)
         {
@@ -72,7 +71,7 @@ public class sulphuricAcid extends BlockFluidClassic
                 }
                 else
                 {
-                    Utilities.Block.setBlock(world, x, y - 1, z, electrolysmCore.sulpuricAcid);
+                    Utilities.Block.setBlock(world, x, y - 1, z, Electrolysm.sulpuricAcid);
                 }
             }
         }
@@ -89,11 +88,11 @@ public class sulphuricAcid extends BlockFluidClassic
         {
             int y2 = y - densityDir;
 
-            if (Utilities.Block.getBlock(world, x,     y2, z) == electrolysmCore.sulpuricAcid ||
-                    Utilities.Block.getBlock(world, x - 1, y2, z) == electrolysmCore.sulpuricAcid ||
-                    Utilities.Block.getBlock(world, x + 1, y2, z) == electrolysmCore.sulpuricAcid ||
-                    Utilities.Block.getBlock(world, x,     y2, z - 1) == electrolysmCore.sulpuricAcid ||
-                    Utilities.Block.getBlock(world, x,     y2, z + 1) == electrolysmCore.sulpuricAcid)
+            if (Utilities.Block.getBlock(world, x,     y2, z) == Electrolysm.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x - 1, y2, z) == Electrolysm.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x + 1, y2, z) == Electrolysm.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x,     y2, z - 1) == Electrolysm.sulpuricAcid ||
+                    Utilities.Block.getBlock(world, x,     y2, z + 1) == Electrolysm.sulpuricAcid)
             {
                 expQuanta = quantaPerBlock - 1;
             }
@@ -119,8 +118,8 @@ public class sulphuricAcid extends BlockFluidClassic
                 else
                 {
                     world.setBlockMetadataWithNotify(x, y, z, quantaPerBlock - expQuanta, 3);
-                    world.scheduleBlockUpdate(x, y, z, electrolysmCore.sulpuricAcid, tickRate);
-                    world.notifyBlocksOfNeighborChange(x, y, z, electrolysmCore.sulpuricAcid);
+                    world.scheduleBlockUpdate(x, y, z, Electrolysm.sulpuricAcid, tickRate);
+                    world.notifyBlocksOfNeighborChange(x, y, z, Electrolysm.sulpuricAcid);
                 }
             }
         }
@@ -146,7 +145,7 @@ public class sulphuricAcid extends BlockFluidClassic
 
         if (isSourceBlock(world, x, y, z) || !isFlowingVertically(world, x, y, z))
         {
-            if (Utilities.Block.getBlock(world, x, y - densityDir, z) == electrolysmCore.sulpuricAcid)
+            if (Utilities.Block.getBlock(world, x, y - densityDir, z) == Electrolysm.sulpuricAcid)
             {
                 flowMeta = 1;
             }
@@ -185,7 +184,7 @@ public class sulphuricAcid extends BlockFluidClassic
     		//entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
     		if(entity instanceof EntityPlayer)
     		{
-    			((EntityPlayer)entity).addPotionEffect(new PotionEffect(electrolysmCore.acidBurns.id, 200, 1));
+    			((EntityPlayer)entity).addPotionEffect(new PotionEffect(Electrolysm.acidBurns.id, 200, 1));
     		}
     		else
     		{

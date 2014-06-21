@@ -4,8 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
-import electro.common.CommonProxy;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -21,7 +20,7 @@ public class grindStone extends Item{
 		super();
 		
 		this.hasSubtypes = true;
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 	}
 	
 	public String getUnlocalizedName(ItemStack stack)
@@ -53,7 +52,7 @@ public class grindStone extends Item{
     {
         for (int i = 0; i < 3; i++)
         {
-            list.add(new ItemStack(electrolysmCore.grindStone, 1, i));
+            list.add(new ItemStack(Electrolysm.grindStone, 1, i));
         }
     }
 

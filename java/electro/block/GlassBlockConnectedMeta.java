@@ -2,6 +2,8 @@ package electro.block;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import electro.configHandler;
 
 import net.minecraft.block.Block;
@@ -23,7 +25,6 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
 {
     public String[] textures;
     public IIcon[][] icons;
-    boolean ignoreMetaForConnectedGlass = configHandler.connectedTexturesMode == 2;
 
     public GlassBlockConnectedMeta(String location, boolean hasAlpha, String... textures)
     {
@@ -33,10 +34,10 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     }
 
     @Override
-    public IIcon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-
         if (meta < icons.length)
         {
             return getConnectedBlockTexture(par1IBlockAccess, par2, par3, par4, par5, icons[meta]);
@@ -48,25 +49,29 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     }
 
     @Override
-    public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block block, int par6)
+    public boolean shouldConnectToBlock (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block par5, int par6)
     {
-        return block instanceof GlassBlockConnectedMeta && (par6 == par1IBlockAccess.getBlockMetadata(par2, par3, par4) || ignoreMetaForConnectedGlass);
+        return par5 == this && (par6 == par1IBlockAccess.getBlockMetadata(par2, par3, par4));
     }
 
     @Override
-    public IIcon getIcon(int par1, int par2)
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon (int par1, int par2)
     {
         return icons[par2][0];
     }
 
     @Override
-    public void getSubBlocks(Item block, CreativeTabs par2CreativeTabs, List list)
+    public void getSubBlocks (Item b, CreativeTabs par2CreativeTabs, List par3List)
     {
-        list.add(new ItemStack(this, 1, 0));
+        for (int i = 0; i < textures.length; i++)
+        {
+            par3List.add(new ItemStack(b, 1, i));
+        }
     }
 
     @Override
-    public void registerBlockIcons(IIconRegister par1IconRegister)
+    public void registerBlockIcons (IIconRegister par1IconRegister)
     {
         for (int i = 0; i < textures.length; i++)
         {

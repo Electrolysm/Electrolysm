@@ -1,8 +1,8 @@
 package electro.handlers;
 
+import electro.Electrolysm;
 import net.minecraft.item.ItemStack;
 import api.specialFuel.SpecialFuelHandler;
-import electro.electrolysmCore;
 import electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -10,98 +10,99 @@ public class Names
 {
     public static void addName()
     {
-        LanguageRegistry.addName(electrolysmCore.workBench, "Work Bench");
-        LanguageRegistry.addName(electrolysmCore.desk, "Scientist's Desk");
-        LanguageRegistry.addName(electrolysmCore.researchDesk, "Research Desk");
-        LanguageRegistry.addName(electrolysmCore.blastProof, "Blast Proof Iron Block");
-        LanguageRegistry.addName(electrolysmCore.blastDoor, "Blast Proof Iron Door");
-        LanguageRegistry.addName(electrolysmCore.energiser, "Fluid Energiser");
-        LanguageRegistry.addName(electrolysmCore.injector, "Injector");
-        LanguageRegistry.addName(electrolysmCore.plasma, "Liquid Plasma");
+        LanguageRegistry.addName(Electrolysm.workBench, "Work Bench");
+        LanguageRegistry.addName(Electrolysm.desk, "Scientist's Desk");
+        LanguageRegistry.addName(Electrolysm.researchDesk, "Research Desk");
+        LanguageRegistry.addName(Electrolysm.blastProof, "Blast Proof Iron Block");
+        LanguageRegistry.addName(Electrolysm.blastDoor, "Blast Proof Iron Door");
+        LanguageRegistry.addName(Electrolysm.energiser, "Fluid Energiser");
+        LanguageRegistry.addName(Electrolysm.injector, "Injector");
+        LanguageRegistry.addName(Electrolysm.plasma, "Liquid Plasma");
         //LanguageRegistry.addName(electrolysmCore.quantumComp, "Quantum Computer");
-        LanguageRegistry.addName(electrolysmCore.blastGlass, "Blast Proof Iron Glass");
-        LanguageRegistry.addName(electrolysmCore.modBlastGlass, "Modified Blast Proof Iron Glass");
-        LanguageRegistry.addName(electrolysmCore.plasmaDrill, "Plasma Drill");
-        LanguageRegistry.addName(electrolysmCore.diseaseGrass, "Diseased Grass");
-        LanguageRegistry.addName(electrolysmCore.spawnZS, "Spawn Zombie-Scientist");
-        LanguageRegistry.addName(electrolysmCore.knowledge, "Knowledge Strip");
-        LanguageRegistry.addName(electrolysmCore.drillCasing, "Plasma Drill Casing");
-        LanguageRegistry.addName(electrolysmCore.graphite, "Graphite");
-        LanguageRegistry.addName(electrolysmCore.chunkGraphite, "Graphite Chunk");
-        LanguageRegistry.addName(electrolysmCore.injectionArm, "Injection Arm");
-        LanguageRegistry.addName(electrolysmCore.energisingRod, "Energising Filament");
-        LanguageRegistry.addName(electrolysmCore.glassModifire, "Glass Modifier");
-        LanguageRegistry.addName(electrolysmCore.sulphurOre, "Sulphur Ore");
-        LanguageRegistry.addName(electrolysmCore.sulphur, "Sulphur Crystals");
-        LanguageRegistry.addName(electrolysmCore.energyMeter, "Energy Meter");
-        LanguageRegistry.addName(electrolysmCore.sulpuricAcid, "Sulphuric Acid");
-        LanguageRegistry.addName(electrolysmCore.copperOre, "Copper Ore");
-        LanguageRegistry.addName(electrolysmCore.ironFrames, "Iron Frame");
-        LanguageRegistry.addName(electrolysmCore.hammer, "Hammer");
-        LanguageRegistry.addName(electrolysmCore.copperIngot, "Copper Ingot");
-        LanguageRegistry.addName(electrolysmCore.node, "Graphite Electrode");
-        LanguageRegistry.addName(electrolysmCore.luminousRedstone, "Luminous Redstone Dust");
-        LanguageRegistry.addName(electrolysmCore.diamondShard, "Diamond Shard");
-        LanguageRegistry.addName(electrolysmCore.crystalBase, "Crystal Base");
-        LanguageRegistry.addName(electrolysmCore.blastBrick, "Blast Proof Iron Brick");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.nettedBlock, 1), "Netted Ore");
-        LanguageRegistry.addName(electrolysmCore.card, "ID Card");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 0), "Tin Ingot");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 1), "Silver Ingot");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.ingots, 1, 2), "Lead Ingot");
-        LanguageRegistry.addName(electrolysmCore.liquidiser, "Displacement Chamber");
-        LanguageRegistry.addName(electrolysmCore.crusher, "Crusher");
-        LanguageRegistry.addName(electrolysmCore.electrolisisCore, "Electrolysis Chamber");
-        LanguageRegistry.addName(electrolysmCore.electrolChamber, "Electrolysis Wall");
-        LanguageRegistry.addName(electrolysmCore.smeltory, "Smeltery");
-        LanguageRegistry.addName(electrolysmCore.smeltoryActive, "Smeltory");
-        LanguageRegistry.addName(electrolysmCore.crusherActive, "Crusher");
-        LanguageRegistry.addName(electrolysmCore.net, "Ore Net");
-        LanguageRegistry.addName(electrolysmCore.endoInsulator, "Endothermite Insulator");
-        LanguageRegistry.addName(electrolysmCore.microchipBoard, "Chip Board");
-        LanguageRegistry.addName(electrolysmCore.CPU, "CPU");
-        LanguageRegistry.addName(electrolysmCore.advancedCPU, "Advanced CPU");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.advancedMicrochip, 1, 0), "Advanced Microchip");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.advancedMicrochip, 1, 1), "Creepified Microchip");
-        LanguageRegistry.addName(electrolysmCore.experimentalMicrochip, "Experimental Microchip");
-        LanguageRegistry.addName(electrolysmCore.transistor, "Transistor");
-        LanguageRegistry.addName(electrolysmCore.graphiteRod, "Graphite Rod");
-        LanguageRegistry.addName(electrolysmCore.idifier, "Identifier");
-        LanguageRegistry.addName(electrolysmCore.charger, "Electrostatic Energetic Charger");
-        LanguageRegistry.addName(electrolysmCore.Yttrium, "Yttrium Block");
-        LanguageRegistry.addName(electrolysmCore.magnet, "Rare Earth Magnet");
-        LanguageRegistry.addName(electrolysmCore.antiMatterCasing, "Antimatter Proof Glass");
-        LanguageRegistry.addName(electrolysmCore.BasicMicrochip, "Basic Microchip");
-        LanguageRegistry.addName(electrolysmCore.inkAndQuill, "Ink and Quill");
-        LanguageRegistry.addName(electrolysmCore.electroMagnet, "ElectroMagnetic Suspension Unit");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.Scandium, 1, 0), "Scandium Dust");
-        LanguageRegistry.addName(new ItemStack(electrolysmCore.Scandium, 1, 1), "Scandium Ingot");
-        LanguageRegistry.addName(electrolysmCore.ballOfPlastic, "Ball of Plastic");
-        LanguageRegistry.addName(electrolysmCore.ItemWire, "Endothermite Cable");
+        LanguageRegistry.addName(Electrolysm.blastGlass, "Blast Proof Iron Glass");
+        LanguageRegistry.addName(Electrolysm.modBlastGlass, "Modified Blast Proof Iron Glass");
+        LanguageRegistry.addName(Electrolysm.plasmaDrill, "Plasma Drill");
+        LanguageRegistry.addName(Electrolysm.diseaseGrass, "Diseased Grass");
+        LanguageRegistry.addName(Electrolysm.spawnZS, "Spawn Zombie-Scientist");
+        LanguageRegistry.addName(Electrolysm.knowledge, "Knowledge Strip");
+        LanguageRegistry.addName(Electrolysm.drillCasing, "Plasma Drill Casing");
+        LanguageRegistry.addName(Electrolysm.graphite, "Graphite");
+        LanguageRegistry.addName(Electrolysm.chunkGraphite, "Graphite Chunk");
+        LanguageRegistry.addName(Electrolysm.injectionArm, "Injection Arm");
+        LanguageRegistry.addName(Electrolysm.energisingRod, "Energising Filament");
+        LanguageRegistry.addName(Electrolysm.glassModifire, "Glass Modifier");
+        LanguageRegistry.addName(Electrolysm.sulphurOre, "Sulphur Ore");
+        LanguageRegistry.addName(Electrolysm.sulphur, "Sulphur Crystals");
+        LanguageRegistry.addName(Electrolysm.energyMeter, "Energy Meter");
+        LanguageRegistry.addName(Electrolysm.sulpuricAcid, "Sulphuric Acid");
+        LanguageRegistry.addName(Electrolysm.copperOre, "Copper Ore");
+        LanguageRegistry.addName(Electrolysm.ironFrames, "Iron Frame");
+        LanguageRegistry.addName(Electrolysm.hammer, "Hammer");
+        LanguageRegistry.addName(Electrolysm.copperIngot, "Copper Ingot");
+        LanguageRegistry.addName(Electrolysm.node, "Graphite Electrode");
+        LanguageRegistry.addName(Electrolysm.luminousRedstone, "Luminous Redstone Dust");
+        LanguageRegistry.addName(Electrolysm.diamondShard, "Diamond Shard");
+        LanguageRegistry.addName(Electrolysm.crystalBase, "Crystal Base");
+        LanguageRegistry.addName(Electrolysm.blastBrick, "Blast Proof Iron Brick");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.nettedBlock, 1), "Netted Ore");
+        LanguageRegistry.addName(Electrolysm.card, "ID Card");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.ingots, 1, 0), "Tin Ingot");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.ingots, 1, 1), "Silver Ingot");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.ingots, 1, 2), "Lead Ingot");
+        LanguageRegistry.addName(Electrolysm.liquidiser, "Displacement Chamber");
+        LanguageRegistry.addName(Electrolysm.crusher, "Crusher");
+        LanguageRegistry.addName(Electrolysm.electrolisisCore, "Electrolysis Chamber");
+        LanguageRegistry.addName(Electrolysm.electrolChamber, "Electrolysis Wall");
+        LanguageRegistry.addName(Electrolysm.smeltory, "Smeltery");
+        LanguageRegistry.addName(Electrolysm.smeltoryActive, "Smeltory");
+        LanguageRegistry.addName(Electrolysm.crusherActive, "Crusher");
+        LanguageRegistry.addName(Electrolysm.net, "Ore Net");
+        LanguageRegistry.addName(Electrolysm.endoInsulator, "Endothermite Insulator");
+        LanguageRegistry.addName(Electrolysm.microchipBoard, "Chip Board");
+        LanguageRegistry.addName(Electrolysm.CPU, "CPU");
+        LanguageRegistry.addName(Electrolysm.advancedCPU, "Advanced CPU");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.advancedMicrochip, 1, 0), "Advanced Microchip");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.advancedMicrochip, 1, 1), "Creepified Microchip");
+        LanguageRegistry.addName(Electrolysm.experimentalMicrochip, "Experimental Microchip");
+        LanguageRegistry.addName(Electrolysm.transistor, "Transistor");
+        LanguageRegistry.addName(Electrolysm.graphiteRod, "Graphite Rod");
+        LanguageRegistry.addName(Electrolysm.idifier, "Identifier");
+        LanguageRegistry.addName(Electrolysm.charger, "Electrostatic Energetic Charger");
+        LanguageRegistry.addName(Electrolysm.Yttrium, "Yttrium Block");
+        LanguageRegistry.addName(Electrolysm.magnet, "Rare Earth Magnet");
+        LanguageRegistry.addName(Electrolysm.antiMatterCasing, "Antimatter Proof Glass");
+        LanguageRegistry.addName(Electrolysm.BasicMicrochip, "Basic Microchip");
+        LanguageRegistry.addName(Electrolysm.inkAndQuill, "Ink and Quill");
+        LanguageRegistry.addName(Electrolysm.electroMagnet, "ElectroMagnetic Suspension Unit");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.Scandium, 1, 0), "Scandium Dust");
+        LanguageRegistry.addName(new ItemStack(Electrolysm.Scandium, 1, 1), "Scandium Ingot");
+        LanguageRegistry.addName(Electrolysm.ballOfPlastic, "Ball of Plastic");
+        LanguageRegistry.addName(Electrolysm.ItemWire, "Endothermite Cable");
+        LanguageRegistry.addName(Electrolysm.researchDevice, "Research Identification Tablet");
 
         
         
         for(int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)
         {
-            LanguageRegistry.addName(new ItemStack(electrolysmCore.electroContain, 1, i), "Electromagenetic Containment Unit");
+            LanguageRegistry.addName(new ItemStack(Electrolysm.electroContain, 1, i), "Electromagenetic Containment Unit");
         }
         
         for(int i = 0; i < 3; i++)
         {
         	String[] tier = {"Stone", "Iron", "Diamond"};
-        	LanguageRegistry.addName(new ItemStack(electrolysmCore.grindStone, 1, i), tier[i] + " Grind Stone"); 
+        	LanguageRegistry.addName(new ItemStack(Electrolysm.grindStone, 1, i), tier[i] + " Grind Stone");
         }
         for (int i = 0; i < CommonProxy.FLUIDS.length; i++)
         {
-            LanguageRegistry.addName(new ItemStack(electrolysmCore.fluidStorage, 1, i),
+            LanguageRegistry.addName(new ItemStack(Electrolysm.fluidStorage, 1, i),
                                      "Strengthened Fluid Storage Capsule");
         }
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
-            LanguageRegistry.addName(new ItemStack(electrolysmCore.dusts, 1, i), CommonProxy.DUSTS[i] + " Dust");
-            LanguageRegistry.addName(new ItemStack(electrolysmCore.impureDusts, 1, i), "Impure " +
+            LanguageRegistry.addName(new ItemStack(Electrolysm.dusts, 1, i), CommonProxy.DUSTS[i] + " Dust");
+            LanguageRegistry.addName(new ItemStack(Electrolysm.impureDusts, 1, i), "Impure " +
                                      CommonProxy.DUSTS[i] + " Dust");
-            LanguageRegistry.addName(new ItemStack(electrolysmCore.crystal, 1, i), CommonProxy.DUSTS[i] + " Sulphate Crystal");
+            LanguageRegistry.addName(new ItemStack(Electrolysm.crystal, 1, i), CommonProxy.DUSTS[i] + " Sulphate Crystal");
         }
         
         /*for(int i = 0; i < ElementHandler.elements.length; i++)

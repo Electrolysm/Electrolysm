@@ -2,10 +2,9 @@ package electro.world.biome;
 
 import java.util.Random;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -97,7 +96,7 @@ public class WorldGenDiseasedTree extends WorldGenerator
                                 !block.isLeaves(par1World, l1, i1, j1) &&
                                  block != Blocks.grass &&
                                  block != Blocks.dirt &&
-                                 block != electrolysmCore.diseaseGrass &&
+                                 block != Electrolysm.diseaseGrass &&
                                 !block.isWood(par1World, l1, i1, j1))
                             {
                                 flag = false;
@@ -220,7 +219,7 @@ public class WorldGenDiseasedTree extends WorldGenerator
                                 !block.isLeaves(par1World, l1, i1, j1) &&
                                  block != Blocks.grass &&
                                  block != Blocks.dirt &&
-                                 block != electrolysmCore.diseaseGrass &&
+                                 block != Electrolysm.diseaseGrass &&
                                 !block.isWood(par1World, l1, i1, j1))
                             {
                                 flag = false;

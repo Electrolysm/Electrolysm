@@ -1,17 +1,17 @@
 package electro.handlers;
 
+import electro.Electrolysm;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-import electro.electrolysmCore;
 
 public class ElectrolysmLootHandler 
 {
 	public ElectrolysmLootHandler()
 	{
-		WeightedRandomChestContent knowledge = new WeightedRandomChestContent(new ItemStack(electrolysmCore.knowledge), 1,
+		WeightedRandomChestContent knowledge = new WeightedRandomChestContent(new ItemStack(Electrolysm.knowledge), 1,
 				10 , 10);
-		WeightedRandomChestContent antiMatter = new WeightedRandomChestContent(new ItemStack(electrolysmCore.electroContain, 1, 1),
+		WeightedRandomChestContent antiMatter = new WeightedRandomChestContent(new ItemStack(Electrolysm.electroContain, 1, 1),
 				1, 10 , 10);
 		
 		this.addLoot(knowledge);

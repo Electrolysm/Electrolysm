@@ -1,6 +1,6 @@
 package electro.handlers.nei;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import electro.block.advMachines.gui.GUIInjector;
 import electro.handlers.Referance;
 import electro.oreProccessing.gui.GUICrusher;
@@ -16,9 +16,9 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 	public void loadConfig() 
 	{
 		//Item Hiding
-		API.hideItem(new ItemStack(electrolysmCore.crusherActive));
-		API.hideItem(new ItemStack(electrolysmCore.smeltoryActive));
-		API.hideItem(new ItemStack(electrolysmCore.endoCable));
+		API.hideItem(new ItemStack(Electrolysm.crusherActive));
+		API.hideItem(new ItemStack(Electrolysm.smeltoryActive));
+		API.hideItem(new ItemStack(Electrolysm.endoCable));
 
 		//Crusher
 		API.registerRecipeHandler(new CrusherRecipeHandler());

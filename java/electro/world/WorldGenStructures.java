@@ -2,13 +2,13 @@ package electro.world;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import electro.electrolysmCore;
 import electro.world.biome.WorldGenDiseasedTree;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -27,7 +27,7 @@ public class WorldGenStructures implements IWorldGenerator
 
     private void generateTreeSurface(World world, Random random, int x, int z) 
     {
-    	if (world.getBiomeGenForCoords(x, z) == electrolysmCore.diseasedBiomeObj)
+    	if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiomeObj)
         {
             if (random.nextInt(75) == 1)
             {
@@ -39,7 +39,7 @@ public class WorldGenStructures implements IWorldGenerator
 	public static void generateSurface(World world, Random random, int x, int z)
     {
         //Science Lab Generation Code:
-        if (world.getBiomeGenForCoords(x, z) == electrolysmCore.diseasedBiomeObj)
+        if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiomeObj)
         {
             if (random.nextInt(100) == 1)
             {
@@ -53,14 +53,14 @@ public class WorldGenStructures implements IWorldGenerator
                     Block glow = Blocks.glowstone;
                     Block ironBar = Blocks.iron_bars;
                     Block wood = Blocks.log;
-                    Block grass = electrolysmCore.diseaseGrass;
+                    Block grass = Electrolysm.diseaseGrass;
                     Block stairs = Blocks.stone_stairs;
                     Block pressure = Blocks.stone_pressure_plate;
                     Block dispenser = Blocks.tnt;
                     Block redstone = Blocks.redstone_wire;
                     Block stoneSlabHalf = Blocks.stone_slab;
                     Block stoneSlabFull = Blocks.double_stone_slab;
-                    Block desk = electrolysmCore.desk;
+                    Block desk = Electrolysm.desk;
                     Block books = Blocks.bookshelf;
                     Block dirt = Blocks.dirt;
                     Block chest = Blocks.chest;
@@ -567,12 +567,12 @@ public class WorldGenStructures implements IWorldGenerator
                         if (rand <= 250)
                         {
                         	stackSize = random.nextInt(5);
-                            tileEntityChest.setInventorySlotContents(slot, new ItemStack(electrolysmCore.knowledge, stackSize));
+                            tileEntityChest.setInventorySlotContents(slot, new ItemStack(Electrolysm.knowledge, stackSize));
                         }
                         else if(rand > 200)
                         {
                         	tileEntityChest.setInventorySlotContents(slot + 10, 
-                            		new ItemStack(electrolysmCore.electroContain, 1, 1));
+                            		new ItemStack(Electrolysm.electroContain, 1, 1));
                         }
                     }
 

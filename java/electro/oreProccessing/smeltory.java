@@ -4,12 +4,9 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
-import electro.oreProccessing.te.TileEntityCrusher;
+import electro.Electrolysm;
 import electro.oreProccessing.te.TileEntitySmeltory;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +25,7 @@ public class smeltory extends oreProcessMachineBase
     public smeltory(boolean isActive)
     {
         super(isActive);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(6.0F);
         this.active = isActive;
     }
@@ -63,7 +60,7 @@ public class smeltory extends oreProcessMachineBase
         }
         else
         {
-            player.openGui(electrolysmCore.GUIInstance, 0, world, x, y, z);
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
     }
@@ -99,11 +96,11 @@ public class smeltory extends oreProcessMachineBase
 
         if (active)
         {
-            world.setBlock(x, y, z, electrolysmCore.smeltoryActive);
+            world.setBlock(x, y, z, Electrolysm.smeltoryActive);
         }
         else
         {
-            world.setBlock(x, y, z, electrolysmCore.smeltory);
+            world.setBlock(x, y, z, Electrolysm.smeltory);
         }
 
         keepInventory = false;

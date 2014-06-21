@@ -2,6 +2,7 @@ package electro.oreProccessing.te;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,7 +13,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import api.powerSystem.PowerUsage;
 import api.powerSystem.meter.IMeterable;
-import electro.electrolysmCore;
 import electro.oreProccessing.recipes.CrusherRecipes;
 
 public class TileEntityCrusher extends TileEntity implements IInventory, ISidedInventory, IMeterable
@@ -292,7 +292,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || item.getItem() == electrolysmCore.impureDusts;
+        return side != 0 || slot != 1 || item.getItem() == Electrolysm.impureDusts;
     }
     
     @Override
@@ -333,7 +333,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	@Override
 	public Block getBlock() 
 	{
-		return electrolysmCore.crusher;
+		return Electrolysm.crusher;
 	}
 
     @Override

@@ -2,11 +2,9 @@ package electro.world.biome;
 
 import java.util.Random;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockGrass;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -32,7 +30,7 @@ public class diseasedGrass extends BlockGrass
     	
         super();
         // TODO Auto-generated constructor stub
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(1);
         this.setStepSound(Block.soundTypeGrass);
     }

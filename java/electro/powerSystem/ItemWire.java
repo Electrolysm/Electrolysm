@@ -2,6 +2,7 @@ package electro.powerSystem;
 
 import java.util.List;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import api.LoggerHandler;
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +24,7 @@ public class ItemWire extends Item
     public ItemWire()
     {
         super();
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ItemWire extends Item
 
     public void getSubItems(int id, CreativeTabs creativeTab, List list)
     {
-    	list.add(new ItemStack(electrolysmCore.ItemWire, 1, 0));
+    	list.add(new ItemStack(Electrolysm.ItemWire, 1, 0));
     }
 
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y,
@@ -150,7 +150,7 @@ public class ItemWire extends Item
 
         if (meta == 0)
         {
-            return electrolysmCore.endoCable;
+            return Electrolysm.endoCable;
         }
         return null;
     }

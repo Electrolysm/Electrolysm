@@ -1,16 +1,12 @@
 package electro.research;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class Research
@@ -38,9 +34,9 @@ public class Research
 
     private Research()
     {
-        this.addResearch(new ItemStack(Blocks.iron_block), new ItemStack(electrolysmCore.researchPaper, 1, 0), 1);
-        this.addResearch(new ItemStack(Items.fish), new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
-        this.addResearch(new ItemStack(Items.cooked_fished), new ItemStack(electrolysmCore.researchPaper, 1, 1), 1);
+        this.addResearch(new ItemStack(Blocks.iron_block), new ItemStack(Electrolysm.researchPaper, 1, 0), 1);
+        this.addResearch(new ItemStack(Items.fish), new ItemStack(Electrolysm.researchPaper, 1, 1), 1);
+        this.addResearch(new ItemStack(Items.cooked_fished), new ItemStack(Electrolysm.researchPaper, 1, 1), 1);
     }
 
     /**

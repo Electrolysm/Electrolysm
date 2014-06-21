@@ -4,11 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class EnergiserRecipes
@@ -27,8 +25,8 @@ public class EnergiserRecipes
 
     private EnergiserRecipes()
     {
-        this.addDoubleSmelting(new ItemStack(Items.water_bucket), new ItemStack(electrolysmCore.fluidStorage, 4, 0),
-                               new ItemStack(electrolysmCore.fluidStorage, 4, 1));
+        this.addDoubleSmelting(new ItemStack(Items.water_bucket), new ItemStack(Electrolysm.fluidStorage, 4, 0),
+                               new ItemStack(Electrolysm.fluidStorage, 4, 1));
     }
 
     public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output)

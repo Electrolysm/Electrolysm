@@ -7,6 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -19,79 +21,52 @@ import java.util.Iterator;
 /**
  * Created by Clarky158 on 19/06/2014.
  */
-public class GuiResearchNotify extends GuiScreen
+public class GuiResearchNotify extends Gui
 {
-    private int windowWidth;
-    private int windowHeight;
-    private Minecraft theGame;
-    int xSize = 741;
-    int ySize = 646;
-
-    @SubscribeEvent
-    public void overlayEvent(RenderGameOverlayEvent event)
-    {
-        //event.
-    }
+    private Minecraft mc;
 
     public GuiResearchNotify(Minecraft mc)
     {
         super();
-        this.theGame = mc;
+
+        // We need this to invoke the render engine.
+        this.mc = mc;
     }
 
-    private void updateResearchWindowScale()
-    {
-        GL11.glViewport(0, 0, this.theGame.displayWidth, this.theGame.displayHeight);
-        GL11.glMatrixMode(5889);
-        GL11.glLoadIdentity();
-        GL11.glMatrixMode(5888);
-        GL11.glLoadIdentity();
-        this.windowWidth = this.theGame.displayWidth;
-        this.windowHeight = this.theGame.displayHeight;
-        ScaledResolution var1 = new ScaledResolution(this.theGame.gameSettings, this.theGame.displayHeight, this.theGame.displayWidth);
-        this.windowWidth = var1.getScaledWidth();
-        this.windowHeight = var1.getScaledHeight();
-        GL11.glClear(256);
-        GL11.glMatrixMode(5889);
-        GL11.glLoadIdentity();
-        GL11.glOrtho(0.0D, this.windowWidth, this.windowHeight, 0.0D, 1000.0D, 3000.0D);
-        GL11.glMatrixMode(5888);
-        GL11.glLoadIdentity();
-        GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
-    }
+    private static final int BUFF_ICON_SIZE = 18;
+    private static final int BUFF_ICON_SPACING = BUFF_ICON_SIZE + 2; // 2 pixels between buff icons
+    private static final int BUFF_ICON_BASE_U_OFFSET = 0;
+    private static final int BUFF_ICON_BASE_V_OFFSET = 198;
+    private static final int BUFF_ICONS_PER_ROW = 8;
 
-    @Override
-    public void drawScreen(int i, int j, float f)
-    {
-        this.updateResearchWindow();
-    }
-
+    //
+    // This event is called by GuiIngameForge during each frame by
+    // GuiIngameForge.pre() and GuiIngameForce.post().
+    //
+    @SubscribeEvent(priority=EventPriority.HIGHEST)
     public void updateResearchWindow()
-    {/*
-        xSize = (741 / 2) - 100 - 20 + 5;
-        ySize = (646 / 2) - 100 + 50 - 20;
-
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(CommonProxy.IMAGE_TECH_TREE);
-        int xStart = (width - xSize) / 2;
-        int yStart = (height - ySize) / 2;
-        this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);*/
-
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glEnable(3553);
-        this.bindTexture("/achievement/bg.png");
-        this.drawString("/achievement/bg.png");
-        this.drawTexturedModalRect(200, 200, 0, 0, 10000, 10000);
-        GL11.glDisable(2896);
-    }
-
-    public static void drawString(String texture)
     {
-        Minecraft.getMinecraft().ingameGUI.func_110326_a(texture, true);
-    }
+        ScaledResolution var5 = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+        int par1 = var5.getScaledWidth();
+        int par2 = var5.getScaledHeight();
+        ResourceLocation loc = new ResourceLocation("electrolysm", "textures/gui/blank.png");
 
-    public static void bindTexture(String texture)
-    {
-        Minecraft.getMinecraft().renderEngine.bindTexture(CommonProxy.RESEARCH_DESK_GUI);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glDepthMask(false);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        this.mc.getTextureManager().bindTexture(loc);
+        Tessellator var3 = Tessellator.instance;
+        var3.startDrawingQuads();
+        var3.addVertexWithUV(0.0D, (double)par2, -90.0D, 0.0D, 1.0D);
+        var3.addVertexWithUV((double)par1, (double)par2, -90.0D, 1.0D, 1.0D);
+        var3.addVertexWithUV((double)par1, 0.0D, -90.0D, 1.0D, 0.0D);
+        var3.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
+        var3.draw();
+        GL11.glDepthMask(true);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

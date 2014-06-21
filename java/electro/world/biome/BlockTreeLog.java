@@ -1,15 +1,11 @@
 package electro.world.biome;
 
-import java.util.Random;
-
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +20,7 @@ public class BlockTreeLog extends BlockLog {
 	public BlockTreeLog(int type1, String unlocalName) {
 		super();
 		
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setStepSound(Block.soundTypeWood);
 		this.setHardness(2.0F);
 		this.type = type1;

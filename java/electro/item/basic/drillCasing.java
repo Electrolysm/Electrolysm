@@ -2,7 +2,7 @@ package electro.item.basic;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
@@ -12,7 +12,7 @@ public class drillCasing extends Item
     {
         super();
         this.setUnlocalizedName("drillCasing");
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,12 +1,8 @@
 package electro.block.basic;
 
-import java.util.Random;
-
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
+import electro.Electrolysm;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.block.GlassBlockConnectedMeta;
 
 public class modBlastGlass extends GlassBlockConnectedMeta
@@ -15,7 +11,7 @@ public class modBlastGlass extends GlassBlockConnectedMeta
                          String[] textures)
     {
         super(location, hasAlpha, textures);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(9000);
         this.setBlockUnbreakable();
     }

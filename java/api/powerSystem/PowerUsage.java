@@ -1,10 +1,8 @@
 package api.powerSystem;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 
 public class PowerUsage 
@@ -20,11 +18,11 @@ public class PowerUsage
 	
 	static
 	{
-		addToMap(electrolysmCore.crusher, new TeU(14));
-		addToMap(electrolysmCore.crusherActive, new TeU(14));
-		addToMap(electrolysmCore.smeltory, new TeU(19));
-		addToMap(electrolysmCore.smeltoryActive, new TeU(19));
-		addToMap(electrolysmCore.electrolisisCore, new TeU(62));
+		addToMap(Electrolysm.crusher, new TeU(14));
+		addToMap(Electrolysm.crusherActive, new TeU(14));
+		addToMap(Electrolysm.smeltory, new TeU(19));
+		addToMap(Electrolysm.smeltoryActive, new TeU(19));
+		addToMap(Electrolysm.electrolisisCore, new TeU(62));
 	}
 	
 	

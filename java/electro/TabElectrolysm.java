@@ -19,11 +19,11 @@ public class TabElectrolysm extends CreativeTabs
     @Override
     public ItemStack getIconItemStack()
     {
-        return new ItemStack(electrolysmCore.plasmaDrill, 1, 1);
+        return new ItemStack(Electrolysm.plasmaDrill, 1, 1);
     }
 
     @Override
-    public Item getTabIconItem() { return electrolysmCore.plasmaDrill; }
+    public Item getTabIconItem() { return Electrolysm.plasmaDrill; }
 
 
     public String getTranslatedTabLabel()

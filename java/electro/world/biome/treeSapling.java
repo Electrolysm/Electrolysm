@@ -3,20 +3,19 @@ package electro.world.biome;
 import java.util.List;
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class treeSapling extends BlockSapling {
 
 	public treeSapling() {
 		super();
 
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setTickRandomly(true);
 	}
 	

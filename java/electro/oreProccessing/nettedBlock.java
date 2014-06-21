@@ -3,6 +3,7 @@ package electro.oreProccessing;
 import java.util.ArrayList;
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,7 +14,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import api.LoggerHandler;
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -80,7 +80,7 @@ public class nettedBlock extends Block {
     	{
     		if(player.getHeldItem() == null)
     		{
-    			if(world.getBlock(x, y, z) == electrolysmCore.nettedBlock)
+    			if(world.getBlock(x, y, z) == Electrolysm.nettedBlock)
     			{
     				if(this.getNameFromMeta(world.getBlockMetadata(x, y, z)) != null)
     				{
@@ -95,7 +95,7 @@ public class nettedBlock extends Block {
     
     private void spawnItems(String oreName, EntityPlayer player, World world, int x, int y, int z)
     {
-    	ItemStack net = new ItemStack(electrolysmCore.net, 1, 0);
+    	ItemStack net = new ItemStack(Electrolysm.net, 1, 0);
     	
 		if(oreName.contains("oreIron"))
 		{
@@ -131,7 +131,7 @@ public class nettedBlock extends Block {
 		}
 		
 		Block id = world.getBlock(x, y, z);
-		if(id == electrolysmCore.nettedBlock)
+		if(id == Electrolysm.nettedBlock)
 		{
 			player.entityDropItem(net, 0);
 		}

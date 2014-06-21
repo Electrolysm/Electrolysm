@@ -2,7 +2,7 @@ package electro.oreProccessing;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
@@ -13,7 +13,7 @@ public class node extends Item
         super();
         this.setUnlocalizedName("anode");
         this.setMaxStackSize(1);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
 
     @SideOnly(Side.CLIENT)

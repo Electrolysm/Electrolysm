@@ -1,10 +1,9 @@
 package electro.block.machines.container;
 
+import electro.Electrolysm;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import electro.electrolysmCore;
 
 public class SlotFluidStorage extends Slot
 {
@@ -34,7 +33,7 @@ public class SlotFluidStorage extends Slot
             return false;
         }
 
-        if (stack.getItem() == electrolysmCore.sulphur)
+        if (stack.getItem() == Electrolysm.sulphur)
         {
             return true;
         }
@@ -54,7 +53,7 @@ public class SlotFluidStorage extends Slot
             return false;
         }
 
-        if (stack.getItem() == electrolysmCore.fluidStorage)
+        if (stack.getItem() == Electrolysm.fluidStorage)
         {
             return true;
         }

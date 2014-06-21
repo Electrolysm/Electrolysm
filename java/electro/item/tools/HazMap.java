@@ -1,6 +1,6 @@
 package electro.item.tools;
 
-import electro.electrolysmCore;
+import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -24,8 +24,8 @@ public class HazMap extends ItemArmor {
 	
 	public HazMap(int armorType)
 	{
-		super(electrolysmCore.PLASTIC, 1, armorType);
-		this.setCreativeTab(electrolysmCore.TabElectrolysm);
+		super(Electrolysm.PLASTIC, 1, armorType);
+		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.hasSubtypes = true;
 	}
 	

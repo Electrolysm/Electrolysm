@@ -2,6 +2,7 @@ package electro.oreProccessing.te;
 
 import java.util.Random;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import api.powerSystem.meter.IMeterable;
-import electro.electrolysmCore;
 import electro.oreProccessing.recipes.SmeltoryRecipes;
 
 public class TileEntitySmeltory extends TileEntity implements IInventory, ISidedInventory, IMeterable
@@ -280,7 +280,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || item.getItem() == electrolysmCore.ingots;
+        return side != 0 || item.getItem() == Electrolysm.ingots;
     }
     
     @Override
@@ -327,7 +327,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
 	@Override
 	public Block getBlock() 
 	{
-		return electrolysmCore.smeltory;
+		return Electrolysm.smeltory;
 	}
 
     @Override

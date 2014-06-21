@@ -2,36 +2,30 @@ package electro.block.basic;
 
 import java.util.*;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.oredict.OreDictionary;
 
 import org.lwjgl.input.Keyboard;
 
-import electro.electrolysmCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class hammer extends ItemTool
 {
-    public static final Block[] block = new Block[] {electrolysmCore.nettedBlock};
+    public static final Block[] block = new Block[] {Electrolysm.nettedBlock};
     private static Set<Block> blocksEffectiveAgainst = new HashSet<Block>(Arrays.asList(block));
 
     public hammer()
     {
         super(10F, ToolMaterial.IRON, blocksEffectiveAgainst);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("Hammer");
         this.maxStackSize = 1;
         this.efficiencyOnProperMaterial = 10;
@@ -41,7 +35,7 @@ public class hammer extends ItemTool
     @Override
     public float getDigSpeed(ItemStack stack, Block block, int meta)
     {
-   		if(block == electrolysmCore.nettedBlock)
+   		if(block == Electrolysm.nettedBlock)
    		{
    			return 10F;
    		}
@@ -113,9 +107,9 @@ public class hammer extends ItemTool
     	Block block = world.getBlock(x, y, z);
     	int meta = world.getBlockMetadata(x, y, z);
     	
-    	if(block == electrolysmCore.nettedBlock)
+    	if(block == Electrolysm.nettedBlock)
     	{
-    		ItemStack drop = new ItemStack(electrolysmCore.impureDusts, this.getDustRandomAmount(1, 2), meta);
+    		ItemStack drop = new ItemStack(Electrolysm.impureDusts, this.getDustRandomAmount(1, 2), meta);
         	//ItemStack net = new ItemStack(electrolysmCore.net, 1, 0);
     		((EntityPlayer)livingBase).entityDropItem(drop, 0);
         	//livingBase.entityDropItem(net, 0);

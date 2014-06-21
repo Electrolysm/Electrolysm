@@ -1,5 +1,6 @@
 package electro.block.advMachines;
 
+import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,10 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import electro.electrolysmCore;
 import electro.block.advMachines.te.TileEntityQuantumComp;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -31,7 +29,7 @@ public class quantumComp extends BlockContainer
     public quantumComp()
     {
         super(Material.iron);
-        this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         //this.setUnlocalizedName(this.unlocalName);
         this.setHardness(5.0F);
         this.setBlockBounds(0, 0, 0, 1, 3, 1);

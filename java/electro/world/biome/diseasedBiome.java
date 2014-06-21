@@ -2,8 +2,7 @@ package electro.world.biome;
 
 import java.util.Random;
 
-import electro.electrolysmCore;
-import net.minecraft.block.Block;
+import electro.Electrolysm;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -16,7 +15,7 @@ public class diseasedBiome extends BiomeGenBase
         this.theBiomeDecorator = new DiseasedBiomeDecorator(this);
         this.setBiomeName("Diseased Grassland");
 
-        this.topBlock = electrolysmCore.diseaseGrass;
+        this.topBlock = Electrolysm.diseaseGrass;
         this.fillerBlock = Blocks.dirt;
         this.spawnableMonsterList.removeAll(spawnableMonsterList);
         this.spawnableMonsterList.add(new SpawnListEntry(EntityZombie_Scientist.class, 5, 10, 50));
@@ -39,7 +38,7 @@ public class diseasedBiome extends BiomeGenBase
     
     private void generateTreeSurface(World world, Random random, int x, int z) 
     {
-    	if (world.getBiomeGenForCoords(x, z) == electrolysmCore.diseasedBiomeObj)
+    	if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiomeObj)
         {
             if (random.nextInt(75) == 1)
             {
