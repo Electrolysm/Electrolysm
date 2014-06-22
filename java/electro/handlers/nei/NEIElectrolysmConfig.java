@@ -1,4 +1,4 @@
-package electro.handlers.nei;
+/*package electro.handlers.nei;
 
 import electro.Electrolysm;
 import electro.block.advMachines.gui.GUIInjector;
@@ -54,3 +54,4 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 	}
 
 }
+*/

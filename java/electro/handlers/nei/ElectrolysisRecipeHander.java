@@ -1,4 +1,4 @@
-package electro.handlers.nei;
+/*package electro.handlers.nei;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -93,7 +93,7 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
         return super.newInstance();
     }
 
-    @Override
+    //@Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
         if(outputId.equals("electrolysing") && getClass() == ElectrolysisRecipeHander.class)//don't want subclasses getting a hold of this
@@ -112,7 +112,7 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
         }
     }
 
-    @Override
+    //@Override
     public void loadCraftingRecipes(ItemStack result)
     {
         HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
@@ -127,7 +127,7 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
         }
     }
 
-    @Override
+    //@Override
     public void loadUsageRecipes(String inputId, Object... ingredients)
     {
         if(inputId.equals("fuel") && this.getClass() == ElectrolysisRecipeHander.class)//don't want subclasses getting a hold of this
@@ -175,3 +175,4 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
     }
 
 }
+*/

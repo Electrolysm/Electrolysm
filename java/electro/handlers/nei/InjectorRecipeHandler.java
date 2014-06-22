@@ -1,4 +1,4 @@
-package electro.handlers.nei;
+/*package electro.handlers.nei;
 
 import java.awt.Rectangle;
 import java.util.*;
@@ -188,4 +188,4 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
         return "Injector";
     }
     
-}
+}*/

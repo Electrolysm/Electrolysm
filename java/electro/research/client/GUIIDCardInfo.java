@@ -1,5 +1,9 @@
 package electro.research.client;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +103,8 @@ public class GUIIDCardInfo extends GuiScreen {
         guiWidth = 512 / 2;
         guiHeight = (512 / 2) - 20;
 
+        this.drawImage(screen);
+
         //new SavePlayerScanData.ResearchData(mc.thePlayer.getDisplayName(), "carbon_nano_tubes");
         //this.initGui();
 
@@ -189,6 +195,11 @@ public class GUIIDCardInfo extends GuiScreen {
                 this.populateScreen(screen);
             }
         }
+        else if(name.contains("images"))
+        {
+            this.drawImage(screen);
+            this.populateScreen("nothing");
+        }
         else
         {
             //research info rendering here!
@@ -216,6 +227,29 @@ public class GUIIDCardInfo extends GuiScreen {
         }
     }
 
+    public void drawImage(String name)
+    {
+        int imageWidth = 100, imageHeight = 100;
+        if(hasImage(name))
+        {
+            String basLocation = "textures/gui/research/images/";
+            ResourceLocation location = new ResourceLocation(CommonProxy.MOD_ID_LOWER, basLocation + name + ".png");
+            this.mc.renderEngine.bindTexture(location);
+            drawTexturedModalRect(left + 15 + acrossAlter, top - 30 + upAlter, 0, 0, imageWidth, imageHeight);
+        }
+    }
+
+    public boolean hasImage(String name)
+    {
+        if(ResearchRegistry.getResearch(name) != null)
+        {
+            Research research = ResearchRegistry.getResearch(name);
+            return research.hasImage();
+        }
+
+        return false;
+    }
+
     @Override
     public boolean doesGuiPauseGame() {
         return false;
@@ -241,6 +275,8 @@ public class GUIIDCardInfo extends GuiScreen {
             button.displayString = "";
             button.enabled = true;
         }
+
+        if(screen1 == "nothing") { return; }
 
         HashMap<String, EnumResearchType> typeMap = EnumResearchType.getHashMap();
         Set<String> keySet = typeMap.keySet();
@@ -305,14 +341,18 @@ public class GUIIDCardInfo extends GuiScreen {
                 for (int i = x; i < size + x; i++)
                 {
                     if(i >= (itemsPerPage + x) || i >= text.length) { return; }
-                    if(i >= (itemsPerPage + x + 1) || i >= text.length) { return; }
+                    if(i >= (itemsPerPage + x) || i >= text.length) { return; }
 
                     GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
                     GuiButtonInvisible buttonPic = (GuiButtonInvisible) buttonList.get(i - x + 1);
 
                     button.displayString = ColourEnumHelper.WHITE + text[i];
                     button.enabled = false;
-                    buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "            Click to view images!";
+
+                    if((i - x + 1) > itemsPerPage) { return; }
+                    if(this.hasImage(screen1)) {
+                       // buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
+                    }
                 }
             }
         }

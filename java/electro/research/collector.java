@@ -4,7 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
-import electro.handlers.nei.NEIElectrolysmConfig;
+//import electro.handlers.nei.NEIElectrolysmConfig;
 import electro.research.te.TileEntityCollector;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;

@@ -8,15 +8,24 @@ public class Research
 	private static EnumResearchType researchType;
 	private static Point researchPoint;
 	private static int researchTier;
+    private static boolean hasImage;
 
-	public Research(String name, EnumResearchType type, Point point, int tier)
+    public Research(String name, EnumResearchType type, Point point, int tier)
+    {
+        this(name, type, point, tier, false);
+    }
+
+	public Research(String name, EnumResearchType type, Point point, int tier, boolean hasImage1)
 	{
 		researchName = name;
 		researchPoint = point;
 		researchType = type;
 		researchTier = tier;
+        hasImage = hasImage1;
 	}
-	
+
+    public static boolean hasImage() { return hasImage; }
+
 	public static String getName()
 	{
 		return researchName;
@@ -48,7 +57,7 @@ public class Research
 	public String toAdvString()
 	{
 		String string = this.researchName + ":" + this.researchType.getName() + ":" + this.researchPoint.toString() + ":" + 
-				this.researchTier;
+				this.researchTier + ":" + this.hasImage;
 		return string;
 	}
 }

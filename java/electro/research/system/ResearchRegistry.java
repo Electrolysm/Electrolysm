@@ -79,7 +79,7 @@ public class ResearchRegistry
 		
 		
 		//Research
-        this.registerResearch(new Research("the_basics", this.RESEARCH, new Point(0, 0), 1));
+        this.registerResearch(new Research("the_basics", this.RESEARCH, new Point(0, 0), 1, true));
 		this.registerResearch(new Research("improved_analyser", this.RESEARCH, new Point(32, 25), 2));
 		this.registerResearch(new Research("chromotography", this.RESEARCH, new Point(29, 37), 1));
 		this.registerResearch(new Research("mass_spectrometry", this.RESEARCH, new Point(38, 47), 2));
@@ -195,7 +195,7 @@ public class ResearchRegistry
 			return null;
 		}
 		String[] details = string.split(":");
-		if(details.length != 4)
+		if(details.length != 5)
 		{
 			return null;
 		}
@@ -205,9 +205,16 @@ public class ResearchRegistry
 		int engPoint = Integer.parseInt(String.valueOf(details[2].split("--")[0]));
 		int sciPoint = Integer.parseInt(String.valueOf(details[2].split("--")[1]));
 		int tier = Integer.parseInt(String.valueOf(details[3]));
+        String hasImage = details[4];
 		EnumResearchType typeE = getEnumFromString(type);
 
-    	return new Research(name, typeE, new Point(engPoint, sciPoint), tier);
+        if(hasImage.contains("false")) {
+            return new Research(name, typeE, new Point(engPoint, sciPoint), tier);
+        }
+        else
+        {
+            return new Research(name, typeE, new Point(engPoint, sciPoint), tier, true);
+        }
 	}
 
 	public static EnumResearchType getEnumFromString(String type)
