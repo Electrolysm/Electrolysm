@@ -6,7 +6,6 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.research.client.GuiResearchNotify;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +16,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
  * Created by Clarky158 19/06/2014.
  */
 public class TickHandler
-{
+{/*
     public GuiResearchNotify guiNotify = null;
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -41,7 +40,7 @@ public class TickHandler
             GuiScreen gui = mc.currentScreen;
         }
     }
-
+*/
     int times = 0;
 
     @SubscribeEvent

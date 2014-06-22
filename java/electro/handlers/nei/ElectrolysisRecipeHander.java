@@ -173,6 +173,5 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
     {
         return "Electrolysis Chamber";
     }
-
 }
 */
