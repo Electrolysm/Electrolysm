@@ -1,10 +1,7 @@
 package electro.research.system;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import api.LoggerHandler;
 import electro.Electrolysm;
@@ -82,6 +79,7 @@ public class ResearchRegistry
 		
 		
 		//Research
+        this.registerResearch(new Research("the_basics", this.RESEARCH, new Point(0, 0), 1));
 		this.registerResearch(new Research("improved_analyser", this.RESEARCH, new Point(32, 25), 2));
 		this.registerResearch(new Research("chromotography", this.RESEARCH, new Point(29, 37), 1));
 		this.registerResearch(new Research("mass_spectrometry", this.RESEARCH, new Point(38, 47), 2));
@@ -124,6 +122,7 @@ public class ResearchRegistry
             //this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("plastic"));
             this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.iron_ore, Electrolysm.copperOre}),
                     this.getResearch("basic_storage"));
+            this.bindRequirementToResearch(new Requirement("device"), this.getResearch("the_basics"));
             /*this.bindRequirementToResearch(new Requirement(new Block[]{electrolysmCore.blastProof}),
                     this.getResearch("advanced_storage"));*/
 
@@ -137,10 +136,10 @@ public class ResearchRegistry
         //System.exit(0);
 	}
 
-	private static HashMap<String, String> researchMap = new HashMap<String, String>();
-	private static HashMap<String, String> requireMap = new HashMap<String, String>();
-    private static HashMap<String, String> requireMapRev = new HashMap<String, String>();
-    private static HashMap<String, List<String>> reliantMap = new HashMap<String, List<String>>();
+	private static LinkedHashMap<String, String> researchMap = new LinkedHashMap<String, String>();
+	private static LinkedHashMap<String, String> requireMap = new LinkedHashMap<String, String>();
+    private static LinkedHashMap<String, String> requireMapRev = new LinkedHashMap<String, String>();
+    private static LinkedHashMap<String, List<String>> reliantMap = new LinkedHashMap<String, List<String>>();
 
     public void linkResearch(Research research, List<Research> reliants)
     {
@@ -171,7 +170,7 @@ public class ResearchRegistry
         }
     }
 
-    public static HashMap<String, String> getRequireMap() { return requireMap; }
+    public static LinkedHashMap<String, String> getRequireMap() { return requireMap; }
 
     public void registerResearch(Research research)
 	{
@@ -266,22 +265,9 @@ public class ResearchRegistry
 	}
 	
 	
-	public static HashMap<String, String> getResearchMap()
+	public static LinkedHashMap<String, String> getResearchMap()
 	{
 		return researchMap;
-	}
-	
-	public void bindResearchToText(String name, File folder)
-	{
-		if(this.getResearch(name) != null)
-		{
-			ResearchTextRegistry.addResearchTextFromFolder(this.getResearch(name), folder);
-			System.out.println("binded");
-		}
-		else
-		{
-			
-		}
 	}
 
     public static String[] getRequirementsFromStringAsArray(String requireString)

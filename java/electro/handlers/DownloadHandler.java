@@ -1,19 +1,17 @@
 package electro.handlers;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.Enumeration;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-public class ResearchHandler
+public class DownloadHandler
 {
     public static String down_file;
     public static int amountOnlineNames;
@@ -124,4 +122,65 @@ public class ResearchHandler
 	    }
 	    return false;
 	}
+
+    public static void downloadResearchData()
+    {
+        try
+        {
+            File file = new File("mods/Electrolysm/data/");
+
+            URL website = new URL("");
+            ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+            FileOutputStream fos = new FileOutputStream(new File(file, "data_resources.zip"));
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        }
+        catch(FileNotFoundException e) { }
+        catch (MalformedURLException e) { }
+        catch (IOException e){ }
+    }
+
+    public static void downloadAndExtractResearchData()
+    {
+        downloadResearchData();
+        String zipLocation = "mods/Electrolysm/data/" + "data_resources.zip";
+
+        try {
+            ZipFile zipFile = new ZipFile(zipLocation);
+            Enumeration<?> enu = zipFile.entries();
+            while (enu.hasMoreElements()) {
+                ZipEntry zipEntry = (ZipEntry) enu.nextElement();
+
+                String name = zipEntry.getName();
+                long size = zipEntry.getSize();
+                long compressedSize = zipEntry.getCompressedSize();
+                /*System.out.printf("name: %-20s | size: %6d | compressed size: %6d\n",
+                        name, size, compressedSize);*/
+
+                File file = new File(name);
+                if (name.endsWith("/")) {
+                    file.mkdirs();
+                    continue;
+                }
+
+                File parent = file.getParentFile();
+                if (parent != null) {
+                    parent.mkdirs();
+                }
+
+                InputStream is = zipFile.getInputStream(zipEntry);
+                FileOutputStream fos = new FileOutputStream(file);
+                byte[] bytes = new byte[1024];
+                int length;
+                while ((length = is.read(bytes)) >= 0) {
+                    fos.write(bytes, 0, length);
+                }
+                is.close();
+                fos.close();
+
+            }
+            zipFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

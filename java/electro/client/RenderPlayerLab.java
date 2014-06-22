@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import electro.handlers.DownloadHandler;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -15,8 +16,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import electro.handlers.ElectroEventHandler;
-import electro.handlers.ResearchHandler;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -40,8 +39,8 @@ public class RenderPlayerLab extends RenderPlayer {
     
 	public void makeTexture() 
 	{
-		ResearchHandler.downloadSkinByUsername(player.getDisplayName());
-		ResearchHandler.downloadLabSkin();
+		DownloadHandler.downloadSkinByUsername(player.getDisplayName());
+		DownloadHandler.downloadLabSkin();
 		
 		System.out.println("merging Images");
 		try
@@ -75,8 +74,8 @@ public class RenderPlayerLab extends RenderPlayer {
 		        	String fileName = player.getDisplayName() + ".png";
 					File[] files = {new File(pathCoat, fileName)};
 		        	ImageIO.write(combined, "PNG", new File(pathCoat, player.getDisplayName() + ".png"));
-					ResearchHandler.copyFileToLocation(new File("mods/Electrolysm.zip"), files, 
-							"/assets/electrolysm/textures/skins/");
+					DownloadHandler.copyFileToLocation(new File("mods/Electrolysm.zip"), files,
+                            "/assets/electrolysm/textures/skins/");
 				}
 		        catch (IOException e) 
 		        {

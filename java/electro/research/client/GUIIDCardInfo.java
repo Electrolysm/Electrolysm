@@ -13,12 +13,14 @@ import electro.research.researchDevice;
 import electro.research.system.EnumResearchType;
 import electro.research.system.Research;
 import electro.research.system.ResearchRegistry;
+import electro.research.system.ResearchTextRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -27,7 +29,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GUIIDCardInfo extends GuiScreen {
 
-   // public static GuiLexicon currentOpenLexicon = new GuiLexicon();
+    // public static GuiLexicon currentOpenLexicon = new GuiLexicon();
     public static ItemStack stackUsed;
 
     public static final int BOOKMARK_START = 1337;
@@ -48,6 +50,9 @@ public class GUIIDCardInfo extends GuiScreen {
     int homeID = itemsPerPage + 1;
     int backID = homeID + 1;
     int forwardID = backID + 1;
+
+    int acrossAlter = -55;
+    int upAlter = -20;
 
     @Override
     public void initGui() {
@@ -74,19 +79,19 @@ public class GUIIDCardInfo extends GuiScreen {
 
         buttonList.clear();
         if(true) {
-            int x = 48;
+            int x = 48 + acrossAlter;
             for(int i = 0; i < itemsPerPage; i++) {
-                int y = 16 + (i * 12) + 15;
-                buttonList.add(new GuiButtonInvisible(i, left + x, top + y + 5, 110, 10, ""));
+                int y = 11 + (i * 12);
+                buttonList.add(new GuiButtonInvisible(i, left + x, top + y /*+ 5 */+ upAlter, 110, 10, ""));
             }
-            buttonList.add(new GuiButtonInvisible(homeID, left + x - 30, top + 39, 20, 20, "home"));
-            buttonList.add(new GuiButtonInvisible(backID, left + x + 170, top + 40, 20, 20, "back"));
-            buttonList.add(new GuiButtonInvisible(forwardID, left + x + 165, top + 60, 20, 20, "forward"));
+            buttonList.add(new GuiButtonInvisible(homeID, left + x - 30, top + 9 + upAlter, 20, 20, "home"));
+            buttonList.add(new GuiButtonInvisible(backID, left + x + 170, top + 10 + upAlter, 20, 20, "back"));
+            buttonList.add(new GuiButtonInvisible(forwardID, left + x + 165, top + 30 + upAlter, 20, 20, "forward"));
 
             //screen = null;
             populateScreen(screen);
         }
-       // populateBookmarks();
+        // populateBookmarks();
     }
 
     @Override
@@ -99,11 +104,11 @@ public class GUIIDCardInfo extends GuiScreen {
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
         mc.renderEngine.bindTexture(texture);
-        drawTexturedModalRect(left + 15, top, 0, 0, guiWidth, guiHeight);
+        drawTexturedModalRect(left + 15  + acrossAlter, top - 30 + upAlter, 0, 0, guiWidth, guiHeight);
 
-        drawTexturedModalRect(left + 18, top + 22 + 19, 0, 475 + (38 / 2), 38 / 2, 38 / 2);
-        drawTexturedModalRect(left + 18 + 203, top + 22 + 19, 0 + (38 / 2), 475 + (38 / 2), 38 / 2, 38 / 2);
-        drawTexturedModalRect(left + 18 + 202, top + 48 + (32 / 2), 0 + 38, 475 + (38 / 2), 38 / 2, 38 / 2);
+        drawTexturedModalRect(left + 18 + acrossAlter, top + 11 + upAlter, 0, 494, 19, 19);//Home
+        drawTexturedModalRect(left + 221 + acrossAlter, top + 11 + upAlter, 19, 494, 19, 19);//back
+        drawTexturedModalRect(left + 220 + acrossAlter, top + 34 + upAlter, 38, 494, 19, 19);//next
 
         drawBookmark(left + guiWidth / 2, top - getTitleHeight(), title, true);
         String subtitle = null;
@@ -131,7 +136,7 @@ public class GUIIDCardInfo extends GuiScreen {
 
         //Draws title
         GL11.glColor4f(1F, 1F, 1F, 1F);
-        font.drawString(ColourEnumHelper.WHITE + s, x - l / 2 + fontOff, y + 20, 0x111111, false);
+        font.drawString(ColourEnumHelper.WHITE + s, x - l / 2 + fontOff + acrossAlter, y - 10 + upAlter, 0x111111, false);
         font.setUnicodeFlag(unicode);
     }
 
@@ -183,8 +188,27 @@ public class GUIIDCardInfo extends GuiScreen {
         else
         {
             //research info rendering here!
-            screen = null;
-            this.populateScreen(screen);
+            //System.out.println(ResearchRegistry.getResearch(name) + ":" + name);
+            if(ResearchRegistry.getResearch(name) != null)
+            {
+                //System.out.println("research");
+                screen = name;
+                this.populateScreen(screen);
+            }
+            else
+            {
+                if(name != "")
+                {
+                    String message = ColourEnumHelper.RED + "You haven't unlocked this project yet...";
+                    mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
+
+                    this.populateScreen(screen);
+                }
+                else
+                {
+                    this.populateScreen(screen);
+                }
+            }
         }
     }
 
@@ -205,18 +229,19 @@ public class GUIIDCardInfo extends GuiScreen {
         return 12;
     }
 
-    private void populateScreen(String screen)
+    private void populateScreen(String screen1)
     {
         for(int i = 0; i < buttonList.size(); i++)
         {
             GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i);
             button.displayString = "";
+            button.enabled = true;
         }
 
         HashMap<String, EnumResearchType> typeMap = EnumResearchType.getHashMap();
         Set<String> keySet = typeMap.keySet();
 
-        if(screen == null)
+        if(screen1 == null)
         {
             int size; if(keySet.size() >= buttonList.size()) { size = buttonList.size(); } else { size = keySet.size(); }
 
@@ -229,7 +254,7 @@ public class GUIIDCardInfo extends GuiScreen {
                 //button.setWidth(100);
             }
         }
-        else if(keySet.contains(screen))
+        else if(keySet.contains(screen1))
         {
             List<String> list = researchList;
 
@@ -262,14 +287,29 @@ public class GUIIDCardInfo extends GuiScreen {
                 }
             }
         }
-/*
-        GuiButtonInvisible home = (GuiButtonInvisible) buttonList.get(homeID);
-        GuiButtonInvisible back = (GuiButtonInvisible) buttonList.get(backID);
-        GuiButtonInvisible forward = (GuiButtonInvisible) buttonList.get(forwardID);
-        home.displayString = "Home";
-        back.displayString = "Back";
-        forward.displayString = "Forward";*/
+        else if(ResearchRegistry.getResearch(screen1) != null)
+        {
+            String[] text = ResearchTextRegistry.getInfoFromResearch(ResearchRegistry.getResearch(screen1));
 
+            if(text != null)
+            {
+                int x = 0, value = 0;
+                int size = 0; if(text.length >= buttonList.size()) { size = buttonList.size(); } else { size = text.length; }
+                if(nextPage && text.length >= itemsPerPage) { x =+ 12; value =+ 12; nextPage = false; } else { x = 0; value = 0; }
+
+
+                for (int i = x; i < size + x; i++)
+                {
+                    if(i >= (itemsPerPage + x) || i >= text.length) { return; }
+
+                    //System.out.println(text[i]);
+                    GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
+
+                    button.displayString = ColourEnumHelper.WHITE + text[i];
+                    button.enabled = false;
+                }
+            }
+        }
 
     }
 
@@ -283,5 +323,7 @@ public class GUIIDCardInfo extends GuiScreen {
 
             device.setUse(false);
         }
+
+        this.screen = null;
     }
 }

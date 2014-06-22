@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class Crafting
 {
@@ -14,12 +15,12 @@ public class Crafting
     public static void addCrafting()
     {
     	ItemStack ingotCopper = new ItemStack(Electrolysm.copperIngot);
-/*
-        GameRegistry.addRecipe(new ItemStack(electrolysmCore.itemScanner, 1, 0),
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.itemScanner, true, new Object[]{
                 "C C", "IGI", "C C",
                 Character.valueOf('C'), "ingotCopper",
                 Character.valueOf('I'), Items.iron_ingot,
-                Character.valueOf('G'), Blocks.glass);*/
+                Character.valueOf('G'), Blocks.glass}));
 
         GameRegistry.addRecipe(new ItemStack(Electrolysm.researchDesk),
                                " X ", "YZY", "BMB",
@@ -130,11 +131,11 @@ public class Crafting
                                'X', Electrolysm.advancedMicrochip,
                                'R', Items.redstone);
         
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.node),
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.node, true, new Object[]{
                                " Y ", " Y ", "ICI",
                                'I', Items.iron_ingot,
                                'Y', Electrolysm.graphiteRod,
-                               'C', Electrolysm.copperIngot);
+                               'C', "ingotCopper"}));
         
         GameRegistry.addRecipe(new ItemStack(Blocks.tnt),
                                "XYX", "XXX", "XYX",
@@ -210,31 +211,31 @@ public class Crafting
         		new ItemStack(Electrolysm.ballOfPlastic),
         		new ItemStack(Electrolysm.ballOfPlastic));
         
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.transistor),
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.transistor, true, new Object[]{
         		" I ", " R ", "C C",
         		'I', Items.iron_ingot,
         		'R', Items.redstone,
-        		'C', Electrolysm.copperIngot);
+        		'C', Electrolysm.copperIngot}));
         
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.CPU),
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.CPU, true, new Object[]{
         		"CTC", "TRT", "CTC",
         		'C', Electrolysm.copperIngot,
         		'T', Electrolysm.transistor,
-        		'R', Items.redstone);
+        		'R', Items.redstone}));
         
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.BasicMicrochip),
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.BasicMicrochip, true, new Object[] {
         		"   ", "RTR", "CMC",
         		'T', Electrolysm.transistor,
         		'R', Items.redstone,
-        		'C', Electrolysm.copperIngot,
-        		'M', Electrolysm.microchipBoard);
+        		'C', "ingotCopper",
+        		'M', Electrolysm.microchipBoard}));
         
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.advancedMicrochip, 1, 0),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.advancedMicrochip, 1, 0), true, new Object[]{
         		"   ", "CPC", "BRB",
-        		'C', Electrolysm.copperIngot,
+        		'C', "ingotCopper",
         		'P', Electrolysm.CPU,
         		'B', Electrolysm.BasicMicrochip,
-        		'R', Items.redstone);
+        		'R', Items.redstone}));
         
         GameRegistry.addRecipe(new ItemStack(Electrolysm.grindStone, 1, 0),
         		"CCC", "CSC", "CCC",
@@ -256,29 +257,29 @@ public class Crafting
         		new ItemStack(Items.potionitem, 0),
         		new ItemStack(Items.feather));
         	
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.advancedCPU),
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.advancedCPU, true, new Object[]{
         		"RCR", "PDP", "RCR",
         		'R', Items.redstone,
-        		'C', Electrolysm.copperIngot,
+        		'C', "ingotCopper",
         		'P', Electrolysm.CPU,
-        		'D', Items.diamond);
+        		'D', Items.diamond}));
         	
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.experimentalMicrochip),
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.experimentalMicrochip, true, new Object[]{
         		"   ", "ADA", "MCM",
         		'A', Electrolysm.advancedCPU,
         		'D', Items.diamond,
         		'M', Electrolysm.advancedMicrochip,
-        		'C', Electrolysm.copperIngot);
+        		'C', "ingotCopper"}));
         
          GameRegistry.addRecipe(new ItemStack(Electrolysm.graphiteRod),
         		 "X  ", "X  ", "   ",
         		 'X', Electrolysm.chunkGraphite);
          	
-         GameRegistry.addRecipe(new ItemStack(Electrolysm.charger),
+         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.charger, true, new Object[]{
         		 "CCC", "IRI", "IMI",
-        		 'C', Electrolysm.copperIngot,
+        		 'C', "ingotCopper",
         		 'I', Items.iron_ingot,
-        		 'R', Items.redstone);
+        		 'R', Items.redstone}));
          
          GameRegistry.addRecipe(new ItemStack(Electrolysm.matterGen, 1),
         		 "AAA", "BEB", "BMB",
@@ -310,13 +311,13 @@ public class Crafting
         		 Character.valueOf('B'), Electrolysm.Yttrium);
         		 
         		 
-         GameRegistry.addRecipe(new ItemStack(Electrolysm.crusher, 1, 3),
+         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.crusher, 1, 3), true, new Object[]{
         		"IMI", "PGP", "ICI",
         		Character.valueOf('I'), Items.iron_ingot,
         		Character.valueOf('M'), Electrolysm.BasicMicrochip,
         		Character.valueOf('P'), Blocks.cobblestone,
         		Character.valueOf('G'), Electrolysm.grindStone,
-        		Character.valueOf('C'), Electrolysm.copperIngot);
+        		Character.valueOf('C'), "ingotCopper"}));
         
         GameRegistry.addRecipe(new ItemStack(Electrolysm.liquidiser, 1, 3),
         		"ILI", "RLM", "IFI",
