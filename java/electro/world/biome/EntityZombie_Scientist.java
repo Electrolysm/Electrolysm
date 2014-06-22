@@ -8,17 +8,20 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-public class EntityZombie_Scientist extends EntityMob
+public class EntityZombie_Scientist extends EntityZombie
 {
     private float moveSpeed;
 
     public EntityZombie_Scientist(World par1World)
     {
+        super(par1World);
+    /*
         super(par1World);
         this.moveSpeed = 0.35F;
         this.setAIMoveSpeed(this.moveSpeed);
@@ -26,9 +29,9 @@ public class EntityZombie_Scientist extends EntityMob
         this.tasks.addTask(1, new EntityAIAttackOnCollide(this, EntityPlayer.class, this.moveSpeed, false));
         this.tasks.addTask(2, new EntityAIWander(this, this.moveSpeed));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));*/
     }
-
+/*
     @Override
     protected String getLivingSound()
     {
@@ -77,7 +80,7 @@ public class EntityZombie_Scientist extends EntityMob
     /**
      * These will be bacteria items once they have been added
      */
-
+/*
     protected Item getDropItemId()
     {
         switch (this.rand.nextInt(3))
@@ -90,5 +93,5 @@ public class EntityZombie_Scientist extends EntityMob
         }
 
         return Items.rotten_flesh;
-    }
+    }*/
 }
