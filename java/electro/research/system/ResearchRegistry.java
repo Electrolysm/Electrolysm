@@ -107,7 +107,13 @@ public class ResearchRegistry
 		
 		
 		//Power Research requirements
-		this.linkResearch(this.getResearch("advanced_storage"), Arrays.asList(this.getResearch("basic_storage"), this.getResearch("advanced_cable")));
+	      this.linkResearch(this.getResearch("advanced_storage"), Arrays.asList(this.getResearch("basic_storage"), this.getResearch("advanced_cable")));
+	      this.linkResearch(this.getResearch("experimental_storage"), Arrays.asList(this.getResearch("advancec_storage"), this.getResearch("experimental_cable")));
+	      this.linkResearch(this.getResearch("tesla_tower"), Arrays.asList(this.getResearch("steel"), this.getResearch("pure_copper"), this.getResearch("experimental_storage")));
+	      this.linkResearch(this.getResearch("battery"), Arrays.asList(this.getResearch("basic_storage"), this.getResearch("steel"), this.getResearch("advanced_cable")));
+	      this.linkResearch(this.getResearch("advanced_battery"), Arrays.asList(this.getResearch("battery"), this.getResearch("experimental_cable"), this.getResearch("advanced_storage")));
+	      
+	      
      
 		
 		
