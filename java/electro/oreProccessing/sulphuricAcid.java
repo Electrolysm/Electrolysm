@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import electro.block.liquids.ModFluidSulphuricAcid;
@@ -26,9 +27,11 @@ public class sulphuricAcid extends BlockFluidClassic
 
     public sulphuricAcid()
     {
-        super(new ModFluidSulphuricAcid(), Material.water);
+        super(new ModFluidSulphuricAcid(), Material.lava);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
+        this.setResistance(1000000F);
     }
+
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
@@ -63,7 +66,11 @@ public class sulphuricAcid extends BlockFluidClassic
                     Utilities.Block.getBlockMaterial(world, x, y - 1, z) == Material.rock ||
                     Utilities.Block.getBlockMaterial(world, x, y - 1, z) == Material.wood ||
                     Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.sand ||
-                    Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.sandstone)
+                    Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.sandstone ||
+                    Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.glass ||
+                    Utilities.Block.getBlockMaterial(world, x, y -1, z) == Material.plants ||
+                    Utilities.Block.getBlockMaterial(world, x, y -1, z) == Material.ice ||
+                    Utilities.Block.getBlockMaterial(world, x, y -1, z) == Material.packedIce)
             {
                 if (Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.bedrock ||
                         Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.obsidian)
@@ -192,5 +199,25 @@ public class sulphuricAcid extends BlockFluidClassic
     		}
     	}
     }
+
+    @Override
+    public void onBlockDestroyedByExplosion(World world, int x, int y, int z, Explosion explosion)
+    {
+        Random rand = new Random();
+        float radius = explosion.explosionSize;
+        double splash = radius * Math.E;
+
+        for(int xCoord = 0; xCoord < splash; xCoord++)
+        {
+            for(int zCoord = 0; zCoord < splash; zCoord++)
+            {
+                if(rand.nextInt(50) == 1)
+                {
+                    Utilities.Block.setBlock(world, xCoord, y, zCoord, Electrolysm.sulpuricAcid);
+                }
+            }
+        }
+    }
+
 
 }
