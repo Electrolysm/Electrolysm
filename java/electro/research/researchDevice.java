@@ -35,13 +35,6 @@ public class researchDevice extends Item
     @Override
     public void onCreated(ItemStack stack, World world, EntityPlayer player)
     {
-        stack.stackTagCompound = new NBTTagCompound();
-        if(player != null)
-        {
-            stack.stackTagCompound.setString("owner", player.getDisplayName());
-            stack.stackTagCompound.setInteger("engValue", 0);
-            stack.stackTagCompound.setInteger("sciValue", 0);
-        }
     }
 
 
@@ -49,45 +42,14 @@ public class researchDevice extends Item
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8,
                              float par9, float par10)
     {
-        if(player.isSneaking() && world.getTileEntity(x, y, z) instanceof TileEntityCollector &&
-                player.getDisplayName() == stack.stackTagCompound.getString("owner"))
-        {
-            TileEntityCollector te = (TileEntityCollector)world.getTileEntity(x, y, z);
-            if(te.getOwner() == stack.stackTagCompound.getString("owner"))
-            {
-                int engValue = te.engValue + stack.stackTagCompound.getInteger("engValue");
-                int sciValue = te.sciValue + stack.stackTagCompound.getInteger("sciValue");
-                stack.stackTagCompound.setInteger("engValue", engValue);
-                stack.stackTagCompound.setInteger("sciValue", sciValue);
-                te.engValue = 0;
-                te.sciValue = 0;
-                return true;
-            }
-        }
         return false;
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
-                                  float hitX, float hitY, float hitZ)
-    {
-        if(stack.stackTagCompound == null)
-        {
-            stack.stackTagCompound = new NBTTagCompound();
-            if(player != null)
-            {
-                stack.stackTagCompound.setString("owner", player.getDisplayName());
-                stack.stackTagCompound.setInteger("engValue", 0);
-                stack.stackTagCompound.setInteger("sciValue", 0);
-            }
-        }
-        return true;
-    }
-
-
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-        if (!player.isSneaking()) {
+        if (!player.isSneaking())
+        {
             int x = player.serverPosX;
             int y = player.serverPosY;
             int z = player.serverPosZ;

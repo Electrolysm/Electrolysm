@@ -125,13 +125,16 @@ public class DownloadHandler
 
     public static void downloadResearchData()
     {
+        File file = new File("mods/Electrolysm/data");
+
         try
         {
-            File file = new File("mods/Electrolysm/data/");
+            file.mkdirs();
 
-            URL website = new URL("");
+            String url = "https://github.com/Electrolysm/Electrolysm/blob/1.7.2/resources/assets/research_data/data_resources.zip?raw=true";
+            URL website = new URL(url);
             ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-            FileOutputStream fos = new FileOutputStream(new File(file, "data_resources.zip"));
+            FileOutputStream fos = new FileOutputStream(new File(file, "/data_resources.zip"));
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         }
         catch(FileNotFoundException e) { }
@@ -142,44 +145,51 @@ public class DownloadHandler
     public static void downloadAndExtractResearchData()
     {
         downloadResearchData();
-        String zipLocation = "mods/Electrolysm/data/" + "data_resources.zip";
+        String filex = "mods/Electrolysm/data/";
+        String zipLocation = filex + "data_resources.zip";
 
-        try {
-            ZipFile zipFile = new ZipFile(zipLocation);
-            Enumeration<?> enu = zipFile.entries();
-            while (enu.hasMoreElements()) {
-                ZipEntry zipEntry = (ZipEntry) enu.nextElement();
+        try
+        {
+            //String destinationname = "d:\\servlet\\testZip\\";
+            byte[] buf = new byte[1024];
+            ZipInputStream zipinputstream = null;
+            ZipEntry zipentry;
+            zipinputstream = new ZipInputStream(
+                    new FileInputStream(zipLocation));
 
-                String name = zipEntry.getName();
-                long size = zipEntry.getSize();
-                long compressedSize = zipEntry.getCompressedSize();
-                /*System.out.printf("name: %-20s | size: %6d | compressed size: %6d\n",
-                        name, size, compressedSize);*/
+            zipentry = zipinputstream.getNextEntry();
+            while (zipentry != null)
+            {
+                //for each entry to be extracted
+                String entryName = zipentry.getName();
+                System.out.println("entryname "+entryName);
+                int n;
+                FileOutputStream fileoutputstream;
+                File newFile = new File(entryName);
+                String directory = newFile.getParent();
 
-                File file = new File(name);
-                if (name.endsWith("/")) {
-                    file.mkdirs();
-                    continue;
+                if(directory == null)
+                {
+                    if(newFile.isDirectory())
+                        break;
                 }
 
-                File parent = file.getParentFile();
-                if (parent != null) {
-                    parent.mkdirs();
-                }
+                fileoutputstream = new FileOutputStream(
+                        filex+entryName);
 
-                InputStream is = zipFile.getInputStream(zipEntry);
-                FileOutputStream fos = new FileOutputStream(file);
-                byte[] bytes = new byte[1024];
-                int length;
-                while ((length = is.read(bytes)) >= 0) {
-                    fos.write(bytes, 0, length);
-                }
-                is.close();
-                fos.close();
+                while ((n = zipinputstream.read(buf, 0, 1024)) > -1)
+                    fileoutputstream.write(buf, 0, n);
 
-            }
-            zipFile.close();
-        } catch (IOException e) {
+                fileoutputstream.close();
+                zipinputstream.closeEntry();
+                zipentry = zipinputstream.getNextEntry();
+
+            }//while
+
+            zipinputstream.close();
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }

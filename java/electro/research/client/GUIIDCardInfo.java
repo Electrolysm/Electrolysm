@@ -183,7 +183,11 @@ public class GUIIDCardInfo extends GuiScreen {
                 nextPage = true;
                 this.populateScreen(screen);
             }
-
+            else if(id == this.backID)
+            {
+                nextPage = false;
+                this.populateScreen(screen);
+            }
         }
         else
         {
@@ -301,12 +305,14 @@ public class GUIIDCardInfo extends GuiScreen {
                 for (int i = x; i < size + x; i++)
                 {
                     if(i >= (itemsPerPage + x) || i >= text.length) { return; }
+                    if(i >= (itemsPerPage + x + 1) || i >= text.length) { return; }
 
-                    //System.out.println(text[i]);
                     GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
+                    GuiButtonInvisible buttonPic = (GuiButtonInvisible) buttonList.get(i - x + 1);
 
                     button.displayString = ColourEnumHelper.WHITE + text[i];
                     button.enabled = false;
+                    buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "            Click to view images!";
                 }
             }
         }
