@@ -71,7 +71,7 @@ public class VersionCheck
 
             if (version == ("OUTDATED"))
             {
-                chatMessage = "The lastest version of Electrolysm is now available";
+                chatMessage = "A newer version of Electrolysm is now avalible";
             }
         }
 
