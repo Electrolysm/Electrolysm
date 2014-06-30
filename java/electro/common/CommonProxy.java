@@ -47,6 +47,7 @@ public class CommonProxy
     public static ResourceLocation BOOK_LEFT = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/bookLeft.png");
     public static ResourceLocation BOOK_RIGHT = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/bookRight.png");
 	public static ResourceLocation BOOK = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/newBookImage.png");
+    public static ResourceLocation IMAGE_THE_BASICS = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/images/the_basics.png");
 
     //NEI GUIs
     public static ResourceLocation NEI_ELECTROL_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/nei/neiElectrolysisGUI.png");

@@ -103,7 +103,7 @@ public class GUIIDCardInfo extends GuiScreen {
         guiWidth = 512 / 2;
         guiHeight = (512 / 2) - 20;
 
-        this.drawImage(screen);
+        //this.drawImage(screen);
 
         //new SavePlayerScanData.ResearchData(mc.thePlayer.getDisplayName(), "carbon_nano_tubes");
         //this.initGui();
@@ -112,18 +112,49 @@ public class GUIIDCardInfo extends GuiScreen {
         mc.renderEngine.bindTexture(texture);
         drawTexturedModalRect(left + 15  + acrossAlter, top - 30 + upAlter, 0, 0, guiWidth, guiHeight);
 
-        drawTexturedModalRect(left + 18 + acrossAlter, top + 11 + upAlter, 0, 494, 19, 19);//Home
-        drawTexturedModalRect(left + 221 + acrossAlter, top + 11 + upAlter, 19, 494, 19, 19);//back
-        drawTexturedModalRect(left + 220 + acrossAlter, top + 34 + upAlter, 38, 494, 19, 19);//next
+        drawTexturedModalRect(left + 18 + acrossAlter, top + 11 + upAlter, 0, 494, 19, 18);//Home
+        drawTexturedModalRect(left + 221 + acrossAlter, top + 11 + upAlter, 19, 494, 19, 18);//back
+        drawTexturedModalRect(left + 221 + acrossAlter, top + 34 + upAlter, 38, 494, 19, 18);//next
 
         drawBookmark(left + guiWidth / 2, top - getTitleHeight(), title, true);
         String subtitle = null;
 
-
+        if(screen != null && screen.contains("_image"))
+        {
+            this.drawImage(screen.replace("_image", ""), this.getPositionForName(screen.replace("_image", "")));
+        }
 
 
         super.drawScreen(par1, par2, par3);
     }
+
+    public int getPositionForName(String name)
+    {
+        if(name == null) { return -2; }
+        if(ResearchTextRegistry.getInfoFromResearch(ResearchRegistry.getResearch(name)) == null) { return -2; }
+
+        int top = 0, middle = 1, bottom = 2;
+
+        int length = ResearchTextRegistry.getInfoFromResearch(ResearchRegistry.getResearch(name)).length;
+        int divLength = (length / itemsPerPage);
+        int finalPage = length - (itemsPerPage * divLength);
+
+        if(finalPage == 12)
+        {
+            return top;
+        }
+        else if(finalPage < (itemsPerPage / 2))
+        {
+            return bottom;
+        }
+        else if (finalPage < (itemsPerPage / 4))
+        {
+            return middle;
+        }
+
+        return -2;
+    }
+
 
     public void drawBookmark(int x, int y, String s, boolean drawLeft) {
         // This function is called from the buttons so I can't use fontRendererObj
@@ -182,7 +213,9 @@ public class GUIIDCardInfo extends GuiScreen {
             {
                 screen = null;
                 this.populateScreen(screen);
-                System.out.println("homeID");
+
+                return;
+                //System.out.println("homeID");
             }
             else if(id == this.forwardID)
             {
@@ -192,13 +225,9 @@ public class GUIIDCardInfo extends GuiScreen {
             else if(id == this.backID)
             {
                 nextPage = false;
+                screen = screen.replace("_image", "");
                 this.populateScreen(screen);
             }
-        }
-        else if(name.contains("images"))
-        {
-            this.drawImage(screen);
-            this.populateScreen("nothing");
         }
         else
         {
@@ -225,18 +254,31 @@ public class GUIIDCardInfo extends GuiScreen {
                 }
             }
         }
+
+        if(((GuiButtonInvisible)(buttonList.get(itemsPerPage - 1))).displayString == "")
+        {
+            if(screen != null || screen != "") {
+                this.showImages();
+            }
+        }
+
     }
 
-    public void drawImage(String name)
+    public void drawImage(String name, int pos/*, int heightDefault*/)
     {
-        int imageWidth = 100, imageHeight = 100;
+        int imageWidth = 200, imageHeight = 150;
+        int[] positionY = new int[] {-2, 35, 75};
         if(hasImage(name))
         {
-            String basLocation = "textures/gui/research/images/";
-            ResourceLocation location = new ResourceLocation(CommonProxy.MOD_ID_LOWER, basLocation + name + ".png");
+            ResourceLocation location = CommonProxy.IMAGE_THE_BASICS;
             this.mc.renderEngine.bindTexture(location);
-            drawTexturedModalRect(left + 15 + acrossAlter, top - 30 + upAlter, 0, 0, imageWidth, imageHeight);
+            drawTexturedModalRect(left + 55 + acrossAlter, top + positionY[pos] + upAlter, 0, 0, imageWidth, imageHeight);
         }
+    }
+
+    public ResourceLocation getImage(String name)
+    {
+        return null;
     }
 
     public boolean hasImage(String name)
@@ -281,6 +323,7 @@ public class GUIIDCardInfo extends GuiScreen {
         HashMap<String, EnumResearchType> typeMap = EnumResearchType.getHashMap();
         Set<String> keySet = typeMap.keySet();
 
+        //home
         if(screen1 == null)
         {
             int size; if(keySet.size() >= buttonList.size()) { size = buttonList.size(); } else { size = keySet.size(); }
@@ -294,6 +337,7 @@ public class GUIIDCardInfo extends GuiScreen {
                 //button.setWidth(100);
             }
         }
+        //research list from enum
         else if(keySet.contains(screen1))
         {
             List<String> list = researchList;
@@ -303,7 +347,7 @@ public class GUIIDCardInfo extends GuiScreen {
             int x = 0;
             int size; if(list.size() >= buttonList.size()) { size = buttonList.size(); } else { size = list.size(); }
 
-            if(nextPage && list.size() >= itemsPerPage) { x = 12; value = 12; nextPage = false; } else { x = 0; value = 0; }
+            if(nextPage && list.size() >= itemsPerPage) { x =+ 12; value =+ 12; nextPage = false; } else { x = 0; value = 0; }
 
             for(int i = x; i < size + x; i++)
             {
@@ -327,6 +371,7 @@ public class GUIIDCardInfo extends GuiScreen {
                 }
             }
         }
+        //research information
         else if(ResearchRegistry.getResearch(screen1) != null)
         {
             String[] text = ResearchTextRegistry.getInfoFromResearch(ResearchRegistry.getResearch(screen1));
@@ -351,12 +396,30 @@ public class GUIIDCardInfo extends GuiScreen {
 
                     if((i - x + 1) > itemsPerPage) { return; }
                     if(this.hasImage(screen1)) {
-                       // buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
+                        //buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
+                        //this.showImages();
                     }
                 }
             }
         }
 
+    }
+
+    public void showImages()
+    {
+        if(screen != null) {
+            //nextPage = false;
+            //this.populateScreen(screen.replace("_image", "").replace("image", ""));
+
+            if(((GuiButtonInvisible)buttonList.get(itemsPerPage - 1)).displayString == "") {
+                nextPage = true;
+            }
+            else{
+                nextPage = false;
+            }
+            this.populateScreen(screen.replace("_image", "").replace("image", ""));
+            screen = screen + "_image";
+        }
     }
 
     @Override

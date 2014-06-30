@@ -64,16 +64,29 @@ public class BlockTreeLeaves extends BlockLeaves {
 		icon[1] = reg.registerIcon(MOD_ID + "treeLog1");
 		icon[2] = reg.registerIcon(MOD_ID + "treeLog2");
     }
-	
-	@Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-    
+
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return 0;
     }
 
+
+    @Override
+    public int getRenderType()
+    {
+        return 0;
+    }
+
+    //It's not an opaque cube, so you need this.
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return true;
+    }
+
+    //It's not a normal block, so you need this too.
+    //public boolean renderAsNormalBlock()
+   /* {
+        return false;
+    }*/
 }
