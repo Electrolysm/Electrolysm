@@ -81,12 +81,12 @@ public class BlockTreeLeaves extends BlockLeaves {
     @Override
     public boolean isOpaqueCube()
     {
-        return true;
+        return false;
     }
 
     //It's not a normal block, so you need this too.
-    //public boolean renderAsNormalBlock()
-   /* {
-        return false;
-    }*/
+    public boolean renderAsNormalBlock()
+    {
+        return true;
+    }
 }

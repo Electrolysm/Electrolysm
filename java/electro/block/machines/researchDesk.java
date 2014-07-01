@@ -96,4 +96,10 @@ public class researchDesk extends BlockContainer
             par1World.setBlockMetadataWithNotify(x, y, z, 4, 2);
         }
     }
+
+    @Override
+    public int getRenderBlockPass()
+    {
+        return 1;
+    }
 }

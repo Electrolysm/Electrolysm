@@ -22,6 +22,12 @@ public class Crafting
                 Character.valueOf('I'), Items.iron_ingot,
                 Character.valueOf('G'), Blocks.glass}));
 
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.researchDevice),
+                "IGI", "GCG", "IGI",
+                Character.valueOf('I'), Items.iron_ingot,
+                Character.valueOf('G'), Blocks.glass,
+                Character.valueOf('C'), Electrolysm.CPU);
+
         GameRegistry.addRecipe(new ItemStack(Electrolysm.researchDesk),
                                " X ", "YZY", "BMB",
                                'X', Electrolysm.inkAndQuill,

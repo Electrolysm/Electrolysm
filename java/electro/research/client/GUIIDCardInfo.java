@@ -397,7 +397,7 @@ public class GUIIDCardInfo extends GuiScreen {
                     if((i - x + 1) > itemsPerPage) { return; }
                     if(this.hasImage(screen1)) {
                         //buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
-                        //this.showImages();
+                        //this.showImages();e
                     }
                 }
             }

@@ -13,7 +13,7 @@ public class CommonProxy
     public static ResourceLocation MODELWORKBENCH = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelWorkBench.png");
     public static ResourceLocation MODEL_SOLDERING = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelSoldering.png");
     public static ResourceLocation MODEL_DESK = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelDesk.png");
-    public static ResourceLocation MODEL_RESEARCH_DESK = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelResearchTable.png");
+    public static ResourceLocation MODEL_RESEARCH_DESK = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelResearch.png");
     public static ResourceLocation MODEL_TRANSFORMER_SOURCE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelTransformerSource.png");
     public static ResourceLocation MODEL_TRANSFORMER_MACHINE = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelTransformerMachine.png");
     public static ResourceLocation MODEL_QUANTUM_COMPUTER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelQuantumComp.png");
@@ -22,6 +22,8 @@ public class CommonProxy
     public static ResourceLocation BEAM_MODEL = new ResourceLocation("textures/entity/beacon_beam.png");
     public static ResourceLocation MODEL_IRON_FRAME = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelIronFrame.png");
     public static ResourceLocation MODEL_CHARGER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelCharger.png");
+    public static ResourceLocation MODEL_HOL = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelHol.png");
+    public static ResourceLocation MODEL_HOL_FLICKER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelHolFlick.png");
 
     //GUIs
     public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
