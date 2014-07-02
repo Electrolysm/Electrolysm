@@ -81,9 +81,9 @@ import electro.oreProccessing.seporator;
 import electro.oreProccessing.smeltory;
 import electro.oreProccessing.sulphuricAcid;
 import electro.powerSystem.ItemWire;
-import electro.powerSystem.battery1;
-import electro.powerSystem.battery2;
-import electro.powerSystem.battery3;
+import electro.powerSystem.basicStorage;
+import electro.powerSystem.advancedStorage;
+import electro.powerSystem.experimentalStorage;
 import electro.powerSystem.battery4;
 import electro.powerSystem.endoCable;
 import electro.powerSystem.energyMeter;
@@ -205,10 +205,9 @@ public class Electrolysm
     //Power System
     public static Block endoCable = new endoCable().setBlockName("endoCable");
     public static Item ItemWire = new ItemWire();
-    public static Item battery1 = new battery1(1000, 1).setUnlocalizedName("battery1");
-    public static Item battery2 = new battery2(8000, 2).setUnlocalizedName("battery2");
-    public static Item battery3 = new battery3(64000, 3).setUnlocalizedName("battery3");
-    public static Item battery4 = new battery4(512000, 4).setUnlocalizedName("battery4");
+    public static Item basicStorage = new basicStorage(1000, 1).setUnlocalizedName("basicStorage");
+    public static Item advancedStorage = new advancedStorage(8000, 2).setUnlocalizedName("advancedStorage");
+    public static Item experimentalStorage = new experimentalStorage(64000, 3).setUnlocalizedName("experimentalStorage");
 
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);

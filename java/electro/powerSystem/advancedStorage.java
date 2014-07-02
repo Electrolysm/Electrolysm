@@ -14,12 +14,12 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class battery2 extends Item {
+public class advancedStorage extends Item {
 
 	public static int capacity;
 	public static int tier;
 	
-	public battery2(int cap, int tier1) {
+	public advancedStorage(int cap, int tier1) {
 		super();
 
 		this.setCreativeTab(Electrolysm.TabElectrolysm);
