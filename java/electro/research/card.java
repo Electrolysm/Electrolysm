@@ -65,8 +65,8 @@ public class card extends Item
         String playerName = player.getDisplayName();
         int cardLevel = stack.getItemDamage();
         list.add(playerName + "'s current level is: " + cardLevel);
-        list.add("You require " + Research.cardToDesk(stack.getItemDamage()) + "Desks to complete " +
-                 "level " + stack.getItemDamage() + " research.");
+        /*list.add("You require " + Research.cardToDesk(stack.getItemDamage()) + "Desks to complete " +
+                 "level " + stack.getItemDamage() + " research.");*/
     }
 
     @Override

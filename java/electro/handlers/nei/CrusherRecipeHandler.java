@@ -1,4 +1,4 @@
-/*package electro.handlers.nei;
+package electro.handlers.nei;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -172,4 +172,3 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     }
     
 }
-*/

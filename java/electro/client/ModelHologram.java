@@ -1,5 +1,6 @@
 package electro.client;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -47,10 +48,14 @@ public class ModelHologram extends ModelBase
 
   public void renderBlock(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
   {
-      if(deviceRotation >= 360){
-          deviceRotation = 0;
-      } else {
-          deviceRotation = deviceRotation + 0.0125F;
+      boolean isPaused = Minecraft.getMinecraft().isGamePaused();
+
+      if(!isPaused) {
+          if (deviceRotation >= 360) {
+              deviceRotation = 0;
+          } else {
+              deviceRotation = deviceRotation + 0.0125F;
+          }
       }
 
       Earth.rotateAngleZ = deviceRotation;
@@ -64,10 +69,14 @@ public class ModelHologram extends ModelBase
   public void renderDevice(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
   {
       Random rand = new Random();
-      if(deviceRotation >= 360){
-          deviceRotation = 0;
-      } else {
-          deviceRotation = deviceRotation + 0.0125F;
+      boolean isPaused = Minecraft.getMinecraft().isGamePaused();
+
+      if(!isPaused) {
+          if (deviceRotation >= 360) {
+              deviceRotation = 0;
+          } else {
+              deviceRotation = deviceRotation + 0.0125F;
+          }
       }
 
       device.rotateAngleZ = deviceRotation;

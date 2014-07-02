@@ -27,6 +27,7 @@ public class CommonProxy
 
     //GUIs
     public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
+    public static ResourceLocation RESEARCH_DESK_ACTIVE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskActiveGUI.png");
     public static ResourceLocation ENERGISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energiserGUI.png");
     public static ResourceLocation INJECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/injectorGUI.png");
     public static ResourceLocation SMELTORY_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/smelteryGUI.png");
@@ -41,7 +42,7 @@ public class CommonProxy
     public static ResourceLocation CRUSHER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/crusherGUI.png");
     public static ResourceLocation LIQUIDISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/liquidiserGUI.png");
 	public static ResourceLocation SLOT_ICON = new ResourceLocation(MOD_ID_LOWER, "textures/gui/slotIcon.png");
-	
+
 	//Research
 	public static ResourceLocation IMAGE_TECH_TREE = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/image_techTree.png");
 	public static ResourceLocation RESEARCH_BACKGROUND = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/backGround.png");
@@ -53,7 +54,8 @@ public class CommonProxy
 
     //NEI GUIs
     public static ResourceLocation NEI_ELECTROL_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/nei/neiElectrolysisGUI.png");
-    
+    public static ResourceLocation RESOURCE_GUI_NEI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/nei/neiResourceGUI.png");
+
     //Items (With Subtypes)
     public static String[] RESEARCH_NOTES = {"researchNote", "researchNote_Complete"};
     public static String[] FLUIDS = {"Empty", "Plasma", "Sulphuric Acid", "Copper Sulphate",

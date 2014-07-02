@@ -122,5 +122,6 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.labCoat, "labCoat");
         GameRegistry.registerItem(elec.labGoggles, "labGoggles");
         GameRegistry.registerItem(elec.researchDevice, "researchDevice");
+        GameRegistry.registerItem(elec.reel, "itemReel");
     }
 }

@@ -1,4 +1,4 @@
-/*package electro.handlers.nei;
+package electro.handlers.nei;
 
 import electro.Electrolysm;
 import electro.block.advMachines.gui.GUIInjector;
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 public class NEIElectrolysmConfig implements IConfigureNEI{
 
 	@Override
-	public void loadConfig() 
+	public void loadConfig()
 	{
 		//Item Hiding
 		API.hideItem(new ItemStack(Electrolysm.crusherActive));
@@ -24,34 +24,38 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 		API.registerRecipeHandler(new CrusherRecipeHandler());
 		API.registerUsageHandler(new CrusherRecipeHandler());
 		API.setGuiOffset(GUICrusher.class, 0, 0);
-		
+
 		//Liquidiser
 		API.registerRecipeHandler(new LiquidiserRecipeHandler());
 		API.registerRecipeHandler(new LiquidiserRecipeHandler());
 		API.setGuiOffset(GUILiquidiser.class, 0, 0);
-		
+
 		//Electrolysis
 		API.registerRecipeHandler(new ElectrolysisRecipeHander());
 		API.registerRecipeHandler(new ElectrolysisRecipeHander());
 		API.setGuiOffset(GUIElectrolysisCore.class, 0, 0);
-		
+
 		//Injector
 		API.registerRecipeHandler(new InjectorRecipeHandler());
 		API.registerUsageHandler(new InjectorRecipeHandler());
 		API.setGuiOffset(GUIInjector.class, 0, 0);
-	}
-	
+
+        //Resource
+        API.registerRecipeHandler(new ResourceRecipeHandler());
+        API.registerUsageHandler(new ResourceRecipeHandler());
+        API.setGuiOffset(NEIResourceGUI.class, 0, 0);
+    }
+
 	@Override
-	public String getName() 
+	public String getName()
 	{
 		return "Electrolysm NEI Plugin";
 	}
 
 	@Override
-	public String getVersion() 
+	public String getVersion()
 	{
 		return Referance.MOD_REF.VERSION;
 	}
 
 }
-*/
