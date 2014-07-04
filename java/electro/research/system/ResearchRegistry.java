@@ -43,8 +43,9 @@ public class ResearchRegistry
         this.registerResearch(new Research("experimental_stoage", this.POWER, new Point (40, 32), 3));
         this.registerResearch(new Research("tesla_tower", this.POWER, new Point(60,52 ), 4));
         this.registerResearch(new Research("battery", this.POWER, new Point(15,11), 2));
-        this.registerResearch(new Research("advanced_battery", this.POWER, new Point(27, 20), 3));
-        this.registerResearch(new Research("improved_coal", this.POWER, new Point(16,24), 2));
+        this.registerResearch(new Research("advanced_battery", this.POWER, new Point(30, 24), 3));
+        this.registerResearch(new Research("experimental_battery", this.POWER, new Point(49, 38), 4));
+        this.registerResearch(new Research("coal_generator", this.POWER, new Point (12, 6), 1));
         this.registerResearch(new Research("improved_coal_generator", this.POWER, new Point(20, 11), 2));
         this.registerResearch(new Research("experimental_coal_generator", this.POWER, new Point(32, 20), 3));
        // this.registerResearch(new Research("antimatter_generator", this.POWER, new Point(82, 74), 4));
@@ -56,6 +57,7 @@ public class ResearchRegistry
 		this.registerResearch(new Research("improved_solar_panel", this.POWER, new Point(47, 53), 4));
 		this.registerResearch(new Research("turbine", this.POWER, new Point(38,30), 3));
 		this.registerResearch(new Research("improved_turbine", this.POWER, new Point(54, 45), 4));
+		this.registerResearch(new Research ("cable", this.POWER, new Point (15, 7), 1));
 		this.registerResearch(new Research("advanced_cable", this.POWER, new Point(28, 19), 2));
 		this.registerResearch(new Research("experimental_cable", this.POWER, new Point(42,37), 3));
 		
@@ -79,13 +81,14 @@ public class ResearchRegistry
 		
 		
 		//Research
-        this.registerResearch(new Research("the_basics", this.RESEARCH, new Point(0, 0), 1, true));
 		this.registerResearch(new Research("improved_analyser", this.RESEARCH, new Point(32, 25), 2));
 		this.registerResearch(new Research("chromotography", this.RESEARCH, new Point(29, 37), 1));
 		this.registerResearch(new Research("mass_spectrometry", this.RESEARCH, new Point(38, 47), 2));
 		this.registerResearch(new Research("basic_data_recorder", this.RESEARCH, new Point(19, 12), 1));
 		this.registerResearch(new Research("advanced_data_recorder", this.RESEARCH, new Point(32, 25), 2));
 		this.registerResearch(new Research("experimental_data_recorder", this.RESEARCH, new Point(47, 39), 3));
+		this.registerResearch(new Research("improved_data_reel", this.RESEARCH, new Point(29, 22), 2));
+		this.registerResearch(new Research("experimental_data_reel", this.RESEARCH, new Point(41,34), 3));
 		
 		//Robotics
 		this.registerResearch(new Research("basic_microchip", this.ROBOTICS, new Point(11, 5), 1));
@@ -104,20 +107,39 @@ public class ResearchRegistry
 		this.registerResearch(new Research("liquidiser", this.MACHINES, new Point(31, 24), 1));
 		this.registerResearch(new Research("assembly_machine", this.MACHINES, new Point(33, 24), 1));
 		this.registerResearch(new Research("advanced_assembly_machine", this.MACHINES, new Point(49, 38), 2));
+		this.registerResearch(new Research("compressor", this.MACHINES, new Point(23, 15), 1));
+		this.registerResearch(new Research("improved_compressor", this.MACHINES, new Point(39, 31), 1));
 		
 		
 		//Power Research requirements
-
-	      this.linkResearch(this.getResearch("advanced_storage"), Arrays.asList(this.getResearch("basic_storage"), this.getResearch("advanced_cable")));
+          this.linkResearch(this.getResearch("basic_sotrage"), Arrays.asList(this.getResearch("basic_cable")));
+	      this.linkResearch(this.getResearch("advanced_storage"), Arrays.asList(this.getResearch("basic_storage"), this.getResearch("advanced_cable"), this.getResearch("liquidiser")));
 	      this.linkResearch(this.getResearch("experimental_storage"), Arrays.asList(this.getResearch("advanced_storage"), this.getResearch("experimental_cable")));
 	      this.linkResearch(this.getResearch("tesla_tower"), Arrays.asList(this.getResearch("steel"), this.getResearch("pure_copper"), this.getResearch("experimental_storage")));
-	      this.linkResearch(this.getResearch("battery"), Arrays.asList(this.getResearch("basic_storage"), this.getResearch("steel"), this.getResearch("advanced_cable")));
+	      this.linkResearch(this.getResearch("battery"), Arrays.asList(this.getResearch("basic_storage"), this.getResearch("steel"), this.getResearch("advanced_cable"), this.getResearch("liquidiser")));
 	      this.linkResearch(this.getResearch("advanced_battery"), Arrays.asList(this.getResearch("battery"), this.getResearch("experimental_cable"), this.getResearch("advanced_storage")));
+	      this.linkResearch(this.getResearch("experimental_battery"), Arrays.asList(this.getResearch("advanced_battery"), this.getResearch("experimental_storage")));
+	      this.linkResearch(this.getResearch("improved_coal_generator"), Arrays.asList(this.getResearch("improved_coal"), this.getResearch("coal_generator")));
+	      this.linkResearch(this.getResearch("experimental_coal_generator"), Arrays.asList(this.getResearch("improved_coal_generator"), this.getResearch("experimental_storage")));
+	      this.linkResearch(this.getResearch("thermic_generator"), Arrays.asList(this.getResearch("improved_coal_generator")));
+	      this.linkResearch(this.getResearch("improved_thermic_generator"), Arrays.asList(this.getResearch("experimental_coal_generator"), this.getResearch("thermic_generator")));
+	      this.linkResearch(this.getResearch("bio_generator"), Arrays.asList(this.getResearch("improved_coal_generator")));
+	      this.linkResearch(this.getResearch("improved_bio_generator"), Arrays.asList(this.getResearch("experimental_coal_generator"), this.getResearch("bio_generator")));
+	      this.linkResearch(this.getResearch("solar_pannels"), Arrays.asList(this.getResearch("improved_coal_generator")));
+	      this.linkResearch(this.getResearch("improved_solar_pannels"), Arrays.asList(this.getResearch("experimental_coal_generator"), this.getResearch("solar_pannels")));
+	      this.linkResearch(this.getResearch("turbines"), Arrays.asList(this.getResearch("improved_coal_generator")));
+	      this.linkResearch(this.getResearch("improved_turbines"), Arrays.asList(this.getResearch("experimental_coal_generator"), this.getResearch("turbine")));
+	      this.linkResearch(this.getResearch("advanced_cable"), Arrays.asList(this.getResearch("basic_cable"), this.getResearch("bronze"), this.getResearch("plastic")));
+	      this.linkResearch(this.getResearch("experimental_cable"), Arrays.asList(this.getResearch("improved_cable"), this.getResearch("pure_copper")));
 	      
+	      // Metals and Elements research requirements
+	      this.linkResearch(this.getResearch("fractional_distillation"), Arrays.asList(this.getResearch("improved_furnace"), this.getResearch("advanced_cable")));
+	      this.linkResearch(this.getResearch("plastic"), Arrays.asList(this.getResearch("fractional_distillation")));
+	      this.linkResearch(this.getResearch("bio_fuel"), Arrays.asList(this.getResearch("fractiona;_distillation")));
+	      this.linkResearch(this.getResearch("improved_coal"), Arrays.asList(this.getResearch("coal_generator"), this.getResearch("crusher")));	    
+	      this.linkResearch(this.getResearch("carbon_fibre"), Arrays.asList(this.getResearch("improved_coal"), this.getResearch("compressor")));
+	      this.linkResearch(this.getResearch("carbon_nano_tubes"), Arrays.asList(this.getResearch("carbon_fibre"), this.getResearch("improved_compressor")));
 	      
-     
-		
-		
         //Elliott DON'T remove this, trust me...
         //this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
         //this.registerResearch(new Research("wrong_cold_fusion", this.HIDDEN, new Point(0, 0), 3, this.getResearch("cold_fusion")));
