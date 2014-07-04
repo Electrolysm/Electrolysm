@@ -1,20 +1,27 @@
 package electro.block.machines.tile;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
 import electro.Electrolysm;
 import electro.block.machines.container.ContainerResearchDesk;
 import electro.handlers.helpers.BlockResource;
+import electro.handlers.helpers.Utilities;
 import electro.research.ItemReel;
+import electro.research.common.SavePlayerScanData;
 import electro.research.researchDevice;
+import electro.research.system.PlayerResearchEvent;
 import electro.research.system.ResearchRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -118,23 +125,41 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     public static boolean errorRequirement = false;
     public static boolean requirements = false;
 
-    public void actionPerformed(GuiButton button)
+    public void actionPerformed(GuiButton button, Minecraft mc)
     {
+        //requiredList.clear();
         int id = button.id;
         String name = button.displayString;
         Random rand = new Random();
         if(name.toLowerCase() == "research" || id == 0)
         {
-            if(requirements)
+            if(requirements && selected != null)
             {
-                this.setInventorySlotContents(1, new ItemStack(Electrolysm.researchPaper));
+                //Research.advString(), requirement
+                LinkedHashMap<String, String> hashMap = ResearchRegistry.getRequireMap();
 
-                for(int c = 0; c < 6; c++) {
-                    if (rand.nextInt(10) == 5) {
-                        decrStackSize(c + 3, 1);
+                String research = selected.toAdvString();
+                String requirementString = hashMap.get(research);
+                String[] requireArray = ResearchRegistry.getRequirementsFromStringAsArray(requirementString);
+
+                if(requireArray != null) {
+                    List<String> notUnlocked = new ArrayList<String>();
+
+                    for (int i = 0; i < requireArray.length; i++) {
+                        if (!(SavePlayerScanData.ScanData.hasPlayerScanned(mc.getMinecraft().thePlayer.getDisplayName(),
+                                requireArray[i])) &&
+                                !notUnlocked.contains(requireArray[i]) &&
+                                !requiredList.contains(requireArray[i]))
+                        {
+                            notUnlocked.add(requireArray[i]);
+                            requiredList.add(requireArray[i]);
+
+                            PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer,
+                                    mc.getMinecraft().thePlayer.getDisplayName());
+                        }
                     }
                 }
-
+                //this.setInventorySlotContents(1, new ItemStack(Electrolysm.researchPaper));
             }
             else
             {
@@ -144,10 +169,10 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
         }
     }
 
+    public List<String> requiredList = new ArrayList<String>();
     Research selected = null;
-    ItemStack[] resources = null;
     int errorTimer = 0;
-    int maxErrorTimer = 20;
+    int maxErrorTimer = 100;
     int researchTimer = 0;
     int maxResearchTimer = 60;
 
@@ -155,22 +180,14 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     public void updateEntity()
     {
         selected = ResearchRegistry.getResearch("basic_storage");
-        maxErrorTimer = 100;
-        Block desk = Electrolysm.desk;
-        int desksClose = 0;
         ItemStack reels = getStackInSlot(0);
         ItemStack card = getStackInSlot(2);
         ItemStack output = getStackInSlot(1);
-        ItemStack[] codeStacks = null;
         //ItemStack result = Research.research().getResearch(inStack, card);
         Random rand = new Random();
         boolean active = (card != null && card.getItem() instanceof researchDevice);
 
         renderActiveScreen = active;
-
-        if(resources == null) { resources = this.pickResources(rand); }
-        if(codeStacks == null) { codeStacks = new ItemStack[6]; }
-        for(int i = 0; i < 6; i++) { codeStacks[i] = this.getStackInSlot(i + 3); }
 
         if(errorRequirement) {
             if(errorTimer >= maxErrorTimer) {
@@ -181,45 +198,25 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
             }
         }
 
-        if(active) {
-            if(reels != null && reels.getItem() instanceof ItemReel) {
-                /*if(output == null && selected != null)
+        if(active)
+        {
+            if(reels != null && reels.getItem() instanceof ItemReel)
+            {
+                ItemReel reel = (ItemReel)reels.getItem();
+
+                int eng = selected.getPointValue().getEngPoint().getValue();
+                int sci = selected.getPointValue().getSciPoint().getValue();
+
+                int localEng = reel.getEngPoints();
+                int localSci = reel.getSciPoints();
+
+                if(localEng >= eng && localSci >= sci || true == true)
                 {
-                    ItemReel reel = (ItemReel)reels.getItem();
-                    int sci = 100;//reel.getSciPoints();
-                    int eng = 100;//reel.getEngPoints();
+                    //Air Hostess, I like the way dress!!!!!!! Air Hostess, Na Na Na Na
+                    //Triple breasted women swim around town totally naked
 
-                    int selEng = selected.getPointValue().getEngPoint().getValue();
-                    int selSci = selected.getPointValue().getSciPoint().getValue();
-
-                    if(sci >= selSci && eng >= selEng)
-                    {
-                        if(researchTimer >= maxResearchTimer){
-                            researchTimer = 0;
-
-                            if(resources != null && codeStacks != null)
-                            /   for(int i = 0; i < resources.length; i++)
-                                {
-                                    if(resources[i].isItemEqual(codeStacks[i]) || true)
-                                    {*/
-                                        requirements = true;
-                                        resources = null;
-
-                                    //}
-                               // }
-                        /*} else {
-                            researchTimer = researchTimer + 1;
-                        }
-                    }
-                    else
-                    {
-                        requirements = false;
-                    }*/
-                /*}
-                else
-                {
-                    requirements = false;
-                }*/
+                    requirements = true;
+                }
             }
             else
             {
@@ -230,20 +227,6 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
         {
             requirements = false;
         }
-    }
-
-    public ItemStack[] pickResources(Random random)
-    {
-        int max = BlockResource.getResourceList().size() - 1;
-        List<ItemStack> list = BlockResource.getResourceList();
-
-        ItemStack stack = list.get(random.nextInt(max));
-        ItemStack stack1 = list.get(random.nextInt(max));
-        ItemStack stack2 = list.get(random.nextInt(max));
-        ItemStack stack3 = list.get(random.nextInt(max));
-        ItemStack stack4 = list.get(random.nextInt(max));
-
-        return new ItemStack[] { stack, stack1, stack2, stack3, stack4};
     }
 
     @Override

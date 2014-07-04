@@ -40,7 +40,7 @@ public class ResearchRegistry
 		//Power
         this.registerResearch(new Research("basic_storage", this.POWER, new Point(10,7 ), 1));
         this.registerResearch(new Research("advanced_storage", this.POWER, new Point (25,18), 2));
-        this.registerResearch(new Research("experimental_stoage", this.POWER, new Point (40, 32), 3));
+        this.registerResearch(new Research("experimental_storage", this.POWER, new Point (40, 32), 3));
         this.registerResearch(new Research("tesla_tower", this.POWER, new Point(60,52 ), 4));
         this.registerResearch(new Research("battery", this.POWER, new Point(15,11), 2));
         this.registerResearch(new Research("advanced_battery", this.POWER, new Point(30, 24), 3));
@@ -308,9 +308,13 @@ public class ResearchRegistry
 
     public static String[] getRequirementsFromStringAsArray(String requireString)
     {
-        String[] array = requireString.split(":");
+        if(requireString != null) {
+            String[] array = requireString.split(":");
 
-        return array;
+            return array;
+        } else {
+            return null;
+        }
     }
 
     public static boolean unlockedReliants(String username, Research research)

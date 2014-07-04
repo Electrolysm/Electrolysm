@@ -13,7 +13,7 @@ public class ItemReel extends Item
         super();
 
         this.setCreativeTab(Electrolysm.TabElectrolysm);
-        this.setMaxStackSize(16);
+        this.setMaxStackSize(1);
         this.setUnlocalizedName("ItemReel");
     }
 

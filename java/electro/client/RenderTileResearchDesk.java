@@ -4,6 +4,7 @@ import electro.Electrolysm;
 import electro.block.machines.tile.TileEntityResearchDesk;
 import electro.research.researchDevice;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -39,6 +40,7 @@ public class RenderTileResearchDesk extends TileEntitySpecialRenderer
     }
 
     ItemStack lastStack;
+    float deviceRotation = 0;
 
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
@@ -100,15 +102,25 @@ public class RenderTileResearchDesk extends TileEntitySpecialRenderer
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glColor4f(1F, 1F, 1F, 0.999999F);
 
+        boolean isPaused = Minecraft.getMinecraft().isGamePaused();
+
+        if(!isPaused) {
+            if (deviceRotation >= 360) {
+                deviceRotation = 0;
+            } else {
+                deviceRotation = deviceRotation + 0.0125F;
+            }
+        }
+
         if(!flicker) {
             if (hasDevice) {
-                this.modelHol.renderDevice((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+                this.modelHol.renderDevice((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, deviceRotation);
             } else {
-                this.modelHol.renderBlock((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+                this.modelHol.renderBlock((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, deviceRotation);
             }
         } else {
-            this.modelHol.renderDevice((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-            this.modelHol.renderBlock((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+            this.modelHol.renderDevice((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, deviceRotation);
+            this.modelHol.renderBlock((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F, deviceRotation);
             //flickerPerm = true;
         }
 

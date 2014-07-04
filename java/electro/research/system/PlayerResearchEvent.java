@@ -57,7 +57,7 @@ public class PlayerResearchEvent
         LinkedHashMap<String, String> researchRequire = ResearchRegistry.getRequireMap();
         LinkedHashMap<String, String> researchMap = ResearchRegistry.getResearchMap();
 
-        System.out.println(researchMap.size());
+        //System.out.println(researchMap.size());
 
         for(int p = 0; p < researchMap.size(); p++)
         {
@@ -67,30 +67,30 @@ public class PlayerResearchEvent
             Research research = ResearchRegistry.getResearch(researchName);
             unlocked = research;
 
-            System.out.println("for1." + p + ": " + researchName + "---" + researchRequire.get(researchString));
+            //System.out.println("for1." + p + ": " + researchName + "---" + researchRequire.get(researchString));
 
             if(researchRequire.get(researchString) != null &&
                     !(SavePlayerScanData.ResearchData.hasPlayerUnlocked(username + "_active", researchName)))
             {
-                System.out.println("nullCheck");
+                //System.out.println("nullCheck");
 
                 String requireString = researchRequire.get(researchString);
                 String[] requirementArray = ResearchRegistry.getRequirementsFromStringAsArray(requireString);
 
                 for (int i = 0; i < requirementArray.length; i++)
                 {
-                    System.out.println("for2" + requirementArray[i] + requirementArray.length + ";" + i);
+                    //System.out.println("for2" + requirementArray[i] + requirementArray.length + ";" + i);
                     String require = requirementArray[i];
 
                     if (unlocalisedNames.contains(require + ",") || unlocalisedNames.contains(require + ",,"))
                     {
-                        System.out.println("contentCheck");
+                        //System.out.println("contentCheck");
 
                         check = check + "true";
                     }
                     else
                     {
-                        System.out.println("contentElse");
+                        //System.out.println("contentElse");
                         check = check + "false";
                     }
                 }
@@ -102,13 +102,13 @@ public class PlayerResearchEvent
 
             if(check.contains("false"))
             {
-                System.out.println("false");
+                //System.out.println("false");
 
                 unlockedArray[p] = null;
             }
             else
             {
-                System.out.println("unlocked-" + unlocked);
+                //System.out.println("unlocked-" + unlocked);
 
                 unlockedArray[p] = unlocked;
                 return unlocked;
@@ -119,7 +119,7 @@ public class PlayerResearchEvent
 
         for(int i = 0; i < unlockedArray.length; i++)
         {
-            System.out.println("arrayFor");
+            //System.out.println("arrayFor");
             if(unlockedArray[i] != null)
             {
                 //System.out.println("Unlocked: " + unlockedArray[i].getName());

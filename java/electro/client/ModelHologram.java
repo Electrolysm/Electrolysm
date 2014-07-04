@@ -46,38 +46,17 @@ public class ModelHologram extends ModelBase
     Projector.render(f5);
   }
 
-  public void renderBlock(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+  public void renderBlock(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, float deviceRotation)
   {
-      boolean isPaused = Minecraft.getMinecraft().isGamePaused();
-
-      if(!isPaused) {
-          if (deviceRotation >= 360) {
-              deviceRotation = 0;
-          } else {
-              deviceRotation = deviceRotation + 0.0125F;
-          }
-      }
-
       Earth.rotateAngleZ = deviceRotation;
       Earth.rotateAngleY = deviceRotation;
       Earth.rotateAngleZ = -deviceRotation;
       Earth.render(f5);
   }
 
-   float deviceRotation = 0;
-
-  public void renderDevice(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+  public void renderDevice(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, float deviceRotation)
   {
       Random rand = new Random();
-      boolean isPaused = Minecraft.getMinecraft().isGamePaused();
-
-      if(!isPaused) {
-          if (deviceRotation >= 360) {
-              deviceRotation = 0;
-          } else {
-              deviceRotation = deviceRotation + 0.0125F;
-          }
-      }
 
       device.rotateAngleZ = deviceRotation;
       device.rotateAngleY = deviceRotation;

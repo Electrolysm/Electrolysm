@@ -84,7 +84,6 @@ import electro.powerSystem.ItemWire;
 import electro.powerSystem.basicStorage;
 import electro.powerSystem.advancedStorage;
 import electro.powerSystem.experimentalStorage;
-import electro.powerSystem.battery4;
 import electro.powerSystem.endoCable;
 import electro.powerSystem.energyMeter;
 import electro.powerSystem.generators.generator;

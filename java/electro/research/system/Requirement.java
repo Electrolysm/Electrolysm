@@ -2,6 +2,7 @@ package electro.research.system;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 
 public class Requirement 
@@ -28,6 +29,8 @@ public class Requirement
 	{
 		this.requirement = object;
 	}
+
+    public Requirement(Entity[] entity) { this((Object[])(entity)); }
 
     public Requirement(String string) { requirementSingle = string; requirement = null; }
 

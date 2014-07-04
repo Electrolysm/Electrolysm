@@ -99,7 +99,7 @@ public class scanner extends Item
                 //new ResearchRegistry(true);
 
                 new SavePlayerScanData.ScanData(player.getDisplayName(), (new ItemStack(world.getBlock(x, y, z))).getUnlocalizedName());
-                PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
+                //PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
                 return true;
             } else {
                 timer = timer + 1;
@@ -133,7 +133,7 @@ public class scanner extends Item
                 //new ResearchRegistry(true);
 
                 new SavePlayerScanData.ScanData(player.getDisplayName(), entity.getCommandSenderName());
-                PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
+               // PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
                 return true;
             } else {
                 timer = timer + 1;

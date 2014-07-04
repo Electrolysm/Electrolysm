@@ -1,5 +1,7 @@
 package electro.block.machines.gui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import electro.Electrolysm;
@@ -65,6 +67,14 @@ public class GUIResearchDesk extends GuiContainer
             fontRendererObj.drawString(ColourEnumHelper.WHITE + error3, x + 50 + xMod, y + 26 + yMod, 4210752);
         }
 
+        if(entity.requirements) {
+            for (int i = 0; i < entity.requiredList.size(); i++) {
+                fontRendererObj.drawString(ColourEnumHelper.WHITE + entity.requiredList.get(i), x + 8 + 12, y + (16 * i) + 50, 4210752);
+            }
+        } else {
+            entity.requiredList.clear();
+        }
+
         this.drawTexturedModalRect(x + 150, y + 25, 176, 14, 24, progress);
         this.buttonList.add(new GuiButton(0, x + 66, y + 116, 60, 20, "Research"));
 
@@ -73,7 +83,7 @@ public class GUIResearchDesk extends GuiContainer
     @Override
     public void actionPerformed(GuiButton button)
     {
-        entity.actionPerformed(button);
+        entity.actionPerformed(button, mc);
     }
 
     @Override
@@ -82,6 +92,7 @@ public class GUIResearchDesk extends GuiContainer
         entity.renderActiveScreen = false;
         entity.errorRequirement = false;
         entity.requirements = false;
+        entity.requiredList.clear();
     }
 
     @Override

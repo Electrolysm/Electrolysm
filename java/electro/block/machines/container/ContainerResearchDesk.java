@@ -22,11 +22,11 @@ public class ContainerResearchDesk extends Container
         //Hexagon
         int[] xCoord = new int[] {66, 87, 87, 66, 46, 46};
         int[] yCoord = new int[] {35, 47, 72, 84, 72, 47};
-
+/*
         for(int i = 0; i < 6; i++) {
             this.addSlotToContainer(new Slot(entity, i + 3, xCoord[i], yCoord[i]));
         }
-
+*/
         int var3;
 
         /*for (var3 = 0; var3 < 3; ++var3)

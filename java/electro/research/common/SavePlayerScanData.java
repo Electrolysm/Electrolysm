@@ -63,9 +63,15 @@ public class SavePlayerScanData
             }
         }
 
-        public boolean hasPlayerScanned(String username, String unlocalName) {
-            List<String> list = getPlayerData(username).get(username);
-            return dataAlreadyExists(unlocalName, list);
+        public static boolean hasPlayerScanned(String username, String unlocalName) {
+            HashMap<String, List<String>> map = getPlayerData(username);
+            if(map != null) {
+                return dataAlreadyExists(unlocalName, map.get(username));
+            } else {
+                makeFile(username);
+                return false;
+            }
+
         }
 
         public static boolean dataAlreadyExists(String newData, List<String> list) {
@@ -78,7 +84,6 @@ public class SavePlayerScanData
                     }
                 }
             }
-
             return false;
         }
 
