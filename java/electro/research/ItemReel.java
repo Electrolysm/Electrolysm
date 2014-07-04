@@ -1,8 +1,20 @@
 package electro.research;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 /**
  * Created by Clarky158 on 02/07/2014.
@@ -23,24 +35,52 @@ public class ItemReel extends Item
         this.itemIcon = reg.registerIcon("electrolysm:itemReel");
     }
 
-    int sciValue = 0;
-    int engValue = 0;
+    @Override
+    public void onCreated(ItemStack stack, World world, EntityPlayer player){
 
-    public int[] getValueArray()
-    {
-        int sci = sciValue;
-        int eng = engValue;
-        return new int[] {sci, eng};
+        stack.stackTagCompound = new NBTTagCompound();
     }
 
-    public int getSciPoints()
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        return sciValue;
+        if(stack.stackTagCompound != null) {
+            String message = "Science Value: " + stack.stackTagCompound.getInteger("sciValue");
+            String message1 = "Engineering Value: " + stack.stackTagCompound.getInteger("engValue");
+
+            list.add(message); list.add(message1);
+        }
+        else
+        {
+            String message = "Right click to initialize...";
+            list.add(message);
+        }
     }
 
-    public int getEngPoints()
+    @Override
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y,
+                            int z, int par7, float par8, float par9, float par10)
     {
-        return engValue;
+        if(stack.stackTagCompound == null)
+        {
+            stack.stackTagCompound = new NBTTagCompound();
+            stack.stackTagCompound.setInteger("engValue", 0);
+            stack.stackTagCompound.setInteger("sciValue", 0);
+            this.printInitializationMessage(player);
+            return true;
+        }
+        else
+        {
+            stack.stackTagCompound.setInteger("engValue", stack.stackTagCompound.getInteger("engValue") + 1);
+            stack.stackTagCompound.setInteger("sciValue", stack.stackTagCompound.getInteger("sciValue") + 1);
+            return true;
+        }
+    }
+
+    public void printInitializationMessage(EntityPlayer player)
+    {
+        player.addChatMessage(new ChatComponentTranslation("Data reel initialized."));
     }
 
 }

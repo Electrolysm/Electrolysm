@@ -127,6 +127,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
 
     public void actionPerformed(GuiButton button, Minecraft mc)
     {
+        //new ResearchRegistry(true);
         //requiredList.clear();
         int id = button.id;
         String name = button.displayString;
@@ -142,7 +143,7 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
                 String requirementString = hashMap.get(research);
                 String[] requireArray = ResearchRegistry.getRequirementsFromStringAsArray(requirementString);
 
-                if(requireArray != null) {
+                if(requireArray != null) { System.out.println("nullCheck");
                     List<String> notUnlocked = new ArrayList<String>();
 
                     for (int i = 0; i < requireArray.length; i++) {
@@ -200,17 +201,15 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
 
         if(active)
         {
-            if(reels != null && reels.getItem() instanceof ItemReel)
+            if(reels != null && reels.getItem() instanceof ItemReel && reels.stackTagCompound != null)
             {
-                ItemReel reel = (ItemReel)reels.getItem();
-
                 int eng = selected.getPointValue().getEngPoint().getValue();
                 int sci = selected.getPointValue().getSciPoint().getValue();
 
-                int localEng = reel.getEngPoints();
-                int localSci = reel.getSciPoints();
+                int localEng = reels.stackTagCompound.getInteger("engValue");
+                int localSci = reels.stackTagCompound.getInteger("sciValue");
 
-                if(localEng >= eng && localSci >= sci || true == true)
+                if(localEng >= eng && localSci >= sci)
                 {
                     //Air Hostess, I like the way dress!!!!!!! Air Hostess, Na Na Na Na
                     //Triple breasted women swim around town totally naked
