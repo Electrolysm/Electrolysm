@@ -4,7 +4,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
 import electro.common.CommonProxy;
+import electro.handlers.helpers.ColourEnumHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -22,6 +25,9 @@ import java.util.List;
  */
 public class ItemReel extends Item
 {
+    @SideOnly(Side.CLIENT)
+    private IIcon[] icons;
+
     public ItemReel(){
         super();
 
@@ -33,7 +39,18 @@ public class ItemReel extends Item
     @Override
     public void registerIcons(IIconRegister reg)
     {
-        this.itemIcon = reg.registerIcon("electrolysm:itemReel");
+        icons = new IIcon[3];
+        icons[0] = reg.registerIcon("electrolysm:itemReel");
+        icons[1] = reg.registerIcon("electrolysm:itemReel0");
+        icons[2] = reg.registerIcon("electrolysm:itemReel1");
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int dmg)
+    {
+        return icons[dmg];
     }
 
     @Override
@@ -62,6 +79,15 @@ public class ItemReel extends Item
     }
 
     @Override
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
+    {
+        for (int i = 0; i < CommonProxy.REEL_MAX_VALUE.length; i++)
+        {
+            list.add(new ItemStack(Electrolysm.reel, 1, i));
+        }
+    }
+
+    @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y,
                             int z, int par7, float par8, float par9, float par10)
     {
@@ -70,7 +96,9 @@ public class ItemReel extends Item
             stack.stackTagCompound = new NBTTagCompound();
             stack.stackTagCompound.setInteger("engValue", 0);
             stack.stackTagCompound.setInteger("sciValue", 0);
-            this.printInitializationMessage(player);
+            if(world.isRemote) {
+                this.printInitializationMessage(player);
+            }
             return true;
         }
         else
@@ -81,9 +109,10 @@ public class ItemReel extends Item
         }
     }
 
+    //@SideOnly(Side.CLIENT)
     public void printInitializationMessage(EntityPlayer player)
     {
-        player.addChatMessage(new ChatComponentTranslation("Data reel initialized."));
+        player.addChatMessage(new ChatComponentTranslation(ColourEnumHelper.BRIGHT_GREEN + "Data reel initialized."));
     }
 
 }

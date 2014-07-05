@@ -126,7 +126,7 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
         {
             if(timer >= maxTimer)
             {
-                System.out.println("tick");
+                //System.out.println("tick");
                 timer = 0;
                 if(reel.stackTagCompound == null) { reel.stackTagCompound = new NBTTagCompound(); }
                 int meta = reel.getItemDamage();

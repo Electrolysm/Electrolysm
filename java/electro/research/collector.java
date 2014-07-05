@@ -78,9 +78,13 @@ public class collector extends BlockContainer
 
     @SideOnly(Side.CLIENT)
     private void printMessage(TileEntityCollector te, EntityPlayer player)
-    {/*
-        player.addChatMessage(new ChatComponentTranslation("This collector contains: " + te.engValue + " Engineering " +
-                "points and " + te.sciValue + " Science points."));*/
+    {
+        if(te.getStackInSlot(0) != null && te.getStackInSlot(0).stackTagCompound != null) {
+            int sciValue = te.getStackInSlot(0).stackTagCompound.getInteger("sciValue");
+            int engValue = te.getStackInSlot(0).stackTagCompound.getInteger("engValue");
+            player.addChatMessage(new ChatComponentTranslation("This collector contains: " + engValue + " Engineering " +
+                    "points and " + sciValue + " Science points."));
+        }
     }
 
     @Override //on block placed

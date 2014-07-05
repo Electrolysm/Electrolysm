@@ -2,12 +2,15 @@ package electro.powerSystem;
 
 import api.powerSystem.meter.IMeterable;
 import electro.Electrolysm;
+import electro.handlers.helpers.CollectorHelper;
+import electro.research.te.TileEntityCollector;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 import api.powerSystem.PowerUsage;
@@ -49,6 +52,13 @@ public class energyMeter extends Item
                 	this.printOreMessage(world, x, y, z, te);
                 	return true;
                 }
+                if(worldTE instanceof TileEntityCollector)
+                {
+                    TileEntityCollector te = (TileEntityCollector)worldTE;
+
+                    this.printMessageCollector(CollectorHelper.getEnvironmentalData(world, x, y, z));
+                    return true;
+                }
             }
         }
 
@@ -61,7 +71,21 @@ public class energyMeter extends Item
 		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block) + "TeU";
 		
 		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
-                IChatComponent.Serializer.func_150699_a(message));
+                new ChatComponentTranslation(message));
 	}
+
+    private void printMessageCollector(Object[] objects)
+    {
+        String rain = "Rainfall: " + Float.valueOf(objects[1].toString());
+        String temp = "Temperature: " + Float.valueOf(objects[2].toString());
+        String humidity = "Has High Humidity: " + Boolean.valueOf(objects[3].toString());
+
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                new ChatComponentTranslation(rain));
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                new ChatComponentTranslation(temp));
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                new ChatComponentTranslation(humidity));
+    }
 	
 }

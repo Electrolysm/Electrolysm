@@ -8,11 +8,13 @@ package electro;
 import java.io.File;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import electro.crafting.items.*;
 import electro.handlers.*;
 import electro.research.*;
 import electro.world.biome.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -43,25 +45,6 @@ import electro.block.machines.workBench;
 import electro.client.ClientProxy;
 import electro.common.CommandStardate;
 import electro.crafting.acidBurns;
-import electro.crafting.items.BasicMicrochip;
-import electro.crafting.items.BlockLumRed;
-import electro.crafting.items.CPU;
-import electro.crafting.items.ItemCrafting;
-import electro.crafting.items.advancedCPU;
-import electro.crafting.items.advancedMicrochip;
-import electro.crafting.items.antiMatterCasing;
-import electro.crafting.items.ballOfPlastic;
-import electro.crafting.items.crystalBase;
-import electro.crafting.items.diamondShard;
-import electro.crafting.items.endoInsulator;
-import electro.crafting.items.experimentalMicrochip;
-import electro.crafting.items.graphiteRod;
-import electro.crafting.items.grindStone;
-import electro.crafting.items.inkAndQuill;
-import electro.crafting.items.luminousRedstone;
-import electro.crafting.items.magnet;
-import electro.crafting.items.microchipBoard;
-import electro.crafting.items.transistor;
 //import assets.electrolysm.electro.handlers.CraftingHandler;
 import electro.item.basic.drillCasing;
 import electro.item.basic.plasmaDrill;
@@ -272,6 +255,15 @@ public class Electrolysm
     public static Item advancedCPU = new advancedCPU();
     public static Item graphiteRod = new graphiteRod();
     public static Item electroMagnet = new ItemCrafting().setUnlocalizedName("electMag");
+    public static Item film = new ItemCrafting().setUnlocalizedName("filmStrip");
+    public static Item nitrocellulose = new ItemCrafting().setUnlocalizedName("nitrocellulose");
+    public static Block nitrocelluloseBlock = new BlockCrafting(1F, "nitrocelluloseBlock", Material.cloth);
+    /**
+    *need to finish the nitrocellulose stuff!!
+    *http://en.wikipedia.org/wiki/Nitrocellulose
+    *http://en.wikipedia.org/wiki/Camphor
+    *http://goo.gl/XWIi6Z
+    */
     public static Potion acidBurns = new acidBurns(configHandler.acidBurnsID, true, 0);
 
     public static Block antiMatterCasing = new antiMatterCasing().setBlockName("antiMatterCasing");

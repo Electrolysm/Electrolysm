@@ -16,6 +16,18 @@ public class Crafting
     {
     	ItemStack ingotCopper = new ItemStack(Electrolysm.copperIngot);
 
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 1, 0),
+                "IPI", "PGP", "IPI",
+                Character.valueOf('I'), Items.iron_ingot,
+                Character.valueOf('G'), Items.gold_ingot,
+                Character.valueOf('P'), Items.paper);
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 2, 0),
+                "IPI", "PGP", "IPI",
+                Character.valueOf('I'), new ItemStack(Electrolysm.reel, 1, 0),
+                Character.valueOf('G'), Items.gold_ingot,
+                Character.valueOf('P'), Items.paper);
+
         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.itemScanner, true, new Object[]{
                 "C C", "IGI", "C C",
                 Character.valueOf('C'), "ingotCopper",
