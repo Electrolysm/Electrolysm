@@ -3,6 +3,7 @@ package electro.research;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
+import electro.common.CommonProxy;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -45,11 +46,13 @@ public class ItemReel extends Item
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
+        int meta = stack.getItemDamage();
         if(stack.stackTagCompound != null) {
             String message = "Science Value: " + stack.stackTagCompound.getInteger("sciValue");
             String message1 = "Engineering Value: " + stack.stackTagCompound.getInteger("engValue");
 
-            list.add(message); list.add(message1);
+            list.add(message); list.add(message1); list.add("Maximum Storage Capacity: " +
+                    CommonProxy.REEL_MAX_VALUE[meta] + "Mb");
         }
         else
         {

@@ -205,6 +205,10 @@ public class ResearchRegistry
         reliantMap.put(research.toAdvString(), stringList);
     }
 
+    public static LinkedHashMap<String, List<String>> getReliantMap() {
+        return reliantMap;
+    }
+
     public void bindRequirementToResearch(Requirement req, Research research) throws Exception
     {
         if(research != null && req != null) {

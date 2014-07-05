@@ -72,7 +72,8 @@ public class GUIResearchDesk extends GuiContainer
         }
 
         if(entity.requirements) {
-            for (int i = 0; i < entity.requiredList.size(); i++) {
+            int size; if(entity.requiredList.size() < 4) { size = 4; } else { size = entity.requiredList.size(); }
+            for (int i = 0; i < size; i++) {
                 fontRendererObj.drawString(ColourEnumHelper.WHITE + entity.requiredList.get(i), x + 8 + 12, y + (16 * i) + 50, 4210752);
             }
         } else {
@@ -151,28 +152,5 @@ public class GUIResearchDesk extends GuiContainer
     protected void drawGuiContainerForegroundLayer(int i, int j)
     {
         fontRendererObj.drawString(entity.getInventoryName(), 40, 6, 4210752);
-        /*
-        fontRenderer.drawString(matrix(), 10, 40, 4210752);
-        fontRenderer.drawString(matrix(), 10, 48, 4210752);
-        fontRenderer.drawString(matrix(), 10, 56, 4210752);
-        fontRenderer.drawString(matrix(), 10, 62, 4210752);
-        fontRenderer.drawString(matrix(), 10, 70, 4210752);
-        fontRenderer.drawString(matrix(), 10, 78, 4210752);
-        fontRenderer.drawString(matrix(), 10, 86, 4210752);
-        fontRenderer.drawString(matrix(), 10, 94, 4210752);
-        fontRenderer.drawString(matrix(), 10, 102, 4210752);
-        fontRenderer.drawString(matrix(), 10, 110, 4210752);
-        */
-    }
-    public String matrix()
-    {
-        String[] matrix = { "0010101001000011010101" ,
-                            "1011010101011101010010",
-                            "0100101010100110101101",
-                            "1011101001011100101000"
-                          };
-        Random rand = new Random();
-        int randNo = rand.nextInt(3);
-        return matrix[randNo];
     }
 }

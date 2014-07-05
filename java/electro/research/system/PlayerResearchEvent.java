@@ -1,5 +1,6 @@
 package electro.research.system;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import electro.research.common.SavePlayerScanData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
@@ -8,10 +9,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import org.apache.commons.lang3.text.WordUtils;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Clarky158 on 19/06/2014.
@@ -29,9 +27,11 @@ public class PlayerResearchEvent
             //saveActiveResearch
             if (!SavePlayerScanData.ResearchData.hasPlayerUnlocked((username + "_active"), research.getName()))
             {
-                new SavePlayerScanData.ResearchData(username, research.getName());
-                notifyPlayer(player, research);
-                //System.out.println(research.getName());
+                if(hasPlayerUnlockedReliants(research, player)) {
+                    new SavePlayerScanData.ResearchData(username, research.getName());
+                    notifyPlayer(player, research);
+                    //System.out.println(research.getName());
+                }
             }
         }
     }
@@ -128,5 +128,31 @@ public class PlayerResearchEvent
             }
         }
         return null;
+    }
+
+    public static boolean hasPlayerUnlockedReliants(Research research, EntityPlayer player)
+    {
+        String username = player.getDisplayName();
+        List<String> reliantString = ResearchRegistry.getReliantMap().get(research.toAdvString());
+        List<Research> reliant = new ArrayList<Research>();
+        List<Boolean> checkList = new ArrayList<Boolean>();
+
+        for(int i = 0; i < reliantString.size(); i++)
+        {
+            reliant.add(ResearchRegistry.getResearchFromString(reliantString.get(i)));
+        }
+        for(int i = 0; i < reliant.size(); i++)
+        {
+            checkList.add(SavePlayerScanData.ResearchData.hasPlayerUnlocked(username, reliant.get(i).getName()));
+        }
+
+        if(checkList.contains(false))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

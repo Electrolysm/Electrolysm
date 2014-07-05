@@ -106,17 +106,17 @@ public class TileEntityInjector extends TileEntity implements IInventory
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
-        NBTTagList tagList = nbtTagCompound.getTagList("Items", 0);
-        this.inventory = new ItemStack[this.getSizeInventory()];
 
+        // Read in the ItemStacks in the inventory from NBT
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
+        inventory = new ItemStack[this.getSizeInventory()];
         for (int i = 0; i < tagList.tagCount(); ++i)
         {
-            NBTTagCompound tagCompound = (NBTTagCompound) tagList.getCompoundTagAt(i);
-            byte slot = tagCompound.getByte("Slot");
-
-            if (slot >= 0 && slot < inventory.length)
+            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+            byte slotIndex = tagCompound.getByte("Slot");
+            if (slotIndex >= 0 && slotIndex < inventory.length)
             {
-                this.inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
+                inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
 
@@ -129,21 +129,19 @@ public class TileEntityInjector extends TileEntity implements IInventory
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);
-        nbtTagCompound.setShort("BurnTime", (short) this.furnaceBurnTime);
-        nbtTagCompound.setShort("CookTime", (short) this.furnaceCookTime);
-        NBTTagList tagList = new NBTTagList();
 
-        for (int currentIndex = 0; currentIndex < this.inventory.length; ++currentIndex)
+        // Write the ItemStacks in the inventory to NBT
+        NBTTagList tagList = new NBTTagList();
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
-            if (this.inventory[currentIndex] != null)
+            if (inventory[currentIndex] != null)
             {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) currentIndex);
-                this.inventory[currentIndex].writeToNBT(tagCompound);
+                inventory[currentIndex].writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
             }
         }
-
         nbtTagCompound.setTag("Items", tagList);
     }
 

@@ -46,7 +46,31 @@ public class collector extends BlockContainer
             if(world.isRemote)
             {
                 this.printMessage(te, player);
+                System.out.println("text");
                 return true;
+            }
+        }
+        else if(!player.isSneaking() && world.getTileEntity(x, y, z) instanceof TileEntityCollector)
+        {
+            TileEntityCollector te = (TileEntityCollector)world.getTileEntity(x, y, z);
+            if(player.getHeldItem() == null && te.getStackInSlot(0) != null)
+            {
+                player.inventory.setInventorySlotContents(player.inventory.getFirstEmptyStack(), te.getStackInSlot(0));
+                te.setInventorySlotContents(0, null);
+                System.out.println("out");
+
+                return true;
+            }
+            else if((player.getHeldItem() != null && te.getStackInSlot(0) == null))
+            {
+                if(player.getHeldItem().getItem() instanceof ItemReel)
+                {
+                    te.setInventorySlotContents(0, player.getHeldItem());
+                    player.setItemInUse(null, 0);
+                    System.out.println("in");
+
+                    return true;
+                }
             }
         }
         return false;
@@ -54,8 +78,8 @@ public class collector extends BlockContainer
 
     @SideOnly(Side.CLIENT)
     private void printMessage(TileEntityCollector te, EntityPlayer player)
-    {
-        /*player.addChatMessage(new ChatComponentTranslation("This collector contains: " + te.engValue + " Engineering " +
+    {/*
+        player.addChatMessage(new ChatComponentTranslation("This collector contains: " + te.engValue + " Engineering " +
                 "points and " + te.sciValue + " Science points."));*/
     }
 
@@ -73,6 +97,22 @@ public class collector extends BlockContainer
                // te.setOwner(player.getDisplayName());
             }
         }
+    }
+
+    public int getRenderType()
+    {
+        return -1;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    public boolean renderAsNormalBlock()
+    {
+        return false;
     }
 
 }

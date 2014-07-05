@@ -2,6 +2,7 @@ package electro.client;
 
 import electro.Electrolysm;
 import electro.block.machines.tile.TileEntityResearchDesk;
+import electro.handlers.TickHandler;
 import electro.research.researchDevice;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -111,6 +112,8 @@ public class RenderTileResearchDesk extends TileEntitySpecialRenderer
                 deviceRotation = deviceRotation + 0.0125F;
             }
         }
+
+        //deviceRotation = TickHandler.rotation;
 
         if(!flicker) {
             if (hasDevice) {

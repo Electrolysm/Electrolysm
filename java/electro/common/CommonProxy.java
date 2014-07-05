@@ -69,6 +69,9 @@ public class CommonProxy
     public static final String[] DUSTS = {"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
     //METAs									0		   1	  2		  3			4		5
 
+    public static int[] REEL_MAX_VALUE = new int[] {21, 55, 267914296};
+
+
     //MOBs
     public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
     public static int[] RANGE_TIER = {40, 80, 135};

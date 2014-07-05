@@ -2,6 +2,7 @@ package electro.client;
 
 import java.util.HashMap;
 
+import electro.research.te.TileEntityCollector;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,6 +36,8 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectrolisisCore.class, new RenderTileElectrolysisCore());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIronFrame.class, new RenderTileIronFrame());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCharger.class, new RenderTileCharger());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
+
         //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
         RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,

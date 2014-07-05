@@ -15,10 +15,7 @@ import electro.handlers.helpers.ColourEnumHelper;
 import electro.handlers.helpers.EncryptionHelper;
 import electro.research.common.SavePlayerScanData;
 import electro.research.researchDevice;
-import electro.research.system.EnumResearchType;
-import electro.research.system.Research;
-import electro.research.system.ResearchRegistry;
-import electro.research.system.ResearchTextRegistry;
+import electro.research.system.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -260,14 +257,16 @@ public class GUIIDCardInfo extends GuiScreen {
                         if(mc.thePlayer.inventory.hasItemStack(new ItemStack(Electrolysm.inkAndQuill)) && slot >= 0 &&
                                 research != null)
                         {
-                            String message = ColourEnumHelper.BRIGHT_GREEN + "Your idea has been recorded on paper";
-                            mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
-                            this.populateScreen(screen);
-                            mc.thePlayer.inventory.setInventorySlotContents(
-                                    slot, new ItemStack(Electrolysm.researchPaper));
-                            mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound = new NBTTagCompound();
-                            mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound.setString("researchData",
-                                    research.toAdvString());
+                            if(PlayerResearchEvent.hasPlayerUnlockedReliants(research, mc.thePlayer)) {
+                                String message = ColourEnumHelper.BRIGHT_GREEN + "Your idea has been recorded on paper";
+                                mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
+                                this.populateScreen(screen);
+                                mc.thePlayer.inventory.setInventorySlotContents(
+                                        slot, new ItemStack(Electrolysm.researchPaper));
+                                mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound = new NBTTagCompound();
+                                mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound.setString("researchData",
+                                        research.toAdvString());
+                            }
                         }
                         else
                         {

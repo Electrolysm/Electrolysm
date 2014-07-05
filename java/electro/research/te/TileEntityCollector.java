@@ -3,6 +3,7 @@ package electro.research.te;
 import java.util.Random;
 
 import electro.Electrolysm;
+import electro.common.CommonProxy;
 import electro.research.ItemReel;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -125,12 +126,20 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
         {
             if(timer >= maxTimer)
             {
+                System.out.println("tick");
                 timer = 0;
+                if(reel.stackTagCompound == null) { reel.stackTagCompound = new NBTTagCompound(); }
+                int meta = reel.getItemDamage();
+
                 if(random.nextBoolean()) {
-                    reel.stackTagCompound.setInteger("engValue", reel.stackTagCompound.getInteger("engValue"));
+                    if((reel.stackTagCompound.getInteger("engValue") + 1) <= CommonProxy.REEL_MAX_VALUE[meta]) {
+                        reel.stackTagCompound.setInteger("engValue", reel.stackTagCompound.getInteger("engValue") + 1);
+                    }
                 }
                 else {
-                    reel.stackTagCompound.setInteger("sciValue", reel.stackTagCompound.getInteger("sciValue"));
+                    if((reel.stackTagCompound.getInteger("sciValue") + 1) <= CommonProxy.REEL_MAX_VALUE[meta]) {
+                        reel.stackTagCompound.setInteger("sciValue", reel.stackTagCompound.getInteger("sciValue") + 1);
+                    }
                 }
             }
             else
@@ -156,35 +165,41 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tagCompound) {
-        super.readFromNBT(tagCompound);
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
 
-        NBTTagList tagList = tagCompound.getTagList("Inventory", 0);
-        for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
-            byte slot = tag.getByte("Slot");
-            if (slot >= 0 && slot < inventory.length) {
-                inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
+        // Read in the ItemStacks in the inventory from NBT
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
+        inventory = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < tagList.tagCount(); ++i)
+        {
+            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+            byte slotIndex = tagCompound.getByte("Slot");
+            if (slotIndex >= 0 && slotIndex < inventory.length)
+            {
+                inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tagCompound) {
-        super.writeToNBT(tagCompound);
+    public void writeToNBT(NBTTagCompound nbtTagCompound) {
+        super.writeToNBT(nbtTagCompound);
 
-        NBTTagList itemList = new NBTTagList();
-        for (int i = 0; i < inventory.length; i++) {
-            ItemStack stack = inventory[i];
-            if (stack != null) {
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setByte("Slot", (byte) i);
-                stack.writeToNBT(tag);
-                itemList.appendTag(tag);
+        // Write the ItemStacks in the inventory to NBT
+        NBTTagList tagList = new NBTTagList();
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex) {
+            if (inventory[currentIndex] != null) {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) currentIndex);
+                inventory[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
             }
         }
-        tagCompound.setTag("Inventory", itemList);
+        nbtTagCompound.setTag("Items", tagList);
     }
+
 
     @Override
     public void closeInventory() { }

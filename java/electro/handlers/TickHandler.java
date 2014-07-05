@@ -12,6 +12,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
+import java.util.Random;
+
 /**
  * Created by Clarky158 19/06/2014.
  */
@@ -63,5 +65,23 @@ public class TickHandler
     public void printChatMessage(String message)
     {
         FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentTranslation(message));
+    }
+
+    public static float rotation = 0;
+
+    @SubscribeEvent
+    public void renderTicks(TickEvent.ClientTickEvent event)
+    {
+        Random rand = new Random();
+        float[] value = new float[] {0.021F, 0.0125F, 0.0197F, 0.0158F, 0.0638F, 0.015F};
+        if (!Minecraft.getMinecraft().isGamePaused()) {
+            if(rotation >= 360)
+            {
+                rotation = 0;
+            } else {
+                rotation = rotation + 0.015F;
+            }
+
+        }
     }
 }

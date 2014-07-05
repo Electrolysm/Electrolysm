@@ -30,37 +30,42 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
 	}
 
     @Override
-    public void readFromNBT(NBTTagCompound tagCompound) {
-            super.readFromNBT(tagCompound);
-            
-            NBTTagList tagList = tagCompound.getTagList("Inventory", 0);
-            for (int i = 0; i < tagList.tagCount(); i++) {
-                    NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
-                    byte slot = tag.getByte("Slot");
-                    if (slot >= 0 && slot < inventory.length) {
-                            inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
-                    }
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
+
+        // Read in the ItemStacks in the inventory from NBT
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
+        inventory = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < tagList.tagCount(); ++i)
+        {
+            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+            byte slotIndex = tagCompound.getByte("Slot");
+            if (slotIndex >= 0 && slotIndex < inventory.length)
+            {
+                inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
-            
-            time = tagCompound.getInteger("time");
+        }
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tagCompound) {
-            super.writeToNBT(tagCompound);
-                            
-            NBTTagList itemList = new NBTTagList();
-            for (int i = 0; i < inventory.length; i++) {
-                    ItemStack stack = inventory[i];
-                    if (stack != null) {
-                            NBTTagCompound tag = new NBTTagCompound();
-                            tag.setByte("Slot", (byte) i);
-                            stack.writeToNBT(tag);
-                            itemList.appendTag(tag);
-                    }
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        // Write the ItemStacks in the inventory to NBT
+        NBTTagList tagList = new NBTTagList();
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        {
+            if (inventory[currentIndex] != null)
+            {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) currentIndex);
+                inventory[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
             }
-            tagCompound.setTag("Inventory", itemList);
-            tagCompound.setInteger("time", time);
+        }
+        nbtTagCompound.setTag("Items", tagList);
     }
 
     public int burnTime = 10;
