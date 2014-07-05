@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import electro.Electrolysm;
 import electro.common.CommonProxy;
 import electro.handlers.helpers.ColourEnumHelper;
 import electro.handlers.helpers.EncryptionHelper;
@@ -24,6 +25,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -181,8 +183,10 @@ public class GUIIDCardInfo extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton button)
     {
+        //new ResearchRegistry(true);
         int id = button.id;
-        String name = button.displayString.toLowerCase().replace(" ", "_").replace(ColourEnumHelper.WHITE.toString(), "");
+        String name = button.displayString.toLowerCase().replace(" ", "_")
+                .replace(ColourEnumHelper.WHITE.toString(), "").replace(ColourEnumHelper.BLACK.toString(), "");
         HashMap<String, EnumResearchType> typeMap = EnumResearchType.getHashMap();
         Set<String> keySet = typeMap.keySet();
 
@@ -241,12 +245,37 @@ public class GUIIDCardInfo extends GuiScreen {
             }
             else
             {
-                if(name != "")
-                {
-                    String message = ColourEnumHelper.RED + "You haven't unlocked this project yet...";
-                    mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
+                if(name != "") {
+                    if (!isShiftKeyDown()) {
+                        String message = ColourEnumHelper.RED + "You haven't unlocked this project yet...";
+                        mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
 
-                    this.populateScreen(screen);
+                        this.populateScreen(screen);
+                    } else {
+                        screen = null;
+                        int slot = mc.thePlayer.inventory.getFirstEmptyStack();
+                        Research research = null;
+                        research = ResearchRegistry.getResearch(EncryptionHelper.decode(name));
+
+                        if(mc.thePlayer.inventory.hasItemStack(new ItemStack(Electrolysm.inkAndQuill)) && slot >= 0 &&
+                                research != null)
+                        {
+                            String message = ColourEnumHelper.BRIGHT_GREEN + "Your idea has been recorded on paper";
+                            mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
+                            this.populateScreen(screen);
+                            mc.thePlayer.inventory.setInventorySlotContents(
+                                    slot, new ItemStack(Electrolysm.researchPaper));
+                            mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound = new NBTTagCompound();
+                            mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound.setString("researchData",
+                                    research.toAdvString());
+                        }
+                        else
+                        {
+                            String message = ColourEnumHelper.RED + "You don't have the sufficient tools to make notes...";
+                            mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
+                            this.populateScreen(screen);
+                        }
+                    }
                 }
                 else
                 {
@@ -367,7 +396,7 @@ public class GUIIDCardInfo extends GuiScreen {
                     GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
 
                     button.displayString = (ColourEnumHelper.BLACK + WordUtils.capitalize(String.valueOf(
-                            (EncryptionHelper.encodeWithKey(researchName, "bus")).replace("_", " "))));
+                            (EncryptionHelper.encode(researchName)).replace("_", " "))));
                 }
             }
         }

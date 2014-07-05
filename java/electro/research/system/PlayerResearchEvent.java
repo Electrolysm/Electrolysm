@@ -58,6 +58,7 @@ public class PlayerResearchEvent
         LinkedHashMap<String, String> researchMap = ResearchRegistry.getResearchMap();
 
         //System.out.println(researchMap.size());
+        if(unlocalisedNames == null) { SavePlayerScanData.ScanData.makeFile(username); return null; }
 
         for(int p = 0; p < researchMap.size(); p++)
         {

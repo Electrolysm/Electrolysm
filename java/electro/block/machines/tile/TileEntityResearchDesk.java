@@ -127,63 +127,25 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
 
     public void actionPerformed(GuiButton button, Minecraft mc)
     {
-        //new ResearchRegistry(true);
-        //requiredList.clear();
-        int id = button.id;
-        String name = button.displayString;
-        Random rand = new Random();
-        if(name.toLowerCase() == "research" || id == 0)
-        {
-            if(requirements && selected != null)
-            {
-                //Research.advString(), requirement
-                LinkedHashMap<String, String> hashMap = ResearchRegistry.getRequireMap();
 
-                String research = selected.toAdvString();
-                String requirementString = hashMap.get(research);
-                String[] requireArray = ResearchRegistry.getRequirementsFromStringAsArray(requirementString);
-
-                if(requireArray != null) { System.out.println("nullCheck");
-                    List<String> notUnlocked = new ArrayList<String>();
-
-                    for (int i = 0; i < requireArray.length; i++) {
-                        if (!(SavePlayerScanData.ScanData.hasPlayerScanned(mc.getMinecraft().thePlayer.getDisplayName(),
-                                requireArray[i])) &&
-                                !notUnlocked.contains(requireArray[i]) &&
-                                !requiredList.contains(requireArray[i]))
-                        {
-                            notUnlocked.add(requireArray[i]);
-                            requiredList.add(requireArray[i]);
-
-                            PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer,
-                                    mc.getMinecraft().thePlayer.getDisplayName());
-                        }
-                    }
-                }
-                //this.setInventorySlotContents(1, new ItemStack(Electrolysm.researchPaper));
-            }
-            else
-            {
-                errorRequirement = true;
-            }
-            //unlock research
-        }
     }
 
     public List<String> requiredList = new ArrayList<String>();
-    Research selected = null;
+    public Research selected = null;
     int errorTimer = 0;
     int maxErrorTimer = 100;
     int researchTimer = 0;
     int maxResearchTimer = 60;
+    public boolean canSet = false;
 
     @Override
     public void updateEntity()
     {
-        selected = ResearchRegistry.getResearch("basic_storage");
+        selected = null;
+        //selected = ResearchRegistry.getResearch("basic_storage");
         ItemStack reels = getStackInSlot(0);
         ItemStack card = getStackInSlot(2);
-        ItemStack output = getStackInSlot(1);
+        ItemStack note = getStackInSlot(1);
         //ItemStack result = Research.research().getResearch(inStack, card);
         Random rand = new Random();
         boolean active = (card != null && card.getItem() instanceof researchDevice);
@@ -199,22 +161,40 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
             }
         }
 
+        if(note != null /*&& note.stackTagCompound != null*/ && requiredList.isEmpty() && canSet)
+        {
+            this.setInventorySlotContents(1, null);
+            //note.stackTagCompound.setBoolean("active", true);
+            canSet = false;
+        }
+        else if(!requiredList.isEmpty() && canSet)
+        {
+            canSet = false;
+        }
+
+        //System.out.println(canSet);
+
         if(active)
         {
-            if(reels != null && reels.getItem() instanceof ItemReel && reels.stackTagCompound != null)
+
+            if(note != null && note.stackTagCompound != null && !note.stackTagCompound.getBoolean("active"))
             {
-                int eng = selected.getPointValue().getEngPoint().getValue();
-                int sci = selected.getPointValue().getSciPoint().getValue();
+                String researchString = note.stackTagCompound.getString("researchData");
+                selected = ResearchRegistry.getResearchFromString(researchString);
 
-                int localEng = reels.stackTagCompound.getInteger("engValue");
-                int localSci = reels.stackTagCompound.getInteger("sciValue");
+                if(reels != null && reels.getItem() instanceof ItemReel && reels.stackTagCompound != null) {
+                    int eng = selected.getPointValue().getEngPoint().getValue();
+                    int sci = selected.getPointValue().getSciPoint().getValue();
 
-                if(localEng >= eng && localSci >= sci)
-                {
-                    //Air Hostess, I like the way dress!!!!!!! Air Hostess, Na Na Na Na
-                    //Triple breasted women swim around town totally naked
+                    int localEng = reels.stackTagCompound.getInteger("engValue");
+                    int localSci = reels.stackTagCompound.getInteger("sciValue");
 
-                    requirements = true;
+                    if (localEng >= eng && localSci >= sci) {
+                        //Air Hostess, I like the way dress!!!!!!! Air Hostess, Na Na Na Na
+                        //Triple breasted women swim around town totally naked
+
+                        requirements = true;
+                    }
                 }
             }
             else

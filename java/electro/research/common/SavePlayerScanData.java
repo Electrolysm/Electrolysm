@@ -102,8 +102,11 @@ public class SavePlayerScanData
         }
 
         public static HashMap<String, List<String>> getPlayerData(String username) {
+
+            File file = new File(fileLocation + username + ".txt");
+            if(!file.exists()) { makeFile(username); }
+
             try {
-                File file = new File(fileLocation + username + ".txt");
                 BufferedReader in = new BufferedReader(new FileReader(file));
 
                 String username1 = "";

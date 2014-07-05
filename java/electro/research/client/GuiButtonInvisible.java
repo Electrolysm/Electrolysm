@@ -22,14 +22,4 @@ public class GuiButtonInvisible extends GuiButton {
         par1Minecraft.fontRenderer.drawString(displayString, xPosition + (k == 2 ? 5 : 0), yPosition + (height - 8) / 2, 0);
         par1Minecraft.fontRenderer.setUnicodeFlag(unicode);
     }
-
-    public void setHeight(int x)
-    {
-        this.height = x;
-    }
-
-    public void setWidth(int x)
-    {
-        this.width = x;
-    }
 }

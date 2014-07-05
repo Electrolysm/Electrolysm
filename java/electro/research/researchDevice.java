@@ -63,13 +63,11 @@ public class researchDevice extends Item
 
     public void gainBasics(EntityPlayer player)
     {
-        if(this.hasBlockBeenScanned(player.getDisplayName(), "device"))
+        if(!(this.hasBlockBeenScanned(player.getDisplayName(), "device")))
         {
-            return;
+            new SavePlayerScanData.ScanData(player.getDisplayName(), "device");
+            PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
         }
-
-        new SavePlayerScanData.ScanData(player.getDisplayName(), "device");
-        PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
     }
 
     public static boolean hasBlockBeenScanned(String username, String newData)

@@ -1,11 +1,15 @@
 package electro.block.machines.gui;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
 import electro.Electrolysm;
 import electro.handlers.helpers.ColourEnumHelper;
+import electro.research.common.SavePlayerScanData;
+import electro.research.system.PlayerResearchEvent;
+import electro.research.system.ResearchRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -83,7 +87,55 @@ public class GUIResearchDesk extends GuiContainer
     @Override
     public void actionPerformed(GuiButton button)
     {
-        entity.actionPerformed(button, mc);
+        PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer, mc.getMinecraft().thePlayer.getDisplayName());
+        int id = button.id;
+        String name = button.displayString;
+        Random rand = new Random();
+        ItemStack note = entity.getStackInSlot(1);
+
+        if(note != null && note.stackTagCompound != null && !note.stackTagCompound.getBoolean("active")) {
+            String researchString = note.stackTagCompound.getString("researchData");
+            entity.selected = ResearchRegistry.getResearchFromString(researchString);
+        }
+
+        if(name.toLowerCase() == "research" || id == 0)
+        {
+            if(entity.requirements && entity.selected != null)
+            {
+                LinkedHashMap<String, String> hashMap = ResearchRegistry.getRequireMap();
+
+                String research = entity.selected.toAdvString();
+                String requirementString = hashMap.get(research);
+                String[] requireArray = ResearchRegistry.getRequirementsFromStringAsArray(requirementString);
+
+                if(requireArray != null) {
+                    List<String> notUnlocked = new ArrayList<String>();
+
+                    for (int i = 0; i < requireArray.length; i++) {
+                        if (!(SavePlayerScanData.ScanData.hasPlayerScanned(mc.getMinecraft().thePlayer.getDisplayName(),
+                                requireArray[i])) &&
+                                !notUnlocked.contains(requireArray[i]) &&
+                                !entity.requiredList.contains(requireArray[i]))
+                        {
+                            notUnlocked.add(requireArray[i]);
+                            entity.requiredList.add(requireArray[i]);
+
+                            PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer,
+                                    mc.getMinecraft().thePlayer.getDisplayName());
+
+                            entity.canSet = true;
+                        }
+                    }
+                }
+                //this.setInventorySlotContents(1, new ItemStack(Electrolysm.researchPaper));
+            }
+            else
+            {
+                entity.errorRequirement = true;
+            }
+            //unlock research
+        }
+
     }
 
     @Override

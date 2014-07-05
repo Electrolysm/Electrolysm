@@ -39,6 +39,7 @@ public class ResearchRegistry
 		File folder = new File("config/Electrolysm/");
 
 		//Power
+        this.registerResearch(new Research("basic_storage", this.POWER, new Point(10,7 ), 1));
         this.registerResearch(new Research("energy_storage", this.POWER, new Point(10,7 ), 1));
         this.registerResearch(new Research("WET_energy_storage", this.POWER, new Point (25,18), 2));
         this.registerResearch(new Research("graphene_energy_storage", this.POWER, new Point (40, 32), 3));
@@ -50,7 +51,7 @@ public class ResearchRegistry
         this.registerResearch(new Research("improved_conductors", this.POWER, new Point(20, 11), 2));
         this.registerResearch(new Research("efficent_generators", this.POWER, new Point(32, 20), 3));
        // this.registerResearch(new Research("antimatter_generator", this.POWER, new Point(82, 74), 4));
-        this.registerResearch(new Research("basic_storage", this.POWER, new Point(10,7 ), 1));
+//        this.registerResearch(new Research("basic_storage", this.POWER, new Point(10,7 ), 1));
         this.registerResearch(new Research("advanced_storage", this.POWER, new Point (25,18), 2));
         this.registerResearch(new Research("experimental_storage", this.POWER, new Point (40, 32), 3));
         this.registerResearch(new Research("tesla_tower", this.POWER, new Point(60,52 ), 4));
@@ -96,8 +97,8 @@ public class ResearchRegistry
 		//this.registerResearch(new Research("large_hadron_colider", this.METALS_AND_ELEMENTS, new Point(67, 56), 2));
 		
 		//Research
-		this.registerResearch(new Research("atomc_analyser", this.RESEARCH, new Point(32, 25), 2));
-		this.registerResearch(new Research("the_basics", this.RESEARCH, new Point(0, 0), 0, true));
+        this.registerResearch(new Research("the_basics", this.RESEARCH, new Point(0, 0), 0, true));
+        this.registerResearch(new Research("atomc_analyser", this.RESEARCH, new Point(32, 25), 2));
         this.registerResearch(new Research("improved_analyser", this.RESEARCH, new Point(32, 25), 2));
 		this.registerResearch(new Research("chromotography", this.RESEARCH, new Point(29, 37), 1));
 		this.registerResearch(new Research("mass_spectrometry", this.RESEARCH, new Point(38, 47), 2));
@@ -129,20 +130,23 @@ public class ResearchRegistry
 		
 		
 		//Power Research requirements
+        //You keep making spelling mistakes and I cannot be bothered to change them.
+        //Check your work with what you have registered, so we don't have this problem.
+        /*
           this.linkResearch(this.getResearch("energy_storage"), Arrays.asList(this.getResearch("copper_cable")));
 	      this.linkResearch(this.getResearch("WET_energy_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("improved_conductivity"), this.getResearch("liquidiser")));
 	      this.linkResearch(this.getResearch("graphene_energy_storage"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("endothermic_cabling")));
 	      this.linkResearch(this.getResearch("tesla_coil"), Arrays.asList(this.getResearch("steel"), this.getResearch("pure_copper"), this.getResearch("experimental_storage")));
 	      this.linkResearch(this.getResearch("compact_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("steel"), this.getResearch("liquidiser")));
 	      this.linkResearch(this.getResearch("WET_batteries"), Arrays.asList(this.getResearch("compact_storage"), this.getResearch("improved_conductivity"), this.getResearch("WET_energy_storage")));
-	      this.linkResearch(this.getResearch("grahene_batteries"), Arrays.asList(this.getResearch("WET_batteries"), this.getResearch("grahene_energy_storage")));
+	      this.linkResearch(this.getResearch("grahene_batteries"), Arrays.asList(this.getResearch("WET_batteries"), this.getResearch("graphene_energy_storage")));
 	      this.linkResearch(this.getResearch("improved_conductors"), Arrays.asList(this.getResearch("better_conduction"), this.getResearch("electricity"), this.getResearch("intergrated_circuit")));
 	      this.linkResearch(this.getResearch("efficent_generators"), Arrays.asList(this.getResearch("improved_conductors"), this.getResearch("CPU")));
-	      this.linkResearch(this.getResearch("thermic_generator"), Arrays.asList(this.getResearch("improved_conductors")));
-	      this.linkResearch(this.getResearch("better conduction"), Arrays.asList(this.getResearch("efficent_generators"), this.getResearch("thermic_generator")));
+	      this.linkResearch(this.getResearch("thermal_generator"), Arrays.asList(this.getResearch("improved_conductors")));
+	      this.linkResearch(this.getResearch("better conduction"), Arrays.asList(this.getResearch("efficent_generators"), this.getResearch("thermal_generator")));
 	      this.linkResearch(this.getResearch("bio_generator"), Arrays.asList(this.getResearch("improved_conductors")));
 	      this.linkResearch(this.getResearch("less_waste_gas"), Arrays.asList(this.getResearch("efficent_generators"), this.getResearch("bio_generator")));
-	      this.linkResearch(this.getResearch("solar_pannels"), Arrays.asList(this.getResearch("improved_conductors")));
+	      this.linkResearch(this.getResearch("solar_panel"), Arrays.asList(this.getResearch("improved_conductors")));
 	      this.linkResearch(this.getResearch("solar_cells"), Arrays.asList(this.getResearch("efficent_generators"), this.getResearch("solar_pannels")));
 	      this.linkResearch(this.getResearch("turbines"), Arrays.asList(this.getResearch("improved_conductors")));
 	      this.linkResearch(this.getResearch("lighter_blades"), Arrays.asList(this.getResearch("efficent_generators"), this.getResearch("turbine")));
@@ -159,7 +163,7 @@ public class ResearchRegistry
 	      this.linkResearch(this.getResearch("electrolysis"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("Steel"), this.getResearch("bronze")));
 	      this.linkResearch(this.getResearch("pure_copper"), Arrays.asList(this.getResearch("electrolysis")));
 	      this.linkResearch(this.getResearch("aluminium"), Arrays.asList(this.getResearch("electrolysis"))); 
-
+*/
         //Elliott DON'T remove this, trust me...
         //this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
         //this.registerResearch(new Research("wrong_cold_fusion", this.HIDDEN, new Point(0, 0), 3, this.getResearch("cold_fusion")));
