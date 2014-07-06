@@ -270,7 +270,12 @@ public class Electrolysm
     public static Block magnet = new magnet().setBlockName("magnet");
     //Fuels
     public static Item electroContain = new electroContain();
-    
+
+    //Assembly Systems
+    //public static Block advancedCrafting = new advancedCrafting();
+    //public static Block roboticArm = new roboticArm();
+    public static Block roboticBase = new BlockCrafting(5F, "roboticBase", Material.iron).setBlockName("roboticBase");
+
     /*
     //Robots
     //Parts

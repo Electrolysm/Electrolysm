@@ -36,7 +36,9 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectrolisisCore.class, new RenderTileElectrolysisCore());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIronFrame.class, new RenderTileIronFrame());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCharger.class, new RenderTileCharger());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileRobotArm());
+
 
         //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
