@@ -137,6 +137,8 @@ public class PlayerResearchEvent
         List<Research> reliant = new ArrayList<Research>();
         List<Boolean> checkList = new ArrayList<Boolean>();
 
+        if(reliantString == null) { return true; }
+
         for(int i = 0; i < reliantString.size(); i++)
         {
             reliant.add(ResearchRegistry.getResearchFromString(reliantString.get(i)));

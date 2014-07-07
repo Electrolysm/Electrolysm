@@ -8,8 +8,12 @@ package electro;
 import java.io.File;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import electro.assemblySystem.advancedCrafting;
+import electro.assemblySystem.roboticArm;
 import electro.crafting.items.*;
 import electro.handlers.*;
+import electro.handlers.network.PacketHandler;
 import electro.research.*;
 import electro.world.biome.*;
 import net.minecraft.block.Block;
@@ -19,7 +23,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.potion.Potion;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import electro.block.ironFrames;
 import electro.block.advMachines.charger;
@@ -272,9 +278,9 @@ public class Electrolysm
     public static Item electroContain = new electroContain();
 
     //Assembly Systems
-    //public static Block advancedCrafting = new advancedCrafting();
-    //public static Block roboticArm = new roboticArm();
+    public static Block advancedCrafting = new advancedCrafting();
     public static Block roboticBase = new BlockCrafting(5F, "roboticBase", Material.iron).setBlockName("roboticBase");
+    public static Block robotArm = new roboticArm();
 
     /*
     //Robots
@@ -317,18 +323,12 @@ public class Electrolysm
     	//ResearchHandler.downloadLabSkin();
         File configFile = new File("config/Electrolysm/Electrolysm.cfg");
         new ResearchRegistry(true);
-//        ResearchTextRegistry.getTextInFile(configFile);
+        PacketHandler.init();
         configHandler.init(configFile);
         VersionCheck.check();
         NewsCheck.check();
         BetaHandler.beta();
         DownloadHandler.downloadAndExtractResearchData();
-        //new SavePlayerScanData("Clarky158", "ygcfg");
-        //System.exit(0);
-        //ResearchHandler.downloadOnlineData();
-        //ResearchHandler.getStoredResearch();
-
-    	//Fluids.registerStuff();
         RegisterBlock.register();
         RegisterBlock.registerItems();
         new MultipartHandler();
@@ -337,7 +337,7 @@ public class Electrolysm
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();
         //GameRegistry.registerCraftingHandler(new CraftingHandler());
-        //GameRegistry.b(diseasedBiome);
+        BiomeDictionary.registerBiomeType(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());

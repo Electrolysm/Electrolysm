@@ -70,16 +70,16 @@ public class GUIResearchDesk extends GuiContainer
             fontRendererObj.drawString(ColourEnumHelper.WHITE + error2, x + 8 + xMod, y + 16 + yMod, 4210752);
             fontRendererObj.drawString(ColourEnumHelper.WHITE + error3, x + 50 + xMod, y + 26 + yMod, 4210752);
         }
-
+/*
         if(entity.requirements) {
-            int size; if(entity.requiredList.size() < 4) { size = 4; } else { size = entity.requiredList.size(); }
+            int size; if(entity.requiredList.size() <= 4) { size = 4; } else { size = entity.requiredList.size(); }
             for (int i = 0; i < size; i++) {
                 fontRendererObj.drawString(ColourEnumHelper.WHITE + entity.requiredList.get(i), x + 8 + 12, y + (16 * i) + 50, 4210752);
             }
         } else {
             entity.requiredList.clear();
         }
-
+*/
         this.drawTexturedModalRect(x + 150, y + 25, 176, 14, 24, progress);
         this.buttonList.add(new GuiButton(0, x + 66, y + 116, 60, 20, "Research"));
 

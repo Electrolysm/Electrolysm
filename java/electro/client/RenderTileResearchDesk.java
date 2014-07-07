@@ -104,16 +104,16 @@ public class RenderTileResearchDesk extends TileEntitySpecialRenderer
         GL11.glColor4f(1F, 1F, 1F, 0.999999F);
 
         boolean isPaused = Minecraft.getMinecraft().isGamePaused();
-
+/*
         if(!isPaused) {
             if (deviceRotation >= 360) {
                 deviceRotation = 0;
             } else {
                 deviceRotation = deviceRotation + 0.0125F;
             }
-        }
+        }*/
 
-        //deviceRotation = TickHandler.rotation;
+        deviceRotation = TickHandler.rotation;
 
         if(!flicker) {
             if (hasDevice) {

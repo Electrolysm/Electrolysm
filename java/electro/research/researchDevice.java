@@ -50,9 +50,9 @@ public class researchDevice extends Item
     {
         if (!player.isSneaking())
         {
-            int x = player.serverPosX;
-            int y = player.serverPosY;
-            int z = player.serverPosZ;
+            int x = (int)player.posX;
+            int y = (int)player.posY;
+            int z = (int)player.posZ;
             player.openGui(Electrolysm.GUIInstance, GUIHandler.id_bookIDCard, world, x, y, z);
 
             this.gainBasics(player);

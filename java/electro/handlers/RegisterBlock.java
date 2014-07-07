@@ -56,6 +56,10 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.diseasedLog, "diseasedLog");
         GameRegistry.registerBlock(Electrolysm.matterGen, "antiMatterGen");
         GameRegistry.registerBlock(Electrolysm.collector, "evironmentalCollector");
+        GameRegistry.registerBlock(Electrolysm.robotArm, "roboticArm");
+        GameRegistry.registerBlock(Electrolysm.roboticBase, "robotBase");
+        GameRegistry.registerBlock(Electrolysm.advancedCrafting, "advCrafting");
+
 
 
         //Fluids
@@ -123,5 +127,6 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.labGoggles, "labGoggles");
         GameRegistry.registerItem(elec.researchDevice, "researchDevice");
         GameRegistry.registerItem(elec.reel, "itemReel");
+        GameRegistry.registerItem(elec.hammer, "hammer");
     }
 }

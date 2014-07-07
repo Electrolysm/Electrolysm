@@ -64,7 +64,7 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     @Override
     public void getSubBlocks (Item b, CreativeTabs par2CreativeTabs, List par3List)
     {
-        for (int i = 0; i < textures.length; i++)
+        for (int i = 0; i < 1; i++)
         {
             par3List.add(new ItemStack(b, 1, i));
         }
