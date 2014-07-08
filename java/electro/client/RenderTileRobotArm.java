@@ -53,9 +53,17 @@ public class RenderTileRobotArm extends TileEntitySpecialRenderer
 
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+        bindTexture(loc);
+        GL11.glScalef(1.0F, -1.0F, -1.0F);
+        model.renderBase();
+        GL11.glPopMatrix();
+
+        GL11.glPushMatrix();
+        GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         //FMLClientHandler.instance().getClient().getTextureManager().bindTexture(loc);
         bindTexture(loc);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
+        GL11.glRotatef(te.rotation, 0F, 1F, 0F);
         //model.r((float)(te.forearm), (float)(te.arm), null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         model.renderWithAngle(te);
         GL11.glPopMatrix();

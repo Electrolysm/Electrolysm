@@ -30,11 +30,15 @@ public class TileEntityRobotArm extends TileEntity
         boolean canWork = worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Electrolysm.roboticBase;
 
         direction = this.getDirection();
-        rotation = this.toRadians(this.getRotationFromDirs(direction));
-        STATE = 1;
+        rotation = this.alterToDegree(getRotationFromDirs(direction), rotation);
 
-        forearm = this.alterTo((float)forearmAngles[STATE], (float)forearm);
-        arm = this.alterTo((float)armAngles[STATE], (float)arm);
+        if(direction == ForgeDirection.UNKNOWN) { STATE = 0; } else { STATE = 1; }
+
+        //System.out.println(direction);
+
+
+        forearm = this.alterTo((float)(forearmAngles[STATE]), (float)forearm);
+        arm = this.alterTo((float)(armAngles[STATE]), (float)arm);
 
         //System.out.println(forearm + ":" + arm);
     }
@@ -55,11 +59,11 @@ public class TileEntityRobotArm extends TileEntity
         {
             case SOUTH:
             {
-                return 0;
+                return 180;
             }
             case NORTH:
             {
-                return 180;
+                return 0;
             }
             case WEST:
             {
@@ -96,10 +100,26 @@ public class TileEntityRobotArm extends TileEntity
         return (float)to;
     }
 
+    public float alterToDegree(float to, float from)
+    {
+        float upper = to + 1F;
+        float lower = to - 1F;
+
+        if(from > upper || from < lower) {
+            if (to < from) {
+                return (float)(from - 1);
+            } else if (to > from) {
+                return (float)(from + 1);
+            }
+        }
+
+        return (float)to;
+    }
+
     public ForgeDirection getDirection()
     {
         World world = worldObj;
-        int x = xCoord; int y = yCoord; int z = zCoord - 1;
+        int x = xCoord; int y = yCoord - 1; int z = zCoord;
 
         Block SOUTH = world.getBlock(x, y, z + 1);
         Block NORTH = world.getBlock(x, y, z - 1);

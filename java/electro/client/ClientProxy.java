@@ -2,11 +2,15 @@ package electro.client;
 
 import java.util.HashMap;
 
+import electro.Electrolysm;
 import electro.assemblySystem.tileEntity.TileEntityRobotArm;
+import electro.client.itemRenderers.ItemRenderRoboticArm;
 import electro.research.te.TileEntityCollector;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import electro.block.advMachines.te.TileEntityCharger;
 import electro.block.advMachines.te.TileEntityQuantumComp;
@@ -40,11 +44,13 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRobotArm.class, new RenderTileRobotArm());
 
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.researchDesk), new ItemResearchDeskRenderer());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());
 
         //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
-        RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
+        //RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
         RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
-        		new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
+                new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));
         
 		//RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderPlayerLab());
 

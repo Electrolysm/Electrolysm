@@ -57,6 +57,11 @@ public class ModelResearchDesk extends ModelBase
         setRotation(table, 0F, 0F, 0F);
     }
 
+    public void render()
+    {
+        this.render((Entity)null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+    }
+
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
