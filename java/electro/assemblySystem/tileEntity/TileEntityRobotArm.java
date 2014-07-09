@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import javax.swing.text.StyledEditorKit;
 import java.util.Random;
 
 /**
@@ -23,24 +24,47 @@ public class TileEntityRobotArm extends TileEntity
     double[] armAngles = new double[] {0, 0.45, -0.9, -1};
     public float forearm = 0F;
     public float arm = 0F;
+    boolean shouldWork;
+    float workRotation = 0F;
+    public boolean hasDone = false;
+    public boolean isWelding = false;
 
     public void updateEntity()
     {
         Random rand = new Random();
         boolean canWork = worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Electrolysm.roboticBase;
 
+        shouldWork = true;
+
+        if(!canWork) { return; }
+        if(direction == ForgeDirection.UNKNOWN) { STATE = 0; workRotation = 0; } else { STATE = 1; this.work(); }
+
         direction = this.getDirection();
-        rotation = this.alterToDegree(getRotationFromDirs(direction), rotation);
-
-        if(direction == ForgeDirection.UNKNOWN) { STATE = 0; } else { STATE = 1; }
-
-        //System.out.println(direction);
-
-
+        rotation = this.alterToDegree(getRotationFromDirs(direction) + workRotation, rotation);
         forearm = this.alterTo((float)(forearmAngles[STATE]), (float)forearm);
         arm = this.alterTo((float)(armAngles[STATE]), (float)arm);
 
         //System.out.println(forearm + ":" + arm);
+    }
+
+    String[] patterns = new String[] {"ARK", "LINE_HOR", "LINE_VERT"};
+    String current_pattern = null;
+
+    public void work()
+    {
+        Random rand = new Random();
+        //if(!shouldWork) { STATE = 1; return; }
+        //if(current_pattern == null) { current_pattern = patterns[/*rand.nextInt(patterns.length - 1)*/ 0]; }
+
+        this.work("ARK");
+    }
+
+    public void work(String pattern)
+    {
+        if(pattern.contains("ARK"))
+        {
+
+        }
     }
 
     public void setState(int state)

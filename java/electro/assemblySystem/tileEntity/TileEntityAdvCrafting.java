@@ -2,12 +2,14 @@ package electro.assemblySystem.tileEntity;
 
 import api.powerSystem.PowerUsage;
 import electro.Electrolysm;
+import electro.assemblySystem.ItemBluePrint;
 import electro.oreProccessing.recipes.CrusherRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
@@ -17,7 +19,7 @@ import java.util.Random;
 /**
  * Created by Ben on 07/07/2014.
  */
-public class TileEntityAdvCrafting extends TileEntity implements IInventory, ISidedInventory
+public class TileEntityAdvCrafting extends TileEntity implements IInventory
 {
     private ItemStack[] inventory;
     public boolean isOpen;
@@ -101,33 +103,36 @@ public class TileEntityAdvCrafting extends TileEntity implements IInventory, ISi
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
-        //TODO
-        return true;
+        if(stack != null && stack.stackTagCompound != null && stack.getItem() instanceof ItemBluePrint) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public void updateEntity()
     {
         //TODO
+        ItemStack[] bluePrints = inventory;
+
+        this.addRecipes(bluePrints);
     }
 
-
-    public int[] getAccessibleSlotsFromSide(int side)
+    public void addRecipes(ItemStack[] bluePrints)
     {
-        //TODO
-        return null;
+        IRecipe recipe;
+
+        for(int i = 0; i < bluePrints.length; i++)
+        {
+            ItemStack stack = bluePrints[i];
+            if(stack != null && stack.stackTagCompound != null && stack.getItem() instanceof ItemBluePrint)
+            {
+
+            }
+        }
     }
 
-    public boolean canInsertItem(int slot, ItemStack item, int side)
-    {
-        return this.isItemValidForSlot(slot, item);
-    }
-
-    public boolean canExtractItem(int slot, ItemStack item, int side)
-    {
-        //TODO
-        return false;
-    }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)

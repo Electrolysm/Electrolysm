@@ -27,46 +27,47 @@ public class ModelRobotArm extends ModelBase {
     ModelRenderer extraBits;
 
     public ModelRobotArm() {
-        textureWidth = 256;
-        textureHeight = 32;
+        textureWidth = 128;
+        textureHeight = 128;
 
         base = new ModelRenderer(this, 0, 0);
         base.addBox(-8F, 0F, -8F, 16, 1, 16);
         base.setRotationPoint(0F, 23F, 0F);
-        base.setTextureSize(256, 32);
+        base.setTextureSize(128, 128);
         base.mirror = true;
         setRotation(base, 0F, 0F, 0F);
-        Sholder = new ModelRenderer(this, 0, 0);
+        Sholder = new ModelRenderer(this, 0, 31);
         Sholder.addBox(-2.5F, -5F, -2.5F, 5, 8, 5);
         Sholder.setRotationPoint(0F, 20F, 0F);
-        Sholder.setTextureSize(256, 32);
+        Sholder.setTextureSize(128, 128);
         Sholder.mirror = true;
         setRotation(Sholder, 0F, 0F, 0F);
-        Forearm = new ModelRenderer(this, 0, 0);
+        Forearm = new ModelRenderer(this, 0, 50);
         Forearm.addBox(2.5F, -16F, -2F, 1, 18, 4);
         Forearm.setRotationPoint(0F, 17F, 0F);
-        Forearm.setTextureSize(256, 32);
+        Forearm.setTextureSize(128, 128);
         Forearm.mirror = true;
         setRotation(Forearm, 0F, 0F, 0F);
-        arm = new ModelRenderer(this, 0, 0);
+        arm = new ModelRenderer(this, 16, 48);
         arm.addBox(-2F, -2F, -4F, 4, 4, 22);
-        arm.addBox(-1F, -1F, -4F, 2, 2, 26);
+        arm.addBox(-1F, -1F, -4F, 2, 2, 24);
+        arm.addBox(-0.5F, -0.5F, -5F, 1, 1, 25);
         arm.setRotationPoint(0.5F, 3F, 0F);
-        arm.setTextureSize(256, 32);
+        arm.setTextureSize(128, 128);
         arm.mirror = true;
         setRotation(arm, 0F, 0F, 0F);
 
-        toolBase = new ModelRenderer(this, 0, 0);
+        toolBase = new ModelRenderer(this, 42, 33);
         toolBase.addBox(-2F, -2F, -4F, 2, 6, 2);
         toolBase.setRotationPoint(0.5F, 3F, 0F);
-        toolBase.setTextureSize(256, 32);
+        toolBase.setTextureSize(128, 128);
         toolBase.mirror = true;
         setRotation(arm, 0F, 0F, 0F);
 
-        extraBits = new ModelRenderer(this, 0, 0);
+        extraBits = new ModelRenderer(this, 25, 32);
         extraBits.addBox(-2.5F, -5F, -2.5F, 1, 5, 5);
         extraBits.setRotationPoint(0F, 20F, 0F);
-        extraBits.setTextureSize(256, 32);
+        extraBits.setTextureSize(128, 128);
         extraBits.mirror = true;
         setRotation(extraBits, 0F, 0F, 0F);
     }
@@ -111,68 +112,24 @@ public class ModelRobotArm extends ModelBase {
         GL11.glPopMatrix();
 
         float angle2 = (float)(armAngle * 57.3);
-        float angleRAD2 = (float)(angle2 / 57.3);
-        float radius2 = 3F;
-
-        float Xp2 = (float)(cx + (radius2 * (Math.cos(angleRAD2))));
-        float Yp2 = (float)(cy + (radius2 * (Math.sin(angleRAD2))));
 
         GL11.glPushMatrix();
         GL11.glTranslatef(0.0F, 3F + (((2F / 16F) + (Xp1 / 16F))) * (1) - 2.1F, 0.5F - (Yp1 / 16F) * (-1) - 0.5F);
-        GL11.glTranslatef(0.0F, (0F + (Xp2 / 16F) * (-1)) + (2F / 16F), ((Yp2 / 16F) * (-1)));
+        //GL11.glTranslatef(0.0F, (0F + (Xp2 / 16F) * (-1)) + (2F / 16F), ((Yp2 / 16F) * (-1)));
         GL11.glRotatef(angle2, 1.0F, 0F, 0F);
         arm.render(scale);
         arm.rotateAngleX = 0F;
         GL11.glPopMatrix();
 
-        float angle3 = (float)(armAngle/* * 57.3*/);
-        float angleRAD3 = (float)(angle2 / 57.3);
-        float radius3 = 20F;
-
-        float Xp3 = (float)(cx + (radius2 * (Math.cos(angleRAD2))));
-        float Yp3 = (float)(cy + (radius2 * (Math.sin(angleRAD2))));
+        GL11.glPushMatrix();
+        //toolBase.render(scale);
+        GL11.glPopMatrix();
 
         GL11.glPushMatrix();
         extraBits.render(scale);
         extraBits.setRotationPoint(5F, 20F, 0F);
         Sholder.render(scale);
         GL11.glPopMatrix();
-
-    }
-
-    public void getEndOfArm(TileEntityRobotArm te)
-    {
-        float outsideBAngle = te.arm;
-
-        float scale = 0.0625F;
-        float x = getPoints(te)[0];
-        float y = getPoints(te)[1];
-        float z = getPoints(te)[2];
-        float hyp = 18F;
-
-        float base = (float)((Math.cos(outsideBAngle)) * hyp);
-        float height = (float)((Math.sin(outsideBAngle)) * hyp);
-
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0.0F, (y - height - 2F) / 16F, (z + base + 3F) / 16F);
-        toolBase.render(scale);
-        GL11.glPopMatrix();
-    }
-
-    public float[] getPoints(TileEntityRobotArm te){
-
-        float outsideXAngle = te.forearm;
-
-        float insideXAngle = (90 - outsideXAngle);
-        float insideTopAngle = 180 - (insideXAngle + 90);
-
-        float hypotenuse = 14;
-        float base = (float)((Math.sin(outsideXAngle)) * hypotenuse);
-        float height = (float)((Math.cos(outsideXAngle)) * hypotenuse);
-
-
-        return new float[] {0.5F, 17F - height, 0.0F - base};
-        //wrist.setRotationPoint(-1F, 17F - height, 0.0F - base);
 
     }
 
