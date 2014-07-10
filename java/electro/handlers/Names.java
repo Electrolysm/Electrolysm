@@ -79,7 +79,7 @@ public class Names
         LanguageRegistry.addName(Electrolysm.ballOfPlastic, "Ball of Plastic");
         LanguageRegistry.addName(Electrolysm.ItemWire, "Endothermite Cable");
         LanguageRegistry.addName(Electrolysm.researchDevice, "Research Identification Tablet");
-        LanguageRegistry.addName(Electrolysm.itemScanner, "Analiser");
+        LanguageRegistry.addName(Electrolysm.itemScanner, "Analyser");
 
         for(int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)
         {
