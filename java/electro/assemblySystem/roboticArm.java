@@ -1,8 +1,7 @@
 package electro.assemblySystem;
 
 import electro.Electrolysm;
-import electro.assemblySystem.tileEntity.TileEntityRobotArm;
-import net.minecraft.block.Block;
+import electro.assemblySystem.inventory.TileEntityRobotArm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;

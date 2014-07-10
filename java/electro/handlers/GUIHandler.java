@@ -1,5 +1,11 @@
 package electro.handlers;
 
+import electro.assemblySystem.crafting.ContainerMatrix;
+import electro.assemblySystem.crafting.GuiMatrix;
+import electro.assemblySystem.crafting.TileEntityMatrix;
+import electro.assemblySystem.inventory.ContainerCrafting;
+import electro.assemblySystem.inventory.TileEntityCrafting;
+import electro.block.machines.gui.GuiCrafting;
 import electro.oreProccessing.container.*;
 import electro.oreProccessing.gui.*;
 import electro.oreProccessing.te.*;
@@ -91,6 +97,16 @@ public class GUIHandler implements IGuiHandler
         {
         	return new ContainerGeneratorAntimatter((TileEntityGeneratorAntimatter)entity, player.inventory);
         }
+
+        if(entity instanceof TileEntityMatrix)
+        {
+            return new ContainerMatrix(player.inventory, (TileEntityMatrix)entity);
+        }
+
+        if(entity instanceof TileEntityCrafting)
+        {
+            return new ContainerCrafting(player.inventory, (TileEntityCrafting)entity);
+        }
         
         return null;
     }
@@ -160,7 +176,16 @@ public class GUIHandler implements IGuiHandler
         {
             return new GuiResearchNotify(Minecraft.getMinecraft());
         }
-        
+
+        if(entity instanceof TileEntityMatrix)
+        {
+            return new GuiMatrix((TileEntityMatrix)entity, player.inventory);
+        }
+
+        if(entity instanceof TileEntityCrafting)
+        {
+            return new GuiCrafting((TileEntityCrafting)entity, player.inventory);
+        }
         return null;
     }
 }

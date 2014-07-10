@@ -1,20 +1,13 @@
 package electro.client;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.Electrolysm;
-import electro.assemblySystem.tileEntity.TileEntityRobotArm;
-import electro.block.machines.tile.TileEntityResearchDesk;
+import electro.assemblySystem.inventory.TileEntityRobotArm;
 import electro.common.CommonProxy;
-import electro.research.researchDevice;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;

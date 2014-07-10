@@ -1,5 +1,7 @@
 package electro.handlers;
 
+import electro.assemblySystem.crafting.TileEntityMatrix;
+import electro.assemblySystem.inventory.TileEntityRobotArm;
 import electro.block.advMachines.te.TileEntityCharger;
 import electro.block.advMachines.te.TileEntityEnergiser;
 import electro.block.advMachines.te.TileEntityInjector;
@@ -41,5 +43,8 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityDesk.class, "TileEntityDesk");
         GameRegistry.registerTileEntity(TileEntityCharger.class, "TileEntityCharge");
         GameRegistry.registerTileEntity(TileEntityCollector.class, "TileEntityCollector");
+        GameRegistry.registerTileEntity(TileEntityMatrix.class, "TileEntityMatrix");
+//        /GameRegistry.registerTileEntity(TileEntityMatrixMachine.class, "TileEntityMatrixMachine");
+        GameRegistry.registerTileEntity(TileEntityRobotArm.class, "TileEntityRoboticArm");
     }
 }

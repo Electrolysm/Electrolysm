@@ -69,7 +69,7 @@ public class endoCable extends BlockContainer
 
         if (tileEntity instanceof TileEntityWire)
         {/*
-            TileEntityWire te = (TileEntityWire) tileEntity;
+            TileEntityWire te = (TileEntityWire) inventory;
             this.minX = te.getAdjacentConnections()[4] != null ? 0F : 0.3F;
             this.minY = te.getAdjacentConnections()[0] != null ? 0F : 0.3F;
             this.minZ = te.getAdjacentConnections()[2] != null ? 0F : 0.3F;

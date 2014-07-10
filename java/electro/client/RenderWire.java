@@ -22,7 +22,7 @@ public class RenderWire extends TileEntitySpecialRenderer
     {
         Block block = t.getWorldObj().getBlock(t.xCoord, t.yCoord, t.zCoord);
         int metadata = t.getWorldObj().getBlockMetadata(t.xCoord, t.yCoord, t.zCoord);
-        //TileEntityWire tileEntity = ((TileEntityWire)(t));
+        //TileEntityWire inventory = ((TileEntityWire)(t));
         boolean[] connectedSides = ((TileEntityWire)t).getVisualConnections();
 
         /*if (blockID == electrolysmCore.advWire.blockID)

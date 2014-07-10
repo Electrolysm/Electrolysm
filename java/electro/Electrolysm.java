@@ -9,9 +9,7 @@ import java.io.File;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import electro.assemblySystem.ItemBluePrint;
-import electro.assemblySystem.advancedCrafting;
-import electro.assemblySystem.roboticArm;
+import electro.assemblySystem.*;
 import electro.crafting.items.*;
 import electro.handlers.*;
 import electro.handlers.network.PacketHandler;
@@ -283,6 +281,7 @@ public class Electrolysm
     public static Block roboticBase = new BlockCrafting(5F, "roboticBase", Material.iron).setBlockName("roboticBase");
     public static Block robotArm = new roboticArm();
     public static Item blueprint = new ItemBluePrint();
+    public static Block matrix = new BlockMatrix();
 
     /*
     //Robots

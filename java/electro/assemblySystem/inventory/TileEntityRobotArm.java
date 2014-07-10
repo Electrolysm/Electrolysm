@@ -1,13 +1,12 @@
-package electro.assemblySystem.tileEntity;
+package electro.assemblySystem.inventory;
 
 import electro.Electrolysm;
-import electro.assemblySystem.roboticArm;
+import electro.assemblySystem.BlockMatrix;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.Random;
 
 /**
@@ -24,7 +23,7 @@ public class TileEntityRobotArm extends TileEntity
     double[] armAngles = new double[] {0, 0.45, -0.9, -1};
     public float forearm = 0F;
     public float arm = 0F;
-    boolean shouldWork;
+    public boolean shouldWork;
     float workRotation = 0F;
     public boolean hasDone = false;
     public boolean isWelding = false;
@@ -34,17 +33,17 @@ public class TileEntityRobotArm extends TileEntity
         Random rand = new Random();
         boolean canWork = worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Electrolysm.roboticBase;
 
-        shouldWork = true;
-
         if(!canWork) { return; }
-        if(direction == ForgeDirection.UNKNOWN) { STATE = 0; workRotation = 0; } else { STATE = 1; this.work(); }
+        if(direction == ForgeDirection.UNKNOWN) { STATE = 0; shouldWork = false; workRotation = 0; }
+        else {
+            if(shouldWork) { STATE = 2; } else { STATE = 1; }
+        }
 
         direction = this.getDirection();
         rotation = this.alterToDegree(getRotationFromDirs(direction) + workRotation, rotation);
         forearm = this.alterTo((float)(forearmAngles[STATE]), (float)forearm);
         arm = this.alterTo((float)(armAngles[STATE]), (float)arm);
 
-        //System.out.println(forearm + ":" + arm);
     }
 
     String[] patterns = new String[] {"ARK", "LINE_HOR", "LINE_VERT"};
@@ -150,10 +149,20 @@ public class TileEntityRobotArm extends TileEntity
         Block WEST = world.getBlock(x - 1, y, z);
         Block EAST = world.getBlock(x + 1, y, z);
 
+        Block SOUTH1 = world.getBlock(x, y - 1, z + 1);
+        Block NORTH1 = world.getBlock(x, y - 1, z - 1);
+        Block WEST1 = world.getBlock(x - 1, y - 1, z);
+        Block EAST1 = world.getBlock(x + 1, y - 1, z);
+
         if(SOUTH == Electrolysm.advancedCrafting) { return ForgeDirection.SOUTH; }
         else if(NORTH == Electrolysm.advancedCrafting) { return ForgeDirection.NORTH; }
         else if(WEST == Electrolysm.advancedCrafting) { return ForgeDirection.WEST; }
         else if(EAST == Electrolysm.advancedCrafting) { return ForgeDirection.EAST; }
+
+        else if(SOUTH1 instanceof BlockMatrix) { return ForgeDirection.SOUTH; }
+        else if(NORTH1 instanceof BlockMatrix) { return ForgeDirection.NORTH; }
+        else if(WEST1 instanceof BlockMatrix) { return ForgeDirection.WEST; }
+        else if(EAST1 instanceof BlockMatrix) { return ForgeDirection.EAST; }
         else { return ForgeDirection.UNKNOWN; }
     }
 }

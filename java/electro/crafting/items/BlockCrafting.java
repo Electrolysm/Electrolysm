@@ -1,5 +1,6 @@
 package electro.crafting.items;
 
+import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -15,6 +16,7 @@ public class BlockCrafting extends Block
     {
         super(material);
 
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setBlockName(name);
         this.setHardness(hardness);
         unlocalName = name;

@@ -11,7 +11,7 @@
 
 package electro.client;
 
-import electro.assemblySystem.tileEntity.TileEntityRobotArm;
+import electro.assemblySystem.inventory.TileEntityRobotArm;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

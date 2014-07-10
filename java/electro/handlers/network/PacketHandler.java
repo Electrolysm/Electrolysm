@@ -3,7 +3,6 @@ package electro.handlers.network;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-import electro.assemblySystem.tileEntity.TileEntityRobotArm;
 import electro.common.CommonProxy;
 
 /**

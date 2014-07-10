@@ -3,11 +3,10 @@ package electro.client;
 import java.util.HashMap;
 
 import electro.Electrolysm;
-import electro.assemblySystem.tileEntity.TileEntityRobotArm;
+import electro.assemblySystem.crafting.TileEntityMatrix;
+import electro.assemblySystem.inventory.TileEntityRobotArm;
 import electro.client.itemRenderers.ItemRenderRoboticArm;
 import electro.research.te.TileEntityCollector;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -21,7 +20,6 @@ import electro.block.te.TileEntityIronFrame;
 import electro.common.CommonProxy;
 import electro.handlers.SoundHandler;
 import electro.oreProccessing.te.TileEntityElectrolisisCore;
-import electro.powerSystem.te.TileEntityWire;
 import electro.sciences.robotics.tile.TileEntitySoldering;
 import electro.world.biome.EntityZombie_Scientist;
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -43,6 +41,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCharger.class, new RenderTileCharger());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRobotArm.class, new RenderTileRobotArm());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMatrix.class, new RenderTileMatrixConstruction());
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.researchDesk), new ItemResearchDeskRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());

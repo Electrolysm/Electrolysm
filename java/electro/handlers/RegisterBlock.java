@@ -59,7 +59,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.robotArm, "roboticArm");
         GameRegistry.registerBlock(Electrolysm.roboticBase, "robotBase");
         GameRegistry.registerBlock(Electrolysm.advancedCrafting, "advCrafting");
-
+        GameRegistry.registerBlock(Electrolysm.matrix, "BlockMatrix");
 
 
         //Fluids

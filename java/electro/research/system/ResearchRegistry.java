@@ -114,7 +114,7 @@ public class ResearchRegistry
 		//Power Research requirements
         //You keep making spelling mistakes and I cannot be bothered to change them.
         //Check your work with what you have registered, so we don't have this problem.
-        
+       /*
           this.linkResearch(this.getResearch("energy_storage"), Arrays.asList(this.getResearch("copper_cable")));
 	     // this.linkResearch(this.getResearch("WET_energy_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("improved_conductivity"), this.getResearch("liquidiser")));
 	      //this.linkResearch(this.getResearch("graphene_energy_storage"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("endothermic_cabling")));
@@ -146,8 +146,13 @@ public class ResearchRegistry
 	     // this.linkResearch(this.getResearch("nano_technology"), Arrays.asList(this.getResearch("carbon_fibre"), this.getResearch("higher_compression_ratio")));
 	      this.linkResearch(this.getResearch("pure_copper"), Arrays.asList(this.getResearch("electrolysis")));
 	      this.linkResearch(this.getResearch("aluminium"), Arrays.asList(this.getResearch("electrolysis"))); 
+<<<<<<< HEAD
 	      this.linkResearch(this.getResearch("electrolysis"), Arrays.asList(this.getResearch("improved_conductivity"), this.getResearch("Steel"), this.getResearch("bronze")));
 	      this.linkResearch(this.getResearch("alloys"), Arrays.asList(this.getResearch("better_conduction")));
+=======
+	      this.linkResearch(this.getResearch("electrolysis"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("Steel"), this.getResearch("bronze")));
+	      this.linkResearch(this.getResearch("solder"), Arrays.asList(this.getResearch("alloys")));
+>>>>>>> More work on the auto crafting thingy
 	      this.linkResearch(this.getResearch("bronze"), Arrays.asList(this.getResearch("alloys")));
 	      this.linkResearch(this.getResearch("steel"), Arrays.asList(this.getResearch("alloys")));
 	      
@@ -174,6 +179,7 @@ public class ResearchRegistry
 	      this.linkResearch(this.getResearch("molder"), Arrays.asList(this.getResearch("CPU"), this.getResearch("steel")));
 	     // this.linkResearch(this.getResearch("injection_molder"), Arrays.asList(this.getResearch("microprocessors"), this.getResearch("molder"),this.getResearch("carbon_fibre")));
 	      this.linkResearch(this.getResearch("liquidiser"), Arrays.asList(this.getResearch("advanced_furnace"), this.getResearch("CPU")));
+<<<<<<< HEAD
 	     // this.linkResearch(this.getResearch("assembly_machine"), Arrays.asList(this.getResearch("CPU"), this.getResearch("carbon_fibre")));
 	     // this.linkResearch(this.getResearch("improved_production_speed"), Arrays.asList(this.getResearch("assembly_machine"), this.getResearch("microprocessor")));
 	      this.linkResearch(this.getResearch("compressor"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("steel")));
@@ -184,6 +190,13 @@ public class ResearchRegistry
 	      this.linkResearch(this.getResearch("endothermic_cable"), Arrays.asList(this.getResearch("improved_conductivity"), this.getResearch("pure_copper")));
 	      this.linkResearch(this.getResearch("injection_molder"), Arrays.asList(this.getResearch("microprocessors"), this.getResearch("molder")));
 	      
+=======
+	      this.linkResearch(this.getResearch("assembly_machine"), Arrays.asList(this.getResearch("CPU"), this.getResearch("carbon_fibre")));
+	      this.linkResearch(this.getResearch("improved_production_speed"), Arrays.asList(this.getResearch("assembly_machine"), this.getResearch("microprocessor")));
+	      this.linkResearch(this.getResearch("compressor"), Arrays.asList(this.getResearch("intergrated_circuit")));
+	      this.linkResearch(this.getResearch("higher_compression_ratio"), Arrays.asList(this.getResearch("compressor"), this.getResearch("CPU")));
+	      */
+>>>>>>> More work on the auto crafting thingy
         //Elliott DON'T remove this, trust me...
         //this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
         //this.registerResearch(new Research("wrong_cold_fusion", this.HIDDEN, new Point(0, 0), 3, this.getResearch("cold_fusion")));
