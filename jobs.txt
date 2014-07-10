@@ -1,0 +1,7 @@
+Ellio98's Jobs:
+>Add the basic stuff i.e. blocks and items
+>Add only the objects coloured in green on the research tree.
+>Fix spelling mistakes in ResearchRegistry.java (They keep breaking the MODs!)
+
+Clarky158's Jobs:
+>Make alloy furnace
