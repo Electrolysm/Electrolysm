@@ -1,19 +1,17 @@
 Ellio98's Jobs:
 >Add the basic stuff i.e. blocks and items
->Add only the objects coloured in green on the research tree.(DONE)
->Fix spelling mistakes in ResearchRegistry.java (They keep breaking the MODs!) (DONE)	
 >Write text for book
->Check Crafting recipies ( After ben makes them) 
->Make Teaser 
+>Do crafting recipes
+>Make Teaser
 >Make trailer 
 
 Clarky158's Jobs:
 >Make alloy furnace
+>Add improved Coal
 >Finish electrolysis
 >Finish power generation, movement and storage
 >Make a crusher
->add improved coal, fuel lasts longer than normal coal (need to work out how to make it)
->add crafting recipies
+>Create custom crafting handler for researched items/blocks
 
 Note to Clarky158 : I will make a deal with you; you can put in 'The basics' if it does not count 
 as a research and to also delete the micraft forms page so i can make one, this means i take

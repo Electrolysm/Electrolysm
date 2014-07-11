@@ -3,6 +3,7 @@ package electro.oreProccessing.recipes;
 import java.util.HashMap;
 import java.util.Map;
 
+import api.items.RecipeStack;
 import electro.Electrolysm;
 import net.minecraft.item.ItemStack;
 import electro.common.CommonProxy;
@@ -12,7 +13,7 @@ public class electrolisisRecipes
     private static final electrolisisRecipes smeltingBase = new electrolisisRecipes();
 
     /** The list of smelting results. */
-    private HashMap<ItemStack, ItemStack> electrolysisMap = new HashMap<ItemStack, ItemStack>();
+    private HashMap<RecipeStack, RecipeStack> electrolysisMap = new HashMap<RecipeStack, RecipeStack>();
 
     /**
      * Used to call methods addSmelting and getSmeltingResult.
@@ -64,14 +65,14 @@ public class electrolisisRecipes
      */
     public void addElectrolisis(ItemStack input, ItemStack output)
     {
-        this.electrolysisMap.put(input, output);
+        this.electrolysisMap.put(new RecipeStack(input), new RecipeStack(output));
     }
 
     public ItemStack getSmeltingResult(ItemStack item)
     {
         if (item != null)
         {
-            ItemStack result = (ItemStack)this.electrolysisMap.get((item));
+            ItemStack result = (ItemStack)this.electrolysisMap.get(new RecipeStack(item)).getStackValue();
 
             if (result != null)
             {

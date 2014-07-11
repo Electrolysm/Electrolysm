@@ -21,9 +21,11 @@ public class dusts extends Item
     {
         super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
+        this.setUnlocalizedName("dusts");
         this.hasSubtypes = true;
     }
 
+    @Override
     public String getUnlocalizedName(ItemStack stack)
     {
         int dmg = stack.getItemDamage();

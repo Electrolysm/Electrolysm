@@ -50,7 +50,8 @@ public class crystalOre extends Item {
         return crystalIcon[dmg];
     }
 
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    @Override
+    public void getSubItems(Item item, CreativeTabs creativeTab, List list)
     {
         for (int i = 0; i < CommonProxy.DUSTS.length; i++)
         {

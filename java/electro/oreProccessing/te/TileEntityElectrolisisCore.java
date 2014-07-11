@@ -132,7 +132,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
         	active = true;
         }
         
-        if (true)
+        if (true) //powerCheck
         {
             ItemStack input1 = getStackInSlot(0);
             ItemStack input2 = getStackInSlot(1);
@@ -141,7 +141,6 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
             ItemStack result2 = electrolisisRecipes.smelting().getSmeltingResult(input2);
             ItemStack node1 = getStackInSlot(3);
             ItemStack node2 = getStackInSlot(4);
-            ItemStack node = new ItemStack(Electrolysm.node, 1);
 
             if (node1 == null || node2 == null)
             {
@@ -153,6 +152,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
             {
             	if(input1.isItemEqual(input2))
             	{
+                    //Stopping here!!TODO
             		if(result1 != null && result2 != null)
             		{
             			if(result1.isItemEqual(result2))

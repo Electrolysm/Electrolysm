@@ -48,7 +48,8 @@ public class grindStone extends Item{
         return grindStoneIcon[dmg];
     }
 
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    @Override
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
         for (int i = 0; i < 3; i++)
         {

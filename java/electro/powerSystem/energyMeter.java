@@ -68,7 +68,7 @@ public class energyMeter extends Item
 	private void printOreMessage(World world, int x, int y, int z, IMeterable te) 
 	{
 		Block block = te.getBlock();
-		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block) + "TeU";
+		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block).getValue() + "TeU";
 		
 		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
                 new ChatComponentTranslation(message));

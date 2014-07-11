@@ -1,9 +1,15 @@
 package electro.oreProccessing.recipes;
 
+import api.items.RecipeStack;
+import electro.Electrolysm;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import electro.Electrolysm;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -12,8 +18,8 @@ public class CrusherRecipes
 {
     private static final CrusherRecipes smeltBase = new CrusherRecipes();
 
-    private HashMap<ItemStack, Integer> crushing1 = new HashMap<ItemStack, Integer>();
-    private HashMap<ItemStack, ItemStack> crushing2 = new HashMap<ItemStack, ItemStack>();
+    //private Map<RecipeStack, RecipeStack> crushing1 = new HashMap<RecipeStack, RecipeStack>();
+    private Map<RecipeStack, RecipeStack> crushing2 = new HashMap<RecipeStack, RecipeStack>();
 
     public static final CrusherRecipes smelting()
     {
@@ -26,7 +32,7 @@ public class CrusherRecipes
     	{
     	}
     	*/
-    	
+
         //		"Copper", "Tin", "Iron", "Gold", "Silver", "Lead"};
         //METAs		0		   1	  2		  3			4		5
         //Ore Blocks
@@ -87,15 +93,15 @@ public class CrusherRecipes
 
     public void addCrushing(ItemStack input, ItemStack output)
     {
-        this.crushing1.put((input), Integer.valueOf(output.getItemDamage()));
-        this.crushing2.put((input), output);
+        //this.crushing1.put((input), Integer.valueOf(output.getItemDamage()));
+        this.crushing2.put(new RecipeStack(input), new RecipeStack(output));
     }
 
-    public HashMap<ItemStack, ItemStack> getCrushingMap()
+    public Map<RecipeStack, RecipeStack> getCrushingMap()
     {
-    	return this.crushing2;
+        return this.crushing2;
     }
-    
+
     public ItemStack getCrushingResult(ItemStack input)
     {
         if (input == null)
@@ -103,34 +109,21 @@ public class CrusherRecipes
             return null;
         }
 
-        if (this.crushing1.get((input)) == null)
+        if (this.crushing2.get(new RecipeStack(input)) == null)
         {
+            System.out.println("getNull");
             return null;
         }
 
-        int meta = Integer.valueOf((String.valueOf(this.crushing1.get((input)))));
-        ItemStack output2 = (ItemStack)this.crushing2.get((input));
-        ItemStack output = new ItemStack(Electrolysm.impureDusts, 2, meta);
+        RecipeStack output2 = this.crushing2.get(new RecipeStack(input));
 
         if (output2 != null)
         {
-            if (output2.isItemEqual(output))
-            {
-                return output;
-            }
-            else
-            {
-                return null;
-            }
+            return output2.getStackValue();
         }
         else
         {
             return null;
         }
-    }
-
-    public ItemStack getSlot1ReduceAmount(ItemStack input)
-    {
-        return (ItemStack) this.crushing2.get(input);
     }
 }

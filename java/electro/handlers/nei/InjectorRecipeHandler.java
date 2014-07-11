@@ -3,6 +3,7 @@ package electro.handlers.nei;
 import java.awt.Rectangle;
 import java.util.*;
 
+import api.items.RecipeStack;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -106,15 +107,15 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     {
         if(outputId.equals("Injecting") && getClass() == InjectorRecipeHandler.class)//don't want subclasses getting a hold of this
         {
-        	HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+        	HashMap<List<RecipeStack>, RecipeStack> recipes = (HashMap<List<RecipeStack>, RecipeStack>) InjectorRecipes.smelting().getInjectorMap();
         	//HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
 
-            for(Map.Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet())
+            for(Map.Entry<List<RecipeStack>, RecipeStack> recipe : recipes.entrySet())
             {
-                ItemStack bottom = recipe.getKey().get(0);
-                ItemStack top = recipe.getKey().get(1);
-                ItemStack result = recipes.get(Arrays.asList(bottom, top));
-                arecipes.add(new SmeltingPair(bottom, top, result));
+                RecipeStack bottom = recipe.getKey().get(0);
+                RecipeStack top = recipe.getKey().get(1);
+                ItemStack result = recipes.get(Arrays.asList(bottom, top)).getStackValue();
+                arecipes.add(new SmeltingPair(bottom.getStackValue(), top.getStackValue(), result));
             }
         }
         else
@@ -126,16 +127,17 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-        HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+        HashMap<List<RecipeStack>, RecipeStack> recipes = (HashMap<List<RecipeStack>, RecipeStack>) InjectorRecipes.smelting().getInjectorMap();
         //HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
 
-        for(Map.Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet()) {
-            ItemStack bottom = recipe.getKey().get(0);
-            ItemStack top = recipe.getKey().get(1);
-            ItemStack output = recipes.get(Arrays.asList(bottom, top));
+        for(Map.Entry<List<RecipeStack>, RecipeStack> recipe : recipes.entrySet())
+        {
+            RecipeStack bottom = recipe.getKey().get(0);
+            RecipeStack top = recipe.getKey().get(1);
+            ItemStack output = recipes.get(Arrays.asList(bottom, top)).getStackValue();
 
             if (NEIServerUtils.areStacksSameType(output, result)) {
-                arecipes.add(new SmeltingPair(bottom, top, output));
+                arecipes.add(new SmeltingPair(bottom.getStackValue(), top.getStackValue(), output));
             }
         }
     }
@@ -156,17 +158,17 @@ public class InjectorRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-        HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) InjectorRecipes.smelting().getInjectorMap();
+        HashMap<List<RecipeStack>, RecipeStack> recipes = (HashMap<List<RecipeStack>, RecipeStack>) InjectorRecipes.smelting().getInjectorMap();
         //HashMap<List<Integer>, ItemStack> recipesMeta = (HashMap<List<Integer>, ItemStack>) InjectorRecipes.smelting().getInjectorMapMeta();
 
-        for(Map.Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet())
+        for(Map.Entry<List<RecipeStack>, RecipeStack> recipe : recipes.entrySet())
         {
-            ItemStack bottom = recipe.getKey().get(0);
-            ItemStack top = recipe.getKey().get(1);
-            ItemStack output = recipes.get(Arrays.asList(bottom, top));
+            RecipeStack bottom = recipe.getKey().get(0);
+            RecipeStack top = recipe.getKey().get(1);
+            RecipeStack output = recipes.get(Arrays.asList(bottom, top));
 
-            if(NEIServerUtils.areStacksSameType(bottom, ingredient) || NEIServerUtils.areStacksSameType(top, ingredient))
-            arecipes.add(new SmeltingPair(bottom, top, output));
+            if(NEIServerUtils.areStacksSameType(bottom.getStackValue(), ingredient) || NEIServerUtils.areStacksSameType(top.getStackValue(), ingredient))
+            arecipes.add(new SmeltingPair(bottom.getStackValue(), top.getStackValue(), output.getStackValue()));
         }
     }
     

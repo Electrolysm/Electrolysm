@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
+import api.items.RecipeStack;
 import electro.oreProccessing.gui.GUICrusher;
 import electro.oreProccessing.recipes.CrusherRecipes;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -95,12 +96,12 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     {
         if(outputId.equals("crushing") && getClass() == CrusherRecipeHandler.class)//don't want subclasses getting a hold of this
         {
-            HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
+            HashMap<RecipeStack, RecipeStack> recipes = (HashMap<RecipeStack, RecipeStack>) CrusherRecipes.smelting().getCrushingMap();
             
-            for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
+            for(Entry<RecipeStack, RecipeStack> recipe : recipes.entrySet())
             {
-                ItemStack item = recipe.getValue();
-                arecipes.add(new SmeltingPair(recipe.getKey(), item));
+                ItemStack item = recipe.getValue().getStackValue();
+                arecipes.add(new SmeltingPair((recipe.getKey()).getStackValue(), item));
             }
         }
         else
@@ -112,14 +113,14 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-        HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
+        HashMap<RecipeStack, RecipeStack> recipes = (HashMap<RecipeStack, RecipeStack>) CrusherRecipes.smelting().getCrushingMap();
         
-        for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
+        for(Entry<RecipeStack, RecipeStack> recipe : recipes.entrySet())
         {
-            ItemStack item = recipe.getValue();
+            ItemStack item = recipe.getValue().getStackValue();
             if(NEIServerUtils.areStacksSameType(item, result))
             {
-                arecipes.add(new SmeltingPair(recipe.getKey(), item));
+                arecipes.add(new SmeltingPair(recipe.getKey().getStackValue(), item));
             }
         }
     }
@@ -140,12 +141,12 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-        HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) CrusherRecipes.smelting().getCrushingMap();
+        HashMap<RecipeStack, RecipeStack> recipes = (HashMap<RecipeStack, RecipeStack>) CrusherRecipes.smelting().getCrushingMap();
         
-        for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
+        for(Entry<RecipeStack, RecipeStack> recipe : recipes.entrySet())
         {
-            ItemStack item = recipe.getValue();
-            if(ingredient == recipe.getKey())
+            ItemStack item = recipe.getValue().getStackValue();
+            if(ingredient == recipe.getKey().getStackValue())
             {
                 arecipes.add(new SmeltingPair(ingredient, item));
             }
