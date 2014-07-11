@@ -117,7 +117,7 @@ public class ResearchRegistry
 
         this.linkResearch(this.getResearch("energy_storage"), Arrays.asList(this.getResearch("copper_cable")));
         // this.linkResearch(this.getResearch("WET_energy_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("improved_conductivity"), this.getResearch("liquidiser")));
-        //this.linkResearch(this.getResearch("graphene_energy_storage"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("endothermic_cabling")));
+        //this.linkResearch(this.getResearch("graphene_energy_storage"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("endothermic_cable")));
         // this.linkResearch(this.getResearch("tesla_coil"), Arrays.asList(this.getResearch("steel"), this.getResearch("pure_copper"), this.getResearch("experimental_storage")));
         // this.linkResearch(this.getResearch("compact_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("steel"), this.getResearch("liquidiser")));
         // this.linkResearch(this.getResearch("WET_batteries"), Arrays.asList(this.getResearch("compact_storage"), this.getResearch("improved_conductivity"), this.getResearch("WET_energy_storage")));
@@ -164,7 +164,7 @@ public class ResearchRegistry
         // Robotics research requirements
         this.linkResearch(this.getResearch("intergrated_circuit"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("silicon")));
         this.linkResearch(this.getResearch("CPU"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("molder"), this.getResearch("solder")));
-        this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("endothermic_cabling"), this.getResearch("CPU"), this.getResearch("injection_molder")));
+        this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("endothermic_cable"), this.getResearch("CPU"), this.getResearch("injection_molder")));
 
         // Machines Research requirements
         this.linkResearch(this.getResearch("crusher"), Arrays.asList(this.getResearch("electricity"), this.getResearch("intergrated_circuit")));
