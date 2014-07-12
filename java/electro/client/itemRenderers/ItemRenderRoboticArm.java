@@ -69,6 +69,7 @@ public class ItemRenderRoboticArm implements IItemRenderer
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         // Render
         new ModelRobotArm().renderWithAngle(1.2F, 0.45F);
+        new ModelRobotArm().renderBase();
 
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();

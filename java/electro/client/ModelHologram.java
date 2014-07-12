@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 
 import java.util.Random;
 
-public class ModelHologram extends ModelBase
+public class ModelHologram extends ItemBlockModelBase
 {
   //fields
     ModelRenderer Projector;

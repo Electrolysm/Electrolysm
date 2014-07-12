@@ -36,7 +36,6 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.charger, "charger");
         GameRegistry.registerBlock(Electrolysm.idifier, "id-ifier");
         GameRegistry.registerBlock(Electrolysm.blastBrick, "blastBrick");
-        GameRegistry.registerBlock(Electrolysm.lightSource, "lightSource");
         GameRegistry.registerWorldGenerator(new WorldGenStructures(), 20);
         GameRegistry.registerWorldGenerator(new WorldGenOres(), 20);
         GameRegistry.registerBlock(Electrolysm.nettedBlock, "nettedBlock");
@@ -128,5 +127,7 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.researchDevice, "researchDevice");
         GameRegistry.registerItem(elec.reel, "itemReel");
         GameRegistry.registerItem(elec.hammer, "hammer");
+        GameRegistry.registerItem(elec.improvedCoal, "improvedCoal");
+        GameRegistry.registerItem(elec.neutraliser, "neutraliser");
     }
 }

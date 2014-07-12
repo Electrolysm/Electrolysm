@@ -26,7 +26,7 @@ public class ContainerWorkBench extends Container
 
         //Research Paper Slot
         this.addSlotToContainer(new SlotResearchNote(this.entity, 10, 124, 60));
-        this.addSlotToContainer(new Slot(this.entity, 9, 124, 35));
+        this.addSlotToContainer(new SlotCraftingResult(this.entity, 9, 124, 35));
         int var3;
 
         for (var3 = 0; var3 < 3; ++var3)
@@ -57,19 +57,16 @@ public class ContainerWorkBench extends Container
         return null;
     }
 
+    @Override
+    public ItemStack slotClick(int x, int y, int par3, EntityPlayer par4EntityPlayer) {
+        if(x == 10) {
+            entity.clearInventory();
+        }
+
+        return super.slotClick(x, y, par3, par4EntityPlayer);
+    }
+
     public void onContainerClosed(EntityPlayer player)
     {
-        InventoryPlayer inventoryplayer = player.inventory;
-
-        if (inventoryplayer.getItemStack() != null)
-        {
-            player.entityDropItem(inventoryplayer.getItemStack(), 0);
-            inventoryplayer.setItemStack((ItemStack)null);
-        }
-
-        if (this.entity.getStackInSlot(9) != null)
-        {
-            player.entityDropItem(this.entity.getStackInSlot(9), 0);
-        }
     }
 }

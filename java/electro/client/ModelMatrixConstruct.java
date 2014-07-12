@@ -16,7 +16,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
-public class ModelMatrixConstruct extends ModelBase
+public class ModelMatrixConstruct extends ItemBlockModelBase
 {
   //fields
     ModelRenderer Box;

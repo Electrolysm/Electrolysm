@@ -22,6 +22,7 @@ public class BlockTreeLog extends BlockLog {
 		
 		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setStepSound(Block.soundTypeWood);
+        this.setBlockName("diseasedLog");
 		this.setHardness(2.0F);
 		this.type = type1;
 		name = unlocalName;

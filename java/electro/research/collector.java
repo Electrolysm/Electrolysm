@@ -24,7 +24,7 @@ public class collector extends BlockContainer
 {
     public collector()
     {
-        super(Material.wood);
+        super(Material.iron);
         this.setBlockName("environmentalCollector");
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2.5F);

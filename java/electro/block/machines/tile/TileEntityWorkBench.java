@@ -1,10 +1,18 @@
 package electro.block.machines.tile;
 
+import electro.handlers.helpers.RecipeRegistry;
+import electro.research.crafting.ResearchCraftingHandler;
+import electro.research.system.Research;
+import electro.research.system.ResearchRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import electro.research.ResearchRecipes;
+
+import java.util.Arrays;
 
 public class TileEntityWorkBench extends TileEntity implements IInventory
 {
@@ -130,9 +138,13 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
 
             if (stack != null)
             {
-                if ((stack.stackSize - 1) > 1)
+                if ((stack.stackSize - 1) >= 1)
                 {
                     ItemStack replace = new ItemStack(stack.getItem(), stack.stackSize, stack.getItemDamage());
+                    this.decrStackSize(i, 1);
+                }
+                else
+                {
                     this.setInventorySlotContents(i, null);
                 }
             }
@@ -141,71 +153,24 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
 
     public void checkSetResearchRecipes()
     {
-        if (this.getStackInSlot(10) != null)
+        if (this.getStackInSlot(10) != null && recipe != null)
         {
-            int dmg = (this.getStackInSlot(10).getItemDamage());
-            boolean[] all = new boolean[9];
+            Research research = RecipeRegistry.getResearch(recipe);
+            //System.out.println((getStackInSlot(10).stackTagCompound.getString("researchData")).equals(research.toAdvString()));
+            //System.out.println(research.toAdvString());
 
-            if (ResearchRecipes.getRecipeBasedOnDamage(dmg) != null)
+
+            if(getStackInSlot(10).stackTagCompound != null && research != null &&
+                (getStackInSlot(10).stackTagCompound.getString("researchData")).equals(research.toAdvString()))
             {
-                for (int i = 0; i < (this.inventory.length - 2); i++)
-                {
-                    //System.out.println("InventoryCheck");
-                    //System.out.println(this.getStackInSlot(i));
-                    //System.out.println(ResearchRecipes.getRecipeBasedOnDamage(dmg)[i]);
-                    String teStack;
-                    String recipeStack;
-                    ItemStack InStack;
+                this.setInventorySlotContents(9, RecipeRegistry.getResearchResult(recipe));
+                System.out.println("yep");
 
-                    if (this.getStackInSlot(i) != null)
-                    {
-                        InStack = new ItemStack(this.getStackInSlot(i).getItem(), this.getStackInSlot(i).stackSize - 1,
-                                                this.getStackInSlot(i).getItemDamage());
-                    }
-                    else
-                    {
-                        InStack = null;
-                    }
-
-                    if (InStack == null)
-                    {
-                        teStack = "null";
-                    }
-                    else
-                    {
-                        teStack = InStack.toString();
-                    }
-
-                    if (ResearchRecipes.getRecipeBasedOnDamage(dmg)[i] == null)
-                    {
-                        recipeStack = "null";
-                    }
-                    else
-                    {
-                        recipeStack = ResearchRecipes.getRecipeBasedOnDamage(dmg)[i].toString();
-                    }
-
-                    if (teStack.contains(recipeStack))
-                    {
-                        //System.out.println("true");
-                        all[i] = true;
-                    }
-                    else
-                    {
-                        //System.out.println("false");
-                        all[i] = false;
-                    }
-                }
-
-                //System.out.println("BooleanCheck");
-                if (all[0] && all[1] && all[2] && all[3] && all[4] && all[5] && all[6] && all[7] && all[8])
-                {
-                    //System.out.println("SettingInventory");
-                    this.setInventorySlotContents(9, ResearchRecipes.getResultBasedOnDamage(dmg));
-                    this.markDirty();
-                    this.clearInventory();
-                }
             }
+        }
+        else
+        {
+            this.setInventorySlotContents(9, null);
         }
     }
 
@@ -220,4 +185,43 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
 
     @Override
     public void openInventory() { }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
+
+        // Read in the ItemStacks in the inventory from NBT
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
+        inventory = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < tagList.tagCount(); ++i)
+        {
+            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+            byte slotIndex = tagCompound.getByte("Slot");
+            if (slotIndex >= 0 && slotIndex < inventory.length)
+            {
+                inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+            }
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        // Write the ItemStacks in the inventory to NBT
+        NBTTagList tagList = new NBTTagList();
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        {
+            if (inventory[currentIndex] != null)
+            {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) currentIndex);
+                inventory[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
+            }
+        }
+        nbtTagCompound.setTag("Items", tagList);
+    }
 }

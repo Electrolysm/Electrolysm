@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
+import api.items.RecipeStack;
 import electro.oreProccessing.gui.GUICrusher;
 import electro.oreProccessing.recipes.CrusherRecipes;
 import electro.oreProccessing.recipes.LiquidiserRecipes;
@@ -98,12 +99,12 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
     {
         if(outputId.equals("electrolysing") && getClass() == ElectrolysisRecipeHander.class)//don't want subclasses getting a hold of this
         {
-            HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
+            HashMap<RecipeStack, RecipeStack> recipes = (HashMap<RecipeStack, RecipeStack>) electrolisisRecipes.smelting().getSmeltingMap();
 
-            for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
+            for(Entry<RecipeStack, RecipeStack> recipe : recipes.entrySet())
             {
-                ItemStack item = recipe.getValue();
-                arecipes.add(new SmeltingPair(recipe.getKey(), item));
+                ItemStack item = recipe.getValue().getStackValue();
+                arecipes.add(new SmeltingPair(recipe.getKey().getStackValue(), item));
             }
         }
         else
@@ -115,14 +116,14 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
     //@Override
     public void loadCraftingRecipes(ItemStack result)
     {
-        HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
+        HashMap<RecipeStack, RecipeStack> recipes = (HashMap<RecipeStack, RecipeStack>) electrolisisRecipes.smelting().getSmeltingMap();
 
-        for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
+        for(Entry<RecipeStack, RecipeStack> recipe : recipes.entrySet())
         {
-            ItemStack item = recipe.getValue();
+            ItemStack item = recipe.getValue().getStackValue();
             if(NEIServerUtils.areStacksSameType(item, result))
             {
-                arecipes.add(new SmeltingPair(recipe.getKey(), item));
+                arecipes.add(new SmeltingPair(recipe.getKey().getStackValue(), item));
             }
         }
     }
@@ -143,12 +144,12 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-        HashMap<ItemStack, ItemStack> recipes = (HashMap<ItemStack, ItemStack>) electrolisisRecipes.smelting().getSmeltingMap();
+        HashMap<RecipeStack, RecipeStack> recipes = (HashMap<RecipeStack, RecipeStack>) electrolisisRecipes.smelting().getSmeltingMap();
 
-        for(Entry<ItemStack, ItemStack> recipe : recipes.entrySet())
+        for(Entry<RecipeStack, RecipeStack> recipe : recipes.entrySet())
         {
-            ItemStack item = recipe.getValue();
-            if(ingredient == recipe.getKey())
+            ItemStack item = recipe.getValue().getStackValue();
+            if(ingredient == recipe.getKey().getStackValue())
             {
                 arecipes.add(new SmeltingPair(ingredient, item));
             }
@@ -165,7 +166,7 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
     public void drawExtras(int recipe)
     {
         //drawProgressBar(51, 25, 176, 0, 14, 14, 48, 7);
-        drawProgressBar(64 - 5, 20 - 11, 176, 0, 46, 46, 48, 0);
+        //drawProgressBar(64 - 5, 20 - 11, 176, 0, 46, 46, 48, 0);
     }
 
     @Override

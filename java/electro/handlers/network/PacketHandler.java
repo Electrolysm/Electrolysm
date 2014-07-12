@@ -15,5 +15,6 @@ public class PacketHandler {
 
     public static void init(){
         INSTANCE.registerMessage(RobotArmMessage.class, RobotArmMessage.class, 0, Side.CLIENT);
+        INSTANCE.registerMessage(SmeltoryMessage.class, SmeltoryMessage.class, 1, Side.CLIENT);
     }
 }

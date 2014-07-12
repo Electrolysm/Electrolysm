@@ -17,6 +17,7 @@ public class treeSapling extends BlockSapling {
 
 		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setTickRandomly(true);
+        this.setBlockName("diseasedSapling");
        // this.getUnlocalizedName("diseasedSapling");
 	}
 	

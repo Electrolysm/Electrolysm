@@ -7,6 +7,7 @@ import electro.handlers.helpers.Utilities;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
@@ -27,9 +28,9 @@ public class sulphuricAcid extends BlockFluidClassic
 
     public sulphuricAcid()
     {
-        super(new ModFluidSulphuricAcid(), Material.lava);
+        super(new ModFluidSulphuricAcid(), Material.water);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
-        this.setResistance(1000000F);
+        //this.setResistance(1000000F);
     }
 
     @Override
@@ -189,15 +190,64 @@ public class sulphuricAcid extends BlockFluidClassic
     	if(rand.nextInt(50) == 1)
     	{
     		//entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
-    		if(entity instanceof EntityPlayer)
+            if(entity instanceof EntityItem)
+            {
+                this.doNeutralisation(world, x, y, z, (EntityItem)entity);
+            }
+    		else if(entity instanceof EntityPlayer)
     		{
+                entity.setFire(2);
     			((EntityPlayer)entity).addPotionEffect(new PotionEffect(Electrolysm.acidBurns.id, 200, 1));
     		}
     		else
     		{
+                entity.setFire(2);
         		entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
     		}
     	}
+    }
+
+    public void doNeutralisation(World world, int x, int y, int z, EntityItem entity)
+    {
+        if(entity.getEntityItem().getItem() instanceof ItemNeutraliser)
+        {
+            //neutralize
+            this.neutraliseArea(world, x, y, z);
+        }
+        else
+        {
+            entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), new Random().nextInt(8));
+        }
+    }
+
+    public void neutraliseArea(World world, int x, int y, int z)
+    {
+        world.setBlock(x, y, z, Blocks.water);
+
+        if(Utilities.Block.getBlock(world, x + 1, y , z) == Electrolysm.sulpuricAcid) {
+            sulphuricAcid block = (sulphuricAcid)Utilities.Block.getBlock(world, x + 1, y , z);
+            block.neutraliseArea(world, x + 1, y, z);
+        }
+        if(Utilities.Block.getBlock(world, x - 1, y , z) == Electrolysm.sulpuricAcid) {
+            sulphuricAcid block = (sulphuricAcid)Utilities.Block.getBlock(world, x - 1, y , z);
+            block.neutraliseArea(world, x - 1, y, z);
+        }
+        if(Utilities.Block.getBlock(world, x, y + 1 , z) == Electrolysm.sulpuricAcid) {
+            sulphuricAcid block = (sulphuricAcid)Utilities.Block.getBlock(world, x, y + 1, z);
+            block.neutraliseArea(world, x, y + 1, z);
+        }
+        if(Utilities.Block.getBlock(world, x, y - 1, z) == Electrolysm.sulpuricAcid) {
+            sulphuricAcid block = (sulphuricAcid)Utilities.Block.getBlock(world, x, y - 1, z);
+            block.neutraliseArea(world, x, y - 1, z);
+        }
+        if(Utilities.Block.getBlock(world, x, y , z + 1) == Electrolysm.sulpuricAcid) {
+            sulphuricAcid block = (sulphuricAcid)Utilities.Block.getBlock(world, x, y , z + 1);
+            block.neutraliseArea(world, x, y, z + 1);
+        }
+        if(Utilities.Block.getBlock(world, x, y , z - 1) == Electrolysm.sulpuricAcid) {
+            sulphuricAcid block = (sulphuricAcid)Utilities.Block.getBlock(world, x, y , z - 1);
+            block.neutraliseArea(world, x, y, z - 1);
+        }
     }
 
     @Override

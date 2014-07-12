@@ -1,10 +1,12 @@
 package electro.client;
 
+import electro.handlers.TickHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
-public class ModelCharger extends ModelBase
+public class ModelCharger extends ItemBlockModelBase
 {
     //fields
     ModelRenderer Cover;
@@ -122,7 +124,12 @@ public class ModelCharger extends ModelBase
         Injector10.render(f5);
         Injector11.render(f5);
         Injector12.render(f5);
+
+        //GL11.glPushMatrix();
+        //GL11.glRotatef(TickHandler.rotation, 0F, 1F, 0F);
         Beam.render(f5);
+        Beam.rotateAngleY = TickHandler.rotation;
+        //GL11.glPopMatrix();
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)

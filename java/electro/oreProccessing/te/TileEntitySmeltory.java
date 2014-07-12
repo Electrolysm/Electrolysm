@@ -3,6 +3,7 @@ package electro.oreProccessing.te;
 import java.util.Random;
 
 import electro.Electrolysm;
+import electro.handlers.network.SmeltoryMessage;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -164,6 +165,8 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
                     temp = temp + 1;
                 }
             }*/
+
+            new SmeltoryMessage(this);
 
             if (inStack != null) {
                 if (result != null) {

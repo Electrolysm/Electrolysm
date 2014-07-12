@@ -101,52 +101,52 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
-    	if(stack != null)
-    	{
-	    	ItemStack recipe = LiquidiserRecipes.liquidising().getLiquidisingResult(stack);
-	    	if(slot == 0)
-	    	{
-	    		if(recipe != null)
-	    		{
-	    			return true;
-	    		}
-	    		else
-	    		{
-	    			return false;
-	    		}
-	    	}
-	    	else
-	    	{
-	    		return false;
-	    	}
-    	}
-    	else 
-    	{
-    		return false;
-    	}
+        if(stack != null)
+        {
+            ItemStack recipe = LiquidiserRecipes.liquidising().getLiquidisingResult(stack);
+            if(slot == 0)
+            {
+                if(recipe != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public int time = 0;
     public int maxCrushTime = 400;
     public int crushTime = 400;
-    
+
     @Override
     public void updateEntity()
     {
-    	this.markDirty();
+        this.markDirty();
 
-    	int connectedLiquids = this.getConnectedLiquids(worldObj, xCoord, yCoord, zCoord);
-        
-    	ItemStack inStack = getStackInSlot(0);
+        int connectedLiquids = this.getConnectedLiquids(worldObj, xCoord, yCoord, zCoord);
+
+        ItemStack inStack = getStackInSlot(0);
         ItemStack output = getStackInSlot(1);
         ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(inStack);
         ItemStack result2 = result;
 
         if(connectedLiquids > 0)
         {
-        	crushTime = maxCrushTime / connectedLiquids;
+            crushTime = maxCrushTime / connectedLiquids;
         }
-        
+
         if (inStack != null)
         {
             if (result != null)
@@ -158,17 +158,17 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 
                     if (((resultSize + outputSize) <= 64))
                     {
-                    	if(time == crushTime)
-                    	{
-                    		time = 0;
-                    		this.decrStackSize(0, 1);
-	                        this.setInventorySlotContents(1, result2);
-	                        this.markDirty();
-                    	}
-                    	else
-                    	{
-                    		time = time + 1;
-                    	}
+                        if(time == crushTime)
+                        {
+                            time = 0;
+                            this.decrStackSize(0, 1);
+                            this.setInventorySlotContents(1, result2);
+                            this.markDirty();
+                        }
+                        else
+                        {
+                            time = time + 1;
+                        }
                     }
                 }
                 else
@@ -178,77 +178,79 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 
                     if (((resultSize + outputSize) < 64))
                     {
-                    	if(time == crushTime)
-                    	{
-                    		time = 0;
-	                        this.decrStackSize(0, 1);
-	                        output.stackSize = (output.stackSize + result.stackSize);
-	                        this.markDirty();
-                    	}
-                    	else
-                    	{
-                    		time = time + 1;
-                    	}
+                        if(time == crushTime)
+                        {
+                            time = 0;
+                            this.decrStackSize(0, 1);
+                            this.setInventorySlotContents(1, new ItemStack(result.getItem(),
+                                    (output.stackSize + result.stackSize), result.getItemDamage()));
+                            //output.stackSize = (output.stackSize + result.stackSize);
+                            this.markDirty();
+                        }
+                        else
+                        {
+                            time = time + 1;
+                        }
                     }
                 }
-           	}
+            }
             else
             {
-            	time = 0;
+                time = 0;
             }
         }
         else
         {
-        	time = 0;
+            time = 0;
         }
     }
 
-	private int getConnectedLiquids(World world, int x, int y, int z) 
-	{
-		Block id1 = world.getBlock(x + 1, y, z);
+    private int getConnectedLiquids(World world, int x, int y, int z)
+    {
+        Block id1 = world.getBlock(x + 1, y, z);
         Block id2 = world.getBlock(x - 1, y, z);
         Block id3 = world.getBlock(x, y, z + 1);
         Block id4 = world.getBlock(x, y, z - 1);
-		
-		int overall = 0;
-		
-		if(id1 == Electrolysm.sulpuricAcid)
-		{
-			overall = overall + 1;
-		}
-		if(id2 == Electrolysm.sulpuricAcid)
-		{
-			overall = overall + 1;
-		}
-		if(id3 == Electrolysm.sulpuricAcid)
-		{
-			overall = overall + 1;
-		}
-		if(id4 == Electrolysm.sulpuricAcid)
-		{
-			overall = overall + 1;
-		}
-		
-		return overall;
-	}
 
-	int[] slots_bottom = {1};
-	int[] slots_top = {0};
-	int[] slots_sides = {1};
-	
+        int overall = 0;
+
+        if(id1 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+        if(id2 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+        if(id3 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+        if(id4 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+
+        return overall;
+    }
+
+    int[] slots_bottom = {1};
+    int[] slots_top = {0};
+    int[] slots_sides = {1};
+
     public int[] getAccessibleSlotsFromSide(int side)
     {
         if(side == 0)
         {
-        	return slots_bottom;
+            return slots_bottom;
         }
         else if(side == 1)
         {
-        	return slots_top;
+            return slots_top;
         }
         else
         {
-        	return slots_sides;
+            return slots_sides;
         }
     }
 
@@ -259,7 +261,7 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
 
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || item.getItem() == Electrolysm.crystal;
+        return side != 0 || slot == 1 || item.getItem() == Electrolysm.crystal;
     }
 
     @Override
@@ -298,10 +300,10 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
         nbtTagCompound.setTag("Items", tagList);
     }
 
-	public void setGuiDisplayName(String displayName) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setGuiDisplayName(String displayName) {
+        // TODO Auto-generated method stub
+
+    }
 
     @Override
     public void closeInventory() { }

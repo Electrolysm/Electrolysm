@@ -54,16 +54,16 @@ public class RecipeStack
     public int hashCode()
     {
         int code = 1;
-        code = (37 * code) + stackValue.stackSize;
+        if(stackValue != null) {
+            //code = (37 * code) + stackValue.stackSize;
 
-        code = (37 * code) + Item.getIdFromItem((stackValue).getItem());
-        code = (37 * code) + stackValue.getItemDamage();
+            code = (37 * code) + Item.getIdFromItem((stackValue).getItem());
+            code = (37 * code) + stackValue.getItemDamage();
 
-        if (stackValue.getTagCompound() != null)
-        {
-            code = (37 * code) + stackValue.getTagCompound().hashCode();
+            if (stackValue.getTagCompound() != null) {
+                code = (37 * code) + stackValue.getTagCompound().hashCode();
+            }
         }
-
         return code;
     }
 

@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelResearchDesk extends ModelBase
+public class ModelResearchDesk extends ItemBlockModelBase
 {
     //fields
     ModelRenderer leg0;

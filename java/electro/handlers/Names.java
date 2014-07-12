@@ -1,10 +1,12 @@
 package electro.handlers;
 
 import electro.Electrolysm;
+import electro.world.biome.EntityZombie_Scientist;
 import net.minecraft.item.ItemStack;
 import api.specialFuel.SpecialFuelHandler;
 import electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.world.World;
 
 public class Names
 {
@@ -80,6 +82,7 @@ public class Names
         LanguageRegistry.addName(Electrolysm.ItemWire, "Endothermite Cable");
         LanguageRegistry.addName(Electrolysm.researchDevice, "Research Identification Tablet");
         LanguageRegistry.addName(Electrolysm.itemScanner, "Analyser");
+        LanguageRegistry.addName(Electrolysm.neutraliser, "Neutralising Compound");
 
         for(int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)
         {

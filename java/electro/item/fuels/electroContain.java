@@ -65,8 +65,8 @@ public class electroContain extends Item implements IFuelStorage {
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int dmg)
     {
-        //return containIcon[dmg];
-        return Items.gold_ingot.getIconFromDamage(0);
+        return containIcon[dmg];
+        //return Items.gold_ingot.getIconFromDamage(0);
     }
 
     @Override

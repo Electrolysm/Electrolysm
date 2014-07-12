@@ -28,7 +28,7 @@ public class ItemCompare
                             // Then sort on stack size
                             if (itemStack1.getTagCompound().equals(itemStack2.getTagCompound()))
                             {
-                                return (itemStack1.stackSize - itemStack2.stackSize);
+                                return 0;//(itemStack1.stackSize - itemStack2.stackSize);
                             }
                             else
                             {
@@ -45,7 +45,7 @@ public class ItemCompare
                         }
                         else
                         {
-                            return (itemStack1.stackSize - itemStack2.stackSize);
+                            return 0;
                         }
                     }
                     else

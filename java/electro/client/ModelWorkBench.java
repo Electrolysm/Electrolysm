@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelWorkBench extends ModelBase
+public class ModelWorkBench extends ItemBlockModelBase
 {
     //fields
     ModelRenderer Top;
@@ -47,6 +47,11 @@ public class ModelWorkBench extends ModelBase
         Leg4.setTextureSize(64, 64);
         Leg4.mirror = true;
         setRotation(Leg4, 0F, 0F, 0F);
+    }
+
+    public void render()
+    {
+        this.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)

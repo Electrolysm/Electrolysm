@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelTransformer extends ModelBase
+public class ModelTransformer extends ItemBlockModelBase
 {
     //fields
     ModelRenderer heatSink1;

@@ -62,8 +62,14 @@ public class BlockMatrix extends BlockContainer
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
     {
-        AxisAlignedBB axis = AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 2, 1);
-
+        if(world.getTileEntity(x, y, z) instanceof TileEntityMatrix) {
+            TileEntityMatrix entityMatrix = (TileEntityMatrix)world.getTileEntity(x, y, z);
+            if(entityMatrix.isConstruct) {
+                AxisAlignedBB axis = AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 2, 1);
+                return axis;
+            }
+        }
+        AxisAlignedBB axis = AxisAlignedBB.getBoundingBox(0, 0, 0, 1, 1, 1);
         return axis;
     }
 

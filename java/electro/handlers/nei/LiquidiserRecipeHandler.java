@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
+import api.items.RecipeStack;
 import electro.oreProccessing.gui.GUICrusher;
 import electro.oreProccessing.recipes.CrusherRecipes;
 import electro.oreProccessing.recipes.LiquidiserRecipes;
@@ -97,12 +98,12 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler
     {
         if(outputId.equals("liquidising") && getClass() == LiquidiserRecipeHandler.class)//don't want subclasses getting a hold of this
         {
-            HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+            HashMap<List<RecipeStack>, RecipeStack> recipes = (HashMap<List<RecipeStack>, RecipeStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
 
-            for(Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet())
+            for(Entry<List<RecipeStack>, RecipeStack> recipe : recipes.entrySet())
             {
-                ItemStack item = recipe.getValue();
-                arecipes.add(new SmeltingPair(recipe.getKey().get(0), item));
+                ItemStack item = recipe.getValue().getStackValue();
+                arecipes.add(new SmeltingPair(recipe.getKey().get(0).getStackValue(), item));
             }
         }
         else
@@ -114,14 +115,14 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-        HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+        HashMap<List<RecipeStack>, RecipeStack> recipes = (HashMap<List<RecipeStack>, RecipeStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
 
-        for(Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet())
+        for(Entry<List<RecipeStack>, RecipeStack> recipe : recipes.entrySet())
         {
-            ItemStack item = recipe.getValue();
+            ItemStack item = recipe.getValue().getStackValue();
             if(NEIServerUtils.areStacksSameType(item, result))
             {
-                arecipes.add(new SmeltingPair(recipe.getKey().get(0), item));
+                arecipes.add(new SmeltingPair(recipe.getKey().get(0).getStackValue(), item));
             }
         }
     }
@@ -142,12 +143,12 @@ public class LiquidiserRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-        HashMap<List<ItemStack>, ItemStack> recipes = (HashMap<List<ItemStack>, ItemStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
+        HashMap<List<RecipeStack>, RecipeStack> recipes = (HashMap<List<RecipeStack>, RecipeStack>) LiquidiserRecipes.liquidising().getLiquidsMap();
 
-        for(Entry<List<ItemStack>, ItemStack> recipe : recipes.entrySet())
+        for(Entry<List<RecipeStack>, RecipeStack> recipe : recipes.entrySet())
         {
-            ItemStack item = recipe.getValue();
-            if(ingredient == recipe.getKey().get(0))
+            ItemStack item = recipe.getValue().getStackValue();
+            if(ingredient == recipe.getKey().get(0).getStackValue())
             {
                 arecipes.add(new SmeltingPair(ingredient, item));
             }

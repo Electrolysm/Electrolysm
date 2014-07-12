@@ -13,14 +13,20 @@ import electro.assemblySystem.*;
 import electro.crafting.items.*;
 import electro.handlers.*;
 import electro.handlers.network.PacketHandler;
+import electro.item.fuels.ItemImprovedCoal;
+import electro.oreProccessing.*;
 import electro.research.*;
+import electro.research.crafting.ResearchCraftingHandler;
+import electro.research.system.Research;
 import electro.world.biome.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -54,20 +60,6 @@ import electro.crafting.acidBurns;
 import electro.item.basic.drillCasing;
 import electro.item.basic.plasmaDrill;
 import electro.item.fuels.electroContain;
-import electro.oreProccessing.crusher;
-import electro.oreProccessing.crystalOre;
-import electro.oreProccessing.dusts;
-import electro.oreProccessing.electrolChamber;
-import electro.oreProccessing.electrolisisCore;
-import electro.oreProccessing.impureDusts;
-import electro.oreProccessing.ingots;
-import electro.oreProccessing.liquidiser;
-import electro.oreProccessing.net;
-import electro.oreProccessing.nettedBlock;
-import electro.oreProccessing.node;
-import electro.oreProccessing.seporator;
-import electro.oreProccessing.smeltory;
-import electro.oreProccessing.sulphuricAcid;
 import electro.powerSystem.ItemWire;
 import electro.powerSystem.basicStorage;
 import electro.powerSystem.advancedStorage;
@@ -193,9 +185,9 @@ public class Electrolysm
     //Power System
     public static Block endoCable = new endoCable().setBlockName("endoCable");
     public static Item ItemWire = new ItemWire();
-    public static Item basicStorage = new basicStorage(1000, 1).setUnlocalizedName("basicStorage");
-    public static Item advancedStorage = new advancedStorage(8000, 2).setUnlocalizedName("advancedStorage");
-    public static Item experimentalStorage = new experimentalStorage(64000, 3).setUnlocalizedName("experimentalStorage");
+    public static Item basicStorage = new basicStorage(1000, 0).setUnlocalizedName("basicStorage");
+    public static Item advancedStorage = new advancedStorage(8000, 1).setUnlocalizedName("advancedStorage");
+    public static Item experimentalStorage = new experimentalStorage(64000, 2).setUnlocalizedName("experimentalStorage");
 
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
@@ -234,6 +226,7 @@ public class Electrolysm
     public static Item dusts = new dusts();
     public static Item node = new node();
     public static Block sulpuricAcid = new sulphuricAcid().setBlockName("sulphuricAcid");
+    public static Item neutraliser = new ItemNeutraliser();
     public static Block nettedBlock = new nettedBlock().setBlockName("nettedBlock");
     public static Item net = new net();
     public static Item crystal = new crystalOre();
@@ -248,7 +241,6 @@ public class Electrolysm
     public static Item crystalBase = new crystalBase();
     public static Item ballOfPlastic = new ballOfPlastic();
     public static Item endoInsulator = new endoInsulator();
-    public static Block lightSource = new lightSource().setBlockName("lightSource");
     public static Item microchipBoard = new microchipBoard();
     public static Item transistor = new transistor();
     public static Item CPU = new CPU();
@@ -275,6 +267,7 @@ public class Electrolysm
     public static Block magnet = new magnet().setBlockName("magnet");
     //Fuels
     public static Item electroContain = new electroContain();
+    public static Item improvedCoal = new ItemImprovedCoal();
 
     //Assembly Systems
     public static Block advancedCrafting = new advancedCrafting();
@@ -340,6 +333,7 @@ public class Electrolysm
         //GameRegistry.registerCraftingHandler(new CraftingHandler());
         BiomeDictionary.registerBiomeType(diseasedBiome);
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
+
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
         MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());

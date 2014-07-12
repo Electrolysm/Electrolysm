@@ -17,7 +17,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
-public class ModelRobotArm extends ModelBase {
+public class ModelRobotArm extends ItemBlockModelBase {
     //fields
     ModelRenderer base;
     ModelRenderer Sholder;

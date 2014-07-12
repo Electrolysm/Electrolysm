@@ -14,8 +14,9 @@ public class ItemArmorLab extends ItemArmor {
 		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setUnlocalizedName(unlocalName);
 	}
-	
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer)
+
+    @Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return ("electrolysm:" + "textures/models/armor/labCoat.png");
 	}

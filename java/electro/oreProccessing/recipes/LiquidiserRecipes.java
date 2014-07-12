@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import api.items.RecipeStack;
 import electro.Electrolysm;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -15,10 +16,10 @@ public class LiquidiserRecipes
     private static final LiquidiserRecipes smeltBase = new LiquidiserRecipes();
 
     /** The list of smelting results. */
-    private Map smeltingList = new HashMap();
-    private Map experienceList = new HashMap();
-    private HashMap<List<ItemStack>, ItemStack> metaSmeltingList = new HashMap<List<ItemStack>, ItemStack>();
-    private HashMap<List<ItemStack>, Float> metaExperience = new HashMap<List<ItemStack>, Float>();
+    /*private Map smeltingList = new HashMap();
+    private Map experienceList = new HashMap();*/
+    private HashMap<List<RecipeStack>, RecipeStack> metaSmeltingList = new HashMap<List<RecipeStack>, RecipeStack>();
+    //private HashMap<List<RecipeStack>, Float> metaExperience = new HashMap<List<RecipeStack>, Float>();
 
     public static final LiquidiserRecipes liquidising()
     {
@@ -38,27 +39,18 @@ public class LiquidiserRecipes
 
     public void addLiquidising(ItemStack stack, ItemStack itemstack)
     {
-        metaSmeltingList.put(Arrays.asList(stack), itemstack);
+        metaSmeltingList.put(Arrays.asList(new RecipeStack(stack)), new RecipeStack(itemstack));
     }
     
     public ItemStack getLiquidisingResult(ItemStack item)
     {
-        if (item == null)
-        {
-            return null;
-        }/*
-	    for(int i = 0; i < CommonProxy.DUSTS.length; i++)
-	    { 
-	    	ItemStack impureDust = new ItemStack(electrolysmCore.impureDusts, 1, i);
-	        if(item.isItemEqual(impureDust))
-	        {
-	        	return (new ItemStack(electrolysmCore.crystal, 1, i));
-	        }
-	    }*/
-        return (ItemStack)metaSmeltingList.get(Arrays.asList(item));
+        if (item == null) { return null; }
+        if(metaSmeltingList.get(Arrays.asList(new RecipeStack(item))) == null) { return null; }
+
+        return metaSmeltingList.get(Arrays.asList(new RecipeStack(item))).getStackValue();
     }
 
-	public HashMap<List<ItemStack>, ItemStack> getLiquidsMap()
+	public HashMap<List<RecipeStack>, RecipeStack> getLiquidsMap()
 	{
 		return this.metaSmeltingList;
 	}

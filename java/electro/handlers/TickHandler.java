@@ -68,6 +68,7 @@ public class TickHandler
     }
 
     public static float rotation = 0;
+    public static int rotationBeam = 0;
 
     @SubscribeEvent
     public void renderTicks(TickEvent.ClientTickEvent event)
@@ -80,6 +81,15 @@ public class TickHandler
                 rotation = 0;
             } else {
                 rotation = rotation + 0.015F;
+            }
+
+            if(rotationBeam >= 360)
+            {
+                rotationBeam = 0;
+            }
+            else
+            {
+                rotationBeam = rotationBeam + 1;
             }
 
         }

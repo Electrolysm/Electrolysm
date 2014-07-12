@@ -2,7 +2,9 @@ package electro.assemblySystem.inventory;
 
 import electro.Electrolysm;
 import electro.assemblySystem.BlockMatrix;
+import electro.handlers.network.RobotArmMessage;
 import net.minecraft.block.Block;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -30,6 +32,8 @@ public class TileEntityRobotArm extends TileEntity
 
     public void updateEntity()
     {
+        new RobotArmMessage(this);
+
         Random rand = new Random();
         boolean canWork = worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Electrolysm.roboticBase;
 
@@ -164,5 +168,29 @@ public class TileEntityRobotArm extends TileEntity
         else if(WEST1 instanceof BlockMatrix) { return ForgeDirection.WEST; }
         else if(EAST1 instanceof BlockMatrix) { return ForgeDirection.EAST; }
         else { return ForgeDirection.UNKNOWN; }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+
+        float[] saveData = new float[] {this.arm, forearm, this.rotation, this.workRotation};
+
+        nbt.setInteger("state", STATE);
+        nbt.setFloat("arm", saveData[0]);
+        nbt.setFloat("forearm", saveData[1]);
+        nbt.setFloat("rotation", saveData[2]);
+        nbt.setFloat("workRotation", saveData[3]);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+
+        STATE = nbt.getInteger("state");
+        arm = nbt.getFloat("arm");
+        forearm = nbt.getFloat("forearm");
+        rotation = nbt.getFloat("rotation");
+        workRotation = nbt.getFloat("workRotation");
     }
 }

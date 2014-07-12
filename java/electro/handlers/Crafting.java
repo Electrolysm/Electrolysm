@@ -22,7 +22,7 @@ public class Crafting
                 Character.valueOf('G'), Items.gold_ingot,
                 Character.valueOf('P'), Items.paper);
 
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 2, 0),
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 1, 2),
                 "IPI", "PGP", "IPI",
                 Character.valueOf('I'), new ItemStack(Electrolysm.reel, 1, 0),
                 Character.valueOf('G'), Items.gold_ingot,

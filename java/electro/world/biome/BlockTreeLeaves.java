@@ -24,6 +24,7 @@ public class BlockTreeLeaves extends BlockLeaves {
 		this.setCreativeTab(Electrolysm.TabElectrolysm);
 		this.setStepSound(Block.soundTypeGrass);
 		this.setTickRandomly(true);
+        this.setBlockName("diseasedLog");
 		this.setHardness(0.2F);
 		this.setLightOpacity(1);
 		this.type = type1;

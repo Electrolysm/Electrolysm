@@ -15,7 +15,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelMatrix extends ModelBase
+public class ModelMatrix extends ItemBlockModelBase
 {
   //fields
     ModelRenderer Box;

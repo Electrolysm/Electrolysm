@@ -2,6 +2,7 @@ package electro.assemblySystem.crafting;
 
 import api.LoggerHandler;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import sun.rmi.runtime.Log;
@@ -38,5 +39,21 @@ public class TileEntityMatrix extends TileEntityMatrixInventory
     public List<ItemStack> getCraftedAbleItems()
     {
         return null;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+
+        nbt.setBoolean("isConstruct", isConstruct);
+        nbt.setFloat("height", height);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+
+        isConstruct = nbt.getBoolean("isConstruct");
+        height = nbt.getFloat("isConstruct");
     }
 }

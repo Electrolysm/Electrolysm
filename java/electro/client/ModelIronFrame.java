@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelIronFrame extends ModelBase
+public class ModelIronFrame extends ItemBlockModelBase
 {
     //fields
     ModelRenderer Leg1;

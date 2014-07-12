@@ -5,8 +5,9 @@ import java.util.HashMap;
 import electro.Electrolysm;
 import electro.assemblySystem.crafting.TileEntityMatrix;
 import electro.assemblySystem.inventory.TileEntityRobotArm;
-import electro.client.itemRenderers.ItemRenderRoboticArm;
+import electro.client.itemRenderers.*;
 import electro.research.te.TileEntityCollector;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -45,6 +46,14 @@ public class ClientProxy extends CommonProxy
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.researchDesk), new ItemResearchDeskRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.workBench), new ItemRenderWorkBench());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.charger), new ItemRenderCharger());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.collector), new ItemRenderCollector());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.desk), new ItemRenderDesk());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.electrolisisCore), new ItemRenderElectrolysis());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.matrix), new ItemRenderMatrix());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.ironFrames), new ItemRenderIronFrame());
+                //matrix iron frame
 
         //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         //RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());

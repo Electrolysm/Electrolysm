@@ -146,6 +146,8 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         ItemStack result2 = result;
         Random rand = new Random();
 
+        if(inStack == null) {time = 0; return; }
+
         if(grindStone != null)
         {
         	//extraDust = this.getExtraDust(grindStone);
