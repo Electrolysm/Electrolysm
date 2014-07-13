@@ -169,7 +169,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         	result2 = new ItemStack(result.getItem(), result.stackSize + extraDust, result.getItemDamage());
         }
         
-        if(battery != null && battery.getItemDamage() > 0)
+        if(true)//battery != null && battery.getItemDamage() > 0)
         {
 	        if (inStack != null)
 	        {
@@ -188,10 +188,10 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	                    		this.decrStackSize(0, 1);
 		                        this.setInventorySlotContents(1, result2);
 		                        this.markDirty();
-		                		battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
+		                		//battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
 	                    	}
 	                    	else
-	                    	{
+	                    	{/*
 	                    		if((battery.getItemDamage() - this.requiredEnergy) > 0)
 	                    		{
 	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
@@ -199,7 +199,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	                    		else
 	                    		{
 	                    			battery.setItemDamage(0);
-	                    		}
+	                    		}*/
 	                    		time = time + 1;
 	                    	}
 	                    }
@@ -217,16 +217,17 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 		                        this.decrStackSize(0, 1);
 		                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
 		                        this.markDirty();
-	                    		if((battery.getItemDamage() - this.requiredEnergy) > 0)
+	                    		/*if((battery.getItemDamage() - this.requiredEnergy) > 0)
 	                    		{
 	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
 	                    		}
 	                    		else
 	                    		{
 	                    			battery.setItemDamage(0);
-	                    		}	                    	}
+	                    		}	*/
+                            }
 	                    	else
-	                    	{
+	                    	{/*
 	                    		if((battery.getItemDamage() - this.requiredEnergy) > 0)
 	                    		{
 	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
@@ -234,7 +235,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	                    		else
 	                    		{
 	                    			battery.setItemDamage(0);
-	                    		}
+	                    		}*/
 	                    		time = time + 1;
 	                    	}
 	                    }
@@ -294,7 +295,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 
     public boolean canExtractItem(int slot, ItemStack item, int side)
     {
-        return side != 0 || slot != 1 || item.getItem() == Electrolysm.impureDusts;
+        return slot == 1 || item.getItem() == Electrolysm.impureDusts;
     }
 
     @Override

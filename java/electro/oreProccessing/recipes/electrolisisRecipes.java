@@ -84,7 +84,6 @@ public class electrolisisRecipes
     }
 
 	public HashMap<RecipeStack, RecipeStack> getSmeltingMap() {
-		// TODO Auto-generated method stub
 		return this.electrolysisMap;
 	}
 }
