@@ -72,11 +72,11 @@ public class electrolisisRecipes
     {
         if (item != null)
         {
-            ItemStack result = (ItemStack)this.electrolysisMap.get(new RecipeStack(item)).getStackValue();
+            RecipeStack result = this.electrolysisMap.get(new RecipeStack(item));
 
             if (result != null)
             {
-                return result;
+                return result.getStackValue();
             }
         }
 

@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -54,10 +55,27 @@ public class BlockMatrix extends BlockContainer
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axis, List list, Entity entity)
     {
-        this.setBlockBounds(0, 0, 0, 1, 2, 1);
+        if(world.getTileEntity(x, y, z) instanceof TileEntityMatrix) {
+            TileEntityMatrix entityMatrix = (TileEntityMatrix) world.getTileEntity(x, y, z);
+            if (entityMatrix.isConstruct) {
+                this.setBlockBounds(0, 0, 0, 1, 2, 1);
+            }
+            else
+            {
+                this.setBlockBounds(0, 0, 0, 1, 1, 1);
+            }
+        }
+        else
+        {
+            this.setBlockBounds(0, 0, 0, 1, 1, 1);
+        }
+
 
         super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
     }
+
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_) {}
+    {}
 
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)

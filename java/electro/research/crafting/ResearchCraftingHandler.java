@@ -10,7 +10,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
-import scala.util.parsing.ast.Mappable;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;

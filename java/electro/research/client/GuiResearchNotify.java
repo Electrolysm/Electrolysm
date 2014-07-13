@@ -46,7 +46,7 @@ public class GuiResearchNotify extends Gui
     @SubscribeEvent(priority=EventPriority.HIGHEST)
     public void updateResearchWindow()
     {
-        ScaledResolution var5 = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
+        ScaledResolution var5 = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
         int par1 = var5.getScaledWidth();
         int par2 = var5.getScaledHeight();
         ResourceLocation loc = new ResourceLocation("electrolysm", "textures/gui/blank.png");

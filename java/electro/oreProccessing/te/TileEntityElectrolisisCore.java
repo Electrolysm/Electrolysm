@@ -135,10 +135,10 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
         if (true) //powerCheck
         {
             ItemStack input1 = getStackInSlot(0);
-            ItemStack input2 = getStackInSlot(1);
+            //ItemStack input2 = getStackInSlot(1);
             ItemStack output = getStackInSlot(2);
             ItemStack result1 = electrolisisRecipes.smelting().getSmeltingResult(input1);
-            ItemStack result2 = electrolisisRecipes.smelting().getSmeltingResult(input2);
+            //ItemStack result2 = electrolisisRecipes.smelting().getSmeltingResult(input2);
             ItemStack node1 = getStackInSlot(3);
             ItemStack node2 = getStackInSlot(4);
 
@@ -148,14 +148,14 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
                 return;
             }
             
-            if(input1 != null && input2 != null && node1.isItemEqual(node2))
+            if(input1 != null && node1.isItemEqual(node2))
             {
-            	if(input1.isItemEqual(input2))
+            	if(true)
             	{
                     //Stopping here!!TODO
-            		if(result1 != null && result2 != null)
+            		if(result1 != null)
             		{
-            			if(result1.isItemEqual(result2))
+            			if(true)
             			{
             				//output check!!
             				if(output == null)
