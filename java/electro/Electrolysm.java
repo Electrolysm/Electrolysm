@@ -65,7 +65,7 @@ import electro.powerSystem.ItemWire;
 import electro.powerSystem.basicStorage;
 import electro.powerSystem.advancedStorage;
 import electro.powerSystem.experimentalStorage;
-import electro.powerSystem.endoCable;
+import electro.powerSystem.experimentalCable;
 import electro.powerSystem.energyMeter;
 import electro.powerSystem.generators.generator;
 import electro.powerSystem.generators.matterGen;
@@ -184,7 +184,7 @@ public class Electrolysm
     public static Item drillCasing = new drillCasing();
 
     //Power System
-    public static Block endoCable = new endoCable().setBlockName("endoCable");
+    public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
     public static Item ItemWire = new ItemWire();
     public static Item basicStorage = new basicStorage(1000, 0).setUnlocalizedName("basicStorage");
     public static Item advancedStorage = new advancedStorage(8000, 1).setUnlocalizedName("advancedStorage");

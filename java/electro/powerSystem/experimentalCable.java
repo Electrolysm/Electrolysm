@@ -15,9 +15,9 @@ import electro.powerSystem.te.TileEntityWire;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class endoCable extends BlockContainer
+public class experimentalCable extends BlockContainer
 {
-    public endoCable()
+    public experimentalCable()
     {
         super(Material.cloth);
         //this.setCreativeTab(electrolysmCore.TabElectrolysm);

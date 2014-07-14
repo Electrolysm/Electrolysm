@@ -42,7 +42,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.nettedBlock, "nettedBlock");
         GameRegistry.registerBlock(Electrolysm.crusherActive, "crusherActive");
         GameRegistry.registerBlock(Electrolysm.smeltoryActive, "smeltoryActive");
-        GameRegistry.registerBlock(Electrolysm.endoCable, "endoCable");
+        GameRegistry.registerBlock(Electrolysm.experimentalCable, "experimentalCable");
         GameRegistry.registerBlock(Electrolysm.generator, "generator");
         GameRegistry.registerBlock(Electrolysm.antiMatterCasing, "antiCasing");
         GameRegistry.registerBlock(Electrolysm.magnet, "magnet");
@@ -80,7 +80,6 @@ public class RegisterBlock
     {
         Electrolysm elec = new Electrolysm();
         GameRegistry.registerItem(elec.injectionArm, "injectionArm");
-        GameRegistry.registerItem(elec.card, "IDcard");
         GameRegistry.registerItem(elec.researchPaper, "researchPaper");
         GameRegistry.registerItem(elec.knowledge, "knowledge");
         GameRegistry.registerItem(elec.chunkGraphite, "graphiteChunk");
@@ -96,7 +95,7 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.plasmaDrill, "plasmaDrill");
         GameRegistry.registerItem(elec.drillCasing, "drillCasing");
         GameRegistry.registerItem(elec.ItemWire, "itemWire");
-        GameRegistry.registerItem(elec.basicStorage, "basicStorage");
+        GameRegistry.registerItem(elec.basicBatterie, "basicStorage");
         GameRegistry.registerItem(elec.advancedStorage, "advancedStorage");
         GameRegistry.registerItem(elec.experimentalStorage, "experimentalStorage");
         GameRegistry.registerItem(elec.energyMeter, "energyMeter");
