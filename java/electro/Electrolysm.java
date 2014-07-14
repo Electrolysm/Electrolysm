@@ -21,6 +21,7 @@ import electro.research.system.Research;
 import electro.world.biome.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockTNT;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -255,6 +256,7 @@ public class Electrolysm
     public static Item film = new ItemCrafting().setUnlocalizedName("filmStrip");
     public static Item nitrocellulose = new ItemCrafting().setUnlocalizedName("nitrocellulose");
     public static Block nitrocelluloseBlock = new BlockCrafting(1F, "nitrocelluloseBlock", Material.cloth);
+    public static Item camphor = new ItemCrafting().setUnlocalizedName("camphor");
     /**
     *need to finish the nitrocellulose stuff!!
     *http://en.wikipedia.org/wiki/Nitrocellulose

@@ -14,7 +14,15 @@ public class Crafting
 
     public static void addCrafting()
     {
-    	ItemStack ingotCopper = new ItemStack(Electrolysm.copperIngot);
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.nitrocelluloseBlock),
+                "XXX", "XXX", "XXX",
+                Character.valueOf('X'), Electrolysm.nitrocellulose);
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.film),
+                "CNC", "BCB",
+                Character.valueOf('C'), Electrolysm.camphor,
+                Character.valueOf('N'), Electrolysm.nitrocellulose,
+                Character.valueOf('B'), Electrolysm.nitrocelluloseBlock);
 
         GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 1, 0),
                 "IPI", "PGP", "IPI",
@@ -27,6 +35,12 @@ public class Crafting
                 Character.valueOf('I'), new ItemStack(Electrolysm.reel, 1, 0),
                 Character.valueOf('G'), Items.gold_ingot,
                 Character.valueOf('P'), Items.paper);
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 2, 2),
+                "IPI", "PGP", "IPI",
+                Character.valueOf('I'), new ItemStack(Electrolysm.reel, 1, 1),
+                Character.valueOf('G'), Items.nether_star,
+                Character.valueOf('P'), Electrolysm.film);
 
         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.itemScanner, true, new Object[]{
                 "C C", "IGI", "C C",
@@ -378,7 +392,7 @@ public class Crafting
         ItemStack goldIngot = new ItemStack(Items.gold_ingot, 1, 0);
         float impureXP = 1.23456789F;
         float pureXP = 5.789F;
-        
+
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 0), copperIngot, impureXP);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 1), tinIngot, impureXP);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(impureID, 1, 2), ironIngot, impureXP);
@@ -396,7 +410,8 @@ public class Crafting
 		GameRegistry.addSmelting(Electrolysm.copperOre, new ItemStack(Electrolysm.copperIngot, 1), 2F);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(Electrolysm.Scandium),
                 new ItemStack(Electrolysm.Scandium, 1, 1), pureXP);
-		
+		GameRegistry.addSmelting((Electrolysm.diseasedLog), new ItemStack(Electrolysm.camphor), 2F);
+
 		//GameRegistry.addSmelting(pureID, goldIngot, pureXP);
 
 	}

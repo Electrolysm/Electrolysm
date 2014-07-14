@@ -17,6 +17,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.blastDoor, "blastDoor");
         GameRegistry.registerBlock(Electrolysm.blastGlass, "blastGlass");
         GameRegistry.registerBlock(Electrolysm.plasma, "plasma");
+        GameRegistry.registerBlock(Electrolysm.nitrocelluloseBlock, "nitrocelluloseBlock");
         GameRegistry.registerBlock(Electrolysm.energiser, "energiser");
         GameRegistry.registerBlock(Electrolysm.injector, "injector");
         //GameRegistry.registerBlock(electrolysmCore.quantumComp, "quantumComp");
@@ -129,5 +130,7 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.hammer, "hammer");
         GameRegistry.registerItem(elec.improvedCoal, "improvedCoal");
         GameRegistry.registerItem(elec.neutraliser, "neutraliser");
+        GameRegistry.registerItem(elec.nitrocellulose, "nitrocellulose");
+        GameRegistry.registerItem(elec.camphor, "camphor");
     }
 }
