@@ -24,7 +24,7 @@ public class ResearchCraftingHandler
     public HashMap<List<RecipeStack>, String> ShapedResearchMap = new HashMap<List<RecipeStack>, String>();
     public HashMap<List<RecipeStack>, RecipeStack> ShapedResultMap = new HashMap<List<RecipeStack>, RecipeStack>();
 
-    public ResearchCraftingHandler(boolean getting)
+    public ResearchCraftingHandler()
     {
         addRecipe(ResearchRegistry.getResearch("improved_coal"), new ItemStack(Items.coal, 2),
                 new Object[]{
@@ -37,8 +37,6 @@ public class ResearchCraftingHandler
     {
         return new ResearchCraftingHandler().ShapedResultMap;
     }
-
-    public ResearchCraftingHandler() { }
 
     private void addRecipes(List<RecipeStack> list, Research research)
     {

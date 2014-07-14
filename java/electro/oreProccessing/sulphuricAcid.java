@@ -82,6 +82,25 @@ public class sulphuricAcid extends BlockFluidClassic
                     Utilities.Block.setBlock(world, x, y - 1, z, Electrolysm.sulpuricAcid);
                 }
             }
+            else
+            {
+                if(Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.mossy_cobblestone)
+                {
+                    Utilities.Block.setBlock(world, x, y - 1, z, Blocks.cobblestone);
+                }
+                if(Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.diamond_block)
+                {
+                    Utilities.Block.setBlock(world, x, y - 1, z, Blocks.gold_block);
+                }
+                if(Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.gold_block)
+                {
+                    Utilities.Block.setBlock(world, x, y - 1, z, Blocks.iron_block);
+                }
+                if(Utilities.Block.getBlock(world, x, y - 1, z) == Blocks.iron_block)
+                {
+                    Utilities.Block.setBlock(world, x, y - 1, z, Blocks.coal_block);
+                }
+            }
         }
     }
 

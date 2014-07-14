@@ -9,7 +9,7 @@ public class ModFluidSulphuricAcid extends Fluid
     {
         super("Sulphuric Acid");
         this.setDensity(10);
-        this.setViscosity(120);
+        this.setViscosity(1);
         this.isGaseous = true;
         FluidRegistry.registerFluid(this);
     }

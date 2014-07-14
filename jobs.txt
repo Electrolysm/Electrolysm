@@ -5,12 +5,12 @@ Ellio98's Jobs:
 >Add research crafting recipes - ask Clarky158 how (It's very easy)
 >Make Teaser - If it isn't in 1080p then it isn't good enough
 >Make trailer - If it isn't in 1080p then it isn't good enough
->TEST FOR BUG
+>TEST FOR BUGS
 
 Clarky158's Jobs:
->Make alloy furnace
+>Make alloy furnace (2 coal to 1 iron == steel, )
 >Finish power generation, movement and storage
->Make a better way to build microchips and transistors
+>Make a better way to build microchips and transistors (Not this release)
 >Make textures
 
 Note to Clarky158 : I will make a deal with you; you can put in 'The basics' if it does not count 

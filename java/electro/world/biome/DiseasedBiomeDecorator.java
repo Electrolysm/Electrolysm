@@ -44,17 +44,17 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
 	
 	public DiseasedBiomeDecorator(BiomeGenBase base)
 	{
-		super();
+		super();/*
 		this.sandGen = new WorldGenSand(Blocks.sand, 7);
         this.gravelAsSandGen = new WorldGenSand(Blocks.gravel, 6);
         this.dirtGen = new WorldGenMinable(Blocks.dirt, 32);
-        this.gravelGen = new WorldGenMinable(Blocks.gravel, 32);
+        this.gravelGen = new WorldGenMinable(Blocks.gravel, 32);*/
         this.coalGen = new WorldGenMinable(Blocks.coal_ore, 16);
         this.ironGen = new WorldGenMinable(Blocks.iron_ore, 8);
         this.goldGen = new WorldGenMinable(Blocks.gold_ore, 8);
         this.redstoneGen = new WorldGenMinable(Blocks.redstone_ore, 7);
         this.diamondGen = new WorldGenMinable(Blocks.diamond_block, 7);
-        this.lapisGen = new WorldGenMinable(Blocks.lapis_ore, 6);
+        this.lapisGen = new WorldGenMinable(Blocks.lapis_ore, 6);/*
         this.mushroomBrownGen = new WorldGenFlowers(Blocks.brown_mushroom);
         this.mushroomRedGen = new WorldGenFlowers(Blocks.red_mushroom);
         this.treeGen = new WorldGenDiseasedTree(true);
@@ -68,7 +68,7 @@ public class DiseasedBiomeDecorator extends BiomeDecorator{
         this.sandPerChunk2 = 3;
         this.clayPerChunk = 1;
         this.generateLakes = true;
-        this.biome = base;
+        this.biome = base;*/
 	}
 	
 	public void decorate(World par1World, Random par2Random, int par3, int par4)

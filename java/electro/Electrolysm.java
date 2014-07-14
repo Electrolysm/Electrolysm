@@ -257,12 +257,6 @@ public class Electrolysm
     public static Item nitrocellulose = new ItemCrafting().setUnlocalizedName("nitrocellulose");
     public static Block nitrocelluloseBlock = new BlockCrafting(1F, "nitrocelluloseBlock", Material.cloth);
     public static Item camphor = new ItemCrafting().setUnlocalizedName("camphor");
-    /**
-    *need to finish the nitrocellulose stuff!!
-    *http://en.wikipedia.org/wiki/Nitrocellulose
-    *http://en.wikipedia.org/wiki/Camphor
-    *http://goo.gl/XWIi6Z
-    */
     public static Potion acidBurns = new acidBurns(configHandler.acidBurnsID, true, 0);
 
     public static Block antiMatterCasing = new antiMatterCasing().setBlockName("antiMatterCasing");
