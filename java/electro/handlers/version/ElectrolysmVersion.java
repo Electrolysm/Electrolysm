@@ -17,8 +17,9 @@ public class ElectrolysmVersion
     {
         dataList.add(modID);
         dataList.add(modVersion);
-        dataList.add(modVersion);
         dataList.add("mc-" + mcVersion);
+       // System.out.println("....l....".replace("l", mcVersion));
+        //System.exit(0);
     }
 
     public String getMODID()

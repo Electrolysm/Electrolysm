@@ -28,20 +28,33 @@ public class VersionCheck
 
             // normalize text representation
             doc.getDocumentElement ().normalize ();
+            //System.out.println ("Root element of the doc is " +
+            //        doc.getDocumentElement().getNodeName());
 
-            NodeList listOfPersons = doc.getElementsByTagName(modID);
-            for(int s=0; s<listOfPersons.getLength() ; s++)
-            {
+
+            NodeList listOfPersons = doc.getElementsByTagName("version-" + version.getMODID());
+            int totalPersons = listOfPersons.getLength();
+            //System.out.println("Total no of people : " + totalPersons);
+
+            for(int s=0; s<listOfPersons.getLength() ; s++){
+
+
                 Node firstPersonNode = listOfPersons.item(s);
-                if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE)
-                {
+                if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE){
+
+
                     Element firstPersonElement = (Element)firstPersonNode;
+
+                    //System.out.println(version.getMCVersion() + ":mc-1.7.10");
                     //-------
                     NodeList firstNameList = firstPersonElement.getElementsByTagName(version.getMCVersion());
                     Element firstNameElement = (Element)firstNameList.item(0);
 
                     NodeList textFNList = firstNameElement.getChildNodes();
+                    //System.out.println("First Name : " +
+                    //        ((Node)textFNList.item(0)).getNodeValue().trim());
                     currentVersion = ((Node)textFNList.item(0)).getNodeValue().trim();
+
                 }//end of if clause
 
 
@@ -60,8 +73,10 @@ public class VersionCheck
         }catch (Throwable t) {
             t.printStackTrace ();
         }
-
+        //System.exit (0);
         versionCheck(currentVersion, version);
+        //System.out.println(message);
+        //System.exit(0);
     }
 
     public static String getUpdateURL(String version, String modID)
@@ -115,13 +130,14 @@ public class VersionCheck
 
     public static void versionCheck(String currentVersion, ElectrolysmVersion version)
     {
+        System.out.println(currentVersion);
         if(currentVersion == null) { return; }
 
         boolean equals = version.getMODVersion().replace(" ", "").equals(currentVersion.replace(" ", ""));
-
+        System.out.println(equals);
         if(!equals)
         {
-            String url = getUpdateURL("mod-" + version.getMODVersion(), version.getMODID());
+            String url = getUpdateURL("mod-" + currentVersion.replace(" ", ""), "version-" + version.getMODID());
             setMessageWithURL(url);
         }
         else

@@ -55,6 +55,9 @@ public class TickHandler
                     times = 100;
                 }
             }
+            //String message = "http://www.google.co.uk";
+            //this.printChatMessage(message);
+            //this.printChatMessage(VersionCheck.getMessage());
         }
     }
 
