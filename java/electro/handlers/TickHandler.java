@@ -50,10 +50,10 @@ public class TickHandler
 
         if (FMLClientHandler.instance().getClient().inGameHasFocus) {
             if (times <= 0) {
-               /* if (VersionCheck.chatMessage != null) {
-                    this.printChatMessage(VersionCheck.chatMessage);
+                if (VersionCheck.getMessage() != null) {
+                    this.printChatMessage(VersionCheck.getMessage());
                     times = 100;
-                }*/
+                }
             }
         }
     }

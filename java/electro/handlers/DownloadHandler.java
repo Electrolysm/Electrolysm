@@ -196,7 +196,7 @@ public class DownloadHandler
 
     public static void downloadVersionData()
     {
-        String url = "";
+        String url = "https://raw.githubusercontent.com/Electrolysm/Electrolysm/1.7.2/version.xml";
         String down = "config/electrolysm/SAVE_NAME.xml";
 
         try
