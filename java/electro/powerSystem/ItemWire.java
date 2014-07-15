@@ -150,7 +150,7 @@ public class ItemWire extends Item
 
         if (meta == 0)
         {
-            return Electrolysm.endoCable;
+            return Electrolysm.experimentalCable;
         }
         return null;
     }

@@ -1,16 +1,13 @@
 package electro.handlers;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import electro.handlers.version.VersionCheck;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import java.util.Random;
 
@@ -53,10 +50,10 @@ public class TickHandler
 
         if (FMLClientHandler.instance().getClient().inGameHasFocus) {
             if (times <= 0) {
-                if (VersionCheck.chatMessage != null) {
+               /* if (VersionCheck.chatMessage != null) {
                     this.printChatMessage(VersionCheck.chatMessage);
                     times = 100;
-                }
+                }*/
             }
         }
     }

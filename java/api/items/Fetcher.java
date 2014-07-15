@@ -17,13 +17,13 @@ public class Fetcher
     	{
     		if(core == null)
     		{
-    			core = Class.forName("assets.electrolysm.electro.electrolysmCore");
+    			core = Class.forName("electro.Electrolysm");
     		}
     		Object ret = core.getField(id).get(null);
     		
     		if(ret instanceof Item)
     		{
-    			return (new ItemStack((Item)ret, stackSize));
+                return (new ItemStack((Item)ret, stackSize));
     		}
     		else if(ret instanceof Block)
     		{
@@ -47,7 +47,7 @@ public class Fetcher
     	{
     		if(core == null)
     		{
-    			core = Class.forName("");
+    			core = Class.forName("electro.Electrolysm");
     		}
     		Object ret = core.getField(id).get(null);
     		
@@ -77,7 +77,7 @@ public class Fetcher
     	{
     		if(core == null)
     		{
-    			core = Class.forName("");
+    			core = Class.forName("electro.Electrolysm");
     		}
     		Object ret = core.getField("TabElectrolysm").get(null);
     		

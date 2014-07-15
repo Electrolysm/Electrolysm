@@ -193,4 +193,22 @@ public class DownloadHandler
             e.printStackTrace();
         }
     }
+
+    public static void downloadVersionData()
+    {
+        String url = "";
+        String down = "config/electrolysm/SAVE_NAME.xml";
+
+        try
+        {
+            URL website = new URL(url);
+            ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+            FileOutputStream fos = new FileOutputStream(down.replace("SAVE_NAME", "version"));
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }

@@ -11,12 +11,12 @@ public class RecipeRegistry
 {
     public static ItemStack getResearchResult(ItemStack[] stacks)
     {
-        return new ResearchCraftingHandler(true).getResult(stacks);
+        return new ResearchCraftingHandler().getResult(stacks);
     }
 
     public static Research getResearch(ItemStack[] stacks)
     {
-        return new ResearchCraftingHandler(true).getResearch(stacks);
+        return new ResearchCraftingHandler().getResearch(stacks);
     }
 
 }

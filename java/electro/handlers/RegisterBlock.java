@@ -95,7 +95,7 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.plasmaDrill, "plasmaDrill");
         GameRegistry.registerItem(elec.drillCasing, "drillCasing");
         GameRegistry.registerItem(elec.ItemWire, "itemWire");
-        GameRegistry.registerItem(elec.basicBatterie, "basicStorage");
+        GameRegistry.registerItem(elec.basicStorage, "basicStorage");
         GameRegistry.registerItem(elec.advancedStorage, "advancedStorage");
         GameRegistry.registerItem(elec.experimentalStorage, "experimentalStorage");
         GameRegistry.registerItem(elec.energyMeter, "energyMeter");
