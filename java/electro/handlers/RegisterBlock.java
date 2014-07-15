@@ -60,7 +60,9 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.roboticBase, "robotBase");
         GameRegistry.registerBlock(Electrolysm.advancedCrafting, "advCrafting");
         GameRegistry.registerBlock(Electrolysm.matrix, "BlockMatrix");
-
+        GameRegistry.registerBlock(Electrolysm.basicEnergyStorage, "BasicEnergyStorage");
+        GameRegistry.registerBlock(Electrolysm.advancedGenerator, "advancedGenerator");
+        GameRegistry.registerBlock(Electrolysm.thermalGenerator, "thermalGenerator");
 
         //Fluids
         /*
@@ -95,9 +97,9 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.plasmaDrill, "plasmaDrill");
         GameRegistry.registerItem(elec.drillCasing, "drillCasing");
         GameRegistry.registerItem(elec.ItemWire, "itemWire");
-        GameRegistry.registerItem(elec.basicStorage, "basicStorage");
-        GameRegistry.registerItem(elec.advancedStorage, "advancedStorage");
-        GameRegistry.registerItem(elec.experimentalStorage, "experimentalStorage");
+        GameRegistry.registerItem(elec.basicBattery, "basicBattery");
+        GameRegistry.registerItem(elec.advancedBattery, "advancedBattery");
+        GameRegistry.registerItem(elec.experimentalBattery, "experimentalBattery");
         GameRegistry.registerItem(elec.energyMeter, "energyMeter");
         GameRegistry.registerItem(elec.impureDusts, "impureDusts");
         GameRegistry.registerItem(elec.dusts, "dusts");

@@ -14,12 +14,12 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class advancedStorage extends Item {
+public class experimentalBattery extends Item {
 
 	public static int capacity;
 	public static int tier;
 	
-	public advancedStorage(int cap, int tier1) {
+	public experimentalBattery(int cap, int tier1) {
 		super();
 
 		this.setCreativeTab(Electrolysm.TabElectrolysm);
@@ -29,7 +29,6 @@ public class advancedStorage extends Item {
 		this.tier = tier1;
 		this.setMaxStackSize(1);
 	}
-	
 	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister reg)
@@ -40,8 +39,8 @@ public class advancedStorage extends Item {
     @Override
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-    	list.add(new ItemStack(Electrolysm.advancedStorage, 1, (capacity - capacity)));
-    	list.add(new ItemStack(Electrolysm.advancedStorage, 1, capacity));
+    	list.add(new ItemStack(Electrolysm.experimentalBattery, 1, (capacity - capacity)));
+    	list.add(new ItemStack(Electrolysm.experimentalBattery, 1, capacity));
     }
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)

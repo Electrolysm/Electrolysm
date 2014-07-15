@@ -58,13 +58,16 @@ import electro.item.basic.drillCasing;
 import electro.item.basic.plasmaDrill;
 import electro.item.fuels.electroContain;
 import electro.powerSystem.ItemWire;
-import electro.powerSystem.basicStorage;
-import electro.powerSystem.advancedStorage;
-import electro.powerSystem.experimentalStorage;
+import electro.powerSystem.basicBattery;
+import electro.powerSystem.advancedBattery;
+import electro.powerSystem.basicEnergyStorage;
+import electro.powerSystem.experimentalBattery;
 import electro.powerSystem.experimentalCable;
 import electro.powerSystem.energyMeter;
+import electro.powerSystem.generators.advancedGenerator;
 import electro.powerSystem.generators.generator;
 import electro.powerSystem.generators.matterGen;
+import electro.powerSystem.generators.thermalGenerator;
 import electro.research.system.ResearchRegistry;
 import electro.sciences.ItemArmorLab;
 import electro.world.Scandium;
@@ -182,9 +185,12 @@ public class Electrolysm
     //Power System
     public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
     public static Item ItemWire = new ItemWire();
-    public static Item basicStorage = new basicStorage(1000, 0).setUnlocalizedName("basicStorage");
-    public static Item advancedStorage = new advancedStorage(8000, 1).setUnlocalizedName("advancedStorage");
-    public static Item experimentalStorage = new experimentalStorage(64000, 2).setUnlocalizedName("experimentalStorage");
+    public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
+    public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
+    public static Item experimentalBattery = new experimentalBattery(64000, 2).setUnlocalizedName("experimentalBattery");
+    public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
+    public static Block advancedGenerator = new advancedGenerator().setBlockName("advancedGenerator");
+    public static Block thermalGenerator = new thermalGenerator().setBlockName("thermalGenerator");
 
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
@@ -267,6 +273,7 @@ public class Electrolysm
     public static Block robotArm = new roboticArm();
     public static Item blueprint = new ItemBluePrint();
     public static Block matrix = new BlockMatrix();
+
 
     /*
     //Robots
