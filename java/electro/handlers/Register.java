@@ -28,15 +28,18 @@ public class Register
     {
         OreDictionary.registerOre("oreCopper", Electrolysm.copperOre);
         OreDictionary.registerOre("ingotCopper", Electrolysm.copperIngot);
+        OreDictionary.registerOre("blockSteel", Electrolysm.steelBlock);
         //ingots
         OreDictionary.registerOre("ingotTin", new ItemStack(Electrolysm.ingots, 1, 0));
         OreDictionary.registerOre("ingotSilver", new ItemStack(Electrolysm.ingots, 1, 1));
         OreDictionary.registerOre("ingotLead", new ItemStack(Electrolysm.ingots, 1, 2));
+        OreDictionary.registerOre("ingotSteel", new ItemStack(Electrolysm.steel));
         OreDictionary.registerOre("sulphur", new ItemStack(Electrolysm.sulphur));
         OreDictionary.registerOre("sulphure", new ItemStack(Electrolysm.sulphur));
         OreDictionary.registerOre("crystalSulphure", new ItemStack(Electrolysm.sulphur));
         OreDictionary.registerOre("crystalSulphur", new ItemStack(Electrolysm.sulphur));
-        
+
+
         for(int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
             OreDictionary.registerOre("dust" + CommonProxy.DUSTS[i], new ItemStack(Electrolysm.dusts, 1, i));

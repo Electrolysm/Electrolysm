@@ -1,6 +1,6 @@
 package electro.client;
 
-import electro.assemblySystem.crafting.TileEntityMatrix;
+import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.common.CommonProxy;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

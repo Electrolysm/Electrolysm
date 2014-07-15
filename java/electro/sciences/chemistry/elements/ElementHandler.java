@@ -1,7 +1,5 @@
 package electro.sciences.chemistry.elements;
 
-import java.util.HashMap;
-
 public class ElementHandler
 {
     public static String[] elements = new String[119];

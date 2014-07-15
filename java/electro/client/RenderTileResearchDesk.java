@@ -1,19 +1,17 @@
 package electro.client;
 
 import electro.Electrolysm;
-import electro.block.machines.tile.TileEntityResearchDesk;
+import electro.research.machines.tile.TileEntityResearchDesk;
 import electro.handlers.TickHandler;
 import electro.research.researchDevice;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;

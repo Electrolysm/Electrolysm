@@ -1,6 +1,7 @@
 package electro.oreProccessing.te;
 
 import electro.Electrolysm;
+import electro.handlers.helpers.Utilities;
 import electro.oreProccessing.recipes.electrolisisRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import api.powerSystem.meter.IMeterable;
+import net.minecraft.world.World;
 
 public class TileEntityElectrolisisCore extends TileEntity implements IInventory, /*IPullEnergy,
 																				IMeterable, */ISidedInventory, IMeterable
@@ -132,7 +134,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
         	active = true;
         }
         
-        if (true) //powerCheck
+        if (true && isFormed(xCoord, yCoord, zCoord, worldObj)) //powerCheck
         {
             ItemStack input1 = getStackInSlot(0);
             //ItemStack input2 = getStackInSlot(1);
@@ -347,4 +349,81 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
 
     @Override
     public void openInventory() { }
+
+    public static boolean isFormed(int x, int y, int z, World world)
+    {
+        Block chamber = Electrolysm.electrolChamber;
+        Block air = null;
+        boolean isFormed = false;
+
+        //Top row
+        if (Utilities.Block.getBlock(world, x, y + 1, z) != chamber)
+        {
+            if (Utilities.Block.getBlock(world, x + 1, y + 1, z) == chamber)
+            {
+                if (Utilities.Block.getBlock(world, x + 1, y + 1, z + 1) == chamber)
+                {
+                    if (Utilities.Block.getBlock(world, x + 1, y + 1, z - 1) == chamber)
+                    {
+                        if (Utilities.Block.getBlock(world, x - 1, y + 1, z) == chamber)
+                        {
+                            if (Utilities.Block.getBlock(world, x - 1, y + 1, z + 1) == chamber)
+                            {
+                                if (Utilities.Block.getBlock(world, x - 1, y + 1, z - 1) == chamber)
+                                {
+                                    if (Utilities.Block.getBlock(world, x, y + 1, z + 1) == chamber)
+                                    {
+                                        if (Utilities.Block.getBlock(world, x, y + 1, z - 1) == chamber)
+                                        {
+                                            //Bottom Row
+                                            if (Utilities.Block.getBlock(world, x + 1, y - 1, z) == chamber)
+                                            {
+                                                if (Utilities.Block.getBlock(world, x + 1, y - 1, z + 1) == chamber)
+                                                {
+                                                    if (Utilities.Block.getBlock(world, x + 1, y - 1, z - 1) == chamber)
+                                                    {
+                                                        if (Utilities.Block.getBlock(world, x - 1, y - 1, z) == chamber)
+                                                        {
+                                                            if (Utilities.Block.getBlock(world, x - 1, y - 1, z + 1) == chamber)
+                                                            {
+                                                                if (Utilities.Block.getBlock(world, x - 1, y - 1, z - 1) == chamber)
+                                                                {
+                                                                    if (Utilities.Block.getBlock(world, x, y - 1, z + 1) == chamber)
+                                                                    {
+                                                                        if (Utilities.Block.getBlock(world, x, y - 1, z - 1) == chamber)
+                                                                        {
+                                                                            //Middle Row
+                                                                            if (Utilities.Block.getBlock(world, x + 1, y, z + 1) == chamber)
+                                                                            {
+                                                                                if (Utilities.Block.getBlock(world, x - 1, y, z + 1) == chamber)
+                                                                                {
+                                                                                    if (Utilities.Block.getBlock(world, x + 1, y, z - 1) == chamber)
+                                                                                    {
+                                                                                        if (Utilities.Block.getBlock(world, x - 1, y, z - 1) == chamber)
+                                                                                        {
+                                                                                            return true;
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return isFormed;
+    }
 }

@@ -15,7 +15,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import electro.block.liquids.ModFluidSulphuricAcid;
+import electro.misc.block.liquids.ModFluidSulphuricAcid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

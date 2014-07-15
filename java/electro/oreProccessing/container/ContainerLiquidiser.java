@@ -5,9 +5,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.tileentity.TileEntityFurnace;
-import electro.block.machines.container.SlotOutput;
+import electro.research.machines.container.SlotOutput;
 import electro.oreProccessing.te.TileEntityLiquidiser;
 
 public class ContainerLiquidiser extends Container

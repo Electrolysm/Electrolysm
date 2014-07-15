@@ -1,16 +1,10 @@
 package electro.client;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.IBlockAccess;
-import electro.block.advMachines.te.TileEntityCharger;
-import electro.block.machines.tile.TileEntityDesk;
-import electro.block.machines.tile.TileEntityResearchDesk;
-import electro.block.machines.tile.TileEntityWorkBench;
+import electro.machines.advMachines.te.TileEntityCharger;
+import electro.research.machines.tile.TileEntityDesk;
+import electro.research.machines.tile.TileEntityResearchDesk;
+import electro.research.machines.tile.TileEntityWorkBench;
 import electro.oreProccessing.te.TileEntityElectrolisisCore;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import net.minecraftforge.client.IItemRenderer;
 
 public class BlockInventoryRendering
 {

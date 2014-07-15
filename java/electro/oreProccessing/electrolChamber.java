@@ -3,7 +3,7 @@ package electro.oreProccessing;
 import java.util.List;
 
 import electro.Electrolysm;
-import electro.block.GlassBlockConnectedMeta;
+import electro.misc.block.GlassBlockConnectedMeta;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

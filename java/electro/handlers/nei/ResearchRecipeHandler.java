@@ -5,7 +5,7 @@ import codechicken.nei.NEIClientUtils;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import electro.block.machines.gui.GUIWorkBench;
+import electro.research.machines.gui.GUIWorkBench;
 import electro.common.CommonProxy;
 import electro.research.crafting.ResearchCraftingHandler;
 import net.minecraft.client.gui.inventory.GuiContainer;

@@ -1,11 +1,11 @@
 package electro.handlers;
 
-import electro.assemblySystem.crafting.ContainerMatrix;
-import electro.assemblySystem.crafting.GuiMatrix;
-import electro.assemblySystem.crafting.TileEntityMatrix;
-import electro.assemblySystem.inventory.ContainerCrafting;
-import electro.assemblySystem.inventory.TileEntityCrafting;
-import electro.block.machines.gui.GuiCrafting;
+import electro.machines.assemblySystem.crafting.ContainerMatrix;
+import electro.machines.assemblySystem.crafting.GuiMatrix;
+import electro.machines.assemblySystem.crafting.TileEntityMatrix;
+import electro.machines.assemblySystem.inventory.ContainerCrafting;
+import electro.machines.assemblySystem.inventory.TileEntityCrafting;
+import electro.research.machines.gui.GuiCrafting;
 import electro.oreProccessing.container.*;
 import electro.oreProccessing.gui.*;
 import electro.oreProccessing.te.*;
@@ -17,22 +17,25 @@ import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
 import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import electro.research.client.GUIIDCardInfo;
 import electro.research.client.GuiResearchNotify;
+import electro.sciences.alloyFurnace.ContainerAlloyFurnace;
+import electro.sciences.alloyFurnace.GuiAlloyFurnace;
+import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import electro.block.advMachines.container.ContainerEnergiser;
-import electro.block.advMachines.container.ContainerInjector;
-import electro.block.advMachines.gui.GUIEnergiser;
-import electro.block.advMachines.gui.GUIInjector;
-import electro.block.advMachines.te.TileEntityEnergiser;
-import electro.block.advMachines.te.TileEntityInjector;
-import electro.block.machines.container.ContainerResearchDesk;
-import electro.block.machines.container.ContainerWorkBench;
-import electro.block.machines.gui.GUIResearchDesk;
-import electro.block.machines.gui.GUIWorkBench;
-import electro.block.machines.tile.TileEntityResearchDesk;
-import electro.block.machines.tile.TileEntityWorkBench;
+import electro.machines.advMachines.container.ContainerEnergiser;
+import electro.machines.advMachines.container.ContainerInjector;
+import electro.machines.advMachines.gui.GUIEnergiser;
+import electro.machines.advMachines.gui.GUIInjector;
+import electro.machines.advMachines.te.TileEntityEnergiser;
+import electro.machines.advMachines.te.TileEntityInjector;
+import electro.research.machines.container.ContainerResearchDesk;
+import electro.research.machines.container.ContainerWorkBench;
+import electro.research.machines.gui.GUIResearchDesk;
+import electro.research.machines.gui.GUIWorkBench;
+import electro.research.machines.tile.TileEntityResearchDesk;
+import electro.research.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GUIHandler implements IGuiHandler
@@ -106,6 +109,11 @@ public class GUIHandler implements IGuiHandler
         if(entity instanceof TileEntityCrafting)
         {
             return new ContainerCrafting(player.inventory, (TileEntityCrafting)entity);
+        }
+
+        if(entity instanceof TileEntityAlloyFurnace)
+        {
+            return new ContainerAlloyFurnace(player.inventory, (TileEntityAlloyFurnace)entity);
         }
         
         return null;
@@ -185,6 +193,11 @@ public class GUIHandler implements IGuiHandler
         if(entity instanceof TileEntityCrafting)
         {
             return new GuiCrafting((TileEntityCrafting)entity, player.inventory);
+        }
+
+        if(entity instanceof TileEntityAlloyFurnace)
+        {
+            return new GuiAlloyFurnace((TileEntityAlloyFurnace)entity, player.inventory);
         }
         return null;
     }

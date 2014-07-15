@@ -44,6 +44,7 @@ public class CommonProxy
     public static ResourceLocation CRUSHER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/crusherGUI.png");
     public static ResourceLocation LIQUIDISER_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/liquidiserGUI.png");
 	public static ResourceLocation SLOT_ICON = new ResourceLocation(MOD_ID_LOWER, "textures/gui/slotIcon.png");
+    public static ResourceLocation ALLOY_FURNACE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/alloyFurnaceGUI.png");
 
 	//Research
 	public static ResourceLocation IMAGE_TECH_TREE = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/image_techTree.png");

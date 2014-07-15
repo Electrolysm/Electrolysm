@@ -2,7 +2,7 @@ package electro.client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.assemblySystem.inventory.TileEntityRobotArm;
+import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
 import electro.common.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;

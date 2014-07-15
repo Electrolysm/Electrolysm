@@ -1,19 +1,11 @@
 package electro.client;
 
-import electro.Electrolysm;
-import electro.block.machines.tile.TileEntityResearchDesk;
 import electro.common.CommonProxy;
 import electro.handlers.TickHandler;
 import electro.research.ItemReel;
-import electro.research.researchDevice;
 import electro.research.te.TileEntityCollector;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;

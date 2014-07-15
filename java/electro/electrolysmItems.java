@@ -1,7 +1,7 @@
 package electro;
 
 import net.minecraft.item.Item;
-import electro.block.basic.hammer;
+import electro.misc.block.basic.hammer;
 
 public enum electrolysmItems
 {

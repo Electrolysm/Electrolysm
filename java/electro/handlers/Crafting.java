@@ -8,12 +8,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class Crafting
 {
 
     public static void addCrafting()
     {
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.steelBlock, true, new Object[] {
+                "XXX", "XXX", "XXX",
+                Character.valueOf('X'), "ingotSteel"
+        }));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(Electrolysm.steel, 9),
+                new ItemStack(Electrolysm.steelBlock));
+
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Electrolysm.steel), new Object[] {
+                "blockSteel"
+        }));
+
         GameRegistry.addRecipe(new ItemStack(Electrolysm.nitrocelluloseBlock),
                 "XXX", "XXX", "XXX",
                 Character.valueOf('X'), Electrolysm.nitrocellulose);

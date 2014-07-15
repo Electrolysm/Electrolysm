@@ -49,6 +49,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.Yttrium, "yttrium");
         //GameRegistry.registerBlock(electrolysmCore.coolerProccesser);
         GameRegistry.registerFuelHandler(new FuelHandler());
+        GameRegistry.registerBlock(Electrolysm.steelBlock, "steelBlock");
         GameRegistry.registerBlock(Electrolysm.stoneObsidian, "stoneObsidian");
         GameRegistry.registerBlock(Electrolysm.diseasedSapling, "diseasedSapling");
         GameRegistry.registerBlock(Electrolysm.BlockLumRed, "blockLumeRed");
@@ -63,6 +64,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.basicEnergyStorage, "BasicEnergyStorage");
         GameRegistry.registerBlock(Electrolysm.advancedGenerator, "advancedGenerator");
         GameRegistry.registerBlock(Electrolysm.thermalGenerator, "thermalGenerator");
+        GameRegistry.registerBlock(Electrolysm.alloyFurnace, "alloyFurnace");
 
         //Fluids
         /*
@@ -133,5 +135,6 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.neutraliser, "neutraliser");
         GameRegistry.registerItem(elec.nitrocellulose, "nitrocellulose");
         GameRegistry.registerItem(elec.camphor, "camphor");
+        GameRegistry.registerItem(elec.steel, "steel");
     }
 }

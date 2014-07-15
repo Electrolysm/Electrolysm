@@ -6,8 +6,8 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import electro.block.advMachines.container.ContainerInjector;
-import electro.block.advMachines.te.TileEntityInjector;
+import electro.machines.advMachines.container.ContainerInjector;
+import electro.machines.advMachines.te.TileEntityInjector;
 import electro.common.CommonProxy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

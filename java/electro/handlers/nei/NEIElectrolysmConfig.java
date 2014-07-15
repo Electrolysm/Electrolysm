@@ -1,8 +1,7 @@
 package electro.handlers.nei;
 
 import electro.Electrolysm;
-import electro.block.advMachines.gui.GUIInjector;
-import electro.block.machines.gui.GUIWorkBench;
+import electro.machines.advMachines.gui.GUIInjector;
 import electro.handlers.Referance;
 import electro.oreProccessing.gui.GUICrusher;
 import electro.oreProccessing.gui.GUIElectrolysisCore;
@@ -47,9 +46,9 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
         API.setGuiOffset(NEIResourceGUI.class, 0, 0);
 
         //Research Crafting
-        API.registerRecipeHandler(new ResearchRecipeHandler());
-        API.registerUsageHandler(new ResearchRecipeHandler());
-        API.setGuiOffset(GUIWorkBench.class, 0, 0);
+        //API.registerRecipeHandler(new ResearchRecipeHandler());
+        //API.registerUsageHandler(new ResearchRecipeHandler());
+        //API.setGuiOffset(GUIWorkBench.class, 0, 0);
     }
 
 	@Override

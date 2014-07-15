@@ -58,7 +58,6 @@ public class electrolisisCore extends BlockContainer
     public static boolean isFormed(int x, int y, int z, World world, Block chamberID, Block waterID)
     {
         Block chamber = Electrolysm.electrolChamber;
-        Block water = Blocks.water;
         Block air = null;
         boolean isFormed = false;
 

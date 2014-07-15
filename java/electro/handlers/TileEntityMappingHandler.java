@@ -1,15 +1,15 @@
 package electro.handlers;
 
-import electro.assemblySystem.crafting.TileEntityMatrix;
-import electro.assemblySystem.inventory.TileEntityRobotArm;
-import electro.block.advMachines.te.TileEntityCharger;
-import electro.block.advMachines.te.TileEntityEnergiser;
-import electro.block.advMachines.te.TileEntityInjector;
-import electro.block.basic.te.TileEntityBlastDoor;
-import electro.block.machines.tile.TileEntityDesk;
-import electro.block.machines.tile.TileEntityResearchDesk;
-import electro.block.machines.tile.TileEntityWorkBench;
-import electro.block.te.TileEntityIronFrame;
+import electro.machines.assemblySystem.crafting.TileEntityMatrix;
+import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
+import electro.machines.advMachines.te.TileEntityCharger;
+import electro.machines.advMachines.te.TileEntityEnergiser;
+import electro.machines.advMachines.te.TileEntityInjector;
+import electro.misc.block.basic.te.TileEntityBlastDoor;
+import electro.research.machines.tile.TileEntityDesk;
+import electro.research.machines.tile.TileEntityResearchDesk;
+import electro.research.machines.tile.TileEntityWorkBench;
+import electro.misc.block.te.TileEntityIronFrame;
 import cpw.mods.fml.common.registry.GameRegistry;
 import electro.oreProccessing.te.TileEntityCrusher;
 import electro.oreProccessing.te.TileEntityElectrolisisCore;
@@ -19,6 +19,7 @@ import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
 import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import electro.powerSystem.te.TileEntityWire;
 import electro.research.te.TileEntityCollector;
+import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
 
 /**
  * Created by Clarky158 on 26/01/14.
@@ -27,6 +28,7 @@ public class TileEntityMappingHandler
 {
     public static void addMappings()
     {
+        GameRegistry.registerTileEntity(TileEntityAlloyFurnace.class, "TileEntityAlloyFurnace");
         GameRegistry.registerTileEntity(TileEntityBlastDoor.class, "TileEntityBlastDoor");
         GameRegistry.registerTileEntity(TileEntityCrusher.class, "TileEntityCrusher");
         GameRegistry.registerTileEntity(TileEntityElectrolisisCore.class, "TileEntityElectrolysisCore");
