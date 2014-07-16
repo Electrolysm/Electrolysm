@@ -56,8 +56,10 @@ import electro.misc.item.basic.drillCasing;
 import electro.misc.item.basic.plasmaDrill;
 import electro.misc.item.fuels.electroContain;
 import electro.powerSystem.ItemWire;
+import electro.powerSystem.advancedCable;
 import electro.powerSystem.basicBattery;
 import electro.powerSystem.advancedBattery;
+import electro.powerSystem.basicCable;
 import electro.powerSystem.basicEnergyStorage;
 import electro.powerSystem.experimentalBattery;
 import electro.powerSystem.experimentalCable;
@@ -70,6 +72,8 @@ import electro.research.system.ResearchRegistry;
 import electro.sciences.ItemArmorLab;
 import electro.world.Scandium;
 import electro.world.Yttrium;
+import electro.world.aluminiumIngot;
+import electro.world.aluminiumOre;
 import electro.world.chunkGraphite;
 import electro.world.copperIngot;
 import electro.world.copperOre;
@@ -118,7 +122,7 @@ public class Electrolysm
     public static Item labGoggles = new ItemArmorLab(0, "labGoggles");
     public static Item itemScanner = new scanner();
     public static Item researchDevice = new researchDevice();
-    public static Block collector = new collector();
+    public static Block dataRecorder = new dataRecorder();
     public static Item reel = new ItemReel();
     //public static Item itemScanner = new itemScanner();
     //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
@@ -133,6 +137,9 @@ public class Electrolysm
     public static Item ingots = new ingots();
     public static Item Scandium = new Scandium();
     public static Block Yttrium = new Yttrium().setBlockName("yttrium");
+    public static Block aluminiumOre = new aluminiumOre().setBlockName("aluminiumOre");
+    public static Item aluminiumIngot = new aluminiumIngot();
+
 
     //Biome
     public static Item spawnZS = new spawnZS();
@@ -183,6 +190,8 @@ public class Electrolysm
 
     //Power System
     public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
+    public static Block basicCable = new basicCable().setBlockName("basicCable");
+    public static Block advancedCable = new advancedCable().setBlockName("advancedCable");
     public static Item ItemWire = new ItemWire();
     public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
     public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
@@ -223,6 +232,7 @@ public class Electrolysm
     public static Block electrolisisCore = new electrolisisCore().setBlockName("electrolysisCore");
     public static Block electrolChamber = new electrolChamber(null, false, ContectedTexture).setBlockName("electrolChamber");
     public static Block seperator = new seporator(false).setBlockName("seperator");
+    publis static Block improvedFurnace = new improvedFurnace().setBlockName("improvedFurnace");
     public static BlockContainer smeltory = (BlockContainer) new smeltory(false).setCreativeTab(TabElectrolysm).setBlockName("smeltory");
     public static Item impureDusts = new impureDusts();
     public static Item dusts = new dusts();
@@ -261,7 +271,8 @@ public class Electrolysm
     public static Potion acidBurns = new acidBurns(configHandler.acidBurnsID, true, 0);
     public static Item steel = new ItemCrafting().setUnlocalizedName("steel");
     public static Block steelBlock = new BlockCrafting(6.23F, "steelBlock", Material.iron);
-
+    public static Item pureCopperIngot = new pureCopperIngot();
+    public static Item silicon = new silicon();
     public static Block antiMatterCasing = new antiMatterCasing().setBlockName("antiMatterCasing");
     public static Block magnet = new magnet().setBlockName("magnet");
     //Fuels

@@ -1,4 +1,4 @@
-package electro.powerSystem.generators;
+package electro.oreProccessing;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import electro.Electrolysm;
@@ -6,14 +6,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 
-public class advancedGenerator extends Block
+public class improvedFurnace extends Block
 {
-    public advancedGenerator()
+    public improvedFurnace()
     {
         super(Material.iron);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2F);
-        LanguageRegistry.addName(this, "Produces More Energy Than Generator ");
+        LanguageRegistry.addName(this, "A Better Furnace");
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeMetal);
     }

@@ -75,7 +75,6 @@ public class ResearchRegistry
         this.registerResearch(new Research("pure_copper", this.METALS_AND_ELEMENTS, new Point(33, 19), 3));
         this.registerResearch(new Research("aluminium", this.METALS_AND_ELEMENTS, new Point(33, 19), 3));
         this.registerResearch(new Research("alloys", this.METALS_AND_ELEMENTS, new Point(32, 22), 2));
-        this.registerResearch(new Research("solder", this.METALS_AND_ELEMENTS, new Point(23, 14), 3));
         this.registerResearch(new Research("bronze", this.METALS_AND_ELEMENTS, new Point(23, 14), 3));
         this.registerResearch(new Research("steel", this.METALS_AND_ELEMENTS, new Point(23, 14), 3));
         this.registerResearch(new Research("silicon", this.METALS_AND_ELEMENTS, new Point(25, 30), 2));

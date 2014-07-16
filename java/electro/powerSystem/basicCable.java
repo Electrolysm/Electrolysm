@@ -6,15 +6,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 
-public class basicEnergyStorage extends Block
+public class basicCable extends Block
 {
-    public basicEnergyStorage()
+    public basicCable()
     {
-        super(Material.iron);
+        super(Material.cloth);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
-        this.setHardness(2F);
-        LanguageRegistry.addName(this, "Energy Storage");
+        this.setHardness(5F);
+        LanguageRegistry.addName(this, "Energy Transport");
         setHarvestLevel("pickaxe",1);
-        setStepSound(soundTypeMetal);
+        setStepSound(soundTypeCloth);
     }
 }

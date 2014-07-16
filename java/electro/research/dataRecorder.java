@@ -20,12 +20,12 @@ import net.minecraft.world.World;
 /**
  * Created by Ben on 21/06/2014.
  */
-public class collector extends BlockContainer
+public class dataRecorder extends BlockContainer
 {
-    public collector()
+    public dataRecorder()
     {
         super(Material.iron);
-        this.setBlockName("environmentalCollector");
+        this.setBlockName("dataRecorder");
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2.5F);
     }
