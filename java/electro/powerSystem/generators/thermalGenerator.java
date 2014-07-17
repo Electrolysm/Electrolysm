@@ -13,7 +13,6 @@ public class thermalGenerator extends Block
         super(Material.iron);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2F);
-        LanguageRegistry.addName(this, "Uses Thermal Energy To Produce Electricity ");
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeMetal);
     }

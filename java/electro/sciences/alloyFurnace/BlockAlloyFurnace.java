@@ -7,9 +7,11 @@ import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 /**
@@ -17,6 +19,8 @@ import net.minecraft.world.World;
  */
 public class BlockAlloyFurnace extends BlockContainer
 {
+    @SideOnly(Side.CLIENT)
+    IIcon[] icons;
     public BlockAlloyFurnace()
     {
         super(Material.iron);
@@ -25,6 +29,22 @@ public class BlockAlloyFurnace extends BlockContainer
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness((12F / 4F) + 0.056F);
 
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        icons = new IIcon[2];
+        icons[0] = reg.registerIcon("electrolysm:alloyFurnaceSide");
+        icons[1] = reg.registerIcon("electrolysm:alloyFurnaceTop");
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        if(side == 0 || side == 1) {
+            return icons[1];
+        } else {
+            return icons[0];
+        }
     }
 
     @Override

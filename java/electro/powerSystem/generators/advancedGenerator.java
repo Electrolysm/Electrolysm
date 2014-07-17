@@ -13,7 +13,6 @@ public class advancedGenerator extends Block
         super(Material.iron);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2F);
-        LanguageRegistry.addName(this, "Produces More Energy Than Generator ");
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeMetal);
     }

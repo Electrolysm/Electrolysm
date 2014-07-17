@@ -12,6 +12,6 @@ public class silicon extends Item
     {
         super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
-        this.setUnlocalizedName("Silicon");
+        this.setUnlocalizedName("silicon");
     }
 }

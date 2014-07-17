@@ -12,9 +12,9 @@ public class Names
 {
     public static void addName()
     {
-        LanguageRegistry.addName(Electrolysm.workBench, "Work Bench");
-        LanguageRegistry.addName(Electrolysm.desk, "Scientist's Desk");
-        LanguageRegistry.addName(Electrolysm.researchDesk, "Research Desk");
+        //LanguageRegistry.addName(Electrolysm.workBench, "Work Bench");
+        //LanguageRegistry.addName(Electrolysm.desk, "Scientist's Desk");
+        /*LanguageRegistry.addName(Electrolysm.researchDesk, "Research Desk");
         LanguageRegistry.addName(Electrolysm.blastProof, "Blast Proof Iron Block");
         LanguageRegistry.addName(Electrolysm.blastDoor, "Blast Proof Iron Door");
         LanguageRegistry.addName(Electrolysm.energiser, "Fluid Energiser");
@@ -83,7 +83,7 @@ public class Names
         LanguageRegistry.addName(Electrolysm.researchDevice, "Research Identification Tablet");
         LanguageRegistry.addName(Electrolysm.itemScanner, "Analyser");
         LanguageRegistry.addName(Electrolysm.neutraliser, "Neutralising Compound");
-
+*/
         for(int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i++)
         {
             LanguageRegistry.addName(new ItemStack(Electrolysm.electroContain, 1, i), "Electromagenetic Containment Unit");

@@ -47,7 +47,7 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.workBench), new ItemRenderWorkBench());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.charger), new ItemRenderCharger());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.collector), new ItemRenderCollector());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.dataRecorder), new ItemRenderCollector());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.desk), new ItemRenderDesk());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.electrolisisCore), new ItemRenderElectrolysis());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.matrix), new ItemRenderMatrix());

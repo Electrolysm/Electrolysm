@@ -106,7 +106,7 @@ public class Electrolysm
     @Instance("Electrolysm")
     public static Electrolysm GUIInstance;
     //Basic Machines
-    public static Block workBench = new workBench().setBlockName("workBech");
+    public static Block workBench = new workBench().setBlockName("workBench");
     public static Block desk = new desk().setBlockName("desk");
     //Advanced Machines
     public static Block injector = new injector().setBlockName("injector");
@@ -232,7 +232,7 @@ public class Electrolysm
     public static Block electrolisisCore = new electrolisisCore().setBlockName("electrolysisCore");
     public static Block electrolChamber = new electrolChamber(null, false, ContectedTexture).setBlockName("electrolChamber");
     public static Block seperator = new seporator(false).setBlockName("seperator");
-    publis static Block improvedFurnace = new improvedFurnace().setBlockName("improvedFurnace");
+    public static Block improvedFurnace = new improvedFurnace().setBlockName("improvedFurnace");
     public static BlockContainer smeltory = (BlockContainer) new smeltory(false).setCreativeTab(TabElectrolysm).setBlockName("smeltory");
     public static Item impureDusts = new impureDusts();
     public static Item dusts = new dusts();

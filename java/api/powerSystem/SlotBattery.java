@@ -29,15 +29,15 @@ public class SlotBattery extends Slot {
 
 	private boolean isStackBattery(ItemStack stack) 
 	{
-		if(stack.getItem() == Electrolysm.basicStorage)
+		if(stack.getItem() == Electrolysm.basicBattery)
 		{
 			return true;
 		}
-		else if(stack.getItem() == Electrolysm.advancedStorage)
+		else if(stack.getItem() == Electrolysm.advancedBattery)
 		{
 			return true;
 		}
-		else if(stack.getItem() == Electrolysm.experimentalStorage)
+		else if(stack.getItem() == Electrolysm.experimentalBattery)
 		{
 			return true;
 		}

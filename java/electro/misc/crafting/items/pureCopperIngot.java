@@ -12,7 +12,7 @@ public class pureCopperIngot extends Item
     {
         super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
-        this.setUnlocalizedName("Pure CopperIngot");
+        this.setUnlocalizedName("pureIngotCopper");
     }
 }
 

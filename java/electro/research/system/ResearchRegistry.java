@@ -162,7 +162,7 @@ public class ResearchRegistry
 
         // Robotics research requirements
         this.linkResearch(this.getResearch("intergrated_circuit"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("silicon")));
-        this.linkResearch(this.getResearch("CPU"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("molder"), this.getResearch("solder")));
+        this.linkResearch(this.getResearch("CPU"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("molder")/*, this.getResearch("solder")*/));
         this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("endothermic_cable"), this.getResearch("CPU"), this.getResearch("injection_molder")));
 
         // Machines Research requirements

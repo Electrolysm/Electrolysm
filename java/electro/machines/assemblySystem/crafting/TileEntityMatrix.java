@@ -1,5 +1,6 @@
 package electro.machines.assemblySystem.crafting;
 
+import electro.handlers.network.MessageMatrix;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -16,6 +17,7 @@ public class TileEntityMatrix extends TileEntityMatrixInventory
     @Override
     public void updateEntity() {
 
+        new MessageMatrix(this);
         height = 0F;
     }
 

@@ -65,5 +65,12 @@ public class WorldGenOres implements IWorldGenerator
             int zCoord = chunkZ + random.nextInt(16);
             (new WorldGenMinable(Electrolysm.Yttrium, 5)).generate(world, random, xCoord, yCoord, zCoord);
         }
+        for (int i = 0; i < 23; i++)
+        {
+            int xCoord = chunkX + random.nextInt(16);
+            int yCoord = random.nextInt(50);
+            int zCoord = chunkZ + random.nextInt(16);
+            (new WorldGenMinable(Electrolysm.aluminiumOre, 5)).generate(world, random, xCoord, yCoord, zCoord);
+        }
     }
 }

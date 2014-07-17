@@ -13,7 +13,6 @@ public class basicCable extends Block
         super(Material.cloth);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(5F);
-        LanguageRegistry.addName(this, "Energy Transport");
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeCloth);
     }

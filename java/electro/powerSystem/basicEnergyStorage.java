@@ -13,7 +13,6 @@ public class basicEnergyStorage extends Block
         super(Material.iron);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2F);
-        LanguageRegistry.addName(this, "Energy Storage");
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeMetal);
     }
