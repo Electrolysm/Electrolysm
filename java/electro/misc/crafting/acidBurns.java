@@ -20,7 +20,7 @@ public class acidBurns extends Potion {
     public void performEffect(EntityLivingBase entity, int par2)
     {
     	Random rand = new Random();
-		entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(8));
+		entity.attackEntityFrom(new DamageSourceSulphuricAcid("death.attack.sulphuricBurn"), rand.nextInt(3));
     }
 
 	

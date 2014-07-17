@@ -29,7 +29,7 @@ public class WorldGenDiseasedTree extends WorldGenerator
         }
         else if(id.contains("leaves"))
         {
-            return (treeLeaves = new BlockTreeLeaves(1));
+            return (treeLeaves = new BlockTreeLeaves(1)).setBlockName("diseasedLeaves");
         }
         else if(id.contains("sapling"))
         {

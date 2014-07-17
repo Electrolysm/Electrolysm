@@ -98,7 +98,7 @@ public class Electrolysm
 {
     private static String[] ContectedTexture = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
 
-    public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(), "Electrolysm");
+    public static CreativeTabs TabElectrolysm = new TabElectrolysm(CreativeTabs.getNextID(), "electrolysm.core");
     //public static CreativeTabs TabElements = new TabElements(CreativeTabs.getNextID(), "Electrolysm|Elements & Wizardy");
     
     public static GUIHandler guiHandler = new GUIHandler();

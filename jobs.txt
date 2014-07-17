@@ -8,12 +8,10 @@ Ellio98's Jobs:
 >TEST FOR BUGS
 
 Clarky158's Jobs:
->Make alloy furnace (2 coal to 1 iron == steel, )
 >Finish power generation, movement and storage
->Make a better way to build microchips and transistors (Not this release)
 >Make textures
 
-Note to Clarky158 : I will make a deal with you; you can put in 'The basics' if it does not count 
+Note to Clarky158 : I will make a deal with you; you can put in 'The basics' if it does not count
 as a research and to also delete the micraft forms page so i can make one, this means i take
 over on that sutff so you can focus on coding/ textures.
 
@@ -23,3 +21,6 @@ broke it.
 P.S I have fixed you spelling mistakes, but in future please check!!
 
 Note to Ellio98 : Hurry up, I've nearly done all my jobs!!!
+
+Jobs for next release - ore when all jobs are done and Im waiting for the trailer to be finished!
+>Make a better way to build microchips and transistors (Not this release)

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.IChatComponent;
@@ -37,11 +38,11 @@ public class DamageSourceSulphuricAcid extends DamageSource
 		
 		if(entity instanceof EntityPlayer)
 		{
-			return IChatComponent.Serializer.func_150699_a(((EntityPlayer)entity).getDisplayName() + message[rand.nextInt(2)]);
+			return new ChatComponentTranslation(((EntityPlayer)entity).getDisplayName() + message[rand.nextInt(2)]);
 		}
 		else
 		{
-			return IChatComponent.Serializer.func_150699_a("Someone died due to acidic burns! But who was it?");
+			return new ChatComponentTranslation("Someone died due to acidic burns! But who was it?");
 		}
     }
 }
