@@ -20,14 +20,13 @@ public class experimentalCable extends BlockContainer
     public experimentalCable()
     {
         super(Material.cloth);
-        //this.setCreativeTab(electrolysmCore.TabElectrolysm);
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(0.25F);
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntityWire();
     }
 

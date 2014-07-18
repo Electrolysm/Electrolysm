@@ -1,5 +1,6 @@
 package electro.powerSystem;
 
+import api.powerSystem.interfaces.IPowerCore;
 import api.powerSystem.meter.IMeterable;
 import electro.Electrolysm;
 import electro.handlers.helpers.CollectorHelper;
@@ -59,13 +60,26 @@ public class energyMeter extends Item
                     this.printMessageCollector(CollectorHelper.getEnvironmentalData(world, x, y, z));
                     return true;
                 }
+                if(worldTE instanceof IPowerCore)
+                {
+                    IPowerCore core = (IPowerCore)worldTE;
+                    this.printMessagePowerCore(core);
+                }
             }
         }
 
         return false;
     }
 
-	private void printOreMessage(World world, int x, int y, int z, IMeterable te) 
+    private void printMessagePowerCore(IPowerCore core) {
+
+        String message = "This core is holding: " + core.getTeU().getValue() + "TeU";
+
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                new ChatComponentTranslation(message));
+    }
+
+    private void printOreMessage(World world, int x, int y, int z, IMeterable te)
 	{
 		Block block = te.getBlock();
 		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block).getValue() + "TeU";

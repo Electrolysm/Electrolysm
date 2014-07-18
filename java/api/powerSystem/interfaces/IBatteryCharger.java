@@ -1,4 +1,4 @@
-package api.powerSystem;
+package api.powerSystem.interfaces;
 
 import net.minecraft.item.ItemStack;
 

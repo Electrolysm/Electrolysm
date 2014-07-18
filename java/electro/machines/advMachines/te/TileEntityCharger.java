@@ -1,11 +1,7 @@
 package electro.machines.advMachines.te;
 
-import api.powerSystem.usageMachine.TileEntityEnergyMachine;
+import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityCharger extends TileEntityEnergyMachine
+public class TileEntityCharger extends TileEntity
 {
-    public int getActivationEnergy()
-    {
-        return 250;
-    }
 }

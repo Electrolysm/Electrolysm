@@ -1,41 +1,38 @@
 package electro.powerSystem.te;
 
+import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.prefab.TileEntityBasicCable;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityWire extends TileEntityBasicCable
+public class TileEntityWire extends TileEntityBasicCable implements IConnector
 {
-    protected boolean[] visuallyConnected = new boolean[6];
-/*
     @Override
     public void updateEntity()
     {
         for (byte i = 0; i < 6; i++)
         {
-            //ForgeDirection dir = ForgeDirection.getOrientation(i);
+            ForgeDirection dir = ForgeDirection.getOrientation(i);
             this.updateConnection(this.worldObj.getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
                                   this.zCoord + dir.offsetZ), dir);
         }
     }
 
-
-	@Override
+    @Override
 	public boolean canConnect(ForgeDirection from, Object source) {
-		// TODO Auto-generated method stub
 		return this.updateConnection(source, from);
 	}
     
     public boolean updateConnection(Object obj, ForgeDirection side)
     {
-        int thisID = worldObj.getBlockId(xCoord, yCoord, zCoord);
+        Block thisID = worldObj.getBlock(xCoord, yCoord, zCoord);
 
         if(obj instanceof TileEntity)
         {
         	TileEntity source = (TileEntity)obj;
         	
-	        if (!this.worldObj.isRemote && source != null && this.canConnect(side))
-	        {
-	        }
-	        else if (source instanceof TileEntityWire)
+	        if (source instanceof TileEntityWire)
 	        {
 	            TileEntityWire tileEntityIns = (TileEntityWire) source;
 	
@@ -46,11 +43,11 @@ public class TileEntityWire extends TileEntityBasicCable
 	                return true;
 	            }
 	        }
-	        else if (source instanceof IConnectable)
+	        else if (source instanceof IConnector)
 	        {
-	        	IConnectable tileEntityIns = (IConnectable) source;
+                IConnector tileEntityIns = (IConnector) source;
 	
-	            if (((IConnectable) source).canConnect(side.getOpposite(), tileEntityIns))
+	            if (((IConnector) source).canConnect(side.getOpposite(), tileEntityIns))
 	            {
 	                this.adjacentConnections[side.ordinal()] = source;
 	                this.visuallyConnected[side.ordinal()] = true;
@@ -70,16 +67,23 @@ public class TileEntityWire extends TileEntityBasicCable
         return false;
     }
 
+    @Override
     public boolean canConnect(ForgeDirection side)
     {
         return true;
     }
-*/
+
+    @Override
     public boolean[] getVisualConnections()
     {
         return this.visuallyConnected;
     }
-/*
+
+    @Override
+    public TileEntity[] getAdjConnections() {
+        return this.adjacentConnections;
+    }
+    /*
     public TileEntity[] getAdjacentConnections()
     {
         return adjacentConnections;

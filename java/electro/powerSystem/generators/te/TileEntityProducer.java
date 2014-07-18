@@ -1,18 +1,12 @@
 package electro.powerSystem.generators.te;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import api.powerSystem.IBatteryCharger;
+import api.powerSystem.interfaces.IBatteryCharger;
+import api.powerSystem.prefab.TileEntityGenerator;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 
-public class TileEntityProducer extends TileEntity implements IBatteryCharger
+public class TileEntityProducer extends TileEntityGenerator implements IBatteryCharger
 {
 	public static int capacity;
 	

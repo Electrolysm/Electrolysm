@@ -2,6 +2,8 @@ package electro.oreProccessing.te;
 
 import java.util.Random;
 
+import api.powerSystem.TeU;
+import api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +17,7 @@ import api.powerSystem.PowerUsage;
 import api.powerSystem.meter.IMeterable;
 import electro.oreProccessing.recipes.CrusherRecipes;
 
-public class TileEntityCrusher extends TileEntity implements IInventory, ISidedInventory, IMeterable
+public class TileEntityCrusher extends TileEntityMachine implements IInventory, ISidedInventory, IMeterable
 {
     private ItemStack[] inventory;
     public boolean isOpen;
@@ -135,6 +137,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
     @Override
     public void updateEntity()
     {
+        super.updateEntity();
     	this.markDirty();
     	
     	ItemStack battery = getStackInSlot(3);
@@ -169,7 +172,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
         	result2 = new ItemStack(result.getItem(), result.stackSize + extraDust, result.getItemDamage());
         }
         
-        if(true)//battery != null && battery.getItemDamage() > 0)
+        if(this.canWork())//battery != null && battery.getItemDamage() > 0)
         {
 	        if (inStack != null)
 	        {
@@ -189,6 +192,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 		                        this.setInventorySlotContents(1, result2);
 		                        this.markDirty();
 		                		//battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
+                                this.work(new TeU(requiredEnergy));
 	                    	}
 	                    	else
 	                    	{/*
@@ -200,6 +204,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	                    		{
 	                    			battery.setItemDamage(0);
 	                    		}*/
+                                this.work(new TeU(requiredEnergy));
 	                    		time = time + 1;
 	                    	}
 	                    }
@@ -217,6 +222,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 		                        this.decrStackSize(0, 1);
 		                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
 		                        this.markDirty();
+                                this.work(new TeU(requiredEnergy));
 	                    		/*if((battery.getItemDamage() - this.requiredEnergy) > 0)
 	                    		{
 	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
@@ -236,6 +242,7 @@ public class TileEntityCrusher extends TileEntity implements IInventory, ISidedI
 	                    		{
 	                    			battery.setItemDamage(0);
 	                    		}*/
+                                this.work(new TeU(requiredEnergy));
 	                    		time = time + 1;
 	                    	}
 	                    }

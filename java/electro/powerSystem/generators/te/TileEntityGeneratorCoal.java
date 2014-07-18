@@ -1,5 +1,6 @@
 package electro.powerSystem.generators.te;
 
+import api.powerSystem.PowerUsage;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -69,6 +70,7 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     @Override
     public void updateEntity()
     {
+        super.updateEntity();
     	if(!(worldObj.isRemote))
     	{
     		this.updateCoal();
@@ -83,7 +85,7 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
    
     private void updateCoal()
     {
-    	if(this.getStackInSlot(1) != null)
+    	if(true)
     	{
     		if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
     		{
@@ -104,10 +106,11 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     			}
     		}
 
-    		if(time != 0 && (this.getStackInSlot(1).getItemDamage() + 1) <= this.getStackInSlot(1).getMaxDamage())
+    		if(time != 0 && this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
         	{
         		this.time = time - 1;
-        		this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
+        		//this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
+                this.produce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord)));
         	}
         	else
         	{

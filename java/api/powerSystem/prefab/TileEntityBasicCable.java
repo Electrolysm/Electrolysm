@@ -1,72 +1,47 @@
 package api.powerSystem.prefab;
 
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.relauncher.Side;
+import api.powerSystem.interfaces.ICable;
+import api.powerSystem.interfaces.IConnector;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
 
-public class TileEntityBasicCable extends TileEntity /*implements IConductor/*, IEnergyContainer, IEnergyInterface,
-														IEnergyNetwork*/{
+public class TileEntityBasicCable extends TileEntity implements ICable {
 
-	/*protected IEnergyNetwork network;
-    public TileEntity[] adjacentConnections = new TileEntity[6];
+    protected boolean[] visuallyConnected = new boolean[6];
+    protected TileEntity[] adjacentConnections = new TileEntity[6];
 
-	@Override
-	public Object[] getConnections() 
-	{
-		return adjacentConnections;
-	}
+    @Override
+    public float getMaxTeu() {
+        return 10000;
+    }
 
-	@Override
-	public IConnector<IEnergyNetwork> getInstance(ForgeDirection dir) 
-	{
-		return this;
-	}
+    @Override
+    public float getMaxResistance() {
+        return 10000;
+    }
 
-	@Override
-	public IEnergyNetwork getNetwork() 
-	{
-	    if (this.network == null)
-	    {
-	      setNetwork(EnergyNetworkLoader.getNewNetwork(new IConductor[] { this }));
-	    }
-	    
-		return network;
-	}
-
-	@Override
-	public void setNetwork(IEnergyNetwork networkPre) 
-	{
-		network = networkPre;
-	}
-
-	@Override
-	public boolean canConnect(ForgeDirection from, Object source) 
-	{
-		return false;
-	}
-
-	@Override
-	public long onReceiveEnergy(ForgeDirection from, long receive, boolean doReceive) 
-	{
-	    return this.getNetwork().produce(this, from.getOpposite(), receive, doReceive);
-	}
-
-	@Override
-	public long onExtractEnergy(ForgeDirection from, long extract, boolean doExtract) 
-	{
-	    return 0L;//this.getNetwork().extract(this, from.getOpposite(), extract, doExtract);
-	}
-
-	@Override
-	public float getResistance() 
-	{
-		return (float) 0;
-	}
-
-	@Override
-	public long getCurrentCapacity() 
-	{
-		return (long)Integer.MAX_VALUE;
-	}*/
+    @Override
+    public TEPowerCore findCore(ForgeDirection exclude, int clicks) {
+        TileEntity[] adj = this.adjacentConnections;
+        TEPowerCore[] coreArray = new TEPowerCore[6];
+        for (int i = 0; i < adj.length; i++) {
+            clicks++;
+            if (i != exclude.ordinal() && adj[i] != null && adj[i] instanceof IConnector && clicks <= 500) {
+                IConnector connector = (IConnector) adj[i];
+                if (adj[i] instanceof TEPowerCore) {
+                    return (TEPowerCore) adj[i];
+                } else {
+                    if (adj[i] instanceof ICable) {
+                        ICable cable = (ICable) adj[i];
+                        TEPowerCore te = cable.findCore(ForgeDirection.getOrientation(i).getOpposite(), clicks);
+                        if(i == (adj.length - 1) && te == null) { return null; }
+                        else if(te == null) {  }
+                        else if(te != null) { return te; }
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }
