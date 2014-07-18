@@ -3,6 +3,7 @@ package api.powerSystem.prefab;
 import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.interfaces.IPowerCore;
 import api.powerSystem.TeU;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -12,8 +13,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 {
 
-    private TeU teuData = new TeU(0);
-    private TeU maxTeU = new TeU(20);
+    private int teuData = 0;
+    private int maxTeU = 100000;
 
     @Override
     public boolean canConnect(ForgeDirection from, Object source) {
@@ -38,49 +39,41 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public float getAmps()
     {
-        int value = getTeU().getValue();
-        float amps = (float)((value * Math.PI) / Math.E);
-        amps = (float)(Math.sqrt(amps * Math.sin(amps)));
-
-        return amps + getTeU().getValue();
+        return (float)(Math.abs(Math.sin(getTeU())));
     }
 
     @Override
-    public TeU getTeU()
+    public int getTeU()
     {
-        return this.teuData;
+        return teuData;
     }
 
     @Override
-    public void setTeU(TeU teu) { this.teuData = teu; }
+    public void setTeU(int teu) {
+        this.teuData = teu;
+    }
 
     @Override
-    public boolean hasSuitablePower(TeU teu, float amps)
+    public boolean hasSuitablePower(int teu, float amps)
     {
-        if(teu == null || this.getTeU() == null) { return false; }
-        return (this.getTeU().getValue() >= teu.getValue()) && (this.getAmps() >= amps);
+        return (teuData > 0);// && (this.getAmps() >= amps);
     }
 
     @Override
     public void drainPower(int amount)
     {
-        this.setTeU(new TeU(this.getTeU().getValue() - amount));
+        this.setTeU(getTeU() - amount);
     }
 
     @Override
-    public void drainPower(TeU teu)
-    {
-        this.setTeU(new TeU(this.getTeU().getValue() - teu.getValue()));
+    public boolean canHold(int teu) {
+        return ((this.getTeU() + teu) <= maxTeU);
+        //return true;
     }
 
     @Override
-    public boolean canHold(TeU teu) {
-        return ((this.getTeU().getValue() + teu.getValue()) <= maxTeU.getValue());
-    }
-
-    @Override
-    public void charge(TeU teu) {
-        this.setTeU(new TeU(this.getTeU().getValue() + teu.getValue()));
+    public void charge(int teu) {
+        this.setTeU((this.getTeU() + teu));
     }
 
     @Override
@@ -90,12 +83,26 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
     @Override
     public void setEmpty() {
-        this.setTeU(new TeU(0));
+        this.setTeU((0));
     }
 
     @Override
     public void updateEntity() {
-        System.out.println("TeU" + this.getTeU().getValue());
-        System.out.println("Amps" + this.getAmps());
+
+        if(this.getTeU() < 0) { setEmpty(); }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+
+        nbt.setInteger("teuCurrent", teuData);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+
+        teuData = nbt.getInteger("teuCurrent");
     }
 }

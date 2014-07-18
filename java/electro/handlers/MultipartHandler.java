@@ -1,5 +1,8 @@
 package electro.handlers;
 
+import codechicken.microblock.BlockMicroMaterial;
+import electro.Electrolysm;
+
 public class MultipartHandler
 {
     private static MultipartHandler instance = null;
@@ -14,17 +17,17 @@ public class MultipartHandler
 	
 	public MultipartHandler()
 	{
-        //this.addMultiparts();
+        this.addMultiparts();
 	}
 
 	private void addMultiparts()
 	{
-       // BlockMicroMaterial.createAndRegister(electrolysmCore.blastBrick, "Blast Proof Iron Brick");
-       // BlockMicroMaterial.createAndRegister(electrolysmCore.blastProof, "Blast Proof Iron Block");
-      //  BlockMicroMaterial.createAndRegister(electrolysmCore.BlockLumRed, "Luminous Redstone Block");
-     //   BlockMicroMaterial.createAndRegister(electrolysmCore.diseaseGrass, "Diseased Grass");
-      //  BlockMicroMaterial.createAndRegister(electrolysmCore.graphite, "Graphite");
-        //BlockMicroMaterial.createAndRegister(electrolysmCore.stoneObsidian, "Stone");
-      // BlockMicroMaterial.createAndRegister(electrolysmCore.sulphurOre, "Sulphur Ore");
+        BlockMicroMaterial.createAndRegister(Electrolysm.blastBrick, "Blast Proof Iron Brick");
+        BlockMicroMaterial.createAndRegister(Electrolysm.blastProof, "Blast Proof Iron Block");
+        BlockMicroMaterial.createAndRegister(Electrolysm.BlockLumRed, "Luminous Redstone Block");
+        BlockMicroMaterial.createAndRegister(Electrolysm.diseaseGrass, "Diseased Grass");
+        BlockMicroMaterial.createAndRegister(Electrolysm.graphite, "Graphite");
+        BlockMicroMaterial.createAndRegister(Electrolysm.stoneObsidian, "Stone");
+        BlockMicroMaterial.createAndRegister(Electrolysm.sulphurOre, "Sulphur Ore");
 	}
 }

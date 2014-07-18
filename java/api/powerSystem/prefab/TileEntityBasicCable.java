@@ -2,11 +2,12 @@ package api.powerSystem.prefab;
 
 import api.powerSystem.interfaces.ICable;
 import api.powerSystem.interfaces.IConnector;
+import codechicken.multipart.TileMultipart;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 
-public class TileEntityBasicCable extends TileEntity implements ICable {
+public class TileEntityBasicCable extends TileMultipart implements ICable {
 
     protected boolean[] visuallyConnected = new boolean[6];
     protected TileEntity[] adjacentConnections = new TileEntity[6];

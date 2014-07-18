@@ -1,7 +1,5 @@
 package api.powerSystem.interfaces;
 
-import api.powerSystem.TeU;
-
 /**
  * Created by Ben on 18/07/2014.
  */
@@ -9,19 +7,17 @@ public interface IPowerCore
 {
     public float getAmps();
 
-    public TeU getTeU();
+    public int getTeU();
 
-    public void setTeU(TeU teu);
+    public void setTeU(int teu);
 
-    public boolean hasSuitablePower(TeU teu, float amps);
+    public boolean hasSuitablePower(int teu, float amps);
 
     public void drainPower(int amount);
 
-    public void drainPower(TeU teu);
+    public boolean canHold(int teu);
 
-    public boolean canHold(TeU teu);
-
-    public void charge(TeU teu);
+    public void charge(int teu);
 
     public void setFull();
 

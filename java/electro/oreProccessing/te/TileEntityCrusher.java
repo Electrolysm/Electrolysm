@@ -132,7 +132,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
     public int time = 0;
     public int maxCrushTime = 400;
     public int crushTime = 400;
-    public int requiredEnergy = PowerUsage.getTeUFromMap(this.getBlock()).getValue();
+    public int requiredEnergy = PowerUsage.getTeUFromMap(this.getBlock());
     
     @Override
     public void updateEntity()
@@ -172,7 +172,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
         	result2 = new ItemStack(result.getItem(), result.stackSize + extraDust, result.getItemDamage());
         }
         
-        if(this.canWork())//battery != null && battery.getItemDamage() > 0)
+        if(this.canWork(this.requiredEnergy))//battery != null && battery.getItemDamage() > 0)
         {
 	        if (inStack != null)
 	        {
@@ -192,7 +192,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
 		                        this.setInventorySlotContents(1, result2);
 		                        this.markDirty();
 		                		//battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
-                                this.work(new TeU(requiredEnergy));
+                                this.work(this.requiredEnergy);
 	                    	}
 	                    	else
 	                    	{/*
@@ -204,7 +204,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
 	                    		{
 	                    			battery.setItemDamage(0);
 	                    		}*/
-                                this.work(new TeU(requiredEnergy));
+                                this.work(requiredEnergy);
 	                    		time = time + 1;
 	                    	}
 	                    }
@@ -222,7 +222,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
 		                        this.decrStackSize(0, 1);
 		                        output.stackSize = (output.stackSize + result.stackSize + extraDust);
 		                        this.markDirty();
-                                this.work(new TeU(requiredEnergy));
+                                this.work(requiredEnergy);
 	                    		/*if((battery.getItemDamage() - this.requiredEnergy) > 0)
 	                    		{
 	                    			battery.setItemDamage(battery.getItemDamage() - this.requiredEnergy);
@@ -242,7 +242,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
 	                    		{
 	                    			battery.setItemDamage(0);
 	                    		}*/
-                                this.work(new TeU(requiredEnergy));
+                                this.work(requiredEnergy);
 	                    		time = time + 1;
 	                    	}
 	                    }

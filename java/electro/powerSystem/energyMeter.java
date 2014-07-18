@@ -39,7 +39,7 @@ public class energyMeter extends Item
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x,
                              int y, int z, int par7, float par8, float par9, float par10)
     {
-        if (world.isRemote)
+        if (!world.isRemote)
         {
             if (player.isSneaking())
             {
@@ -73,7 +73,7 @@ public class energyMeter extends Item
 
     private void printMessagePowerCore(IPowerCore core) {
 
-        String message = "This core is holding: " + core.getTeU().getValue() + "TeU";
+        String message = "This core is holding: " + core.getTeU() + "TeU";
 
         FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
                 new ChatComponentTranslation(message));
@@ -82,7 +82,7 @@ public class energyMeter extends Item
     private void printOreMessage(World world, int x, int y, int z, IMeterable te)
 	{
 		Block block = te.getBlock();
-		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block).getValue() + "TeU";
+		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block) + "TeU";
 		
 		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
                 new ChatComponentTranslation(message));

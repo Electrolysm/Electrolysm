@@ -1,5 +1,6 @@
 package electro.powerSystem.generators.te;
 
+import api.powerSystem.PowerUsage;
 import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
@@ -74,29 +75,30 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
     @Override
     public void updateEntity()
     {
+        super.updateEntity();
     	if(!(worldObj.isRemote))
 	        	this.updateAntiMatter();
     }
    
     private void updateAntiMatter()
     {
-    	if(this.getStackInSlot(2) != null)
+    	if(true)
     	{
-	    	boolean canProduce = true;
+	    	boolean canProduce = this.canProduce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)) / 10);
 	    	
 	    	if(!(this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord)))
 	    	{
 	    		time = 0;
 	    		return;
 	    	}
-	    	
-	    	ItemStack nuggetGold = new ItemStack(Items.gold_nugget);
-	    	
-	    	if((this.getItemBurnTime(this.getStackInSlot(0)) != 0 && this.getStackInSlot(1) != null) && time == 0 && canProduce)
+
+            ItemStack nuggetGold = new ItemStack(Items.gold_nugget);
+
+            if((this.getItemBurnTime(this.getStackInSlot(0)) != 0 && this.getStackInSlot(1) != null) && time == 0 && canProduce)
 	        {
-	        	burnTime = this.getItemBurnTime(this.getStackInSlot(0));
-	        }
-	        if((this.getStackInSlot(0) != null && this.getStackInSlot(1) != null) && time == 0 && canProduce)
+                burnTime = this.getItemBurnTime(this.getStackInSlot(0));
+            }
+            if((this.getStackInSlot(0) != null && this.getStackInSlot(1) != null) && time == 0 && canProduce)
 	        {
 		        if((this.getStackInSlot(0).isItemEqual(antiMatter) && this.getStackInSlot(1).isItemEqual(nuggetGold)) && canProduce)
 		        {
@@ -116,8 +118,7 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
 	    		
 	    		if(canProduce)
 	    		{
-	    			this.setInventorySlotContents(2, this.chargedBatteryWithAmount(this.generatorPower[0], this.getStackInSlot(2), 
-		    				this.getStackInSlot(2).getMaxDamage()));
+                    this.produce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)) / 10);
 	    			this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
 	    		}
 	    	}

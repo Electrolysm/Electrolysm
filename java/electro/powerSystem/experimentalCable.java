@@ -67,14 +67,14 @@ public class experimentalCable extends BlockContainer
         TileEntity tileEntity = par1IBlockAccess.getTileEntity(x, y, z);
 
         if (tileEntity instanceof TileEntityWire)
-        {/*
-            TileEntityWire te = (TileEntityWire) inventory;
-            this.minX = te.getAdjacentConnections()[4] != null ? 0F : 0.3F;
-            this.minY = te.getAdjacentConnections()[0] != null ? 0F : 0.3F;
-            this.minZ = te.getAdjacentConnections()[2] != null ? 0F : 0.3F;
-            this.maxX = te.getAdjacentConnections()[5] != null ? 1F : 0.7F;
-            this.maxY = te.getAdjacentConnections()[1] != null ? 1F : 0.7F;
-            this.maxZ = te.getAdjacentConnections()[3] != null ? 1F : 0.7F;*/
+        {
+            TileEntityWire te = (TileEntityWire) tileEntity;
+            this.minX = te.getAdjConnections()[4] != null ? 0F : 0.3F;
+            this.minY = te.getAdjConnections()[0] != null ? 0F : 0.3F;
+            this.minZ = te.getAdjConnections()[2] != null ? 0F : 0.3F;
+            this.maxX = te.getAdjConnections()[5] != null ? 1F : 0.7F;
+            this.maxY = te.getAdjConnections()[1] != null ? 1F : 0.7F;
+            this.maxZ = te.getAdjConnections()[3] != null ? 1F : 0.7F;
         }
     }
 

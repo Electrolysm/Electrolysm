@@ -1,5 +1,9 @@
 package electro.handlers;
 
+import api.powerSystem.prefab.TEPowerCore;
+import api.powerSystem.prefab.TileEntityBasicCable;
+import api.powerSystem.prefab.TileEntityGenerator;
+import api.powerSystem.prefab.TileEntityMachine;
 import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
 import electro.machines.advMachines.te.TileEntityCharger;
@@ -48,5 +52,10 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityMatrix.class, "TileEntityMatrix");
 //        /GameRegistry.registerTileEntity(TileEntityMatrixMachine.class, "TileEntityMatrixMachine");
         GameRegistry.registerTileEntity(TileEntityRobotArm.class, "TileEntityRoboticArm");
+        GameRegistry.registerTileEntity(TEPowerCore.class, "TEPowerCore");
+        GameRegistry.registerTileEntity(TileEntityBasicCable.class, "TileEntityBasicCable");
+        GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
+        GameRegistry.registerTileEntity(TileEntityMachine.class, "TileEntityMachine");
+
     }
 }

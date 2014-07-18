@@ -6,6 +6,7 @@ import electro.Electrolysm;
 import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
 import electro.client.itemRenderers.*;
+import electro.powerSystem.te.TileEntityWire;
 import electro.research.te.TileEntityCollector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -54,7 +55,7 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.ironFrames), new ItemRenderIronFrame());
                 //matrix iron frame
 
-        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         //RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());
         RenderingRegistry.registerEntityRenderingHandler(EntityZombie_Scientist.class,
                 new RenderZombie_Scientist(new ModelZombie_Scientist(), 2F));

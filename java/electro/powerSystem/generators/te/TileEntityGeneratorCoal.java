@@ -1,6 +1,7 @@
 package electro.powerSystem.generators.te;
 
 import api.powerSystem.PowerUsage;
+import api.powerSystem.TeU;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -85,7 +86,7 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
    
     private void updateCoal()
     {
-    	if(true)
+    	if(this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
     	{
     		if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
     		{

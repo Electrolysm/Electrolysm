@@ -75,15 +75,15 @@ public class TileEntityGenerator extends TileEntity implements IConnector, ITeUN
     }
 
     @Override
-    public boolean canProduce(TeU teu) {
-        if (powerCore != null) {
+    public boolean canProduce(int teu) {
+        if (powerCore != null && powerCore.canHold(teu)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public void produce(TeU teu) {
+    public void produce(int teu) {
         if (powerCore != null && canProduce(teu)) {
             if (powerCore.canHold(teu)) {
                 powerCore.charge(teu);

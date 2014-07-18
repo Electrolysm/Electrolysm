@@ -8,7 +8,7 @@ import net.minecraft.world.World;
  */
 public interface IWorkableMachine
 {
-    public boolean canWork();
+    public boolean canWork(int teu);
 
-    public void work(TeU teu);
+    public void work(int teu);
 }

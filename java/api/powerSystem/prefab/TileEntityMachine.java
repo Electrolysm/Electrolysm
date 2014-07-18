@@ -82,18 +82,17 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
     }
 
     @Override
-    public boolean canWork() {
+    public boolean canWork(int teu) {
         if(powerCore != null) {
-            TeU teU = new TeU(5);
-            float amps = this.getAmps(teU);
-            return (powerCore.hasSuitablePower(teU, amps));
+            float amps = this.getAmps(teu);
+            return (powerCore.hasSuitablePower(teu, amps));
         }
 
         return false;
     }
 
     @Override
-    public void work(TeU teU) {
+    public void work(int teU) {
         float amps = this.getAmps(teU);
         if(powerCore != null && powerCore.hasSuitablePower(teU, amps))
         {
@@ -101,12 +100,8 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
         }
     }
 
-    public float getAmps(TeU teu)
+    public float getAmps(int teu)
     {
-        int value = teu.getValue();
-        float amps = (float)((value * Math.PI) / Math.E);
-        amps = (float)(Math.sqrt(amps * Math.sin(amps)));
-
-        return amps + teu.getValue();
+        return (float)(Math.abs(Math.sin(teu)));
     }
 }

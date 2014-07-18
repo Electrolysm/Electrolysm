@@ -7,7 +7,7 @@ import api.powerSystem.TeU;
  */
 public interface IProductive
 {
-    public boolean canProduce(TeU teu);
+    public boolean canProduce(int teu);
 
-    public void produce(TeU teu);
+    public void produce(int teu);
 }

@@ -336,7 +336,7 @@ public class Electrolysm
         DownloadHandler.downloadAndExtractResearchData();
         RegisterBlock.register();
         RegisterBlock.registerItems();
-        new MultipartHandler();
+        //new MultipartHandler();
         new ElectrolysmLootHandler();
         Names.addName();
         Register.addOreDictionary();
