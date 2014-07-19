@@ -84,7 +84,7 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
     {
     	if(true)
     	{
-	    	boolean canProduce = this.canProduce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)) / 10);
+	    	boolean canProduce = this.canProduce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)));
 	    	
 	    	if(!(this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord)))
 	    	{
@@ -118,7 +118,7 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
 	    		
 	    		if(canProduce)
 	    		{
-                    this.produce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)) / 10);
+                    this.produce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)));
 	    			this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
 	    		}
 	    	}

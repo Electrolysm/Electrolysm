@@ -9,6 +9,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import java.util.Random;
+
 /**
  * Created by Ben on 17/07/2014.
  */
@@ -59,7 +61,16 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
             this.canConnect(dir, this.worldObj.getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
                     this.zCoord + dir.offsetZ));
         }
-        powerCore = findCore(worldObj, xCoord, yCoord, zCoord);
+        Random rand = new Random();
+        if(powerCore == null) {
+            if(rand.nextInt(50) == 5) {
+                powerCore = findCore(worldObj, xCoord, yCoord, zCoord);
+            }
+        } else {
+            if(rand.nextInt(100) == 5) {
+                powerCore = findCore(worldObj, xCoord, yCoord, zCoord);
+            }
+        }
     }
 
     @Override

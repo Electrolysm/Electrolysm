@@ -1,10 +1,14 @@
 package electro.handlers;
 
+import api.powerSystem.prefab.TileEntityGenerator;
 import electro.machines.assemblySystem.crafting.ContainerMatrix;
 import electro.machines.assemblySystem.crafting.GuiMatrix;
 import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.machines.assemblySystem.inventory.ContainerCrafting;
 import electro.machines.assemblySystem.inventory.TileEntityCrafting;
+import electro.powerSystem.generators.GUI.GuiThermalGenerator;
+import electro.powerSystem.generators.container.ContainerThermalGenerator;
+import electro.powerSystem.generators.te.TileEntityThermalGenerator;
 import electro.research.machines.gui.GuiCrafting;
 import electro.oreProccessing.container.*;
 import electro.oreProccessing.gui.*;
@@ -115,6 +119,11 @@ public class GUIHandler implements IGuiHandler
         {
             return new ContainerAlloyFurnace(player.inventory, (TileEntityAlloyFurnace)entity);
         }
+
+        if(entity instanceof TileEntityThermalGenerator)
+        {
+            return new ContainerThermalGenerator(player.inventory, (TileEntityThermalGenerator)entity);
+        }
         
         return null;
     }
@@ -198,6 +207,11 @@ public class GUIHandler implements IGuiHandler
         if(entity instanceof TileEntityAlloyFurnace)
         {
             return new GuiAlloyFurnace((TileEntityAlloyFurnace)entity, player.inventory);
+        }
+
+        if(entity instanceof TileEntityThermalGenerator)
+        {
+            return new GuiThermalGenerator((TileEntityThermalGenerator)entity, player.inventory);
         }
         return null;
     }

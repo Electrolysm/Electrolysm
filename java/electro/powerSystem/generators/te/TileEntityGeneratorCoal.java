@@ -10,6 +10,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -217,7 +218,7 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
         }
         else
         {
-        	return 200;
+        	return TileEntityFurnace.getItemBurnTime(itemStack);
         }
     }
 

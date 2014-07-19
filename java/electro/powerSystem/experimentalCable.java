@@ -17,9 +17,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class experimentalCable extends BlockContainer
 {
+    public static experimentalCable instance;
+
     public experimentalCable()
     {
         super(Material.cloth);
+        instance = this;
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(0.25F);
     }

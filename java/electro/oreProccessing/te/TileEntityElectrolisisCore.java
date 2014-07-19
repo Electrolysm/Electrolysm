@@ -1,5 +1,7 @@
 package electro.oreProccessing.te;
 
+import api.powerSystem.PowerUsage;
+import api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
 import electro.oreProccessing.recipes.electrolisisRecipes;
@@ -14,7 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import api.powerSystem.meter.IMeterable;
 import net.minecraft.world.World;
 
-public class TileEntityElectrolisisCore extends TileEntity implements IInventory, /*IPullEnergy,
+public class TileEntityElectrolisisCore extends TileEntityMachine implements IInventory, /*IPullEnergy,
 																				IMeterable, */ISidedInventory, IMeterable
 {
     //GUI STUFF
@@ -119,10 +121,12 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
     public int MaxElectroTime = 100;
     public int electroTime = 100;
     public boolean active = false;
+    public int requiredPower = PowerUsage.getTeUFromMap(Electrolysm.electrolisisCore);
     
     @Override
     public void updateEntity()
     {
+        super.updateEntity();
     	this.markDirty();
     	
         if(time == 0)
@@ -134,7 +138,7 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
         	active = true;
         }
         
-        if (true && isFormed(xCoord, yCoord, zCoord, worldObj)) //powerCheck
+        if (this.canWork(requiredPower) && isFormed(xCoord, yCoord, zCoord, worldObj)) //powerCheck
         {
             ItemStack input1 = getStackInSlot(0);
             //ItemStack input2 = getStackInSlot(1);
@@ -174,11 +178,13 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
                                 		this.decrStackSize(1, 1);
                                 		this.setInventorySlotContents(2, new ItemStack(result1.getItem(), 
                                 				result1.stackSize, result1.getItemDamage()));
-                                		this.markDirty();
+                                        this.work(requiredPower);
+                                        this.markDirty();
                                 	}
                                 	else
                                 	{
                                 		time = time + 1;
+                                        this.work(requiredPower);
                                 	}
                                 }
             				}
@@ -197,11 +203,13 @@ public class TileEntityElectrolisisCore extends TileEntity implements IInventory
                                 		this.setInventorySlotContents(2, new ItemStack(result1.getItem(), 
                                 				result1.stackSize + outputSize, result1.getItemDamage()));
                                 		this.markDirty();
-                                	}
+                                        this.work(requiredPower);
+                                    }
                                 	else
                                 	{
                                 		time = time + 1;
-                                	}
+                                        this.work(requiredPower);
+                                    }
                                 }
             				}
             			}

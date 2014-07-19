@@ -2,6 +2,8 @@ package electro.oreProccessing.te;
 
 import java.util.Random;
 
+import api.powerSystem.PowerUsage;
+import api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import electro.handlers.network.SmeltoryMessage;
 import net.minecraft.block.Block;
@@ -16,7 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import api.powerSystem.meter.IMeterable;
 import electro.oreProccessing.recipes.SmeltoryRecipes;
 
-public class TileEntitySmeltory extends TileEntity implements IInventory, ISidedInventory, IMeterable
+public class TileEntitySmeltory extends TileEntityMachine implements IInventory, ISidedInventory, IMeterable
 {
     private ItemStack[] inventory;
     public boolean isOpen;
@@ -142,11 +144,13 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
     public int maxTemp = 100;
     public int maxMaxTemp = 100;
     boolean redstonePower;
+    public int requiredPower = PowerUsage.getTeUFromMap(Electrolysm.smeltory);
     
     @Override
     public void updateEntity()
     {
-        if(getStackInSlot(0) != null) {
+        super.updateEntity();
+        if(getStackInSlot(0) != null && canWork(requiredPower)) {
             this.markDirty();
 
             ItemStack inStack = getStackInSlot(0);
@@ -181,8 +185,10 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
                                     this.decrStackSize(0, 1);
                                     this.setInventorySlotContents(1, result);
                                     this.markDirty();
+                                    this.work(requiredPower);
                                 } else {
                                     time = time + 1;
+                                    this.work(requiredPower);
                                 }
                             }
                         } else {
@@ -196,8 +202,10 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
                                     this.setInventorySlotContents(1, new ItemStack(result.getItem(),
                                             (result.stackSize + output.stackSize), result.getItemDamage()));
                                     this.markDirty();
+                                    this.work(requiredPower);
                                 } else {
                                     time = time + 1;
+                                    this.work(requiredPower);
                                 }
                             }
                         }
@@ -205,6 +213,7 @@ public class TileEntitySmeltory extends TileEntity implements IInventory, ISided
                     } else {
                         if (rand.nextInt(5) == 1) {
                             temp = temp + 1;
+                            this.work(requiredPower);
                         }
                     }
                 } else {

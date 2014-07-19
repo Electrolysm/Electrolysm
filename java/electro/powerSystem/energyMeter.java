@@ -2,6 +2,7 @@ package electro.powerSystem;
 
 import api.powerSystem.interfaces.IPowerCore;
 import api.powerSystem.meter.IMeterable;
+import api.powerSystem.prefab.TileEntityGenerator;
 import electro.Electrolysm;
 import electro.handlers.helpers.CollectorHelper;
 import electro.research.te.TileEntityCollector;
@@ -39,7 +40,7 @@ public class energyMeter extends Item
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x,
                              int y, int z, int par7, float par8, float par9, float par10)
     {
-        if (!world.isRemote)
+        if (true)
         {
             if (player.isSneaking())
             {
@@ -64,6 +65,11 @@ public class energyMeter extends Item
                 {
                     IPowerCore core = (IPowerCore)worldTE;
                     this.printMessagePowerCore(core);
+                    return true;
+                }
+                if(worldTE instanceof TileEntityGenerator)
+                {
+                    return true;
                 }
             }
         }

@@ -28,7 +28,7 @@ public class PowerUsage
 
         addToMap(Electrolysm.generator, 3);
         //tier 2
-        //tier 3
+        addToMap(Electrolysm.thermalGenerator, 42);
         addToMap(Electrolysm.matterGen, 100000);
 	}
 	

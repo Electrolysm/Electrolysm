@@ -1,11 +1,14 @@
 package api.powerSystem.prefab;
 
+import api.powerSystem.interfaces.ICable;
 import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.interfaces.IPowerCore;
 import api.powerSystem.TeU;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ben on 18/07/2014.
@@ -15,10 +18,22 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
     private int teuData = 0;
     private int maxTeU = 100000;
+    private TileEntity[] adjConnections = new TileEntity[6];
 
     @Override
     public boolean canConnect(ForgeDirection from, Object source) {
-        return true;
+        if(source instanceof TileEntity)
+        {
+            TileEntity te = (TileEntity)source;
+            if(te instanceof IConnector)
+            {
+                IConnector con = (IConnector)te;
+                adjConnections[from.ordinal()] = te;
+                return con.canConnect(from.getOpposite());
+            }
+        }
+        adjConnections[from.ordinal()] = null;
+        return false;
     }
 
     @Override
@@ -33,7 +48,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
     @Override
     public TileEntity[] getAdjConnections() {
-        return new TileEntity[0];
+        return adjConnections;
     }
 
     @Override
@@ -90,6 +105,44 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     public void updateEntity() {
 
         if(this.getTeU() < 0) { setEmpty(); }
+
+    }
+
+    public void shareWithCores(ArrayList<TEPowerCore> coreList)
+    {
+        int size = coreList.size() + 1;
+        int teuPerCore = getTeU() / size;
+
+        this.setTeU(teuPerCore);
+        for(int i = 0; i < coreList.size(); i++)
+        {
+            coreList.get(i).charge(teuPerCore);
+        }
+    }
+
+    public ArrayList<TEPowerCore> findOtherCores()
+    {
+        ArrayList<TEPowerCore> coreList = new ArrayList<TEPowerCore>();
+        TileEntity[] adj = this.adjConnections;
+        for (int i = 0; i < adj.length; i++) {
+            if (adj[i] != null && adj[i] instanceof IConnector) {
+                IConnector connector = (IConnector) adj[i];
+                if (adj[i] instanceof TEPowerCore && !this.checkCoords(adj[i])) {
+                    coreList.add((TEPowerCore) adj[i]);
+                } else {
+                    if (adj[i] instanceof ICable && !this.checkCoords(adj[i])) {
+                        ICable cable = (ICable) adj[i];
+                        coreList.add(cable.findCore(ForgeDirection.getOrientation(i).getOpposite(), 0));
+                    }
+                }
+            }
+        }
+        return coreList;
+    }
+
+    public boolean checkCoords(TileEntity te)
+    {
+        return ((this.xCoord == te.xCoord) && (this.yCoord == te.yCoord) && (this.zCoord == te.zCoord));
     }
 
     @Override
