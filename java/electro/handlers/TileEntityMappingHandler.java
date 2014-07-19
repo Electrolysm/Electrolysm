@@ -10,6 +10,7 @@ import electro.machines.advMachines.te.TileEntityCharger;
 import electro.machines.advMachines.te.TileEntityEnergiser;
 import electro.machines.advMachines.te.TileEntityInjector;
 import electro.misc.block.basic.te.TileEntityBlastDoor;
+import electro.powerSystem.generators.te.TileEntitySolarPanel;
 import electro.research.machines.tile.TileEntityDesk;
 import electro.research.machines.tile.TileEntityResearchDesk;
 import electro.research.machines.tile.TileEntityWorkBench;
@@ -32,6 +33,7 @@ public class TileEntityMappingHandler
 {
     public static void addMappings()
     {
+        GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");
         GameRegistry.registerTileEntity(TileEntityAlloyFurnace.class, "TileEntityAlloyFurnace");
         GameRegistry.registerTileEntity(TileEntityBlastDoor.class, "TileEntityBlastDoor");
         GameRegistry.registerTileEntity(TileEntityCrusher.class, "TileEntityCrusher");

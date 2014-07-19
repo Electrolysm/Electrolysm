@@ -26,8 +26,9 @@ public class PowerUsage
 		addToMap(Electrolysm.smeltoryActive, 19);
 		addToMap(Electrolysm.electrolisisCore, 62);
 
+        addToMap(Electrolysm.solarPanel, 2);
         addToMap(Electrolysm.generator, 3);
-        //tier 2
+        //tier 2 (adv generator)
         addToMap(Electrolysm.thermalGenerator, 42);
         addToMap(Electrolysm.matterGen, 100000);
 	}

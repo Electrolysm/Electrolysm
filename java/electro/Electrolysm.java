@@ -15,6 +15,7 @@ import electro.handlers.network.PacketHandler;
 import electro.handlers.version.ElectrolysmVersion;
 import electro.misc.item.fuels.ItemImprovedCoal;
 import electro.oreProccessing.*;
+import electro.powerSystem.generators.*;
 import electro.research.*;
 import electro.sciences.alloyFurnace.BlockAlloyFurnace;
 import electro.world.biome.*;
@@ -64,10 +65,6 @@ import electro.powerSystem.basicEnergyStorage;
 import electro.powerSystem.experimentalBattery;
 import electro.powerSystem.experimentalCable;
 import electro.powerSystem.energyMeter;
-import electro.powerSystem.generators.advancedGenerator;
-import electro.powerSystem.generators.generator;
-import electro.powerSystem.generators.matterGen;
-import electro.powerSystem.generators.thermalGenerator;
 import electro.research.system.ResearchRegistry;
 import electro.sciences.ItemArmorLab;
 import electro.world.Scandium;
@@ -199,6 +196,7 @@ public class Electrolysm
     public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
     public static Block advancedGenerator = new advancedGenerator().setBlockName("advancedGenerator");
     public static Block thermalGenerator = new thermalGenerator().setBlockName("thermalGenerator");
+    public static Block solarPanel = new BlockSolarPanel().setBlockName("solarPanel");
 
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);

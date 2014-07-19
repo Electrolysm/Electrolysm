@@ -150,6 +150,7 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
     public void updateEntity()
     {
         super.updateEntity();
+        if(worldObj.isRemote) { return; }
         if(getStackInSlot(0) != null && canWork(requiredPower)) {
             this.markDirty();
 
@@ -174,7 +175,7 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
 
             if (inStack != null) {
                 if (result != null) {
-                    if (temp == maxTemp) {
+                    //if (temp == maxTemp) {
                         if (output == null) {
                             int outputSize = 0;
                             int resultSize = result.stackSize;
@@ -195,7 +196,7 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
                             int outputSize = output.stackSize;
                             int resultSize = result.stackSize;
 
-                            if (((resultSize + outputSize) < 64)) {
+                            if (((resultSize + outputSize) <= 64)) {
                                 if (time == smeltTime) {
                                     time = 0;
                                     this.decrStackSize(0, 1);
@@ -210,12 +211,12 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
                             }
                         }
 
-                    } else {
+                    /*} else {
                         if (rand.nextInt(5) == 1) {
                             temp = temp + 1;
                             this.work(requiredPower);
                         }
-                    }
+                    }*/
                 } else {
                     time = 0;
                     if ((temp - 1) > 0 && rand.nextInt(10) == 1) {

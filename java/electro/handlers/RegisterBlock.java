@@ -16,6 +16,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.blastProof, "blastProof");
         GameRegistry.registerBlock(Electrolysm.blastDoor, "blastDoor");
         GameRegistry.registerBlock(Electrolysm.blastGlass, "blastGlass");
+        GameRegistry.registerBlock(Electrolysm.solarPanel, "solarPanel");
         GameRegistry.registerBlock(Electrolysm.plasma, "plasma");
         GameRegistry.registerBlock(Electrolysm.nitrocelluloseBlock, "nitrocelluloseBlock");
         GameRegistry.registerBlock(Electrolysm.energiser, "energiser");

@@ -84,12 +84,11 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
     {
     	if(true)
     	{
-	    	boolean canProduce = this.canProduce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)));
+	    	boolean canProduce = this.canProduce(PowerUsage.getTeUFromMap(Electrolysm.matterGen));
 	    	
 	    	if(!(this.isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord)))
 	    	{
-	    		time = 0;
-	    		return;
+                canProduce = false;
 	    	}
 
             ItemStack nuggetGold = new ItemStack(Items.gold_nugget);
@@ -119,9 +118,14 @@ public class TileEntityGeneratorAntimatter extends TileEntityProducer implements
 	    		if(canProduce)
 	    		{
                     this.produce(PowerUsage.getTeUFromMap(worldObj.getBlock(xCoord, yCoord, zCoord)));
-	    			this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
 	    		}
-	    	}
+                this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 2, true);
+
+                if((!isAntiMatterBuilt(worldObj, xCoord, yCoord, zCoord)) && time != 0)
+                {
+                    this.worldObj.createExplosion(null, xCoord, yCoord, zCoord, 100, true);
+                }
+            }
 	    	//matterGen.updateFurnaceBlockState(time != 0, worldObj, xCoord, yCoord, zCoord);
     	}
     }

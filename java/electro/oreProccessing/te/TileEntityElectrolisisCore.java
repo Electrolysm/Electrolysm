@@ -137,6 +137,8 @@ public class TileEntityElectrolisisCore extends TileEntityMachine implements IIn
         {
         	active = true;
         }
+
+        if(worldObj.isRemote) { return; }
         
         if (this.canWork(requiredPower) && isFormed(xCoord, yCoord, zCoord, worldObj)) //powerCheck
         {

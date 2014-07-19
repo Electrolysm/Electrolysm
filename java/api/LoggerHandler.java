@@ -12,7 +12,7 @@ public class LoggerHandler
 
     public static void log(Level logLevel, Object object)
     {
-        elLogger.log(logLevel, "[Electrolysm] + object");
+        elLogger.log(logLevel, "[Electrolysm]" + object);
     }
 
     public static void severe(Object object)
