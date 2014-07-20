@@ -31,6 +31,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
                 adjConnections[from.ordinal()] = te;
                 return con.canConnect(from.getOpposite());
             }
+            adjConnections[from.ordinal()] = null;
         }
         adjConnections[from.ordinal()] = null;
         return false;
@@ -103,6 +104,13 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
     @Override
     public void updateEntity() {
+
+        for (byte i = 0; i < 6; i++)
+        {
+            ForgeDirection dir = ForgeDirection.getOrientation(i);
+            this.canConnect(dir, this.worldObj.getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
+                    this.zCoord + dir.offsetZ));
+        }
 
         if(this.getTeU() < 0) { setEmpty(); }
 

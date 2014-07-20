@@ -26,6 +26,8 @@ public class CommonProxy
     public static ResourceLocation MODEL_HOL_FLICKER = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelHolFlick.png");
     public static ResourceLocation MODEL_MATRIX_CONSTRUCT = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelMatrixConstruct.png");
     public static ResourceLocation MODEL_COLLECTOR = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelCollector.png");
+    public static ResourceLocation MODEL_ENERGY_CUBE_1 = new ResourceLocation(MOD_ID_LOWER, "textures/models/cube/ModelEnergyCube1.png");
+    public static ResourceLocation MODEL_ENERGY_CUBE_CREATIVE = new ResourceLocation(MOD_ID_LOWER, "textures/models/cube/ModelEnergyCubeCreative.png");
 
     //GUIs
     public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");

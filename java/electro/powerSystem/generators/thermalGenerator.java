@@ -35,12 +35,12 @@ public class thermalGenerator extends BlockContainer
     @Override
     public void registerBlockIcons(IIconRegister reg) {
         blockIcon = reg.registerIcon("electrolysm:lavaGenSide");
-        frontIcon = reg.registerIcon("electrolysm:lavaGenFront");
+        frontIcon = reg.registerIcon("electrolysm:powerGenTop");
     }
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        if(side == meta) { return frontIcon; }
+        if(side == 0 || side == 1) { return frontIcon; }
         else { return blockIcon; }
     }
 

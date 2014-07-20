@@ -22,6 +22,9 @@ public class advancedGenerator extends BlockContainer
 {
     @SideOnly(Side.CLIENT)
     public IIcon frontIcon;
+    @SideOnly(Side.CLIENT)
+    public IIcon bottom;
+
     public advancedGenerator()
     {
         super(Material.iron);
@@ -33,14 +36,18 @@ public class advancedGenerator extends BlockContainer
 
     @Override
     public void registerBlockIcons(IIconRegister reg) {
-        blockIcon = reg.registerIcon("electrolysm:advGeneratorSide");
+        this.blockIcon = reg.registerIcon("electrolysm:powerGenSide");
+        this.bottom = reg.registerIcon("electrolysm:powerGenTop");
         frontIcon = reg.registerIcon("electrolysm:advGeneratorFront");
     }
 
     @Override
     public IIcon getIcon(int side, int meta) {
         if(side == meta) { return frontIcon; }
-        else { return blockIcon; }
+        else {
+            if (side == 0 || side == 1) { return bottom; }
+            else { return blockIcon; }
+        }
     }
 
     @Override
