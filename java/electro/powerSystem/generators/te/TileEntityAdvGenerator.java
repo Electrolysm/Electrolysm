@@ -14,18 +14,18 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TileEntityGeneratorCoal extends TileEntityProducer implements IInventory, ISidedInventory
+public class TileEntityAdvGenerator extends TileEntityProducer implements IInventory, ISidedInventory
 {
-	private ItemStack[] inventory;
+    private ItemStack[] inventory;
     private static int[] generatorPower = {260, 700, 5000, 100000};
     private Block[] generatorIDs = {Electrolysm.generator, null, null, Electrolysm.matterGen,};
     private String[] generatorNames = {"Coal", "Geothermal", "Fusion", "Matter-Antimatter"};
-    
-    public TileEntityGeneratorCoal() 
+
+    public TileEntityAdvGenerator()
     {
-		super(generatorPower[0]);
-		inventory = new ItemStack[2];
-	}
+        super(generatorPower[0]);
+        inventory = new ItemStack[2];
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
@@ -68,57 +68,57 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
 
     public int burnTime = 10;
     public int time = 0;
-    
+
     @Override
     public void updateEntity()
     {
         super.updateEntity();
-    	if(!(worldObj.isRemote))
-    	{
-    		this.updateCoal();
-    	}/*
+        if(!(worldObj.isRemote))
+        {
+            this.updateCoal();
+        }/*
     	if(this.getStackInSlot(1) != null)
     	{
     		this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
     	}*/
 
-    	//worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlockId(xCoord, yCoord, zCoord));
+        //worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlockId(xCoord, yCoord, zCoord));
     }
-   
+
     private void updateCoal()
     {
-    	if(this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
-    	{
-    		if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
-    		{
-    			this.burnTime = this.getItemBurnTime(this.getStackInSlot(0));
-    		}
-    		else if(this.getItemBurnTime(this.getStackInSlot(0)) == 0)
-    		{
-    			this.burnTime = 0;
-    		}
-    		
-    		if(this.getStackInSlot(0) != null && time == 0 && this.burnTime != 0)
-    		{
-    			this.time = this.burnTime;
-    			if(time == burnTime)
-    			{
-    				this.decrStackSize(0, 1);
-    				//this.time = time - 1;
-    			}
-    		}
+        if(this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
+        {
+            if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
+            {
+                this.burnTime = this.getItemBurnTime(this.getStackInSlot(0));
+            }
+            else if(this.getItemBurnTime(this.getStackInSlot(0)) == 0)
+            {
+                this.burnTime = 0;
+            }
 
-    		if(time != 0 && this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
-        	{
-        		this.time = time - 1;
-        		//this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
+            if(this.getStackInSlot(0) != null && time == 0 && this.burnTime != 0)
+            {
+                this.time = this.burnTime;
+                if(time == burnTime)
+                {
+                    this.decrStackSize(0, 1);
+                    //this.time = time - 1;
+                }
+            }
+
+            if(time != 0 && this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
+            {
+                this.time = time - 1;
+                //this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
                 this.produce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord)));
-        	}
-        	else
-        	{
-        		return;
-        	}    		
-    	}
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 
     @Override
@@ -130,7 +130,7 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     @Override
     public ItemStack decrStackSize(int slot, int amount)
     {
-    	ItemStack stack = getStackInSlot(slot);
+        ItemStack stack = getStackInSlot(slot);
 
         if (stack != null)
         {
@@ -191,13 +191,13 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
-    	if(stack != null)
-    	{
-	    	if(this.getItemBurnTime(stack) != 0)
-	    	{
-	    		return true;
-	    	}
-    	}
+        if(stack != null)
+        {
+            if(this.getItemBurnTime(stack) != 0)
+            {
+                return true;
+            }
+        }
         return true;
     }
 
@@ -214,11 +214,11 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
         }
         else if(GameRegistry.getFuelValue(itemStack) > 0)
         {
-            return GameRegistry.getFuelValue(itemStack);
+            return GameRegistry.getFuelValue(itemStack) * 2;
         }
         else
         {
-        	return TileEntityFurnace.getItemBurnTime(itemStack);
+            return TileEntityFurnace.getItemBurnTime(itemStack) * 2;
         }
     }
 
@@ -226,11 +226,11 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     int[] genID1 = {0};
     int[] genID2 = {0};
     int[] genID3 = {0, 1};
-    
+
     @Override
     public int[] getAccessibleSlotsFromSide(int side)
     {
-   		return this.genID0;
+        return this.genID0;
     }
 
     @Override
@@ -249,26 +249,26 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     {
     }
 
-	public boolean doesRequireBuild(int ID) 
-	{
-		return false;
-	}
+    public boolean doesRequireBuild(int ID)
+    {
+        return false;
+    }
 
-	public boolean isBuilt(int id, World world, int x, int y, int z) 
-	{
-		return false;
-	}
+    public boolean isBuilt(int id, World world, int x, int y, int z)
+    {
+        return false;
+    }
 
-	private Block getBlock(World world, int x, int y, int z)
-	{
-		//world.setBlock(x, y, z, electrolysmCore.antiMatterCasing.blockID, 0, 0);
-		return world.getBlock(x, y, z);
-	}
+    private Block getBlock(World world, int x, int y, int z)
+    {
+        //world.setBlock(x, y, z, electrolysmCore.antiMatterCasing.blockID, 0, 0);
+        return world.getBlock(x, y, z);
+    }
 
-	@Override
-	public int getSizeInventory() {
-		return (this.inventory.length);
-	}
+    @Override
+    public int getSizeInventory() {
+        return (this.inventory.length);
+    }
 
     @Override
     public void closeInventory() { }
@@ -277,7 +277,7 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     public boolean hasCustomInventoryName() { return true; }
 
     @Override
-    public String getInventoryName() { return "Generator"; }
+    public String getInventoryName() { return "Advanced Generator"; }
 
     @Override
     public void openInventory() { }
