@@ -43,6 +43,7 @@ public class TileEntityGenerator extends TileEntity implements IConnector, ITeUN
     }
 
     TEPowerCore powerCore = null;
+    TEPowerCore lastCore = null;
 
     @Override
     public void updateEntity() {
@@ -53,6 +54,17 @@ public class TileEntityGenerator extends TileEntity implements IConnector, ITeUN
                     this.zCoord + dir.offsetZ));
         }
         powerCore = findCore(worldObj, xCoord, yCoord, zCoord);
+
+        if(powerCore != null) {
+            powerCore.registerOnNetwork(this);
+            lastCore = powerCore;
+        }
+        else if(lastCore != null)
+        {
+            lastCore.clearNetwork();
+            lastCore = null;
+        }
+
     }
 
     @Override

@@ -1,6 +1,5 @@
 package electro.handlers;
 
-import codechicken.microblock.BlockMicroMaterial;
 import electro.Electrolysm;
 
 public class MultipartHandler
@@ -21,13 +20,13 @@ public class MultipartHandler
 	}
 
 	private void addMultiparts()
-	{
+	{/*
         BlockMicroMaterial.createAndRegister(Electrolysm.blastBrick, "Blast Proof Iron Brick");
         BlockMicroMaterial.createAndRegister(Electrolysm.blastProof, "Blast Proof Iron Block");
         BlockMicroMaterial.createAndRegister(Electrolysm.BlockLumRed, "Luminous Redstone Block");
         BlockMicroMaterial.createAndRegister(Electrolysm.diseaseGrass, "Diseased Grass");
         BlockMicroMaterial.createAndRegister(Electrolysm.graphite, "Graphite");
         BlockMicroMaterial.createAndRegister(Electrolysm.stoneObsidian, "Stone");
-        BlockMicroMaterial.createAndRegister(Electrolysm.sulphurOre, "Sulphur Ore");
+        BlockMicroMaterial.createAndRegister(Electrolysm.sulphurOre, "Sulphur Ore");*/
 	}
 }

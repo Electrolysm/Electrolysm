@@ -11,6 +11,7 @@
 
 package electro.client;
 
+import electro.handlers.TickHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -146,6 +147,10 @@ public class ModelEnergyCube extends ModelBase
     wall2.render(f5);
     wall3.render(f5);
     wall4.render(f5);
+
+    Image.rotateAngleX = TickHandler.rotation;
+    Image.rotateAngleY = TickHandler.rotation * (-1);
+    Image.rotateAngleZ = TickHandler.rotation;
   }
 
     public void renderSide(int side)

@@ -28,6 +28,7 @@ public class CommonProxy
     public static ResourceLocation MODEL_COLLECTOR = new ResourceLocation(MOD_ID_LOWER, "textures/models/ModelCollector.png");
     public static ResourceLocation MODEL_ENERGY_CUBE_1 = new ResourceLocation(MOD_ID_LOWER, "textures/models/cube/ModelEnergyCube1.png");
     public static ResourceLocation MODEL_ENERGY_CUBE_CREATIVE = new ResourceLocation(MOD_ID_LOWER, "textures/models/cube/ModelEnergyCubeCreative.png");
+    public static ResourceLocation MODEL_ENERGY_CUBE = new ResourceLocation(MOD_ID_LOWER, "textures/models/cube/ModelEnergyCube.png");
 
     //GUIs
     public static ResourceLocation RESEARCH_DESK_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/researchDeskGUI.png");
@@ -48,6 +49,7 @@ public class CommonProxy
 	public static ResourceLocation SLOT_ICON = new ResourceLocation(MOD_ID_LOWER, "textures/gui/slotIcon.png");
     public static ResourceLocation ALLOY_FURNACE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/alloyFurnaceGUI.png");
     public static ResourceLocation THERMAL_GEN_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/thermalGenGUI.png");
+    public static ResourceLocation POWER_CORE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energyCoreGUI.png");
 
     //Research
 	public static ResourceLocation IMAGE_TECH_TREE = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/image_techTree.png");

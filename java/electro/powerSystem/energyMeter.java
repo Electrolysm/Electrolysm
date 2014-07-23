@@ -79,10 +79,17 @@ public class energyMeter extends Item
 
     private void printMessagePowerCore(IPowerCore core) {
 
-        String message = "This core is holding: " + core.getTeU() + "TeU";
+        String message = "This core is holding: " + "VALUE" + "TeU";
 
-        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
-                new ChatComponentTranslation(message));
+        if(!core.isCreative()) {
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                    new ChatComponentTranslation(message.replace("VALUE", String.valueOf(core.getTeU()))));
+        }
+        else
+        {
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                    new ChatComponentTranslation(message.replace("VALUE", "Infinite")));
+        }
     }
 
     private void printOreMessage(World world, int x, int y, int z, IMeterable te)

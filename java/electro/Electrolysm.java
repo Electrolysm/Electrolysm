@@ -7,7 +7,9 @@ package electro;
 
 import java.io.File;
 
+import com.mojang.realmsclient.dto.McoServer;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
 import electro.machines.assemblySystem.*;
 import electro.misc.crafting.items.*;
 import electro.handlers.*;
@@ -15,6 +17,7 @@ import electro.handlers.network.PacketHandler;
 import electro.handlers.version.ElectrolysmVersion;
 import electro.misc.item.fuels.ItemImprovedCoal;
 import electro.oreProccessing.*;
+import electro.powerSystem.*;
 import electro.powerSystem.generators.*;
 import electro.research.*;
 import electro.sciences.alloyFurnace.BlockAlloyFurnace;
@@ -26,8 +29,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.potion.Potion;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import electro.misc.block.ironFrames;
 import electro.machines.advMachines.charger;
@@ -56,15 +62,6 @@ import electro.misc.crafting.acidBurns;
 import electro.misc.item.basic.drillCasing;
 import electro.misc.item.basic.plasmaDrill;
 import electro.misc.item.fuels.electroContain;
-import electro.powerSystem.ItemWire;
-import electro.powerSystem.advancedCable;
-import electro.powerSystem.basicBattery;
-import electro.powerSystem.advancedBattery;
-import electro.powerSystem.basicCable;
-import electro.powerSystem.basicEnergyStorage;
-import electro.powerSystem.experimentalBattery;
-import electro.powerSystem.experimentalCable;
-import electro.powerSystem.energyMeter;
 import electro.research.system.ResearchRegistry;
 import electro.sciences.ItemArmorLab;
 import electro.world.Scandium;
@@ -193,10 +190,12 @@ public class Electrolysm
     public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
     public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
     public static Item experimentalBattery = new experimentalBattery(64000, 2).setUnlocalizedName("experimentalBattery");
-    public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
     public static Block advancedGenerator = new advancedGenerator().setBlockName("advancedGenerator");
     public static Block thermalGenerator = new thermalGenerator().setBlockName("thermalGenerator");
     public static Block solarPanel = new BlockSolarPanel().setBlockName("solarPanel");
+
+    public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
+    public static Block creativeEnergyStorage = new BlockCreativeEnergyCore().setBlockName("creativeEnergyCore");
 
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
@@ -339,10 +338,11 @@ public class Electrolysm
         Names.addName();
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();
-        //GameRegistry.registerCraftingHandler(new CraftingHandler());
-        BiomeDictionary.registerBiomeType(diseasedBiome);
-        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
 
+        BiomeDictionary.registerBiomeType(diseasedBiome, new BiomeDictionary.Type[] {BiomeDictionary.Type.DEAD});
+        BiomeManager.addSpawnBiome(diseasedBiome);
+
+        EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GUIHandler());
         MinecraftForge.EVENT_BUS.register(new ElectroEventHandler());

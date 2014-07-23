@@ -1,24 +1,35 @@
 package api.powerSystem.prefab;
 
-import api.powerSystem.interfaces.ICable;
 import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.interfaces.IPowerCore;
-import api.powerSystem.TeU;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
- * Created by Ben on 18/07/2014.
+ * Created by Clarky158 on 18/07/2014.
  */
 public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 {
 
-    private int teuData = 0;
-    private int maxTeU = 100000;
+    public int maxTeU = 100000;
+    public int teuData = 0;
     private TileEntity[] adjConnections = new TileEntity[6];
+    private int tier = 0;
+    public boolean isCreative = false;
+
+    public TEPowerCore(int tier1) {
+        if (tier1 == (-1)) {
+            isCreative = true;
+            tier = -1;
+        } else {
+            tier = tier1;
+        }
+    }
 
     @Override
     public boolean canConnect(ForgeDirection from, Object source) {
@@ -55,7 +66,12 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public float getAmps()
     {
-        return (float)(Math.abs(Math.sin(getTeU())));
+        return (float) (Math.sqrt(Math.sqrt(this.getTeU()))) + getCompValue();
+    }
+
+    @Override
+    public float getMaxAmps() {
+        return (float)(Math.sqrt(this.maxTeU) / Math.PI);
     }
 
     @Override
@@ -72,24 +88,24 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public boolean hasSuitablePower(int teu, float amps)
     {
-        return (teuData > 0);// && (this.getAmps() >= amps);
+        return (teuData > 0) || isCreative;// && (this.getAmps() >= amps);
     }
 
     @Override
     public void drainPower(int amount)
     {
-        this.setTeU(getTeU() - amount);
+        if(!isCreative) { this.setTeU(getTeU() - amount); }
     }
 
     @Override
     public boolean canHold(int teu) {
-        return ((this.getTeU() + teu) <= maxTeU);
+        return ((this.getTeU() + teu) <= maxTeU) || isCreative;
         //return true;
     }
 
     @Override
     public void charge(int teu) {
-        this.setTeU((this.getTeU() + teu));
+        if(!isCreative) { this.setTeU((this.getTeU() + teu)); }
     }
 
     @Override
@@ -103,6 +119,11 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     }
 
     @Override
+    public boolean isCreative() {
+        return isCreative;
+    }
+
+    @Override
     public void updateEntity() {
 
         for (byte i = 0; i < 6; i++)
@@ -113,44 +134,95 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
         }
 
         if(this.getTeU() < 0) { setEmpty(); }
+        if(this.getTeU() >= (maxTeU - 5)) { setFull(); }
+        if(new Random().nextInt(50) == 5) { this.drainPower(1); }
 
+        this.checkConnections();
     }
 
-    public void shareWithCores(ArrayList<TEPowerCore> coreList)
+    public void checkConnections()
     {
-        int size = coreList.size() + 1;
-        int teuPerCore = getTeU() / size;
-
-        this.setTeU(teuPerCore);
-        for(int i = 0; i < coreList.size(); i++)
+        for(int i = 0; i < teList.size(); i++)
         {
-            coreList.get(i).charge(teuPerCore);
-        }
-    }
-
-    public ArrayList<TEPowerCore> findOtherCores()
-    {
-        ArrayList<TEPowerCore> coreList = new ArrayList<TEPowerCore>();
-        TileEntity[] adj = this.adjConnections;
-        for (int i = 0; i < adj.length; i++) {
-            if (adj[i] != null && adj[i] instanceof IConnector) {
-                IConnector connector = (IConnector) adj[i];
-                if (adj[i] instanceof TEPowerCore && !this.checkCoords(adj[i])) {
-                    coreList.add((TEPowerCore) adj[i]);
-                } else {
-                    if (adj[i] instanceof ICable && !this.checkCoords(adj[i])) {
-                        ICable cable = (ICable) adj[i];
-                        coreList.add(cable.findCore(ForgeDirection.getOrientation(i).getOpposite(), 0));
-                    }
+            if(worldObj.getTileEntity(teList.get(i).xCoord, teList.get(i).yCoord, teList.get(i).zCoord) != teList.get(i))
+            {
+                this.clearNetwork();
+            }
+            if(teList.get(i) instanceof TileEntityGenerator)
+            {
+                TileEntityGenerator te = (TileEntityGenerator)teList.get(i);
+                if(te.findCore(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord) != this)
+                {
+                    this.clearNetwork();
+                }
+            }
+            if(teList.get(i) instanceof TileEntityMachine)
+            {
+                TileEntityMachine te = (TileEntityMachine)teList.get(i);
+                if(te.findCore(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord) != this)
+                {
+                    this.clearNetwork();
                 }
             }
         }
-        return coreList;
     }
 
-    public boolean checkCoords(TileEntity te)
+    public void ampAlgorithm()
     {
-        return ((this.xCoord == te.xCoord) && (this.yCoord == te.yCoord) && (this.zCoord == te.zCoord));
+        if(this.getAmps() > this.getMaxAmps() && !isCreative)
+        {
+            float diff = getMaxAmps() - getAmps();
+            float ampPerOver = (float)Math.sqrt(Math.PI);
+
+            this.drainPower((int)(diff * ampPerOver));
+/*
+            if(diff > getMaxAmps())
+            {
+                System.out.println("Explosion");
+                worldObj.createExplosion(null, xCoord, yCoord, zCoord, (int)(diff / ampPerOver), true);
+            }*/
+        }
+    }
+
+    List<TileEntity> teList = new ArrayList<TileEntity>();
+
+    public void clearNetwork()
+    {
+        teList.clear();
+    }
+
+    public void registerOnNetwork(TileEntityMachine te)
+    {
+        if(!(teList.contains(te)))
+        {
+            teList.add(te);
+        }
+    }
+
+    public void registerOnNetwork(TileEntityGenerator te)
+    {
+        if(!(teList.contains(te)))
+        {
+            teList.add(te);
+        }
+    }
+
+    public int getCompValue()
+    {
+        int value = 1;
+        for(int i = 0; i < teList.size(); i++)
+        {
+            if(teList.get(i) instanceof TileEntityGenerator)
+            {
+                value = value + 10;
+            }
+            if(teList.toArray()[i] instanceof TileEntityMachine)
+            {
+                value = value + 5;
+            }
+        }
+
+        return value;
     }
 
     @Override

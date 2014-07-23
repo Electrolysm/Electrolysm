@@ -2,8 +2,6 @@ package api.powerSystem.prefab;
 
 import api.powerSystem.interfaces.ICable;
 import api.powerSystem.interfaces.IConnector;
-import codechicken.multipart.TileMultipart;
-import codechicken.multipart.TileMultipart$;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 

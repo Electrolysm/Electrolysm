@@ -1,5 +1,6 @@
 package electro.handlers;
 
+import api.powerSystem.prefab.TEPowerCore;
 import api.powerSystem.prefab.TileEntityGenerator;
 import electro.machines.assemblySystem.crafting.ContainerMatrix;
 import electro.machines.assemblySystem.crafting.GuiMatrix;
@@ -12,6 +13,8 @@ import electro.powerSystem.generators.container.ContainerAdvGenerator;
 import electro.powerSystem.generators.container.ContainerThermalGenerator;
 import electro.powerSystem.generators.te.TileEntityAdvGenerator;
 import electro.powerSystem.generators.te.TileEntityThermalGenerator;
+import electro.powerSystem.gui.ContainerEnergyCore;
+import electro.powerSystem.gui.EnergyCoreGUI;
 import electro.research.machines.gui.GuiCrafting;
 import electro.oreProccessing.container.*;
 import electro.oreProccessing.gui.*;
@@ -45,186 +48,129 @@ import electro.research.machines.tile.TileEntityResearchDesk;
 import electro.research.machines.tile.TileEntityWorkBench;
 import cpw.mods.fml.common.network.IGuiHandler;
 
-public class GUIHandler implements IGuiHandler
-{
+public class GUIHandler implements IGuiHandler {
     public static int id_bookIDCard = 42;
     public static int id_research = 43;
 
-	@Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity entity = world.getTileEntity(x, y, z);
 
-        if (entity instanceof TileEntityResearchDesk)
-        {
-            return new ContainerResearchDesk((TileEntityResearchDesk)entity, player.inventory);
+        if (entity instanceof TileEntityResearchDesk) {
+            return new ContainerResearchDesk((TileEntityResearchDesk) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityEnergiser) {
+            return new ContainerEnergiser(player.inventory, (TileEntityEnergiser) entity);
+        }
+        if (entity instanceof TileEntityInjector) {
+            return new ContainerInjector(player.inventory, (TileEntityInjector) entity);
+        }
+        if (entity instanceof TileEntityElectrolisisCore) {
+            return new ContainerElectrolysis((TileEntityElectrolisisCore) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityPort) {
+            return new ContainerPort((TileEntityPort) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityWorkBench) {
+            return new ContainerWorkBench((TileEntityWorkBench) entity, player.inventory);
         }
 
-        if (entity instanceof TileEntityEnergiser)
-        {
-            return new ContainerEnergiser(player.inventory, (TileEntityEnergiser)entity);
+        if (entity instanceof TileEntityCrusher) {
+            return new ContainerCrusher(player.inventory, (TileEntityCrusher) entity);
         }
-
-        if (entity instanceof TileEntityInjector)
-        {
-            return new ContainerInjector(player.inventory, (TileEntityInjector)entity);
+        if (entity instanceof TileEntityLiquidiser) {
+            return new ContainerLiquidiser(player.inventory, (TileEntityLiquidiser) entity);
         }
-
-        if (entity instanceof TileEntityElectrolisisCore)
-        {
-            return new ContainerElectrolysis((TileEntityElectrolisisCore)entity, player.inventory);
+        if (entity instanceof TileEntitySmeltory) {
+            return new ContainerSmeltory(player.inventory, (TileEntitySmeltory) entity);
         }
-
-        if (entity instanceof TileEntityPort)
-        {
-            return new ContainerPort((TileEntityPort)entity, player.inventory);
+        if (entity instanceof TileEntityGeneratorCoal) {
+            return new ContainerGeneratorCoal((TileEntityGeneratorCoal) entity, player.inventory);
         }
-
-        if (entity instanceof TileEntityWorkBench)
-        {
-            return new ContainerWorkBench((TileEntityWorkBench)entity, player.inventory);
+        if (entity instanceof TileEntityGeneratorAntimatter) {
+            return new ContainerGeneratorAntimatter((TileEntityGeneratorAntimatter) entity, player.inventory);
         }
-
-        if (entity instanceof TileEntityCrusher)
-        {
-            return new ContainerCrusher(player.inventory, (TileEntityCrusher)entity);
+        if (entity instanceof TileEntityMatrix) {
+            return new ContainerMatrix(player.inventory, (TileEntityMatrix) entity);
         }
-        if(entity instanceof TileEntityLiquidiser)
-        {
-        	return new ContainerLiquidiser(player.inventory, (TileEntityLiquidiser)entity);
+        if (entity instanceof TileEntityCrafting) {
+            return new ContainerCrafting(player.inventory, (TileEntityCrafting) entity);
         }
-        if(entity instanceof TileEntitySmeltory)
-        {
-        	return new ContainerSmeltory(player.inventory, (TileEntitySmeltory)entity);
+        if (entity instanceof TileEntityAlloyFurnace) {
+            return new ContainerAlloyFurnace(player.inventory, (TileEntityAlloyFurnace) entity);
         }
-
-        if(entity instanceof TileEntityGeneratorCoal)
-        {
-        	return new ContainerGeneratorCoal((TileEntityGeneratorCoal)entity, player.inventory);
+        if (entity instanceof TileEntityThermalGenerator) {
+            return new ContainerThermalGenerator(player.inventory, (TileEntityThermalGenerator) entity);
         }
-        
-        if(entity instanceof TileEntityGeneratorAntimatter)
-        {
-        	return new ContainerGeneratorAntimatter((TileEntityGeneratorAntimatter)entity, player.inventory);
+        if (entity instanceof TileEntityAdvGenerator) {
+            return new ContainerAdvGenerator((TileEntityAdvGenerator) entity, player.inventory);
         }
-
-        if(entity instanceof TileEntityMatrix)
-        {
-            return new ContainerMatrix(player.inventory, (TileEntityMatrix)entity);
+        if (entity instanceof TEPowerCore) {
+            return new ContainerEnergyCore((TEPowerCore) entity, player.inventory);
         }
-
-        if(entity instanceof TileEntityCrafting)
-        {
-            return new ContainerCrafting(player.inventory, (TileEntityCrafting)entity);
-        }
-
-        if(entity instanceof TileEntityAlloyFurnace)
-        {
-            return new ContainerAlloyFurnace(player.inventory, (TileEntityAlloyFurnace)entity);
-        }
-
-        if(entity instanceof TileEntityThermalGenerator)
-        {
-            return new ContainerThermalGenerator(player.inventory, (TileEntityThermalGenerator)entity);
-        }
-
-        if(entity instanceof TileEntityAdvGenerator)
-        {
-            return new ContainerAdvGenerator((TileEntityAdvGenerator)entity, player.inventory);
-        }
-        
         return null;
     }
 
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity entity = world.getTileEntity(x, y, z);
 
-        if (entity instanceof TileEntityResearchDesk)
-        {
-            return new GUIResearchDesk((TileEntityResearchDesk)entity, player.inventory);
+        if (entity instanceof TileEntityResearchDesk) {
+            return new GUIResearchDesk((TileEntityResearchDesk) entity, player.inventory);
         }
-
-        if (entity instanceof TileEntityEnergiser)
-        {
-            return new GUIEnergiser(player.inventory, (TileEntityEnergiser)entity);
+        if (entity instanceof TileEntityEnergiser) {
+            return new GUIEnergiser(player.inventory, (TileEntityEnergiser) entity);
         }
-
-        if (entity instanceof TileEntityInjector)
-        {
-            return new GUIInjector(player.inventory, (TileEntityInjector)entity);
+        if (entity instanceof TileEntityInjector) {
+            return new GUIInjector(player.inventory, (TileEntityInjector) entity);
         }
-
-        if (entity instanceof TileEntityElectrolisisCore)
-        {
-            return new GUIElectrolysisCore((TileEntityElectrolisisCore)entity, player.inventory);
+        if (entity instanceof TileEntityElectrolisisCore) {
+            return new GUIElectrolysisCore((TileEntityElectrolisisCore) entity, player.inventory);
         }
-
-        if (entity instanceof TileEntityPort)
-        {
-            return new GUIPort((TileEntityPort)entity, player.inventory);
+        if (entity instanceof TileEntityPort) {
+            return new GUIPort((TileEntityPort) entity, player.inventory);
         }
-
-        if (entity instanceof TileEntityWorkBench)
-        {
-            return new GUIWorkBench((TileEntityWorkBench)entity, player.inventory);
+        if (entity instanceof TileEntityWorkBench) {
+            return new GUIWorkBench((TileEntityWorkBench) entity, player.inventory);
         }
-
-        if (entity instanceof TileEntityCrusher)
-        {
-            return new GUICrusher((TileEntityCrusher)entity, player.inventory);
+        if (entity instanceof TileEntityCrusher) {
+            return new GUICrusher((TileEntityCrusher) entity, player.inventory);
         }
-        if(entity instanceof TileEntityLiquidiser)
-        {
-        	return new GUILiquidiser((TileEntityLiquidiser)entity, player.inventory);
+        if (entity instanceof TileEntityLiquidiser) {
+            return new GUILiquidiser((TileEntityLiquidiser) entity, player.inventory);
         }
-        if(entity instanceof TileEntitySmeltory)
-        {
-        	return new GUISmeltory((TileEntitySmeltory)entity, player.inventory);
+        if (entity instanceof TileEntitySmeltory) {
+            return new GUISmeltory((TileEntitySmeltory) entity, player.inventory);
         }
-        if(entity instanceof TileEntityGeneratorCoal)
-        {
-        	return new GUIGeneratorCoal((TileEntityGeneratorCoal)entity, player.inventory);
+        if (entity instanceof TileEntityGeneratorCoal) {
+            return new GUIGeneratorCoal((TileEntityGeneratorCoal) entity, player.inventory);
         }
-
-        if(entity instanceof TileEntityGeneratorAntimatter)
-        {
-        	return new GUIGeneratorAntimatter((TileEntityGeneratorAntimatter)entity, player.inventory);
+        if (entity instanceof TileEntityGeneratorAntimatter) {
+            return new GUIGeneratorAntimatter((TileEntityGeneratorAntimatter) entity, player.inventory);
         }
-        if(ID == this.id_bookIDCard )
-        {
-        	return new GUIIDCardInfo(/*player.inventory*/);
+        if (ID == this.id_bookIDCard) {
+            return new GUIIDCardInfo(/*player.inventory*/);
         }
-
-        if(ID == this.id_research)
-        {
+        if (ID == this.id_research) {
             return new GuiResearchNotify(Minecraft.getMinecraft());
         }
-
-        if(entity instanceof TileEntityMatrix)
-        {
-            return new GuiMatrix((TileEntityMatrix)entity, player.inventory);
+        if (entity instanceof TileEntityMatrix) {
+            return new GuiMatrix((TileEntityMatrix) entity, player.inventory);
         }
-
-        if(entity instanceof TileEntityCrafting)
-        {
-            return new GuiCrafting((TileEntityCrafting)entity, player.inventory);
+        if (entity instanceof TileEntityCrafting) {
+            return new GuiCrafting((TileEntityCrafting) entity, player.inventory);
         }
-
-        if(entity instanceof TileEntityAlloyFurnace)
-        {
-            return new GuiAlloyFurnace((TileEntityAlloyFurnace)entity, player.inventory);
+        if (entity instanceof TileEntityAlloyFurnace) {
+            return new GuiAlloyFurnace((TileEntityAlloyFurnace) entity, player.inventory);
         }
-
-        if(entity instanceof TileEntityThermalGenerator)
-        {
-            return new GuiThermalGenerator((TileEntityThermalGenerator)entity, player.inventory);
+        if (entity instanceof TileEntityThermalGenerator) {
+            return new GuiThermalGenerator((TileEntityThermalGenerator) entity, player.inventory);
         }
-
-        if(entity instanceof TileEntityAdvGenerator)
-        {
-            return new GUIAdvGenerator((TileEntityAdvGenerator)entity, player.inventory);
+        if (entity instanceof TileEntityAdvGenerator) {
+            return new GUIAdvGenerator((TileEntityAdvGenerator) entity, player.inventory);
+        }
+        if (entity instanceof TEPowerCore) {
+            return new EnergyCoreGUI((TEPowerCore) entity, player.inventory);
         }
         return null;
     }

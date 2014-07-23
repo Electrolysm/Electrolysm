@@ -51,6 +51,7 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
     }
 
     TEPowerCore powerCore = null;
+    TEPowerCore lastCore = null;
 
     @Override
     public void updateEntity() {
@@ -70,6 +71,16 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
             if(rand.nextInt(100) == 5) {
                 powerCore = findCore(worldObj, xCoord, yCoord, zCoord);
             }
+        }
+
+        if(powerCore != null) {
+            powerCore.registerOnNetwork(this);
+            lastCore = powerCore;
+        }
+        else if(lastCore != null)
+        {
+            lastCore.clearNetwork();
+            lastCore = null;
         }
     }
 

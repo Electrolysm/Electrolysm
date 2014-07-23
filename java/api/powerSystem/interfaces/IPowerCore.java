@@ -7,6 +7,8 @@ public interface IPowerCore
 {
     public float getAmps();
 
+    public float getMaxAmps();
+
     public int getTeU();
 
     public void setTeU(int teu);
@@ -22,4 +24,6 @@ public interface IPowerCore
     public void setFull();
 
     public void setEmpty();
+
+    public boolean isCreative();
 }
