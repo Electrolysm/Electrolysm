@@ -26,12 +26,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.potion.Potion;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -138,8 +141,7 @@ public class Electrolysm
     //Biome
     public static Item spawnZS = new spawnZS();
     public static Block diseaseGrass = new diseasedGrass().setBlockName("diseasedGrass");
-    public static final BiomeGenBase diseasedBiomeObj = new diseasedBiome(configHandler.biomeID);
-    public BiomeGenBase diseasedBiome = diseasedBiomeObj;
+    public static BiomeGenBase diseasedBiome = new diseasedBiome(configHandler.biomeID);
     public static Block diseasedSapling = WorldGenDiseasedTree.initialiseTree("sapling");
     public static Block diseasedLog = WorldGenDiseasedTree.initialiseTree("log");
     public static Block diseasedLeaves = WorldGenDiseasedTree.initialiseTree("leaves");
@@ -316,7 +318,8 @@ public class Electrolysm
      */
     
     long startTime;
-    
+    //private BiomeDictionary.Type DISEASED = new diseasedWorldType();
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -339,8 +342,7 @@ public class Electrolysm
         Register.addOreDictionary();
         TileEntityMappingHandler.addMappings();
 
-        BiomeDictionary.registerBiomeType(diseasedBiome, new BiomeDictionary.Type[] {BiomeDictionary.Type.DEAD});
-        BiomeManager.addSpawnBiome(diseasedBiome);
+        this.addBiome();
 
         EntityRegistry.registerModEntity(EntityZombie_Scientist.class, "Zombie Scientist", 2, this, 80, 3, true);
 
@@ -358,6 +360,7 @@ public class Electrolysm
     {
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();
+        this.addBiome();
     }
 
     @SideOnly(Side.CLIENT)
@@ -372,5 +375,14 @@ public class Electrolysm
     public void serverLoad(FMLServerStartingEvent event)
     {
         event.registerServerCommand(new CommandStardate());
+    }
+
+    public void addBiome()
+    {
+        BiomeManager.BiomeEntry biome = new BiomeManager.BiomeEntry(diseasedBiome, 100);
+        BiomeManager.desertBiomes.add(biome);
+        BiomeManager.warmBiomes.add(biome);
+        BiomeDictionary.registerBiomeType(new BiomeManager.BiomeEntry(diseasedBiome, 100).biome, new BiomeDictionary.Type[]{BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY});
+        BiomeManager.addSpawnBiome(diseasedBiome);
     }
 }

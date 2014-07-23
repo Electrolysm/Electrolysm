@@ -5,9 +5,13 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import electro.Electrolysm;
 import electro.handlers.version.VersionCheck;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.world.biome.WorldChunkManager;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
 
 import java.util.Random;
 

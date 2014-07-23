@@ -3,8 +3,11 @@ package electro.world.biome;
 import java.util.Random;
 
 import electro.Electrolysm;
+import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockGrass;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -13,6 +16,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -21,38 +25,32 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class diseasedGrass extends BlockGrass
+public class diseasedGrass extends BlockContainer
 {
     int sec;
 
     public diseasedGrass()
     {
     	
-        super();
+        super(Material.ground);
         // TODO Auto-generated constructor stub
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(1);
         this.setStepSound(Block.soundTypeGrass);
     }
 
-
-
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     private IIcon iconGrassTop;
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
     @Override
     public IIcon getIcon(int side, int meta)
     {
-        if(side == 0)
+        if(side == 1)
         {
             return this.iconGrassTop;
         }
-        else if(side == 1)
+        else if(side == 0)
         {
             return Blocks.dirt.getBlockTextureFromSide(1);
         }
@@ -145,5 +143,10 @@ public class diseasedGrass extends BlockGrass
 	        }
     	}
     	return false;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+        return new TileEntityGrass();
     }
 }

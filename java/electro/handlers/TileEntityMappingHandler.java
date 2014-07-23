@@ -24,6 +24,7 @@ import electro.oreProccessing.te.TileEntitySmeltory;
 import electro.powerSystem.te.TileEntityWire;
 import electro.research.te.TileEntityCollector;
 import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
+import electro.world.biome.TileEntityGrass;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -33,6 +34,7 @@ public class TileEntityMappingHandler
 {
     public static void addMappings()
     {
+        GameRegistry.registerTileEntity(TileEntityGrass.class, "TileEntityGrass");
         GameRegistry.registerTileEntity(TileEntityThermalGenerator.class, "TileEntityThermalGenerator");
         GameRegistry.registerTileEntity(TileEntityAdvGenerator.class, "TileEntityAdvGenerator");
         GameRegistry.registerTileEntity(TileEntityLumRed.class, "TileEntityLumRed");

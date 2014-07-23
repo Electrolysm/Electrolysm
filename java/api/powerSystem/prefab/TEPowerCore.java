@@ -136,19 +136,21 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
         if(this.getTeU() < 0) { setEmpty(); }
         if(this.getTeU() >= (maxTeU - 5)) { setFull(); }
         if(new Random().nextInt(50) == 5) { this.drainPower(1); }
+        if(getAmps() > getMaxAmps() && !isCreative) { drainPower(100); }
 
         this.checkConnections();
     }
 
     public void checkConnections()
     {
+        if(teList.size() == 0) { return; }
         for(int i = 0; i < teList.size(); i++)
         {
             if(worldObj.getTileEntity(teList.get(i).xCoord, teList.get(i).yCoord, teList.get(i).zCoord) != teList.get(i))
             {
                 this.clearNetwork();
             }
-            if(teList.get(i) instanceof TileEntityGenerator)
+            else if(teList.get(i) instanceof TileEntityGenerator)
             {
                 TileEntityGenerator te = (TileEntityGenerator)teList.get(i);
                 if(te.findCore(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord) != this)
@@ -156,7 +158,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
                     this.clearNetwork();
                 }
             }
-            if(teList.get(i) instanceof TileEntityMachine)
+            else if(teList.get(i) instanceof TileEntityMachine)
             {
                 TileEntityMachine te = (TileEntityMachine)teList.get(i);
                 if(te.findCore(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord) != this)

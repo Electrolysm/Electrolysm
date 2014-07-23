@@ -14,13 +14,13 @@ public class diseasedBiome extends BiomeGenBase
         super(par1);
         this.theBiomeDecorator = new DiseasedBiomeDecorator(this);
         this.setBiomeName("Diseased Grassland");
-
         this.topBlock = Electrolysm.diseaseGrass;
         this.fillerBlock = Blocks.dirt;
         this.spawnableMonsterList.removeAll(spawnableMonsterList);
         this.spawnableMonsterList.add(new SpawnListEntry(EntityZombie_Scientist.class, 5, 10, 50));
         this.setDisableRain();
-        this.setTemperatureRainfall(10000, 0);
+        this.setColor(7160201);
+        this.setTemperatureRainfall(100, 0);
         this.theBiomeDecorator.treesPerChunk = 1;
         this.theBiomeDecorator.deadBushPerChunk = 4;
     }
@@ -38,7 +38,7 @@ public class diseasedBiome extends BiomeGenBase
     
     private void generateTreeSurface(World world, Random random, int x, int z) 
     {
-    	if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiomeObj)
+    	if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiome)
         {
             if (random.nextInt(75) == 1)
             {

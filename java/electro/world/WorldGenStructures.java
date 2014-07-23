@@ -27,7 +27,7 @@ public class WorldGenStructures implements IWorldGenerator
 
     private void generateTreeSurface(World world, Random random, int x, int z) 
     {
-    	if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiomeObj)
+    	if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiome)
         {
             if (random.nextInt(75) == 1)
             {
@@ -39,7 +39,7 @@ public class WorldGenStructures implements IWorldGenerator
 	public static void generateSurface(World world, Random random, int x, int z)
     {
         //Science Lab Generation Code:
-        if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiomeObj)
+        if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiome)
         {
             if (random.nextInt(100) == 1)
             {
