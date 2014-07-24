@@ -14,6 +14,7 @@ import electro.common.CommonProxy;
 import electro.handlers.helpers.ColourEnumHelper;
 import electro.handlers.helpers.EncryptionHelper;
 import electro.research.common.SavePlayerScanData;
+import electro.research.crafting.ResearchCraftingHandler;
 import electro.research.researchDevice;
 import electro.research.system.*;
 import net.minecraft.client.Minecraft;
@@ -61,6 +62,10 @@ public class GUIIDCardInfo extends GuiScreen {
     public void initGui() {
 
         super.initGui();
+
+        //new ResearchRegistry(true);
+
+        PlayerResearchEvent.callScanEvent(mc.thePlayer, mc.thePlayer.getDisplayName());
 
         Item inHand = Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem().getItem();
         if(inHand instanceof researchDevice)
@@ -118,9 +123,15 @@ public class GUIIDCardInfo extends GuiScreen {
         drawBookmark(left + guiWidth / 2, top - getTitleHeight(), title, true);
         String subtitle = null;
 
+        //System.out.println(screen);
         if(screen != null && screen.contains("_image"))
         {
+            //System.out.println("image");
             this.drawImage(screen.replace("_image", ""), this.getPositionForName(screen.replace("_image", "")));
+        }
+        if(screen != null && screen.contains("_crafting"))
+        {
+
         }
 
 
@@ -138,20 +149,7 @@ public class GUIIDCardInfo extends GuiScreen {
         int divLength = (length / itemsPerPage);
         int finalPage = length - (itemsPerPage * divLength);
 
-        if(finalPage == 12)
-        {
-            return top;
-        }
-        else if(finalPage < (itemsPerPage / 2))
-        {
-            return bottom;
-        }
-        else if (finalPage < (itemsPerPage / 4))
-        {
-            return middle;
-        }
-
-        return -2;
+        return middle;
     }
 
 
@@ -226,9 +224,19 @@ public class GUIIDCardInfo extends GuiScreen {
             else if(id == this.backID)
             {
                 nextPage = false;
-                screen = screen.replace("_image", "");
+                screen = screen.replace("_image", "").replace("_crafting", "");
                 this.populateScreen(screen);
             }
+        }
+        else if(name.contains("images"))
+        {
+            screen = screen + "_image";
+            this.populateScreen("nothing");
+        }
+        else if(name.contains("crafting"))
+        {
+            screen = screen + "_crafting";
+            this.populateScreen("nothing");
         }
         else
         {
@@ -286,7 +294,7 @@ public class GUIIDCardInfo extends GuiScreen {
         if(((GuiButtonInvisible)(buttonList.get(itemsPerPage - 1))).displayString == "")
         {
             if(screen != null || screen != "") {
-                this.showImages();
+                //this.showImages();
             }
         }
 
@@ -298,15 +306,10 @@ public class GUIIDCardInfo extends GuiScreen {
         int[] positionY = new int[] {-2, 35, 75};
         if(hasImage(name))
         {
-            ResourceLocation location = CommonProxy.IMAGE_THE_BASICS;
+            ResourceLocation location = CommonProxy.getResearchImage(name);
             this.mc.renderEngine.bindTexture(location);
             drawTexturedModalRect(left + 55 + acrossAlter, top + positionY[pos] + upAlter, 0, 0, imageWidth, imageHeight);
         }
-    }
-
-    public ResourceLocation getImage(String name)
-    {
-        return null;
     }
 
     public boolean hasImage(String name)
@@ -346,7 +349,7 @@ public class GUIIDCardInfo extends GuiScreen {
             button.enabled = true;
         }
 
-        if(screen1 == "nothing") { return; }
+        if(screen1 == "nothing" || screen1 == "nothing_image") { return; }
 
         HashMap<String, EnumResearchType> typeMap = EnumResearchType.getHashMap();
         Set<String> keySet = typeMap.keySet();
@@ -395,7 +398,7 @@ public class GUIIDCardInfo extends GuiScreen {
                     GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
 
                     button.displayString = (ColourEnumHelper.BLACK + WordUtils.capitalize(String.valueOf(
-                            (EncryptionHelper.encode(researchName)).replace("_", " "))));
+                            (/*EncryptionHelper.encode*/(researchName)).replace("_", " "))));
                 }
             }
         }
@@ -418,19 +421,30 @@ public class GUIIDCardInfo extends GuiScreen {
 
                     GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
                     GuiButtonInvisible buttonPic = (GuiButtonInvisible) buttonList.get(i - x + 1);
+                    GuiButtonInvisible buttomCraft = (GuiButtonInvisible) buttonList.get(i - x + 2);
 
                     button.displayString = ColourEnumHelper.WHITE + text[i];
                     button.enabled = false;
 
                     if((i - x + 1) > itemsPerPage) { return; }
-                    if(this.hasImage(screen1)) {
-                        //buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
-                        //this.showImages();e
+                    if(this.hasImage(screen1) && buttonPic.id < this.homeID) {
+                        buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
+                        //this.showImages();
+                    }
+                    if(this.hasCrafting(screen1) && buttomCraft.id < this.homeID)
+                    {
+                        buttomCraft.displayString = ColourEnumHelper.BRIGHT_GREEN + "    Click to view crafting recipes!";
                     }
                 }
             }
         }
 
+    }
+
+    public boolean hasCrafting(String name)
+    {
+        return ResearchRegistry.getResearch(name) != null &&
+                ResearchCraftingHandler.hasCrafting(ResearchRegistry.getResearch(name));
     }
 
     public void showImages()

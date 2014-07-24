@@ -1,6 +1,7 @@
 package electro.common;
 
 import electro.Electrolysm;
+import electro.research.system.ResearchRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import electro.handlers.Referance;
@@ -84,5 +85,13 @@ public class CommonProxy
     public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
     public static int[] RANGE_TIER = {40, 80, 135};
     
-    
+    public static ResourceLocation getResearchImage(String name)
+    {
+        if(ResearchRegistry.getResearch(name) != null)
+        {
+            return (new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/images/" + name + ".png"));
+        }
+
+        return null;
+    }
 }

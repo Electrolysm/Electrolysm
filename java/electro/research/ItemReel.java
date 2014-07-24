@@ -103,9 +103,10 @@ public class ItemReel extends Item
         }
         else
         {
-            stack.stackTagCompound.setInteger("engValue", stack.stackTagCompound.getInteger("engValue") + 1);
-            stack.stackTagCompound.setInteger("sciValue", stack.stackTagCompound.getInteger("sciValue") + 1);
-            return true;
+            //stack.stackTagCompound.setInteger("engValue", stack.stackTagCompound.getInteger("engValue") + 1);
+            //stack.stackTagCompound.setInteger("sciValue", stack.stackTagCompound.getInteger("sciValue") + 1);
+            //return true;
+            return false;
         }
     }
 

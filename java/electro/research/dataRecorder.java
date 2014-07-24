@@ -66,7 +66,8 @@ public class dataRecorder extends BlockContainer
                 if(player.getHeldItem().getItem() instanceof ItemReel)
                 {
                     te.setInventorySlotContents(0, player.getHeldItem());
-                    player.setItemInUse(null, 0);
+                    //player.setItemInUse(null, 0);
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                     System.out.println("in");
 
                     return true;

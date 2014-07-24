@@ -41,7 +41,9 @@ public class researchDevice extends Item
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8,
                              float par9, float par10)
+
     {
+        this.gainBasics(player);
         return false;
     }
 
@@ -55,9 +57,9 @@ public class researchDevice extends Item
             int z = (int)player.posZ;
             player.openGui(Electrolysm.GUIInstance, GUIHandler.id_bookIDCard, world, x, y, z);
 
-            this.gainBasics(player);
             return stack;
         }
+        this.gainBasics(player);
         return stack;
     }
 
@@ -67,7 +69,9 @@ public class researchDevice extends Item
         {
             new SavePlayerScanData.ScanData(player.getDisplayName(), "device");
             PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
+            System.out.println("basics");
         }
+        System.out.println(":(");
     }
 
     public static boolean hasBlockBeenScanned(String username, String newData)

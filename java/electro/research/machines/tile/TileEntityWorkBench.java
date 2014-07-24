@@ -1,7 +1,9 @@
 package electro.research.machines.tile;
 
 import electro.handlers.helpers.RecipeRegistry;
+import electro.research.common.SavePlayerScanData;
 import electro.research.system.Research;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -153,13 +155,15 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
             Research research = RecipeRegistry.getResearch(recipe);
             //System.out.println((getStackInSlot(10).stackTagCompound.getString("researchData")).equals(research.toAdvString()));
             //System.out.println(research.toAdvString());
-
+            if(!(SavePlayerScanData.ResearchData.hasPlayerUnlocked(Minecraft.getMinecraft().thePlayer.getDisplayName() + "_active", research.getName()))) {
+                return;
+            }
 
             if(getStackInSlot(10).stackTagCompound != null && research != null &&
                 (getStackInSlot(10).stackTagCompound.getString("researchData")).equals(research.toAdvString()))
             {
                 this.setInventorySlotContents(9, RecipeRegistry.getResearchResult(recipe));
-                System.out.println("yep");
+                //System.out.println("yep");
 
             }
         }

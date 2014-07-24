@@ -22,7 +22,13 @@ import java.util.List;
 public class ResearchCraftingHandler
 {
     public HashMap<List<RecipeStack>, String> ShapedResearchMap = new HashMap<List<RecipeStack>, String>();
+    public HashMap<String, List<RecipeStack>> ShapedResearchMapRev = new HashMap<String, List<RecipeStack>>();
+
     public HashMap<List<RecipeStack>, RecipeStack> ShapedResultMap = new HashMap<List<RecipeStack>, RecipeStack>();
+
+    public static HashMap<String, List<RecipeStack>> getRevMap() {
+        return new ResearchCraftingHandler().ShapedResearchMapRev;
+    }
 
     public ResearchCraftingHandler()
     {
@@ -33,6 +39,11 @@ public class ResearchCraftingHandler
                         Character.valueOf('Y'), Items.gold_ingot});
     }
 
+    public static boolean hasCrafting(Research research)
+    {
+        return getRevMap().get(research) != null;
+    }
+
     public static HashMap<List<RecipeStack>, RecipeStack> getResultMap()
     {
         return new ResearchCraftingHandler().ShapedResultMap;
@@ -41,6 +52,8 @@ public class ResearchCraftingHandler
     private void addRecipes(List<RecipeStack> list, Research research)
     {
         ShapedResearchMap.put(list, research.toAdvString());
+        ShapedResearchMapRev.put(research.toAdvString(), list);
+
     }
 
     private void addRecipes(List<RecipeStack> list, RecipeStack result)

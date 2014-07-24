@@ -39,7 +39,7 @@ public class ResearchRegistry
         File folder = new File("config/Electrolysm/");
 
         //Power
-        this.registerResearch(new Research("energy_storage", this.POWER, new Point(10,7 ), 1));
+        this.registerResearch(new Research("energy_storage", this.POWER, new Point(10,7 ), 1, true));
         // this.registerResearch(new Research("WET_energy_storage", this.POWER, new Point (25,18), 2));
         // this.registerResearch(new Research("graphene_energy_storage", this.POWER, new Point (40, 32), 3));
         //  this.registerResearch(new Research("tesla_coil", this.POWER, new Point(60,52 ), 4));
@@ -50,11 +50,11 @@ public class ResearchRegistry
         this.registerResearch(new Research("improved_conductors", this.POWER, new Point(20, 11), 2));
         // this.registerResearch(new Research("efficent_generators", this.POWER, new Point(32, 20), 3));
         // this.registerResearch(new Research("antimatter_generator", this.POWER, new Point(82, 74), 4));
-        this.registerResearch(new Research("thermal_generator", this.POWER, new Point(34, 24), 3));
+        this.registerResearch(new Research("thermal_generator", this.POWER, new Point(34, 24), 3, true));
         //this.registerResearch(new Research("better_conduction", this.POWER, new Point(45, 34), 4));
         //this.registerResearch(new Research("bio_generator", this.POWER, new Point (32, 26), 3));
         //this.registerResearch(new Research("less-waste_gas", this.POWER, new Point (42, 37), 3));
-        this.registerResearch(new Research("solar_panel", this.POWER, new Point(34, 37), 3));
+        this.registerResearch(new Research("solar_panel", this.POWER, new Point(34, 37), 3, true));
         //this.registerResearch(new Research("solar_cells", this.POWER, new Point(47, 53), 4));
         //	this.registerResearch(new Research("turbine", this.POWER, new Point(38,30), 3));
         //	this.registerResearch(new Research("lighter_blades", this.POWER, new Point(54, 45), 4));
@@ -67,24 +67,25 @@ public class ResearchRegistry
         //this.registerResearch(new Research("fractional_distillation", this.METALS_AND_ELEMENTS, new Point(19, 15), 2));
         //this.registerResearch(new Research("plastic", this.METALS_AND_ELEMENTS, new Point(27,18), 3));
         //this.registerResearch(new Research("bio_fuel", this.METALS_AND_ELEMENTS, new Point(25,32), 3));
-        this.registerResearch(new Research("improved_coal", this.METALS_AND_ELEMENTS, new Point(16,24), 1));
+        this.registerResearch(new Research("improved_coal", this.METALS_AND_ELEMENTS, new Point(16,24), 1, true));
         //this.registerResearch(new Research("carbon_fibre", this.METALS_AND_ELEMENTS, new Point(37,28), 2));
         //this.registerResearch(new Research("nano_technology", this.METALS_AND_ELEMENTS, new Point(59,41), 3));
         //this.registerResearch(new Research("photomining", this.METALS_AND_ELEMENTS, new Point(29, 38), 2));
-        this.registerResearch(new Research("electrolysis", this.METALS_AND_ELEMENTS, new Point(32, 26), 2));
-        this.registerResearch(new Research("pure_copper", this.METALS_AND_ELEMENTS, new Point(33, 19), 3));
+        this.registerResearch(new Research("electrolysis", this.METALS_AND_ELEMENTS, new Point(32, 26), 2, true));
+        this.registerResearch(new Research("pure_copper", this.METALS_AND_ELEMENTS, new Point(33, 19), 3, true));
         this.registerResearch(new Research("aluminium", this.METALS_AND_ELEMENTS, new Point(33, 19), 3));
         this.registerResearch(new Research("alloys", this.METALS_AND_ELEMENTS, new Point(32, 22), 2));
         this.registerResearch(new Research("bronze", this.METALS_AND_ELEMENTS, new Point(23, 14), 3));
-        this.registerResearch(new Research("steel", this.METALS_AND_ELEMENTS, new Point(23, 14), 3));
+        this.registerResearch(new Research("steel", this.METALS_AND_ELEMENTS, new Point(23, 14), 3, true));
         this.registerResearch(new Research("silicon", this.METALS_AND_ELEMENTS, new Point(25, 30), 2));
         //this.registerResearch(new Research("large_hadron_colider", this.METALS_AND_ELEMENTS, new Point(67, 56), 2));
 
         //Research
+        this.registerResearch(new Research("the_basics", this.RESEARCH, new Point(0, 0), 1, true));
         //this.registerResearch(new Research("atomc_analyser", this.RESEARCH, new Point(32, 25), 2));
         //this.registerResearch(new Research("chromotography", this.RESEARCH, new Point(29, 37), 1));
         //this.registerResearch(new Research("mass_spectrometry", this.RESEARCH, new Point(38, 47), 2));
-        this.registerResearch(new Research("data_recorder", this.RESEARCH, new Point(19, 12), 1));
+        this.registerResearch(new Research("data_recorder", this.RESEARCH, new Point(19, 12), 1, true));
         //this.registerResearch(new Research("improved_equipment", this.RESEARCH, new Point(32, 25), 2));
         //this.registerResearch(new Research("sensitive_equipment", this.RESEARCH, new Point(47, 39), 3));
         //this.registerResearch(new Research("thinner_tape", this.RESEARCH, new Point(29, 22), 2));
@@ -96,14 +97,14 @@ public class ResearchRegistry
         this.registerResearch(new Research("microprocessor", this.ROBOTICS, new Point(48, 39), 3));
 
         //Machines
-        this.registerResearch(new Research("crusher", this.MACHINES, new Point(19, 14), 2));
+        this.registerResearch(new Research("crusher", this.MACHINES, new Point(19, 14), 2, true));
         //this.registerResearch(new Research("finer_filters", this.MACHINES, new Point(39, 28), 3));
         this.registerResearch(new Research("better_conduction", this.MACHINES, new Point(23, 15), 1));
-        this.registerResearch(new Research("smeltery", this.MACHINES, new Point(31, 22), 2));
+        this.registerResearch(new Research("smeltery", this.MACHINES, new Point(31, 22), 2, true));
         //this.registerResearch(new Research("higher_tempertures", this.MACHINES, new Point(51, 43), 3));
         this.registerResearch(new Research("molder", this.MACHINES, new Point(28, 21), 1));
         this.registerResearch(new Research("injection_molder", this.MACHINES, new Point(41, 33), 2));
-        this.registerResearch(new Research("liquidiser", this.MACHINES, new Point(31, 24), 1));
+        this.registerResearch(new Research("liquidiser", this.MACHINES, new Point(31, 24), 1, true));
         //this.registerResearch(new Research("assembly_machine", this.MACHINES, new Point(33, 24), 1));
         //this.registerResearch(new Research("improved_production_speed", this.MACHINES, new Point(49, 38), 2));
         this.registerResearch(new Research("compressor", this.MACHINES, new Point(23, 15), 1));
@@ -191,12 +192,7 @@ public class ResearchRegistry
         //Binding of text and research still has to be done!
 
         try {
-            //this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.stone}), this.getResearch("plastic"));
-            this.bindRequirementToResearch(new Requirement(new Block[]{Blocks.iron_ore, Electrolysm.copperOre}),
-                    this.getResearch("basic_storage"));
             this.bindRequirementToResearch(new Requirement("device"), this.getResearch("the_basics"));
-            /*this.bindRequirementToResearch(new Requirement(new Block[]{electrolysmCore.blastProof}),
-                    this.getResearch("advanced_storage"));*/
 
         }
         catch (Exception e) { e.printStackTrace(); }

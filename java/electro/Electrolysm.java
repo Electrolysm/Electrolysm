@@ -379,10 +379,10 @@ public class Electrolysm
 
     public void addBiome()
     {
-        BiomeManager.BiomeEntry biome = new BiomeManager.BiomeEntry(diseasedBiome, 100);
+        BiomeManager.BiomeEntry biome = new BiomeManager.BiomeEntry(diseasedBiome, 75);
         BiomeManager.desertBiomes.add(biome);
         BiomeManager.warmBiomes.add(biome);
-        BiomeDictionary.registerBiomeType(new BiomeManager.BiomeEntry(diseasedBiome, 100).biome, new BiomeDictionary.Type[]{BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY});
+        BiomeDictionary.registerBiomeType(biome.biome, new BiomeDictionary.Type[]{BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY});
         BiomeManager.addSpawnBiome(diseasedBiome);
     }
 }
