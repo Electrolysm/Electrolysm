@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import api.items.RecipeStack;
 import electro.Electrolysm;
 import electro.common.CommonProxy;
 import electro.handlers.helpers.ColourEnumHelper;
@@ -21,6 +22,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -102,8 +106,13 @@ public class GUIIDCardInfo extends GuiScreen {
         // populateBookmarks();
     }
 
+    int mouseX, mouseY;
+
     @Override
-    public void drawScreen(int par1, int par2, float par3) {
+    public void drawScreen(int mouseX1, int mouseY1, float par3) {
+
+        mouseX = mouseX1;
+        mouseY = mouseY1;
         guiWidth = 512 / 2;
         guiHeight = (512 / 2) - 20;
 
@@ -131,11 +140,43 @@ public class GUIIDCardInfo extends GuiScreen {
         }
         if(screen != null && screen.contains("_crafting"))
         {
-
+            this.drawRecipe(screen.replace("_crafting", ""));
         }
 
 
-        super.drawScreen(par1, par2, par3);
+        super.drawScreen(mouseX1, mouseY1, par3);
+    }
+
+    RenderItem[] renderItems = new RenderItem[9];
+
+    public void drawRecipe(String name)
+    {
+        this.drawImage("crafting", 1);
+
+        int[] posX = new int[] {85, 120, 155, 85, 120, 155, 85, 120, 155};
+        int[] posY = new int[] {45, 45, 45, 81, 81, 81, 115, 115, 115};
+
+        for(int i = 0; i < 9; i++) {
+            ItemStack stack = this.getItemRecipe(i, name);
+            renderItems[i] = new RenderItem();
+            renderItems[i].renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack,
+                    left + posX[i] + acrossAlter, top + posY[i] + upAlter);
+
+            if(mouseX < (posX[i] + 16 + acrossAlter + left) && mouseY < (posY[i] + 16 + upAlter + top) &&
+                    mouseX > (posX[i] + left + acrossAlter) && mouseY > (posY[i] + top + upAlter))
+            {
+                this.renderToolTip(stack, mouseX, mouseY);
+            }
+        }
+    }
+
+    public ItemStack getItemRecipe(int pos, String researchName) {
+        Research research = ResearchRegistry.getResearch(researchName);
+        if (research != null) {
+            List<RecipeStack> list = ResearchCraftingHandler.getRevMap().get(research.toAdvString());
+            return list.get(pos).getStackValue();
+        }
+        return null;
     }
 
     public int getPositionForName(String name)
@@ -154,24 +195,7 @@ public class GUIIDCardInfo extends GuiScreen {
 
 
     public void drawBookmark(int x, int y, String s, boolean drawLeft) {
-        // This function is called from the buttons so I can't use fontRendererObj
-        FontRenderer font = Minecraft.getMinecraft().fontRenderer;
-        boolean unicode = font.getUnicodeFlag();
-        font.setUnicodeFlag(true);
-        int l = font.getStringWidth(s.trim());
-        int fontOff = 0;
-
-        if(!drawLeft) {
-            x += l / 2;
-            fontOff = 2;
-        }
-
-        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-
-        //Draws title
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-        font.drawString(ColourEnumHelper.WHITE + s, x - l / 2 + fontOff + acrossAlter, y - 10 + upAlter, 0x111111, false);
-        font.setUnicodeFlag(unicode);
+        mc.fontRenderer.drawString(ColourEnumHelper.WHITE + s, left + acrossAlter + 70, top + upAlter - 21, 4201563);
     }
 
     //When button is pressed
@@ -181,7 +205,7 @@ public class GUIIDCardInfo extends GuiScreen {
         //new ResearchRegistry(true);
         int id = button.id;
         String name = button.displayString.toLowerCase().replace(" ", "_")
-                .replace(ColourEnumHelper.WHITE.toString(), "").replace(ColourEnumHelper.BLACK.toString(), "");
+                .replace(ColourEnumHelper.WHITE.toString(), "");
         HashMap<String, EnumResearchType> typeMap = EnumResearchType.getHashMap();
         Set<String> keySet = typeMap.keySet();
 
@@ -302,13 +326,18 @@ public class GUIIDCardInfo extends GuiScreen {
 
     public void drawImage(String name, int pos/*, int heightDefault*/)
     {
-        int imageWidth = 200, imageHeight = 150;
-        int[] positionY = new int[] {-2, 35, 75};
-        if(hasImage(name))
-        {
-            ResourceLocation location = CommonProxy.getResearchImage(name);
-            this.mc.renderEngine.bindTexture(location);
-            drawTexturedModalRect(left + 55 + acrossAlter, top + positionY[pos] + upAlter, 0, 0, imageWidth, imageHeight);
+        if(name == "crafting") {
+            this.mc.renderEngine.bindTexture(CommonProxy.CRAFTING_IMAGE);
+            drawTexturedModalRect(left + 65 + acrossAlter, top +  25 + upAlter, 0, 0, 200, 200);
+            mc.fontRenderer.drawString(ColourEnumHelper.WHITE + "Research Crafting", left + acrossAlter + 80, top + upAlter + 10, 4201563);
+        } else {
+            int imageWidth = 200, imageHeight = 150;
+            int[] positionY = new int[]{-2, 35, 75};
+            if (hasImage(name)) {
+                ResourceLocation location = CommonProxy.getResearchImage(name);
+                this.mc.renderEngine.bindTexture(location);
+                drawTexturedModalRect(left + 55 + acrossAlter, top + positionY[pos] + upAlter, 0, 0, imageWidth, imageHeight);
+            }
         }
     }
 

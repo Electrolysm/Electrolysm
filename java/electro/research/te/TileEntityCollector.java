@@ -184,13 +184,16 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound) {
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
         super.writeToNBT(nbtTagCompound);
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
-        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex) {
-            if (inventory[currentIndex] != null) {
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        {
+            if (inventory[currentIndex] != null)
+            {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) currentIndex);
                 inventory[currentIndex].writeToNBT(tagCompound);

@@ -32,7 +32,7 @@ public class ResearchCraftingHandler
 
     public ResearchCraftingHandler()
     {
-        addRecipe(ResearchRegistry.getResearch("improved_coal"), new ItemStack(Items.coal, 2),
+        addRecipe(ResearchRegistry.getResearch("the_basics"), new ItemStack(Items.coal, 2),
                 new Object[]{
                         "XXX", "XXY", "XXX",
                         Character.valueOf('X'), Items.iron_ingot,
@@ -41,7 +41,7 @@ public class ResearchCraftingHandler
 
     public static boolean hasCrafting(Research research)
     {
-        return getRevMap().get(research) != null;
+        return getRevMap().get(research.toAdvString()) != null;
     }
 
     public static HashMap<List<RecipeStack>, RecipeStack> getResultMap()
