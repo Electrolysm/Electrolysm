@@ -67,6 +67,7 @@ public class GUIIDCardInfo extends GuiScreen {
 
         super.initGui();
 
+        //new ResearchCraftingHandler();
         //new ResearchRegistry(true);
 
         PlayerResearchEvent.callScanEvent(mc.thePlayer, mc.thePlayer.getDisplayName());
@@ -158,6 +159,7 @@ public class GUIIDCardInfo extends GuiScreen {
 
         for(int i = 0; i < 9; i++) {
             ItemStack stack = this.getItemRecipe(i, name);
+            //System.out.println(stack);
             if(stack != null) {
                 renderItems[i] = new RenderItem();
                 renderItems[i].renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack,
@@ -453,20 +455,27 @@ public class GUIIDCardInfo extends GuiScreen {
 
                     GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - x);
                     GuiButtonInvisible buttonPic = (GuiButtonInvisible) buttonList.get(i - x + 1);
-                    GuiButtonInvisible buttomCraft = (GuiButtonInvisible) buttonList.get(i - x + 2);
+                    GuiButtonInvisible buttonCraft = (GuiButtonInvisible) buttonList.get(i - x + 2);
 
                     button.displayString = ColourEnumHelper.WHITE + text[i];
                     button.enabled = false;
 
                     if((i - x + 1) > itemsPerPage) { return; }
+                    if((i - x + 2) > itemsPerPage) { return; }
+
                     if(this.hasImage(screen1) && buttonPic.id < this.homeID) {
                         buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
                         //this.showImages();
                     }
-                    System.out.println(screen1 + ":" + hasCrafting(screen1));
-                    if(this.hasCrafting(screen1) && buttomCraft.id < this.homeID)
+                    //System.out.println(screen1 + ":" + hasCrafting(screen1));
+                    if(this.hasCrafting(screen1) && buttonCraft.id < this.homeID)
                     {
-                        buttomCraft.displayString = ColourEnumHelper.BRIGHT_GREEN + "    Click to view crafting recipes!";
+                        if(!hasImage(screen1)) {
+                            buttonCraft = (GuiButtonInvisible) buttonList.get(i - x + 1);
+                        } else {
+                            buttonCraft = (GuiButtonInvisible) buttonList.get(i - x + 2);
+                        }
+                        buttonCraft.displayString = ColourEnumHelper.BRIGHT_GREEN + "    Click to view crafting recipes!";
                     }
                 }
             }

@@ -329,14 +329,6 @@ public class Crafting
         		 Character.valueOf('I'), new ItemStack(Electrolysm.Scandium, 1, 1),
         		 Character.valueOf('B'), Electrolysm.Yttrium);
 
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.liquidiser, 1, 3),
-        		"ILI", "RLM", "IFI",
-        		Character.valueOf('I'), Items.iron_ingot,
-        		Character.valueOf('L'), Electrolysm.fluidStorage,
-        		Character.valueOf('R'), Items.redstone,
-        		Character.valueOf('M'), Electrolysm.advancedMicrochip,
-        		Character.valueOf('F'), Blocks.furnace);
-       
         GameRegistry.addRecipe(new ItemStack(Electrolysm.net),
         		"   S", " WS", "W  ",
         		'S', Items.string,

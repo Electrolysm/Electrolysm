@@ -18,7 +18,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -26,22 +26,18 @@ import java.util.List;
  */
 public class ResearchCraftingHandler
 {
-    public HashMap<List<RecipeStack>, String> ShapedResearchMap = new HashMap<List<RecipeStack>, String>();
-    public HashMap<String, List<RecipeStack>> ShapedResearchMapRev = new HashMap<String, List<RecipeStack>>();
+    public static LinkedHashMap<List<RecipeStack>, String> ShapedResearchMap = new LinkedHashMap<List<RecipeStack>, String>();
+    public static LinkedHashMap<String, List<RecipeStack>> ShapedResearchMapRev = new LinkedHashMap<String, List<RecipeStack>>();
 
-    public HashMap<List<RecipeStack>, RecipeStack> ShapedResultMap = new HashMap<List<RecipeStack>, RecipeStack>();
+    public static LinkedHashMap<List<RecipeStack>, RecipeStack> ShapedResultMap = new LinkedHashMap<List<RecipeStack>, RecipeStack>();
 
-    public static HashMap<String, List<RecipeStack>> getRevMap() {
-        //System.out.println(new ResearchCraftingHandler().ShapedResearchMapRev);
-        return new ResearchCraftingHandler().ShapedResearchMapRev;
+    public static LinkedHashMap<String, List<RecipeStack>> getRevMap() {
+        //System.out.println(ShapedResearchMapRev);
+        return ShapedResearchMapRev;
     }
 
     public ResearchCraftingHandler()
     {
-        ShapedResultMap = new HashMap<List<RecipeStack>, RecipeStack>();
-        ShapedResearchMap = new HashMap<List<RecipeStack>, String>();
-        ShapedResearchMapRev = new HashMap<String, List<RecipeStack>>();
-
         /*
         * Example of how to add recipes, for research
         addRecipe(ResearchRegistry.getResearch("the_basics"), new ItemStack(Items.coal, 2),
@@ -55,7 +51,7 @@ public class ResearchCraftingHandler
                 new Object[] {
                         "BGB", "GCG", "BGB",
                         Character.valueOf('B'), Electrolysm.blastProof,
-                        Character.valueOf('G'), Electrolysm.blastGlass,
+                        Character.valueOf('G'), new ItemStack(Electrolysm.blastGlass, 1, 0),
                         Character.valueOf('C'), Electrolysm.crystal1
                 });
 
@@ -82,7 +78,7 @@ public class ResearchCraftingHandler
                 new Object[] {
                         "YIY", "RXR", "YIY",
                         'I', "ingotCopper",
-                        'Y', Electrolysm.electrolChamber,
+                        'Y', new ItemStack(Electrolysm.electrolChamber, 1, 0),
                         'X', Electrolysm.advancedMicrochip,
                         'R', Items.redstone
                 }));
@@ -132,7 +128,17 @@ public class ResearchCraftingHandler
                         Character.valueOf('G'), Electrolysm.chunkGraphite
                 });
 
-        System.out.println(this.ShapedResearchMapRev);
+        addRecipe(ResearchRegistry.getResearch("liquidiser"), new ItemStack(Electrolysm.liquidiser, 1, 3),
+                new Object[]{
+                        "ILI", "RLM", "IFI",
+                        Character.valueOf('I'), Items.iron_ingot,
+                        Character.valueOf('L'), Electrolysm.fluidStorage,
+                        Character.valueOf('R'), Items.redstone,
+                        Character.valueOf('M'), Electrolysm.advancedMicrochip,
+                        Character.valueOf('F'), Blocks.furnace
+                });
+
+        //System.out.println(this.ShapedResearchMapRev.get(ResearchRegistry.getResearch("the_basics").toAdvString()));
     }
 
     public static boolean hasCrafting(Research research)
@@ -140,9 +146,9 @@ public class ResearchCraftingHandler
         return getRevMap().get(research.toAdvString()) != null;
     }
 
-    public static HashMap<List<RecipeStack>, RecipeStack> getResultMap()
+    public static LinkedHashMap<List<RecipeStack>, RecipeStack> getResultMap()
     {
-        return new ResearchCraftingHandler().ShapedResultMap;
+        return ShapedResultMap;
     }
 
     private void addRecipes(List<RecipeStack> list, Research research)
@@ -221,9 +227,9 @@ public class ResearchCraftingHandler
             }
         }
 
-        HashMap hashmap;
+        LinkedHashMap LinkedHashMap;
 
-        for (hashmap = new HashMap(); i < objects.length; i += 2)
+        for (LinkedHashMap = new LinkedHashMap(); i < objects.length; i += 2)
         {
             Character character = (Character)objects[i];
             ItemStack itemstack1 = null;
@@ -241,7 +247,7 @@ public class ResearchCraftingHandler
                 itemstack1 = (ItemStack)objects[i + 1];
             }
 
-            hashmap.put(character, itemstack1);
+            LinkedHashMap.put(character, itemstack1);
         }
 
         RecipeStack[] aitemstack = new RecipeStack[j * k];
@@ -250,9 +256,9 @@ public class ResearchCraftingHandler
         {
             char c0 = s.charAt(i1);
 
-            if (hashmap.containsKey(Character.valueOf(c0)))
+            if (LinkedHashMap.containsKey(Character.valueOf(c0)))
             {
-                aitemstack[i1] = new RecipeStack(((ItemStack)hashmap.get(Character.valueOf(c0))));
+                aitemstack[i1] = new RecipeStack(((ItemStack)LinkedHashMap.get(Character.valueOf(c0))));
             }
             else
             {

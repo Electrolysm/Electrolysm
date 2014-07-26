@@ -21,6 +21,7 @@ import electro.oreProccessing.*;
 import electro.powerSystem.*;
 import electro.powerSystem.generators.*;
 import electro.research.*;
+import electro.research.crafting.ResearchCraftingHandler;
 import electro.sciences.alloyFurnace.BlockAlloyFurnace;
 import electro.world.biome.*;
 import net.minecraft.block.Block;
@@ -365,6 +366,7 @@ public class Electrolysm
     {
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();
+        new ResearchCraftingHandler();
         this.addBiome();
     }
 

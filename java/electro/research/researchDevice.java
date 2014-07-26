@@ -69,9 +69,9 @@ public class researchDevice extends Item
         {
             new SavePlayerScanData.ScanData(player.getDisplayName(), "device");
             PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
-            System.out.println("basics");
+            //System.out.println("basics");
         }
-        System.out.println(":(");
+        //System.out.println(":(");
     }
 
     public static boolean hasBlockBeenScanned(String username, String newData)
