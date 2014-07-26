@@ -53,7 +53,8 @@ public class ingots extends Item {
         return ingotIcon[dmg];
     }
 
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    @Override
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
         for (int i = 0; i < 3; i++)
         {

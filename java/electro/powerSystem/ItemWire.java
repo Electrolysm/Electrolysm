@@ -48,10 +48,6 @@ public class ItemWire extends Item
         return "itemWire" + this.name[dmg];
     }
 
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
-    {
-    	list.add(new ItemStack(Electrolysm.ItemWire, 1, 0));
-    }
 
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y,
                              int z, int side, float clickX, float clickY, float clickZ)

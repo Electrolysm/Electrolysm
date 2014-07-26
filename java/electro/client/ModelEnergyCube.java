@@ -16,7 +16,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelEnergyCube extends ModelBase
+public class ModelEnergyCube extends ItemBlockModelBase
 {
   //fields
     ModelRenderer bottom;

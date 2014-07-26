@@ -190,16 +190,23 @@ public class TileEntityThermalGenerator extends TileEntityGenerator implements I
 
     int timer = 0;
     int maxTimer = 100;
+    public int amountFluid = 0;
 
     @Override
     public void updateEntity() {
         super.updateEntity();
+
+        if(worldObj.isRemote) { return; }
+
+        amountFluid = this.tank.getFluidAmount();
+        //System.out.println(amountFluid);
 
         int bucket = 500;
         int producingTeU = PowerUsage.getTeUFromMap(Electrolysm.thermalGenerator);
         if(canProduce(producingTeU) && tank.getFluidAmount() >= bucket)
         {
             if(timer ==  maxTimer) {
+                timer= 0;
                 this.useFluid(bucket);
                 this.produce(producingTeU);
             } else {

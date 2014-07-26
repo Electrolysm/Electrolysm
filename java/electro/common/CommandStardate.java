@@ -1,10 +1,16 @@
 package electro.common;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+import api.items.RecipeStack;
+import electro.research.common.SavePlayerScanData;
+import electro.research.system.ResearchRegistry;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.WorldServer;
@@ -43,95 +49,19 @@ public class CommandStardate extends CommandDate
     {
         WorldServer worldserver = MinecraftServer.getServer().worldServers[0];
         WorldInfo worldinfo = worldserver.getWorldInfo();
-        String message = "";
-        String line1 = "";
-        String line2 = "";
-        String line3 = "";
-        String line4 = "";
-        String line5 = "";
-        String line6 = "";
-        String command = "";
 
-        if (in.length > 0)
+        String message;
+
+        if(in.length > 0 && in[0] == "unlock")
         {
-            if (in[0].equals("help"))
-            {
-                message = this.help()[0];
-                line1 = this.help()[1];
-                line2 = this.help()[2];
-                line3 = this.help()[3];
-                line4 = this.help()[4];
-                line5 = this.help()[5];
-                line6 = this.help()[6];
-                command = "help";
-            }
-            else if (in[0].equals("sub"))
-            {
-                if (in.length > 1)
-                {
-                    message = "This command is currently unavaible";
-                    command = "error";
-                }
-                else
-                {
-                    message = "This is an unknown command try /stardate help";
-                    command = "unknown";
-                }
-            }
-            else if (in[0].equals("change"))
-            {
-                if (in.length > 1)
-                {
-                    message = "This command is currently unavaible";
-                    command = "error";
-                }
-                else
-                {
-                    message = "This is an unknown command try /stardate help";
-                    command = "unknown";
-                }
-            }
-            else if(in[0].contains("pranks"))
-            {
-            	if(icommandsender.getCommandSenderName().toLowerCase().contains("clarky158"))
-            	{
-	            	if(in.length > 1 && ElectroEventHandler.pranks)
-	            	{
-	            		ElectroEventHandler.pranks = false;
-	            		ElectroEventHandler.prankUser = in[1];
-	            		message = "Pranks Deactivated";
-	            	}
-	            	else
-	            	{
-	            		ElectroEventHandler.pranks = true;
-	            		ElectroEventHandler.prankUser = in[1];
-	            		message = "Pranks Activated";
-	            		
-	            	}
-	            	//icommandsender.addChatMessage(new I);
-	            	return;
-            	}
-            	else
-            	{
-                    message = "This is an unknown command try /stardate help";
-                    command = "unknown";
-            	}
-            }
-            else
-            {
-                message = "This is an unknown command try /stardate help";
-                command = "unknown";
-            }
-        }
-        else
-        {
+        } else {
             message = "Stardate: " + this.getStarDate(worldinfo.getWorldTotalTime());
-            command = "stardate";
         }
-/*
-        icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(message)
-                                        .setColor(this.getColourFromCommand(command)));
+        message = "All research unlocked. You cheater!!";
+        this.unlockResearch(icommandsender.getCommandSenderName());
 
+        icommandsender.addChatMessage(new ChatComponentTranslation(message));
+/*
         if (command.equals("help"))
         {
             command = "commandHelp";
@@ -148,6 +78,16 @@ public class CommandStardate extends CommandDate
             icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(line6)
                                             .setColor(this.getColourFromCommand(command)));
         }*/
+    }
+
+    private void unlockResearch(String username)
+    {
+        LinkedHashMap<String, String> research = ResearchRegistry.getResearchMap();
+        for(Map.Entry<String, String> entry : research.entrySet())
+        {
+            String researchName = entry.getKey();
+            new SavePlayerScanData.ResearchData(username + "_active", researchName);
+        }
     }
 
     private EnumChatFormatting getColourFromCommand(String command)

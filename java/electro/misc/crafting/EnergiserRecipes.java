@@ -7,6 +7,7 @@ import java.util.List;
 import api.items.RecipeStack;
 import electro.Electrolysm;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -27,7 +28,11 @@ public class EnergiserRecipes
     private EnergiserRecipes()
     {
         this.addDoubleSmelting(new ItemStack(Items.water_bucket), new ItemStack(Electrolysm.fluidStorage, 4, 0),
-                               new ItemStack(Electrolysm.fluidStorage, 4, 1));
+                new ItemStack(Electrolysm.fluidStorage, 4, 1));
+        this.addDoubleSmelting(new ItemStack(Electrolysm.crystalBase), new ItemStack(Items.redstone),
+                new ItemStack(Electrolysm.crystal1));
+        this.addDoubleSmelting(new ItemStack(Blocks.diamond_block), new ItemStack(Electrolysm.crystal1),
+                new ItemStack(Electrolysm.crystal2));
     }
 
     public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output)

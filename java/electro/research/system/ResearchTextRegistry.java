@@ -23,7 +23,21 @@ public class ResearchTextRegistry
             }
             in.close();
         }
-        catch (FileNotFoundException e) { }
+        catch (FileNotFoundException e)
+        {
+            try {
+                BufferedReader in = new BufferedReader(new FileReader(new File(researchDataLocation + "placeHolder.txt")));
+
+                String[] values = new String[0];
+                while (in.ready()) {
+                    String text = in.readLine();
+                    return text.split("#");
+                }
+                in.close();
+            }
+            catch (FileNotFoundException ex) { }
+            catch (IOException ex) { }
+        }
         catch (IOException e) { }
 
         return null;

@@ -59,7 +59,7 @@ public class ResearchRegistry
         //	this.registerResearch(new Research("turbine", this.POWER, new Point(38,30), 3));
         //	this.registerResearch(new Research("lighter_blades", this.POWER, new Point(54, 45), 4));
         this.registerResearch(new Research ("copper_cable", this.POWER, new Point (15, 7), 1));
-        this.registerResearch(new Research("improved_conductivity", this.POWER, new Point(28, 19), 2));
+        //this.registerResearch(new Research("improved_conductivity", this.POWER, new Point(28, 19), 2));
         this.registerResearch(new Research("endothermic_cable", this.POWER, new Point(42,37), 3));
 
         //Metals And Elements
@@ -85,7 +85,7 @@ public class ResearchRegistry
         //this.registerResearch(new Research("atomc_analyser", this.RESEARCH, new Point(32, 25), 2));
         //this.registerResearch(new Research("chromotography", this.RESEARCH, new Point(29, 37), 1));
         //this.registerResearch(new Research("mass_spectrometry", this.RESEARCH, new Point(38, 47), 2));
-        this.registerResearch(new Research("data_recorder", this.RESEARCH, new Point(19, 12), 1, true));
+        //this.registerResearch(new Research("data_recorder", this.RESEARCH, new Point(19, 12), 1, true));
         //this.registerResearch(new Research("improved_equipment", this.RESEARCH, new Point(32, 25), 2));
         //this.registerResearch(new Research("sensitive_equipment", this.RESEARCH, new Point(47, 39), 3));
         //this.registerResearch(new Research("thinner_tape", this.RESEARCH, new Point(29, 22), 2));
@@ -114,7 +114,7 @@ public class ResearchRegistry
         //Power Research requirements
         //You keep making spelling mistakes and I cannot be bothered to change them.
         //Check your work with what you have registered, so we don't have this problem.
-
+/*
         this.linkResearch(this.getResearch("energy_storage"), Arrays.asList(this.getResearch("copper_cable")));
         // this.linkResearch(this.getResearch("WET_energy_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("improved_conductivity"), this.getResearch("liquidiser")));
         //this.linkResearch(this.getResearch("graphene_energy_storage"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("endothermic_cable")));
@@ -163,7 +163,7 @@ public class ResearchRegistry
 
         // Robotics research requirements
         this.linkResearch(this.getResearch("intergrated_circuit"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("silicon")));
-        this.linkResearch(this.getResearch("CPU"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("molder")/*, this.getResearch("solder")*/));
+        this.linkResearch(this.getResearch("CPU"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("molder")));
         this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("endothermic_cable"), this.getResearch("CPU"), this.getResearch("injection_molder")));
 
         // Machines Research requirements
@@ -187,7 +187,7 @@ public class ResearchRegistry
         //Elliott DON'T remove this, trust me...
         //this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
         //this.registerResearch(new Research("wrong_cold_fusion", this.HIDDEN, new Point(0, 0), 3, this.getResearch("cold_fusion")));
-
+*/
 
         //Binding of text and research still has to be done!
 

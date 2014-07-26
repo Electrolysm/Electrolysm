@@ -74,6 +74,7 @@ public class ContainerEnergyCore extends Container {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.entity.maxTeU);
         par1ICrafting.sendProgressBarUpdate(this, 1, this.entity.teuData);
+
     }
 
     /**

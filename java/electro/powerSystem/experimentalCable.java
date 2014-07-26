@@ -81,11 +81,6 @@ public class experimentalCable extends BlockContainer
         }
     }
 
-    @Override
-    public Item getItemDropped(int par1, Random par2Random, int par3)
-    {
-        return Electrolysm.ItemWire;
-    }
 /*
     public int damageDropped(int par1)
     {

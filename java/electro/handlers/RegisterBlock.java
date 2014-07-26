@@ -14,6 +14,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.researchDesk, "researchDesk");
         GameRegistry.registerBlock(Electrolysm.diseaseGrass, "diseasedGrass");
         GameRegistry.registerBlock(Electrolysm.blastProof, "blastProof");
+        GameRegistry.registerBlock(Electrolysm.advEnergyStorage, "advEnergyStorage");
         GameRegistry.registerBlock(Electrolysm.blastDoor, "blastDoor");
         GameRegistry.registerBlock(Electrolysm.blastGlass, "blastGlass");
         GameRegistry.registerBlock(Electrolysm.solarPanel, "solarPanel");
@@ -106,7 +107,6 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.energisingRod, "energisingRod");
         GameRegistry.registerItem(elec.plasmaDrill, "plasmaDrill");
         GameRegistry.registerItem(elec.drillCasing, "drillCasing");
-        GameRegistry.registerItem(elec.ItemWire, "itemWire");
         GameRegistry.registerItem(elec.basicBattery, "basicBattery");
         GameRegistry.registerItem(elec.advancedBattery, "advancedBattery");
         GameRegistry.registerItem(elec.experimentalBattery, "experimentalBattery");
@@ -115,6 +115,8 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.dusts, "dusts");
         GameRegistry.registerItem(elec.node, "electrode");
         GameRegistry.registerItem(elec.net, "net");
+        GameRegistry.registerItem(elec.crystal1, "crystalTier1");
+        GameRegistry.registerItem(elec.crystal2, "crystalTier2");
         GameRegistry.registerItem(elec.crystal, "crystals");
         GameRegistry.registerItem(elec.diamondShard, "diamondShard");
         GameRegistry.registerItem(elec.luminousRedstone, "luminousRedstoneDust");

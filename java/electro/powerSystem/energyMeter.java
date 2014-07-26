@@ -40,7 +40,7 @@ public class energyMeter extends Item
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x,
                              int y, int z, int par7, float par8, float par9, float par10)
     {
-        if (true)
+        if (world.isRemote)
         {
             if (player.isSneaking())
             {
@@ -69,6 +69,8 @@ public class energyMeter extends Item
                 }
                 if(worldTE instanceof TileEntityGenerator)
                 {
+                    TileEntityGenerator te = (TileEntityGenerator)worldTE;
+                    this.printMessageGenerator(world.getBlock(x, y, z), te);
                     return true;
                 }
             }
@@ -77,18 +79,32 @@ public class energyMeter extends Item
         return false;
     }
 
+    private void printMessageGenerator(Block block, TileEntityGenerator te)
+    {
+        String message = "This generator can produce: " + "VALUE" + "TeU";
+        int teu = PowerUsage.getTeUFromMap(block);
+
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+            new ChatComponentTranslation(message.replace("VALUE", String.valueOf(teu))));
+    }
+
     private void printMessagePowerCore(IPowerCore core) {
 
         String message = "This core is holding: " + "VALUE" + "TeU";
+        String messageAmps = "This core has " + "VALUE" + " Amps";
 
         if(!core.isCreative()) {
             FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
                     new ChatComponentTranslation(message.replace("VALUE", String.valueOf(core.getTeU()))));
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                    new ChatComponentTranslation(messageAmps.replace("VALUE", String.valueOf(core.getAmps()))));
         }
         else
         {
             FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
                     new ChatComponentTranslation(message.replace("VALUE", "Infinite")));
+            FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                    new ChatComponentTranslation(messageAmps.replace("VALUE", String.valueOf(0))));
         }
     }
 

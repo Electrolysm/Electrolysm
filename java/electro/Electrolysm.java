@@ -7,6 +7,7 @@ package electro;
 
 import java.io.File;
 
+import api.LoggerHandler;
 import com.mojang.realmsclient.dto.McoServer;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -188,7 +189,7 @@ public class Electrolysm
     public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
     public static Block basicCable = new basicCable().setBlockName("basicCable");
     public static Block advancedCable = new advancedCable().setBlockName("advancedCable");
-    public static Item ItemWire = new ItemWire();
+    //public static Item ItemWire = new ItemWire();
     public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
     public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
     public static Item experimentalBattery = new experimentalBattery(64000, 2).setUnlocalizedName("experimentalBattery");
@@ -197,8 +198,12 @@ public class Electrolysm
     public static Block solarPanel = new BlockSolarPanel().setBlockName("solarPanel");
 
     public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
+    public static Block advEnergyStorage = new BlockAdvEnergyStorage().setBlockName("advEnergyStorage");
     public static Block creativeEnergyStorage = new BlockCreativeEnergyCore().setBlockName("creativeEnergyCore");
 
+
+    public static Item crystal1 = new ItemCrafting().setUnlocalizedName("crystalTier1");
+    public static Item crystal2 = new ItemCrafting().setUnlocalizedName("crystalTier2");
     /*
     public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
     public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null,
@@ -206,13 +211,9 @@ public class Electrolysm
     public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
     public static Block plug = new plug(configHandler.plugID, null);
     */public static Block generator = new generator().setBlockName("coalGen");
-    public static Block matterGen = new matterGen().setBlockName("matterGen");
-    public static Block coolerProccesser ;//= new coolerProccesser(configHandler.coolerProccesserID, null);
-   // public static Block coolerPort = new coolerPort(configHandler.coolerPortID, null);
-   // public static Block coolerFan = new coolerFan(configHandler.coolerFanID, null);
-
+    // public static Block coolerPort = new coolerPort(configHandler.coolerPortID, null);
+    // public static Block coolerFan = new coolerFan(configHandler.coolerFanID, null);
     /*
-    public static Item crystal1 = new crystal(IDHandler.powerGrid.crystalID);
     public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
     public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
     public static Block earther = new earther(IDHandler.powerGrid.eartherID, null);
@@ -221,6 +222,9 @@ public class Electrolysm
     public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
     */
     public static Item energyMeter = new energyMeter();
+    public static Block matterGen = new matterGen().setBlockName("matterGen");
+    public static Block coolerProccesser ;//= new coolerProccesser(configHandler.coolerProccesserID, null);
+
     //Random Blocks
     public static Block ironFrames = new ironFrames().setBlockName("ironFrames");
 
@@ -232,7 +236,8 @@ public class Electrolysm
     public static Block electrolChamber = new electrolChamber(null, false, ContectedTexture).setBlockName("electrolChamber");
     public static Block seperator = new seporator(false).setBlockName("seperator");
     public static Block improvedFurnace = new improvedFurnace().setBlockName("improvedFurnace");
-    public static BlockContainer smeltory = (BlockContainer) new smeltory(false).setCreativeTab(TabElectrolysm).setBlockName("smeltory");
+    public static BlockContainer smeltory = (BlockContainer) new smeltory(false).setCreativeTab(TabElectrolysm)
+            .setBlockName("smeltory");
     public static Item impureDusts = new impureDusts();
     public static Item dusts = new dusts();
     public static Item node = new node();
@@ -352,7 +357,7 @@ public class Electrolysm
         FMLCommonHandler.instance().bus().register(new TickHandler());
 
         long duration = (System.currentTimeMillis() - startTime);
-        //LoggerHandler.info("Electrolysm Started in " + duration + "ms");
+        LoggerHandler.info("Electrolysm Started in " + duration + "ms");
     }
 
     @EventHandler
@@ -371,7 +376,7 @@ public class Electrolysm
         ClientProxy.registerRenderThings();
     }
 
-    //@ServerStarting
+    @EventHandler
     public void serverLoad(FMLServerStartingEvent event)
     {
         event.registerServerCommand(new CommandStardate());
@@ -382,7 +387,8 @@ public class Electrolysm
         BiomeManager.BiomeEntry biome = new BiomeManager.BiomeEntry(diseasedBiome, 75);
         BiomeManager.desertBiomes.add(biome);
         BiomeManager.warmBiomes.add(biome);
-        BiomeDictionary.registerBiomeType(biome.biome, new BiomeDictionary.Type[]{BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY});
+        BiomeDictionary.registerBiomeType(biome.biome, new BiomeDictionary.Type[]{BiomeDictionary.Type.PLAINS,
+                BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY});
         BiomeManager.addSpawnBiome(diseasedBiome);
     }
 }

@@ -15,6 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 public class TileEntityEnergiser extends TileEntity implements IInventory
 {
@@ -311,29 +312,7 @@ public class TileEntityEnergiser extends TileEntity implements IInventory
         }
         else
         {
-            Item item = itemStack.getItem();
-
-            if (itemStack.getItem() instanceof ItemBlock)
-            {
-                return 156;
-            }
-
-            if (item instanceof ItemTool && ((ItemTool) item).getToolMaterialName().equals("WOOD"))
-            {
-                return 200;
-            }
-
-            if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD"))
-            {
-                return 200;
-            }
-
-            if (item == Items.lava_bucket)
-            {
-                return 1000;
-            }
-
-            return GameRegistry.getFuelValue(itemStack);
+            return TileEntityFurnace.getItemBurnTime(itemStack);
         }
     }
 

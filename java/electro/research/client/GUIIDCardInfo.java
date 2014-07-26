@@ -158,14 +158,15 @@ public class GUIIDCardInfo extends GuiScreen {
 
         for(int i = 0; i < 9; i++) {
             ItemStack stack = this.getItemRecipe(i, name);
-            renderItems[i] = new RenderItem();
-            renderItems[i].renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack,
-                    left + posX[i] + acrossAlter, top + posY[i] + upAlter);
+            if(stack != null) {
+                renderItems[i] = new RenderItem();
+                renderItems[i].renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack,
+                        left + posX[i] + acrossAlter, top + posY[i] + upAlter);
 
-            if(mouseX < (posX[i] + 16 + acrossAlter + left) && mouseY < (posY[i] + 16 + upAlter + top) &&
-                    mouseX > (posX[i] + left + acrossAlter) && mouseY > (posY[i] + top + upAlter))
-            {
-                this.renderToolTip(stack, mouseX, mouseY);
+                if (mouseX < (posX[i] + 16 + acrossAlter + left) && mouseY < (posY[i] + 16 + upAlter + top) &&
+                        mouseX > (posX[i] + left + acrossAlter) && mouseY > (posY[i] + top + upAlter)) {
+                    this.renderToolTip(stack, mouseX, mouseY);
+                }
             }
         }
     }
@@ -174,7 +175,9 @@ public class GUIIDCardInfo extends GuiScreen {
         Research research = ResearchRegistry.getResearch(researchName);
         if (research != null) {
             List<RecipeStack> list = ResearchCraftingHandler.getRevMap().get(research.toAdvString());
-            return list.get(pos).getStackValue();
+            if(list != null && list.get(pos) != null) {
+                return list.get(pos).getStackValue();
+            } else { return null; }
         }
         return null;
     }
@@ -284,12 +287,12 @@ public class GUIIDCardInfo extends GuiScreen {
                         screen = null;
                         int slot = mc.thePlayer.inventory.getFirstEmptyStack();
                         Research research = null;
-                        research = ResearchRegistry.getResearch(EncryptionHelper.decode(name));
+                        research = ResearchRegistry.getResearch((name).replace(ColourEnumHelper.BLACK.toString(), ""));
 
                         if(mc.thePlayer.inventory.hasItemStack(new ItemStack(Electrolysm.inkAndQuill)) && slot >= 0 &&
                                 research != null)
                         {
-                            if(PlayerResearchEvent.hasPlayerUnlockedReliants(research, mc.thePlayer)) {
+                            //if(PlayerResearchEvent.hasPlayerUnlockedReliants(research, mc.thePlayer)) {
                                 String message = ColourEnumHelper.BRIGHT_GREEN + "Your idea has been recorded on paper";
                                 mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
                                 this.populateScreen(screen);
@@ -298,7 +301,7 @@ public class GUIIDCardInfo extends GuiScreen {
                                 mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound = new NBTTagCompound();
                                 mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound.setString("researchData",
                                         research.toAdvString());
-                            }
+                            //}
                         }
                         else
                         {
@@ -460,6 +463,7 @@ public class GUIIDCardInfo extends GuiScreen {
                         buttonPic.displayString = ColourEnumHelper.BRIGHT_GREEN + "          Click to view images!";
                         //this.showImages();
                     }
+                    System.out.println(screen1 + ":" + hasCrafting(screen1));
                     if(this.hasCrafting(screen1) && buttomCraft.id < this.homeID)
                     {
                         buttomCraft.displayString = ColourEnumHelper.BRIGHT_GREEN + "    Click to view crafting recipes!";
@@ -472,8 +476,13 @@ public class GUIIDCardInfo extends GuiScreen {
 
     public boolean hasCrafting(String name)
     {
-        return ResearchRegistry.getResearch(name) != null &&
-                ResearchCraftingHandler.hasCrafting(ResearchRegistry.getResearch(name));
+        Research research = ResearchRegistry.getResearch(name);
+        if (research != null) {
+            List<RecipeStack> list = ResearchCraftingHandler.getRevMap().get(research.toAdvString());
+            //System.out.println(list);
+            return list != null;
+        }
+        return false;
     }
 
     public void showImages()

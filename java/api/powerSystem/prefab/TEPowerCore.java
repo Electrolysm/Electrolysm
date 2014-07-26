@@ -28,6 +28,9 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
             tier = -1;
         } else {
             tier = tier1;
+            if (tier1 > 1) {
+                maxTeU = 100000 * (((tier1) * 2) * 10);
+            }
         }
     }
 
@@ -66,7 +69,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public float getAmps()
     {
-        return (float) (Math.sqrt(Math.sqrt(this.getTeU()))) + getCompValue();
+        return (float) Math.sqrt((Math.sqrt(this.getTeU()))) + getCompValue();
     }
 
     @Override
@@ -126,6 +129,8 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public void updateEntity() {
 
+        if(worldObj.isRemote) { return; }
+
         for (byte i = 0; i < 6; i++)
         {
             ForgeDirection dir = ForgeDirection.getOrientation(i);
@@ -136,7 +141,13 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
         if(this.getTeU() < 0) { setEmpty(); }
         if(this.getTeU() >= (maxTeU - 5)) { setFull(); }
         if(new Random().nextInt(50) == 5) { this.drainPower(1); }
-        if(getAmps() > getMaxAmps() && !isCreative) { drainPower(100); }
+        if(getAmps() > getMaxAmps() && !isCreative)
+        {
+            drainPower((int)(maxTeU * 0.001F));
+            if(this.getTeU() <= 0) {
+                worldObj.createExplosion(null, xCoord, yCoord, zCoord, 1, true);
+            }
+        }
 
         this.checkConnections();
     }

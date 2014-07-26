@@ -50,7 +50,7 @@ public class ModelRobotArm extends ItemBlockModelBase {
         arm = new ModelRenderer(this, 16, 48);
         arm.addBox(-2F, -2F, -4F, 4, 4, 22);
         arm.addBox(-1F, -1F, -4F, 2, 2, 24);
-        arm.addBox(-0.5F, -0.5F, -5F, 1, 1, 25);
+        arm.addBox(-0.5F, -0.5F, -3F, 1, 1, 25);
         arm.setRotationPoint(0.5F, 3F, 0F);
         arm.setTextureSize(128, 128);
         arm.mirror = true;

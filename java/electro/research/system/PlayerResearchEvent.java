@@ -27,11 +27,11 @@ public class PlayerResearchEvent
             //saveActiveResearch
             if (!SavePlayerScanData.ResearchData.hasPlayerUnlocked((username + "_active"), research.getName()))
             {
-                if(hasPlayerUnlockedReliants(research, player)) {
+                //if(hasPlayerUnlockedReliants(research, player)) {
                     new SavePlayerScanData.ResearchData(username, research.getName());
                     notifyPlayer(player, research);
                     //System.out.println(research.getName());
-                }
+                //}
             }
         }
     }
@@ -69,6 +69,12 @@ public class PlayerResearchEvent
             unlocked = research;
 
             //System.out.println("for1." + p + ": " + researchName + "---" + researchRequire.get(researchString));
+
+            //TODO
+            if(researchRequire.get(researchString) == null &&
+                    !SavePlayerScanData.ResearchData.hasPlayerUnlocked((username + "_active"), research.getName()))
+            { return ResearchRegistry.getResearch(researchName); }
+
 
             if(researchRequire.get(researchString) != null &&
                     !(SavePlayerScanData.ResearchData.hasPlayerUnlocked(username + "_active", researchName)))
