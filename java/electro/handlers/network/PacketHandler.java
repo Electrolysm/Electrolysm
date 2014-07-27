@@ -17,8 +17,5 @@ public class PacketHandler {
         INSTANCE.registerMessage(RobotArmMessage.class, RobotArmMessage.class, 0, Side.CLIENT);
         INSTANCE.registerMessage(MessageMatrix.class, MessageMatrix.class, 1, Side.CLIENT);
         INSTANCE.registerMessage(SmeltoryMessage.class, SmeltoryMessage.class, 2, Side.CLIENT);
-        INSTANCE.registerMessage(PowerCoreMessage.class, PowerCoreMessage.class, 3, Side.CLIENT);
-        INSTANCE.registerMessage(PowerCoreMessage.class, PowerCoreMessage.class, 4, Side.SERVER);
-
     }
 }

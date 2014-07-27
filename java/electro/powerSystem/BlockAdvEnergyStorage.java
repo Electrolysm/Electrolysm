@@ -1,7 +1,7 @@
 package electro.powerSystem;
 
+import api.powerSystem.prefab.TEPowerCore;
 import electro.Electrolysm;
-import electro.powerSystem.te.TileEntityAdvCore;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -29,6 +29,6 @@ public class BlockAdvEnergyStorage extends basicEnergyStorage
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileEntityAdvCore();
+        return new TEPowerCore(2);
     }
 }

@@ -3,10 +3,15 @@ package electro.powerSystem.gui;
 import api.powerSystem.prefab.TEPowerCore;
 import electro.common.CommonProxy;
 import electro.handlers.helpers.ColourEnumHelper;
-import electro.powerSystem.te.TileEntityCore;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Clarky158 on 23/07/2014.
@@ -18,13 +23,13 @@ import org.lwjgl.opengl.GL11;
  * and you have certain rights with respective
  * to the code.
  */
-public class GuiBasicCore extends GuiContainer{
+public class EnergyCoreGUI extends GuiContainer{
 
-    private TileEntityCore entity;
+    private TEPowerCore entity;
 
-    public GuiBasicCore(TileEntityCore entity, InventoryPlayer inventory)
+    public EnergyCoreGUI(TEPowerCore entity,	InventoryPlayer inventory)
     {
-        super(new ContainerBasicCore(entity, inventory));
+        super(new ContainerEnergyCore(entity, inventory));
         this.entity = entity;
     }
 

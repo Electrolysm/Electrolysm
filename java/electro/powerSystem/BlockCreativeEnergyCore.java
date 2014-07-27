@@ -2,7 +2,6 @@ package electro.powerSystem;
 
 import api.powerSystem.prefab.TEPowerCore;
 import electro.Electrolysm;
-import electro.powerSystem.te.TileEntityCreativeCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -38,7 +37,7 @@ public class BlockCreativeEnergyCore extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileEntityCreativeCore();
+        return new TEPowerCore(-1);
     }
 
 

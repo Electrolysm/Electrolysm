@@ -2,14 +2,11 @@ package electro.client;
 
 import java.util.HashMap;
 
-import api.powerSystem.prefab.TileEntityBasicCable;
+import api.powerSystem.prefab.TEPowerCore;
 import electro.Electrolysm;
 import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
 import electro.client.itemRenderers.*;
-import electro.powerSystem.te.TileEntityAdvCore;
-import electro.powerSystem.te.TileEntityCore;
-import electro.powerSystem.te.TileEntityCreativeCore;
 import electro.powerSystem.te.TileEntityWire;
 import electro.research.te.TileEntityCollector;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,9 +44,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRobotArm.class, new RenderTileRobotArm());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMatrix.class, new RenderTileMatrixConstruction());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCore.class, new RenderTileEnergyCube());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAdvCore.class, new RenderTileEnergyCube());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCreativeCore.class, new RenderTileEnergyCube());
+        ClientRegistry.bindTileEntitySpecialRenderer(TEPowerCore.class, new RenderTileEnergyCube());
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.researchDesk), new ItemResearchDeskRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());

@@ -12,9 +12,6 @@ import electro.machines.advMachines.te.TileEntityInjector;
 import electro.misc.block.basic.te.TileEntityBlastDoor;
 import electro.misc.crafting.items.te.TileEntityLumRed;
 import electro.powerSystem.generators.te.*;
-import electro.powerSystem.te.TileEntityAdvCore;
-import electro.powerSystem.te.TileEntityCore;
-import electro.powerSystem.te.TileEntityCreativeCore;
 import electro.research.machines.tile.TileEntityDesk;
 import electro.research.machines.tile.TileEntityResearchDesk;
 import electro.research.machines.tile.TileEntityWorkBench;
@@ -62,15 +59,10 @@ public class TileEntityMappingHandler
         GameRegistry.registerTileEntity(TileEntityMatrix.class, "TileEntityMatrix");
 //        /GameRegistry.registerTileEntity(TileEntityMatrixMachine.class, "TileEntityMatrixMachine");
         GameRegistry.registerTileEntity(TileEntityRobotArm.class, "TileEntityRoboticArm");
+        GameRegistry.registerTileEntity(TEPowerCore.class, "TEPowerCore");
         GameRegistry.registerTileEntity(TileEntityBasicCable.class, "TileEntityBasicCable");
         GameRegistry.registerTileEntity(TileEntityGenerator.class, "TileEntityGenerator");
         GameRegistry.registerTileEntity(TileEntityMachine.class, "TileEntityMachine");
-        GameRegistry.registerTileEntity(TEPowerCore.class, "TEPowerCore");
-
-        GameRegistry.registerTileEntity(TileEntityCore.class, "TileEntityCore");
-        GameRegistry.registerTileEntity(TileEntityAdvCore.class, "TileEntityAdvCore");
-        GameRegistry.registerTileEntity(TileEntityCreativeCore.class, "TileEntityCreativeCore");
-
 
     }
 }
