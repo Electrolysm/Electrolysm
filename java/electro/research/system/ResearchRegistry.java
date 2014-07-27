@@ -60,14 +60,14 @@ public class ResearchRegistry
         //	this.registerResearch(new Research("lighter_blades", this.POWER, new Point(54, 45), 4));
         this.registerResearch(new Research ("copper_cable", this.POWER, new Point (15, 7), 1));
         //this.registerResearch(new Research("improved_conductivity", this.POWER, new Point(28, 19), 2));
-        this.registerResearch(new Research("endothermic_cable", this.POWER, new Point(42,37), 3));
+      //  this.registerResearch(new Research("endothermic_cable", this.POWER, new Point(42,37), 3));
 
         //Metals And Elements
         //this.registerResearch(new Research("oil_extraction", this.METALS_AND_ELEMENTS, new Point(10, 8), 1));
         //this.registerResearch(new Research("fractional_distillation", this.METALS_AND_ELEMENTS, new Point(19, 15), 2));
         //this.registerResearch(new Research("plastic", this.METALS_AND_ELEMENTS, new Point(27,18), 3));
         //this.registerResearch(new Research("bio_fuel", this.METALS_AND_ELEMENTS, new Point(25,32), 3));
-        this.registerResearch(new Research("improved_coal", this.METALS_AND_ELEMENTS, new Point(16,24), 1));
+        this.registerResearch(new Research("improved_fuels", this.METALS_AND_ELEMENTS, new Point(16,24), 1));
         //this.registerResearch(new Research("carbon_fibre", this.METALS_AND_ELEMENTS, new Point(37,28), 2));
         //this.registerResearch(new Research("nano_technology", this.METALS_AND_ELEMENTS, new Point(59,41), 3));
         //this.registerResearch(new Research("photomining", this.METALS_AND_ELEMENTS, new Point(29, 38), 2));
@@ -114,7 +114,7 @@ public class ResearchRegistry
         //Power Research requirements
         //You keep making spelling mistakes and I cannot be bothered to change them.
         //Check your work with what you have registered, so we don't have this problem.
-/*
+
         this.linkResearch(this.getResearch("energy_storage"), Arrays.asList(this.getResearch("copper_cable")));
         // this.linkResearch(this.getResearch("WET_energy_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("improved_conductivity"), this.getResearch("liquidiser")));
         //this.linkResearch(this.getResearch("graphene_energy_storage"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("endothermic_cable")));
@@ -164,7 +164,7 @@ public class ResearchRegistry
         // Robotics research requirements
         this.linkResearch(this.getResearch("intergrated_circuit"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("silicon")));
         this.linkResearch(this.getResearch("CPU"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("molder")));
-        this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("endothermic_cable"), this.getResearch("CPU"), this.getResearch("injection_molder")));
+        this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("CPU"), this.getResearch("injection_molder")));
 
         // Machines Research requirements
         this.linkResearch(this.getResearch("crusher"), Arrays.asList(this.getResearch("electricity"), this.getResearch("intergrated_circuit")));
@@ -181,7 +181,6 @@ public class ResearchRegistry
 
         // Temporary research requirements
         this.linkResearch(this.getResearch("improved_conductivity"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("bronze")));
-        this.linkResearch(this.getResearch("endothermic_cable"), Arrays.asList(this.getResearch("improved_conductivity"), this.getResearch("pure_copper")));
         this.linkResearch(this.getResearch("injection_molder"), Arrays.asList(this.getResearch("microprocessor"), this.getResearch("molder")));
 
         //Elliott DON'T remove this, trust me...
@@ -193,12 +192,34 @@ public class ResearchRegistry
 
         try {
             this.bindRequirementToResearch(new Requirement("device"), this.getResearch("the_basics"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.basicCable, Electrolysm.generator}), this.getResearch("energy_storage"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre, Blocks.coal_block}), this.getResearch("electricity"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.generator, Electrolysm.improvedFurnace}), this.getResearch("improved_conductors"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.basicCable, Electrolysm.generator}), this.getResearch("energy_storage"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.lava, Electrolysm.advancedGenerator}), this.getResearch("thermal_generator"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.daylight_detector, Electrolysm.advancedGenerator}), this.getResearch("solarPanel"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre}), this.getResearch("copperCable"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.coal_block, Electrolysm.generator}), this.getResearch("improved_fuels"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.basicCable, Electrolysm.generator}), this.getResearch("energy_storage"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.graphite, Electrolysm.sulphurOre}), this.getResearch("electrolysis"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre}), this.getResearch("pure_copper"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.aluminiumOre}), this.getResearch("aluminium"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre, Electrolysm.tinOre}), this.getResearch("alloys"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre, Electrolysm.tinOre}), this.getResearch("bronze"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.iron_block, Blocks.coal_block}), this.getResearch("steel"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.sand}), this.getResearch("silicon"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre, Blocks.redstone_block}), this.getResearch("intergrated_circuit"));
+            this.bindRequirementToResearch(new Requirement(new Block[] { Electrolysm.copperOre, Electrolysm.basicCable}), this.getResearch("CPU"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.steelBlock, Blocks.redstone_block}), this.getResearch("microprocessor"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.iron_block, Blocks.redstone_block}), this.getResearch("crusher"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.improvedFurnace, Electrolysm.copperOre}), this.getResearch("smeltery"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.furnace}), this.getResearch("liquidiser"));
 
         }
         catch (Exception e) { e.printStackTrace(); }
+`
 
-
-        long duration = (System.currentTimeMillis() - time);
+        long duration = (System.currentTimeMillis() - time);`
         LoggerHandler.info("Research registry completed in " + duration + "ms");
 //        System.out.println(requireMap.get((this.getResearch("mass_spec")).toAdvString()));
         //System.exit(0);

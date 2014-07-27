@@ -57,15 +57,14 @@ public class ResearchCraftingHandler
 
         addRecipe(ResearchRegistry.getResearch("thermal_generator"), new ItemStack(Electrolysm.thermalGenerator),
                 new Object[] {
-                        "ILI", "FMF", "IBI",
+                        "IBI", "FMF", "IBI",
                         Character.valueOf('B'), Items.bucket,
                         Character.valueOf('I'), Items.iron_ingot,
                         Character.valueOf('L'), Items.lava_bucket,
-                        Character.valueOf('F'), Blocks.furnace,
                         Character.valueOf('M'), Electrolysm.advancedMicrochip
                 });
 
-        addRecipe(ResearchRegistry.getResearch("solar_panel"), new ItemStack(Electrolysm.thermalGenerator),
+        addRecipe(ResearchRegistry.getResearch("solar_panel"), new ItemStack(Electrolysm.solarPanel),
                 new Object[] {
                         "GGG", "IDI", "IMI",
                         Character.valueOf('D'), Blocks.daylight_detector,
@@ -83,14 +82,12 @@ public class ResearchCraftingHandler
                         'R', Items.redstone
                 }));
 
-        addRecipe(ResearchRegistry.getResearch("intergrated_circuit"),
-                new ShapedOreResearchRecipe(Electrolysm.experimentalMicrochip, true, new Object[]{
-                        "   ", "ADA", "MCM",
-                        'A', Electrolysm.advancedCPU,
-                        'D', Items.diamond,
-                        'M', Electrolysm.advancedMicrochip,
-                        'C', "ingotCopper"}));
-
+        addRecipe(ResearchRegistry.getResearch("intergrated_circuit"), new ShapedOreResearchRecipe(Electrolysm.microchipBoard, true, new Object[]{
+                		"   ", "   ", "RRR",
+                		'R', Items.redstone}));
+                		
+                
+               
         addRecipe(ResearchRegistry.getResearch("CPU"), new ShapedOreResearchRecipe(Electrolysm.CPU, true, new Object[]{
                         "CTC", "TRT", "CTC",
                         'C', Electrolysm.copperIngot,
@@ -111,7 +108,7 @@ public class ResearchCraftingHandler
                 Character.valueOf('M'), Electrolysm.BasicMicrochip,
                 Character.valueOf('P'), Blocks.cobblestone,
                 Character.valueOf('G'), Electrolysm.grindStone,
-                Character.valueOf('C'), "ingotSteel"}));
+                Character.valueOf('C'), "Item.redstone"}));
         addRecipe(ResearchRegistry.getResearch("smeltery"), new ItemStack(Electrolysm.smeltory, 1, 3),
                 new Object[]{
                         "IRI", "IMI", "FFF",
@@ -121,13 +118,13 @@ public class ResearchCraftingHandler
                         Character.valueOf('F'), Blocks.furnace
                 });
 
-        addRecipe(ResearchRegistry.getResearch("endothermic_cable"), new ItemStack(Electrolysm.experimentalCable, 8),
+      /*  addRecipe(ResearchRegistry.getResearch("endothermic_cable"), new ItemStack(Electrolysm.experimentalCable, 8),
                 new Object[]{
                         "III", "GGG", "III",
                         Character.valueOf('I'), Electrolysm.endoInsulator,
                         Character.valueOf('G'), Electrolysm.chunkGraphite
                 });
-
+*/
         addRecipe(ResearchRegistry.getResearch("liquidiser"), new ItemStack(Electrolysm.liquidiser, 1, 3),
                 new Object[]{
                         "ILI", "RLM", "IFI",

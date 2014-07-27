@@ -72,6 +72,9 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.alloyFurnace, "alloyFurnace");
         GameRegistry.registerBlock(Electrolysm.aluminiumOre, "aluminiumOre");
         GameRegistry.registerBlock(Electrolysm.improvedFurnace, "improvedFurnace");
+        GameRegistry.registerBlock(Electrolysm.tinOre, "tinOre");
+        
+
 
 
         //Fluids

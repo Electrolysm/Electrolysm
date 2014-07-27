@@ -8,7 +8,9 @@ package electro;
 import java.io.File;
 
 import api.LoggerHandler;
+
 import com.mojang.realmsclient.dto.McoServer;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import electro.machines.assemblySystem.*;
@@ -79,6 +81,7 @@ import electro.world.copperOre;
 import electro.world.graphite;
 import electro.world.sulpherOre;
 import electro.world.sulphur;
+import electro.world.tinOre;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -131,6 +134,7 @@ public class Electrolysm
     public static Item chunkGraphite = new chunkGraphite();
     public static Item copperIngot = new copperIngot();
     public static Block copperOre = new copperOre().setBlockName("copperOre");
+    public static Block tinOre = new tinOre().setBlockName("tinOre");
     public static Block sulphurOre = new sulpherOre().setBlockName("sulfurOre");
     public static Item sulphur = new sulphur();
     public static Item ingots = new ingots();

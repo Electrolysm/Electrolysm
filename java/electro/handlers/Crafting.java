@@ -245,11 +245,7 @@ public class Crafting
         
         GameRegistry.addShapelessRecipe(new ItemStack(Electrolysm.blastProof, 4),
         		new ItemStack(Electrolysm.blastBrick));
-        
-        GameRegistry.addShapelessRecipe(new ItemStack(Electrolysm.microchipBoard),
-        		new ItemStack(Electrolysm.ballOfPlastic),
-        		new ItemStack(Electrolysm.ballOfPlastic),
-        		new ItemStack(Electrolysm.ballOfPlastic));
+        `
         
         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.transistor, true, new Object[]{
                 " I ", " R ", "C C",
