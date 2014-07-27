@@ -1,8 +1,12 @@
 package api.powerSystem.prefab;
 
+import api.LoggerHandler;
 import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.interfaces.IPowerCore;
+import electro.handlers.network.PacketHandler;
+import electro.handlers.network.PowerCoreMessage;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -22,16 +26,11 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     private int tier = 0;
     public boolean isCreative = false;
 
-    public TEPowerCore(int tier1) {
-        if (tier1 == (-1)) {
-            isCreative = true;
-            tier = -1;
-        } else {
-            tier = tier1;
-            if (tier1 > 1) {
-                maxTeU = 100000 * (((tier1) * 2) * 10);
-            }
-        }
+    public TEPowerCore()
+    {
+        tier = 1;
+        maxTeU = 100000;
+        isCreative = false;
     }
 
     @Override
@@ -140,7 +139,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
         if(this.getTeU() < 0) { setEmpty(); }
         if(this.getTeU() >= (maxTeU - 5)) { setFull(); }
-        if(new Random().nextInt(50) == 5) { this.drainPower(1); }
+        if(new Random().nextInt(50) == 5 && getTeU() > 0) { this.drainPower(1); }
         if(getAmps() > getMaxAmps() && !isCreative)
         {
             drainPower((int)(maxTeU * 0.001F));
@@ -241,14 +240,38 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-
-        nbt.setInteger("teuCurrent", teuData);
+        //if(getTeU() == 0) { return; }
+        //LoggerHandler.severe("Saving data... " + this);
+        nbt.setByte("teuCurrent", (byte)this.getTeU());
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
+        //LoggerHandler.severe("Reading data... " + this);
 
-        teuData = nbt.getInteger("teuCurrent");
+        setTeU(nbt.getByte("teuCurrent"));
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        worldObj.addBlockEvent(xCoord, yCoord, zCoord, this.getBlockType(), 0, this.getTeU());
+        return PacketHandler.INSTANCE.getPacketFrom(new PowerCoreMessage(this));
+    }
+
+    @Override
+    public boolean receiveClientEvent(int eventId, int eventData)
+    {
+        if(eventId == 0)
+        {
+            setTeU(eventData);
+            worldObj.func_147451_t(this.xCoord, this.yCoord, this.zCoord);
+            return true;
+        }
+        else
+        {
+            return super.receiveClientEvent(eventId, eventData);
+        }
     }
 }

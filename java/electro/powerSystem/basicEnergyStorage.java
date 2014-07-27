@@ -3,6 +3,7 @@ package electro.powerSystem;
 import api.powerSystem.prefab.TEPowerCore;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import electro.Electrolysm;
+import electro.powerSystem.te.TileEntityCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -25,7 +26,7 @@ public class basicEnergyStorage extends BlockContainer
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TEPowerCore(1);
+        return new TileEntityCore();
     }
 
 

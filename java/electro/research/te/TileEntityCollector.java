@@ -29,6 +29,12 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
         tier = value;
     }
 
+    public TileEntityCollector()
+    {
+        this.inventory = new ItemStack[1];
+        tier = 1;
+    }
+
     @Override
     public int getSizeInventory()
     {

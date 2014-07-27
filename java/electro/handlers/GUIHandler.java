@@ -1,7 +1,6 @@
 package electro.handlers;
 
 import api.powerSystem.prefab.TEPowerCore;
-import api.powerSystem.prefab.TileEntityGenerator;
 import electro.machines.assemblySystem.crafting.ContainerMatrix;
 import electro.machines.assemblySystem.crafting.GuiMatrix;
 import electro.machines.assemblySystem.crafting.TileEntityMatrix;
@@ -13,8 +12,13 @@ import electro.powerSystem.generators.container.ContainerAdvGenerator;
 import electro.powerSystem.generators.container.ContainerThermalGenerator;
 import electro.powerSystem.generators.te.TileEntityAdvGenerator;
 import electro.powerSystem.generators.te.TileEntityThermalGenerator;
-import electro.powerSystem.gui.ContainerEnergyCore;
-import electro.powerSystem.gui.EnergyCoreGUI;
+import electro.powerSystem.gui.ContainerAdvCore;
+import electro.powerSystem.gui.ContainerBasicCore;
+import electro.powerSystem.gui.ContainerCreativeCore;
+import electro.powerSystem.gui.GuiBasicCore;
+import electro.powerSystem.te.TileEntityAdvCore;
+import electro.powerSystem.te.TileEntityCore;
+import electro.powerSystem.te.TileEntityCreativeCore;
 import electro.research.machines.gui.GuiCrafting;
 import electro.oreProccessing.container.*;
 import electro.oreProccessing.gui.*;
@@ -105,9 +109,16 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TileEntityAdvGenerator) {
             return new ContainerAdvGenerator((TileEntityAdvGenerator) entity, player.inventory);
         }
-        if (entity instanceof TEPowerCore) {
-            return new ContainerEnergyCore((TEPowerCore) entity, player.inventory);
+        if (entity instanceof TileEntityCore) {
+            return new ContainerBasicCore((TileEntityCore) entity, player.inventory);
         }
+        if (entity instanceof TileEntityAdvCore) {
+            return new ContainerAdvCore((TileEntityAdvCore) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityCreativeCore) {
+            return new ContainerCreativeCore((TileEntityCreativeCore) entity, player.inventory);
+        }
+
         return null;
     }
 
@@ -169,8 +180,14 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TileEntityAdvGenerator) {
             return new GUIAdvGenerator((TileEntityAdvGenerator) entity, player.inventory);
         }
-        if (entity instanceof TEPowerCore) {
-            return new EnergyCoreGUI((TEPowerCore) entity, player.inventory);
+        if (entity instanceof TileEntityCore) {
+            return new GuiBasicCore((TileEntityCore) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityAdvCore) {
+            return new ContainerAdvCore((TileEntityAdvCore) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityCreativeCore) {
+            return new ContainerCreativeCore((TileEntityCreativeCore) entity, player.inventory);
         }
         return null;
     }

@@ -55,6 +55,8 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
 
     @Override
     public void updateEntity() {
+        if(worldObj.isRemote) { return; }
+
         for (byte i = 0; i < 6; i++)
         {
             //System.out.println("updated Connections");

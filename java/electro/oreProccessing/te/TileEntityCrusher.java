@@ -341,7 +341,6 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
                 tagList.appendTag(tagCompound);
             }
         }
-
         nbtTagCompound.setTag("Items", tagList);
         nbtTagCompound.setInteger("time", time);
     }

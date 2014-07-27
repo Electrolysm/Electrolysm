@@ -47,6 +47,8 @@ public class TileEntityGenerator extends TileEntity implements IConnector, ITeUN
 
     @Override
     public void updateEntity() {
+        if(worldObj.isRemote) { return; }
+
         for (byte i = 0; i < 6; i++) {
             //System.out.println("updated Connections");
             ForgeDirection dir = ForgeDirection.getOrientation(i);

@@ -1,9 +1,9 @@
 package electro.powerSystem.gui;
 
-import api.powerSystem.SlotBattery;
 import api.powerSystem.prefab.TEPowerCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import electro.powerSystem.te.TileEntityCreativeCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -21,11 +21,11 @@ import net.minecraft.item.ItemStack;
  * and you have certain rights with respective
  * to the code.
  */
-public class ContainerEnergyCore extends Container {
+public class ContainerCreativeCore extends Container {
 
-    private TEPowerCore entity;
+    private TileEntityCreativeCore entity;
 
-    public ContainerEnergyCore(TEPowerCore entity, InventoryPlayer inventory)
+    public ContainerCreativeCore(TileEntityCreativeCore entity, InventoryPlayer inventory)
     {
         this.entity = entity;
 
