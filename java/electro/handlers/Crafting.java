@@ -261,10 +261,8 @@ public class Crafting
         	'A', Electrolysm.advancedCPU,
         	'M', Electrolysm.advancedMicrochip,
         	'R', Items.redstone}));
-       
-        }
-        
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.grindStone, 1, 0),
+
+    GameRegistry.addRecipe(new ItemStack(Electrolysm.grindStone, 1, 0),
         		"CCC", "CSC", "CCC",
         		Character.valueOf('C'), Blocks.cobblestone,
         		Character.valueOf('S'), Items.stick);

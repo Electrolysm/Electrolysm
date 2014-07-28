@@ -277,7 +277,8 @@ public class Electrolysm
     public static Item silicon = new silicon();
     public static Block antiMatterCasing = new antiMatterCasing().setBlockName("antiMatterCasing");
     public static Block magnet = new magnet().setBlockName("magnet");
-    public static Item bronze = new bronze ().setUnlocalizedName("ingotBronze");
+    public static Item bronze = new ItemCrafting().setUnlocalizedName("ingotBronze");
+
     //Fuels
     public static Item electroContain = new electroContain();
     public static Item improvedCoal = new ItemImprovedCoal();
