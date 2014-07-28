@@ -143,7 +143,6 @@ public class Electrolysm
     public static Block aluminiumOre = new aluminiumOre().setBlockName("aluminiumOre");
     public static Item aluminiumIngot = new aluminiumIngot();
 
-
     //Biome
     public static Item spawnZS = new spawnZS();
     public static Block diseaseGrass = new diseasedGrass().setBlockName("diseasedGrass");
@@ -272,11 +271,13 @@ public class Electrolysm
     public static Item camphor = new ItemCrafting().setUnlocalizedName("camphor");
     public static Potion acidBurns = new acidBurns(configHandler.acidBurnsID, true, 0);
     public static Item steel = new ItemCrafting().setUnlocalizedName("steel");
+    public static Item tinIngot = new ItemCrafting().setUnlocalizedName("ingotTin");
     public static Block steelBlock = new BlockCrafting(6.23F, "steelBlock", Material.iron);
     public static Item pureCopperIngot = new pureCopperIngot();
     public static Item silicon = new silicon();
     public static Block antiMatterCasing = new antiMatterCasing().setBlockName("antiMatterCasing");
     public static Block magnet = new magnet().setBlockName("magnet");
+    public static Item bronze = new bronze ().setUnlocalizedName("ingotBronze");
     //Fuels
     public static Item electroContain = new electroContain();
     public static Item improvedCoal = new ItemImprovedCoal();

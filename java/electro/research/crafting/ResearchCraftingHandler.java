@@ -54,6 +54,15 @@ public class ResearchCraftingHandler
                         Character.valueOf('G'), new ItemStack(Electrolysm.blastGlass, 1, 0),
                         Character.valueOf('C'), Electrolysm.crystal1
                 });
+        
+        addRecipe(ResearchRegistry.getResearch("electricity"), new ItemStack(Electrolysm.generator),
+                new Object[] {
+                        "ICI", "RCR", "IFI",
+                        Character.valueOf('R'), Items.redstone,
+                        Character.valueOf('I'), Items.iron_ingot,
+                        Character.valueOf('C'), Electrolysm.basicCable,
+                        Character.valueOf('F'), Blocks.furnace
+                });
 
         addRecipe(ResearchRegistry.getResearch("thermal_generator"), new ItemStack(Electrolysm.thermalGenerator),
                 new Object[] {
@@ -71,6 +80,13 @@ public class ResearchCraftingHandler
                         Character.valueOf('I'), Items.iron_ingot,
                         Character.valueOf('G'), Blocks.glass,
                         Character.valueOf('M'), Electrolysm.BasicMicrochip
+                });
+        
+        addRecipe(ResearchRegistry.getResearch("copper_cable"), new ItemStack(Electrolysm.basicCable),
+                new Object[] {
+                        "WWW", "CCC", "WWW",
+                        Character.valueOf('W'), Blocks.wool,
+                        Character.valueOf('C'), Electrolysm.copperIngot,
                 });
 
         addRecipe(ResearchRegistry.getResearch("electrolysis"), new ShapedOreResearchRecipe(new ItemStack(Electrolysm.electrolisisCore), true,
@@ -133,6 +149,14 @@ public class ResearchCraftingHandler
                         Character.valueOf('R'), Items.redstone,
                         Character.valueOf('M'), Electrolysm.advancedMicrochip,
                         Character.valueOf('F'), Blocks.furnace
+                });
+        addRecipe(ResearchRegistry.getResearch("molder"), new ItemStack(Electrolysm.injector, 1, 3),
+                new Object[]{
+                        "SFS", "FMF", "SIS",
+                        Character.valueOf('I'), Electrolysm.injectionArm,
+                        Character.valueOf('F'), Electrolysm.fluidStorage,
+                        Character.valueOf('M'), Electrolysm.advancedMicrochip,
+                        Character.valueOf('S'), Electrolysm.steel
                 });
 
         //System.out.println(this.ShapedResearchMapRev.get(ResearchRegistry.getResearch("the_basics").toAdvString()));

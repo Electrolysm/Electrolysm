@@ -111,17 +111,10 @@ public class Crafting
                                'Z', Electrolysm.experimentalMicrochip);
         
         GameRegistry.addRecipe(new ItemStack(Electrolysm.fluidStorage, 4),
-                               " X ", "Y Y", " Y ",
-                               'X', Electrolysm.blastGlass,
-                               'Y', Electrolysm.blastProof);
+                               " I ", "G G", " G ",
+                               'G', Blocks.glass,
+                               'I', Items.iron_ingot );
         
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.injector),
-                               "XMX", "BYN", "XMX",
-                               'X', Electrolysm.blastProof,
-                               'Y', Electrolysm.advancedMicrochip,
-                               'B', Items.diamond,
-                               'N', Electrolysm.injectionArm,
-                               'M', Electrolysm.fluidStorage);
         
         GameRegistry.addRecipe(new ItemStack(Electrolysm.energiser),
                                "XFX", "YIY", "XDX",
@@ -209,12 +202,6 @@ public class Crafting
                                         new ItemStack(Electrolysm.luminousRedstone),
                                         new ItemStack(Electrolysm.luminousRedstone));
 
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.generator, 1, 3),
-        		"III", "RBR", "IFI",
-        		'F', Blocks.furnace,
-        		'R', Items.redstone,
-        		'I', Items.iron_ingot,
-        		'B', Items.water_bucket);
 
         GameRegistry.addShapelessRecipe(new ItemStack(Electrolysm.luminousRedstone, 4),
         		new ItemStack(Electrolysm.BlockLumRed));
@@ -267,6 +254,15 @@ public class Crafting
         		'P', Electrolysm.CPU,
         		'B', Electrolysm.BasicMicrochip,
         		'R', Items.redstone}));
+        
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.experimentalMicrochip, 1, 0), true, new Object[]{
+        	"   ", "CAC", "MRM",
+        	'C', "ingotCopper",
+        	'A', Electrolysm.advancedCPU,
+        	'M', Electrolysm.advancedMicrochip,
+        	'R', Items.redstone}));
+       
+        }
         
         GameRegistry.addRecipe(new ItemStack(Electrolysm.grindStone, 1, 0),
         		"CCC", "CSC", "CCC",

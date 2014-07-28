@@ -154,6 +154,8 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.steel, "steel");
         GameRegistry.registerItem(elec.aluminiumIngot, "aluminiumIngot");
         GameRegistry.registerItem(elec.silicon, "silicon");
+        GameRegistry.registerItem(elec.tinIngot, "tinIngot");
+        GameRegistry.registerItem(elec.bronze, "bronze");
 
 
     }

@@ -77,7 +77,7 @@ public class ResearchRegistry
         this.registerResearch(new Research("alloys", this.METALS_AND_ELEMENTS, new Point(32, 22), 2));
         this.registerResearch(new Research("bronze", this.METALS_AND_ELEMENTS, new Point(23, 14), 3));
         this.registerResearch(new Research("steel", this.METALS_AND_ELEMENTS, new Point(23, 14), 3, true));
-        this.registerResearch(new Research("silicon", this.METALS_AND_ELEMENTS, new Point(25, 30), 2));
+      //  this.registerResearch(new Research("silicon", this.METALS_AND_ELEMENTS, new Point(25, 30), 2));
         //this.registerResearch(new Research("large_hadron_colider", this.METALS_AND_ELEMENTS, new Point(67, 56), 2));
 
         //Research
@@ -103,11 +103,11 @@ public class ResearchRegistry
         this.registerResearch(new Research("smeltery", this.MACHINES, new Point(31, 22), 2, true));
         //this.registerResearch(new Research("higher_tempertures", this.MACHINES, new Point(51, 43), 3));
         this.registerResearch(new Research("molder", this.MACHINES, new Point(28, 21), 1));
-        this.registerResearch(new Research("injection_molder", this.MACHINES, new Point(41, 33), 2));
+       // this.registerResearch(new Research("injection_molder", this.MACHINES, new Point(41, 33), 2));
         this.registerResearch(new Research("liquidiser", this.MACHINES, new Point(31, 24), 1, true));
         //this.registerResearch(new Research("assembly_machine", this.MACHINES, new Point(33, 24), 1));
         //this.registerResearch(new Research("improved_production_speed", this.MACHINES, new Point(49, 38), 2));
-        this.registerResearch(new Research("compressor", this.MACHINES, new Point(23, 15), 1));
+      //  this.registerResearch(new Research("compressor", this.MACHINES, new Point(23, 15), 1));
         //this.registerResearch(new Research("higher_compression_ratio", this.MACHINES, new Point(39, 31), 1));
 
 
@@ -115,13 +115,14 @@ public class ResearchRegistry
         //You keep making spelling mistakes and I cannot be bothered to change them.
         //Check your work with what you have registered, so we don't have this problem.
 
-        this.linkResearch(this.getResearch("energy_storage"), Arrays.asList(this.getResearch("copper_cable")));
+        this.linkResearch(this.getResearch("energy_storage"), Arrays.asList(this.getResearch("electricity")));
         // this.linkResearch(this.getResearch("WET_energy_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("improved_conductivity"), this.getResearch("liquidiser")));
         //this.linkResearch(this.getResearch("graphene_energy_storage"), Arrays.asList(this.getResearch("WET_energy_storage"), this.getResearch("endothermic_cable")));
         // this.linkResearch(this.getResearch("tesla_coil"), Arrays.asList(this.getResearch("steel"), this.getResearch("pure_copper"), this.getResearch("experimental_storage")));
         // this.linkResearch(this.getResearch("compact_storage"), Arrays.asList(this.getResearch("energy_storage"), this.getResearch("steel"), this.getResearch("liquidiser")));
         // this.linkResearch(this.getResearch("WET_batteries"), Arrays.asList(this.getResearch("compact_storage"), this.getResearch("improved_conductivity"), this.getResearch("WET_energy_storage")));
         // this.linkResearch(this.getResearch("grahene_batteries"), Arrays.asList(this.getResearch("WET_batteries"), this.getResearch("graphene_energy_storage")));
+        this.linkResearch(this.getResearch("electricity"), Arrays.asList(this.getResearch("copper_cable")));
         this.linkResearch(this.getResearch("improved_conductors"), Arrays.asList(this.getResearch("better_conduction"), this.getResearch("electricity"), this.getResearch("intergrated_circuit")));
         // this.linkResearch(this.getResearch("efficent_generators"), Arrays.asList(this.getResearch("improved_conductors"), this.getResearch("CPU")));
         this.linkResearch(this.getResearch("thermal_generator"), Arrays.asList(this.getResearch("improved_conductors")));
@@ -132,7 +133,6 @@ public class ResearchRegistry
         // this.linkResearch(this.getResearch("solar_cells"), Arrays.asList(this.getResearch("efficent_generators"), this.getResearch("solar_pannels")));
         // this.linkResearch(this.getResearch("turbine"), Arrays.asList(this.getResearch("improved_conductors")));
         //  this.linkResearch(this.getResearch("lighter_blades"), Arrays.asList(this.getResearch("efficent_generators"), this.getResearch("turbine")));
-        this.linkResearch(this.getResearch("copper_cable"), Arrays.asList(this.getResearch("electricity")));
         // this.linkResearch(this.getResearch("improved_conductivity"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("bronze"), this.getResearch("plastic")));
         //this.linkResearch(this.getResearch("endothermic_cable"), Arrays.asList(this.getResearch("improved_conductivity"), this.getResearch("pure_copper"), this.getResearch("carbon_fibre")));
 
@@ -214,6 +214,7 @@ public class ResearchRegistry
             this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.iron_block, Blocks.redstone_block}), this.getResearch("crusher"));
             this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.improvedFurnace, Electrolysm.copperOre}), this.getResearch("smeltery"));
             this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.furnace}), this.getResearch("liquidiser"));
+            this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.improvedFurnace, Electrolysm.steelBlock}), this.getResearch("molder"));
 
         }
         catch (Exception e) { e.printStackTrace(); }
