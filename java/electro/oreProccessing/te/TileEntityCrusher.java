@@ -5,7 +5,9 @@ import java.util.Random;
 import api.powerSystem.TeU;
 import api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
+import electro.oreProccessing.crusher;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -138,6 +140,14 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
     public void updateEntity()
     {
         super.updateEntity();
+        if(worldObj.isRemote) { return; }
+        if(time == 0) {
+            crusher.updateFurnaceBlockState(false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        } else {
+            crusher.updateFurnaceBlockState(true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        }
+
+
     	this.markDirty();
     	
     	ItemStack battery = getStackInSlot(3);
@@ -260,6 +270,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
     	}
         else
         {
+            time = 0;
         	return;
         }
     }

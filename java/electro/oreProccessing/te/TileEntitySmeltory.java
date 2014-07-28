@@ -6,6 +6,7 @@ import api.powerSystem.PowerUsage;
 import api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import electro.handlers.network.SmeltoryMessage;
+import electro.oreProccessing.smeltory;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -151,6 +152,11 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
     {
         super.updateEntity();
         if(worldObj.isRemote) { return; }
+        if(time == 0) {
+            smeltory.updateFurnaceBlockState(false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        } else {
+            smeltory.updateFurnaceBlockState(true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        }
         if(getStackInSlot(0) != null && canWork(requiredPower)) {
             this.markDirty();
 

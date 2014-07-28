@@ -3,6 +3,8 @@ package electro.powerSystem.generators.te;
 import api.powerSystem.PowerUsage;
 import api.powerSystem.TeU;
 import electro.Electrolysm;
+import electro.powerSystem.generators.advancedGenerator;
+import electro.powerSystem.generators.generator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -73,6 +75,13 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     public void updateEntity()
     {
         super.updateEntity();
+        if(worldObj.isRemote) { return; }
+        if(time == 0) {
+            generator.updateFurnaceBlockState(false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        } else {
+            generator.updateFurnaceBlockState(true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        }
+
     	if(!(worldObj.isRemote))
     	{
     		this.updateCoal();
@@ -87,7 +96,9 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
    
     private void updateCoal()
     {
-    	if(this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
+        //System.out.println(time + " : " + burnTime);
+
+        if(this.canProduce(PowerUsage.getTeUFromMap(Electrolysm.generator)))
     	{
     		if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
     		{
@@ -108,17 +119,21 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     			}
     		}
 
-    		if(time != 0 && this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
+    		if(time != 0 && this.canProduce(PowerUsage.getTeUFromMap(Electrolysm.generator)))
         	{
         		this.time = time - 1;
         		//this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
-                this.produce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord)));
+                this.produce(PowerUsage.getTeUFromMap(Electrolysm.generator));
         	}
         	else
         	{
         		return;
         	}    		
     	}
+        else
+        {
+            time = 0;
+        }
     }
 
     @Override
@@ -214,11 +229,11 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
         }
         else if(GameRegistry.getFuelValue(itemStack) > 0)
         {
-            return GameRegistry.getFuelValue(itemStack);
+            return (GameRegistry.getFuelValue(itemStack) / 2);
         }
         else
         {
-        	return TileEntityFurnace.getItemBurnTime(itemStack);
+        	return (TileEntityFurnace.getItemBurnTime(itemStack) / 2);
         }
     }
 

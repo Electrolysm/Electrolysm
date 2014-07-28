@@ -194,19 +194,19 @@ public class Electrolysm
     public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
     public static Block basicCable = new basicCable().setBlockName("basicCable");
     public static Block advancedCable = new advancedCable().setBlockName("advancedCable");
-    //public static Item ItemWire = new ItemWire();
     public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
     public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
     public static Item experimentalBattery = new experimentalBattery(64000, 2).setUnlocalizedName("experimentalBattery");
     public static Block advancedGenerator = new advancedGenerator().setBlockName("advancedGenerator");
     public static Block thermalGenerator = new thermalGenerator().setBlockName("thermalGenerator");
     public static Block solarPanel = new BlockSolarPanel().setBlockName("solarPanel");
+    public static Block advGenActive = new BlockAdvGenAcive().setBlockName("advGenActive");
+    public static Block genActive = new BlockGenActive().setBlockName("genActive");
 
     public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
     public static Block advEnergyStorage = new BlockAdvEnergyStorage().setBlockName("advEnergyStorage");
     public static Block creativeEnergyStorage = new BlockCreativeEnergyCore().setBlockName("creativeEnergyCore");
-
-
+    public static Block generator = new generator().setBlockName("coalGen");
     public static Item crystal1 = new ItemCrafting().setUnlocalizedName("crystalTier1");
     public static Item crystal2 = new ItemCrafting().setUnlocalizedName("crystalTier2");
     /*
@@ -215,17 +215,10 @@ public class Electrolysm
             false, ContectedTexture);
     public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
     public static Block plug = new plug(configHandler.plugID, null);
-    */public static Block generator = new generator().setBlockName("coalGen");
+    */
     // public static Block coolerPort = new coolerPort(configHandler.coolerPortID, null);
     // public static Block coolerFan = new coolerFan(configHandler.coolerFanID, null);
-    /*
-    public static Block wire = new wire(IDHandler.powerGrid.wireID, null);
-    public static Block advWire = new wire(IDHandler.powerGrid.advWireID, null);
-    public static Block earther = new earther(IDHandler.powerGrid.eartherID, null);
-    public static Block advEarther = new advEarther(IDHandler.powerGrid.advEartherID, null);
-    public static Item keyTransCoppier = new keyTransCoppier(IDHandler.powerGrid.keyTransCoppierID);
-    public static Item ItemWire = new ItemWire(IDHandler.powerGrid.ItemWireID);
-    */
+
     public static Item energyMeter = new energyMeter();
     public static Block matterGen = new matterGen().setBlockName("matterGen");
     public static Block coolerProccesser ;//= new coolerProccesser(configHandler.coolerProccesserID, null);
@@ -294,7 +287,6 @@ public class Electrolysm
     public static Block robotArm = new roboticArm();
     public static Item blueprint = new ItemBluePrint();
     public static Block matrix = new BlockMatrix();
-
 
     /*
     //Robots

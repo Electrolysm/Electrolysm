@@ -22,17 +22,19 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     private int tier = 0;
     public boolean isCreative = false;
 
-    public TEPowerCore(int tier1) {
-        if (tier1 == (-1)) {
+    public TEPowerCore(int t) {
+        if (t == (-1)) {
             isCreative = true;
             tier = -1;
         } else {
-            tier = tier1;
-            if (tier1 > 1) {
-                maxTeU = 100000 * (((tier1) * 2) * 10);
+            tier = t;
+            if (t > 1) {
+                maxTeU = 100000 * ((t * 2) *10);
             }
         }
     }
+
+    public TEPowerCore() { }
 
     @Override
     public boolean canConnect(ForgeDirection from, Object source) {
@@ -231,7 +233,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
             }
             if(teList.toArray()[i] instanceof TileEntityMachine)
             {
-                value = value + 5;
+                value = value + 2;
             }
         }
 
@@ -243,6 +245,8 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
         super.writeToNBT(nbt);
 
         nbt.setInteger("teuCurrent", teuData);
+        nbt.setInteger("teuMax", maxTeU);
+        nbt.setBoolean("isCreative", isCreative);
     }
 
     @Override
@@ -250,5 +254,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
         super.readFromNBT(nbt);
 
         teuData = nbt.getInteger("teuCurrent");
+        maxTeU = nbt.getInteger("teuMax");
+        isCreative = nbt.getBoolean("isCreative");
     }
 }

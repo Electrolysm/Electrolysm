@@ -1,11 +1,10 @@
-package electro.powerSystem.generators;
+package electro.powerSystem;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
+import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,29 +20,38 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class generator extends BlockContainer
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * Created by Clarky158 on 27/07/2014.
+ * <p/>
+ * Electrolysm is an open source Minecraft mod
+ * released under version 3 of the GNU Lesser
+ * General Public License. This means that
+ * the source of this mod is publicly available
+ * and you have certain rights with respective
+ * to the code.
+ */
+public class BlockGenActive extends BlockContainer
 {
     @SideOnly(Side.CLIENT)
     private IIcon frontActive;
     @SideOnly(Side.CLIENT)
     private IIcon front;
-    
+
     private static boolean keepInventory;
 
     private Random furnaceRand = new Random();
     private Map name = new HashMap();
 
-    public generator()
+    public BlockGenActive()
     {
         super(Material.iron);
-        this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(5.2165F);
-        LanguageRegistry.addName(this, "Coal Generator");
         this.setResistance(100F);
     }
 
@@ -52,31 +60,31 @@ public class generator extends BlockContainer
     {
         String modID = "electrolysm:";
         this.blockIcon = reg.registerIcon(modID + "generatorSide");
-        this.front = reg.registerIcon(modID + "generatorFront");
+        this.front = reg.registerIcon(modID + "generatorFrontActive");
         this.frontActive = reg.registerIcon(modID + "matterReactorActive");
     }
 
     @Override
     public IIcon getIcon(int side, int meta)
     {
-    	if(side == 0 || side == 1)
-    	{
-    		return this.blockIcon;
-    	}
-    	else if(side != 0 && side != 1)
-    	{
-    		if(meta == side)
-    		{
-    			return this.front;
-    		}
-    		else
-    		{
-    			return this.blockIcon;
-    		}
-    	}
-    	return null;
+        if(side == 0 || side == 1)
+        {
+            return this.blockIcon;
+        }
+        else if(side != 0 && side != 1)
+        {
+            if(meta == side)
+            {
+                return this.front;
+            }
+            else
+            {
+                return this.blockIcon;
+            }
+        }
+        return null;
     }
-    
+
     public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
     {
         int l = par1World.getBlockMetadata(par2, par3, par4);
@@ -114,7 +122,7 @@ public class generator extends BlockContainer
     {
         if (player.isSneaking())
         {
-        	return false;
+            return false;
         }
         else
         {
@@ -126,7 +134,7 @@ public class generator extends BlockContainer
     @Override
     public void getSubBlocks(Item id, CreativeTabs tab, List list)
     {
-   		list.add(new ItemStack(this, 1, 0));
+        list.add(new ItemStack(this, 1, 0));
     }
 
     @Override

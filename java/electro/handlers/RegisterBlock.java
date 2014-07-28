@@ -28,6 +28,8 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.modBlastGlass, "modBlastGlass");
         GameRegistry.registerBlock(Electrolysm.sulphurOre, "sulphurOre");
         GameRegistry.registerBlock(Electrolysm.electrolChamber, "electrolChamber");
+        GameRegistry.registerBlock(Electrolysm.advGenActive, "advGenActive");
+        GameRegistry.registerBlock(Electrolysm.genActive, "genActive");
         GameRegistry.registerBlock(Electrolysm.electrolisisCore, "electrolCore");
         GameRegistry.registerBlock(Electrolysm.crusher, "crusher");
         GameRegistry.registerBlock(Electrolysm.liquidiser, "liquidiser");
@@ -112,6 +114,7 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.drillCasing, "drillCasing");
         GameRegistry.registerItem(elec.basicBattery, "basicBattery");
         GameRegistry.registerItem(elec.advancedBattery, "advancedBattery");
+        GameRegistry.registerItem(elec.film, "filmStrip");
         GameRegistry.registerItem(elec.experimentalBattery, "experimentalBattery");
         GameRegistry.registerItem(elec.energyMeter, "energyMeter");
         GameRegistry.registerItem(elec.impureDusts, "impureDusts");

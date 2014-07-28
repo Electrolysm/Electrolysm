@@ -27,11 +27,11 @@ public class PlayerResearchEvent
             //saveActiveResearch
             if (!SavePlayerScanData.ResearchData.hasPlayerUnlocked((username + "_active"), research.getName()))
             {
-                //if(hasPlayerUnlockedReliants(research, player)) {
+                if(hasPlayerUnlockedReliants(research, player)) {
                     new SavePlayerScanData.ResearchData(username, research.getName());
                     notifyPlayer(player, research);
                     //System.out.println(research.getName());
-                //}
+                }
             }
         }
     }

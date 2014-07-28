@@ -3,6 +3,8 @@ package electro.powerSystem.generators.te;
 import api.powerSystem.PowerUsage;
 import api.powerSystem.TeU;
 import electro.Electrolysm;
+import electro.oreProccessing.smeltory;
+import electro.powerSystem.generators.advancedGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -73,21 +75,18 @@ public class TileEntityAdvGenerator extends TileEntityProducer implements IInven
     public void updateEntity()
     {
         super.updateEntity();
-        if(!(worldObj.isRemote))
-        {
-            this.updateCoal();
-        }/*
-    	if(this.getStackInSlot(1) != null)
-    	{
-    		this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
-    	}*/
-
-        //worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, worldObj.getBlockId(xCoord, yCoord, zCoord));
+        if(worldObj.isRemote) { return; }
+        if(time == 0) {
+            advancedGenerator.updateFurnaceBlockState(false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        } else {
+            advancedGenerator.updateFurnaceBlockState(true, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        }
+        this.updateCoal();
     }
 
     private void updateCoal()
     {
-        if(this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
+        if(this.canProduce(PowerUsage.getTeUFromMap(Electrolysm.advancedGenerator)))
         {
             if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
             {
@@ -108,16 +107,20 @@ public class TileEntityAdvGenerator extends TileEntityProducer implements IInven
                 }
             }
 
-            if(time != 0 && this.canProduce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord))))
+            if(time != 0)
             {
                 this.time = time - 1;
                 //this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
-                this.produce(PowerUsage.getTeUFromMap(this.getBlock(worldObj, xCoord, yCoord, zCoord)));
+                this.produce(PowerUsage.getTeUFromMap(Electrolysm.advancedGenerator));
             }
             else
             {
                 return;
             }
+        }
+        else
+        {
+            time = 0;
         }
     }
 
@@ -214,11 +217,11 @@ public class TileEntityAdvGenerator extends TileEntityProducer implements IInven
         }
         else if(GameRegistry.getFuelValue(itemStack) > 0)
         {
-            return GameRegistry.getFuelValue(itemStack) * 2;
+            return (int)(GameRegistry.getFuelValue(itemStack));
         }
         else
         {
-            return TileEntityFurnace.getItemBurnTime(itemStack) * 2;
+            return (int)(TileEntityFurnace.getItemBurnTime(itemStack));
         }
     }
 

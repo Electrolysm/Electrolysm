@@ -294,7 +294,7 @@ public class GUIIDCardInfo extends GuiScreen {
                         if(mc.thePlayer.inventory.hasItemStack(new ItemStack(Electrolysm.inkAndQuill)) && slot >= 0 &&
                                 research != null)
                         {
-                            //if(PlayerResearchEvent.hasPlayerUnlockedReliants(research, mc.thePlayer)) {
+                            if(PlayerResearchEvent.hasPlayerUnlockedReliants(research, mc.thePlayer)) {
                                 String message = ColourEnumHelper.BRIGHT_GREEN + "Your idea has been recorded on paper";
                                 mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
                                 this.populateScreen(screen);
@@ -303,7 +303,7 @@ public class GUIIDCardInfo extends GuiScreen {
                                 mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound = new NBTTagCompound();
                                 mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound.setString("researchData",
                                         research.toAdvString());
-                            //}
+                            }
                         }
                         else
                         {
