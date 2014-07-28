@@ -1,0 +1,1 @@
+You have noticed that the Sun emitts large #amounts of energy. Therefore you hve found #a way to harnice a fraction of that energy. #Using a daylight senser and some #intelegence, you have created a solar panel. #The solar panel will produce 2 TeU per tick #in sunlight. However, if its raining then it will #produce 1 TeU per tick.

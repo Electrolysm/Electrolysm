@@ -240,6 +240,12 @@ public class TileEntityThermalGenerator extends TileEntityGenerator implements I
                 inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
+
+        int amountInTank = nbtTagCompound.getInteger("amountTank");
+        if(amountInTank > 0)
+        {
+            tank.setFluid(new FluidStack(FluidRegistry.LAVA, amountInTank));
+        }
     }
 
     @Override

@@ -29,6 +29,12 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
         tier = value;
     }
 
+    public TileEntityCollector()
+    {
+        this.inventory = new ItemStack[1];
+        tier = 1;
+    }
+
     @Override
     public int getSizeInventory()
     {
@@ -181,6 +187,8 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
                 inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
+
+        this.tier = nbtTagCompound.getInteger("tier");
     }
 
     @Override
@@ -201,6 +209,7 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
             }
         }
         nbtTagCompound.setTag("Items", tagList);
+        nbtTagCompound.setInteger("tier", this.tier);
     }
 
 

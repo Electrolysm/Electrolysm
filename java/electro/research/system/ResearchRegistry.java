@@ -141,12 +141,12 @@ public class ResearchRegistry
         //this.linkResearch(this.getResearch("fractional_distillation"), Arrays.asList(this.getResearch("better_conduction"), this.getResearch("oil_extraction")));
         // this.linkResearch(this.getResearch("plastic"), Arrays.asList(this.getResearch("fractional_distillation")));
         //this.linkResearch(this.getResearch("bio_fuel"), Arrays.asList(this.getResearch("fractional;_distillation")));
-        this.linkResearch(this.getResearch("improved_coal"), Arrays.asList(this.getResearch("electricity"), this.getResearch("crusher")));
-        //this.linkResearch(this.getResearch("carbon_fibre"), Arrays.asList(this.getResearch("improved_coal"), this.getResearch("compressor")));
+        this.linkResearch(this.getResearch("improved_fuels"), Arrays.asList(this.getResearch("electricity"), this.getResearch("crusher")));
+        //this.linkResearch(this.getResearch("carbon_fibre"), Arrays.asList(this.getResearch("improved_fuels"), this.getResearch("compressor")));
         // this.linkResearch(this.getResearch("nano_technology"), Arrays.asList(this.getResearch("carbon_fibre"), this.getResearch("higher_compression_ratio")));
         this.linkResearch(this.getResearch("pure_copper"), Arrays.asList(this.getResearch("electrolysis")));
         this.linkResearch(this.getResearch("aluminium"), Arrays.asList(this.getResearch("electrolysis")));
-        this.linkResearch(this.getResearch("electrolysis"), Arrays.asList(this.getResearch("improved_conductivity"), this.getResearch("steel"), this.getResearch("bronze")));
+        this.linkResearch(this.getResearch("electrolysis"), Arrays.asList(/*this.getResearch("improved_conductivity"),*/ this.getResearch("steel"), this.getResearch("bronze")));
         this.linkResearch(this.getResearch("alloys"), Arrays.asList(this.getResearch("better_conduction")));
         this.linkResearch(this.getResearch("bronze"), Arrays.asList(this.getResearch("alloys")));
         this.linkResearch(this.getResearch("steel"), Arrays.asList(this.getResearch("alloys")));
@@ -155,7 +155,7 @@ public class ResearchRegistry
         // this.linkResearch(this.getResearch("atomic_analyser"), Arrays.asList(this.getResearch("steel"), this.getResearch("WET_batteries")));
         //this.linkResearch(this.getResearch("chromatography"), Arrays.asList(this.getResearch("steel"), this.getResearch("CPU")));
         // this.linkResearch(this.getResearch("mass_spectrometry"), Arrays.asList(this.getResearch("chromatography"), this.getResearch("microprocessor")));
-        this.linkResearch(this.getResearch("data_recorder"), Arrays.asList(this.getResearch("intergrated_circuit")));
+        //this.linkResearch(this.getResearch("data_recorder"), Arrays.asList(this.getResearch("intergrated_circuit")));
         // this.linkResearch(this.getResearch("improved_equipment"), Arrays.asList(this.getResearch("CPU"), this.getResearch("carbon_fibre")));
         // this.linkResearch(this.getResearch("sensitive_equipment"), Arrays.asList(this.getResearch("improved_equipment"), this.getResearch("microprocessor")));
         // this.linkResearch(this.getResearch("thinner_tape"), Arrays.asList(this.getResearch("plastic"), this.getResearch("improved_equipment")));
@@ -180,13 +180,13 @@ public class ResearchRegistry
         //this.linkResearch(this.getResearch("higher_compression_ratio"), Arrays.asList(this.getResearch("compressor"), this.getResearch("CPU")));
 
         // Temporary research requirements
-        this.linkResearch(this.getResearch("improved_conductivity"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("bronze")));
-        this.linkResearch(this.getResearch("injection_molder"), Arrays.asList(this.getResearch("microprocessor"), this.getResearch("molder")));
+        //this.linkResearch(this.getResearch("improved_conductivity"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("bronze")));
+        //this.linkResearch(this.getResearch("injection_molder"), Arrays.asList(this.getResearch("microprocessor"), this.getResearch("molder")));
 
         //Elliott DON'T remove this, trust me...
         //this.registerResearch(new Research("cold_fusion", this.HIDDEN, new Point(26, 93), 3));
         //this.registerResearch(new Research("wrong_cold_fusion", this.HIDDEN, new Point(0, 0), 3, this.getResearch("cold_fusion")));
-*/
+
 
         //Binding of text and research still has to be done!
 
@@ -217,9 +217,9 @@ public class ResearchRegistry
 
         }
         catch (Exception e) { e.printStackTrace(); }
-`
 
-        long duration = (System.currentTimeMillis() - time);`
+
+        long duration = (System.currentTimeMillis() - time);
         LoggerHandler.info("Research registry completed in " + duration + "ms");
 //        System.out.println(requireMap.get((this.getResearch("mass_spec")).toAdvString()));
         //System.exit(0);

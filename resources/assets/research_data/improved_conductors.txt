@@ -1,0 +1,1 @@
+You have found that your current generator #isn't very good at producting energy. #Therefore you have found an alternate way #to burn fuels to creative energy. This time #you have built your generator out of #materials that have better conductive #properties and better insulators to make it #more efficient. You name the new generator: #The improved Generator.

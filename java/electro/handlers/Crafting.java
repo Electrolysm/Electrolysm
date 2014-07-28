@@ -245,8 +245,7 @@ public class Crafting
         
         GameRegistry.addShapelessRecipe(new ItemStack(Electrolysm.blastProof, 4),
         		new ItemStack(Electrolysm.blastBrick));
-        `
-        
+
         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.transistor, true, new Object[]{
                 " I ", " R ", "C C",
                 'I', Items.iron_ingot,

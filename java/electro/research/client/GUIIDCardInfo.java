@@ -457,7 +457,12 @@ public class GUIIDCardInfo extends GuiScreen {
                     GuiButtonInvisible buttonPic = (GuiButtonInvisible) buttonList.get(i - x + 1);
                     GuiButtonInvisible buttonCraft = (GuiButtonInvisible) buttonList.get(i - x + 2);
 
-                    button.displayString = ColourEnumHelper.WHITE + text[i];
+                    if( text[i].contains("Nikola Tesla")) {
+                        button.displayString = ColourEnumHelper.WHITE + (text[i].replace
+                                ("Nikola Tesla", ColourEnumHelper.BRIGHT_GREEN + "Nikola Tesla" + ColourEnumHelper.WHITE));
+                    } else {
+                        button.displayString = ColourEnumHelper.WHITE + text[i];
+                    }
                     button.enabled = false;
 
                     if((i - x + 1) > itemsPerPage) { return; }

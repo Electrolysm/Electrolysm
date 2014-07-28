@@ -95,7 +95,7 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
     	int zCoord = getZBasedSide(side);
     	
     	if(world.getBlock(x + xCoord, y + yCoord, z + zCoord) == null)
-    	{
+    	{/*
 	        if (this.getBlockBasedOnItemStack(item) != null)
 	        {
 	            if (side == 0)
@@ -144,13 +144,13 @@ public class fluidStorage extends Item implements IFluidOre/*, IFluidContainerIt
 	
 	                LoggerHandler.severe(message1);
 	                LoggerHandler.severe(message2);
-	                /*
+
 	                player.sendChatToPlayer(
 	                    ChatMessageComponent.createFromText(message1).setColor(EnumChatFormatting.DARK_RED));
 	                player.sendChatToPlayer(
-	                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));*/
+	                    ChatMessageComponent.createFromText(message2).setColor(EnumChatFormatting.DARK_RED));
 	            }
-	        }
+	        }*/
     	}
     	else if(item.getItemDamage() == 0)
     	{
