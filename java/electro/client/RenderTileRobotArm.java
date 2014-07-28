@@ -57,7 +57,7 @@ public class RenderTileRobotArm extends TileEntitySpecialRenderer
         bindTexture(loc);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glRotatef(te.rotation, 0F, 1F, 0F);
-        //model.r((float)(te.forearm), (float)(te.arm), null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        //model.r((float)(gui.forearm), (float)(gui.arm), null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         model.renderWithAngle(te);
         GL11.glPopMatrix();
 

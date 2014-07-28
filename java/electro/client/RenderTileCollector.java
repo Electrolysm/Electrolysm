@@ -3,7 +3,7 @@ package electro.client;
 import electro.common.CommonProxy;
 import electro.handlers.TickHandler;
 import electro.research.ItemReel;
-import electro.research.te.TileEntityCollector;
+import electro.research.gui.TileEntityCollector;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;

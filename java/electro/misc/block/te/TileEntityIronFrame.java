@@ -13,12 +13,12 @@ public class TileEntityIronFrame extends TileEntity
         int generatorID = electrolysmCore.generator.blockID;
         boolean[] overall = new boolean[4];
         boolean canRecieve = false;
-        TileEntityTeslaTower te = (TileEntityTeslaTower)world.getBlockTileEntity(x, y + 5, z);
+        TileEntityTeslaTower gui = (TileEntityTeslaTower)world.getBlockTileEntity(x, y + 5, z);
 
         //x + 1
         if (world.getBlockId(x + 1, y, z) == generatorID)
         {
-            if (te instanceof TileEntityTeslaTower && te.isTowerFormed(world, x, y + 5, z))
+            if (gui instanceof TileEntityTeslaTower && gui.isTowerFormed(world, x, y + 5, z))
             {
                 TileEntityGenerator teGen = (TileEntityGenerator)world.getBlockTileEntity(x + 1, y, z);
 
@@ -29,9 +29,9 @@ public class TileEntityIronFrame extends TileEntity
             }
         }
         //x - 1
-        else if (world.getBlockId(x - 1, y, z) == generatorID && te != null)
+        else if (world.getBlockId(x - 1, y, z) == generatorID && gui != null)
         {
-            if (te.isTowerFormed(world, x, y + 5, z))
+            if (gui.isTowerFormed(world, x, y + 5, z))
             {
                 TileEntityGenerator teGen = (TileEntityGenerator)world.getBlockTileEntity(x - 1, y, z);
 
@@ -44,7 +44,7 @@ public class TileEntityIronFrame extends TileEntity
         //z + 1
         else if (world.getBlockId(x, y, z + 1) == generatorID)
         {
-            if (te instanceof TileEntityTeslaTower && te.isTowerFormed(world, x, y + 5, z))
+            if (gui instanceof TileEntityTeslaTower && gui.isTowerFormed(world, x, y + 5, z))
             {
                 TileEntityGenerator teGen = (TileEntityGenerator)world.getBlockTileEntity(x, y, z + 1);
 
@@ -57,7 +57,7 @@ public class TileEntityIronFrame extends TileEntity
         //z - 1
         else if (world.getBlockId(x, y, z - 1) == generatorID)
         {
-            if (te instanceof TileEntityTeslaTower && te.isTowerFormed(world, x, y + 5, z))
+            if (gui instanceof TileEntityTeslaTower && gui.isTowerFormed(world, x, y + 5, z))
             {
                 TileEntityGenerator teGen = (TileEntityGenerator)world.getBlockTileEntity(x, y, z - 1);
 
@@ -150,16 +150,16 @@ public class TileEntityIronFrame extends TileEntity
                     {
                         //if(world.getBlockTileEntity(x, y - 1, z) instanceof TileEntityAdvEarther)
                         //{
-                        TileEntityEarther te = new TileEntityEarther();
+                        TileEntityEarther gui = new TileEntityEarther();
                         //TileEntityAdvEarther teAdv = new TileEntityAdvEarther();
 
-                        if (te.isSetUp(world, x + 1, y, z))
+                        if (gui.isSetUp(world, x + 1, y, z))
                         {
-                            if (te.isSetUp(world, x - 1, y, z))
+                            if (gui.isSetUp(world, x - 1, y, z))
                             {
-                                if (te.isSetUp(world, x, y, z + 1))
+                                if (gui.isSetUp(world, x, y, z + 1))
                                 {
-                                    if (te.isSetUp(world, x, y, z - 1))
+                                    if (gui.isSetUp(world, x, y, z - 1))
                                     {
                                         //if(teAdv.isSetUp(world, x, y - 1, z))
                                         //{

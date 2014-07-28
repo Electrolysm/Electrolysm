@@ -1,5 +1,6 @@
 package electro.oreProccessing.recipes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import api.items.RecipeStack;
 import electro.Electrolysm;
 import net.minecraft.item.ItemStack;
 import electro.common.CommonProxy;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class electrolisisRecipes
 {
@@ -56,6 +58,14 @@ public class electrolisisRecipes
         	ItemStack dustStack = new ItemStack(Electrolysm.dusts, 4, i);
         	
         	this.addElectrolisis(crystalStack, dustStack);
+        }
+
+        this.addElectrolisis(new ItemStack(Electrolysm.aluminiumOre), new ItemStack(Electrolysm.aluminiumIngot));
+
+
+        ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
+        for(int i = 0; i < copper.size(); i++) {
+            this.addElectrolisis(copper.get(i), new ItemStack(Electrolysm.pureCopperIngot));
         }
         //End
     }

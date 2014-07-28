@@ -1,38 +1,24 @@
-package electro.research.te;
+package electro.research.gui;
 
 import java.util.Random;
 
-import electro.Electrolysm;
 import electro.common.CommonProxy;
 import electro.research.ItemReel;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import api.powerSystem.PowerUsage;
-import api.powerSystem.meter.IMeterable;
-import electro.oreProccessing.recipes.CrusherRecipes;
 
 public class TileEntityCollector extends TileEntity implements IInventory, ISidedInventory
 {
     private ItemStack[] inventory;
     public boolean isOpen;
-    int tier = 0;
-
-    public TileEntityCollector(int value)
-    {
-        this.inventory = new ItemStack[1];
-        tier = value;
-    }
 
     public TileEntityCollector()
     {
         this.inventory = new ItemStack[1];
-        tier = 1;
     }
 
     @Override
@@ -169,49 +155,6 @@ public class TileEntityCollector extends TileEntity implements IInventory, ISide
     {
         return true;
     }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.readFromNBT(nbtTagCompound);
-
-        // Read in the ItemStacks in the inventory from NBT
-        NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
-        inventory = new ItemStack[this.getSizeInventory()];
-        for (int i = 0; i < tagList.tagCount(); ++i)
-        {
-            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
-            byte slotIndex = tagCompound.getByte("Slot");
-            if (slotIndex >= 0 && slotIndex < inventory.length)
-            {
-                inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
-            }
-        }
-
-        this.tier = nbtTagCompound.getInteger("tier");
-    }
-
-    @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.writeToNBT(nbtTagCompound);
-
-        // Write the ItemStacks in the inventory to NBT
-        NBTTagList tagList = new NBTTagList();
-        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
-        {
-            if (inventory[currentIndex] != null)
-            {
-                NBTTagCompound tagCompound = new NBTTagCompound();
-                tagCompound.setByte("Slot", (byte) currentIndex);
-                inventory[currentIndex].writeToNBT(tagCompound);
-                tagList.appendTag(tagCompound);
-            }
-        }
-        nbtTagCompound.setTag("Items", tagList);
-        nbtTagCompound.setInteger("tier", this.tier);
-    }
-
 
     @Override
     public void closeInventory() { }

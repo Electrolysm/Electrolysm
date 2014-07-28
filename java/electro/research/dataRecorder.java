@@ -1,17 +1,14 @@
 package electro.research;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
 //import electro.handlers.nei.NEIElectrolysmConfig;
-import electro.research.te.TileEntityCollector;
-import net.minecraft.block.Block;
+import electro.research.gui.TileEntityCollector;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
@@ -33,7 +30,7 @@ public class dataRecorder extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        return new TileEntityCollector(1);
+        return new TileEntityCollector();
     }
 
     @Override
@@ -99,7 +96,7 @@ public class dataRecorder extends BlockContainer
             {
                 EntityPlayer player = (EntityPlayer)entity;
 
-               // te.setOwner(player.getDisplayName());
+               // gui.setOwner(player.getDisplayName());
             }
         }
     }

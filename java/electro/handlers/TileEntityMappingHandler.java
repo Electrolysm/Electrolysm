@@ -22,10 +22,9 @@ import electro.oreProccessing.te.TileEntityElectrolisisCore;
 import electro.oreProccessing.te.TileEntityLiquidiser;
 import electro.oreProccessing.te.TileEntitySmeltory;
 import electro.powerSystem.te.TileEntityWire;
-import electro.research.te.TileEntityCollector;
+import electro.research.gui.TileEntityCollector;
 import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
 import electro.world.biome.TileEntityGrass;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by Clarky158 on 26/01/14.

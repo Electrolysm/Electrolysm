@@ -251,10 +251,10 @@ public class ModelRobotArm extends ModelBase
         this.Laser.render(f5);
     }
 
-    public void renderModel(float size, TileEntity te, float partialTicks)
+    public void renderModel(float size, TileEntity gui, float partialTicks)
     {*/
-       /* if ((te instanceof TileEntity)) {
-            TileEntityAssemblyLaser tile = (TileEntityAssemblyLaser)te;
+       /* if ((gui instanceof TileEntity)) {
+            TileEntityAssemblyLaser tile = (TileEntityAssemblyLaser)gui;
             float[] renderAngles = new float[5];
             for (int i = 0; i < 5; i++) {
                 renderAngles[i] = (tile.oldAngles[i] + (tile.angles[i] - tile.oldAngles[i]) * partialTicks);

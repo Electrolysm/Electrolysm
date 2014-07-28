@@ -11,7 +11,7 @@ import net.minecraft.util.IIcon;
 
 public class ItemArmorLab extends ItemArmor {
 
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
     private IIcon[] icons = new IIcon[2];
 
 	public ItemArmorLab(int piece, String unlocalName) {
@@ -23,18 +23,21 @@ public class ItemArmorLab extends ItemArmor {
 	}
 
     @Override
+    @SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return ("electrolysm:" + "textures/models/armor/labCoat.png");
 	}
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister reg) {
         this.icons[0] = reg.registerIcon("electrolysm:labGoggles");
         this.icons[1] = reg.registerIcon("electrolysm:labCoat");
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon(ItemStack stack, int pass) {
         if(stack == null) { return null; }
         if (stack.getDisplayName().toLowerCase().contains("coat")) {

@@ -26,9 +26,9 @@ public class TileEntityMatrixMachine extends TileEntity
 
     public void notifyMatrix()
     {
-        TileEntityMatrix te = getMatrixTE();
+        TileEntityMatrix gui = getMatrixTE();
         int numberOfArms = this.getNumberOfArms(worldObj, xCoord, yCoord, zCoord);
-        te.notify("MACHINE", numberOfArms, new int[] {xCoord, yCoord, zCoord});
+        gui.notify("MACHINE", numberOfArms, new int[] {xCoord, yCoord, zCoord});
     }
 
     public void returnNotify(String data)
@@ -49,8 +49,8 @@ public class TileEntityMatrixMachine extends TileEntity
 
         for(int i = 0; i < armPosition.size(); i++)
         {
-            TileEntityRobotArm te = (TileEntityRobotArm)worldObj.getTileEntity(armPosition.get(i)[0], armPosition.get(i)[1], armPosition.get(i)[2]);
-            te.shouldWork = true;
+            TileEntityRobotArm gui = (TileEntityRobotArm)worldObj.getTileEntity(armPosition.get(i)[0], armPosition.get(i)[1], armPosition.get(i)[2]);
+            gui.shouldWork = true;
         }
     }
 

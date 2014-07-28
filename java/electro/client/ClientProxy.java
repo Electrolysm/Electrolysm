@@ -8,7 +8,7 @@ import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
 import electro.client.itemRenderers.*;
 import electro.powerSystem.te.TileEntityWire;
-import electro.research.te.TileEntityCollector;
+import electro.research.gui.TileEntityCollector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
