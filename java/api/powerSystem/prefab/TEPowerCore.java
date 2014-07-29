@@ -2,7 +2,12 @@ package api.powerSystem.prefab;
 
 import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.interfaces.IPowerCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -133,6 +138,8 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
         if(worldObj.isRemote) { return; }
 
+        //getDescriptionPacket();
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         for (byte i = 0; i < 6; i++)
         {
             ForgeDirection dir = ForgeDirection.getOrientation(i);
@@ -256,5 +263,22 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
         teuData = nbt.getInteger("teuCurrent");
         maxTeU = nbt.getInteger("teuMax");
         isCreative = nbt.getBoolean("isCreative");
+    }
+
+    @Override
+    //@SideOnly(Side.CLIENT)
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        super.onDataPacket(net, pkt);
+        //System.out.println("on: " + pkt.func_148857_g().getInteger("teuData"));
+
+        teuData = pkt.func_148857_g().getInteger("teuData");
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        //System.out.println("Desc: " + teuData);
+        tag.setInteger("teuData", teuData);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 }

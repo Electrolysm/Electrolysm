@@ -29,7 +29,7 @@ public class WorldGenStructures implements IWorldGenerator
     {
     	if (world.getBiomeGenForCoords(x, z) == Electrolysm.diseasedBiome)
         {
-            if (random.nextInt(75) == 1)
+            if (random.nextInt(10) == 5)
             {
             	new WorldGenDiseasedTree(true, 6).generate(world, new Random(), x, getSurface(world, x, z), z);
             }
@@ -562,14 +562,17 @@ public class WorldGenStructures implements IWorldGenerator
                     for (int slot = 0; slot < tileEntityChest.getSizeInventory(); slot++)
                     {
                         int rand = random.nextInt(250);
+                        int slotRand1 = random.nextInt(tileEntityChest.getSizeInventory());
+                        int slotRand2 = random.nextInt(tileEntityChest.getSizeInventory());
+
                         int stackSize;
 
-                        if (rand <= 250)
+                        if (rand <= 250 && slot == slotRand1)
                         {
                         	stackSize = random.nextInt(5);
                             tileEntityChest.setInventorySlotContents(slot, new ItemStack(Electrolysm.knowledge, stackSize));
                         }
-                        else if(rand > 200)
+                        else if(rand > 200 && slot == slotRand2)
                         {
                         	tileEntityChest.setInventorySlotContents(slot + 10, 
                             		new ItemStack(Electrolysm.electroContain, 1, 1));

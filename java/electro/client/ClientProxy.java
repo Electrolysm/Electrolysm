@@ -41,7 +41,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectrolisisCore.class, new RenderTileElectrolysisCore());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIronFrame.class, new RenderTileIronFrame());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCharger.class, new RenderTileCharger());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCollector.class, new RenderTileCollector());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRobotArm.class, new RenderTileRobotArm());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMatrix.class, new RenderTileMatrixConstruction());
         ClientRegistry.bindTileEntitySpecialRenderer(TEPowerCore.class, new RenderTileEnergyCube());
@@ -50,7 +50,7 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.workBench), new ItemRenderWorkBench());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.charger), new ItemRenderCharger());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.dataRecorder), new ItemRenderCollector());
+        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.dataRecorder), new ItemRenderCollector());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.desk), new ItemRenderDesk());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.electrolisisCore), new ItemRenderElectrolysis());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.matrix), new ItemRenderMatrix());

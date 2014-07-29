@@ -7,11 +7,14 @@ import electro.Electrolysm;
 import electro.research.gui.TileEntityCollector;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 /**
@@ -19,6 +22,8 @@ import net.minecraft.world.World;
  */
 public class dataRecorder extends BlockContainer
 {
+    private IIcon sideIcon;
+
     public dataRecorder()
     {
         super(Material.iron);
@@ -37,39 +42,9 @@ public class dataRecorder extends BlockContainer
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
                                     float par8, float par9)
     {
-        if (player.isSneaking() && player.getHeldItem() == null && world.getTileEntity(x, y, z) instanceof TileEntityCollector)
-        {
-            TileEntityCollector te = (TileEntityCollector)world.getTileEntity(x, y, z);
-            if(world.isRemote)
-            {
-                this.printMessage(te, player);
-                System.out.println("text");
-                return true;
-            }
-        }
-        else if(!player.isSneaking() && world.getTileEntity(x, y, z) instanceof TileEntityCollector)
-        {
-            TileEntityCollector te = (TileEntityCollector)world.getTileEntity(x, y, z);
-            if(player.getHeldItem() == null && te.getStackInSlot(0) != null)
-            {
-                player.inventory.setInventorySlotContents(player.inventory.getFirstEmptyStack(), te.getStackInSlot(0));
-                te.setInventorySlotContents(0, null);
-                System.out.println("out");
-
-                return true;
-            }
-            else if((player.getHeldItem() != null && te.getStackInSlot(0) == null))
-            {
-                if(player.getHeldItem().getItem() instanceof ItemReel)
-                {
-                    te.setInventorySlotContents(0, player.getHeldItem());
-                    //player.setItemInUse(null, 0);
-                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
-                    System.out.println("in");
-
-                    return true;
-                }
-            }
+        if(!player.isSneaking()) {
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
+            return true;
         }
         return false;
     }
@@ -101,6 +76,22 @@ public class dataRecorder extends BlockContainer
         }
     }
 
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        this.blockIcon = reg.registerIcon("electrolysm:dataEvironment_top");
+        this.sideIcon = reg.registerIcon("electrolysm:dataEvironment_side");
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        if (side == 0 || side == 1) {
+            return blockIcon;
+        } else {
+            return sideIcon;
+        }
+    }
+
+    /*
     public int getRenderType()
     {
         return -1;
@@ -115,6 +106,6 @@ public class dataRecorder extends BlockContainer
     public boolean renderAsNormalBlock()
     {
         return false;
-    }
+    }*/
 
 }

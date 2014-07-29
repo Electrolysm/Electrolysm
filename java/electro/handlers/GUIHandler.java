@@ -15,6 +15,9 @@ import electro.powerSystem.generators.te.TileEntityAdvGenerator;
 import electro.powerSystem.generators.te.TileEntityThermalGenerator;
 import electro.powerSystem.gui.ContainerEnergyCore;
 import electro.powerSystem.gui.EnergyCoreGUI;
+import electro.research.gui.ContainerCollector;
+import electro.research.gui.GuiCollector;
+import electro.research.gui.TileEntityCollector;
 import electro.research.machines.gui.GuiCrafting;
 import electro.oreProccessing.container.*;
 import electro.oreProccessing.gui.*;
@@ -108,6 +111,9 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TEPowerCore) {
             return new ContainerEnergyCore((TEPowerCore) entity, player.inventory);
         }
+        if (entity instanceof TileEntityCollector) {
+            return new ContainerCollector((TileEntityCollector) entity, player.inventory);
+        }
         return null;
     }
 
@@ -171,6 +177,9 @@ public class GUIHandler implements IGuiHandler {
         }
         if (entity instanceof TEPowerCore) {
             return new EnergyCoreGUI((TEPowerCore) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityCollector) {
+            return new GuiCollector((TileEntityCollector) entity, player.inventory);
         }
         return null;
     }

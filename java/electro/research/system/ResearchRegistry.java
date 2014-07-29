@@ -162,9 +162,9 @@ public class ResearchRegistry
         // this.linkResearch(this.getResearch("conductive_tape"), Arrays.asList(this.getResearch("thinner_tape"), this.getResearch("sensitive_equipment")));
 
         // Robotics research requirements
-        this.linkResearch(this.getResearch("intergrated_circuit"), Arrays.asList(this.getResearch("copper_cable"), this.getResearch("silicon")));
+        this.linkResearch(this.getResearch("intergrated_circuit"), Arrays.asList(this.getResearch("copper_cable")/*, this.getResearch("silicon")*/));
         this.linkResearch(this.getResearch("CPU"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("molder")));
-        this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("CPU"), this.getResearch("injection_molder")));
+        //this.linkResearch(this.getResearch("microprocessor"), Arrays.asList(this.getResearch("CPU"), this.getResearch("injection_molder")));
 
         // Machines Research requirements
         this.linkResearch(this.getResearch("crusher"), Arrays.asList(this.getResearch("electricity"), this.getResearch("intergrated_circuit")));
@@ -176,7 +176,7 @@ public class ResearchRegistry
         this.linkResearch(this.getResearch("liquidiser"), Arrays.asList(this.getResearch("CPU")));
         // this.linkResearch(this.getResearch("assembly_machine"), Arrays.asList(this.getResearch("CPU"), this.getResearch("carbon_fibre")));
         // this.linkResearch(this.getResearch("improved_production_speed"), Arrays.asList(this.getResearch("assembly_machine"), this.getResearch("microprocessor")));
-        this.linkResearch(this.getResearch("compressor"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("steel")));
+        //this.linkResearch(this.getResearch("compressor"), Arrays.asList(this.getResearch("intergrated_circuit"), this.getResearch("steel")));
         //this.linkResearch(this.getResearch("higher_compression_ratio"), Arrays.asList(this.getResearch("compressor"), this.getResearch("CPU")));
 
         // Temporary research requirements
@@ -207,7 +207,7 @@ public class ResearchRegistry
             this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre, Electrolysm.tinOre}), this.getResearch("alloys"));
             this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre, Electrolysm.tinOre}), this.getResearch("bronze"));
             this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.iron_block, Blocks.coal_block}), this.getResearch("steel"));
-            this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.sand}), this.getResearch("silicon"));
+            //this.bindRequirementToResearch(new Requirement(new Block[] {Blocks.sand}), this.getResearch("silicon"));
             this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.copperOre, Blocks.redstone_block}), this.getResearch("intergrated_circuit"));
             this.bindRequirementToResearch(new Requirement(new Block[] { Electrolysm.copperOre, Electrolysm.basicCable}), this.getResearch("CPU"));
             this.bindRequirementToResearch(new Requirement(new Block[] {Electrolysm.steelBlock, Blocks.redstone_block}), this.getResearch("microprocessor"));

@@ -48,7 +48,7 @@ public class EnergyCoreGUI extends GuiContainer{
         GL11.glPopMatrix();
 
         int barSize = 75;
-        int teu = (entity.teuData * barSize) / entity.maxTeU;
+        int teu = ((entity.teuData) * barSize) / entity.maxTeU;
         int amps = (int) ((entity.getAmps() * barSize) / entity.getMaxAmps());
 
         //System.out.println(entity.getAmps() + " : " + entity.getMaxAmps());
@@ -70,7 +70,7 @@ public class EnergyCoreGUI extends GuiContainer{
     protected void drawGuiContainerForegroundLayer(int i, int j) {
         fontRendererObj.drawString("Energy Core", 55, -3, 4210752);
 
-        fontRendererObj.drawString("TeU: " + entity.getTeU(), 10, 10, 4210752);
+        fontRendererObj.drawString("TeU: " + entity.teuData, 10, 10, 4210752);
 
         if (entity.getAmps() < entity.getMaxAmps()) {
             fontRendererObj.drawString("Amps: " + entity.getAmps(), 10, 41, 4210752);

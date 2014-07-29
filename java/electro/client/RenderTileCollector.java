@@ -49,7 +49,7 @@ public class RenderTileCollector extends TileEntitySpecialRenderer
 
         if(te instanceof TileEntityCollector) {
             TileEntityCollector teCollector = (TileEntityCollector)te;
-            if(teCollector.getStackInSlot(0) != null && teCollector.getStackInSlot(0).getItem() instanceof ItemReel)
+            if(teCollector.hasReel)
             {
                 Rotation = TickHandler.rotation;
 

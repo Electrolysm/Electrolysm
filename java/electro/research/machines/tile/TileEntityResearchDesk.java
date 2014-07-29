@@ -14,6 +14,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import electro.research.system.Research;
 
@@ -130,6 +133,8 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     @Override
     public void updateEntity()
     {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
         selected = null;
         //selected = ResearchRegistry.getResearch("basic_storage");
         ItemStack reels = getStackInSlot(0);
@@ -247,4 +252,27 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
 
     @Override
     public void openInventory() { }
+/*
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        this.readFromNBT(pkt.func_148857_g());
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        NBTTagList tagList = new NBTTagList();
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        {
+            if (inventory[currentIndex] != null)
+            {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) currentIndex);
+                inventory[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
+            }
+        }
+        tag.setTag("Items", tagList);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
+    }*/
 }

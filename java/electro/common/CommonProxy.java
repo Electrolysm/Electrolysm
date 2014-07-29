@@ -51,6 +51,7 @@ public class CommonProxy
     public static ResourceLocation ALLOY_FURNACE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/alloyFurnaceGUI.png");
     public static ResourceLocation THERMAL_GEN_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/thermalGenGUI.png");
     public static ResourceLocation POWER_CORE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energyCoreGUI.png");
+    public static ResourceLocation COLLECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiCollector.png");
 
     //Research
     public static ResourceLocation BOOK_LEFT = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/bookLeft.png");
