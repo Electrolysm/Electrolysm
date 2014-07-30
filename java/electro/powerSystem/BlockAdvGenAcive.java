@@ -1,5 +1,6 @@
 package electro.powerSystem;
 
+import api.powerSystem.prefab.BlockEnergy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
@@ -31,7 +32,7 @@ import java.util.Random;
  * and you have certain rights with respective
  * to the code.
  */
-public class BlockAdvGenAcive extends BlockContainer
+public class BlockAdvGenAcive extends BlockEnergy
 {
     @SideOnly(Side.CLIENT)
     public IIcon frontIcon;
@@ -41,7 +42,7 @@ public class BlockAdvGenAcive extends BlockContainer
 
     public BlockAdvGenAcive()
     {
-        super(Material.iron);
+        super();
         this.setHardness(2F);
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeMetal);

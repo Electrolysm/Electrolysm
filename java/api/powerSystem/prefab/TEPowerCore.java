@@ -96,7 +96,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     }
 
     @Override
-    public boolean hasSuitablePower(int teu, float amps)
+    public boolean canDrain(int teu)
     {
         return (teuData > 0) || isCreative;// && (this.getAmps() >= amps);
     }

@@ -20,7 +20,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.solarPanel, "solarPanel");
         GameRegistry.registerBlock(Electrolysm.plasma, "plasma");
         GameRegistry.registerBlock(Electrolysm.creativeEnergyStorage, "creativeEnergyCore");
-        GameRegistry.registerBlock(Electrolysm.nitrocelluloseBlock, "nitrocelluloseBlock");
+        //GameRegistry.registerBlock(Electrolysm.nitrocelluloseBlock, "nitrocelluloseBlock");
         GameRegistry.registerBlock(Electrolysm.energiser, "energiser");
         GameRegistry.registerBlock(Electrolysm.injector, "injector");
         //GameRegistry.registerBlock(electrolysmCore.quantumComp, "quantumComp");
@@ -63,7 +63,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.diseasedLeaves, "diseasedLeaves");
         GameRegistry.registerBlock(Electrolysm.diseasedLog, "diseasedLog");
         GameRegistry.registerBlock(Electrolysm.matterGen, "antiMatterGen");
-        GameRegistry.registerBlock(Electrolysm.dataRecorder, "dataRecorder");
+        //GameRegistry.registerBlock(Electrolysm.dataRecorder, "dataRecorder");
         GameRegistry.registerBlock(Electrolysm.robotArm, "roboticArm");
         GameRegistry.registerBlock(Electrolysm.roboticBase, "robotBase");
         GameRegistry.registerBlock(Electrolysm.advancedCrafting, "advCrafting");
@@ -73,6 +73,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.thermalGenerator, "thermalGenerator");
         GameRegistry.registerBlock(Electrolysm.alloyFurnace, "alloyFurnace");
         GameRegistry.registerBlock(Electrolysm.aluminiumOre, "aluminiumOre");
+        GameRegistry.registerBlock(Electrolysm.energyRelay, "energyRelay");
         GameRegistry.registerBlock(Electrolysm.improvedFurnace, "improvedFurnace");
         GameRegistry.registerBlock(Electrolysm.tinOre, "tinOre");
         
@@ -114,9 +115,10 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.drillCasing, "drillCasing");
         GameRegistry.registerItem(elec.basicBattery, "basicBattery");
         GameRegistry.registerItem(elec.advancedBattery, "advancedBattery");
-        GameRegistry.registerItem(elec.film, "filmStrip");
+        //GameRegistry.registerItem(elec.film, "filmStrip");
         GameRegistry.registerItem(elec.experimentalBattery, "experimentalBattery");
         GameRegistry.registerItem(elec.energyMeter, "energyMeter");
+        GameRegistry.registerItem(elec.insulatedScrewdriver, "InsulatedScrewdriver");
         GameRegistry.registerItem(elec.impureDusts, "impureDusts");
         GameRegistry.registerItem(elec.dusts, "dusts");
         GameRegistry.registerItem(elec.node, "electrode");
@@ -145,12 +147,12 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.labCoat, "labCoat");
         GameRegistry.registerItem(elec.labGoggles, "labGoggles");
         GameRegistry.registerItem(elec.researchDevice, "researchDevice");
-        GameRegistry.registerItem(elec.reel, "itemReel");
+        //GameRegistry.registerItem(elec.reel, "itemReel");
         GameRegistry.registerItem(elec.hammer, "hammer");
         GameRegistry.registerItem(elec.improvedCoal, "improvedCoal");
         GameRegistry.registerItem(elec.neutraliser, "neutraliser");
-        GameRegistry.registerItem(elec.nitrocellulose, "nitrocellulose");
-        GameRegistry.registerItem(elec.camphor, "camphor");
+        //GameRegistry.registerItem(elec.nitrocellulose, "nitrocellulose");
+        //GameRegistry.registerItem(elec.camphor, "camphor");
         GameRegistry.registerItem(elec.steel, "steel");
         GameRegistry.registerItem(elec.aluminiumIngot, "aluminiumIngot");
         GameRegistry.registerItem(elec.silicon, "silicon");

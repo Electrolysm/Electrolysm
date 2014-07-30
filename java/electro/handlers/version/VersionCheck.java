@@ -37,39 +37,26 @@ public class VersionCheck
             //System.out.println("Total no of people : " + totalPersons);
 
             for(int s=0; s<listOfPersons.getLength() ; s++){
-
-
                 Node firstPersonNode = listOfPersons.item(s);
                 if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE){
-
-
                     Element firstPersonElement = (Element)firstPersonNode;
-
                     //System.out.println(version.getMCVersion() + ":mc-1.7.10");
                     //-------
                     NodeList firstNameList = firstPersonElement.getElementsByTagName(version.getMCVersion());
                     Element firstNameElement = (Element)firstNameList.item(0);
-
                     NodeList textFNList = firstNameElement.getChildNodes();
                     //System.out.println("First Name : " +
                     //        ((Node)textFNList.item(0)).getNodeValue().trim());
                     currentVersion = ((Node)textFNList.item(0)).getNodeValue().trim();
-
                 }//end of if clause
-
-
             }//end of for loop with s var
-
-
         }catch (SAXParseException err) {
             System.out.println ("** Parsing error" + ", line "
                     + err.getLineNumber () + ", uri " + err.getSystemId ());
             System.out.println(" " + err.getMessage ());
-
         }catch (SAXException e) {
             Exception x = e.getException ();
             ((x == null) ? e : x).printStackTrace ();
-
         }catch (Throwable t) {
             t.printStackTrace ();
         }

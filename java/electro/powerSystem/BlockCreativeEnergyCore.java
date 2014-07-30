@@ -1,5 +1,6 @@
 package electro.powerSystem;
 
+import api.powerSystem.prefab.BlockEnergy;
 import api.powerSystem.prefab.TEPowerCore;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
@@ -19,9 +20,9 @@ import net.minecraft.world.World;
  * and you have certain rights with respective
  * to the code.
  */
-public class BlockCreativeEnergyCore extends BlockContainer {
+public class BlockCreativeEnergyCore extends BlockEnergy {
     public BlockCreativeEnergyCore() {
-        super(Material.iron);
+        super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2F);
         setHarvestLevel("pickaxe", 1);

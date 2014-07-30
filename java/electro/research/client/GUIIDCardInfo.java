@@ -12,6 +12,7 @@ import java.util.Set;
 import api.items.RecipeStack;
 import electro.Electrolysm;
 import electro.common.CommonProxy;
+import electro.handlers.TickHandler;
 import electro.handlers.helpers.ColourEnumHelper;
 import electro.handlers.helpers.EncryptionHelper;
 import electro.research.common.SavePlayerScanData;
@@ -70,7 +71,7 @@ public class GUIIDCardInfo extends GuiScreen {
         //new ResearchCraftingHandler();
         //new ResearchRegistry(true);
 
-        PlayerResearchEvent.callScanEvent(mc.thePlayer, mc.thePlayer.getDisplayName());
+        PlayerResearchEvent.callScanEvent(mc.thePlayer, mc.thePlayer.getDisplayName(), mc.theWorld.isRemote);
 
         Item inHand = Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem().getItem();
         if(inHand instanceof researchDevice)
@@ -271,7 +272,7 @@ public class GUIIDCardInfo extends GuiScreen {
         {
             //research info rendering here!
             //System.out.println(ResearchRegistry.getResearch(name) + ":" + name);
-            if(ResearchRegistry.getResearch(name) != null)
+            if(ResearchRegistry.getResearch(name) != null && !isShiftKeyDown())
             {
                 //System.out.println("research");
                 screen = name;
@@ -295,14 +296,10 @@ public class GUIIDCardInfo extends GuiScreen {
                                 research != null)
                         {
                             if(PlayerResearchEvent.hasPlayerUnlockedReliants(research, mc.thePlayer)) {
-                                String message = ColourEnumHelper.BRIGHT_GREEN + "Your idea has been recorded on paper";
-                                mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
+                                //String message = ColourEnumHelper.BRIGHT_GREEN + "Your idea has been recorded on paper";
+                                //mc.thePlayer.addChatMessage(new ChatComponentTranslation(message));
                                 this.populateScreen(screen);
-                                mc.thePlayer.inventory.setInventorySlotContents(
-                                        slot, new ItemStack(Electrolysm.researchPaper));
-                                mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound = new NBTTagCompound();
-                                mc.thePlayer.inventory.getStackInSlot(slot).stackTagCompound.setString("researchData",
-                                        research.toAdvString());
+                                //TickHandler.givePlayerResearchStack(mc.thePlayer, slot, research);
                             }
                         }
                         else
@@ -519,14 +516,17 @@ public class GUIIDCardInfo extends GuiScreen {
     @Override
     public void onGuiClosed()
     {
-        Item inHand = Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem().getItem();
-        if(inHand instanceof researchDevice)
+        if(mc.getMinecraft().thePlayer != null && mc.getMinecraft().thePlayer.getCurrentEquippedItem() != null)
         {
-            researchDevice device = (researchDevice)inHand;
+            Item inHand = mc.getMinecraft().thePlayer.getCurrentEquippedItem().getItem();
+            if(inHand instanceof researchDevice)
+            {
+                researchDevice device = (researchDevice)inHand;
 
-            device.setUse(false);
+                device.setUse(false);
+            }
+
+            this.screen = null;
         }
-
-        this.screen = null;
     }
 }

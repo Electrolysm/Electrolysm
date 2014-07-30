@@ -16,22 +16,23 @@ import java.util.*;
  */
 public class PlayerResearchEvent
 {
-    public static void callScanEvent(EntityPlayer player, String username)
+    public static void callScanEvent(EntityPlayer player, String username, boolean isClient)
     {
         //System.out.println(ResearchRegistry.getResearch("turbine").getName());
-
+        System.out.println("callScan");
         Research research = null;
         if((research = onScanEvent(username)) != null)
         {
-            //System.out.println("research" + research.getName());
+            System.out.println("nullCheck");
             //saveActiveResearch
             if (!SavePlayerScanData.ResearchData.hasPlayerUnlocked((username + "_active"), research.getName()))
             {
-                if(hasPlayerUnlockedReliants(research, player)) {
+                System.out.println("hasn't Unlocked");
+                //if(hasPlayerUnlockedReliants(research, player)) {
+                    System.out.println("unlocked");
                     new SavePlayerScanData.ResearchData(username, research.getName());
-                    notifyPlayer(player, research);
-                    //System.out.println(research.getName());
-                }
+                    if(isClient) { notifyPlayer(player, research); }
+                //}
             }
         }
     }
@@ -151,7 +152,7 @@ public class PlayerResearchEvent
         }
         for(int i = 0; i < reliant.size(); i++)
         {
-            checkList.add(SavePlayerScanData.ResearchData.hasPlayerUnlocked(username, reliant.get(i).getName()));
+            checkList.add(SavePlayerScanData.ResearchData.hasPlayerUnlocked(username + "_active", reliant.get(i).getName()));
         }
 
         if(checkList.contains(false))

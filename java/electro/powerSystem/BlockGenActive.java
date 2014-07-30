@@ -1,5 +1,6 @@
 package electro.powerSystem;
 
+import api.powerSystem.prefab.BlockEnergy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -36,7 +37,7 @@ import java.util.Random;
  * and you have certain rights with respective
  * to the code.
  */
-public class BlockGenActive extends BlockContainer
+public class BlockGenActive extends BlockEnergy
 {
     @SideOnly(Side.CLIENT)
     private IIcon frontActive;
@@ -50,7 +51,7 @@ public class BlockGenActive extends BlockContainer
 
     public BlockGenActive()
     {
-        super(Material.iron);
+        super();
         this.setHardness(5.2165F);
         this.setResistance(100F);
     }

@@ -109,6 +109,8 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
     @Override
     public void updateEntity()
     {
+        if(worldObj.isRemote) { return; }
+
         for (int i = 0; i < 9; i++)
         {
             recipe[i] = this.getStackInSlot(i);

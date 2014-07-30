@@ -27,17 +27,11 @@ public class researchDevice extends Item
     }
 
     @Override
-    public void onCreated(ItemStack stack, World world, EntityPlayer player)
-    {
-    }
-
-
-    @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8,
                              float par9, float par10)
 
     {
-        this.gainBasics(player);
+        this.gainBasics(player, world);
         return false;
     }
 
@@ -53,19 +47,22 @@ public class researchDevice extends Item
 
             return stack;
         }
-        this.gainBasics(player);
+        this.gainBasics(player, world);
         return stack;
     }
 
-    public void gainBasics(EntityPlayer player)
+    public void gainBasics(EntityPlayer player, World world)
     {
         if(!(this.hasBlockBeenScanned(player.getDisplayName(), "device")))
         {
             new SavePlayerScanData.ScanData(player.getDisplayName(), "device");
-            PlayerResearchEvent.callScanEvent(player, player.getDisplayName());
             //System.out.println("basics");
         }
-        //System.out.println(":(");
+        if(world.isRemote) {
+            PlayerResearchEvent.callScanEvent(player, player.getDisplayName(), world.isRemote);
+        } else {
+            PlayerResearchEvent.callScanEvent(player, player.getDisplayName(), world.isRemote);
+        }
     }
 
     public static boolean hasBlockBeenScanned(String username, String newData)

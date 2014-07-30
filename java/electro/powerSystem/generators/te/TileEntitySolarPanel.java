@@ -12,13 +12,15 @@ import net.minecraft.world.WorldProvider;
  */
 public class TileEntitySolarPanel extends TileEntityGenerator
 {
+    int product;
+
     @Override
     public void updateEntity() {
         super.updateEntity();
 
         if(worldObj.isRemote) { return; }
 
-        int product = PowerUsage.getTeUFromMap(Electrolysm.solarPanel);
+        product = PowerUsage.getTeUFromMap(Electrolysm.solarPanel);
         int produce = 0;
         if(canProduce(product)) {
             World world = getWorldObj();

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import api.powerSystem.prefab.BlockEnergy;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -24,7 +25,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class matterGen extends BlockContainer
+public class matterGen extends BlockEnergy
 {
     @SideOnly(Side.CLIENT)
     private IIcon frontActive;
@@ -38,7 +39,7 @@ public class matterGen extends BlockContainer
 
     public matterGen()
     {
-        super(Material.iron);
+        super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(5.2165F);
         LanguageRegistry.addName(this, "Matter-Antimatter Reactor");

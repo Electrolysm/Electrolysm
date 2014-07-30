@@ -26,7 +26,7 @@ public class Crafting
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Electrolysm.steel), new Object[] {
                 "blockSteel"
         }));
-
+/*
         GameRegistry.addRecipe(new ItemStack(Electrolysm.nitrocelluloseBlock),
                 "XXX", "XXX", "XXX",
                 Character.valueOf('X'), Electrolysm.nitrocellulose);
@@ -54,7 +54,7 @@ public class Crafting
                 Character.valueOf('I'), new ItemStack(Electrolysm.reel, 1, 1),
                 Character.valueOf('G'), Items.nether_star,
                 Character.valueOf('P'), Electrolysm.film);
-
+*/
         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.itemScanner, true, new Object[]{
                 "C C", "IGI", "C C",
                 Character.valueOf('C'), "ingotCopper",
@@ -362,7 +362,7 @@ public class Crafting
 		GameRegistry.addSmelting(Electrolysm.copperOre, new ItemStack(Electrolysm.copperIngot, 1), 2F);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(Electrolysm.Scandium),
                 new ItemStack(Electrolysm.Scandium, 1, 1), pureXP);
-		GameRegistry.addSmelting((Electrolysm.diseasedLog), new ItemStack(Electrolysm.camphor), 2F);
+		//GameRegistry.addSmelting((Electrolysm.diseasedLog), new ItemStack(Electrolysm.camphor), 2F);
         GameRegistry.addSmelting(Items.coal, new ItemStack(Electrolysm.improvedCoal), 1F);
         GameRegistry.addSmelting(Blocks.coal_block, new ItemStack(Electrolysm.improvedCoal, 10), 10F);
 

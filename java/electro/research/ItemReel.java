@@ -83,7 +83,7 @@ public class ItemReel extends Item
     {
         for (int i = 0; i < CommonProxy.REEL_MAX_VALUE.length; i++)
         {
-            list.add(new ItemStack(Electrolysm.reel, 1, i));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 

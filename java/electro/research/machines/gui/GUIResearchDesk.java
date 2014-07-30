@@ -87,7 +87,7 @@ public class GUIResearchDesk extends GuiContainer
     @Override
     public void actionPerformed(GuiButton button)
     {
-        PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer, mc.getMinecraft().thePlayer.getDisplayName());
+        //PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer, mc.getMinecraft().thePlayer.getDisplayName());
         int id = button.id;
         String name = button.displayString;
         Random rand = new Random();
@@ -120,8 +120,8 @@ public class GUIResearchDesk extends GuiContainer
                             notUnlocked.add(requireArray[i]);
                             entity.requiredList.add(requireArray[i]);
 
-                            PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer,
-                                    mc.getMinecraft().thePlayer.getDisplayName());
+                            /*PlayerResearchEvent.callScanEvent(mc.getMinecraft().thePlayer,
+                                    mc.getMinecraft().thePlayer.getDisplayName());*/
 
                             entity.canSet = true;
                         }

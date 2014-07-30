@@ -13,7 +13,7 @@ public interface IPowerCore
 
     public void setTeU(int teu);
 
-    public boolean hasSuitablePower(int teu, float amps);
+    public boolean canDrain(int teu);
 
     public void drainPower(int amount);
 

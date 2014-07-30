@@ -1,5 +1,6 @@
 package electro.powerSystem.generators;
 
+import api.powerSystem.prefab.BlockEnergy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +19,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 
-public class advancedGenerator extends BlockContainer
+public class advancedGenerator extends BlockEnergy
 {
     @SideOnly(Side.CLIENT)
     public IIcon frontIcon;
@@ -27,7 +28,7 @@ public class advancedGenerator extends BlockContainer
 
     public advancedGenerator()
     {
-        super(Material.iron);
+        super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2F);
         setHarvestLevel("pickaxe",1);

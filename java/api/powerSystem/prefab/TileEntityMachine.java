@@ -107,7 +107,7 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
     public boolean canWork(int teu) {
         if(powerCore != null) {
             float amps = this.getAmps(teu);
-            return (powerCore.hasSuitablePower(teu, amps));
+            return (powerCore.canDrain(teu));
         }
 
         return false;
@@ -116,7 +116,7 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
     @Override
     public void work(int teU) {
         float amps = this.getAmps(teU);
-        if(powerCore != null && powerCore.hasSuitablePower(teU, amps))
+        if(powerCore != null && powerCore.canDrain(teU))
         {
             powerCore.drainPower(teU);
         }

@@ -1,9 +1,6 @@
 package electro.handlers;
 
-import api.powerSystem.prefab.TEPowerCore;
-import api.powerSystem.prefab.TileEntityBasicCable;
-import api.powerSystem.prefab.TileEntityGenerator;
-import api.powerSystem.prefab.TileEntityMachine;
+import api.powerSystem.prefab.*;
 import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
 import electro.machines.advMachines.te.TileEntityCharger;
@@ -34,6 +31,7 @@ public class TileEntityMappingHandler
     public static void addMappings()
     {
         GameRegistry.registerTileEntity(TileEntityGrass.class, "TileEntityGrass");
+        GameRegistry.registerTileEntity(TileEntityRelay.class, "TileEntityRelay");
         GameRegistry.registerTileEntity(TileEntityThermalGenerator.class, "TileEntityThermalGenerator");
         GameRegistry.registerTileEntity(TileEntityAdvGenerator.class, "TileEntityAdvGenerator");
         GameRegistry.registerTileEntity(TileEntityLumRed.class, "TileEntityLumRed");

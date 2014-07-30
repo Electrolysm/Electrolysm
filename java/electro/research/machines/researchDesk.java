@@ -55,18 +55,16 @@ public class researchDesk extends BlockContainer
 
         if (player.isSneaking())
         {
+
             return false;
         }
         else if (!player.isSneaking() && !te.isOpen)
         {
-            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
-            te.isOpen = true;
-            return true;
+            //player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
+            //te.isOpen = true;
+            //return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLiving par5EntityLiving, ItemStack par6ItemStack)

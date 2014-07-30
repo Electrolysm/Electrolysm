@@ -134,13 +134,14 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
     public int time = 0;
     public int maxCrushTime = 400;
     public int crushTime = 400;
-    public int requiredEnergy = PowerUsage.getTeUFromMap(this.getBlock());
+    public int requiredEnergy;
     
     @Override
     public void updateEntity()
     {
         super.updateEntity();
         if(worldObj.isRemote) { return; }
+        requiredEnergy = PowerUsage.getTeUFromMap(this.getBlock());
         if(time == 0) {
             crusher.updateFurnaceBlockState(false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
         } else {

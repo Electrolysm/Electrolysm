@@ -1,5 +1,6 @@
 package electro.powerSystem.generators;
 
+import api.powerSystem.prefab.BlockEnergy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 /**
  * Created by Ben on 19/07/2014.
  */
-public class BlockSolarPanel extends BlockContainer
+public class BlockSolarPanel extends BlockEnergy
 {
     @SideOnly(Side.CLIENT)
     public IIcon top;
@@ -25,7 +26,7 @@ public class BlockSolarPanel extends BlockContainer
 
     public BlockSolarPanel()
     {
-        super(Material.iron);
+        super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(3.14159F);
     }

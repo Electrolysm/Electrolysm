@@ -19,6 +19,7 @@ import electro.handlers.*;
 import electro.handlers.network.PacketHandler;
 import electro.handlers.version.ElectrolysmVersion;
 import electro.misc.item.fuels.ItemImprovedCoal;
+import electro.misc.item.tools.ItemInsulatedScrewdriver;
 import electro.oreProccessing.*;
 import electro.powerSystem.*;
 import electro.powerSystem.generators.*;
@@ -124,8 +125,8 @@ public class Electrolysm
     public static Item labGoggles = new ItemArmorLab(0, "labGoggles");
     public static Item itemScanner = new scanner();
     public static Item researchDevice = new researchDevice();
-    public static Block dataRecorder = new dataRecorder();
-    public static Item reel = new ItemReel();
+    //public static Block dataRecorder = new dataRecorder();
+    //public static Item reel = new ItemReel();
     //public static Item itemScanner = new itemScanner();
     //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 
@@ -162,6 +163,7 @@ public class Electrolysm
     public static Block stoneObsidian = new stoneObsidian().setBlockName("stoneObsidian");
     //Tools
     public static Item hammer = new hammer();
+    public static Item insulatedScrewdriver = new ItemInsulatedScrewdriver();
     
     public static ItemArmor.ArmorMaterial PLASTIC = EnumHelper.addArmorMaterial("PLASTIC", 10, new int[]{1, 3, 2, 1}, 5);
     /*public static Item hazMatHat = new HazMap(configHandler.hazMat1ID, 0);
@@ -202,6 +204,7 @@ public class Electrolysm
     public static Block advGenActive = new BlockAdvGenAcive().setBlockName("advGenActive");
     public static Block genActive = new BlockGenActive().setBlockName("genActive");
 
+    public static Block energyRelay = new BlockEnergyRelay().setBlockName("energyRelay");
     public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
     public static Block advEnergyStorage = new BlockAdvEnergyStorage().setBlockName("advEnergyStorage");
     public static Block creativeEnergyStorage = new BlockCreativeEnergyCore().setBlockName("creativeEnergyCore");
@@ -265,10 +268,10 @@ public class Electrolysm
     public static Item advancedCPU = new advancedCPU();
     public static Item graphiteRod = new graphiteRod();
     public static Item electroMagnet = new ItemCrafting().setUnlocalizedName("electMag");
-    public static Item film = new ItemCrafting().setUnlocalizedName("filmStrip");
-    public static Item nitrocellulose = new ItemCrafting().setUnlocalizedName("nitrocellulose");
-    public static Block nitrocelluloseBlock = new BlockCrafting(1F, "nitrocelluloseBlock", Material.cloth);
-    public static Item camphor = new ItemCrafting().setUnlocalizedName("camphor");
+    //public static Item film = new ItemCrafting().setUnlocalizedName("filmStrip");
+    //public static Item nitrocellulose = new ItemCrafting().setUnlocalizedName("nitrocellulose");
+    //public static Block nitrocelluloseBlock = new BlockCrafting(1F, "nitrocelluloseBlock", Material.cloth);
+    //public static Item camphor = new ItemCrafting().setUnlocalizedName("camphor");
     public static Potion acidBurns = new acidBurns(configHandler.acidBurnsID, true, 0);
     public static Item steel = new ItemCrafting().setUnlocalizedName("steel");
     public static Item tinIngot = new ItemCrafting().setUnlocalizedName("ingotTin");
