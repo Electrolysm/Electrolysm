@@ -145,7 +145,7 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
     public int maxTemp = 100;
     public int maxMaxTemp = 100;
     boolean redstonePower;
-    public int requiredPower = PowerUsage.getTeUFromMap(Electrolysm.smeltory);
+    public int requiredPower = PowerUsage.SMELTORY;
     
     @Override
     public void updateEntity()

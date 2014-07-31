@@ -14,6 +14,13 @@ public class ItemCrafting extends Item
 
 		this.setCreativeTab(Electrolysm.TabElectrolysm);
 	}
+
+    public ItemCrafting(String name) {
+        super();
+
+        this.setCreativeTab(Electrolysm.TabElectrolysm);
+        this.setUnlocalizedName(name);
+    }
 	
     @Override
     @SideOnly(Side.CLIENT)

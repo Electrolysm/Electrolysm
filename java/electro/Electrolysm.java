@@ -18,7 +18,6 @@ import electro.misc.crafting.items.*;
 import electro.handlers.*;
 import electro.handlers.network.PacketHandler;
 import electro.handlers.version.ElectrolysmVersion;
-import electro.misc.item.fuels.ItemImprovedCoal;
 import electro.misc.item.tools.ItemInsulatedScrewdriver;
 import electro.oreProccessing.*;
 import electro.powerSystem.*;
@@ -284,7 +283,7 @@ public class Electrolysm
 
     //Fuels
     public static Item electroContain = new electroContain();
-    public static Item improvedCoal = new ItemImprovedCoal();
+    public static Item improvedCoal = new ItemCrafting("improvedCoal");
 
     //Assembly Systems
     public static Block advancedCrafting = new advancedCrafting();

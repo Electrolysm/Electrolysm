@@ -1,6 +1,7 @@
 package electro.oreProccessing;
 
 import electro.Electrolysm;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
 /**
@@ -13,5 +14,10 @@ public class ItemNeutraliser extends Item
         super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("itemNeutraliser");
+    }
+
+    @Override
+    public void registerIcons(IIconRegister reg) {
+        itemIcon = reg.registerIcon("electrolysm:neutraliser");
     }
 }

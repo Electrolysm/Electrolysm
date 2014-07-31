@@ -81,7 +81,7 @@ public class energyMeter extends Item
     private void printMessageGenerator(Block block, TileEntityGenerator te)
     {
         String message = "This generator can produce: " + "VALUE" + "TeU";
-        int teu = PowerUsage.getTeUFromMap(block);
+        int teu = PowerUsage.getTeUFromBlock(block);
 
         FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
             new ChatComponentTranslation(message.replace("VALUE", String.valueOf(teu))));
@@ -110,7 +110,8 @@ public class energyMeter extends Item
     private void printOreMessage(World world, int x, int y, int z, IMeterable te)
 	{
 		Block block = te.getBlock();
-		String message = "This machine requires: " + PowerUsage.getTeUFromMap(block) + "TeU";
+        int teu = PowerUsage.getTeUFromBlock(block);
+		String message = "This machine requires: " + teu + "TeU";
 		
 		FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
                 new ChatComponentTranslation(message));

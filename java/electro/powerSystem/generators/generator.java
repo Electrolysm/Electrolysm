@@ -44,7 +44,6 @@ public class generator extends BlockEnergy
         super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(5.2165F);
-        LanguageRegistry.addName(this, "Coal Generator");
         this.setResistance(100F);
     }
 

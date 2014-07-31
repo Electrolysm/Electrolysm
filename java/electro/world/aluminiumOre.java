@@ -16,4 +16,8 @@ public class aluminiumOre extends Block
         this.setStepSound(Block.soundTypeStone);
     }
 
+    @Override
+    public void registerBlockIcons(IIconRegister reg){
+        blockIcon = reg.registerIcon("electrolysm:oreAluminium");
+    }
 }

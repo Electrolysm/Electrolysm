@@ -92,7 +92,7 @@ public class Names
         for(int i = 0; i < 3; i++)
         {
         	String[] tier = {"Stone", "Iron", "Diamond"};
-        	LanguageRegistry.addName(new ItemStack(Electrolysm.grindStone, 1, i), tier[i] + " Grind Stone");
+        	LanguageRegistry.addName(new ItemStack(Electrolysm.grindStone, 1, i), tier[i] + " Crushing Stone");
         }
         for (int i = 0; i < CommonProxy.FLUIDS.length; i++)
         {

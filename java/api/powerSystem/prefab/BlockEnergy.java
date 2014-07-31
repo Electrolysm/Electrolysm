@@ -31,7 +31,7 @@ public class BlockEnergy  extends BlockContainer
     }
 
     @Override
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
-        return null;
+    public Item getItemDropped(int i, Random rand, int i2) {
+        return super.getItemDropped(i, rand, i2);
     }
 }

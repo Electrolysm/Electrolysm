@@ -2,6 +2,9 @@ package api.powerSystem.prefab;
 
 import api.powerSystem.interfaces.*;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -20,19 +23,18 @@ import java.util.Random;
  */
 public class TileEntityRelay extends TileEntity implements IConnector, ISidedWrenchable, IEnergyRelay {
 
-    public TileEntityRelay() { }
+    public TileEntityRelay() {
+    }
 
     int TEU = 50;
     TileEntity[] adjConnections = new TileEntity[6];
 
     @Override
     public boolean canConnect(ForgeDirection from, Object source) {
-        if(source instanceof TileEntity)
-        {
-            TileEntity te = (TileEntity)source;
-            if(te instanceof IConnector && this.getState(from.ordinal()) != this.DEFAULT)
-            {
-                IConnector con = (IConnector)te;
+        if (source instanceof TileEntity) {
+            TileEntity te = (TileEntity) source;
+            if (te instanceof IConnector && this.getState(from.ordinal()) != this.DEFAULT) {
+                IConnector con = (IConnector) te;
                 adjConnections[from.ordinal()] = te;
                 return con.canConnect(from.getOpposite());
             }
@@ -43,7 +45,7 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
 
     @Override
     public boolean canConnect(ForgeDirection side) {
-        return this.getState(side.ordinal()) == this.DEFAULT;
+        return this.getState(side.ordinal()) != this.DEFAULT;
     }
 
     @Override
@@ -67,6 +69,7 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
         }
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         for (byte i = 0; i < 6; i++) {
+            //worldObj.getBlock(xCoord, yCoord, zCoord).updateTick(worldObj, xCoord, yCoord, zCoord, new Random());
             ForgeDirection dir = ForgeDirection.getOrientation(i);
             this.canConnect(dir, this.worldObj.getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
                     this.zCoord + dir.offsetZ));
@@ -74,33 +77,43 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
 
         Random rand = new Random();
         //Get TE From
-        if(FromPowerCore == null) {
-            if(rand.nextInt(50) == 5) {
+        if (FromPowerCore == null) {
+            if (rand.nextInt(50) == 5) {
                 FromPowerCore = findCore(worldObj, xCoord, yCoord, zCoord, INPUT);
             }
         } else {
-            if(rand.nextInt(100) == 5) {
+            if (rand.nextInt(100) == 5) {
                 FromPowerCore = findCore(worldObj, xCoord, yCoord, zCoord, INPUT);
             }
         }
         //Get TE To
-        if(ToPowerCore == null) {
-            if(rand.nextInt(50) == 5) {
+        if (ToPowerCore == null) {
+            if (rand.nextInt(50) == 5) {
                 ToPowerCore = findCore(worldObj, xCoord, yCoord, zCoord, OUTPUT);
             }
         } else {
-            if(rand.nextInt(100) == 5) {
+            if (rand.nextInt(100) == 5) {
                 ToPowerCore = findCore(worldObj, xCoord, yCoord, zCoord, OUTPUT);
             }
         }
 
         //Taking from "FromPowerCore" and give to "ToPowerCore"
-        if(FromPowerCore != null && ToPowerCore != null && FromPowerCore != ToPowerCore) {
+        if (FromPowerCore != null && ToPowerCore != null /*&& FromPowerCore != ToPowerCore*/) {
+            //System.out.println("take and give");
             this.takeAndGive(FromPowerCore, ToPowerCore);
+        }
+
+        //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        //worldObj.scheduleBlockUpdate(xCoord, yCoord, zCoord, worldObj.getBlock(xCoord, yCoord, zCoord), 1);
+        if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 0) {
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 0);
+        } else {
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 0);
         }
     }
 
     private void takeAndGive(TEPowerCore from, TEPowerCore to) {
+        //System.out.println(from + " : " + to);
         if(from.canDrain(TEU) && to.canHold(TEU))
         {
             from.drainPower(TEU);
@@ -140,7 +153,7 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
     public TEPowerCore findCore(World world, int x, int y, int z, int SideState) {
         TileEntity[] adj = this.adjConnections;
         for (int i = 0; i < adj.length; i++) {
-            if (/*getState(i) == SideState &&*/ adj[i] != null && adj[i] instanceof IConnector) {
+            if (getState(i) == SideState && adj[i] != null && adj[i] instanceof IConnector) {
                 IConnector connector = (IConnector) adj[i];
                 if (adj[i] instanceof TEPowerCore) {
                     return (TEPowerCore) adj[i];
@@ -167,5 +180,17 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
         super.writeToNBT(tag);
 
         tag.setIntArray("sideSetting", sideStates);
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setIntArray("sideSetting", sideStates);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        sideStates = pkt.func_148857_g().getIntArray("sideSetting");
     }
 }

@@ -136,16 +136,16 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public void updateEntity() {
 
-        if(worldObj.isRemote) { return; }
-
-        //getDescriptionPacket();
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         for (byte i = 0; i < 6; i++)
         {
             ForgeDirection dir = ForgeDirection.getOrientation(i);
             this.canConnect(dir, this.worldObj.getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
                     this.zCoord + dir.offsetZ));
         }
+        if(worldObj.isRemote) { return; }
+
+        //getDescriptionPacket();
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
         if(this.getTeU() < 0) { setEmpty(); }
         if(this.getTeU() >= (maxTeU - 5)) { setFull(); }

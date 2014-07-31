@@ -3,6 +3,7 @@ package electro.powerSystem.generators.te;
 import api.powerSystem.PowerUsage;
 import api.powerSystem.prefab.TileEntityGenerator;
 import electro.Electrolysm;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
@@ -20,25 +21,42 @@ public class TileEntitySolarPanel extends TileEntityGenerator
 
         if(worldObj.isRemote) { return; }
 
-        product = PowerUsage.getTeUFromMap(Electrolysm.solarPanel);
+        product = PowerUsage.SOLAR_PANEL;
         int produce = 0;
         if(canProduce(product)) {
-            World world = getWorldObj();
-            WorldProvider provider = world.provider;
-            boolean dayTime = provider.isDaytime();
-            boolean seeSky = world.canBlockSeeTheSky(xCoord, yCoord + 1, zCoord);
-            boolean isRaining = world.isRaining();
-            long worldTime = world.getWorldTime();
+            if(worldObj.getBlock(xCoord, yCoord + 1, zCoord) == Blocks.water) {
+                World world = getWorldObj();
+                WorldProvider provider = world.provider;
+                boolean dayTime = provider.isDaytime();
+                boolean seeSky = world.canBlockSeeTheSky(xCoord, yCoord + 2, zCoord);
+                boolean isRaining = world.isRaining();
+                long worldTime = world.getWorldTime();
 
-            if (dayTime && seeSky) {
-                if (!isRaining) {
-                    produce = product;
-                } else {
-                    produce = product / 2;
+                if (dayTime && seeSky) {
+                    if (!isRaining) {
+                        produce = product;
+                    } else {
+                        produce = product / 2;
+                    }
+                    this.produce(produce);
                 }
-                this.produce(produce);
-            }
+            } else {
+                World world = getWorldObj();
+                WorldProvider provider = world.provider;
+                boolean dayTime = provider.isDaytime();
+                boolean seeSky = world.canBlockSeeTheSky(xCoord, yCoord + 1, zCoord);
+                boolean isRaining = world.isRaining();
+                long worldTime = world.getWorldTime();
 
+                if (dayTime && seeSky) {
+                    if (!isRaining) {
+                        produce = product;
+                    } else {
+                        produce = product / 2;
+                    }
+                    this.produce(produce);
+                }
+            }
         }
     }
 }

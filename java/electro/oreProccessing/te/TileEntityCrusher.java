@@ -141,7 +141,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
     {
         super.updateEntity();
         if(worldObj.isRemote) { return; }
-        requiredEnergy = PowerUsage.getTeUFromMap(this.getBlock());
+        requiredEnergy = PowerUsage.CRUSHER;
         if(time == 0) {
             crusher.updateFurnaceBlockState(false, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
         } else {

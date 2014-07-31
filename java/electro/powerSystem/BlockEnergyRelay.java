@@ -30,7 +30,6 @@ public class BlockEnergyRelay extends BlockEnergy
         this.setHardness((float) Math.PI);
     }
 
-
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
         return new TileEntityRelay();
@@ -51,5 +50,10 @@ public class BlockEnergyRelay extends BlockEnergy
     {
         TileEntityRelay te = (TileEntityRelay)world.getTileEntity(x, y, z);
         return icons[te.getState(side)];
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        return icons[0];
     }
 }

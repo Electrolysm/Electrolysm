@@ -121,7 +121,7 @@ public class TileEntityElectrolisisCore extends TileEntityMachine implements IIn
     public int MaxElectroTime = 100;
     public int electroTime = 100;
     public boolean active = false;
-    public int requiredPower = PowerUsage.getTeUFromMap(Electrolysm.electrolisisCore);
+    public int requiredPower = PowerUsage.ELECTROLYSIS;
     
     @Override
     public void updateEntity()

@@ -1,59 +1,35 @@
 package api.powerSystem;
 
-import java.util.HashMap;
-
-import api.items.RecipeStack;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 
-public class PowerUsage 
+public class PowerUsage
 {
+	public static int CRUSHER = 14;
+	public static int ELECTROLYSIS = 62;
+	public static int SMELTORY = 19;
 
-	//Crusher == 14;
-	//Liquidiser == 0;
-	//Electrolysis == 62;
-	//Smeltory == 19
-	
-	private static HashMap<RecipeStack, Integer> energyUsageMap = new HashMap<RecipeStack, Integer>();
-	private static HashMap<Integer, RecipeStack> energyUsageMapRev = new HashMap<Integer, RecipeStack>();
-	
-	static
-	{
-		addToMap(Electrolysm.crusher, 14);
-		addToMap(Electrolysm.crusherActive, 14);
-		addToMap(Electrolysm.smeltory, 19);
-		addToMap(Electrolysm.smeltoryActive, 19);
-		addToMap(Electrolysm.electrolisisCore, 62);
+    public static int SOLAR_PANEL = 2;
+    public static int GENERATOR = 3;
+    public static int ADV_GENERATOR = 19;
+    public static int THERMAL_GENERATOR = 42;
+    public static int ANTIMATTER = 100000;
 
-        addToMap(Electrolysm.solarPanel, 2);
-        addToMap(Electrolysm.generator, 3);
-        addToMap(Electrolysm.advancedGenerator, 19);
-        addToMap(Electrolysm.thermalGenerator, 42);
-        addToMap(Electrolysm.matterGen, 100000);
-	}
-	
-	
-	public static void addToMap(ItemStack stack, int teu)
-	{
-		energyUsageMap.put(new RecipeStack(stack), teu);
-		energyUsageMapRev.put(teu, new RecipeStack(stack));
-	}
-
-    public static void addToMap(Block block, int teu)
+    public static int getTeUFromBlock(Block block)
     {
-        addToMap(new ItemStack(block), teu);
+        if(block == Electrolysm.crusher) { return CRUSHER; }
+        else if(block == Electrolysm.electrolisisCore) { return ELECTROLYSIS; }
+        else if(block == Electrolysm.smeltory) { return SMELTORY; }
+        else if(block == Electrolysm.crusherActive) { return CRUSHER; }
+        else if(block == Electrolysm.smeltoryActive) { return SMELTORY; }
+
+        else if(block == Electrolysm.solarPanel) { return SOLAR_PANEL; }
+        else if(block == Electrolysm.generator) { return GENERATOR; }
+        else if(block == Electrolysm.advancedGenerator) { return ADV_GENERATOR; }
+        else if(block == Electrolysm.thermalGenerator) { return THERMAL_GENERATOR; }
+        else if(block == Electrolysm.matterGen) { return ANTIMATTER; }
+        else if(block == Electrolysm.genActive) { return GENERATOR; }
+        else if(block == Electrolysm.advGenActive) { return ADV_GENERATOR; }
+        return 0;
     }
-	
-	public static int getTeUFromMap(Block block)
-	{
-		return getTeUFromMap(new ItemStack(block));
-	}
-
-    public static int getTeUFromMap(ItemStack stack) { return energyUsageMap.get(new RecipeStack(stack)); }
-
-	public static Block getBlockFromTeU(TeU teu)
-	{
-		return Block.getBlockFromItem((energyUsageMapRev.get(teu)).getStackValue().getItem());
-	}
 }

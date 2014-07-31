@@ -14,4 +14,9 @@ public class aluminiumIngot extends Item
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("aluminiumIngot");
     }
+
+    @Override
+    public void registerIcons(IIconRegister reg) {
+        itemIcon = reg.registerIcon("electrolysm:ingotAluminium");
+    }
 }

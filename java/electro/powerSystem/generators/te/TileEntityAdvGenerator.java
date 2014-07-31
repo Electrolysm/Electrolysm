@@ -86,7 +86,7 @@ public class TileEntityAdvGenerator extends TileEntityProducer implements IInven
 
     private void updateCoal()
     {
-        if(this.canProduce(PowerUsage.getTeUFromMap(Electrolysm.advancedGenerator)))
+        if(this.canProduce(PowerUsage.ADV_GENERATOR))
         {
             if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
             {
@@ -111,7 +111,7 @@ public class TileEntityAdvGenerator extends TileEntityProducer implements IInven
             {
                 this.time = time - 1;
                 //this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
-                this.produce(PowerUsage.getTeUFromMap(Electrolysm.advancedGenerator));
+                this.produce(PowerUsage.ADV_GENERATOR);
             }
             else
             {

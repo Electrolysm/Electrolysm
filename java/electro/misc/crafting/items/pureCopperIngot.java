@@ -14,5 +14,10 @@ public class pureCopperIngot extends Item
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setUnlocalizedName("pureIngotCopper");
     }
+
+    @Override
+    public void registerIcons(IIconRegister reg) {
+        itemIcon = reg.registerIcon("electrolysm:pureCopperIngot");
+    }
 }
 

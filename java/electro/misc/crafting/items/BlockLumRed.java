@@ -19,7 +19,6 @@ public class BlockLumRed extends BlockContainer
         super(Material.glass);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setLightLevel(1.0F);
-        LanguageRegistry.addName(this, "Luminous Redstone Block");
         this.setHardness(2F);
     }
 

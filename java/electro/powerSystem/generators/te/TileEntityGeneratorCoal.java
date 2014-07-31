@@ -98,7 +98,7 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     {
         //System.out.println(time + " : " + burnTime);
 
-        if(this.canProduce(PowerUsage.getTeUFromMap(Electrolysm.generator)))
+        if(this.canProduce(PowerUsage.GENERATOR))
     	{
     		if(this.getItemBurnTime(this.getStackInSlot(0)) != 0 && time == 0)
     		{
@@ -119,11 +119,11 @@ public class TileEntityGeneratorCoal extends TileEntityProducer implements IInve
     			}
     		}
 
-    		if(time != 0 && this.canProduce(PowerUsage.getTeUFromMap(Electrolysm.generator)))
+    		if(time != 0 && this.canProduce(PowerUsage.GENERATOR))
         	{
         		this.time = time - 1;
         		//this.getStackInSlot(1).setItemDamage((this.getStackInSlot(1).getItemDamage() + 1));
-                this.produce(PowerUsage.getTeUFromMap(Electrolysm.generator));
+                this.produce(PowerUsage.GENERATOR);
         	}
         	else
         	{

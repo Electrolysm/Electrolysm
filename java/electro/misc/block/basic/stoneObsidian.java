@@ -15,7 +15,6 @@ public class stoneObsidian extends Block
         super(Material.ground);
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(10F);
-        LanguageRegistry.addName(this, "Obsidian Embedded Stone");
     }
 
     @Override

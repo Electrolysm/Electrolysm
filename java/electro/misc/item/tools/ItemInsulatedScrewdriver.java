@@ -5,6 +5,7 @@ import api.powerSystem.prefab.TileEntityGenerator;
 import api.powerSystem.prefab.TileEntityMachine;
 import api.powerSystem.prefab.TileEntityRelay;
 import electro.Electrolysm;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -37,11 +38,12 @@ public class ItemInsulatedScrewdriver extends Item
                              float hitX, float hitY, float hitZ)
     {
         TileEntity worldTE = world.getTileEntity(x, y, z);
+        Block block = world.getBlock(x, y, z);
         if(player.isSneaking())
         {
             if(worldTE instanceof TEPowerCore || worldTE instanceof TileEntityMachine || worldTE instanceof TileEntityGenerator ||
                     worldTE instanceof TileEntityRelay) {
-                world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, 0, 1);
+                block.dropBlockAsItem(world, x, y, z, 0, 1);
                 world.setBlockToAir(x, y, z);
                 return true;
             }

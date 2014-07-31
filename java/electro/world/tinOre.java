@@ -15,4 +15,9 @@ public class tinOre extends Block
         this.setResistance(10.0F);
         this.setStepSound(Block.soundTypeStone);
     }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        blockIcon = reg.registerIcon("electrolysm:oreTin");
+    }
 }
