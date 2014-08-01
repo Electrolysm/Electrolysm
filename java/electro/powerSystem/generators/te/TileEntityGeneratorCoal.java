@@ -1,9 +1,7 @@
 package electro.powerSystem.generators.te;
 
-import api.powerSystem.PowerUsage;
-import api.powerSystem.TeU;
+import electro.powerSystem.PowerUsage;
 import electro.Electrolysm;
-import electro.powerSystem.generators.advancedGenerator;
 import electro.powerSystem.generators.generator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

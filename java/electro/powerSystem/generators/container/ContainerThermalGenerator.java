@@ -1,9 +1,7 @@
 package electro.powerSystem.generators.container;
 
-import api.powerSystem.SlotBattery;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
 import electro.powerSystem.generators.te.TileEntityThermalGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

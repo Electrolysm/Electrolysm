@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
-import api.powerSystem.SlotBattery;
+import electro.powerSystem.SlotBattery;
 import electro.research.machines.container.SlotOutput;
 import electro.oreProccessing.te.TileEntityCrusher;
 import cpw.mods.fml.relauncher.Side;

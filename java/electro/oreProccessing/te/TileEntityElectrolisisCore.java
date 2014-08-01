@@ -1,6 +1,6 @@
 package electro.oreProccessing.te;
 
-import api.powerSystem.PowerUsage;
+import electro.powerSystem.PowerUsage;
 import api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
@@ -12,7 +12,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import api.powerSystem.meter.IMeterable;
 import net.minecraft.world.World;
 

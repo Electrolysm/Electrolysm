@@ -1,9 +1,7 @@
 package electro.powerSystem.generators.te;
 
-import api.powerSystem.PowerUsage;
+import electro.powerSystem.PowerUsage;
 import api.powerSystem.prefab.TileEntityGenerator;
-import electro.Electrolysm;
-import electro.oreProccessing.recipes.CrusherRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -11,7 +9,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 

@@ -1,4 +1,4 @@
-package api.powerSystem;
+package electro.powerSystem;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

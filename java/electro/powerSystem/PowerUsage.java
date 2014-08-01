@@ -1,4 +1,4 @@
-package api.powerSystem;
+package electro.powerSystem;
 
 import electro.Electrolysm;
 import net.minecraft.block.Block;

@@ -12,7 +12,15 @@ package api.powerSystem.interfaces;
  */
 public interface ISidedWrenchable {
 
+    /**
+     * sets a state to a side
+     * @param side
+     */
     public void setSide(int side);
 
+    /**
+     * @param side
+     * @return the current state of the specified side
+     */
     public int getState(int side);
 }

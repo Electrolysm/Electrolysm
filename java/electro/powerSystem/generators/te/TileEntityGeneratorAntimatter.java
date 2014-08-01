@@ -1,6 +1,6 @@
 package electro.powerSystem.generators.te;
 
-import api.powerSystem.PowerUsage;
+import electro.powerSystem.PowerUsage;
 import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
 import net.minecraft.block.Block;

@@ -12,8 +12,19 @@ import net.minecraft.world.World;
  * the source of this mod is publicly available
  * and you have certain rights with respective
  * to the code.
+ *
+ * Implemented by any tile entity that is an energy relay.
  */
 public interface IEnergyRelay
 {
+    /**
+     * Called by a tile entity, to find the core that power should be added to or drawn from.
+     * @param world
+     * @param x
+     * @param y
+     * @param z
+     * @param SideState
+     * @return
+     */
     public TEPowerCore findCore(World world, int x, int y, int z, int SideState);
 }

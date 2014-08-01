@@ -1,5 +1,6 @@
 package api;
 
+import api.items.Fetcher;
 import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -30,7 +31,7 @@ public class MachineBaseClass extends BlockContainer implements ITileEntityProvi
     public MachineBaseClass()
     {
         super(Material.iron);
-        this.setCreativeTab(Electrolysm.TabElectrolysm);
+        this.setCreativeTab(Fetcher.getCreativeTab());
         //this.setUnlocalizedName(this.unlocalName);
         this.setHardness(5.0F);
     }
