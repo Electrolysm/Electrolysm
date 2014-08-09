@@ -49,10 +49,11 @@ public class ResearchCraftingHandler
 
         addRecipe(ResearchRegistry.getResearch("energy_storage"), new ItemStack(Electrolysm.basicEnergyStorage),
                 new Object[] {
-                        "BGB", "GCG", "BGB",
-                        Character.valueOf('B'), Electrolysm.blastProof,
-                        Character.valueOf('G'), new ItemStack(Electrolysm.blastGlass, 1, 0),
-                        Character.valueOf('C'), Electrolysm.crystal1
+                        "IRI", "GCG", "IRI",
+                        Character.valueOf('R'), Electrolysm.basicCable,
+                        Character.valueOf('G'), Blocks.glass,
+                        Character.valueOf('C'), Electrolysm.crystal1,
+                        Character.valueOf('I'), Items.iron_ingot,
                 });
         
         addRecipe(ResearchRegistry.getResearch("electricity"), new ItemStack(Electrolysm.generator),
