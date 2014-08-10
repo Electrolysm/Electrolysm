@@ -16,7 +16,6 @@ public class workBench extends BlockContainer
     public workBench()
     {
         super(Material.iron);
-        // TODO Auto-generated constructor stub
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(4);
     }
@@ -60,7 +59,6 @@ public class workBench extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntityWorkBench();
     }
 }

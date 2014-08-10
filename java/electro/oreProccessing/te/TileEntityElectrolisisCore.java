@@ -159,7 +159,6 @@ public class TileEntityElectrolisisCore extends TileEntityMachine implements IIn
             {
             	if(true)
             	{
-                    //Stopping here!!TODO
             		if(result1 != null)
             		{
             			if(true)

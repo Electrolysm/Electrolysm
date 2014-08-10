@@ -78,7 +78,6 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
-        // TODO Auto-generated method stub
         inventory[slot] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
@@ -89,14 +88,12 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
     @Override
     public int getInventoryStackLimit()
     {
-        // TODO Auto-generated method stub
         return 64;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
-        // TODO Auto-generated method stub
         return true;
     }
 

@@ -60,4 +60,9 @@ public class AlloyRecipes
 
         return 0;
     }
+
+    public HashMap<List<RecipeStack>, RecipeStack> getMap()
+    {
+        return listRecipeStackHashMap;
+    }
 }

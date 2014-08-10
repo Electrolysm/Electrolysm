@@ -11,7 +11,6 @@ public class BasicMicrochip extends Item
     public BasicMicrochip()
     {
         super();
-        // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("Basic Microchip");

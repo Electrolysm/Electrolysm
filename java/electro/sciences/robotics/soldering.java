@@ -15,7 +15,6 @@ public class soldering extends BlockContainer
     public soldering()
     {
         super(Material.iron);
-        // TODO Auto-generated constructor stub
         this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
     @Override
@@ -27,7 +26,6 @@ public class soldering extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntitySoldering();
     }
 

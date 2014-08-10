@@ -33,7 +33,6 @@ public class diseasedGrass extends BlockContainer
     {
     	
         super(Material.ground);
-        // TODO Auto-generated constructor stub
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(1);
         this.setStepSound(Block.soundTypeGrass);

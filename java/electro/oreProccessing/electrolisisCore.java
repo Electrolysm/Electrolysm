@@ -11,10 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import electro.oreProccessing.te.TileEntityElectrolisisCore;
 /**
- *
  * @author Ben
- * @TODO Create texture rendering system, based on ItemStack in specified slot.
- *
  */
 public class electrolisisCore extends BlockContainer
 {

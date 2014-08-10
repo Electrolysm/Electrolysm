@@ -81,7 +81,6 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack)
     {
-        // TODO Auto-generated method stub
         inventory[slot] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
@@ -93,7 +92,6 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
     @Override
     public int getInventoryStackLimit()
     {
-        // TODO Auto-generated method stub
         return 64;
     }
 
@@ -346,8 +344,7 @@ public class TileEntitySmeltory extends TileEntityMachine implements IInventory,
     }
 
 	public void setGuiDisplayName(String displayName) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

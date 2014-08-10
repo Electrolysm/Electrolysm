@@ -50,7 +50,6 @@ public class BlockLumRed extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntityLumRed();
     }
 }

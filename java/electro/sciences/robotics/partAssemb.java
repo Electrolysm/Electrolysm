@@ -12,7 +12,6 @@ public class partAssemb extends Block
     public partAssemb(int id, Material mat)
     {
         super(Material.iron);
-        // TODO Auto-generated constructor stub
         this.setCreativeTab(Electrolysm.TabElectrolysm);
     }
     @Override

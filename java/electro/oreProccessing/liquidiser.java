@@ -30,7 +30,6 @@ public class liquidiser extends oreProcessMachineBase
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntityLiquidiser();
     }
 

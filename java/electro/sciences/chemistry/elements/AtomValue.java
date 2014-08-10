@@ -24,19 +24,16 @@ public class  AtomValue implements ElementValue, CompoundValue
 
 	@Override
 	public AtomValue[] getContainingElements() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean canDecomposeAtTemp(Kelvin temp) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean canDecompose() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

@@ -17,7 +17,6 @@ import net.minecraftforge.fluids.*;
  */
 public class TileEntityThermalGenerator extends TileEntityGenerator implements IInventory, IFluidHandler//, ISidedInventory
 {
-    //TODO all of this!!
     private ItemStack[] inventory;
 
     public TileEntityThermalGenerator()
@@ -119,7 +118,6 @@ public class TileEntityThermalGenerator extends TileEntityGenerator implements I
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
-        //TODO
         return false;
     }
 

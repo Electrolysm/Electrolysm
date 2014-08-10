@@ -11,7 +11,6 @@ public class transistor extends Item
     public transistor()
     {
         super();
-        // TODO Auto-generated constructor stub
             this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("transistor");
         //transistor

@@ -240,7 +240,6 @@ public class Crafting
                 'C', Electrolysm.copperIngot}));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.BasicMicrochip, true, new Object[] {
-                //TODO
         		"   ", "RTR", "CMC",
         		'T', Electrolysm.transistor,
         		'R', Items.redstone,
@@ -248,7 +247,6 @@ public class Crafting
         		'M', Electrolysm.microchipBoard}));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.advancedMicrochip, 1, 0), true, new Object[]{
-                //TODO
         		"   ", "CPC", "BRB",
         		'C', "ingotCopper",
         		'P', Electrolysm.CPU,

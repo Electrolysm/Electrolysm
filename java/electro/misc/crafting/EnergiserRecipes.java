@@ -1,5 +1,6 @@
 package electro.misc.crafting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,8 @@ public class EnergiserRecipes
     private HashMap<List<RecipeStack>, RecipeStack> metaSmeltingList2 = new HashMap<List<RecipeStack>, RecipeStack>();
     private HashMap<List<RecipeStack>, RecipeStack> metaSmeltingCheckList1 = new HashMap<List<RecipeStack>, RecipeStack>();
     private HashMap<List<RecipeStack>, RecipeStack> metaSmeltingCheckList2 = new HashMap<List<RecipeStack>, RecipeStack>();
+
+    private HashMap<List<RecipeStack>, RecipeStack> bothSmeltingList = new HashMap<List<RecipeStack>, RecipeStack>();
 
     public static final EnergiserRecipes smelting()
     {
@@ -41,6 +44,12 @@ public class EnergiserRecipes
         this.metaSmeltingList2.put(Arrays.asList(new RecipeStack(input2)), new RecipeStack(output));
         this.metaSmeltingCheckList1.put(Arrays.asList(new RecipeStack(input1)), new RecipeStack(input1));
         this.metaSmeltingCheckList2.put(Arrays.asList(new RecipeStack(input2)), new RecipeStack(input2));
+        this.bothSmeltingList.put(Arrays.asList(new RecipeStack(input1), new RecipeStack(input2)), new RecipeStack(output));
+    }
+
+    public HashMap<List<RecipeStack>, RecipeStack> getMap()
+    {
+        return bothSmeltingList;
     }
 
     public ItemStack getDoubleSmeltingResult(ItemStack item1, ItemStack item2)

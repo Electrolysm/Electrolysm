@@ -75,7 +75,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack)
     {
-        // TODO Auto-generated method stub
         inventory[slot] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
@@ -87,14 +86,12 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     @Override
     public int getInventoryStackLimit()
     {
-        // TODO Auto-generated method stub
         return 64;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -301,7 +298,6 @@ public class TileEntityLiquidiser extends TileEntity implements IInventory, ISid
     }
 
     public void setGuiDisplayName(String displayName) {
-        // TODO Auto-generated method stub
 
     }
 

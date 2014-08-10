@@ -44,7 +44,7 @@ public class electroContain extends Item implements IFuelStorage {
     {
     	containIcon = new IIcon[SpecialFuelHandler.getFuelList().size() + 1];
 
-        for (int i = 0; i < SpecialFuelHandler.getFuelList().size() + 1; i ++)
+        for (int i = 0; i < (SpecialFuelHandler.getFuelList().size() + 1); i ++)
         {
         	if(i == 0)
         	{
@@ -99,7 +99,7 @@ public class electroContain extends Item implements IFuelStorage {
 	@Override
 	public boolean isFull(int meta) 
 	{
-		if(meta == 1)
+		if(meta != 0)
 		{
 			return true;
 		}
@@ -109,6 +109,6 @@ public class electroContain extends Item implements IFuelStorage {
 	@Override
 	public boolean isUsingNegativeMeta() 
 	{
-		return true;
+		return false;
 	}
 }

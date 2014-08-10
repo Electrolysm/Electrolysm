@@ -11,7 +11,6 @@ public class CPU extends Item
     public CPU()
     {
         super();
-        // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("CPU");

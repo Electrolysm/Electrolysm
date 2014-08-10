@@ -11,7 +11,6 @@ public class microchipBoard extends Item
     public microchipBoard()
     {
         super();
-        // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("Microchip Board");

@@ -83,7 +83,6 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack)
     {
-        // TODO Auto-generated method stub
         inventory[slot] = stack;
 
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
@@ -95,21 +94,18 @@ public class TileEntityResearchDesk extends TileEntity implements IInventory
     @Override
     public int getInventoryStackLimit()
     {
-        // TODO Auto-generated method stub
         return 64;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer)
     {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
-        // TODO Auto-generated method stub
         return true;
     }
 

@@ -71,7 +71,6 @@ public class PlayerResearchEvent
 
             //System.out.println("for1." + p + ": " + researchName + "---" + researchRequire.get(researchString));
 
-            //TODO
             if(researchRequire.get(researchString) == null &&
                     !SavePlayerScanData.ResearchData.hasPlayerUnlocked((username + "_active"), research.getName()))
             { return ResearchRegistry.getResearch(researchName); }

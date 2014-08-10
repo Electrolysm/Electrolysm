@@ -160,6 +160,14 @@ public class ResearchCraftingHandler
                         Character.valueOf('S'), Electrolysm.steel
                 });
 
+        addRecipe(ResearchRegistry.getResearch("improved_fuels"), new ItemStack(Electrolysm.improvedCoal),
+                new Object[]{
+                        "CH ", "R  ", "   ",
+                        Character.valueOf('C'), new ItemStack(Items.coal, 1, 0),
+                        Character.valueOf('H'), new ItemStack(Items.coal, 1, 1),
+                        Character.valueOf('R'), Items.redstone
+                });
+
         //System.out.println(this.ShapedResearchMapRev.get(ResearchRegistry.getResearch("the_basics").toAdvString()));
     }
 

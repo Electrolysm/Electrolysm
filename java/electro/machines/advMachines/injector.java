@@ -26,7 +26,6 @@ public class injector extends BlockContainer
     public injector()
     {
         super(Material.iron);
-        // TODO Auto-generated constructor stub
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(3);
     }
@@ -34,7 +33,6 @@ public class injector extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntityInjector();
     }
 
@@ -56,7 +54,6 @@ public class injector extends BlockContainer
     public static void updateFurnaceBlockState(boolean b, World worldObj,
             int xCoord, int yCoord, int zCoord)
     {
-        // TODO Auto-generated method stub
     }
 
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)

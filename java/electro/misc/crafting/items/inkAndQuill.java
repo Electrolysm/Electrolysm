@@ -11,7 +11,6 @@ public class inkAndQuill extends Item
     public inkAndQuill()
     {
         super();
-        // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("Ink And Quill");

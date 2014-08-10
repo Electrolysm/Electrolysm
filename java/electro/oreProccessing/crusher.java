@@ -29,7 +29,6 @@ public class crusher extends oreProcessMachineBase
     @Override
     public TileEntity createNewTileEntity(World world, int i)
     {
-        // TODO Auto-generated method stub
         return new TileEntityCrusher();
     }
 

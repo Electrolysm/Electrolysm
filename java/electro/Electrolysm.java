@@ -1,7 +1,10 @@
 /**
- *
  * @author Ben
- * TODO Fix NBT data saving in tile entity machines.
+ * TODO Complete improved furnace
+ * TODO Finish Crafting recipes
+ * TODO Sort out cables
+ * TODO Finish adding research data
+ * TODO Fix bugs
  */
 package electro;
 

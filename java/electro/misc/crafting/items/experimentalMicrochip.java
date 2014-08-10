@@ -11,7 +11,6 @@ public class experimentalMicrochip extends Item
     public experimentalMicrochip()
     {
         super();
-        // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("Experimental Microchip");

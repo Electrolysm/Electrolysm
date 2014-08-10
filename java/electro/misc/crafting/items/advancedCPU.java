@@ -11,7 +11,6 @@ public class advancedCPU extends Item
     public advancedCPU()
     {
         super();
-        // TODO Auto-generated constructor stub
         {
             this.setCreativeTab(Electrolysm.TabElectrolysm);
             this.setUnlocalizedName("Advanced CPU");
