@@ -199,6 +199,8 @@ public class DownloadHandler
         String url = "https://raw.githubusercontent.com/Electrolysm/Electrolysm/1.7.2/version.xml";
         String down = "config/electrolysm/SAVE_NAME.xml";
 
+        File file = new File(down.replace("SAVE_NAME", "version"));
+        if(file.exists()) { file.delete(); }
         try
         {
             URL website = new URL(url);

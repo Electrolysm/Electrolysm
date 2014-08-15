@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -45,7 +46,25 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
 
     @Override
     public boolean canConnect(ForgeDirection side) {
-        return this.getState(side.ordinal()) != this.DEFAULT;
+        /*System.out.println(this.getState(side.ordinal()) + " : " + side.ordinal() + " : " + side);
+        for(int i = 0; i < 6; i++) {
+            System.out.println("Sides: " + i + "-" + sideStates[i]);
+        }*/
+
+        return side != ForgeDirection.UNKNOWN && this.getState(getSideID(side)) != this.DEFAULT;
+    }
+
+    private int getSideID(ForgeDirection side) {
+        switch (side)
+        {
+            case UP: return 0;
+            case DOWN: return 1;
+            case NORTH: return ForgeDirection.SOUTH.ordinal();
+            case EAST: return ForgeDirection.WEST.ordinal();
+            case SOUTH: return ForgeDirection.NORTH.ordinal();
+            case WEST: return ForgeDirection.EAST.ordinal();
+            default: return 0;
+        }
     }
 
     @Override

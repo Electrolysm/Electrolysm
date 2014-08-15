@@ -76,7 +76,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
     @Override
     public float getAmps()
     {
-        return (float) Math.sqrt((Math.sqrt(this.getTeU()))) + getCompValue();
+        return (float) Math.sqrt((Math.sqrt(this.getTeU()))) + 10/*+ getCompValue()*/;
     }
 
     @Override

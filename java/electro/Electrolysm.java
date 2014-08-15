@@ -1,10 +1,10 @@
 /**
  * @author Ben
- * TODO Complete improved furnace
  * TODO Finish Crafting recipes
- * TODO Sort out cables
  * TODO Finish adding research data
  * TODO Fix bugs
+ *
+ * TODO Research is going to be removed and needs to be redone for the next release
  */
 package electro;
 
@@ -173,12 +173,11 @@ public class Electrolysm
     public static Item hazMatLegs = new HazMap(configHandler.hazMat3ID, 2);
     public static Item hazMatShoes = new HazMap(configHandler.hazMat4ID, 3);*/
     
-    //Advanced atomics
     //Liquids
     public static Block plasma = new plasma().setBlockName("plasma");
     public static Item fluidStorage = new fluidStorage();
     public static Item fluidRegistry/* = new fluidRegistry(IDHandler.advAtomics.fluid.fluidRegistryID)*/;
-    public static Block oil = new oil().setBlockName("oil");
+    //public static Block oil = new oil().setBlockName("oil");
     //Atomics
     //public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
 
@@ -194,12 +193,12 @@ public class Electrolysm
     public static Block alloyFurnace = new BlockAlloyFurnace();
 
     //Power System
-    public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
+    //public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
     public static Block basicCable = new basicCable().setBlockName("basicCable");
-    public static Block advancedCable = new advancedCable().setBlockName("advancedCable");
-    public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
-    public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
-    public static Item experimentalBattery = new experimentalBattery(64000, 2).setUnlocalizedName("experimentalBattery");
+    //public static Block advancedCable = new advancedCable().setBlockName("advancedCable");
+    //public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
+    //public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
+    //public static Item experimentalBattery = new experimentalBattery(64000, 2).setUnlocalizedName("experimentalBattery");
     public static Block advancedGenerator = new advancedGenerator().setBlockName("advancedGenerator");
     public static Block thermalGenerator = new thermalGenerator().setBlockName("thermalGenerator");
     public static Block solarPanel = new BlockSolarPanel().setBlockName("solarPanel");
@@ -251,6 +250,7 @@ public class Electrolysm
     
     public static Block crusherActive = new crusher(true).setBlockName("crusherActive");
     public static Block smeltoryActive = new smeltory(true).setBlockName("smeltoryActive");
+    public static Block improvedFurnaceActive = new improvedFurnace(true).setBlockName("improvedFurnaceActive");
 
     // items for crafting
     public static Item diamondShard = new diamondShard();
@@ -289,11 +289,11 @@ public class Electrolysm
     public static Item improvedCoal = new ItemCrafting("improvedCoal");
 
     //Assembly Systems
-    public static Block advancedCrafting = new advancedCrafting();
+    //public static Block advancedCrafting = new advancedCrafting();
     public static Block roboticBase = new BlockCrafting(5F, "roboticBase", Material.iron).setBlockName("roboticBase");
-    public static Block robotArm = new roboticArm();
-    public static Item blueprint = new ItemBluePrint();
-    public static Block matrix = new BlockMatrix();
+    //public static Block robotArm = new roboticArm();
+    //public static Item blueprint = new ItemBluePrint();
+    //public static Block matrix = new BlockMatrix();
 
     /*
     //Robots
@@ -389,8 +389,8 @@ public class Electrolysm
 
     public void addBiome()
     {
-        BiomeManager.BiomeEntry biome = new BiomeManager.BiomeEntry(diseasedBiome, 5);
-        BiomeManager.desertBiomes.add(biome);
+        BiomeManager.BiomeEntry biome = new BiomeManager.BiomeEntry(diseasedBiome, 2);
+        //BiomeManager.desertBiomes.add(biome);
         BiomeManager.warmBiomes.add(biome);
         BiomeDictionary.registerBiomeType(biome.biome, new BiomeDictionary.Type[]{BiomeDictionary.Type.PLAINS,
                 BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY});

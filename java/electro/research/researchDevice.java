@@ -1,17 +1,22 @@
 package electro.research;
 
+import api.items.RecipeStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
 import electro.handlers.GUIHandler;
 import electro.research.common.SavePlayerScanData;
 import electro.research.system.PlayerResearchEvent;
+import electro.research.system.ResearchRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by Clarky158on 21/06/2014.
@@ -32,7 +37,15 @@ public class researchDevice extends Item
 
     {
         this.gainBasics(player, world);
+        this.unlockALL(player, world);
         return false;
+    }
+
+    private void unlockALL(EntityPlayer player, World world) {
+        LinkedHashMap<String, String> map = ResearchRegistry.getResearchMap();
+        for(Map.Entry<String, String> entryMap : map.entrySet()){
+
+        }
     }
 
     @Override

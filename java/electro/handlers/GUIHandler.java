@@ -114,6 +114,9 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TileEntityCollector) {
             return new ContainerCollector((TileEntityCollector) entity, player.inventory);
         }
+        if (entity instanceof TileEntityImprovedFurnace) {
+            return new ContainerImprovedFurnace(player.inventory, (TileEntityImprovedFurnace)entity);
+        }
         return null;
     }
 
@@ -180,6 +183,9 @@ public class GUIHandler implements IGuiHandler {
         }
         if (entity instanceof TileEntityCollector) {
             return new GuiCollector((TileEntityCollector) entity, player.inventory);
+        }
+        if (entity instanceof TileEntityImprovedFurnace) {
+            return new GuiImprovedFurnace(player.inventory, (TileEntityImprovedFurnace)entity);
         }
         return null;
     }

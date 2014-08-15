@@ -4,7 +4,9 @@ import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import electro.research.machines.tile.TileEntityWorkBench;
@@ -45,7 +47,8 @@ public class workBench extends BlockContainer
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        if (player.isSneaking())
+        TileEntityWorkBench te = (TileEntityWorkBench)world.getTileEntity(x, y, z);
+        if (player.isSneaking() && player.getDisplayName() == (te.getUserName()))
         {
             return false;
         }
@@ -53,6 +56,14 @@ public class workBench extends BlockContainer
         {
             player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
+        }
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+        if(entity instanceof EntityPlayer) {
+            TileEntityWorkBench te = (TileEntityWorkBench) world.getTileEntity(x, y, z);
+            te.setUserName(((EntityPlayer) entity).getDisplayName());
         }
     }
 

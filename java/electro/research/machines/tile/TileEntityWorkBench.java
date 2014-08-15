@@ -15,6 +15,7 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
 {
     public ItemStack[] inventory;
     public boolean isOpen;
+    private String userName;
 
     public TileEntityWorkBench()
     {
@@ -150,10 +151,11 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
     {
         if (this.getStackInSlot(10) != null && recipe != null)
         {
-            Research research = RecipeRegistry.getResearch(recipe);
+            //Research research = RecipeRegistry.getResearch(recipe);
             //System.out.println((getStackInSlot(10).stackTagCompound.getString("researchData")).equals(research.toAdvString()));
             //System.out.println(research.toAdvString());
-            if(!(SavePlayerScanData.ResearchData.hasPlayerUnlocked(Minecraft.getMinecraft().thePlayer.getDisplayName() + "_active", research.getName()))) {
+            /*
+            if(!(SavePlayerScanData.ResearchData.hasPlayerUnlocked(userName + "_active", research.getName()))) {
                 return;
             }
 
@@ -163,7 +165,7 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
                 this.setInventorySlotContents(9, RecipeRegistry.getResearchResult(recipe));
                 //System.out.println("yep");
 
-            }
+            }*/
         }
         else
         {
@@ -220,5 +222,14 @@ public class TileEntityWorkBench extends TileEntity implements IInventory
             }
         }
         nbtTagCompound.setTag("Items", tagList);
+    }
+
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

@@ -31,7 +31,7 @@ public class RenderWire extends TileEntitySpecialRenderer
         }
         else
         {*/
-            this.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/ModelWire.png"));
+            this.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/ModelCopperWire.png"));
         //}
 
         GL11.glPushMatrix();

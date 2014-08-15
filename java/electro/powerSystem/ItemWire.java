@@ -141,13 +141,13 @@ public class ItemWire extends Item
     }
 
     private Block getBlockIDBasedOnItemStack(ItemStack item)
-    {
+    {/*
         int meta = item.getItemDamage();
 
         if (meta == 0)
-        {
-            return Electrolysm.experimentalCable;
+        {*/
+            return Electrolysm.basicCable;/*
         }
-        return null;
+        return null;*/
     }
 }

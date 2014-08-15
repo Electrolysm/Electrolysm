@@ -28,7 +28,7 @@ public class SlotBattery extends Slot {
     }
 
 	private boolean isStackBattery(ItemStack stack) 
-	{
+	{/*
 		if(stack.getItem() == Electrolysm.basicBattery)
 		{
 			return true;
@@ -42,9 +42,9 @@ public class SlotBattery extends Slot {
 			return true;
 		}
 		else
-		{
+		{*/
 			return false;
-		}
+		//}
 	}
 	
 	@Override

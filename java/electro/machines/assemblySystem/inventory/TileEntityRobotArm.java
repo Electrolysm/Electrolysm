@@ -158,12 +158,12 @@ public class TileEntityRobotArm extends TileEntity
         Block WEST1 = world.getBlock(x - 1, y - 1, z);
         Block EAST1 = world.getBlock(x + 1, y - 1, z);
 
-        if(SOUTH == Electrolysm.advancedCrafting) { return ForgeDirection.SOUTH; }
-        else if(NORTH == Electrolysm.advancedCrafting) { return ForgeDirection.NORTH; }
-        else if(WEST == Electrolysm.advancedCrafting) { return ForgeDirection.WEST; }
-        else if(EAST == Electrolysm.advancedCrafting) { return ForgeDirection.EAST; }
+        //if(SOUTH == Electrolysm.advancedCrafting) { return ForgeDirection.SOUTH; }
+        //else if(NORTH == Electrolysm.advancedCrafting) { return ForgeDirection.NORTH; }
+        //else if(WEST == Electrolysm.advancedCrafting) { return ForgeDirection.WEST; }
+        //else if(EAST == Electrolysm.advancedCrafting) { return ForgeDirection.EAST; }
 
-        else if(SOUTH1 instanceof BlockMatrix) { return ForgeDirection.SOUTH; }
+        if(SOUTH1 instanceof BlockMatrix) { return ForgeDirection.SOUTH; }
         else if(NORTH1 instanceof BlockMatrix) { return ForgeDirection.NORTH; }
         else if(WEST1 instanceof BlockMatrix) { return ForgeDirection.WEST; }
         else if(EAST1 instanceof BlockMatrix) { return ForgeDirection.EAST; }

@@ -161,7 +161,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
         	//extraDust = this.getExtraDust(grindStone);
         	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
         	{
-        		crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 1));
+        		crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 2));
         	}
         	else
         	{

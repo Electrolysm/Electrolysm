@@ -28,10 +28,4 @@ public class modBlastGlass extends GlassBlockConnectedMeta
     {
         return false;
     }
-
-    @Override
-    public TileEntity createNewTileEntity(World world, int i)
-    {
-        return null;
-    }
 }

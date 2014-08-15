@@ -39,8 +39,8 @@ public class experimentalBattery extends Item {
     @Override
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-    	list.add(new ItemStack(Electrolysm.experimentalBattery, 1, (capacity - capacity)));
-    	list.add(new ItemStack(Electrolysm.experimentalBattery, 1, capacity));
+    	list.add(new ItemStack(this, 1, (capacity - capacity)));
+    	list.add(new ItemStack(this, 1, capacity));
     }
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)

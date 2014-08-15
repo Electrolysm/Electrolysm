@@ -3,6 +3,12 @@ package electro.powerSystem.te;
 import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.prefab.TileEntityBasicCable;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -83,19 +89,38 @@ public class TileEntityWire extends TileEntityBasicCable implements IConnector
     public TileEntity[] getAdjConnections() {
         return this.adjacentConnections;
     }
-    /*
-    public TileEntity[] getAdjacentConnections()
-    {
-        return adjacentConnections;
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        NBTTagList tagList = new NBTTagList();
+
+        for (int currentIndex = 0; currentIndex < adjacentConnections.length; ++currentIndex)
+        {
+            if (adjacentConnections[currentIndex] != null)
+            {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) currentIndex);
+                adjacentConnections[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
+            }
+        }
+        tag.setTag("TileEntities", tagList);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 
-    public Block getBlockType()
-    {
-        return electrolysmCore.endoCable;
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        NBTTagList tagList = pkt.func_148857_g().getTagList("TileEntities", 10);
+        adjacentConnections = new TileEntity[6];
+        for (int i = 0; i < tagList.tagCount(); ++i)
+        {
+            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+            byte slotIndex = tagCompound.getByte("Slot");
+            if (slotIndex >= 0 && slotIndex < adjacentConnections.length)
+            {
+                adjacentConnections[slotIndex] = TileEntity.createAndLoadEntity(tagCompound);
+            }
+        }
     }
-
-    public int getBlockMetadata()
-    {
-        return 0;
-    }*/
 }
