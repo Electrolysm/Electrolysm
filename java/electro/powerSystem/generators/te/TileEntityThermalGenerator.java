@@ -9,6 +9,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
@@ -263,5 +266,21 @@ public class TileEntityThermalGenerator extends TileEntityGenerator implements I
         nbtTagCompound.setTag("Items", tagList);
 
         nbtTagCompound.setInteger("amountTank", tank.getFluidAmount());
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setInteger("amount", tank.getFluidAmount());
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        int amountInTank = pkt.func_148857_g().getInteger("amount");
+        if(amountInTank > 0)
+        {
+            tank.setFluid(new FluidStack(FluidRegistry.LAVA, amountInTank));
+        }
     }
 }

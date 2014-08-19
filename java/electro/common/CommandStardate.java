@@ -1,21 +1,14 @@
 package electro.common;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import api.items.RecipeStack;
-import electro.research.common.SavePlayerScanData;
-import electro.research.system.ResearchRegistry;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
-import electro.handlers.ElectroEventHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandStardate extends CommandDate
 {
@@ -58,7 +51,6 @@ public class CommandStardate extends CommandDate
             message = "Stardate: " + this.getStarDate(worldinfo.getWorldTotalTime());
         }
         message = "All research unlocked. You cheater!!";
-        this.unlockResearch(icommandsender.getCommandSenderName());
 
         icommandsender.addChatMessage(new ChatComponentTranslation(message));
 /*
@@ -78,16 +70,6 @@ public class CommandStardate extends CommandDate
             icommandsender.sendChatToPlayer(ChatMessageComponent.createFromText(line6)
                                             .setColor(this.getColourFromCommand(command)));
         }*/
-    }
-
-    private void unlockResearch(String username)
-    {
-        LinkedHashMap<String, String> research = ResearchRegistry.getResearchMap();
-        for(Map.Entry<String, String> entry : research.entrySet())
-        {
-            String researchName = entry.getKey();
-            new SavePlayerScanData.ResearchData(username + "_active", researchName);
-        }
     }
 
     private EnumChatFormatting getColourFromCommand(String command)

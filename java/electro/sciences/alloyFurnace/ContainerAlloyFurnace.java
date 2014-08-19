@@ -2,8 +2,8 @@ package electro.sciences.alloyFurnace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import electro.research.machines.container.SlotFuel;
-import electro.research.machines.container.SlotOutput;
+import electro.handlers.util.SlotFuel;
+import electro.handlers.util.SlotOutput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

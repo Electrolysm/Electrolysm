@@ -1,90 +1,12 @@
 /**
  * @author Ben
  * TODO Finish Crafting recipes
- * TODO Finish adding research data
  * TODO Fix bugs
- *
- * TODO Research is going to be removed and needs to be redone for the next release
  */
 package electro;
 
-import java.io.File;
-
 import api.LoggerHandler;
-
-import com.mojang.realmsclient.dto.McoServer;
-
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import electro.machines.assemblySystem.*;
-import electro.misc.crafting.items.*;
-import electro.handlers.*;
-import electro.handlers.network.PacketHandler;
-import electro.handlers.version.ElectrolysmVersion;
-import electro.misc.item.tools.ItemInsulatedScrewdriver;
-import electro.oreProccessing.*;
-import electro.powerSystem.*;
-import electro.powerSystem.generators.*;
-import electro.research.*;
-import electro.research.crafting.ResearchCraftingHandler;
-import electro.sciences.alloyFurnace.BlockAlloyFurnace;
-import electro.world.biome.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.potion.Potion;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.MinecraftForge;
-import electro.misc.block.ironFrames;
-import electro.machines.advMachines.charger;
-import electro.machines.advMachines.energiser;
-import electro.machines.advMachines.energisingRod;
-import electro.machines.advMachines.injectionArm;
-import electro.machines.advMachines.injector;
-import electro.misc.block.basic.blastBrick;
-import electro.misc.block.basic.blastDoor;
-import electro.misc.block.basic.blastGlass;
-import electro.misc.block.basic.blastProof;
-import electro.misc.block.basic.glassModifier;
-import electro.misc.block.basic.hammer;
-import electro.misc.block.basic.modBlastGlass;
-import electro.misc.block.basic.stoneObsidian;
-import electro.misc.block.liquids.fluidStorage;
-import electro.misc.block.liquids.oil;
-import electro.misc.block.liquids.plasma;
-import electro.research.machines.desk;
-import electro.research.machines.researchDesk;
-import electro.research.machines.workBench;
-import electro.client.ClientProxy;
-import electro.common.CommandStardate;
-import electro.misc.crafting.acidBurns;
-//import assets.electrolysm.electro.handlers.CraftingHandler;
-import electro.misc.item.basic.drillCasing;
-import electro.misc.item.basic.plasmaDrill;
-import electro.misc.item.fuels.electroContain;
-import electro.research.system.ResearchRegistry;
-import electro.sciences.ItemArmorLab;
-import electro.world.Scandium;
-import electro.world.Yttrium;
-import electro.world.aluminiumIngot;
-import electro.world.aluminiumOre;
-import electro.world.chunkGraphite;
-import electro.world.copperIngot;
-import electro.world.copperOre;
-import electro.world.graphite;
-import electro.world.sulpherOre;
-import electro.world.sulphur;
-import electro.world.tinOre;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -95,7 +17,45 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import electro.client.ClientProxy;
+import electro.common.CommandStardate;
+import electro.handlers.*;
+import electro.handlers.network.PacketHandler;
+import electro.handlers.version.ElectrolysmVersion;
+import electro.machines.advMachines.*;
+import electro.misc.block.basic.*;
+import electro.misc.block.ironFrames;
+import electro.misc.block.liquids.fluidStorage;
+import electro.misc.block.liquids.plasma;
+import electro.misc.crafting.acidBurns;
+import electro.misc.crafting.items.*;
+import electro.misc.item.basic.drillCasing;
+import electro.misc.item.basic.plasmaDrill;
+import electro.misc.item.fuels.electroContain;
+import electro.misc.item.tools.ItemInsulatedScrewdriver;
+import electro.oreProccessing.*;
+import electro.powerSystem.*;
+import electro.powerSystem.generators.*;
+import electro.sciences.ItemArmorLab;
+import electro.sciences.alloyFurnace.BlockAlloyFurnace;
+import electro.world.*;
+import electro.world.biome.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.potion.Potion;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+
+import java.io.File;
+
+//import assets.electrolysm.electro.handlers.CraftingHandler;
 
 @Mod(modid = Referance.MOD_REF.MOD_ID, name = Referance.MOD_REF.MOD_ID, version = Referance.MOD_REF.VERSION)
 
@@ -110,27 +70,12 @@ public class Electrolysm
 
     @Instance("Electrolysm")
     public static Electrolysm GUIInstance;
-    //Basic Machines
-    public static Block workBench = new workBench().setBlockName("workBench");
-    public static Block desk = new desk().setBlockName("desk");
     //Advanced Machines
     public static Block injector = new injector().setBlockName("injector");
     public static Item injectionArm = new injectionArm();
 
-    //Research System
-    public static Block idifier = new idifier().setBlockName("id-ifier");
-    public static Block researchDesk = new researchDesk().setBlockName("researchDesk");
-    public static card card = new card();
-    public static Item researchPaper = new researchPaper();
-    public static Item knowledge = new knowledge();
     public static Item labCoat = new ItemArmorLab(2, "labCoat");
     public static Item labGoggles = new ItemArmorLab(0, "labGoggles");
-    public static Item itemScanner = new scanner();
-    public static Item researchDevice = new researchDevice();
-    //public static Block dataRecorder = new dataRecorder();
-    //public static Item reel = new ItemReel();
-    //public static Item itemScanner = new itemScanner();
-    //public static Block autoDesk = new autoDesk(IDHandler.research.autoDeskID, null);
 
     //World Generation
     public static Block graphite = new graphite().setBlockName("graphite");
@@ -336,7 +281,6 @@ public class Electrolysm
 
     	//ResearchHandler.downloadLabSkin();
         File configFile = new File("config/Electrolysm/Electrolysm.cfg");
-        new ResearchRegistry(true);
         new ElectrolysmVersion(Referance.MOD_ID_LOWER, Referance.MOD_REF.VERSION, MinecraftForge.MC_VERSION).register();
         PacketHandler.init();
         configHandler.init(configFile);
@@ -369,7 +313,6 @@ public class Electrolysm
     {
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();
-        new ResearchCraftingHandler();
         this.addBiome();
     }
 

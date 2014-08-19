@@ -1,31 +1,30 @@
 package electro.client;
 
-import java.util.HashMap;
-
 import api.powerSystem.prefab.TEPowerCore;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import electro.Electrolysm;
+import electro.client.itemRenderers.ItemRenderCharger;
+import electro.client.itemRenderers.ItemRenderElectrolysis;
+import electro.client.itemRenderers.ItemRenderIronFrame;
+import electro.client.itemRenderers.ItemRenderPowerCore;
+import electro.common.CommonProxy;
+import electro.handlers.SoundHandler;
+import electro.machines.advMachines.te.TileEntityCharger;
+import electro.machines.advMachines.te.TileEntityQuantumComp;
 import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import electro.machines.assemblySystem.inventory.TileEntityRobotArm;
-import electro.client.itemRenderers.*;
+import electro.misc.block.te.TileEntityIronFrame;
+import electro.oreProccessing.te.TileEntityElectrolisisCore;
 import electro.powerSystem.te.TileEntityWire;
-import electro.research.gui.TileEntityCollector;
+import electro.sciences.robotics.tile.TileEntitySoldering;
+import electro.world.biome.EntityZombie_Scientist;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import electro.machines.advMachines.te.TileEntityCharger;
-import electro.machines.advMachines.te.TileEntityQuantumComp;
-import electro.research.machines.tile.TileEntityDesk;
-import electro.research.machines.tile.TileEntityResearchDesk;
-import electro.research.machines.tile.TileEntityWorkBench;
-import electro.misc.block.te.TileEntityIronFrame;
-import electro.common.CommonProxy;
-import electro.handlers.SoundHandler;
-import electro.oreProccessing.te.TileEntityElectrolisisCore;
-import electro.sciences.robotics.tile.TileEntitySoldering;
-import electro.world.biome.EntityZombie_Scientist;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+
+import java.util.HashMap;
 
 public class ClientProxy extends CommonProxy
 {
@@ -33,10 +32,7 @@ public class ClientProxy extends CommonProxy
     {
     	MinecraftForge.EVENT_BUS.register(new SoundHandler());
     	
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWorkBench.class, new RenderTileWorkBench());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySoldering.class, new RenderTileSoldering());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDesk.class, new RenderTileDesk());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityResearchDesk.class, new RenderTileResearchDesk());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityQuantumComp.class, new RenderTileQuantumComp());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElectrolisisCore.class, new RenderTileElectrolysisCore());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIronFrame.class, new RenderTileIronFrame());
@@ -46,12 +42,9 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMatrix.class, new RenderTileMatrixConstruction());
         ClientRegistry.bindTileEntitySpecialRenderer(TEPowerCore.class, new RenderTileEnergyCube());
 
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.researchDesk), new ItemResearchDeskRenderer());
        // MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.workBench), new ItemRenderWorkBench());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.charger), new ItemRenderCharger());
         //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.dataRecorder), new ItemRenderCollector());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.desk), new ItemRenderDesk());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.electrolisisCore), new ItemRenderElectrolysis());
         //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.matrix), new ItemRenderMatrix());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.ironFrames), new ItemRenderIronFrame());

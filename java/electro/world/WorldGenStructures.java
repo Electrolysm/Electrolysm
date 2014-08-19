@@ -60,7 +60,6 @@ public class WorldGenStructures implements IWorldGenerator
                     Block redstone = Blocks.redstone_wire;
                     Block stoneSlabHalf = Blocks.stone_slab;
                     Block stoneSlabFull = Blocks.double_stone_slab;
-                    Block desk = Electrolysm.desk;
                     Block books = Blocks.bookshelf;
                     Block dirt = Blocks.dirt;
                     Block chest = Blocks.chest;
@@ -549,10 +548,10 @@ public class WorldGenStructures implements IWorldGenerator
                     createBlock(world, xCoord + 12, yCoord + 4, zCoord - 6, stoneSlabHalf, 0);
                     createBlock(world, xCoord + 13, yCoord + 4, zCoord - 6, stoneSlabHalf, 0);
                     //Desks - Books - Chests
-                    createBlock(world, xCoord + 4, yCoord + 1, zCoord - 8, desk, 0);
-                    createBlock(world, xCoord + 3, yCoord + 1, zCoord - 8, desk, 0);
-                    createBlock(world, xCoord + 2, yCoord + 1, zCoord - 8, desk, 0);
-                    createBlock(world, xCoord + 13, yCoord + 1, zCoord - 11, desk, 0);
+                    //createBlock(world, xCoord + 4, yCoord + 1, zCoord - 8, desk, 0);
+                    //createBlock(world, xCoord + 3, yCoord + 1, zCoord - 8, desk, 0);
+                    //createBlock(world, xCoord + 2, yCoord + 1, zCoord - 8, desk, 0);
+                    //createBlock(world, xCoord + 13, yCoord + 1, zCoord - 11, desk, 0);
                     createBlock(world, xCoord + 12, yCoord + 1, zCoord - 11, books, 0);
                     createBlock(world, xCoord + 11, yCoord + 1, zCoord - 11, chest, 0);
                     //Chest Inventory
@@ -570,7 +569,7 @@ public class WorldGenStructures implements IWorldGenerator
                         if (rand <= 250 && slot == slotRand1)
                         {
                         	stackSize = random.nextInt(5);
-                            tileEntityChest.setInventorySlotContents(slot, new ItemStack(Electrolysm.knowledge, stackSize));
+                            //tileEntityChest.setInventorySlotContents(slot, new ItemStack(Electrolysm.knowledge, stackSize));
                         }
                         else if(rand > 200 && slot == slotRand2)
                         {

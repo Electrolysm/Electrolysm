@@ -9,12 +9,9 @@ public class ElectrolysmLootHandler
 {
 	public ElectrolysmLootHandler()
 	{
-		WeightedRandomChestContent knowledge = new WeightedRandomChestContent(new ItemStack(Electrolysm.knowledge), 1,
-				10 , 10);
 		WeightedRandomChestContent antiMatter = new WeightedRandomChestContent(new ItemStack(Electrolysm.electroContain, 1, 1),
 				1, 10 , 10);
 		
-		this.addLoot(knowledge);
 		this.addLoot(antiMatter);
 
 	}

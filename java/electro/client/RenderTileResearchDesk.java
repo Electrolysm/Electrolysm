@@ -1,9 +1,7 @@
 package electro.client;
 
-import electro.Electrolysm;
-import electro.research.machines.tile.TileEntityResearchDesk;
+import electro.common.CommonProxy;
 import electro.handlers.TickHandler;
-import electro.research.researchDevice;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -13,10 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
-import electro.common.CommonProxy;
 
 public class RenderTileResearchDesk extends TileEntitySpecialRenderer
 {
@@ -61,7 +56,7 @@ public class RenderTileResearchDesk extends TileEntitySpecialRenderer
 
         boolean hasDevice = false;
         boolean flicker = false;
-        if(te instanceof TileEntityResearchDesk) {
+        /*if(te instanceof TileEntityResearchDesk) {
             TileEntityResearchDesk teDesk = (TileEntityResearchDesk) te;
             if(teDesk.getStackInSlot(2) != null && teDesk.getStackInSlot(2).getItem() instanceof researchDevice){
                 hasDevice = true;
@@ -83,7 +78,7 @@ public class RenderTileResearchDesk extends TileEntitySpecialRenderer
                 }
                 lastStack = null;
             }
-        }
+        }*/
 
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 2F + 0.125F, (float) z + 0.5F);

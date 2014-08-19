@@ -9,9 +9,6 @@ public class RegisterBlock
 {
     public static void register()
     {
-        GameRegistry.registerBlock(Electrolysm.workBench, "workBench");
-        GameRegistry.registerBlock(Electrolysm.desk, "desk");
-        GameRegistry.registerBlock(Electrolysm.researchDesk, "researchDesk");
         GameRegistry.registerBlock(Electrolysm.diseaseGrass, "diseasedGrass");
         GameRegistry.registerBlock(Electrolysm.blastProof, "blastProof");
         GameRegistry.registerBlock(Electrolysm.advEnergyStorage, "advEnergyStorage");
@@ -40,7 +37,6 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.ironFrames, "ironFrame");
         GameRegistry.registerBlock(Electrolysm.copperOre, "copperOre");
         GameRegistry.registerBlock(Electrolysm.charger, "charger");
-        GameRegistry.registerBlock(Electrolysm.idifier, "id-ifier");
         GameRegistry.registerBlock(Electrolysm.blastBrick, "blastBrick");
         GameRegistry.registerWorldGenerator(new WorldGenStructures(), 20);
         GameRegistry.registerWorldGenerator(new WorldGenOres(), 20);
@@ -99,8 +95,6 @@ public class RegisterBlock
     {
         Electrolysm elec = new Electrolysm();
         GameRegistry.registerItem(elec.injectionArm, "injectionArm");
-        GameRegistry.registerItem(elec.researchPaper, "researchPaper");
-        GameRegistry.registerItem(elec.knowledge, "knowledge");
         GameRegistry.registerItem(elec.chunkGraphite, "graphiteChunk");
         GameRegistry.registerItem(elec.copperIngot, "copperIngot");
         GameRegistry.registerItem(elec.pureCopperIngot, "pureCopperIngot");
@@ -144,10 +138,8 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.graphiteRod, "graphiteRod");
         GameRegistry.registerItem(elec.electroMagnet, "electroMagnet");
         GameRegistry.registerItem(elec.electroContain, "electroContain");
-        GameRegistry.registerItem(elec.itemScanner, "itemScanner");
         GameRegistry.registerItem(elec.labCoat, "labCoat");
         GameRegistry.registerItem(elec.labGoggles, "labGoggles");
-        GameRegistry.registerItem(elec.researchDevice, "researchDevice");
         //GameRegistry.registerItem(elec.reel, "itemReel");
         GameRegistry.registerItem(elec.hammer, "hammer");
         GameRegistry.registerItem(elec.improvedCoal, "improvedCoal");

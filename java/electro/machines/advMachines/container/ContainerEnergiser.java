@@ -1,5 +1,8 @@
 package electro.machines.advMachines.container;
 
+import electro.handlers.util.SlotFluidStorage;
+import electro.handlers.util.SlotOutput;
+import electro.handlers.util.Slot_Adv_Machine_Fuel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -7,9 +10,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import electro.machines.advMachines.te.TileEntityEnergiser;
-import electro.research.machines.container.SlotFluidStorage;
-import electro.research.machines.container.SlotOutput;
-import electro.research.machines.container.Slot_Adv_Machine_Fuel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

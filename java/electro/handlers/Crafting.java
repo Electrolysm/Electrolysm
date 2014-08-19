@@ -55,50 +55,10 @@ public class Crafting
                 Character.valueOf('G'), Items.nether_star,
                 Character.valueOf('P'), Electrolysm.film);
 */
-        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.itemScanner, true, new Object[]{
-                "C C", "IGI", "C C",
-                Character.valueOf('C'), "ingotCopper",
-                Character.valueOf('I'), Items.iron_ingot,
-                Character.valueOf('G'), Blocks.glass}));
-
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.researchDevice),
-                "IGI", "GCG", "IGI",
-                Character.valueOf('I'), Items.iron_ingot,
-                Character.valueOf('G'), Blocks.glass,
-                Character.valueOf('C'), Electrolysm.CPU);
-
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.researchDesk),
-                               " X ", "YZY", "BMB",
-                               'X', Electrolysm.inkAndQuill,
-                               'Y', Items.iron_ingot,
-                               'Z', Items.paper,
-                               'B', Blocks.bookshelf,
-                               'M', Blocks.crafting_table);
-
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.workBench),
-                               "YXY", "Y Y", "Y Y",
-                               'X', Blocks.crafting_table,
-                               'Y', Items.iron_ingot);
-
-        GameRegistry.addShapedRecipe(new ItemStack(Electrolysm.card, 1, 1),
-                                     "XYX",
-                                     'Y', new ItemStack(Items.paper),
-                                     'X', new ItemStack(Items.stick));
-
-        for (int i = 1; i <= 9; i++)
-        {
-            ItemStack cardLevels = new ItemStack(Electrolysm.card, 1, i);
-            
-            GameRegistry.addRecipe(new ItemStack(Electrolysm.card, 1, i + 1),
-                                   "XXX", "XZX", "XXX",
-                                   'X', Electrolysm.knowledge,
-                                   'Z', cardLevels);
-        }
-
         GameRegistry.addRecipe(new ItemStack(Electrolysm.blastDoor),
                                "XX", "XX", "XX",
                                'X', Electrolysm.blastProof);
-        
+
         GameRegistry.addRecipe(new ItemStack(Electrolysm.blastGlass, 4),
                                "XYX", "Y Y", "XYX",
                                'X', Electrolysm.blastProof,
@@ -215,14 +175,6 @@ public class Crafting
         		new ItemStack(Electrolysm.ballOfPlastic),
         		new ItemStack(Electrolysm.ballOfPlastic),
         		new ItemStack(Items.ender_pearl));
-        
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.idifier),
-                "IGI", "RMR", "ICI",
-                'I', Items.iron_ingot,
-                'G', Blocks.glass,
-                'C', Blocks.chest,
-                'R', Items.redstone,
-                'M', Electrolysm.advancedMicrochip);
         
         GameRegistry.addShapelessRecipe(new ItemStack(Electrolysm.blastBrick),
                 new ItemStack(Electrolysm.blastProof),

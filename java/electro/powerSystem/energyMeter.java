@@ -3,9 +3,10 @@ package electro.powerSystem;
 import api.powerSystem.interfaces.IPowerCore;
 import api.powerSystem.meter.IMeterable;
 import api.powerSystem.prefab.TileEntityGenerator;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
-import electro.handlers.helpers.CollectorHelper;
-import electro.research.gui.TileEntityCollector;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,9 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class energyMeter extends Item
 {
@@ -51,13 +49,6 @@ public class energyMeter extends Item
                 	
                 	this.printOreMessage(world, x, y, z, te);
                 	return true;
-                }
-                if(worldTE instanceof TileEntityCollector)
-                {
-                    TileEntityCollector te = (TileEntityCollector)worldTE;
-
-                    this.printMessageCollector(CollectorHelper.getEnvironmentalData(world, x, y, z));
-                    return true;
                 }
                 if(worldTE instanceof IPowerCore)
                 {

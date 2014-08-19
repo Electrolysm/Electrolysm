@@ -102,21 +102,6 @@ public class spawnZS extends Item
         return false;
     }
 
-    private VillagerScientist spawnVillagerScientist(
-        World world, double x, double y, double z)
-    {
-        VillagerScientist robot = new VillagerScientist(world);
-        EntityLiving entity = robot;
-        robot.setLocationAndAngles(x, y, z, MathHelper
-                                   .wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-        entity.rotationYawHead = entity.rotationYaw;
-        entity.renderYawOffset = entity.rotationYaw;
-        //entity.initCreature();
-        world.spawnEntityInWorld(robot);
-        entity.playLivingSound();
-        return robot;
-    }
-
     public static EntityZombie_Scientist spawnZombie_Scientist(World world, double x, double y,
             double z)
     {

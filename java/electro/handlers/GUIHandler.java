@@ -1,55 +1,41 @@
 package electro.handlers;
 
 import api.powerSystem.prefab.TEPowerCore;
-import api.powerSystem.prefab.TileEntityGenerator;
-import electro.machines.assemblySystem.crafting.ContainerMatrix;
-import electro.machines.assemblySystem.crafting.GuiMatrix;
-import electro.machines.assemblySystem.crafting.TileEntityMatrix;
-import electro.machines.assemblySystem.inventory.ContainerCrafting;
-import electro.machines.assemblySystem.inventory.TileEntityCrafting;
-import electro.powerSystem.generators.GUI.GUIAdvGenerator;
-import electro.powerSystem.generators.GUI.GuiThermalGenerator;
-import electro.powerSystem.generators.container.ContainerAdvGenerator;
-import electro.powerSystem.generators.container.ContainerThermalGenerator;
-import electro.powerSystem.generators.te.TileEntityAdvGenerator;
-import electro.powerSystem.generators.te.TileEntityThermalGenerator;
-import electro.powerSystem.gui.ContainerEnergyCore;
-import electro.powerSystem.gui.EnergyCoreGUI;
-import electro.research.gui.ContainerCollector;
-import electro.research.gui.GuiCollector;
-import electro.research.gui.TileEntityCollector;
-import electro.research.machines.gui.GuiCrafting;
-import electro.oreProccessing.container.*;
-import electro.oreProccessing.gui.*;
-import electro.oreProccessing.te.*;
-import electro.powerSystem.generators.GUI.GUIGeneratorAntimatter;
-import electro.powerSystem.generators.GUI.GUIGeneratorCoal;
-import electro.powerSystem.generators.container.ContainerGeneratorAntimatter;
-import electro.powerSystem.generators.container.ContainerGeneratorCoal;
-import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
-import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
-import electro.research.client.GUIIDCardInfo;
-import electro.research.client.GuiResearchNotify;
-import electro.sciences.alloyFurnace.ContainerAlloyFurnace;
-import electro.sciences.alloyFurnace.GuiAlloyFurnace;
-import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import cpw.mods.fml.common.network.IGuiHandler;
 import electro.machines.advMachines.container.ContainerEnergiser;
 import electro.machines.advMachines.container.ContainerInjector;
 import electro.machines.advMachines.gui.GUIEnergiser;
 import electro.machines.advMachines.gui.GUIInjector;
 import electro.machines.advMachines.te.TileEntityEnergiser;
 import electro.machines.advMachines.te.TileEntityInjector;
-import electro.research.machines.container.ContainerResearchDesk;
-import electro.research.machines.container.ContainerWorkBench;
-import electro.research.machines.gui.GUIResearchDesk;
-import electro.research.machines.gui.GUIWorkBench;
-import electro.research.machines.tile.TileEntityResearchDesk;
-import electro.research.machines.tile.TileEntityWorkBench;
-import cpw.mods.fml.common.network.IGuiHandler;
+import electro.machines.assemblySystem.crafting.ContainerMatrix;
+import electro.machines.assemblySystem.crafting.GuiMatrix;
+import electro.machines.assemblySystem.crafting.TileEntityMatrix;
+import electro.machines.assemblySystem.inventory.ContainerCrafting;
+import electro.machines.assemblySystem.inventory.TileEntityCrafting;
+import electro.oreProccessing.container.*;
+import electro.oreProccessing.gui.*;
+import electro.oreProccessing.te.*;
+import electro.powerSystem.generators.GUI.GUIAdvGenerator;
+import electro.powerSystem.generators.GUI.GUIGeneratorAntimatter;
+import electro.powerSystem.generators.GUI.GUIGeneratorCoal;
+import electro.powerSystem.generators.GUI.GuiThermalGenerator;
+import electro.powerSystem.generators.container.ContainerAdvGenerator;
+import electro.powerSystem.generators.container.ContainerGeneratorAntimatter;
+import electro.powerSystem.generators.container.ContainerGeneratorCoal;
+import electro.powerSystem.generators.container.ContainerThermalGenerator;
+import electro.powerSystem.generators.te.TileEntityAdvGenerator;
+import electro.powerSystem.generators.te.TileEntityGeneratorAntimatter;
+import electro.powerSystem.generators.te.TileEntityGeneratorCoal;
+import electro.powerSystem.generators.te.TileEntityThermalGenerator;
+import electro.powerSystem.gui.ContainerEnergyCore;
+import electro.powerSystem.gui.EnergyCoreGUI;
+import electro.sciences.alloyFurnace.ContainerAlloyFurnace;
+import electro.sciences.alloyFurnace.GuiAlloyFurnace;
+import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class GUIHandler implements IGuiHandler {
     public static int id_bookIDCard = 42;
@@ -59,9 +45,6 @@ public class GUIHandler implements IGuiHandler {
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity entity = world.getTileEntity(x, y, z);
 
-        if (entity instanceof TileEntityResearchDesk) {
-            return new ContainerResearchDesk((TileEntityResearchDesk) entity, player.inventory);
-        }
         if (entity instanceof TileEntityEnergiser) {
             return new ContainerEnergiser(player.inventory, (TileEntityEnergiser) entity);
         }
@@ -74,10 +57,6 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TileEntityPort) {
             return new ContainerPort((TileEntityPort) entity, player.inventory);
         }
-        if (entity instanceof TileEntityWorkBench) {
-            return new ContainerWorkBench((TileEntityWorkBench) entity, player.inventory);
-        }
-
         if (entity instanceof TileEntityCrusher) {
             return new ContainerCrusher(player.inventory, (TileEntityCrusher) entity);
         }
@@ -111,9 +90,6 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TEPowerCore) {
             return new ContainerEnergyCore((TEPowerCore) entity, player.inventory);
         }
-        if (entity instanceof TileEntityCollector) {
-            return new ContainerCollector((TileEntityCollector) entity, player.inventory);
-        }
         if (entity instanceof TileEntityImprovedFurnace) {
             return new ContainerImprovedFurnace(player.inventory, (TileEntityImprovedFurnace)entity);
         }
@@ -124,9 +100,6 @@ public class GUIHandler implements IGuiHandler {
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity entity = world.getTileEntity(x, y, z);
 
-        if (entity instanceof TileEntityResearchDesk) {
-            return new GUIResearchDesk((TileEntityResearchDesk) entity, player.inventory);
-        }
         if (entity instanceof TileEntityEnergiser) {
             return new GUIEnergiser(player.inventory, (TileEntityEnergiser) entity);
         }
@@ -138,9 +111,6 @@ public class GUIHandler implements IGuiHandler {
         }
         if (entity instanceof TileEntityPort) {
             return new GUIPort((TileEntityPort) entity, player.inventory);
-        }
-        if (entity instanceof TileEntityWorkBench) {
-            return new GUIWorkBench((TileEntityWorkBench) entity, player.inventory);
         }
         if (entity instanceof TileEntityCrusher) {
             return new GUICrusher((TileEntityCrusher) entity, player.inventory);
@@ -157,17 +127,8 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TileEntityGeneratorAntimatter) {
             return new GUIGeneratorAntimatter((TileEntityGeneratorAntimatter) entity, player.inventory);
         }
-        if (ID == this.id_bookIDCard) {
-            return new GUIIDCardInfo(/*player.inventory*/);
-        }
-        if (ID == this.id_research) {
-            return new GuiResearchNotify(Minecraft.getMinecraft());
-        }
         if (entity instanceof TileEntityMatrix) {
             return new GuiMatrix((TileEntityMatrix) entity, player.inventory);
-        }
-        if (entity instanceof TileEntityCrafting) {
-            return new GuiCrafting((TileEntityCrafting) entity, player.inventory);
         }
         if (entity instanceof TileEntityAlloyFurnace) {
             return new GuiAlloyFurnace((TileEntityAlloyFurnace) entity, player.inventory);
@@ -180,9 +141,6 @@ public class GUIHandler implements IGuiHandler {
         }
         if (entity instanceof TEPowerCore) {
             return new EnergyCoreGUI((TEPowerCore) entity, player.inventory);
-        }
-        if (entity instanceof TileEntityCollector) {
-            return new GuiCollector((TileEntityCollector) entity, player.inventory);
         }
         if (entity instanceof TileEntityImprovedFurnace) {
             return new GuiImprovedFurnace(player.inventory, (TileEntityImprovedFurnace)entity);

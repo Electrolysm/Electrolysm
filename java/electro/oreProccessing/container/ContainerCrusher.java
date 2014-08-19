@@ -1,5 +1,6 @@
 package electro.oreProccessing.container;
 
+import electro.handlers.util.SlotOutput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -9,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
 import electro.powerSystem.SlotBattery;
-import electro.research.machines.container.SlotOutput;
 import electro.oreProccessing.te.TileEntityCrusher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
