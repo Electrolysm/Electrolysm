@@ -287,6 +287,11 @@ public class Crafting
                         Character.valueOf('I'), Items.iron_ingot,
                 });
 
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.labCoat),
+                "W W", "WQW", "W W",
+                Character.valueOf('W'), new ItemStack(Blocks.wool, 1, 0),
+                Character.valueOf('Q'), new ItemStack(Electrolysm.inkAndQuill));
+
         GameRegistry.addRecipe(new ItemStack(Electrolysm.generator, 1, 3),
                 new Object[] {
                         "ICI", "RCR", "IFI",
@@ -377,13 +382,11 @@ public class Crafting
                         Character.valueOf('F'), Blocks.furnace
                 }));
 
-      /*  addRecipe(ResearchRegistry.getResearch("endothermic_cable"), new ItemStack(Electrolysm.experimentalCable, 8),
-                new Object[]{
-                        "III", "GGG", "III",
-                        Character.valueOf('I'), Electrolysm.endoInsulator,
-                        Character.valueOf('G'), Electrolysm.chunkGraphite
-                });
-*/
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.labGoggles),
+                "BBB", "GBG", "   ",
+                Character.valueOf('B'), new ItemStack(Blocks.wool, 1, 15),
+                Character.valueOf('G'), new ItemStack(Blocks.stained_glass, 1, 9));
+
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.liquidiser, 1, 3),
                 true, new Object[]{
                         "ILI", "RLM", "IFI",
