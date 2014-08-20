@@ -2,6 +2,7 @@ package electro.oreProccessing.recipes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import api.items.RecipeStack;
@@ -60,8 +61,10 @@ public class electrolisisRecipes
         	this.addElectrolisis(crystalStack, dustStack);
         }
 
-        this.addElectrolisis(new ItemStack(Electrolysm.aluminiumOre), new ItemStack(Electrolysm.aluminiumIngot));
-
+        List<ItemStack> aluminiumOre = OreDictionary.getOres("oreAluminium");
+        for(int i = 0; i < aluminiumOre.size(); i++) {
+            this.addElectrolisis(aluminiumOre.get(i), new ItemStack(Electrolysm.aluminiumIngot));
+        }
 
         ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
         for(int i = 0; i < copper.size(); i++) {

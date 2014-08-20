@@ -18,10 +18,26 @@ public class NEIElectrolysmConfig implements IConfigureNEI{
 	public void loadConfig()
 	{
 		//Item Hiding
-		API.hideItem(new ItemStack(Electrolysm.crusherActive));
-		API.hideItem(new ItemStack(Electrolysm.smeltoryActive));
-		//API.hideItem(new ItemStack(Electrolysm.experimentalCable));
+		API.hideItem(new ItemStack(Electrolysm.crusherActive, 1, 3));
+		API.hideItem(new ItemStack(Electrolysm.smeltoryActive, 1, 3));
+		API.hideItem(new ItemStack(Electrolysm.advGenActive, 1, 3));
+		API.hideItem(new ItemStack(Electrolysm.genActive, 1, 3));
+		API.hideItem(new ItemStack(Electrolysm.improvedFurnaceActive, 1, 3));
 
+        //For this release only:
+        /*
+        API.hideItem(new ItemStack(Electrolysm.roboticBase));
+        API.hideItem(new ItemStack(Electrolysm.ironFrames));
+        API.hideItem(new ItemStack(Electrolysm.antiMatterCasing));
+
+        API.hideItem(new ItemStack(Electrolysm.crystal2));
+        API.hideItem(new ItemStack(Electrolysm.electroContain));
+        API.hideItem(new ItemStack(Electrolysm.electroMagnet));
+        API.hideItem(new ItemStack(Electrolysm.endoInsulator));
+        API.hideItem(new ItemStack(Electrolysm.silicon));
+        API.hideItem(new ItemStack(Electrolysm.ballOfPlastic));
+        API.hideItem(new ItemStack(Electrolysm.bronze));
+*/
 		//Crusher
 		API.registerRecipeHandler(new CrusherRecipeHandler());
 		API.registerUsageHandler(new CrusherRecipeHandler());

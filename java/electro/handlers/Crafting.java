@@ -20,10 +20,7 @@ public class Crafting
                 Character.valueOf('X'), "ingotSteel"
         }));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(Electrolysm.steel, 9),
-                new ItemStack(Electrolysm.steelBlock));
-
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Electrolysm.steel), new Object[] {
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Electrolysm.steel, 9), new Object[] {
                 "blockSteel"
         }));
 /*
@@ -278,7 +275,145 @@ public class Crafting
         		new ItemStack(Items.slime_ball),
         		new ItemStack(Electrolysm.sulphur),
         		new ItemStack(Items.water_bucket));
-        
+
+
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.basicEnergyStorage),
+                new Object[] {
+                        "IRI", "GCG", "IRI",
+                        Character.valueOf('R'), Electrolysm.basicCable,
+                        Character.valueOf('G'), Blocks.glass,
+                        Character.valueOf('C'), Electrolysm.crystal1,
+                        Character.valueOf('I'), Items.iron_ingot,
+                });
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.generator, 1, 3),
+                new Object[] {
+                        "ICI", "RCR", "IFI",
+                        Character.valueOf('R'), Items.redstone,
+                        Character.valueOf('I'), Items.iron_ingot,
+                        Character.valueOf('C'), Electrolysm.basicCable,
+                        Character.valueOf('F'), Blocks.furnace
+                });
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.advancedGenerator, 1, 3),
+                true, new Object[] {
+                        "SCS", "NMN", "SGS",
+                        Character.valueOf('G'), Electrolysm.generator,
+                        Character.valueOf('S'), "ingotSteel",
+                        Character.valueOf('C'), Electrolysm.basicCable,
+                        Character.valueOf('N'), Blocks.stone,
+                        Character.valueOf('M'), Electrolysm.BasicMicrochip
+                }));
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.thermalGenerator),
+                new Object[] {
+                        "IBI", "FMF", "IBI",
+                        Character.valueOf('B'), Items.bucket,
+                        Character.valueOf('I'), Items.iron_ingot,
+                        Character.valueOf('L'), Items.lava_bucket,
+                        Character.valueOf('M'), Electrolysm.advancedMicrochip
+                });
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.solarPanel),
+                new Object[] {
+                        "GGG", "IDI", "IMI",
+                        Character.valueOf('D'), Blocks.daylight_detector,
+                        Character.valueOf('I'), Items.iron_ingot,
+                        Character.valueOf('G'), Blocks.glass,
+                        Character.valueOf('M'), Electrolysm.BasicMicrochip
+                });
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.basicCable), true,
+                new Object[] {
+                        "WWW", "CCC", "WWW",
+                        Character.valueOf('W'), Blocks.wool,
+                        Character.valueOf('C'), "ingotCopper",
+                }));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.electrolisisCore), true,
+                new Object[] {
+                        "YIY", "RXR", "YIY",
+                        'I', "ingotCopper",
+                        'Y', new ItemStack(Electrolysm.electrolChamber, 1, 0),
+                        'X', Electrolysm.advancedMicrochip,
+                        'R', Items.redstone
+                }));
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.microchipBoard), new Object[]{
+                "   ", "   ", "RRR",
+                'R', Items.redstone});
+
+
+
+        GameRegistry.addRecipe( new ShapedOreRecipe(Electrolysm.CPU, true, new Object[]{
+                "CTC", "TRT", "CTC",
+                'C', "ingotCopper",
+                'T', Electrolysm.transistor,
+                'R', Items.redstone}));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.advancedCPU, true, new Object[]{
+                "RCR", "PDP", "RCR",
+                'R', Items.redstone,
+                'C', "ingotCopper",
+                'P', Electrolysm.CPU,
+                'D', Items.diamond}));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.crusher, 1, 3),
+                true, new Object[]{
+                "IMI", "PGP", "ICI",
+                Character.valueOf('I'), "ingotSteel",
+                Character.valueOf('M'), Electrolysm.BasicMicrochip,
+                Character.valueOf('P'), Blocks.cobblestone,
+                Character.valueOf('G'), Electrolysm.grindStone,
+                Character.valueOf('C'), Items.redstone}));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.smeltory, 1, 3),
+                true, new Object[]{
+                        "IRI", "IMI", "FFF",
+                        Character.valueOf('I'), "ingotSteel",
+                        Character.valueOf('R'), Items.redstone,
+                        Character.valueOf('M'), Electrolysm.advancedMicrochip,
+                        Character.valueOf('F'), Blocks.furnace
+                }));
+
+      /*  addRecipe(ResearchRegistry.getResearch("endothermic_cable"), new ItemStack(Electrolysm.experimentalCable, 8),
+                new Object[]{
+                        "III", "GGG", "III",
+                        Character.valueOf('I'), Electrolysm.endoInsulator,
+                        Character.valueOf('G'), Electrolysm.chunkGraphite
+                });
+*/
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.liquidiser, 1, 3),
+                true, new Object[]{
+                        "ILI", "RLM", "IFI",
+                        Character.valueOf('I'), "ingotSteel",
+                        Character.valueOf('L'), Electrolysm.fluidStorage,
+                        Character.valueOf('R'), Items.redstone,
+                        Character.valueOf('M'), Electrolysm.advancedMicrochip,
+                        Character.valueOf('F'), Blocks.furnace
+                }));
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.injector, 1, 3),
+                new Object[]{
+                        "SFS", "FMF", "SIS",
+                        Character.valueOf('I'), Electrolysm.injectionArm,
+                        Character.valueOf('F'), Electrolysm.fluidStorage,
+                        Character.valueOf('M'), Electrolysm.advancedMicrochip,
+                        Character.valueOf('S'), Electrolysm.steel
+                });
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.improvedCoal),
+                new Object[]{
+                        "CH ", "R  ", "   ",
+                        Character.valueOf('C'), new ItemStack(Items.coal, 1, 0),
+                        Character.valueOf('H'), new ItemStack(Items.coal, 1, 1),
+                        Character.valueOf('R'), Items.redstone
+                });
+
+
+
+
     }	
 
     public static void addFurnaceRecipes() 

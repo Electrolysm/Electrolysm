@@ -24,7 +24,7 @@ public class AlloyRecipes
     {
         this.addAlloyRecipe(new ItemStack(Items.coal), new ItemStack(Items.iron_ingot), new ItemStack(Electrolysm.steel));
         this.addAlloyRecipe(new ItemStack(Blocks.coal_block), new ItemStack(Blocks.iron_block), new ItemStack(Electrolysm.steelBlock));
-        this.addAlloyRecipe(new ItemStack(Electrolysm.copperIngot), new ItemStack(Electrolysm.tinIngot), new ItemStack(Electrolysm.bronze));
+        this.addAlloyRecipe(new ItemStack(Electrolysm.copperIngot, 3), new ItemStack(Electrolysm.ingots, 1, 0), new ItemStack(Electrolysm.bronze));
     }
 
     public void addAlloyRecipe(ItemStack input1, ItemStack input2, ItemStack output)

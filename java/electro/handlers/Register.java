@@ -27,6 +27,8 @@ public class Register
     public static void addOreDictionary()
     {
         OreDictionary.registerOre("oreCopper", Electrolysm.copperOre);
+        OreDictionary.registerOre("oreTin", Electrolysm.tinOre);
+        OreDictionary.registerOre("oreAluminium", Electrolysm.aluminiumOre);
         OreDictionary.registerOre("ingotCopper", Electrolysm.copperIngot);
         OreDictionary.registerOre("blockSteel", Electrolysm.steelBlock);
         //ingots
@@ -34,6 +36,8 @@ public class Register
         OreDictionary.registerOre("ingotSilver", new ItemStack(Electrolysm.ingots, 1, 1));
         OreDictionary.registerOre("ingotLead", new ItemStack(Electrolysm.ingots, 1, 2));
         OreDictionary.registerOre("ingotSteel", new ItemStack(Electrolysm.steel));
+        OreDictionary.registerOre("ingotAluminium", Electrolysm.aluminiumIngot);
+        OreDictionary.registerOre("ingotPureIngot", Electrolysm.pureCopperIngot);
         OreDictionary.registerOre("sulphur", new ItemStack(Electrolysm.sulphur));
         OreDictionary.registerOre("sulphure", new ItemStack(Electrolysm.sulphur));
         OreDictionary.registerOre("crystalSulphure", new ItemStack(Electrolysm.sulphur));

@@ -34,7 +34,7 @@ public class improvedFurnace extends BlockContainer
     public improvedFurnace(boolean isActive)
     {
         super(Material.iron);
-        this.setCreativeTab(Electrolysm.TabElectrolysm);
+        //this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(2F);
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeMetal);
@@ -120,9 +120,9 @@ public class improvedFurnace extends BlockContainer
 
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4)
-    {/*
+    {
         super.onBlockAdded(par1World, par2, par3, par4);
-        this.setDefaultDirection(par1World, par2, par3, par4);*/
+        this.setDefaultDirection(par1World, par2, par3, par4);
     }
 
     private void setDefaultDirection(World par1World, int par2, int par3, int par4)
@@ -160,29 +160,24 @@ public class improvedFurnace extends BlockContainer
     }
 
     @Override
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
-    {/*
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
         int l = MathHelper.floor_double((double) (par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-        if (l == 0)
-        {
+        if (l == 0) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
         }
 
-        if (l == 1)
-        {
+        if (l == 1) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
         }
 
-        if (l == 2)
-        {
+        if (l == 2) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
         }
 
-        if (l == 3)
-        {
+        if (l == 3) {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-        }*/
+        }
     }
 
     Random furnaceRand = new Random();

@@ -22,7 +22,7 @@ public class crusher extends oreProcessMachineBase
     {
         super(isActive);
         this.setHardness(6.0F);
-    	this.setCreativeTab(Electrolysm.TabElectrolysm);
+    	//this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.active = isActive;
     }
 	

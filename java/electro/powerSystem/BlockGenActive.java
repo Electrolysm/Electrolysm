@@ -57,6 +57,12 @@ public class BlockGenActive extends BlockEnergy
     }
 
     @Override
+    public void getSubBlocks(Item id, CreativeTabs tab, List list)
+    {
+        list.add(new ItemStack(this, 1, 3));
+    }
+
+    @Override
     public void registerBlockIcons(IIconRegister reg)
     {
         String modID = "electrolysm:";
@@ -130,12 +136,6 @@ public class BlockGenActive extends BlockEnergy
             player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
-    }
-
-    @Override
-    public void getSubBlocks(Item id, CreativeTabs tab, List list)
-    {
-        list.add(new ItemStack(this, 1, 0));
     }
 
     @Override

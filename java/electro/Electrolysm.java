@@ -113,21 +113,13 @@ public class Electrolysm
     public static Item insulatedScrewdriver = new ItemInsulatedScrewdriver();
     
     public static ItemArmor.ArmorMaterial PLASTIC = EnumHelper.addArmorMaterial("PLASTIC", 10, new int[]{1, 3, 2, 1}, 5);
-    /*public static Item hazMatHat = new HazMap(configHandler.hazMat1ID, 0);
-    public static Item hazMatChest = new HazMap(configHandler.hazMat2ID, 1);
-    public static Item hazMatLegs = new HazMap(configHandler.hazMat3ID, 2);
-    public static Item hazMatShoes = new HazMap(configHandler.hazMat4ID, 3);*/
-    
+
     //Liquids
     public static Block plasma = new plasma().setBlockName("plasma");
     public static Item fluidStorage = new fluidStorage();
     public static Item fluidRegistry/* = new fluidRegistry(IDHandler.advAtomics.fluid.fluidRegistryID)*/;
-    //public static Block oil = new oil().setBlockName("oil");
-    //Atomics
-    //public static Item elementProof = new elementProof(IDHandler.elements.elementProofID);
 
     //Machines
-    //public static Block quantumComp = new quantumComp(IDHandler.advMachines.quantumCompID, null);
     public static Block energiser = new energiser().setBlockName("energiser");
     public static Item energisingRod = new energisingRod();
     public static Block charger = new charger().setBlockName("charger");
@@ -138,13 +130,12 @@ public class Electrolysm
     public static Block alloyFurnace = new BlockAlloyFurnace();
 
     //Power System
-    //public static Block experimentalCable = new experimentalCable().setBlockName("expeirmentalCable");
     public static Block basicCable = new basicCable().setBlockName("basicCable");
-    //public static Block advancedCable = new advancedCable().setBlockName("advancedCable");
     //public static Item basicBattery = new basicBattery(1000, 0).setUnlocalizedName("basicBattery");
     //public static Item advancedBattery = new advancedBattery(8000, 1).setUnlocalizedName("advancedBattery");
     //public static Item experimentalBattery = new experimentalBattery(64000, 2).setUnlocalizedName("experimentalBattery");
-    public static Block advancedGenerator = new advancedGenerator().setBlockName("advancedGenerator");
+    public static Block advancedGenerator = new advancedGenerator().setBlockName("advancedGenerator")
+            .setCreativeTab(TabElectrolysm);
     public static Block thermalGenerator = new thermalGenerator().setBlockName("thermalGenerator");
     public static Block solarPanel = new BlockSolarPanel().setBlockName("solarPanel");
     public static Block advGenActive = new BlockAdvGenAcive().setBlockName("advGenActive");
@@ -154,24 +145,12 @@ public class Electrolysm
     public static Block basicEnergyStorage = new basicEnergyStorage().setBlockName("basicEnergyStorage");
     public static Block advEnergyStorage = new BlockAdvEnergyStorage().setBlockName("advEnergyStorage");
     public static Block creativeEnergyStorage = new BlockCreativeEnergyCore().setBlockName("creativeEnergyCore");
-    public static Block generator = new generator().setBlockName("coalGen");
+    public static Block generator = new generator().setBlockName("coalGen")
+            .setCreativeTab(TabElectrolysm);
     public static Item crystal1 = new ItemCrafting().setUnlocalizedName("crystalTier1");
     public static Item crystal2 = new ItemCrafting().setUnlocalizedName("crystalTier2");
-    /*
-    public static Block teslaTowerCore = new teslaTowerCore(configHandler.teslaCoreID, null);
-    public static Block largeCopperCoil = new largeCopperCoil(configHandler.largeCopperCoilID, null,
-            false, ContectedTexture);
-    public static Item copperCoil = new copperCoil(IDHandler.powerGrid.copperCoilID);
-    public static Block plug = new plug(configHandler.plugID, null);
-    */
-    // public static Block coolerPort = new coolerPort(configHandler.coolerPortID, null);
-    // public static Block coolerFan = new coolerFan(configHandler.coolerFanID, null);
-
     public static Item energyMeter = new energyMeter();
     public static Block matterGen = new matterGen().setBlockName("matterGen");
-    public static Block coolerProccesser ;//= new coolerProccesser(configHandler.coolerProccesserID, null);
-
-    //Random Blocks
     public static Block ironFrames = new ironFrames().setBlockName("ironFrames");
 
     //Ore Proccessing
@@ -181,7 +160,8 @@ public class Electrolysm
     public static Block electrolisisCore = new electrolisisCore().setBlockName("electrolysisCore");
     public static Block electrolChamber = new electrolChamber(null, false, ContectedTexture).setBlockName("electrolChamber");
     public static Block seperator = new seporator(false).setBlockName("seperator");
-    public static Block improvedFurnace = new improvedFurnace().setBlockName("improvedFurnace");
+    public static Block improvedFurnace = new improvedFurnace().setBlockName("improvedFurnace")
+            .setCreativeTab(TabElectrolysm);
     public static BlockContainer smeltory = (BlockContainer) new smeltory(false).setCreativeTab(TabElectrolysm)
             .setBlockName("smeltory");
     public static Item impureDusts = new impureDusts();
@@ -215,13 +195,8 @@ public class Electrolysm
     public static Item advancedCPU = new advancedCPU();
     public static Item graphiteRod = new graphiteRod();
     public static Item electroMagnet = new ItemCrafting().setUnlocalizedName("electMag");
-    //public static Item film = new ItemCrafting().setUnlocalizedName("filmStrip");
-    //public static Item nitrocellulose = new ItemCrafting().setUnlocalizedName("nitrocellulose");
-    //public static Block nitrocelluloseBlock = new BlockCrafting(1F, "nitrocelluloseBlock", Material.cloth);
-    //public static Item camphor = new ItemCrafting().setUnlocalizedName("camphor");
     public static Potion acidBurns = new acidBurns(configHandler.acidBurnsID, true, 0);
     public static Item steel = new ItemCrafting().setUnlocalizedName("steel");
-    public static Item tinIngot = new ItemCrafting().setUnlocalizedName("ingotTin");
     public static Block steelBlock = new BlockCrafting(6.23F, "steelBlock", Material.iron);
     public static Item pureCopperIngot = new pureCopperIngot();
     public static Item silicon = new silicon();
@@ -234,35 +209,8 @@ public class Electrolysm
     public static Item improvedCoal = new ItemCrafting("improvedCoal");
 
     //Assembly Systems
-    //public static Block advancedCrafting = new advancedCrafting();
     public static Block roboticBase = new BlockCrafting(5F, "roboticBase", Material.iron).setBlockName("roboticBase");
-    //public static Block robotArm = new roboticArm();
-    //public static Item blueprint = new ItemBluePrint();
-    //public static Block matrix = new BlockMatrix();
 
-    /*
-    //Robots
-    //Parts
-    public static Item metalSheet = new metalSheet(IDHandler.robotics.metalSheetID);
-    public static Item wire = new wire(IDHandler.robotics.wireID);
-    public static Item servo = new servo(IDHandler.robotics.servoID);
-    public static Item artMuscle = new artMuscle(IDHandler.robotics.artMuscleID);
-    public static Item carbonBone = new carbonBone(IDHandler.robotics.carbonBoneID);
-    //=====================Adv. Parts================================
-    public static Item microController = new microCont(IDHandler.robotics.microContID);
-    public static Item upgrade = new upgrade(IDHandler.robotics.upgradeID);
-    public static Item silChip = new silChip(IDHandler.robotics.silChipID);
-    public static Item ChipDup = new chipDup(IDHandler.robotics.chipDub);
-    //===============================================================
-    public static Item exoPlate = new ExoPlate(IDHandler.robotics.exoPlateID);
-    public static Item bionicArm = new bionicArm(IDHandler.robotics.bionicArmID);
-    public static Item bionicChest = new bionicChest(IDHandler.robotics.bionicChestID);
-    public static Item bionicHead = new bionicHead(IDHandler.robotics.bionicHeadID);
-    public static Item bionicLeg = new bionicLeg(IDHandler.robotics.bionicLegID);
-    //====================Machines!==================================
-    public static Block soldering = new soldering(IDHandler.robotics.machines.solderingID, null);
-    public static Block partAssemb = new partAssemb(IDHandler.robotics.machines.partAssembID, null);
-    */
     /*
      * ===============================================================================================================
      * ===============================================================================================================

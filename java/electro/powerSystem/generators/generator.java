@@ -57,6 +57,12 @@ public class generator extends BlockEnergy
     }
 
     @Override
+    public void getSubBlocks(Item id, CreativeTabs tab, List list)
+    {
+        list.add(new ItemStack(this, 1, 3));
+    }
+
+    @Override
     public IIcon getIcon(int side, int meta)
     {
     	if(side == 0 || side == 1)
@@ -121,12 +127,6 @@ public class generator extends BlockEnergy
             player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
             return true;
         }
-    }
-
-    @Override
-    public void getSubBlocks(Item id, CreativeTabs tab, List list)
-    {
-   		list.add(new ItemStack(this, 1, 0));
     }
 
     @Override

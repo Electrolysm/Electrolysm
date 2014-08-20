@@ -25,7 +25,7 @@ public class smeltory extends oreProcessMachineBase
     public smeltory(boolean isActive)
     {
         super(isActive);
-        this.setCreativeTab(Electrolysm.TabElectrolysm);
+        //this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(6.0F);
         this.active = isActive;
     }
