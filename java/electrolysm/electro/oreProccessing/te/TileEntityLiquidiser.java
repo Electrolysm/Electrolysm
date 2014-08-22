@@ -1,0 +1,316 @@
+package electrolysm.electro.oreProccessing.te;
+
+import electrolysm.electro.Electrolysm;
+import electrolysm.electro.oreProccessing.recipes.LiquidiserRecipes;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
+public class TileEntityLiquidiser extends TileEntity implements IInventory, ISidedInventory
+{
+    private ItemStack[] inventory;
+    public boolean isOpen;
+
+    public TileEntityLiquidiser()
+    {
+        this.inventory = new ItemStack[2];
+    }
+
+    @Override
+    public int getSizeInventory()
+    {
+        return inventory.length;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int slot)
+    {
+        return inventory[slot];
+    }
+
+    @Override
+    public ItemStack decrStackSize(int slot, int amount)
+    {
+        ItemStack stack = getStackInSlot(slot);
+
+        if (stack != null)
+        {
+            if (stack.stackSize <= amount)
+            {
+                setInventorySlotContents(slot, null);
+            }
+            else
+            {
+                stack = stack.splitStack(amount);
+
+                if (stack.stackSize == 0)
+                {
+                    setInventorySlotContents(slot, null);
+                }
+            }
+        }
+
+        return stack;
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int slot)
+    {
+        ItemStack stack = getStackInSlot(slot);
+
+        if (stack != null)
+        {
+            setInventorySlotContents(slot, null);
+        }
+
+        return stack;
+    }
+
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack stack)
+    {
+        inventory[slot] = stack;
+
+        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+        {
+            stack.stackSize = this.getInventoryStackLimit();
+        }
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 64;
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityplayer)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int slot, ItemStack stack)
+    {
+        if(stack != null)
+        {
+            ItemStack recipe = LiquidiserRecipes.liquidising().getLiquidisingResult(stack);
+            if(slot == 0)
+            {
+                if(recipe != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public int time = 0;
+    public int maxCrushTime = 400;
+    public int crushTime = 400;
+
+    @Override
+    public void updateEntity()
+    {
+        this.markDirty();
+
+        int connectedLiquids = this.getConnectedLiquids(worldObj, xCoord, yCoord, zCoord);
+
+        ItemStack inStack = getStackInSlot(0);
+        ItemStack output = getStackInSlot(1);
+        ItemStack result = LiquidiserRecipes.liquidising().getLiquidisingResult(inStack);
+        ItemStack result2 = result;
+
+        if(connectedLiquids > 0)
+        {
+            crushTime = maxCrushTime / connectedLiquids;
+        }
+
+        if (inStack != null)
+        {
+            if (result != null)
+            {
+                if (output == null)
+                {
+                    int outputSize = 0;
+                    int resultSize = result.stackSize;
+
+                    if (((resultSize + outputSize) <= 64))
+                    {
+                        if(time == crushTime)
+                        {
+                            time = 0;
+                            this.decrStackSize(0, 1);
+                            this.setInventorySlotContents(1, result2);
+                            this.markDirty();
+                        }
+                        else
+                        {
+                            time = time + 1;
+                        }
+                    }
+                }
+                else
+                {
+                    int outputSize = output.stackSize;
+                    int resultSize = result.stackSize;
+
+                    if (((resultSize + outputSize) < 64))
+                    {
+                        if(time == crushTime)
+                        {
+                            time = 0;
+                            this.decrStackSize(0, 1);
+                            this.setInventorySlotContents(1, new ItemStack(result.getItem(),
+                                    (output.stackSize + result.stackSize), result.getItemDamage()));
+                            //output.stackSize = (output.stackSize + result.stackSize);
+                            this.markDirty();
+                        }
+                        else
+                        {
+                            time = time + 1;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                time = 0;
+            }
+        }
+        else
+        {
+            time = 0;
+        }
+    }
+
+    private int getConnectedLiquids(World world, int x, int y, int z)
+    {
+        Block id1 = world.getBlock(x + 1, y, z);
+        Block id2 = world.getBlock(x - 1, y, z);
+        Block id3 = world.getBlock(x, y, z + 1);
+        Block id4 = world.getBlock(x, y, z - 1);
+
+        int overall = 0;
+
+        if(id1 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+        if(id2 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+        if(id3 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+        if(id4 == Electrolysm.sulpuricAcid)
+        {
+            overall = overall + 1;
+        }
+
+        return overall;
+    }
+
+    int[] slots_bottom = {1};
+    int[] slots_top = {0};
+    int[] slots_sides = {1};
+
+    public int[] getAccessibleSlotsFromSide(int side)
+    {
+        if(side == 0)
+        {
+            return slots_bottom;
+        }
+        else if(side == 1)
+        {
+            return slots_top;
+        }
+        else
+        {
+            return slots_sides;
+        }
+    }
+
+    public boolean canInsertItem(int slot, ItemStack item, int side)
+    {
+        return this.isItemValidForSlot(slot, item);
+    }
+
+    public boolean canExtractItem(int slot, ItemStack item, int side)
+    {
+        return side != 0 || slot == 1 || item.getItem() == Electrolysm.crystal;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound) {
+        super.readFromNBT(nbtTagCompound);
+
+        // Read in the ItemStacks in the inventory from NBT
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
+        inventory = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < tagList.tagCount(); ++i) {
+            NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+            byte slotIndex = tagCompound.getByte("Slot");
+            if (slotIndex >= 0 && slotIndex < inventory.length) {
+                inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+            }
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        // Write the ItemStacks in the inventory to NBT
+        NBTTagList tagList = new NBTTagList();
+        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        {
+            if (inventory[currentIndex] != null)
+            {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) currentIndex);
+                inventory[currentIndex].writeToNBT(tagCompound);
+                tagList.appendTag(tagCompound);
+            }
+        }
+        nbtTagCompound.setTag("Items", tagList);
+    }
+
+    public void setGuiDisplayName(String displayName) {
+
+    }
+
+    @Override
+    public void closeInventory() { }
+
+    @Override
+    public boolean hasCustomInventoryName() { return true; }
+
+    @Override
+    public String getInventoryName() { return "Displacement Chamber"; }
+
+    @Override
+    public void openInventory() { }
+
+}
