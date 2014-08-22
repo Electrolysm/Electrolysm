@@ -15,7 +15,6 @@ public class lightSource extends Block
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(0F);
         this.setLightLevel(1.0F);
-        LanguageRegistry.addName(this, "lightSource");
     }
 
     @Override

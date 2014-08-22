@@ -40,7 +40,6 @@ public class matterGen extends BlockEnergy
         super();
         this.setCreativeTab(Electrolysm.TabElectrolysm);
         this.setHardness(5.2165F);
-        LanguageRegistry.addName(this, "Matter-Antimatter Reactor");
         this.setResistance(100F);
     }
 
