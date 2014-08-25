@@ -21,7 +21,7 @@ import java.util.Random;
 public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 {
 
-    public int maxTeU = 100000;
+    public int maxTeU = 1000000;
     public int teuData = 0;
     private TileEntity[] adjConnections = new TileEntity[6];
     private int tier = 0;
@@ -34,7 +34,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
         } else {
             tier = t;
             if (t > 1) {
-                maxTeU = 100000 * ((t * 2) *10);
+                maxTeU = 1000000 * ((t * 2) *10);
             }
         }
     }
@@ -149,7 +149,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
         if(this.getTeU() < 0) { setEmpty(); }
         if(this.getTeU() >= (maxTeU - 5)) { setFull(); }
-        if(new Random().nextInt(50) == 5) { this.drainPower(1); }
+        if(new Random().nextInt(50) == 5 && getTeU() > 0) { this.drainPower(1); }
         if(getAmps() > getMaxAmps() && !isCreative)
         {
             drainPower((int)(maxTeU * 0.001F));

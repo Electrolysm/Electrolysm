@@ -5,12 +5,12 @@ import net.minecraft.block.Block;
 
 public class PowerUsage
 {
-	public static int CRUSHER = 14;
-	public static int ELECTROLYSIS = 62;
+	public static int CRUSHER = 9;
+	public static int ELECTROLYSIS = 123;
 	public static int SMELTORY = 19;
 
-    public static int SOLAR_PANEL = 2;
-    public static int GENERATOR = 3;
+    public static int SOLAR_PANEL = 4;
+    public static int GENERATOR = 10;
     public static int ADV_GENERATOR = 19;
     public static int THERMAL_GENERATOR = 42;
     public static int ANTIMATTER = 100000;

@@ -161,7 +161,9 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
         	//extraDust = this.getExtraDust(grindStone);
         	if(this.getExtraDust(grindStone) != 0 || this.getExtraDust(grindStone) != -1)
         	{
-        		crushTime = (int)(maxCrushTime / (this.getExtraDust(grindStone) + 2));
+                if(time == 0) {
+                    crushTime = (int) (maxCrushTime / (this.getExtraDust(grindStone) + 2));
+                }
         	}
         	else
         	{
@@ -219,7 +221,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
 	                    int outputSize = output.stackSize;
 	                    int resultSize = result.stackSize;
 	
-	                    if (((resultSize + outputSize) < 64))
+	                    if (((resultSize + outputSize) <= 64))
 	                    {
 	                    	if(time == crushTime)
 	                    	{

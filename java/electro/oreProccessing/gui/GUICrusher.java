@@ -21,6 +21,8 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         this.entity = entity;
     }
 
+    int coord;
+
     @Override
     protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
     {
@@ -31,9 +33,8 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
         
         int progress = ((int)((entity.time * 46) / entity.crushTime));
-        int coord = 0;
-        
-        if(entity.time > 0)
+
+        if(progress <= 1)
         {
         	if(entity.getStackInSlot(2) != null)
         	{
@@ -48,8 +49,7 @@ public class GUICrusher extends GuiContainer //implements INEIGuiHandler
         }
         
         if (progress > 0)
-        {//grinder = 2
-        	
+        {
             this.drawTexturedModalRect(x + 64, y + 20, 176, coord, progress + 1, 46);
         }
 
