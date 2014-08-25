@@ -51,7 +51,7 @@ public class TileEntityBlastDoor extends TileEntity
                 xBlock = 1;
             }
 
-            player.setPosition(x + xBlock, y + 1, z + zBlock);
+            player.setPosition(x + xBlock + 0.5F, y + 1, z + zBlock + 0.5F);
         }
     }
 }

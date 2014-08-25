@@ -64,7 +64,7 @@ public class basicCable extends BlockContainer
     {
         return false;
     }
-
+/*
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int x, int y, int z)
     {

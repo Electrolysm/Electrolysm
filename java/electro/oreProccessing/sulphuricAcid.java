@@ -7,12 +7,14 @@ import electro.handlers.helpers.Utilities;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import electro.misc.block.liquids.ModFluidSulphuricAcid;
@@ -45,6 +47,11 @@ public class sulphuricAcid extends BlockFluidClassic
         {
             return this.flowing;
         }
+    }
+
+    @Override
+    public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z) {
+        return false;
     }
 
     @SideOnly(Side.CLIENT)
