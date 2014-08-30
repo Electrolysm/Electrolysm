@@ -70,7 +70,7 @@ public class CrusherRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadTransferRects()
     {
-        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "crushing"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(100, 100, 10, 10), "crushing"));
     }
     
     @Override

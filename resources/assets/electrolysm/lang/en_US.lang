@@ -1,4 +1,9 @@
+# Entities
+
 entity.Electrolysm.Zombie Scientist.name=Zombie Scientist
+
+# Blocks
+
 tile.workBench.name=Work Bench
 tile.desk.name= Scientist's Desk
 tile.researchDesk.name=Research Desk
@@ -56,8 +61,15 @@ tile.advEnergyStorage.name=Advanced Energy Core
 tile.basicEnergyStorage.name=Basic Energy Core
 tile.solarPanel.name=Solar Panel
 tile.experimentalCable.name=Experimental Cable
+tile.energyRelay.name=Energy Relay
+tile.tinOre.name=Tin Ore
+nettedBlock.name=Netted Ore Block
+
+# Items
 
 CPU.name=CPU
+item.ItemInsulatedScrewdriver.name=Insulated Screwdriver
+item.itemDiamondDust.name=Diamond Dust
 item.crystalTier1.name=Partly Energised Crystal
 item.crystalTier2.name=Fully Energised Crystal
 item.injectionArm.name=Injection Arm

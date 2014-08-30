@@ -92,7 +92,7 @@ public class EnergiserRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadTransferRects()
     {
-        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "energising"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(74, 23 + 12, 24, 16), "energising"));
     }
 
     @Override

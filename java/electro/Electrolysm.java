@@ -20,6 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import electro.client.ClientProxy;
 import electro.common.CommandStardate;
 import electro.handlers.*;
+import electro.handlers.nei.NEIElectrolysmConfig;
 import electro.handlers.network.PacketHandler;
 import electro.handlers.version.ElectrolysmVersion;
 import electro.machines.advMachines.*;
@@ -203,6 +204,7 @@ public class Electrolysm
     public static Block antiMatterCasing = new antiMatterCasing().setBlockName("antiMatterCasing");
     public static Block magnet = new magnet().setBlockName("magnet");
     public static Item bronze = new ItemCrafting().setUnlocalizedName("ingotBronze");
+    public static Item diamondDust = new ItemCrafting("itemDiamondDust");
 
     //Fuels
     public static Item electroContain = new electroContain();
@@ -232,7 +234,7 @@ public class Electrolysm
         new ElectrolysmVersion(Referance.MOD_ID_LOWER, Referance.MOD_REF.VERSION, MinecraftForge.MC_VERSION).register();
         PacketHandler.init();
         configHandler.init(configFile);
-        NewsCheck.check();
+        //NewsCheck.check();
         BetaHandler.beta();
         DownloadHandler.downloadAndExtractResearchData();
         RegisterBlock.register();
@@ -262,6 +264,7 @@ public class Electrolysm
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();
         this.addBiome();
+        new NEIElectrolysmConfig();
     }
 
     @SideOnly(Side.CLIENT)

@@ -43,6 +43,10 @@ public class GUIEnergiser extends GuiContainer
         this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
         int i1;
 
+        //drawRect(74, 23, 24, 18, 4210752);
+        drawRect(74, 23, 74 + 24, 23 + 18, 4210752);
+        drawVerticalLine(74, 23, 74 + 24, 23 + 18);
+
         //Flames Code
         if (this.inventoryFurnace.isBurning())
         {

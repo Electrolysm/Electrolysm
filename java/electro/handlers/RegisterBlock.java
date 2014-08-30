@@ -132,6 +132,7 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.improvedCoal, "improvedCoal");
         GameRegistry.registerItem(elec.labGoggles, "labGoggles");
         GameRegistry.registerItem(elec.labCoat, "labCoat");
+        GameRegistry.registerItem(elec.diamondDust, "diamondDust");
 
         //Removed for this release
         /*

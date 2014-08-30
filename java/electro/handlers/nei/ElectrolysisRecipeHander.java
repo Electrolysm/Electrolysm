@@ -85,7 +85,7 @@ public class ElectrolysisRecipeHander extends TemplateRecipeHandler
     @Override
     public String getRecipeName()
     {
-        return "electrolysing";
+        return "Electrolysis";
     }
 
     @Override

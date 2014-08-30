@@ -11,6 +11,7 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -66,6 +67,9 @@ public class CrusherRecipes
         {
             this.addCrushing(leadOre.get(i), new ItemStack(Electrolysm.impureDusts, 2, 5));
         }
+
+        this.addCrushing(new ItemStack(Items.diamond), new ItemStack(Electrolysm.diamondDust));
+        this.addCrushing(new ItemStack(Blocks.diamond_ore), new ItemStack(Electrolysm.diamondDust, 2));
 
         //Ingots
         /*

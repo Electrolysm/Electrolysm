@@ -189,7 +189,7 @@ public class plasmaDrill extends ItemTool
         int dmg = stack.getItemDamage();
         int maxDmg = stack.getMaxDamage();
         String persent = this.calculatePersent(maxDmg, this.breakingPoint);
-        list.add(persent + " Energy Units Stored");
+        //list.add(persent + " Energy Units Stored");
     }
 
     public String calculatePersent(int maxDmg, int dmg)

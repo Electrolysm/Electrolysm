@@ -97,7 +97,7 @@ public class AlloyFurnaceRecipeHandler extends TemplateRecipeHandler
     @Override
     public void loadTransferRects()
     {
-        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(74, 23, 24, 18), "alloy"));
+        transferRects.add(new TemplateRecipeHandler.RecipeTransferRect(new Rectangle(80, 23, 24, 18), "alloy"));
     }
 
     @Override

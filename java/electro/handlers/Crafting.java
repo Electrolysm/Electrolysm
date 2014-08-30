@@ -23,35 +23,7 @@ public class Crafting
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Electrolysm.steel, 9), new Object[] {
                 "blockSteel"
         }));
-/*
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.nitrocelluloseBlock),
-                "XXX", "XXX", "XXX",
-                Character.valueOf('X'), Electrolysm.nitrocellulose);
 
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.film),
-                "CNC", "BCB",
-                Character.valueOf('C'), Electrolysm.camphor,
-                Character.valueOf('N'), Electrolysm.nitrocellulose,
-                Character.valueOf('B'), Electrolysm.nitrocelluloseBlock);
-
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 1, 0),
-                "IPI", "PGP", "IPI",
-                Character.valueOf('I'), Items.iron_ingot,
-                Character.valueOf('G'), Items.gold_ingot,
-                Character.valueOf('P'), Items.paper);
-
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 1, 2),
-                "IPI", "PGP", "IPI",
-                Character.valueOf('I'), new ItemStack(Electrolysm.reel, 1, 0),
-                Character.valueOf('G'), Items.gold_ingot,
-                Character.valueOf('P'), Items.paper);
-
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.reel, 2, 2),
-                "IPI", "PGP", "IPI",
-                Character.valueOf('I'), new ItemStack(Electrolysm.reel, 1, 1),
-                Character.valueOf('G'), Items.nether_star,
-                Character.valueOf('P'), Electrolysm.film);
-*/
         GameRegistry.addRecipe(new ItemStack(Electrolysm.blastDoor),
                                "XX", "XX", "XX",
                                'X', Electrolysm.blastProof);
@@ -332,9 +304,45 @@ public class Crafting
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.basicCable), true,
                 new Object[] {
                         "WWW", "CCC", "WWW",
-                        Character.valueOf('W'), Blocks.wool,
+                        Character.valueOf('W'), new ItemStack(Blocks.wool, 1, 15),
                         Character.valueOf('C'), "ingotCopper",
                 }));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.energyRelay, 1),true,
+                 new Object[]{
+                "SWS", "WCW", "SWS",
+                 Character.valueOf('S'), "ingotSteel",
+                 Character.valueOf('W'), Electrolysm.basicCable,
+                 Character.valueOf('C'), Electrolysm.advancedCPU
+            }));
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.alloyFurnace),
+                "BBB", "ICI", "FRF",
+                Character.valueOf('B'), Blocks.brick_block,
+                Character.valueOf('I'), Items.iron_ingot,
+                Character.valueOf('C'), Items.coal,
+                Character.valueOf('F'), Blocks.furnace,
+                Character.valueOf('R'), Items.redstone);
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.improvedFurnace, 1, 3),
+                true, new Object[]{
+                "SSS", "IFI", "III",
+                Character.valueOf('S'), "ingotSteel",
+                Character.valueOf('I'), Items.iron_ingot,
+                Character.valueOf('F'), Blocks.furnace,
+        }));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.energyMeter),
+                true, new Object[] {
+                "C C", "CMC", " M ",
+                Character.valueOf('M'), Electrolysm.BasicMicrochip,
+                Character.valueOf('C'), "ingotCopper"}));
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.insulatedScrewdriver),
+                "G  ", " Y ", "  R",
+                Character.valueOf('G'), Electrolysm.chunkGraphite,
+                Character.valueOf('Y'), new ItemStack(Blocks.wool, 1, 4),
+                Character.valueOf('R'), new ItemStack(Blocks.wool, 1, 14));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.electrolisisCore), true,
                 new Object[] {
@@ -397,7 +405,7 @@ public class Crafting
                         Character.valueOf('F'), Blocks.furnace
                 }));
 
-        GameRegistry.addRecipe(new ItemStack(Electrolysm.injector, 1, 3),
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.injector, 1),
                 new Object[]{
                         "SFS", "FMF", "SIS",
                         Character.valueOf('I'), Electrolysm.injectionArm,

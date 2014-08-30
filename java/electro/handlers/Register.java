@@ -43,7 +43,7 @@ public class Register
         OreDictionary.registerOre("crystalSulphure", new ItemStack(Electrolysm.sulphur));
         OreDictionary.registerOre("crystalSulphur", new ItemStack(Electrolysm.sulphur));
 
-
+        OreDictionary.registerOre("dustDiamond", new ItemStack(Electrolysm.diamondDust));
         for(int i = 0; i < CommonProxy.DUSTS.length; i++)
         {
             OreDictionary.registerOre("dust" + CommonProxy.DUSTS[i], new ItemStack(Electrolysm.dusts, 1, i));
