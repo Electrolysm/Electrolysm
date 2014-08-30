@@ -37,6 +37,9 @@ import electro.misc.item.tools.ItemInsulatedScrewdriver;
 import electro.oreProccessing.*;
 import electro.powerSystem.*;
 import electro.powerSystem.generators.*;
+import electro.powerSystem.tesla.BlockCopperCoil;
+import electro.powerSystem.tesla.BlockReciever;
+import electro.powerSystem.tesla.BlockTeslaCore;
 import electro.sciences.ItemArmorLab;
 import electro.sciences.alloyFurnace.BlockAlloyFurnace;
 import electro.world.*;
@@ -152,7 +155,12 @@ public class Electrolysm
     public static Item crystal2 = new ItemCrafting().setUnlocalizedName("crystalTier2");
     public static Item energyMeter = new energyMeter();
     public static Block matterGen = new matterGen().setBlockName("matterGen");
+
+    //Tesla Tower
     public static Block ironFrames = new ironFrames().setBlockName("ironFrames");
+    public static Block teslaCore = new BlockTeslaCore("BlockTeslaCore");
+    public static Block recievingCore = new BlockReciever("BlockReciever");
+    public static Block copperCoil = new BlockCopperCoil("BlockCopperCoil", ContectedTexture);
 
     //Ore Proccessing
     public static BlockContainer crusher = (BlockContainer) new crusher(false)

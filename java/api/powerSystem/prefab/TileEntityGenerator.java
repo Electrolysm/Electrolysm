@@ -42,8 +42,8 @@ public class TileEntityGenerator extends TileEntity implements IConnector, ITeUN
         return this.adjConnections;
     }
 
-    TEPowerCore powerCore = null;
-    TEPowerCore lastCore = null;
+    IPowerCore powerCore = null;
+    IPowerCore lastCore = null;
 
     @Override
     public void updateEntity() {
@@ -68,7 +68,7 @@ public class TileEntityGenerator extends TileEntity implements IConnector, ITeUN
     }
 
     @Override
-    public TEPowerCore findCore(World world, int x, int y, int z) {
+    public IPowerCore findCore(World world, int x, int y, int z) {
         TileEntity[] adj = this.adjConnections;
         for (int i = 0; i < adj.length; i++) {
             if (adj[i] != null && adj[i] instanceof IConnector) {

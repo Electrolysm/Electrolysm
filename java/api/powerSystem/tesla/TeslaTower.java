@@ -1,6 +1,8 @@
 package api.powerSystem.tesla;
 
+import api.CompareHandler;
 import net.minecraft.world.World;
+import sun.misc.Compare;
 
 /**
  * Created by Clarky158 on 01/08/2014.
@@ -54,5 +56,10 @@ public class TeslaTower implements IWorldMethods{
     @Override
     public int z() {
         return dataArray[3];
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof TeslaTower && CompareHandler.comparatorTeslaTower.compare(this, (TeslaTower)obj) == 0;
     }
 }

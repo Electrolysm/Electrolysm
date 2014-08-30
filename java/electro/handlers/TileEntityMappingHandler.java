@@ -1,6 +1,8 @@
 package electro.handlers;
 
 import api.powerSystem.prefab.*;
+import api.powerSystem.tesla.TERecievingCore;
+import api.powerSystem.tesla.TETeslaTower;
 import cpw.mods.fml.common.registry.GameRegistry;
 import electro.machines.advMachines.te.TileEntityCharger;
 import electro.machines.advMachines.te.TileEntityEnergiser;
@@ -13,6 +15,7 @@ import electro.misc.crafting.items.te.TileEntityLumRed;
 import electro.oreProccessing.te.*;
 import electro.powerSystem.generators.te.*;
 import electro.powerSystem.te.TileEntityWire;
+import electro.powerSystem.tesla.te.TileEntityTeslaCore;
 import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
 import electro.world.biome.TileEntityGrass;
 
@@ -25,8 +28,11 @@ public class TileEntityMappingHandler
     {
         GameRegistry.registerTileEntity(TileEntityGrass.class, "TileEntityGrass");
         GameRegistry.registerTileEntity(TileEntityRelay.class, "TileEntityRelay");
+        GameRegistry.registerTileEntity(TETeslaTower.class, "TileEntityTeslaTower");
+        GameRegistry.registerTileEntity(TileEntityTeslaCore.class, "TileEntityTeslaCore");
         GameRegistry.registerTileEntity(TileEntityThermalGenerator.class, "TileEntityThermalGenerator");
         GameRegistry.registerTileEntity(TileEntityAdvGenerator.class, "TileEntityAdvGenerator");
+        GameRegistry.registerTileEntity(TERecievingCore.class, "TileEntityReceivingCore");
         GameRegistry.registerTileEntity(TileEntityLumRed.class, "TileEntityLumRed");
         GameRegistry.registerTileEntity(TileEntityAlloyFurnace.class, "TileEntityAlloyFurnace");
         GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "TileEntitySolarPanel");

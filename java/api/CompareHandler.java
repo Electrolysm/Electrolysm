@@ -1,5 +1,6 @@
-package api.items;
+package api;
 
+import api.powerSystem.tesla.TeslaTower;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -8,7 +9,7 @@ import java.util.Comparator;
 /**
  * Created by Ben on 11/07/2014.
  */
-public class ItemCompare
+public class CompareHandler
 {
     public static Comparator<ItemStack> comparatorItemStack = new Comparator<ItemStack>()
     {
@@ -101,6 +102,31 @@ public class ItemCompare
             {
                 return 0;
             }
+        }
+    };
+
+
+    public static Comparator<TeslaTower> comparatorTeslaTower = new Comparator<TeslaTower>() {
+        @Override
+        public int compare(TeslaTower te1, TeslaTower te2) {
+            if(te1 != null && te2 != null){
+                if(te1.getFreq() - te2.getFreq() == 0){
+                    if(te1.getPower() - te2.getPower() == 0){
+                        if(te1.getWorld() == null && te2.getWorld() == null) {
+                            if (te1.getWorldData()[0] - te2.getWorldData()[0] == 0) {
+                                if (te1.getWorldData()[1] - te2.getWorldData()[1] == 0) {
+                                    if (te1.getWorldData()[2] - te2.getWorldData()[2] == 0) {
+                                        if (te1.getWorldData()[3] - te2.getWorldData()[3] == 0) {
+                                            return 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return -1;
         }
     };
 }

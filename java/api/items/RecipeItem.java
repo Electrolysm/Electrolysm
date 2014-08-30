@@ -1,7 +1,7 @@
 package api.items;
 
+import api.CompareHandler;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import java.util.Comparator;
 
@@ -38,7 +38,7 @@ public class RecipeItem
             {
                 if (stack1.stackValue instanceof Item)
                 {
-                    return ItemCompare.comparatorItem.compare(stack0.stackValue, stack1.stackValue);
+                    return CompareHandler.comparatorItem.compare(stack0.stackValue, stack1.stackValue);
                 }
                 else
                 {

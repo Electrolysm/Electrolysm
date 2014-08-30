@@ -4,6 +4,9 @@ package api.powerSystem.interfaces;
  * Created by Ben on 18/07/2014.
  */
 
+import api.powerSystem.prefab.TileEntityGenerator;
+import api.powerSystem.prefab.TileEntityMachine;
+
 /**
  * Implemented by any tile entity that will store energy
  */
@@ -68,4 +71,10 @@ public interface IPowerCore
      * @return returns true if this core is a creative core
      */
     public boolean isCreative();
+
+    public void registerOnNetwork(TileEntityMachine te);
+
+    public void registerOnNetwork(TileEntityGenerator te);
+
+    public void clearNetwork();
 }

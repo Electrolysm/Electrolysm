@@ -24,9 +24,9 @@ public class GlassBlockConnected extends Block
     protected String folder;
     private int renderPass;
 
-    public GlassBlockConnected(String location, boolean hasAlpha)
+    public GlassBlockConnected(String location, boolean hasAlpha, Material material)
     {
-        super(Material.glass);
+        super(material);
         this.stepSound = soundTypeGlass;
         folder = location;
         renderPass = hasAlpha ? 1 : 0;

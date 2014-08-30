@@ -77,8 +77,8 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
         return adjConnections;
     }
 
-    TEPowerCore FromPowerCore = null;
-    TEPowerCore ToPowerCore = null;
+    IPowerCore FromPowerCore = null;
+    IPowerCore ToPowerCore = null;
 
     @Override
     public void updateEntity() {
@@ -131,7 +131,7 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
         }
     }
 
-    private void takeAndGive(TEPowerCore from, TEPowerCore to) {
+    private void takeAndGive(IPowerCore from, IPowerCore to) {
         //System.out.println(from + " : " + to);
         if(from.canDrain(TEU) && to.canHold(TEU))
         {
@@ -169,7 +169,7 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
 
     //Find Core when taking energy
     @Override
-    public TEPowerCore findCore(World world, int x, int y, int z, int SideState) {
+    public IPowerCore findCore(World world, int x, int y, int z, int SideState) {
         TileEntity[] adj = this.adjConnections;
         for (int i = 0; i < adj.length; i++) {
             if (getState(i) == SideState && adj[i] != null && adj[i] instanceof IConnector) {

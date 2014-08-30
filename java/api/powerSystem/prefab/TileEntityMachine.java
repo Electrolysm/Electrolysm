@@ -1,10 +1,7 @@
 package api.powerSystem.prefab;
 
 import api.powerSystem.*;
-import api.powerSystem.interfaces.ICable;
-import api.powerSystem.interfaces.IConnector;
-import api.powerSystem.interfaces.ITeUNetworkTE;
-import api.powerSystem.interfaces.IWorkableMachine;
+import api.powerSystem.interfaces.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -50,8 +47,8 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
         return adjConnections;
     }
 
-    TEPowerCore powerCore = null;
-    TEPowerCore lastCore = null;
+    IPowerCore powerCore = null;
+    IPowerCore lastCore = null;
 
     @Override
     public void updateEntity() {
@@ -85,13 +82,12 @@ public class TileEntityMachine extends TileEntity implements IConnector, IWorkab
     }
 
     @Override
-    public TEPowerCore findCore(World world, int x, int y, int z) {
+    public IPowerCore findCore(World world, int x, int y, int z) {
         TileEntity[] adj = this.adjConnections;
         for (int i = 0; i < adj.length; i++) {
             if (adj[i] != null && adj[i] instanceof IConnector) {
-                IConnector connector = (IConnector) adj[i];
-                if (adj[i] instanceof TEPowerCore) {
-                    return (TEPowerCore) adj[i];
+                if (adj[i] instanceof IPowerCore) {
+                    return (IPowerCore) adj[i];
                 } else {
                     if (adj[i] instanceof ICable) {
                         ICable cable = (ICable) adj[i];

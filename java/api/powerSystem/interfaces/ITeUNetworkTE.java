@@ -16,5 +16,5 @@ public interface ITeUNetworkTE
      * @param z
      * @return
      */
-    public TEPowerCore findCore(World world, int x, int y, int z);
+    public IPowerCore findCore(World world, int x, int y, int z);
 }

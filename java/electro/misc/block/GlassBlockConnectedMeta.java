@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -24,9 +25,16 @@ public class GlassBlockConnectedMeta extends GlassBlockConnected
     public IIcon[][] icons;
     boolean ignoreMetaForConnectedGlass = false;
 
+    public GlassBlockConnectedMeta(String location, boolean hasAlpha, Material mat, String... textures)
+    {
+        super(location, hasAlpha, mat);
+        this.textures = textures;
+        this.icons = new IIcon[textures.length][16];
+    }
+
     public GlassBlockConnectedMeta(String location, boolean hasAlpha, String... textures)
     {
-        super(location, hasAlpha);
+        super(location, hasAlpha, Material.glass);
         this.textures = textures;
         this.icons = new IIcon[textures.length][16];
     }

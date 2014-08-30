@@ -1,12 +1,23 @@
 package api.powerSystem.tesla;
 
+import api.items.Fetcher;
 import api.powerSystem.interfaces.IWorkableMachine;
 import api.powerSystem.prefab.TEPowerCore;
-import electro.Electrolysm;
 import net.minecraft.block.Block;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+
+import javax.swing.text.html.parser.Entity;
+import java.util.Random;
 
 /**
  * Created by Clarky158 on 01/08/2014.
@@ -30,8 +41,8 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public boolean isFormed(World world, int x, int y, int z) {
-        Block copperCoil = Blocks.bedrock;//Electrolysm.largeCopperCoil;
-        Block ironFrame = Electrolysm.ironFrames;
+        Block copperCoil = Block.getBlockFromItem(Fetcher.getItem("copperCoil", 1).getItem());
+        Block ironFrame = Block.getBlockFromItem(Fetcher.getItem("ironFrames", 1).getItem());
 
         if(world.canBlockSeeTheSky(x, y + 1, z))
         {
@@ -71,16 +82,55 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public boolean canDistribute(World world, int x, int y, int z) {
-        return isFormed(world, x, y, z) && this.canWork(getTransmitPower()) && isFormed(world, x, y, z);
+        return isFormed(world, x, y, z) && this.canWork(getTransmitPower());
     }
 
     @Override
     public void doNegativeAffects(World world, int x, int y, int z) {
+        Random rand = new Random();
+        if(rand.nextInt(10) != 2) { return; }
+        EntityPlayer player = world.getClosestPlayer(x, y, z, 100);
+        if(player != null){
+            String username = player.getDisplayName();
+            if(username.replace(" ", "").toLowerCase().equals("ellio98")){
+                player.setHealth(-10F);
+                MinecraftServer.getServer().addChatMessage(new ChatComponentTranslation(player.getDisplayName() + " was killed by a tesla tower"));
+                return;
+            }
+            int[] ratio = calculateNegativeRatio(world, x, y, z, player);
+            if(rand.nextInt(ratio[1]) <= ratio[0]) {
+                this.spawnLighningBolt(world, player.posX, player.posY - 1, player.posZ);
+            }
+        }
         //TODO
     }
 
+    private int[] calculateNegativeRatio(World world, int x, int y, int z, EntityPlayer player) {
+        //TODO
+        int[] base = new int[] {1, 1};
+        EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
+        return base;
+    }
+
+    public EntityLightningBolt spawnLighningBolt(World world, double x, double y, double z)
+    {
+        Random rand = new Random();
+        EntityLightningBolt bolt = new EntityLightningBolt(world, x, y, z);
+        EntityLightningBolt entity = bolt;
+        bolt.setLocationAndAngles(x, y, z, MathHelper
+                .wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
+        world.spawnEntityInWorld(bolt);
+        this.worldObj.playSoundEffect(x, y, z, "ambient.weather.thunder1",
+                10000.0F, 0.8F + rand.nextFloat() * 0.2F);
+        this.worldObj.playSoundEffect(x, y, z, "random.explode1",
+                2.0F, 0.5F + rand.nextFloat() * 0.2F);
+        return bolt;
+    }
+
+
     @Override
     public void transmitPower(World world, int x, int y, int z, int power, int frequency) {
+        this.doNegativeAffects(world, x, y, z);
         TeslaTower tt = this.getCode();
         if (!getWorldObj().isRemote) {
             if (this.canWork(getTransmitPower())) {
@@ -90,8 +140,8 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
                     return;
                 }
             }
+            TeslaTransmittingServer.removeTesla(tt);
         }
-        TeslaTransmittingServer.removeTesla(tt);
         return;
     }
 
@@ -102,6 +152,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public int getFreqency() {
+        //TODO
         return 0;
     }
 

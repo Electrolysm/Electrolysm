@@ -37,7 +37,7 @@ public class TeslaTransmittingServer// implements ICustomTeslaServer
         for(int i = 0; i < towerList.size(); i++)
         {
             TeslaTower teslaTower = towerList.get(i);
-            if(isInRange(teslaTower, x, y, z, range) && statsMatch(teslaTower, worldID, x, y, z, freq))
+            if(isInRange(teslaTower, x, y, z, range) && statsMatch(teslaTower, worldID, freq))
             {
                 return teslaTower;
             }
@@ -45,8 +45,8 @@ public class TeslaTransmittingServer// implements ICustomTeslaServer
         return null;
     }
 
-    private static boolean statsMatch(TeslaTower teslaTower, int worldID, int x, int y, int z, int freq) {
-        return teslaTower.getWorldData()[0] == worldID;
+    private static boolean statsMatch(TeslaTower teslaTower, int worldID, int freq) {
+        return teslaTower.getWorldData()[0] == worldID && teslaTower.getFreq() - freq == 0;
     }
 
     private static boolean isInRange(TeslaTower teslaTower, int x, int y, int z, int range) {

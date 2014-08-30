@@ -26,5 +26,5 @@ public interface ICable
      * @param clicks
      * @return returns the TEPowerCore that the cable network has foun d
      */
-    public TEPowerCore findCore(ForgeDirection exclude, int clicks);
+    public IPowerCore findCore(ForgeDirection exclude, int clicks);
 }

@@ -32,6 +32,10 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.thermalGenerator, "thermalGenerator");
         GameRegistry.registerBlock(Electrolysm.genActive, "genActive");
         GameRegistry.registerBlock(Electrolysm.advGenActive, "advGenActive");
+        GameRegistry.registerBlock(Electrolysm.teslaCore, "blockTeslaCore");
+        GameRegistry.registerBlock(Electrolysm.ironFrames, "ironFrame");
+        GameRegistry.registerBlock(Electrolysm.recievingCore, "recievingCore");
+        GameRegistry.registerBlock(Electrolysm.copperCoil, "copperCoil");
 
         //Ore Processing
         GameRegistry.registerBlock(Electrolysm.nettedBlock, "nettedBlock");
@@ -72,7 +76,6 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.roboticBase, "robotBase");
         GameRegistry.registerBlock(Electrolysm.matterGen, "antiMatterGen");
         GameRegistry.registerBlock(Electrolysm.antiMatterCasing, "antiCasing");
-        GameRegistry.registerBlock(Electrolysm.ironFrames, "ironFrame");
         GameRegistry.registerBlock(Electrolysm.advEnergyStorage, "advEnergyStorage");
         */
     }

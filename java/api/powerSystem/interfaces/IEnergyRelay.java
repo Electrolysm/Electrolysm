@@ -26,5 +26,5 @@ public interface IEnergyRelay
      * @param SideState
      * @return
      */
-    public TEPowerCore findCore(World world, int x, int y, int z, int SideState);
+    public IPowerCore findCore(World world, int x, int y, int z, int SideState);
 }

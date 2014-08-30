@@ -1,7 +1,6 @@
 package api;
 
 import api.items.Fetcher;
-import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
