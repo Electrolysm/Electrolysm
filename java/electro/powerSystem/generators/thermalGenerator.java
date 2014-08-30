@@ -35,8 +35,8 @@ public class thermalGenerator extends BlockEnergy
 
     @Override
     public void registerBlockIcons(IIconRegister reg) {
-        blockIcon = reg.registerIcon("electrolysm:lavaGenSide");
-        frontIcon = reg.registerIcon("electrolysm:powerGenTop");
+        blockIcon = reg.registerIcon("electrolysm:powerGen/lavaGenSide");
+        frontIcon = reg.registerIcon("electrolysm:powerGen/powerGenTop");
     }
 
     @Override
@@ -126,3 +126,4 @@ public class thermalGenerator extends BlockEnergy
         return false;
     }
 }
+

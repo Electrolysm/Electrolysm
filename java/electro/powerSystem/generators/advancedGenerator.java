@@ -41,9 +41,9 @@ public class advancedGenerator extends BlockEnergy
 
     @Override
     public void registerBlockIcons(IIconRegister reg) {
-        this.blockIcon = reg.registerIcon("electrolysm:powerGenSide");
-        this.bottom = reg.registerIcon("electrolysm:powerGenTop");
-        frontIcon = reg.registerIcon("electrolysm:advGeneratorFront");
+        this.blockIcon = reg.registerIcon("electrolysm:powerGen/powerGenSide");
+        this.bottom = reg.registerIcon("electrolysm:powerGen/powerGenTop");
+        frontIcon = reg.registerIcon("electrolysm:powerGen/advGeneratorFront");
     }
 
     public void getSubBlocks(Item id, CreativeTabs tab, List list)

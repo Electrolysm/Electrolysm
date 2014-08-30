@@ -30,8 +30,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class generator extends BlockEnergy
 {
     @SideOnly(Side.CLIENT)
-    private IIcon frontActive;
-    @SideOnly(Side.CLIENT)
     private IIcon front;
     
     private static boolean keepInventory;
@@ -51,9 +49,8 @@ public class generator extends BlockEnergy
     public void registerBlockIcons(IIconRegister reg)
     {
         String modID = "electrolysm:";
-        this.blockIcon = reg.registerIcon(modID + "generatorSide");
-        this.front = reg.registerIcon(modID + "generatorFront");
-        this.frontActive = reg.registerIcon(modID + "matterReactorActive");
+        this.blockIcon = reg.registerIcon(modID + "powerGen/generatorSide");
+        this.front = reg.registerIcon(modID + "powerGen/generatorFront");
     }
 
     @Override

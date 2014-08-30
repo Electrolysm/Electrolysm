@@ -33,9 +33,9 @@ public class BlockSolarPanel extends BlockEnergy
 
     @Override
     public void registerBlockIcons(IIconRegister reg) {
-        this.blockIcon = reg.registerIcon("electrolysm:powerGenSide");
-        this.bottom = reg.registerIcon("electrolysm:powerGenTop");
-        this.top = reg.registerIcon("electrolysm:solarPanel");
+        this.blockIcon = reg.registerIcon("electrolysm:powerGen/powerGenSide");
+        this.bottom = reg.registerIcon("electrolysm:powerGen/powerGenTop");
+        this.top = reg.registerIcon("electrolysm:powerGen/solarPanel");
     }
 
     @Override
