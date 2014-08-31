@@ -1,6 +1,8 @@
 package electro.powerSystem.gui;
 
 import api.powerSystem.prefab.TEPowerCore;
+import api.powerSystem.upgrades.ContainerUpgradable;
+import api.powerSystem.upgrades.GuiUpgradable;
 import electro.common.CommonProxy;
 import electro.handlers.helpers.ColourEnumHelper;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -27,7 +29,7 @@ public class EnergyCoreGUI extends GuiContainer{
 
     private TEPowerCore entity;
 
-    public EnergyCoreGUI(TEPowerCore entity,	InventoryPlayer inventory)
+    public EnergyCoreGUI(TEPowerCore entity, InventoryPlayer inventory)
     {
         super(new ContainerEnergyCore(entity, inventory));
         this.entity = entity;

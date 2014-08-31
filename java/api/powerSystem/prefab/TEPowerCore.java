@@ -2,6 +2,9 @@ package api.powerSystem.prefab;
 
 import api.powerSystem.interfaces.IConnector;
 import api.powerSystem.interfaces.IPowerCore;
+import api.powerSystem.upgrades.IUpgradeMachine;
+import api.powerSystem.upgrades.TileEntityUpgrade;
+import api.powerSystem.upgrades.Upgrade;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
