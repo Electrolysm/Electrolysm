@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -89,6 +91,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
     public void doNegativeAffects(World world, int x, int y, int z) {
         Random rand = new Random();
         if(rand.nextInt(10) != 2) { return; }
+
         EntityPlayer player = world.getClosestPlayer(x, y, z, 100);
         if(player != null){
             String username = player.getDisplayName();
@@ -97,19 +100,29 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
                 MinecraftServer.getServer().addChatMessage(new ChatComponentTranslation(player.getDisplayName() + " was killed by a tesla tower"));
                 return;
             }
-            int[] ratio = calculateNegativeRatio(world, x, y, z, player);
-            if(rand.nextInt(ratio[1]) <= ratio[0]) {
+            float[] ratio = calculateNegativeRatio(world, x, y, z, player);
+            if(rand.nextFloat() <= (ratio[0] / (ratio[1]))) {
                 this.spawnLighningBolt(world, player.posX, player.posY - 1, player.posZ);
             }
         }
         //TODO
     }
 
-    private int[] calculateNegativeRatio(World world, int x, int y, int z, EntityPlayer player) {
+    private float[] calculateNegativeRatio(World world, int x, int y, int z, EntityPlayer player) {
         //TODO
-        int[] base = new int[] {1, 1};
-        EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-        return base;
+        float distance = TeslaTransmittingServer.calculateDistance(player.posX, player.posY, player.posY, x, y, z);
+        int weight = calculatePlayerWeight(player.inventory);
+        return new float[] {weight, (float)Math.pow(distance, 1.8)};
+    }
+
+    private int calculatePlayerWeight(InventoryPlayer inventory) {
+        int weight = 1;
+        for(int i =0; i < inventory.mainInventory.length; i++){
+            if(inventory.mainInventory[i] != null) {
+                weight = weight + (2 * inventory.mainInventory[i].stackSize);
+            }
+        }
+        return weight;
     }
 
     public EntityLightningBolt spawnLighningBolt(World world, double x, double y, double z)
@@ -119,22 +132,24 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         EntityLightningBolt entity = bolt;
         bolt.setLocationAndAngles(x, y, z, MathHelper
                 .wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-        world.spawnEntityInWorld(bolt);
-        this.worldObj.playSoundEffect(x, y, z, "ambient.weather.thunder1",
-                10000.0F, 0.8F + rand.nextFloat() * 0.2F);
-        this.worldObj.playSoundEffect(x, y, z, "random.explode1",
-                2.0F, 0.5F + rand.nextFloat() * 0.2F);
+        //world.spawnEntityInWorld(bolt);
+        if(world.isRemote) {
+            this.worldObj.playSoundEffect(x, y, z, "ambient.weather.thunder1",
+                    10000.0F, 0.8F + rand.nextFloat() * 0.2F);
+            this.worldObj.playSoundEffect(x, y, z, "random.explode1",
+                    2.0F, 0.5F + rand.nextFloat() * 0.2F);
+        }
         return bolt;
     }
 
 
     @Override
     public void transmitPower(World world, int x, int y, int z, int power, int frequency) {
-        this.doNegativeAffects(world, x, y, z);
         TeslaTower tt = this.getCode();
         if (!getWorldObj().isRemote) {
             if (this.canWork(getTransmitPower())) {
                 if (this.canDistribute(world, x, y, z)) {
+                    //this.doNegativeAffects(world, x, y, z);
                     work(getTransmitPower());
                     TeslaTransmittingServer.registerSendingTesla(tt);
                     return;

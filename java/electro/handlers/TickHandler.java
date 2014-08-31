@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.handlers.version.VersionCheck;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.util.ChatComponentTranslation;
 
 import java.util.Random;
@@ -15,39 +16,13 @@ import java.util.Random;
  * Created by Clarky158 19/06/2014.
  */
 public class TickHandler
-{/*
-    public GuiResearchNotify guiNotify = null;
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void onTickRender(RenderGameOverlayEvent event)
-    {
-        System.out.println("render");
-
-        Minecraft mc = Minecraft.getMinecraft();
-        EntityPlayer player;
-
-        if ((Minecraft.getMinecraft().thePlayer instanceof EntityPlayer))
-        {
-            player = (EntityPlayer)Minecraft.getMinecraft().thePlayer;
-            long time = System.currentTimeMillis();
-            if (guiNotify == null) { guiNotify = new GuiResearchNotify(mc); }
-
-            guiNotify.updateResearchWindow();
-            //System.out.println("rendering");
-
-            boolean hasWorld = mc.theWorld != null;
-            GuiScreen gui = mc.currentScreen;
-        }
-    }
-*/
+{
     int times = 0;
+    //public EntityLightningBolt bolt = null;
 
     @SubscribeEvent
     public void checkUpdate(TickEvent.ClientTickEvent event)
     {
-        //System.out.println("tick");
-        //VersionCheck.check();
-
         if (FMLClientHandler.instance().getClient().inGameHasFocus) {
             if (times <= 0) {
                 if (VersionCheck.getMessage() != null) {
@@ -55,10 +30,9 @@ public class TickHandler
                     times = 100;
                 }
             }
-            //String message = "http://www.google.co.uk";
-            //this.printChatMessage(message);
-            //this.printChatMessage(VersionCheck.getMessage());
         }
+        /*if(bolt != null){
+        }*/
     }
 
     @SideOnly(Side.CLIENT)

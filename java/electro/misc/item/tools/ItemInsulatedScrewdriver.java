@@ -1,9 +1,11 @@
 package electro.misc.item.tools;
 
+import api.powerSystem.interfaces.IPowerCore;
 import api.powerSystem.prefab.TEPowerCore;
 import api.powerSystem.prefab.TileEntityGenerator;
 import api.powerSystem.prefab.TileEntityMachine;
 import api.powerSystem.prefab.TileEntityRelay;
+import api.powerSystem.tesla.ITeslaTower;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -42,7 +44,7 @@ public class ItemInsulatedScrewdriver extends Item
         if(player.isSneaking())
         {
             if(worldTE instanceof TEPowerCore || worldTE instanceof TileEntityMachine || worldTE instanceof TileEntityGenerator ||
-                    worldTE instanceof TileEntityRelay) {
+                    worldTE instanceof TileEntityRelay || worldTE instanceof IPowerCore || worldTE instanceof ITeslaTower) {
                 block.dropBlockAsItem(world, x, y, z, 0, 1);
                 world.setBlockToAir(x, y, z);
                 return true;

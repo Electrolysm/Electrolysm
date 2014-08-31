@@ -39,10 +39,14 @@ public class BlockCopperCoil extends GlassBlockConnectedMeta {
             icons[i][8] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_2_dr");
             icons[i][9] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_2_ul");
             icons[i][10] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_2_ur");
-            icons[i][11] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_d");
-            icons[i][12] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_u");
-            icons[i][13] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_l");
-            icons[i][14] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_r");
+            //icons[i][11] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_d");
+            //icons[i][12] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_u");
+            //icons[i][13] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_l");
+            //icons[i][14] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_3_r");
+            icons[i][11] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass");
+            icons[i][12] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass");
+            icons[i][13] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass");
+            icons[i][14] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass");
             icons[i][15] = par1IconRegister.registerIcon("electrolysm:coil/" + folder + "/glass_4");
         }
     }

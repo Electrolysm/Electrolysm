@@ -3,6 +3,7 @@ package electro.powerSystem;
 import api.powerSystem.interfaces.IPowerCore;
 import api.powerSystem.meter.IMeterable;
 import api.powerSystem.prefab.TileEntityGenerator;
+import api.powerSystem.tesla.TETeslaTower;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -62,10 +63,25 @@ public class energyMeter extends Item
                     this.printMessageGenerator(world.getBlock(x, y, z), te);
                     return true;
                 }
+                if(worldTE instanceof TETeslaTower){
+                    TETeslaTower te = (TETeslaTower) worldTE;
+                    this.printMessageTesla(te);
+                    return true;
+                }
             }
         }
 
         return false;
+    }
+
+    private void printMessageTesla(TETeslaTower te) {
+        String teu = "Transmitting: %VALUE%TeU";
+        String freq = "Frequency: %VALUE%";
+
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                new ChatComponentTranslation(teu.replace("%VALUE%", String.valueOf(te.getTransmitPower()))));
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
+                new ChatComponentTranslation(freq.replace("%VALUE%", String.valueOf(te.getFreqency()))));
     }
 
     private void printMessageGenerator(Block block, TileEntityGenerator te)

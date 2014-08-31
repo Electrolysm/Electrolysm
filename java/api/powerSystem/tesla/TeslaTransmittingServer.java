@@ -13,7 +13,7 @@ import java.util.List;
  * and you have certain rights with respective
  * to the code.
  */
-public class TeslaTransmittingServer// implements ICustomTeslaServer
+public class TeslaTransmittingServer //implements ICustomTeslaServer
 {
 
     static List<TeslaTower> towerList = new ArrayList<TeslaTower>();
@@ -22,6 +22,15 @@ public class TeslaTransmittingServer// implements ICustomTeslaServer
         if (!towerList.contains(tower)) {
             towerList.add(tower);
         }
+    }
+
+    public static boolean doesFrequencyExist(int frequency){
+        for(int i = 0; i < towerList.size(); i++){
+            if(towerList.get(i).getFreq() - frequency == 0){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean removeTesla(TeslaTower tower) {
@@ -54,12 +63,15 @@ public class TeslaTransmittingServer// implements ICustomTeslaServer
     }
 
 
-    public static int calculateDistance(int x, int y, int z, int towerX, int towerY, int towerZ) {
-        int xPower = (int) Math.pow((x - towerX), 2);
-        int yPower = (int) Math.pow((y - towerY), 2);
-        int zPower = (int) Math.pow((z - towerZ), 2);
+    public static float calculateDistance(int x, int y, int z, int towerX, int towerY, int towerZ) {
+        float xPower = (float) Math.pow((x - towerX), 2);
+        float yPower = (float) Math.pow((y - towerY), 2);
+        float zPower = (float) Math.pow((z - towerZ), 2);
 
-        return (int) (Math.sqrt(xPower + yPower + zPower));
+        return (float) Math.sqrt(xPower + yPower + zPower);
     }
 
+    public static float calculateDistance(double x, double y, double z, double towerX, double towerY, double towerZ) {
+        return calculateDistance((int) x, (int) y, (int) z, (int) towerX, (int) towerY, (int) towerZ);
+    }
 }

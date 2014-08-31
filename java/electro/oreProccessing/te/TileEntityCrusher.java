@@ -219,7 +219,7 @@ public class TileEntityCrusher extends TileEntityMachine implements IInventory, 
 	                    int outputSize = output.stackSize;
 	                    int resultSize = result.stackSize;
 	
-	                    if (((resultSize + outputSize) < 64))
+	                    if (((resultSize + outputSize) <= 64))
 	                    {
 	                    	if(time == crushTime)
 	                    	{
