@@ -1,6 +1,6 @@
 package electro.sciences.alloyFurnace;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import electro.Electrolysm;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

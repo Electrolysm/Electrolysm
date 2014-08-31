@@ -1,8 +1,7 @@
 package electro.powerSystem.tesla;
 
-import api.powerSystem.tesla.TERecievingCore;
+import electrolysm.api.powerSystem.tesla.TERecievingCore;
 import electro.Electrolysm;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;

@@ -2,7 +2,7 @@ package electro.oreProccessing.te;
 
 import java.util.Random;
 
-import api.powerSystem.prefab.TileEntityMachine;
+import electrolysm.api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import electro.oreProccessing.crusher;
 import net.minecraft.block.Block;
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import electro.powerSystem.PowerUsage;
-import api.powerSystem.meter.IMeterable;
+import electrolysm.api.powerSystem.meter.IMeterable;
 import electro.oreProccessing.recipes.CrusherRecipes;
 
 public class TileEntityCrusher extends TileEntityMachine implements IInventory, ISidedInventory, IMeterable

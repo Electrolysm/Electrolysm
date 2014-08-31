@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import api.powerSystem.prefab.BlockEnergy;
+import electrolysm.api.powerSystem.prefab.BlockEnergy;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;

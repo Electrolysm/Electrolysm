@@ -1,9 +1,9 @@
 package electro.powerSystem;
 
-import api.powerSystem.interfaces.IPowerCore;
-import api.powerSystem.meter.IMeterable;
-import api.powerSystem.prefab.TileEntityGenerator;
-import api.powerSystem.tesla.TETeslaTower;
+import electrolysm.api.powerSystem.interfaces.IPowerCore;
+import electrolysm.api.powerSystem.meter.IMeterable;
+import electrolysm.api.powerSystem.prefab.TileEntityGenerator;
+import electrolysm.api.powerSystem.tesla.TETeslaTower;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

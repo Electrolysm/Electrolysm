@@ -1,10 +1,8 @@
 package electro.powerSystem;
 
-import api.powerSystem.prefab.BlockEnergy;
-import api.powerSystem.prefab.TileEntityRelay;
+import electrolysm.api.powerSystem.prefab.BlockEnergy;
+import electrolysm.api.powerSystem.prefab.TileEntityRelay;
 import electro.Electrolysm;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;

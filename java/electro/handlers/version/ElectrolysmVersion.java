@@ -1,8 +1,5 @@
 package electro.handlers.version;
 
-import api.items.Fetcher;
-import electro.Electrolysm;
-
 import java.util.ArrayList;
 import java.util.List;
 

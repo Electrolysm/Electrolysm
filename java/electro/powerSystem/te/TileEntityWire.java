@@ -1,9 +1,8 @@
 package electro.powerSystem.te;
 
-import api.powerSystem.interfaces.IConnector;
-import api.powerSystem.prefab.TileEntityBasicCable;
+import electrolysm.api.powerSystem.interfaces.IConnector;
+import electrolysm.api.powerSystem.prefab.TileEntityBasicCable;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;

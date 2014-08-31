@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import api.specialFuel.SpecialFuelHandler;
+import electrolysm.api.specialFuel.SpecialFuelHandler;
 
 public class TileEntityGeneratorAntimatter extends TileEntityProducer implements IInventory, ISidedInventory
 {

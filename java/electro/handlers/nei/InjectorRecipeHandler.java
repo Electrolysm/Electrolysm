@@ -3,7 +3,7 @@ package electro.handlers.nei;
 import java.awt.Rectangle;
 import java.util.*;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

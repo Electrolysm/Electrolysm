@@ -1,7 +1,6 @@
 package electro.powerSystem.gui;
 
-import api.powerSystem.prefab.TEPowerCore;
-import api.powerSystem.upgrades.ContainerUpgradable;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

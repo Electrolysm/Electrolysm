@@ -1,15 +1,12 @@
 package electro.oreProccessing.recipes;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import electro.Electrolysm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

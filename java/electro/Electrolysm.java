@@ -5,7 +5,7 @@
  */
 package electro;
 
-import api.LoggerHandler;
+import electrolysm.api.LoggerHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;

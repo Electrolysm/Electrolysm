@@ -1,14 +1,11 @@
 package electro.powerSystem.generators;
 
-import api.powerSystem.prefab.BlockEnergy;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import electrolysm.api.powerSystem.prefab.BlockEnergy;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import electro.Electrolysm;
 import electro.powerSystem.generators.te.TileEntityAdvGenerator;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

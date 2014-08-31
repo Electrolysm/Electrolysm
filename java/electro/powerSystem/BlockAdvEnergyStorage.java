@@ -1,8 +1,7 @@
 package electro.powerSystem;
 
-import api.powerSystem.prefab.TEPowerCore;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import electro.Electrolysm;
-import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 

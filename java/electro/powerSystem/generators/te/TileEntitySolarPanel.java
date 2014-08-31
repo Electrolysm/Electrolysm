@@ -1,7 +1,7 @@
 package electro.powerSystem.generators.te;
 
 import electro.powerSystem.PowerUsage;
-import api.powerSystem.prefab.TileEntityGenerator;
+import electrolysm.api.powerSystem.prefab.TileEntityGenerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;

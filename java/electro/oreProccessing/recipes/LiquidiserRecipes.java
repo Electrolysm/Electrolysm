@@ -3,9 +3,8 @@ package electro.oreProccessing.recipes;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import electro.Electrolysm;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

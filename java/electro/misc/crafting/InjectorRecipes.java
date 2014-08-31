@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import electro.Electrolysm;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

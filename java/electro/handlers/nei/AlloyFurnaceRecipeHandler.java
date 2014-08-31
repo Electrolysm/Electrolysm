@@ -1,6 +1,6 @@
 package electro.handlers.nei;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;

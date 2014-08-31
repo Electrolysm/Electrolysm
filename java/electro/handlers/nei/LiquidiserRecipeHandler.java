@@ -1,19 +1,15 @@
 package electro.handlers.nei;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.TreeSet;
 
-import api.items.RecipeStack;
+import electrolysm.api.items.RecipeStack;
 import electro.oreProccessing.gui.GUICrusher;
-import electro.oreProccessing.recipes.CrusherRecipes;
 import electro.oreProccessing.recipes.LiquidiserRecipes;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import electro.common.CommonProxy;
 import codechicken.nei.NEIClientUtils;

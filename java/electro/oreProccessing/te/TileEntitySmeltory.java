@@ -3,7 +3,7 @@ package electro.oreProccessing.te;
 import java.util.Random;
 
 import electro.powerSystem.PowerUsage;
-import api.powerSystem.prefab.TileEntityMachine;
+import electrolysm.api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import electro.handlers.network.SmeltoryMessage;
 import electro.oreProccessing.smeltory;
@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import api.powerSystem.meter.IMeterable;
+import electrolysm.api.powerSystem.meter.IMeterable;
 import electro.oreProccessing.recipes.SmeltoryRecipes;
 
 public class TileEntitySmeltory extends TileEntityMachine implements IInventory, ISidedInventory, IMeterable

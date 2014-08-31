@@ -1,8 +1,8 @@
 package electro.handlers;
 
-import api.powerSystem.prefab.*;
-import api.powerSystem.tesla.TERecievingCore;
-import api.powerSystem.tesla.TETeslaTower;
+import electrolysm.api.powerSystem.prefab.*;
+import electrolysm.api.powerSystem.tesla.TERecievingCore;
+import electrolysm.api.powerSystem.tesla.TETeslaTower;
 import cpw.mods.fml.common.registry.GameRegistry;
 import electro.machines.advMachines.te.TileEntityCharger;
 import electro.machines.advMachines.te.TileEntityEnergiser;

@@ -1,10 +1,8 @@
 package electro.powerSystem.tesla;
 
-import api.powerSystem.tesla.TETeslaTower;
+import electrolysm.api.powerSystem.tesla.TETeslaTower;
 import electro.Electrolysm;
-import electro.misc.crafting.items.BlockCrafting;
 import electro.powerSystem.tesla.te.TileEntityTeslaCore;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -1,11 +1,11 @@
 package electro.misc.item.tools;
 
-import api.powerSystem.interfaces.IPowerCore;
-import api.powerSystem.prefab.TEPowerCore;
-import api.powerSystem.prefab.TileEntityGenerator;
-import api.powerSystem.prefab.TileEntityMachine;
-import api.powerSystem.prefab.TileEntityRelay;
-import api.powerSystem.tesla.ITeslaTower;
+import electrolysm.api.powerSystem.interfaces.IPowerCore;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
+import electrolysm.api.powerSystem.prefab.TileEntityGenerator;
+import electrolysm.api.powerSystem.prefab.TileEntityMachine;
+import electrolysm.api.powerSystem.prefab.TileEntityRelay;
+import electrolysm.api.powerSystem.tesla.ITeslaTower;
 import electro.Electrolysm;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;

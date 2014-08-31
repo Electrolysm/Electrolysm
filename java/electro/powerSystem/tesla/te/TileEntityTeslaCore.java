@@ -1,7 +1,6 @@
 package electro.powerSystem.tesla.te;
 
-import api.powerSystem.tesla.TETeslaTower;
-import net.minecraft.tileentity.TileEntity;
+import electrolysm.api.powerSystem.tesla.TETeslaTower;
 
 /**
  * Created by Clarky158 on 30/08/2014.

@@ -1,6 +1,6 @@
 package electro.handlers;
 
-import api.powerSystem.prefab.TEPowerCore;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import cpw.mods.fml.common.network.IGuiHandler;
 import electro.machines.advMachines.container.ContainerEnergiser;
 import electro.machines.advMachines.container.ContainerInjector;

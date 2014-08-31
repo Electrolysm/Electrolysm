@@ -1,9 +1,8 @@
 package electro.client;
 
-import api.powerSystem.interfaces.IConnector;
-import api.powerSystem.prefab.TEPowerCore;
+import electrolysm.api.powerSystem.interfaces.IConnector;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import electro.common.CommonProxy;
-import electro.machines.assemblySystem.crafting.TileEntityMatrix;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;

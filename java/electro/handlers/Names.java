@@ -1,12 +1,10 @@
 package electro.handlers;
 
 import electro.Electrolysm;
-import electro.world.biome.EntityZombie_Scientist;
 import net.minecraft.item.ItemStack;
-import api.specialFuel.SpecialFuelHandler;
+import electrolysm.api.specialFuel.SpecialFuelHandler;
 import electro.common.CommonProxy;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import net.minecraft.world.World;
 
 public class Names
 {

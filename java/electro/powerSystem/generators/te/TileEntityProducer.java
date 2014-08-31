@@ -1,9 +1,8 @@
 package electro.powerSystem.generators.te;
 
-import api.powerSystem.interfaces.IBatteryCharger;
-import api.powerSystem.prefab.TileEntityGenerator;
+import electrolysm.api.powerSystem.interfaces.IBatteryCharger;
+import electrolysm.api.powerSystem.prefab.TileEntityGenerator;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 
 public class TileEntityProducer extends TileEntityGenerator implements IBatteryCharger

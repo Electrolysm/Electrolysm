@@ -1,6 +1,6 @@
 package electro.client;
 
-import api.powerSystem.prefab.TEPowerCore;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import electro.Electrolysm;

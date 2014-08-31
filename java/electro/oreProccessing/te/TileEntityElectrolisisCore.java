@@ -1,7 +1,7 @@
 package electro.oreProccessing.te;
 
 import electro.powerSystem.PowerUsage;
-import api.powerSystem.prefab.TileEntityMachine;
+import electrolysm.api.powerSystem.prefab.TileEntityMachine;
 import electro.Electrolysm;
 import electro.handlers.helpers.Utilities;
 import electro.oreProccessing.recipes.electrolisisRecipes;
@@ -12,7 +12,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import api.powerSystem.meter.IMeterable;
+import electrolysm.api.powerSystem.meter.IMeterable;
 import net.minecraft.world.World;
 
 public class TileEntityElectrolisisCore extends TileEntityMachine implements IInventory, /*IPullEnergy,

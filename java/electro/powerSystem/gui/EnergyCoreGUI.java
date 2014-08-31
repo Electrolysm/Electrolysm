@@ -1,19 +1,11 @@
 package electro.powerSystem.gui;
 
-import api.powerSystem.prefab.TEPowerCore;
-import api.powerSystem.upgrades.ContainerUpgradable;
-import api.powerSystem.upgrades.GuiUpgradable;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import electro.common.CommonProxy;
 import electro.handlers.helpers.ColourEnumHelper;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Clarky158 on 23/07/2014.

@@ -2,9 +2,9 @@ package electro.misc.item.fuels;
 
 import java.util.List;
 
-import api.specialFuel.FuelData;
-import api.specialFuel.IFuelStorage;
-import api.specialFuel.SpecialFuelHandler;
+import electrolysm.api.specialFuel.FuelData;
+import electrolysm.api.specialFuel.IFuelStorage;
+import electrolysm.api.specialFuel.SpecialFuelHandler;
 import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
