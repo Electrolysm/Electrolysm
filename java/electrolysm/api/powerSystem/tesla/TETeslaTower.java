@@ -7,6 +7,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentTranslation;
@@ -28,6 +32,8 @@ import java.util.Random;
 public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMachine{
 
     private TEPowerCore powerCore = null;
+    public boolean isTransmitting = false;
+    private int frequency = 0;
 
     @Override
     public int getTransmitPower()
@@ -144,25 +150,31 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
             if (this.canWork(getTransmitPower())) {
                 if (this.canDistribute(world, x, y, z)) {
                     //this.doNegativeAffects(world, x, y, z);
+                    this.isTransmitting = true;
                     work(getTransmitPower());
                     TeslaTransmittingServer.registerSendingTesla(tt);
                     return;
                 }
             }
             TeslaTransmittingServer.removeTesla(tt);
+            this.isTransmitting = false;
         }
         return;
     }
 
     @Override
     public TeslaTower getCode() {
-        return new TeslaTower(getWorld().provider.dimensionId, x(), y(), z(), getTransmitPower(), getFreqency());
+        return new TeslaTower(getWorld().provider.dimensionId, x(), y(), z(), getTransmitPower(), getFrequency());
     }
 
     @Override
-    public int getFreqency() {
-        //TODO
-        return 0;
+    public int getFrequency() {
+        return frequency;
+    }
+
+    @Override
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
 
     @Override
@@ -205,7 +217,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
     @Override
     public void updateEntity() {
         keepChunkLoaded();
-        this.transmitPower(getWorld(), x(), y(), z(), getTransmitPower(), getFreqency());
+        this.transmitPower(getWorld(), x(), y(), z(), getTransmitPower(), getFrequency());
         powerCore = getPowerCore();
     }
 
@@ -221,4 +233,17 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         return null;
     }
 
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setBoolean("isTransmitting", isTransmitting);
+        tag.setInteger("freq", this.getFrequency());
+        return new S35PacketUpdateTileEntity(x(), y(), z(), 0, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        isTransmitting = pkt.func_148857_g().getBoolean("isTransmitting");
+        setFrequency(pkt.func_148857_g().getInteger("freq"));
+    }
 }

@@ -81,7 +81,7 @@ public class energyMeter extends Item
         FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
                 new ChatComponentTranslation(teu.replace("%VALUE%", String.valueOf(te.getTransmitPower()))));
         FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(
-                new ChatComponentTranslation(freq.replace("%VALUE%", String.valueOf(te.getFreqency()))));
+                new ChatComponentTranslation(freq.replace("%VALUE%", String.valueOf(te.getFrequency()))));
     }
 
     private void printMessageGenerator(Block block, TileEntityGenerator te)

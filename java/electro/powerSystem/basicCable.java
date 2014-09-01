@@ -9,13 +9,18 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.List;
 
 
 public class basicCable extends BlockContainer
@@ -27,6 +32,8 @@ public class basicCable extends BlockContainer
         this.setHardness(5F);
         setHarvestLevel("pickaxe",1);
         setStepSound(soundTypeCloth);
+        this.setBlockBoundsForItemRender();
+        System.out.println("construct");
     }
 
     @Override
@@ -81,9 +88,15 @@ public class basicCable extends BlockContainer
             this.maxZ = te.getAdjConnections()[3] != null ? 1F : 0.7F;
         }
     }
-/*
+
+
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
+        return super.getSelectedBoundingBoxFromPool(world, x, y, z);
+    }
+
+    @Override
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axis, List list, Entity entity) {
         float minX1 = 1F, minY1 = 1F, minZ1 = 1F;
         float maxX1 = 1F, maxY1 = 1F, maxZ1 = 1F;
 
@@ -99,10 +112,13 @@ public class basicCable extends BlockContainer
             maxY1 = te.getAdjConnections()[1] != null ? 1F : 0.7F;
             maxZ1 = te.getAdjConnections()[3] != null ? 1F : 0.7F;
         }
-
-        return AxisAlignedBB.getBoundingBox(minX1, minY1, minZ1, maxX1, maxY1, maxZ1);
+        this.setBlockBounds(minX1, minY1, minZ1, maxX1, maxY1, maxZ1);
+        super.addCollisionBoxesToList(world, x, y, z, axis, list, entity);
     }
 
+    @Override
+    public void setBlockBoundsForItemRender() {
+    }
 
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
@@ -122,7 +138,7 @@ public class basicCable extends BlockContainer
             maxY1 = te.getAdjConnections()[1] != null ? 1F : 0.7F;
             maxZ1 = te.getAdjConnections()[3] != null ? 1F : 0.7F;
         }
-
-        return AxisAlignedBB.getBoundingBox(minX1, minY1, minZ1, maxX1, maxY1, maxZ1);
-    }*/
+        this.setBlockBounds(minX1, minY1, minZ1, maxX1, maxY1, maxZ1);
+        return super.getCollisionBoundingBoxFromPool(world, x, y, z);
+    }
 }

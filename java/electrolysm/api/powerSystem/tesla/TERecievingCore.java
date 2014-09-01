@@ -12,10 +12,13 @@ import net.minecraftforge.common.util.ForgeDirection;
  * Created by Clarky158 on 30/08/2014.
  */
 public class TERecievingCore extends TileEntity implements IReciever, IConnector, IPowerCore {
+
+    private int teu = 0;
+
     @Override
     public int getTeU() {
         if(getTower() != null) {
-            return getTower().getPower();
+            return teu = getTower().getPower();
         }
         return 0;
     }
@@ -34,6 +37,8 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
     public int getRange() {
         return 100;
     }
+
+    //Needs to balance
 
     @Override
     public int getFrequency() {
@@ -100,6 +105,7 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
     @Override
     public void drainPower(int amount)
     {
+        teu = teu - amount;
     }
 
     @Override

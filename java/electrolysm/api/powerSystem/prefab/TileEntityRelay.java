@@ -1,5 +1,6 @@
 package electrolysm.api.powerSystem.prefab;
 
+import electrolysm.api.ArrayHelper;
 import electrolysm.api.powerSystem.interfaces.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -45,11 +46,6 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
 
     @Override
     public boolean canConnect(ForgeDirection side) {
-        /*System.out.println(this.getState(side.ordinal()) + " : " + side.ordinal() + " : " + side);
-        for(int i = 0; i < 6; i++) {
-            System.out.println("Sides: " + i + "-" + sideStates[i]);
-        }*/
-
         return side != ForgeDirection.UNKNOWN && this.getState(getSideID(side)) != this.DEFAULT;
     }
 
@@ -81,6 +77,11 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
 
     @Override
     public void updateEntity() {
+
+        if(!(ArrayHelper.asList(lastSideState).equals(ArrayHelper.asList(sideStates)))) {
+            worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, 0, 0, 0);
+            lastSideState = sideStates;
+        }
 
         if (worldObj.isRemote) {
             return;
@@ -130,6 +131,7 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
     }
 
     int[] sideStates = new int[6];
+    int[] lastSideState = new int[6];
     int DEFAULT = 0;
     int INPUT = 1;
     int OUTPUT = 2;
@@ -202,3 +204,4 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
         sideStates = pkt.func_148857_g().getIntArray("sideSetting");
     }
 }
+

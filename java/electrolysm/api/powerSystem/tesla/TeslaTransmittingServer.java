@@ -24,9 +24,9 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
         }
     }
 
-    public static boolean doesFrequencyExist(int frequency){
-        for(int i = 0; i < towerList.size(); i++){
-            if(towerList.get(i).getFreq() - frequency == 0){
+    public static boolean doesFrequencyExist(int frequency) {
+        for (int i = 0; i < towerList.size(); i++) {
+            if (towerList.get(i).getFreq() - frequency == 0) {
                 return true;
             }
         }
@@ -34,8 +34,7 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
     }
 
     public static boolean removeTesla(TeslaTower tower) {
-        if(towerList.contains(tower))
-        {
+        if (towerList.contains(tower)) {
             towerList.remove(tower);
             return true;
         }
@@ -43,12 +42,9 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
     }
 
     public static TeslaTower getTeslaTower(int worldID, int x, int y, int z, int freq, int range) {
-        for(int i = 0; i < towerList.size(); i++)
-        {
+        for (int i = 0; i < towerList.size(); i++) {
             TeslaTower teslaTower = towerList.get(i);
-            if(isInRange(teslaTower, x, y, z, range) && statsMatch(teslaTower, worldID, freq))
-            {
-                System.out.println(towerList);
+            if (isInRange(teslaTower, x, y, z, range) && statsMatch(teslaTower, worldID, freq)) {
                 return teslaTower;
             }
         }

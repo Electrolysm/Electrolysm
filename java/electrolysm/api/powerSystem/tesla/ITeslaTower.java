@@ -25,5 +25,7 @@ public abstract interface ITeslaTower extends IWorldMethods{
 
     public TeslaTower getCode();
 
-    public int getFreqency();
+    public int getFrequency();
+
+    public void setFrequency(int frequency);
 }
