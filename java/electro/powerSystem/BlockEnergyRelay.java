@@ -4,6 +4,7 @@ import electrolysm.api.powerSystem.prefab.BlockEnergy;
 import electrolysm.api.powerSystem.prefab.TileEntityRelay;
 import electro.Electrolysm;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -53,5 +54,16 @@ public class BlockEnergyRelay extends BlockEnergy
     @Override
     public IIcon getIcon(int side, int meta) {
         return icons[0];
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float sideX,
+                                    float sideY, float sideZ) {
+        if (world.getBlockMetadata(x, y, z) == 0) {
+            world.setBlockMetadataWithNotify(x, y, z, 1, 0);
+        } else {
+            world.setBlockMetadataWithNotify(x, y, z, 0, 0);
+        }
+        return super.onBlockActivated(world, x, y, z, player, side, sideX, sideY, sideZ);
     }
 }

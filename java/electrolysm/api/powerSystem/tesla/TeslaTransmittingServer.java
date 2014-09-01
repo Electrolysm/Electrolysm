@@ -48,6 +48,7 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
             TeslaTower teslaTower = towerList.get(i);
             if(isInRange(teslaTower, x, y, z, range) && statsMatch(teslaTower, worldID, freq))
             {
+                System.out.println(towerList);
                 return teslaTower;
             }
         }

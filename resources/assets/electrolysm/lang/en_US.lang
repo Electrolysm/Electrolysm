@@ -4,6 +4,8 @@ entity.Electrolysm.Zombie Scientist.name=Zombie Scientist
 
 # Blocks
 
+tile.BlockTeslaCore.name=Tesla Core
+tile.BlockCopperCoil.name=Copper Coil
 tile.workBench.name=Work Bench
 tile.desk.name= Scientist's Desk
 tile.researchDesk.name=Research Desk
@@ -21,7 +23,7 @@ tile.electrolChamber.name=Electrolysis Chamber
 tile.electrolysisCore.name=Electrolysis Core
 tile.crusher.name=Crusher
 tile.liquidiser.name=Displacement Chamber
-tile.smeltory.name=Smeltery
+tile.smeltory.name=Industrial Furnace
 tile.sulphuricAcid.name=Sulphuric Acid
 tile.ironFrames.name=Iron Frames
 tile.copperOre.name=Copper Ore

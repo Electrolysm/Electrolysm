@@ -117,21 +117,11 @@ public class TileEntityRelay extends TileEntity implements IConnector, ISidedWre
 
         //Taking from "FromPowerCore" and give to "ToPowerCore"
         if (FromPowerCore != null && ToPowerCore != null /*&& FromPowerCore != ToPowerCore*/) {
-            //System.out.println("take and give");
             this.takeAndGive(FromPowerCore, ToPowerCore);
-        }
-
-        //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        //worldObj.scheduleBlockUpdate(xCoord, yCoord, zCoord, worldObj.getBlock(xCoord, yCoord, zCoord), 1);
-        if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 0) {
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 0);
-        } else {
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 0);
         }
     }
 
     private void takeAndGive(IPowerCore from, IPowerCore to) {
-        //System.out.println(from + " : " + to);
         if(from.canDrain(TEU) && to.canHold(TEU))
         {
             from.drainPower(TEU);
