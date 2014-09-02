@@ -1,5 +1,8 @@
 package electro.handlers;
 
+import electro.powerSystem.tesla.gui.ContainerTeslaTower;
+import electro.powerSystem.tesla.gui.GuiTeslaTower;
+import electro.powerSystem.tesla.te.TileEntityTeslaCore;
 import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import cpw.mods.fml.common.network.IGuiHandler;
 import electro.machines.advMachines.container.ContainerEnergiser;
@@ -91,7 +94,10 @@ public class GUIHandler implements IGuiHandler {
             return new ContainerEnergyCore((TEPowerCore) entity, player.inventory);
         }
         if (entity instanceof TileEntityImprovedFurnace) {
-            return new ContainerImprovedFurnace(player.inventory, (TileEntityImprovedFurnace)entity);
+            return new ContainerImprovedFurnace(player.inventory, (TileEntityImprovedFurnace) entity);
+        }
+        if (entity instanceof TileEntityTeslaCore) {
+            return new ContainerTeslaTower((TileEntityTeslaCore) entity, player.inventory);
         }
         return null;
     }
@@ -143,7 +149,10 @@ public class GUIHandler implements IGuiHandler {
             return new EnergyCoreGUI((TEPowerCore) entity, player.inventory);
         }
         if (entity instanceof TileEntityImprovedFurnace) {
-            return new GuiImprovedFurnace(player.inventory, (TileEntityImprovedFurnace)entity);
+            return new GuiImprovedFurnace(player.inventory, (TileEntityImprovedFurnace) entity);
+        }
+        if (entity instanceof TileEntityTeslaCore) {
+            return new GuiTeslaTower((TileEntityTeslaCore) entity, player.inventory);
         }
         return null;
     }

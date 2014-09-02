@@ -241,7 +241,6 @@ public class Electrolysm
     	//ResearchHandler.downloadLabSkin();
         File configFile = new File("config/Electrolysm/Electrolysm.cfg");
         new ElectrolysmVersion(Referance.MOD_ID_LOWER, Referance.MOD_REF.VERSION, MinecraftForge.MC_VERSION).register();
-        PacketHandler.init();
         configHandler.init(configFile);
         //NewsCheck.check();
         BetaHandler.beta();
@@ -270,6 +269,7 @@ public class Electrolysm
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+        PacketHandler.init();
         new AnalyticsHandler().trackStart();
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();

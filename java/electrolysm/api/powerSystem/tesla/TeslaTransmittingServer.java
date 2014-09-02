@@ -17,7 +17,6 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
 {
 
     static List<TeslaTower> towerList = new ArrayList<TeslaTower>();
-    //FrequencyList;
 
     public static void registerSendingTesla(TeslaTower tower) {
         if (!towerList.contains(tower)) {
@@ -25,13 +24,18 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
         }
     }
 
-    public static boolean doesFrequencyExist(int frequency) {
+    /**
+     * Returns true if frequency is in use
+     * @param frequency
+     * @return
+     */
+    public static TeslaTower doesFrequencyExist(int frequency) {
         for (int i = 0; i < towerList.size(); i++) {
             if (towerList.get(i).getFreq() - frequency == 0) {
-                return true;
+                return towerList.get(i);
             }
         }
-        return false;
+        return null;
     }
 
     public static boolean removeTesla(TeslaTower tower) {

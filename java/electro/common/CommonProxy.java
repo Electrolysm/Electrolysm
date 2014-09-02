@@ -51,6 +51,7 @@ public class CommonProxy
     public static ResourceLocation THERMAL_GEN_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/thermalGenGUI.png");
     public static ResourceLocation POWER_CORE_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/energyCoreGUI.png");
     public static ResourceLocation COLLECTOR_GUI = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiCollector.png");
+    public static ResourceLocation TESLA_TOWER = new ResourceLocation(MOD_ID_LOWER, "textures/gui/GuiTeslaTower.png");
 
     //Research
     public static ResourceLocation BOOK_LEFT = new ResourceLocation(MOD_ID_LOWER, "textures/gui/research/book/bookLeft.png");
@@ -81,5 +82,4 @@ public class CommonProxy
     //MOBs
     public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
     public static int[] RANGE_TIER = {40, 80, 135};
-    
 }

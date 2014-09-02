@@ -33,6 +33,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     private TEPowerCore powerCore = null;
     public boolean isTransmitting = false;
+    private boolean goodFrequency = true;
     private int frequency = 0;
 
     @Override
@@ -84,7 +85,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public boolean canDistribute(World world, int x, int y, int z) {
-        return isFormed(world, x, y, z) && this.canWork(getTransmitPower());
+        return isFormed(world, x, y, z) && this.canWork(getTransmitPower()) && this.getFrequency() > 0 && goodFrequency;
     }
 
     @Override
@@ -145,8 +146,10 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public void transmitPower(World world, int x, int y, int z, int power, int frequency) {
+        world.markBlockForUpdate(x, y, z);
         TeslaTower tt = this.getCode();
         if (!getWorldObj().isRemote) {
+            this.checkFrequency(this.getFrequency());
             if (this.canWork(getTransmitPower())) {
                 if (this.canDistribute(world, x, y, z)) {
                     //this.doNegativeAffects(world, x, y, z);
@@ -162,6 +165,19 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         return;
     }
 
+    private void checkFrequency(int frequency) {
+        TeslaTower tt = TeslaTransmittingServer.doesFrequencyExist(frequency);
+        if(tt != null && !tt.equals(getCode())){
+            goodFrequency = false;
+        } else {
+            goodFrequency = true;
+        }
+    }
+
+    public boolean isGoodFrequency() {
+        return goodFrequency;
+    }
+
     @Override
     public TeslaTower getCode() {
         return new TeslaTower(getWorld().provider.dimensionId, x(), y(), z(), getTransmitPower(), getFrequency());
@@ -174,6 +190,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public void setFrequency(int frequency) {
+        TeslaTransmittingServer.towerList.clear();
         this.frequency = frequency;
     }
 
@@ -237,13 +254,13 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
     public Packet getDescriptionPacket() {
         NBTTagCompound tag = new NBTTagCompound();
         tag.setBoolean("isTransmitting", isTransmitting);
-        tag.setInteger("freq", this.getFrequency());
+        tag.setBoolean("goodFrequency", goodFrequency);
         return new S35PacketUpdateTileEntity(x(), y(), z(), 0, tag);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         isTransmitting = pkt.func_148857_g().getBoolean("isTransmitting");
-        setFrequency(pkt.func_148857_g().getInteger("freq"));
+        goodFrequency = pkt.func_148857_g().getBoolean("goodFrequency");
     }
 }
