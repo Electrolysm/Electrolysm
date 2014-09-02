@@ -24,6 +24,26 @@ public class Crafting
                 "blockSteel"
         }));
 
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.teslaCore), true, new Object[]{
+                "SRS", "BCB", "SMS",
+                Character.valueOf('S'), "ingotSteel",
+                Character.valueOf('R'), Electrolysm.crystal2,
+                Character.valueOf('B'), new ItemStack(Blocks.wool, 1, 15),
+                Character.valueOf('C'), Electrolysm.advancedCPU,
+                Character.valueOf('M'), Electrolysm.experimentalMicrochip
+        }));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.copperCoil, 2), true, new Object[]{
+            "CCC", "CIC", "CCC",
+                Character.valueOf('I'), Items.iron_ingot,
+                Character.valueOf('C'), Electrolysm.basicCable
+        }));
+
+        GameRegistry.addRecipe(new ItemStack(Electrolysm.ironFrames, 2),
+                "I I", " C ", "I I",
+                Character.valueOf('I'), Items.iron_ingot,
+                Character.valueOf('C'), Electrolysm.copperCoil);
+
         GameRegistry.addRecipe(new ItemStack(Electrolysm.blastDoor),
                                "XX", "XX", "XX",
                                'X', Electrolysm.blastProof);

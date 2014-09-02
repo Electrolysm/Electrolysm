@@ -18,6 +18,16 @@ public class LoggerHandler
         log(Level.FATAL, object);
     }
 
+    public static void error(Object object)
+    {
+        log(Level.ERROR, object);
+    }
+
+    public static void error(Object object, Object url)
+    {
+        log(Level.ERROR, object + String.valueOf(url));
+    }
+
     public static void debug(Object object)
     {
         log(Level.INFO, String.format("[DEBUG] %s", String.valueOf(object)));

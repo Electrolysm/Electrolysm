@@ -95,6 +95,7 @@ public class RegisterBlock
         //PowerSystem
         GameRegistry.registerItem(elec.crystalBase, "crystalBase");
         GameRegistry.registerItem(elec.crystal1, "crystalTier1");
+        GameRegistry.registerItem(elec.crystal2, "crystalTier2");
 
         //OreProcessing
         GameRegistry.registerItem(elec.impureDusts, "impureDusts");
@@ -142,7 +143,6 @@ public class RegisterBlock
         GameRegistry.registerItem(elec.bronze, "bronze");
         GameRegistry.registerItem(elec.silicon, "silicon");
         GameRegistry.registerItem(elec.pureCopperIngot, "pureCopperIngot");
-        GameRegistry.registerItem(elec.crystal2, "crystalTier2");
         GameRegistry.registerItem(elec.electroMagnet, "electroMagnet");
         GameRegistry.registerItem(elec.electroContain, "electroContain");
         GameRegistry.registerItem(elec.ballOfPlastic, "ballOfPlastic");

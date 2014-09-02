@@ -5,6 +5,7 @@
  */
 package electro;
 
+import electro.handlers.analytics.AnalyticsHandler;
 import electrolysm.api.LoggerHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -269,6 +270,7 @@ public class Electrolysm
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+        new AnalyticsHandler().trackStart();
         Crafting.addCrafting();
         Crafting.addFurnaceRecipes();
         this.addBiome();

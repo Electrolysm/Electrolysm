@@ -17,6 +17,7 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
 {
 
     static List<TeslaTower> towerList = new ArrayList<TeslaTower>();
+    //FrequencyList;
 
     public static void registerSendingTesla(TeslaTower tower) {
         if (!towerList.contains(tower)) {
