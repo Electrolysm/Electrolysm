@@ -19,6 +19,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(MessageMatrix.class, MessageMatrix.class, 1, Side.CLIENT);
         INSTANCE.registerMessage(SmeltoryMessage.class, SmeltoryMessage.class, 2, Side.CLIENT);
         INSTANCE.registerMessage(TeslaCoreMessage.class, TeslaCoreMessage.class, 3, Side.SERVER);
+        INSTANCE.registerMessage(ReceivingCoreMessage.class, ReceivingCoreMessage.class, 4, Side.SERVER);
         //INSTANCE.registerMessage(TeslaCoreMessage.class, TeslaCoreMessage.class, 3, Side.CLIENT);
     }
 }

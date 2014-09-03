@@ -4,6 +4,7 @@ import electrolysm.api.powerSystem.tesla.TERecievingCore;
 import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -21,5 +22,14 @@ public class BlockReciever extends BlockContainer {
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
         return new TERecievingCore();
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float sideX, float sideY, float sideZ) {
+        if(!player.isSneaking()){
+            player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z);
+            return true;
+        }
+        return super.onBlockActivated(world, x, y, z, player, side, sideX, sideY, sideZ);
     }
 }

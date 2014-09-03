@@ -3,28 +3,21 @@ package electro.powerSystem.tesla.gui;
 import electro.common.CommonProxy;
 import electro.handlers.helpers.ColourEnumHelper;
 import electro.handlers.network.PacketHandler;
+import electro.handlers.network.ReceivingCoreMessage;
 import electro.handlers.network.TeslaCoreMessage;
 import electro.powerSystem.tesla.te.TileEntityTeslaCore;
-import electrolysm.api.powerSystem.tesla.TeslaTransmittingServer;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import electrolysm.api.powerSystem.tesla.TERecievingCore;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.client.C17PacketCustomPayload;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import org.lwjgl.opengl.GL11;
 
 /**
- * Created by Clarky158 on 02/09/2014.
+ * Created by Clarky158 on 03/09/2014.
  */
-public class GuiTeslaTower extends GuiContainer {
+public class GuiReceivingCore extends GuiContainer {
 
-    public TileEntityTeslaCore entity;
+    public TERecievingCore entity;
     public int INCREASE_BUTTON_ID = 0;
     public int DECREASE_BUTTON_ID = 1;
     public String INCREASE_BUTTON_STRING_1 = "+1";
@@ -36,14 +29,12 @@ public class GuiTeslaTower extends GuiContainer {
 
     public String KEY = "%VALUE%";
     public String COLOUR = ColourEnumHelper.WHITE.toString();
-    public String COLOUR_GREEN = ColourEnumHelper.BRIGHT_GREEN.toString();
-    public String COLOUR_RED = ColourEnumHelper.RED.toString();
     public String FREQUENCY = COLOUR + "Freq: %VALUE% Hz";
-    public String POWER_VALUE = COLOUR + "Transmitting Power: %VALUE% TeU";
+    public String POWER_VALUE = COLOUR + "Receiving Power: %VALUE% TeU";
     public String POWER_0 = POWER_VALUE.replace(KEY, String.valueOf(0));
 
-    public GuiTeslaTower(TileEntityTeslaCore te, InventoryPlayer player) {
-        super(new ContainerTeslaTower(te, player));
+    public GuiReceivingCore(TERecievingCore te, InventoryPlayer player) {
+        super(new ContainerReceivingCore(te, player));
         entity = te;
     }
 
@@ -77,14 +68,9 @@ public class GuiTeslaTower extends GuiContainer {
         this.mc.renderEngine.bindTexture(CommonProxy.TESLA_TOWER);
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
 
-        if (entity.isGoodFrequency()) {
-            FREQUENCY = FREQUENCY.replace(COLOUR, COLOUR_GREEN);
-        } else {
-            FREQUENCY = FREQUENCY.replace(COLOUR, COLOUR_RED);
-        }
         this.drawCenteredString(fontRendererObj, FREQUENCY.replace(KEY, String.valueOf(entity.getFrequency())), x + 89, y + 29, 155475);
-        if (entity.isTransmitting) {
-            this.drawCenteredString(fontRendererObj, POWER_VALUE.replace(KEY, String.valueOf(entity.getTransmitPower())), x + 89, y + 66, 155475);
+        if (entity.getTower() != null && entity.getTeU() > 0) {
+            this.drawCenteredString(fontRendererObj, POWER_VALUE.replace(KEY, String.valueOf(entity.getTeU())), x + 89, y + 66, 155475);
         } else {
             this.drawCenteredString(fontRendererObj, POWER_0, x + 89, y + 66, 155475);
         }
@@ -117,6 +103,6 @@ public class GuiTeslaTower extends GuiContainer {
     }
 
     private void sendPacket() {
-        PacketHandler.INSTANCE.sendToServer(new TeslaCoreMessage(entity));
+        PacketHandler.INSTANCE.sendToServer(new ReceivingCoreMessage(entity));
     }
 }

@@ -8,14 +8,15 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by Clarky158 on 02/09/2014.
  */
 public class ContainerTeslaTower extends Container{
 
-    public TileEntityTeslaCore entity;
-    public ContainerTeslaTower(TileEntityTeslaCore te, InventoryPlayer player){
+    public TileEntity entity;
+    public ContainerTeslaTower(TileEntity te, InventoryPlayer player){
         super();
         entity = te;
         this.addPlayerInventory(player);

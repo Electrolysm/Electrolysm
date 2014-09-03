@@ -1,6 +1,8 @@
 package electro.handlers;
 
+import electro.powerSystem.tesla.gui.ContainerReceivingCore;
 import electro.powerSystem.tesla.gui.ContainerTeslaTower;
+import electro.powerSystem.tesla.gui.GuiReceivingCore;
 import electro.powerSystem.tesla.gui.GuiTeslaTower;
 import electro.powerSystem.tesla.te.TileEntityTeslaCore;
 import electrolysm.api.powerSystem.prefab.TEPowerCore;
@@ -36,6 +38,7 @@ import electro.powerSystem.gui.EnergyCoreGUI;
 import electro.sciences.alloyFurnace.ContainerAlloyFurnace;
 import electro.sciences.alloyFurnace.GuiAlloyFurnace;
 import electro.sciences.alloyFurnace.TileEntityAlloyFurnace;
+import electrolysm.api.powerSystem.tesla.TERecievingCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -99,6 +102,9 @@ public class GUIHandler implements IGuiHandler {
         if (entity instanceof TileEntityTeslaCore) {
             return new ContainerTeslaTower((TileEntityTeslaCore) entity, player.inventory);
         }
+        if (entity instanceof TERecievingCore) {
+            return new ContainerReceivingCore((TERecievingCore) entity, player.inventory);
+        }
         return null;
     }
 
@@ -153,6 +159,9 @@ public class GUIHandler implements IGuiHandler {
         }
         if (entity instanceof TileEntityTeslaCore) {
             return new GuiTeslaTower((TileEntityTeslaCore) entity, player.inventory);
+        }
+        if (entity instanceof TERecievingCore) {
+            return new GuiReceivingCore((TERecievingCore) entity, player.inventory);
         }
         return null;
     }
