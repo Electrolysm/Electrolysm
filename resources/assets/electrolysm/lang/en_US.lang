@@ -4,6 +4,8 @@ entity.Electrolysm.Zombie Scientist.name=Zombie Scientist
 
 # Blocks
 
+tile.BlockReceiverModel.name=Receiving Antenna
+tile.BlockReciever.name=Tesla Energy Receiver
 tile.BlockTeslaCore.name=Tesla Core
 tile.BlockCopperCoil.name=Copper Coil
 tile.workBench.name=Work Bench

@@ -21,6 +21,7 @@ public class AnalyticsHandler
         AnalyticsConfigData config = new AnalyticsConfigData("UA-54377296-1");
         tracker = new JGoogleAnalyticsTracker(config, JGoogleAnalyticsTracker.GoogleAnalyticsVersion.V_4_7_2);
         tracker.setEnabled(true);
+        tracker.setDispatchMode(JGoogleAnalyticsTracker.DispatchMode.SINGLE_THREAD);
     }
 
     public void trackStart(){

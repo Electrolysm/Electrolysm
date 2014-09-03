@@ -42,6 +42,8 @@ public class configHandler
     public static boolean multipart;
     public static int biomeID;
     public static int acidBurnsID;
+
+    public static boolean useSpheres;
     
     //etc. Do them in order so you dont get confused
     
@@ -63,6 +65,7 @@ public class configHandler
         multipart = config.get("OTHER", "addMultiparts", true).getBoolean(true);
         biomeID = config.get("OTHER", "biomeID", 20).getInt();
         acidBurnsID = config.get("OTHER", "acidBurnsID", 31).getInt();
+        useSpheres = config.get("OTHERS", "userSpheres", true).getBoolean();
         
         config.save();
     }

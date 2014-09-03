@@ -1,5 +1,6 @@
 package electro.handlers;
 
+import electro.powerSystem.tesla.te.TileEntityReceiverModel;
 import electrolysm.api.powerSystem.prefab.*;
 import electrolysm.api.powerSystem.tesla.TERecievingCore;
 import electrolysm.api.powerSystem.tesla.TETeslaTower;
@@ -26,6 +27,7 @@ public class TileEntityMappingHandler
 {
     public static void addMappings()
     {
+        GameRegistry.registerTileEntity(TileEntityReceiverModel.class, "TileEntityReceiverModel");
         GameRegistry.registerTileEntity(TileEntityGrass.class, "TileEntityGrass");
         GameRegistry.registerTileEntity(TileEntityRelay.class, "TileEntityRelay");
         GameRegistry.registerTileEntity(TETeslaTower.class, "TileEntityTeslaTower");

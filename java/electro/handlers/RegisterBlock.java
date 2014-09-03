@@ -36,6 +36,7 @@ public class RegisterBlock
         GameRegistry.registerBlock(Electrolysm.ironFrames, "ironFrame");
         GameRegistry.registerBlock(Electrolysm.recievingCore, "recievingCore");
         GameRegistry.registerBlock(Electrolysm.copperCoil, "copperCoil");
+        GameRegistry.registerBlock(Electrolysm.receiver, "receiverModel");
 
         //Ore Processing
         GameRegistry.registerBlock(Electrolysm.nettedBlock, "nettedBlock");

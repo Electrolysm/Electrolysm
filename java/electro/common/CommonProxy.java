@@ -82,4 +82,10 @@ public class CommonProxy
     //MOBs
     public static final ResourceLocation ZOMBIE_SCIENTIST_TEXTURE = new ResourceLocation(MOD_ID_LOWER, "textures/mobs/ModelZombieScientist.png");
     public static int[] RANGE_TIER = {40, 80, 135};
+
+    public static class MODELS_OBJ {
+        public static String MODEL_LOC = "textures/models/obj/";
+        public static ResourceLocation MODEL_RECEIVER = new ResourceLocation(MOD_ID_LOWER, MODEL_LOC + "ModelReceiver.obj");
+        public static ResourceLocation MODEL_RECEIVER_NO_SPHERES = new ResourceLocation(MOD_ID_LOWER, MODEL_LOC + "ModelReceiverNoSpheres.obj");
+    }
 }

@@ -4,6 +4,7 @@ import electrolysm.api.powerSystem.tesla.TERecievingCore;
 import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -31,5 +32,10 @@ public class BlockReciever extends BlockContainer {
             return true;
         }
         return super.onBlockActivated(world, x, y, z, player, side, sideX, sideY, sideZ);
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        blockIcon = reg.registerIcon("electrolysm:receiverBase");
     }
 }

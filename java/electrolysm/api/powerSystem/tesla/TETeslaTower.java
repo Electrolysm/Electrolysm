@@ -255,6 +255,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         NBTTagCompound tag = new NBTTagCompound();
         tag.setBoolean("isTransmitting", isTransmitting);
         tag.setBoolean("goodFrequency", goodFrequency);
+        tag.setInteger("frequency", frequency);
         return new S35PacketUpdateTileEntity(x(), y(), z(), 0, tag);
     }
 
@@ -262,5 +263,24 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         isTransmitting = pkt.func_148857_g().getBoolean("isTransmitting");
         goodFrequency = pkt.func_148857_g().getBoolean("goodFrequency");
+        setFrequency(pkt.func_148857_g().getInteger("frequency"));
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+
+        tag.setBoolean("isTransmitting", isTransmitting);
+        tag.setBoolean("goodFrequency", goodFrequency);
+        tag.setInteger("frequency", frequency);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+
+        isTransmitting = tag.getBoolean("isTransmitting");
+        goodFrequency = tag.getBoolean("goodFrequency");
+        setFrequency(tag.getInteger("frequency"));
     }
 }

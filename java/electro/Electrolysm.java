@@ -6,6 +6,7 @@
 package electro;
 
 import electro.handlers.analytics.AnalyticsHandler;
+import electro.powerSystem.tesla.BlockReceiverModel;
 import electrolysm.api.LoggerHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -162,7 +163,7 @@ public class Electrolysm
     public static Block teslaCore = new BlockTeslaCore("BlockTeslaCore");
     public static Block recievingCore = new BlockReciever("BlockReciever");
     public static Block copperCoil = new BlockCopperCoil("BlockCopperCoil", ContectedTexture);
-
+    public static Block receiver = new BlockReceiverModel("BlockReceiverModel");
     //Ore Proccessing
     public static BlockContainer crusher = (BlockContainer) new crusher(false)
     				.setCreativeTab(TabElectrolysm).setBlockName("crusher");

@@ -1,13 +1,11 @@
 package electro.client;
 
+import electro.client.itemRenderers.*;
+import electro.powerSystem.tesla.te.TileEntityReceiverModel;
 import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import electro.Electrolysm;
-import electro.client.itemRenderers.ItemRenderCharger;
-import electro.client.itemRenderers.ItemRenderElectrolysis;
-import electro.client.itemRenderers.ItemRenderIronFrame;
-import electro.client.itemRenderers.ItemRenderPowerCore;
 import electro.common.CommonProxy;
 import electro.handlers.SoundHandler;
 import electro.machines.advMachines.te.TileEntityCharger;
@@ -41,6 +39,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityRobotArm.class, new RenderTileRobotArm());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMatrix.class, new RenderTileMatrixConstruction());
         ClientRegistry.bindTileEntitySpecialRenderer(TEPowerCore.class, new RenderTileEnergyCube());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityReceiverModel.class, new RenderTileReceiver());
 
        // MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.charger), new ItemRenderCharger());
@@ -52,6 +51,7 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.basicEnergyStorage), new ItemRenderPowerCore());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.advEnergyStorage), new ItemRenderPowerCore());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.creativeEnergyStorage), new ItemRenderPowerCore());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.receiver), new ItemRenderReceiver());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         //RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());

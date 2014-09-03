@@ -5,6 +5,10 @@ import electrolysm.api.powerSystem.interfaces.IPowerCore;
 import electrolysm.api.powerSystem.interfaces.IReciever;
 import electrolysm.api.powerSystem.prefab.TileEntityGenerator;
 import electrolysm.api.powerSystem.prefab.TileEntityMachine;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -18,10 +22,14 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
 
     @Override
     public int getTeU() {
-        if(getTower() != null) {
+        if(getTower() != null && isBuilt()) {
             return teu = (getTower().getPower() - (int)(this.getDistanceFrom((double)getTower().x(), (double)getTower().y(), (double)getTower().z()) * 0.005));
         }
         return 0;
+    }
+
+    private boolean isBuilt() {
+        return worldObj.getTileEntity(xCoord, yCoord + 1, zCoord) instanceof IAerial;
     }
 
     @Override
@@ -154,5 +162,32 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
         if(this.getTeU() < 0) { setEmpty(); }
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setInteger("frequency", frequency);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        setFrequency(pkt.func_148857_g().getInteger("frequency"));
+        super.onDataPacket(net, pkt);
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+
+        tag.setInteger("frequency", frequency);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+
+        setFrequency(tag.getInteger("frequency"));
     }
 }
