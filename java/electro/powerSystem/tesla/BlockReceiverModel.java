@@ -5,6 +5,7 @@ import electro.powerSystem.tesla.te.TileEntityReceiverModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -40,5 +41,10 @@ public class BlockReceiverModel extends BlockContainer {
     public boolean renderAsNormalBlock()
     {
         return false;
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        blockIcon = reg.registerIcon("electrolysm:" + "model_filler");
     }
 }

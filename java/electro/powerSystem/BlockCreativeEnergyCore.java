@@ -3,6 +3,7 @@ package electro.powerSystem;
 import electrolysm.api.powerSystem.prefab.BlockEnergy;
 import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import electro.Electrolysm;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -52,5 +53,10 @@ public class BlockCreativeEnergyCore extends BlockEnergy {
     @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        blockIcon = reg.registerIcon("electrolysm:" + "model_filler");
     }
 }

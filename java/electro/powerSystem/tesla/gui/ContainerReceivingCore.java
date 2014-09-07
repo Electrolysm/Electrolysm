@@ -1,6 +1,7 @@
 package electro.powerSystem.tesla.gui;
 
 import electrolysm.api.powerSystem.tesla.TERecievingCore;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 

@@ -15,6 +15,24 @@ public class Crafting
 
     public static void addCrafting()
     {
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.recievingCore), true, new Object[] {
+                "SCS", "MPM", "SBS",
+                Character.valueOf('S'), "ingotSteel",
+                Character.valueOf('C'), Electrolysm.basicCable,
+                Character.valueOf('M'), Electrolysm.advancedMicrochip,
+                Character.valueOf('P'), Electrolysm.CPU,
+                Character.valueOf('B'), Electrolysm.copperCoil
+        }));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Electrolysm.receiver), true, new Object[] {
+                "EAE", "SCS", "SWS",
+                Character.valueOf('S'), "ingotSteel",
+                Character.valueOf('W'), Electrolysm.basicCable,
+                Character.valueOf('E'), Electrolysm.experimentalMicrochip,
+                Character.valueOf('A'), Electrolysm.advancedMicrochip,
+                Character.valueOf('C'), Electrolysm.crystalBase
+        }));
+
         GameRegistry.addRecipe(new ShapedOreRecipe(Electrolysm.steelBlock, true, new Object[] {
                 "XXX", "XXX", "XXX",
                 Character.valueOf('X'), "ingotSteel"

@@ -2,6 +2,7 @@ package electro.client;
 
 import electro.client.itemRenderers.*;
 import electro.powerSystem.tesla.te.TileEntityReceiverModel;
+import electro.powerSystem.tesla.te.TileEntityTeslaCore;
 import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -40,6 +41,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMatrix.class, new RenderTileMatrixConstruction());
         ClientRegistry.bindTileEntitySpecialRenderer(TEPowerCore.class, new RenderTileEnergyCube());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityReceiverModel.class, new RenderTileReceiver());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeslaCore.class, new RenderTileTesla());
 
        // MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.robotArm), new ItemRenderRoboticArm());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.charger), new ItemRenderCharger());
@@ -52,6 +54,7 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.advEnergyStorage), new ItemRenderPowerCore());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.creativeEnergyStorage), new ItemRenderPowerCore());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.receiver), new ItemRenderReceiver());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(Electrolysm.teslaCore), new ItemRenderTesla());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWire.class, new RenderWire());
         //RenderingRegistry.registerBlockHandler(new BlockInventoryRendering());

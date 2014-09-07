@@ -84,7 +84,7 @@ public class GuiTeslaTower extends GuiContainer {
         }
         this.drawCenteredString(fontRendererObj, FREQUENCY.replace(KEY, String.valueOf(entity.getFrequency())), x + 89, y + 29, 155475);
         if (entity.isTransmitting) {
-            this.drawCenteredString(fontRendererObj, POWER_VALUE.replace(KEY, String.valueOf(entity.getTransmitPower())), x + 89, y + 66, 155475);
+            this.drawCenteredString(fontRendererObj, POWER_VALUE.replace(KEY, String.valueOf("100")), x + 89, y + 66, 155475);
         } else {
             this.drawCenteredString(fontRendererObj, POWER_0, x + 89, y + 66, 155475);
         }

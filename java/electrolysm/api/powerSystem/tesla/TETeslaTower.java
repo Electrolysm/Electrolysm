@@ -4,6 +4,9 @@ import electrolysm.api.items.Fetcher;
 import electrolysm.api.powerSystem.interfaces.IWorkableMachine;
 import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockGrass;
+import net.minecraft.block.BlockStone;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -17,6 +20,8 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -29,17 +34,24 @@ import java.util.Random;
  * and you have certain rights with respective
  * to the code.
  */
-public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMachine{
+public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMachine {
 
     private TEPowerCore powerCore = null;
     public boolean isTransmitting = false;
     private boolean goodFrequency = true;
     private int frequency = 0;
+    private int lastFreq;
+    private boolean lastGoodFreq;
+    private boolean lastTransmitting;
 
     @Override
-    public int getTransmitPower()
-    {
-        return 100;
+    public int getTransmitPower() {
+        int FULL = 100;
+        if (receiverList.size() == 1 || receiverList.size() == 0) {
+            return FULL;
+        } else {
+            return FULL / receiverList.size();
+        }
     }
 
     @Override
@@ -47,28 +59,17 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         Block copperCoil = Block.getBlockFromItem(Fetcher.getItem("copperCoil", 1).getItem());
         Block ironFrame = Block.getBlockFromItem(Fetcher.getItem("ironFrames", 1).getItem());
 
-        if(world.canBlockSeeTheSky(x, y + 1, z))
-        {
-            if(world.getBlock(x, y - 1, z) == ironFrame)
-            {
-                if(world.getBlock(x, y - 2, z) == ironFrame)
-                {
-                    if(world.getBlock(x, y - 3, z) == ironFrame)
-                    {
-                        if(world.getBlock(x, y - 4, z) == ironFrame)
-                        {
-                            if(world.getTileEntity(x, y - 5, z) instanceof TEPowerCore)
-                            {
-                                for(int xx = -1; xx <= 1; xx++)
-                                {
-                                    for(int zz = -1; zz <= 1; zz++)
-                                    {
-                                        if(zz == 0 && xx == 0)
-                                        {}
-                                        else
-                                        {
-                                            if(world.getBlock(x + xx, y - 1, z + zz) == copperCoil)
-                                            {
+        if (world.canBlockSeeTheSky(x, y + 1, z)) {
+            if (world.getBlock(x, y - 1, z) == ironFrame) {
+                if (world.getBlock(x, y - 2, z) == ironFrame) {
+                    if (world.getBlock(x, y - 3, z) == ironFrame) {
+                        if (world.getBlock(x, y - 4, z) == ironFrame) {
+                            if (world.getTileEntity(x, y - 5, z) instanceof TEPowerCore) {
+                                for (int xx = -1; xx <= 1; xx++) {
+                                    for (int zz = -1; zz <= 1; zz++) {
+                                        if (zz == 0 && xx == 0) {
+                                        } else {
+                                            if (world.getBlock(x + xx, y - 1, z + zz) == copperCoil) {
                                                 return true;
                                             }
                                         }
@@ -90,22 +91,6 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public void doNegativeAffects(World world, int x, int y, int z) {
-        Random rand = new Random();
-        if(rand.nextInt(10) != 2) { return; }
-
-        EntityPlayer player = world.getClosestPlayer(x, y, z, 100);
-        if(player != null){
-            String username = player.getDisplayName();
-            if(username.replace(" ", "").toLowerCase().equals("ellio98")){
-                player.setHealth(-10F);
-                MinecraftServer.getServer().addChatMessage(new ChatComponentTranslation(player.getDisplayName() + " was killed by a tesla tower"));
-                return;
-            }
-            float[] ratio = calculateNegativeRatio(world, x, y, z, player);
-            if(rand.nextFloat() <= (ratio[0] / (ratio[1]))) {
-                this.spawnLighningBolt(world, player.posX, player.posY - 1, player.posZ);
-            }
-        }
         //TODO
     }
 
@@ -113,28 +98,27 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         //TODO
         float distance = TeslaTransmittingServer.calculateDistance(player.posX, player.posY, player.posY, x, y, z);
         int weight = calculatePlayerWeight(player.inventory);
-        return new float[] {weight, (float)Math.pow(distance, 1.8)};
+        return new float[]{weight, (float) Math.pow(distance, 1.8)};
     }
 
     private int calculatePlayerWeight(InventoryPlayer inventory) {
         int weight = 1;
-        for(int i =0; i < inventory.mainInventory.length; i++){
-            if(inventory.mainInventory[i] != null) {
+        for (int i = 0; i < inventory.mainInventory.length; i++) {
+            if (inventory.mainInventory[i] != null) {
                 weight = weight + (2 * inventory.mainInventory[i].stackSize);
             }
         }
         return weight;
     }
 
-    public EntityLightningBolt spawnLighningBolt(World world, double x, double y, double z)
-    {
+    public EntityLightningBolt spawnLighningBolt(World world, double x, double y, double z) {
         Random rand = new Random();
         EntityLightningBolt bolt = new EntityLightningBolt(world, x, y, z);
         EntityLightningBolt entity = bolt;
         bolt.setLocationAndAngles(x, y, z, MathHelper
                 .wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
         //world.spawnEntityInWorld(bolt);
-        if(world.isRemote) {
+        if (world.isRemote) {
             this.worldObj.playSoundEffect(x, y, z, "ambient.weather.thunder1",
                     10000.0F, 0.8F + rand.nextFloat() * 0.2F);
             this.worldObj.playSoundEffect(x, y, z, "random.explode1",
@@ -146,10 +130,16 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public void transmitPower(World world, int x, int y, int z, int power, int frequency) {
-        world.markBlockForUpdate(x, y, z);
+        if (lastFreq != frequency || lastGoodFreq != goodFrequency || lastTransmitting != isTransmitting) {
+            world.markBlockForUpdate(x, y, z);
+        }
+        lastFreq = frequency;
+        lastGoodFreq = goodFrequency;
+        lastTransmitting = isTransmitting;
         TeslaTower tt = this.getCode();
         if (!getWorldObj().isRemote) {
             this.checkFrequency(this.getFrequency());
+            this.checkReceivers();
             if (this.canWork(getTransmitPower())) {
                 if (this.canDistribute(world, x, y, z)) {
                     //this.doNegativeAffects(world, x, y, z);
@@ -165,9 +155,22 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         return;
     }
 
+    private void checkReceivers() {
+        for (int i = 0; i < receiverList.size(); i++) {
+            Receiver rec = receiverList.get(i);
+            TERecievingCore te = rec.getTileEntity();
+            if (te == null) {
+                receiverList.clear();
+            }
+            else if(te != null && te.getTeU() == 0){
+                receiverList.clear();
+            }
+        }
+    }
+
     private void checkFrequency(int frequency) {
         TeslaTower tt = TeslaTransmittingServer.doesFrequencyExist(frequency);
-        if(tt != null && !tt.equals(getCode())){
+        if (tt != null && !tt.equals(getCode())) {
             goodFrequency = false;
         } else {
             goodFrequency = true;
@@ -190,13 +193,14 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public void setFrequency(int frequency) {
+        receiverList.clear();
         TeslaTransmittingServer.towerList.clear();
         this.frequency = frequency;
     }
 
     @Override
     public boolean canWork(int teu) {
-        if(powerCore != null) {
+        if (powerCore != null) {
             return (powerCore.canDrain(teu));
         }
 
@@ -205,8 +209,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
 
     @Override
     public void work(int teU) {
-        if(powerCore != null && powerCore.canDrain(teU))
-        {
+        if (powerCore != null && powerCore.canDrain(teU)) {
             powerCore.drainPower(teU);
         }
     }
@@ -238,14 +241,13 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         powerCore = getPowerCore();
     }
 
-    public void keepChunkLoaded()
-    {
+    public void keepChunkLoaded() {
         getWorld().getChunkProvider().loadChunk(x(), z());
     }
 
     public TEPowerCore getPowerCore() {
-        if(getWorld().getTileEntity(x(), y() - 5, z()) instanceof TEPowerCore) {
-            return (TEPowerCore)(getWorld().getTileEntity(x(), y() - 5, z()));
+        if (getWorld().getTileEntity(x(), y() - 5, z()) instanceof TEPowerCore) {
+            return (TEPowerCore) (getWorld().getTileEntity(x(), y() - 5, z()));
         }
         return null;
     }
@@ -256,6 +258,7 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         tag.setBoolean("isTransmitting", isTransmitting);
         tag.setBoolean("goodFrequency", goodFrequency);
         tag.setInteger("frequency", frequency);
+        receiverList.clear();
         return new S35PacketUpdateTileEntity(x(), y(), z(), 0, tag);
     }
 
@@ -282,5 +285,13 @@ public class TETeslaTower extends TileEntity implements ITeslaTower, IWorkableMa
         isTransmitting = tag.getBoolean("isTransmitting");
         goodFrequency = tag.getBoolean("goodFrequency");
         setFrequency(tag.getInteger("frequency"));
+    }
+
+    List<Receiver> receiverList = new ArrayList<Receiver>();
+
+    public void registerReciever(Receiver receiver) {
+        if (!receiverList.contains(receiver)) {
+            receiverList.add(receiver);
+        }
     }
 }

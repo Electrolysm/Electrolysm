@@ -1,5 +1,6 @@
 package electro.misc.crafting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import electro.Electrolysm;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class EnergiserRecipes
 {
@@ -33,8 +35,12 @@ public class EnergiserRecipes
                 new ItemStack(Electrolysm.fluidStorage, 4, 1));
         this.addDoubleSmelting(new ItemStack(Electrolysm.crystalBase), new ItemStack(Items.redstone),
                 new ItemStack(Electrolysm.crystal1));
-        this.addDoubleSmelting(new ItemStack(Blocks.diamond_block), new ItemStack(Electrolysm.crystal1),
-                new ItemStack(Electrolysm.crystal2));
+
+        ArrayList<ItemStack> diamondDust = OreDictionary.getOres("dustDiamond");
+        for (int i = 0; i < diamondDust.size(); i++) {
+            this.addDoubleSmelting(new ItemStack(diamondDust.get(i).getItem(), 4, diamondDust.get(i).getItemDamage()), new ItemStack(Electrolysm.crystal1),
+                    new ItemStack(Electrolysm.crystal2));
+        }
     }
 
     public void addDoubleSmelting(ItemStack input1, ItemStack input2, ItemStack output)

@@ -43,9 +43,7 @@ public class BlockTeslaCore extends BlockContainer {
 
     @Override
     public void registerBlockIcons(IIconRegister reg) {
-        blockIcon = reg.registerIcon("electrolysm:" + "teslaTowerCore/sides");
-        topActiveIcon = reg.registerIcon("electrolysm:" + "teslaTowerCore/tier1Top");
-        topIcon = reg.registerIcon("electrolysm:" + "teslaTowerCore/tier1TopOff");
+        blockIcon = reg.registerIcon("electrolysm:" + "model_filler");
     }
 
     @Override
@@ -60,5 +58,23 @@ public class BlockTeslaCore extends BlockContainer {
             }
         }
         return blockIcon;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return -1;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
     }
 }

@@ -1,6 +1,13 @@
 package electrolysm.api.powerSystem.tesla;
 
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import scala.actors.threadpool.Arrays;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -46,14 +53,26 @@ public class TeslaTransmittingServer //implements ICustomTeslaServer
         return false;
     }
 
-    public static TeslaTower getTeslaTower(int worldID, int x, int y, int z, int freq, int range) {
+    public static TeslaTower getTeslaTower(World world, int x, int y, int z, int freq, int range) {
         for (int i = 0; i < towerList.size(); i++) {
             TeslaTower teslaTower = towerList.get(i);
-            if (isInRange(teslaTower, x, y, z, range) && statsMatch(teslaTower, worldID, freq)) {
-                return teslaTower;
+            if (isInRange(teslaTower, x, y, z, range) && statsMatch(teslaTower, world.provider.dimensionId, freq)) {
+                TileEntity te = world.getTileEntity(teslaTower.x(), teslaTower.y(), teslaTower.z());
+                if (te instanceof TETeslaTower) {
+                    ((TETeslaTower) te).registerReciever(new Receiver(world.provider.dimensionId, x, y, z, freq));
+                    return teslaTower;
+                }
             }
         }
         return null;
+    }
+
+    public static void clearTileEntities(){
+        for (int i = 0; i < towerList.size(); i++) {
+            if(towerList.get(i) != null && towerList.get(i).getTeslaTower() != null) {
+                towerList.get(i).getTeslaTower().receiverList.clear();
+            }
+        }
     }
 
     private static boolean statsMatch(TeslaTower teslaTower, int worldID, int freq) {

@@ -1,6 +1,5 @@
 package electro.client.itemRenderers;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import electro.common.CommonProxy;
 import electro.configHandler;
 import electro.handlers.AdvancedModelHandler;
@@ -8,14 +7,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 /**
- * Created by Clarky158 on 03/09/2014.
+ * Created by Clarky158 on 07/09/2014.
  */
-public class ItemRenderReceiver implements IItemRenderer {
+public class ItemRenderTesla implements IItemRenderer
+{
     IModelCustom model = AdvancedModelHandler.advancedModel.getModelReceiver();
     IModelCustom modelNo = AdvancedModelHandler.advancedModel.getModelReceiverNoSpheres();
 
@@ -64,13 +63,13 @@ public class ItemRenderReceiver implements IItemRenderer {
             model.renderPart("Cube_Cube");
             GL11.glPopMatrix();
             GL11.glPushMatrix();
-            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/obj/receiver_ball.png"));
+            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/obj/tesla_ball.png"));
             model.renderPart("Icosphere_Icosphere");
             GL11.glPopMatrix();
         }
         else {
             GL11.glPushMatrix();
-            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/obj/receiver_ball.png"));
+            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(CommonProxy.MOD_ID_LOWER, "textures/models/obj/tesla_ball_red.png"));
             modelNo.renderPart("Cube");
             GL11.glPopMatrix();
 

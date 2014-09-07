@@ -3,6 +3,7 @@ package electro.powerSystem;
 import electrolysm.api.powerSystem.prefab.BlockEnergy;
 import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import electro.Electrolysm;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -48,5 +49,10 @@ public class basicEnergyStorage extends BlockEnergy
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
         if(!player.isSneaking()) { player.openGui(Electrolysm.GUIInstance, 0, world, x, y, z); return true; }
         return false;
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        blockIcon = reg.registerIcon("electrolysm:" + "model_filler");
     }
 }

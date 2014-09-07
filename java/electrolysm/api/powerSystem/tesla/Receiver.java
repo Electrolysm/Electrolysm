@@ -1,40 +1,25 @@
 package electrolysm.api.powerSystem.tesla;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import electrolysm.api.CompareHandler;
-import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
- * Created by Clarky158 on 01/08/2014.
- * <p/>
- * Electrolysm is an open source Minecraft mod
- * released under version 3 of the GNU Lesser
- * General Public License. This means that
- * the source of this mod is publicly available
- * and you have certain rights with respective
- * to the code.
+ * Created by Clarky158 on 04/09/2014.
  */
-public class TeslaTower implements IWorldMethods{
-    int[] dataArray = new int[6];
-    int power;
+public class Receiver implements IWorldMethods
+{
+    int[] dataArray = new int[5];
     int freqency;
 
-    public TeslaTower(int dimID, int x, int y, int z, int power1, int freq) {
-        dataArray = new int[]{dimID, x, y, z, power1, freq};
-        power = power1;
+    public Receiver(int dimID, int x, int y, int z, int freq) {
+        dataArray = new int[]{dimID, x, y, z, freq};
         freqency = freq;
     }
 
     public int[] getWorldData() {
         return new int[]{dataArray[0], dataArray[1], dataArray[2], dataArray[3]};
-    }
-
-    public int getPower() {
-        return power;
     }
 
     public int getFreq() {
@@ -64,7 +49,7 @@ public class TeslaTower implements IWorldMethods{
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof TeslaTower && CompareHandler.comparatorTeslaTower.compare(this, (TeslaTower)obj) == 0;
+        return obj instanceof Receiver && CompareHandler.comparatorReceiver.compare(this, (Receiver)obj) == 0;
     }
 
     @Override
@@ -76,12 +61,11 @@ public class TeslaTower implements IWorldMethods{
         return code;
     }
 
-    public TETeslaTower getTeslaTower(){
+    public TERecievingCore getTileEntity() {
         TileEntity te = MinecraftServer.getServer().getEntityWorld().getTileEntity(x(), y(), z());
-        if(te instanceof TETeslaTower && ((TETeslaTower) te).getFrequency() == getFreq()){
-            return (TETeslaTower) te;
+        if(te != null && te instanceof TERecievingCore && ((TERecievingCore) te).getFrequency() == getFreq()){
+            return (TERecievingCore) te;
         }
         return null;
     }
-
 }

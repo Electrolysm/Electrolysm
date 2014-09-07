@@ -3,6 +3,7 @@ package electro.machines.advMachines;
 import electro.Electrolysm;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import electro.machines.advMachines.te.TileEntityCharger;
@@ -38,5 +39,10 @@ public class charger extends BlockContainer
     public boolean renderAsNormalBlock()
     {
         return false;
+    }
+
+    @Override
+    public void registerBlockIcons(IIconRegister reg) {
+        blockIcon = reg.registerIcon("electrolysm:" + "model_filler");
     }
 }

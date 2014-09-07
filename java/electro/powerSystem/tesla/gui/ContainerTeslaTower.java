@@ -39,5 +39,11 @@ public class ContainerTeslaTower extends Container{
         return true;
     }
 
+    @Override
+    protected void retrySlotClick(int p_75133_1_, int p_75133_2_, boolean p_75133_3_, EntityPlayer p_75133_4_)
+    {
+        //this.slotClick(p_75133_1_, p_75133_2_, 1, p_75133_4_);
+    }
+
 }
 

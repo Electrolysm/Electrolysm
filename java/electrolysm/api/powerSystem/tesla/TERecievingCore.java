@@ -3,6 +3,7 @@ package electrolysm.api.powerSystem.tesla;
 import electrolysm.api.powerSystem.interfaces.IConnector;
 import electrolysm.api.powerSystem.interfaces.IPowerCore;
 import electrolysm.api.powerSystem.interfaces.IReciever;
+import electrolysm.api.powerSystem.prefab.TEPowerCore;
 import electrolysm.api.powerSystem.prefab.TileEntityGenerator;
 import electrolysm.api.powerSystem.prefab.TileEntityMachine;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,7 +24,8 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
     @Override
     public int getTeU() {
         if(getTower() != null && isBuilt()) {
-            return teu = (getTower().getPower() - (int)(this.getDistanceFrom((double)getTower().x(), (double)getTower().y(), (double)getTower().z()) * 0.005));
+            return teu = (((getTower().getPower() - (int)(this.getDistanceFrom((double)getTower().x(),
+                    (double)getTower().y(), (double)getTower().z()) * 0.005))));
         }
         return 0;
     }
@@ -39,7 +41,7 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
 
     @Override
     public TeslaTower getTower() {
-        return TeslaTransmittingServer.getTeslaTower(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, getFrequency(), getRange());
+        return TeslaTransmittingServer.getTeslaTower(worldObj, xCoord, yCoord, zCoord, getFrequency(), getRange());
     }
 
     @Override
@@ -54,7 +56,15 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
         return frequency;
     }
 
+    @Override
+    public Receiver makeReceiver() {
+        return null;
+    }
+
     public void setFrequency(int frequency) {
+        if(!worldObj.isRemote) {
+            TeslaTransmittingServer.clearTileEntities();
+        }
         this.frequency = frequency;
     }
 
@@ -118,7 +128,7 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
     @Override
     public void drainPower(int amount)
     {
-        teu = teu - amount;
+        teu = getTeU() - amount;
     }
 
     @Override
@@ -149,19 +159,28 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
 
     @Override
     public void updateEntity() {
-
         for (byte i = 0; i < 6; i++)
         {
             ForgeDirection dir = ForgeDirection.getOrientation(i);
             this.canConnect(dir, this.worldObj.getTileEntity(this.xCoord + dir.offsetX, this.yCoord + dir.offsetY,
                     this.zCoord + dir.offsetZ));
         }
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         if(worldObj.isRemote) { return; }
 
-        //getDescriptionPacket();
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-
-        if(this.getTeU() < 0) { setEmpty(); }
+        for(int i = 0; i < adjConnections.length; i++) {
+            if (adjConnections[i] instanceof TEPowerCore && ((TEPowerCore)adjConnections[i]).canHold(50) && this.canDrain(50)){
+                this.drainPower(50);
+                ((TEPowerCore)adjConnections[i]).charge(50);
+            }
+        }
+        if(getTower() != null && worldObj != null) {
+            TileEntity te = worldObj.getTileEntity(getTower().x(), getTower().y(), getTower().z());
+            if (te != null && te instanceof TETeslaTower && this.getTeU() > 0 && isBuilt()) {
+                ((TETeslaTower) te).registerReciever(new Receiver(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, frequency));
+            }
+        }
+        //if(this.getTeU() < 0) { setEmpty(); }
     }
 
     @Override
@@ -173,7 +192,7 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        setFrequency(pkt.func_148857_g().getInteger("frequency"));
+        frequency = (pkt.func_148857_g().getInteger("frequency"));
         super.onDataPacket(net, pkt);
     }
 
@@ -188,6 +207,6 @@ public class TERecievingCore extends TileEntity implements IReciever, IConnector
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
 
-        setFrequency(tag.getInteger("frequency"));
+        frequency = tag.getInteger("frequency");
     }
 }

@@ -58,7 +58,7 @@ public class ReceivingCoreMessage implements IMessage, IMessageHandler<Receiving
 
         if (te instanceof TERecievingCore)
         {
-            //System.out.println("messageReceived: " + message.frequency);
+            System.out.println("messageReceived: " + message.frequency);
             ((TERecievingCore) te).setFrequency(message.frequency);
             //return message;
         }

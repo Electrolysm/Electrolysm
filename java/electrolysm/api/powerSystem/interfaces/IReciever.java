@@ -1,5 +1,6 @@
 package electrolysm.api.powerSystem.interfaces;
 
+import electrolysm.api.powerSystem.tesla.Receiver;
 import electrolysm.api.powerSystem.tesla.TeslaTower;
 
 /**
@@ -12,4 +13,6 @@ public interface IReciever
     public int getRange();
 
     public int getFrequency();
+
+    public Receiver makeReceiver();
 }

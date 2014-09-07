@@ -147,7 +147,7 @@ public class TEPowerCore extends TileEntity implements IConnector, IPowerCore
 
         if(this.getTeU() < 0) { setEmpty(); }
         if(this.getTeU() >= (maxTeU - 5)) { setFull(); }
-        if(new Random().nextInt(50) == 5) { this.drainPower(1); }
+        if(new Random().nextInt(50) == 5 && getTeU() > 0) { this.drainPower(1); }
         if(getAmps() > getMaxAmps() && !isCreative)
         {
             drainPower((int)(maxTeU * 0.001F));
