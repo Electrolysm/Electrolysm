@@ -6,7 +6,7 @@ public class Referance
     {
         public static String MOD_ID = "Electrolysm";
         public static String MOD_ID_LOWER = MOD_ID.toLowerCase();
-        public static String VERSION = "1.1.3";
+        public static String VERSION = "1.2.42";
         public static String CHANNEL = "Electrolysm";
     }
 
